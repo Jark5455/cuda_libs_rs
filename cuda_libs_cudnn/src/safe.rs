@@ -1,7 +1,7 @@
 pub use crate::sys::cudnnStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
-use cuda_libs_rt::sys::*;
+use cuda_libs_cudart::sys::*;
 impl crate::sys::cudnnDebugStruct {
     pub fn cudnn_version(mut self, val: ::std::os::raw::c_uint) -> Self {
         self.cudnn_version = val;

@@ -1,7 +1,7 @@
 pub use crate::sys::cublasStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
-use cuda_libs_rt::sys::*;
+use cuda_libs_cudart::sys::*;
 impl crate::sys::_IO_FILE {
     pub fn _flags(mut self, val: ::std::os::raw::c_int) -> Self {
         self._flags = val;

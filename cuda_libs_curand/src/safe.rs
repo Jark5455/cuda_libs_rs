@@ -1,7 +1,7 @@
 pub use crate::sys::curandStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
-use cuda_libs_rt::sys::*;
+use cuda_libs_cudart::sys::*;
 pub struct CurandGenerator {
     pub(crate) handle: crate::sys::curandGenerator_t,
 }

@@ -5,4 +5,4 @@ edition = "2024"
 
 [dependencies]
 cuda_libs = { path = "../" }
-cuda_libs_rt = { path = "../cuda_libs_rt" }
+cuda_libs_cudart = { path = "../cuda_libs_cudart" }

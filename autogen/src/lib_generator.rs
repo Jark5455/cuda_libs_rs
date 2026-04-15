@@ -2,6 +2,11 @@ use std::path::PathBuf;
 use quote::quote;
 use syn::{ForeignItem, Item, ReturnType, Type};
 
+pub struct HandleConfig {
+    pub wrapper_name: &'static str,
+    pub handle_type: &'static str,
+}
+
 pub struct LibraryConfig {
     pub lib_name: &'static str,
     pub out_dir: &'static str,
@@ -12,10 +17,8 @@ pub struct LibraryConfig {
     pub blocklist_types: Vec<&'static str>,
     pub status_type: &'static str,
     pub success_variant: &'static str,
-    pub handle_type: &'static str,
+    pub handles: Vec<HandleConfig>,
     pub handle_types_regex: Vec<&'static str>,
-    pub generate_handle_wrapper: bool,
-    pub handle_wrapper_name: &'static str,
     pub extra_imports: Vec<&'static str>,
     pub extra_safe_code: &'static str,
 }
@@ -31,8 +34,11 @@ pub fn generate_library(config: &LibraryConfig) {
         .derive_default(true)
         .allowlist_function(config.allowlist_functions)
         .allowlist_type(config.allowlist_types)
-        .allowlist_var(config.allowlist_vars)
-        .raw_line("pub use cuda_libs_rt::sys::*;");
+        .allowlist_var(config.allowlist_vars);
+
+    if config.lib_name != "cuda_libs_cudart" {
+        builder = builder.raw_line("pub use cuda_libs_cudart::sys::*;");
+    }
 
     for import in &config.extra_imports {
         builder = builder.raw_line(format!("pub use {}::sys::*;", import));
@@ -55,7 +61,10 @@ pub fn generate_library(config: &LibraryConfig) {
     let ast: syn::File = syn::parse_str(&bindings_code).unwrap();
 
     let mut standalone_funcs = Vec::new();
-    let mut handle_methods = Vec::new();
+    let mut handle_methods: std::collections::HashMap<String, Vec<proc_macro2::TokenStream>> = std::collections::HashMap::new();
+    for h in &config.handles {
+        handle_methods.insert(h.wrapper_name.to_string(), Vec::new());
+    }
     let mut builder_impls = Vec::new();
 
     for item in ast.items {
@@ -71,13 +80,33 @@ pub fn generate_library(config: &LibraryConfig) {
                         continue;
                     }
 
-                    let mut is_method = false;
+                    let mut current_handle_wrapper = None;
                     if let Some(syn::FnArg::Typed(pat_type)) = sig.inputs.first() {
                         let real_ty = &pat_type.ty;
-                        if quote!(#real_ty).to_string() == config.handle_type {
-                            is_method = true;
+                        let ty_str = quote!(#real_ty).to_string();
+                        for h in &config.handles {
+                            if ty_str == h.handle_type {
+                                current_handle_wrapper = Some(h.wrapper_name.to_string());
+                                break;
+                            }
                         }
                     }
+
+                    // Cudart specific check: find handle anywhere in args
+                    if current_handle_wrapper.is_none() && config.lib_name == "cuda_libs_cudart" {
+                        for input in &sig.inputs {
+                            if let syn::FnArg::Typed(pat_type) = input {
+                                let real_ty = &pat_type.ty;
+                                let ty_str = quote!(#real_ty).to_string();
+                                if ty_str == "cudaExecutionContext_t" {
+                                    current_handle_wrapper = Some("CudaExecutionContext".to_string());
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    let is_method = current_handle_wrapper.is_some();
 
                     let mut safe_inputs = Vec::new();
                     let mut safe_inputs_generics = Vec::<proc_macro2::TokenStream>::new();
@@ -99,9 +128,18 @@ pub fn generate_library(config: &LibraryConfig) {
                                 let ty = &pat_type.ty;
                                 let pat_str = quote!(#pat).to_string();
 
-                                if i == 0 && is_method {
+                                if i == 0 && is_method && config.lib_name != "cuda_libs_cudart" {
                                     call_args.push(quote!(self.handle));
                                     continue;
+                                }
+
+                                if config.lib_name == "cuda_libs_cudart" && is_method {
+                                    if let syn::Type::Path(p) = &**ty {
+                                        if p.path.is_ident("cudaExecutionContext_t") {
+                                            call_args.push(quote!(self.handle));
+                                            continue;
+                                        }
+                                    }
                                 }
 
                                 let mut is_output = false;
@@ -177,8 +215,8 @@ pub fn generate_library(config: &LibraryConfig) {
                                     }
                                 }
                             };
-                            if is_method {
-                                handle_methods.push(safe_fn);
+                            if let Some(wrapper) = &current_handle_wrapper {
+                                handle_methods.get_mut(wrapper).unwrap().push(safe_fn);
                             } else {
                                 standalone_funcs.push(safe_fn);
                             }
@@ -189,14 +227,146 @@ pub fn generate_library(config: &LibraryConfig) {
                         }
                     }
 
+                    // Specialized Malloc logic
+                    if config.lib_name == "cuda_libs_cudart" && fn_str.starts_with("cudaMalloc") {
+                        let mut m_safe_inputs = Vec::new();
+                            let mut m_call_args = Vec::new();
+                            let is_array = fn_str.contains("Array") || fn_str.contains("Mipmapped");
+                            let is_host = fn_str.contains("Host");
+                            let is_3d_pitched = fn_str == "cudaMalloc3D";
+                            let mut output_type = quote!();
+
+                            for (i, input) in sig.inputs.iter().enumerate() {
+                                if let syn::FnArg::Typed(pat_type) = input {
+                                    let pat = &pat_type.pat;
+                                    let ty = &pat_type.ty;
+                                    if i == 0 {
+                                        if let Type::Ptr(ptr_ty) = &**ty {
+                                            let inner_ty = &ptr_ty.elem;
+                                            output_type = quote!(#inner_ty);
+                                        }
+                                        m_call_args.push(quote!(&mut dev_ptr as *mut _ as *mut _));
+                                    } else {
+                                        m_safe_inputs.push(quote!(#pat: #ty));
+                                        m_call_args.push(quote!(#pat));
+                                    }
+                                }
+                            }
+
+                            let safe_fn = if is_array || is_3d_pitched {
+                                quote! {
+                                    pub unsafe fn #fn_name(#(#m_safe_inputs),*) -> Result<#output_type, crate::sys::cudaError> {
+                                        let mut dev_ptr: #output_type = unsafe { std::mem::zeroed() };
+                                        let status = unsafe { crate::sys::#fn_name(#(#m_call_args),*) };
+                                        if status == crate::sys::cudaError::cudaSuccess {
+                                            Ok(dev_ptr)
+                                        } else {
+                                            Err(status)
+                                        }
+                                    }
+                                }
+                            } else if is_host {
+                                quote! {
+                                    pub unsafe fn #fn_name<T>(#(#m_safe_inputs),*) -> Result<*mut T, crate::sys::cudaError> {
+                                        let mut dev_ptr = std::ptr::null_mut();
+                                        let status = unsafe { crate::sys::#fn_name(#(#m_call_args),*) };
+                                        if status == crate::sys::cudaError::cudaSuccess {
+                                            Ok(dev_ptr as *mut T)
+                                        } else {
+                                            Err(status)
+                                        }
+                                    }
+                                }
+                            } else {
+                                quote! {
+                                    pub unsafe fn #fn_name<T>(#(#m_safe_inputs),*) -> Result<::cuda_libs::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
+                                        let mut dev_ptr = std::ptr::null_mut();
+                                        let status = unsafe { crate::sys::#fn_name(#(#m_call_args),*) };
+                                        if status == crate::sys::cudaError::cudaSuccess {
+                                            Ok(::cuda_libs::types::cuDeviceAllocation(dev_ptr as *mut T))
+                                        } else {
+                                            Err(status)
+                                        }
+                                    }
+                                }
+                            };
+                            standalone_funcs.push(safe_fn);
+                            continue;
+                        }
+
+                    // Specialized Free logic
+                    if config.lib_name == "cuda_libs_cudart" && fn_str.starts_with("cudaFree") {
+                        let mut f_safe_inputs = Vec::new();
+                            let mut f_call_args = Vec::new();
+                            let is_host = fn_str.contains("Host");
+                            let is_array_or_3d = fn_str.contains("Array") || fn_str.contains("Mipmapped");
+
+                            for (i, input) in sig.inputs.iter().enumerate() {
+                                if let syn::FnArg::Typed(pat_type) = input {
+                                    let pat = &pat_type.pat;
+                                    let ty = &pat_type.ty;
+                                    if i == 0 {
+                                        if is_array_or_3d {
+                                            f_safe_inputs.push(quote!(#pat: #ty));
+                                            f_call_args.push(quote!(#pat));
+                                        } else if is_host {
+                                            f_safe_inputs.push(quote!(#pat: *mut T));
+                                            f_call_args.push(quote!(#pat as *mut _));
+                                        } else {
+                                            f_safe_inputs.push(quote!(#pat: ::cuda_libs::types::cuDeviceAllocation<T>));
+                                            f_call_args.push(quote!(#pat.0 as *mut _));
+                                        }
+                                    } else {
+                                        f_safe_inputs.push(quote!(#pat: #ty));
+                                        f_call_args.push(quote!(#pat));
+                                    }
+                                }
+                            }
+
+                            let safe_fn = if is_array_or_3d {
+                                quote! {
+                                    pub unsafe fn #fn_name(#(#f_safe_inputs),*) -> Result<(), crate::sys::cudaError> {
+                                        let status = unsafe { crate::sys::#fn_name(#(#f_call_args),*) };
+                                        if status == crate::sys::cudaError::cudaSuccess {
+                                            Ok(())
+                                        } else {
+                                            Err(status)
+                                        }
+                                    }
+                                }
+                            } else {
+                                quote! {
+                                    pub unsafe fn #fn_name<T>(#(#f_safe_inputs),*) -> Result<(), crate::sys::cudaError> {
+                                        let status = unsafe { crate::sys::#fn_name(#(#f_call_args),*) };
+                                        if status == crate::sys::cudaError::cudaSuccess {
+                                            Ok(())
+                                        } else {
+                                            Err(status)
+                                        }
+                                    }
+                                }
+                            };
+                            standalone_funcs.push(safe_fn);
+                            continue;
+                        }
+
                     for (i, input) in sig.inputs.iter().enumerate() {
                         if let syn::FnArg::Typed(pat_type) = input {
                             let pat = &pat_type.pat;
                             let ty = &pat_type.ty;
 
-                            if i == 0 && is_method {
+                            if i == 0 && is_method && config.lib_name != "cuda_libs_cudart" {
                                 call_args.push(quote!(self.handle));
                                 continue;
+                            }
+
+                            if config.lib_name == "cuda_libs_cudart" && is_method {
+                                if let syn::Type::Path(p) = &**ty {
+                                    if p.path.is_ident("cudaExecutionContext_t") {
+                                        call_args.push(quote!(self.handle));
+                                        continue;
+                                    }
+                                }
                             }
 
                             if let Type::Ptr(ptr_ty) = &**ty {
@@ -300,7 +470,8 @@ pub fn generate_library(config: &LibraryConfig) {
                         }
                     };
                     if is_method {
-                        handle_methods.push(safe_fn);
+                        let wrapper = current_handle_wrapper.as_ref().unwrap();
+                        handle_methods.get_mut(wrapper).unwrap().push(safe_fn);
                     } else {
                         standalone_funcs.push(safe_fn);
                     }
@@ -336,25 +507,22 @@ pub fn generate_library(config: &LibraryConfig) {
         }
     }
 
-    let status_type_ident = syn::Ident::new(config.status_type, proc_macro2::Span::call_site());
-    let handle_type_ident = syn::Ident::new(config.handle_type, proc_macro2::Span::call_site());
-    let wrapper_name_ident = syn::Ident::new(config.handle_wrapper_name, proc_macro2::Span::call_site());
-    
-    let wrapper_struct = if config.generate_handle_wrapper {
-        quote! {
-            pub struct #wrapper_name_ident {
-                pub(crate) handle: crate::sys::#handle_type_ident,
+    let mut wrapper_structs = Vec::new();
+    for h in &config.handles {
+        let h_type_ident = syn::Ident::new(h.handle_type, proc_macro2::Span::call_site());
+        let w_name_ident = syn::Ident::new(h.wrapper_name, proc_macro2::Span::call_site());
+        let methods = handle_methods.get(h.wrapper_name).unwrap();
+        
+        wrapper_structs.push(quote! {
+            pub struct #w_name_ident {
+                pub(crate) handle: crate::sys::#h_type_ident,
             }
             
-            impl #wrapper_name_ident {
-                #(#handle_methods)*
+            impl #w_name_ident {
+                #(#methods)*
             }
-        }
-    } else {
-        quote! {
-            #(#handle_methods)*
-        }
-    };
+        });
+    }
 
     let mut extra_safes = Vec::new();
     for import in &config.extra_imports {
@@ -364,16 +532,23 @@ pub fn generate_library(config: &LibraryConfig) {
         });
     }
 
+    let status_type_ident = syn::Ident::new(config.status_type, proc_macro2::Span::call_site());
+    let rt_import = if config.lib_name != "cuda_libs_cudart" {
+        quote!(use cuda_libs_cudart::sys::*;)
+    } else {
+        quote!()
+    };
+
     let safe_module = quote! {
         pub use crate::sys::#status_type_ident as CudaTargetStatus;
         #[allow(unused_imports)]
         use crate::sys::*;
-        use cuda_libs_rt::sys::*;
+        #rt_import
         #(#extra_safes)*
 
         #(#builder_impls)*
 
-        #wrapper_struct
+        #(#wrapper_structs)*
 
         #(#standalone_funcs)*
     };

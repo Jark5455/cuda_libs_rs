@@ -83,7 +83,7 @@ name = "cuda_libs_cublas"
 version = "0.1.0"
 dependencies = [
  "cuda_libs",
- "cuda_libs_rt",
+ "cuda_libs_cudart",
 ]
 
 [[package]]
@@ -92,7 +92,14 @@ version = "0.1.0"
 dependencies = [
  "cuda_libs",
  "cuda_libs_cublas",
- "cuda_libs_rt",
+ "cuda_libs_cudart",
+]
+
+[[package]]
+name = "cuda_libs_cudart"
+version = "0.1.0"
+dependencies = [
+ "cuda_libs",
 ]
 
 [[package]]
@@ -100,7 +107,7 @@ name = "cuda_libs_cudnn"
 version = "0.1.0"
 dependencies = [
  "cuda_libs",
- "cuda_libs_rt",
+ "cuda_libs_cudart",
 ]
 
 [[package]]
@@ -108,7 +115,7 @@ name = "cuda_libs_cufft"
 version = "0.1.0"
 dependencies = [
  "cuda_libs",
- "cuda_libs_rt",
+ "cuda_libs_cudart",
 ]
 
 [[package]]
@@ -116,7 +123,7 @@ name = "cuda_libs_curand"
 version = "0.1.0"
 dependencies = [
  "cuda_libs",
- "cuda_libs_rt",
+ "cuda_libs_cudart",
 ]
 
 [[package]]
@@ -125,7 +132,7 @@ version = "0.1.0"
 dependencies = [
  "cuda_libs",
  "cuda_libs_cublas",
- "cuda_libs_rt",
+ "cuda_libs_cudart",
 ]
 
 [[package]]
@@ -133,14 +140,7 @@ name = "cuda_libs_cusparse"
 version = "0.1.0"
 dependencies = [
  "cuda_libs",
- "cuda_libs_rt",
-]
-
-[[package]]
-name = "cuda_libs_rt"
-version = "0.1.0"
-dependencies = [
- "cuda_libs",
+ "cuda_libs_cudart",
 ]
 
 [[package]]

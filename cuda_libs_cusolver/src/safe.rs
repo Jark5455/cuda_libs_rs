@@ -1,7 +1,7 @@
 pub use crate::sys::cusolverStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
-use cuda_libs_rt::sys::*;
+use cuda_libs_cudart::sys::*;
 impl crate::sys::_IO_FILE {
     pub fn _flags(mut self, val: ::std::os::raw::c_int) -> Self {
         self._flags = val;
@@ -14066,6 +14066,2354 @@ impl CusolverDnHandle {
         }
     }
 }
+pub struct CusolverSpHandle {
+    pub(crate) handle: crate::sys::cusolverSpHandle_t,
+}
+impl CusolverSpHandle {
+    pub unsafe fn cusolverSpSetStream(
+        &self,
+        streamId: cudaStream_t,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe { crate::sys::cusolverSpSetStream(self.handle, streamId) };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpGetStream(&self) -> Result<cudaStream_t, crate::sys::cusolverStatus_t> {
+        let mut out_1: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
+        let status =
+            unsafe { crate::sys::cusolverSpGetStream(self.handle, out_1.as_mut_ptr() as *mut _) };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            unsafe { Ok(out_1.assume_init()) }
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrissymHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrRowPtrA: T,
+        csrEndPtrA: U,
+        csrColIndA: V,
+        mut issym: W,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrissymHost(
+                self.handle,
+                m,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrEndPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                issym.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrlsvluHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrlsvluHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f32,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f32,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrlsvluHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrlsvluHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f64,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f64,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrlsvluHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrlsvluHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrlsvluHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrlsvluHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuDoubleComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrlsvqr<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrlsvqr(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f32,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f32,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f32,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrlsvqr<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrlsvqr(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f64,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f64,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f64,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrlsvqr<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrlsvqr(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrlsvqr<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrlsvqr(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuDoubleComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrlsvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrlsvqrHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f32,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f32,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrlsvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrlsvqrHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f64,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f64,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrlsvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrlsvqrHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrlsvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrlsvqrHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuDoubleComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrlsvcholHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrlsvcholHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f32,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f32,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f32,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrlsvcholHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrlsvcholHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f64,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f64,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f64,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrlsvcholHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrlsvcholHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrlsvcholHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrlsvcholHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuDoubleComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrlsvchol<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrlsvchol(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f32,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f32,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f32,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrlsvchol<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrlsvchol(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f64,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f64,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut f64,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrlsvchol<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f32,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrlsvchol(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrlsvchol<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        b: W,
+        tol: f64,
+        reorder: ::std::os::raw::c_int,
+        mut x: X,
+        mut singularity: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrlsvchol(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuDoubleComplex,
+                tol,
+                reorder,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+                singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrlsqvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+        Z: ::cuda_libs::types::CudaAsPtr,
+        A: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f32,
+        mut rankA: X,
+        mut x: Y,
+        mut p: Z,
+        mut min_norm: A,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrlsqvqrHost(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f32,
+                tol,
+                rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                x.as_mut_ptr() as *mut f32,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                min_norm.as_mut_ptr() as *mut f32,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrlsqvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+        Z: ::cuda_libs::types::CudaAsPtr,
+        A: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f64,
+        mut rankA: X,
+        mut x: Y,
+        mut p: Z,
+        mut min_norm: A,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrlsqvqrHost(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f64,
+                tol,
+                rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                x.as_mut_ptr() as *mut f64,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                min_norm.as_mut_ptr() as *mut f64,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrlsqvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+        Z: ::cuda_libs::types::CudaAsPtr,
+        A: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f32,
+        mut rankA: X,
+        mut x: Y,
+        mut p: Z,
+        mut min_norm: A,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrlsqvqrHost(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuComplex,
+                tol,
+                rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                x.as_mut_ptr() as *mut cuComplex,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                min_norm.as_mut_ptr() as *mut f32,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrlsqvqrHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+        Z: ::cuda_libs::types::CudaAsPtr,
+        A: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        tol: f64,
+        mut rankA: X,
+        mut x: Y,
+        mut p: Z,
+        mut min_norm: A,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrlsqvqrHost(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuDoubleComplex,
+                tol,
+                rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                min_norm.as_mut_ptr() as *mut f64,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsreigvsiHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: f32,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        tol: f32,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsreigvsiHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const f32,
+                maxite,
+                tol,
+                mu.as_mut_ptr() as *mut f32,
+                x.as_mut_ptr() as *mut f32,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsreigvsiHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: f64,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        tol: f64,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsreigvsiHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const f64,
+                maxite,
+                tol,
+                mu.as_mut_ptr() as *mut f64,
+                x.as_mut_ptr() as *mut f64,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsreigvsiHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: cuComplex,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        tol: f32,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsreigvsiHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const cuComplex,
+                maxite,
+                tol,
+                mu.as_mut_ptr() as *mut cuComplex,
+                x.as_mut_ptr() as *mut cuComplex,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsreigvsiHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: cuDoubleComplex,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        tol: f64,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsreigvsiHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const cuDoubleComplex,
+                maxite,
+                tol,
+                mu.as_mut_ptr() as *mut cuDoubleComplex,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsreigvsi<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: f32,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        eps: f32,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsreigvsi(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const f32,
+                maxite,
+                eps,
+                mu.as_mut_ptr() as *mut f32,
+                x.as_mut_ptr() as *mut f32,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsreigvsi<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: f64,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        eps: f64,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsreigvsi(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const f64,
+                maxite,
+                eps,
+                mu.as_mut_ptr() as *mut f64,
+                x.as_mut_ptr() as *mut f64,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsreigvsi<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: cuComplex,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        eps: f32,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsreigvsi(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const cuComplex,
+                maxite,
+                eps,
+                mu.as_mut_ptr() as *mut cuComplex,
+                x.as_mut_ptr() as *mut cuComplex,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsreigvsi<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mu0: cuDoubleComplex,
+        x0: W,
+        maxite: ::std::os::raw::c_int,
+        eps: f64,
+        mut mu: X,
+        mut x: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsreigvsi(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                mu0,
+                x0.as_const_ptr() as *const cuDoubleComplex,
+                maxite,
+                eps,
+                mu.as_mut_ptr() as *mut cuDoubleComplex,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsreigsHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        left_bottom_corner: cuComplex,
+        right_upper_corner: cuComplex,
+        mut num_eigs: W,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsreigsHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                left_bottom_corner,
+                right_upper_corner,
+                num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsreigsHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        left_bottom_corner: cuDoubleComplex,
+        right_upper_corner: cuDoubleComplex,
+        mut num_eigs: W,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsreigsHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                left_bottom_corner,
+                right_upper_corner,
+                num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsreigsHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        left_bottom_corner: cuComplex,
+        right_upper_corner: cuComplex,
+        mut num_eigs: W,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsreigsHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                left_bottom_corner,
+                right_upper_corner,
+                num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsreigsHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        left_bottom_corner: cuDoubleComplex,
+        right_upper_corner: cuDoubleComplex,
+        mut num_eigs: W,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsreigsHost(
+                self.handle,
+                m,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                left_bottom_corner,
+                right_upper_corner,
+                num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrsymrcmHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrRowPtrA: T,
+        csrColIndA: U,
+        mut p: V,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrsymrcmHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrsymmdqHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrRowPtrA: T,
+        csrColIndA: U,
+        mut p: V,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrsymmdqHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrsymamdHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrRowPtrA: T,
+        csrColIndA: U,
+        mut p: V,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrsymamdHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrmetisndHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrRowPtrA: T,
+        csrColIndA: U,
+        options: V,
+        mut p: W,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrmetisndHost(
+                self.handle,
+                n,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                options.as_const_ptr() as *const i64,
+                p.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrzfdHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mut P: W,
+        mut numnz: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrzfdHost(
+                self.handle,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                P.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrzfdHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mut P: W,
+        mut numnz: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrzfdHost(
+                self.handle,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                P.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrzfdHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mut P: W,
+        mut numnz: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrzfdHost(
+                self.handle,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                P.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrzfdHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        mut P: W,
+        mut numnz: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrzfdHost(
+                self.handle,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                P.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrperm_bufferSizeHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrRowPtrA: T,
+        csrColIndA: U,
+        p: V,
+        q: W,
+        mut bufferSizeInBytes: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrperm_bufferSizeHost(
+                self.handle,
+                m,
+                n,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                p.as_const_ptr() as *const ::std::os::raw::c_int,
+                q.as_const_ptr() as *const ::std::os::raw::c_int,
+                bufferSizeInBytes.as_mut_ptr() as *mut usize,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrpermHost<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        mut csrRowPtrA: T,
+        mut csrColIndA: U,
+        p: V,
+        q: W,
+        mut map: X,
+        mut pBuffer: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrpermHost(
+                self.handle,
+                m,
+                n,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                csrColIndA.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                p.as_const_ptr() as *const ::std::os::raw::c_int,
+                q.as_const_ptr() as *const ::std::os::raw::c_int,
+                map.as_mut_ptr() as *mut ::std::os::raw::c_int,
+                pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpXcsrqrAnalysisBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnzA: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrRowPtrA: T,
+        csrColIndA: U,
+        info: csrqrInfo_t,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpXcsrqrAnalysisBatched(
+                self.handle,
+                m,
+                n,
+                nnzA,
+                descrA,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                info,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrqrBufferInfoBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut internalDataInBytes: W,
+        mut workspaceInBytes: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrqrBufferInfoBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f32,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                batchSize,
+                info,
+                internalDataInBytes.as_mut_ptr() as *mut usize,
+                workspaceInBytes.as_mut_ptr() as *mut usize,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrqrBufferInfoBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut internalDataInBytes: W,
+        mut workspaceInBytes: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrqrBufferInfoBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const f64,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                batchSize,
+                info,
+                internalDataInBytes.as_mut_ptr() as *mut usize,
+                workspaceInBytes.as_mut_ptr() as *mut usize,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrqrBufferInfoBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut internalDataInBytes: W,
+        mut workspaceInBytes: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrqrBufferInfoBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                batchSize,
+                info,
+                internalDataInBytes.as_mut_ptr() as *mut usize,
+                workspaceInBytes.as_mut_ptr() as *mut usize,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrqrBufferInfoBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrVal: T,
+        csrRowPtr: U,
+        csrColInd: V,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut internalDataInBytes: W,
+        mut workspaceInBytes: X,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrqrBufferInfoBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrVal.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
+                batchSize,
+                info,
+                internalDataInBytes.as_mut_ptr() as *mut usize,
+                workspaceInBytes.as_mut_ptr() as *mut usize,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpScsrqrsvBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        mut x: X,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut pBuffer: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpScsrqrsvBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f32,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f32,
+                x.as_mut_ptr() as *mut f32,
+                batchSize,
+                info,
+                pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpDcsrqrsvBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        mut x: X,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut pBuffer: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpDcsrqrsvBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const f64,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const f64,
+                x.as_mut_ptr() as *mut f64,
+                batchSize,
+                info,
+                pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpCcsrqrsvBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        mut x: X,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut pBuffer: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpCcsrqrsvBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuComplex,
+                x.as_mut_ptr() as *mut cuComplex,
+                batchSize,
+                info,
+                pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+    pub unsafe fn cusolverSpZcsrqrsvBatched<
+        T: ::cuda_libs::types::CudaAsPtr,
+        U: ::cuda_libs::types::CudaAsPtr,
+        V: ::cuda_libs::types::CudaAsPtr,
+        W: ::cuda_libs::types::CudaAsPtr,
+        X: ::cuda_libs::types::CudaAsPtr,
+        Y: ::cuda_libs::types::CudaAsPtr,
+    >(
+        &self,
+        m: ::std::os::raw::c_int,
+        n: ::std::os::raw::c_int,
+        nnz: ::std::os::raw::c_int,
+        descrA: cusparseMatDescr_t,
+        csrValA: T,
+        csrRowPtrA: U,
+        csrColIndA: V,
+        b: W,
+        mut x: X,
+        batchSize: ::std::os::raw::c_int,
+        info: csrqrInfo_t,
+        mut pBuffer: Y,
+    ) -> Result<(), crate::sys::cusolverStatus_t> {
+        let status = unsafe {
+            crate::sys::cusolverSpZcsrqrsvBatched(
+                self.handle,
+                m,
+                n,
+                nnz,
+                descrA,
+                csrValA.as_const_ptr() as *const cuDoubleComplex,
+                csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
+                csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
+                b.as_const_ptr() as *const cuDoubleComplex,
+                x.as_mut_ptr() as *mut cuDoubleComplex,
+                batchSize,
+                info,
+                pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
+            )
+        };
+        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+            Ok(())
+        } else {
+            Err(status)
+        }
+    }
+}
 pub unsafe fn cusolverGetProperty(
     type_: libraryPropertyType,
 ) -> Result<::std::os::raw::c_int, crate::sys::cusolverStatus_t> {
@@ -14419,2350 +16767,6 @@ pub unsafe fn cusolverDnLoggerForceDisable() -> Result<(), crate::sys::cusolverS
         Err(status)
     }
 }
-pub unsafe fn cusolverSpSetStream(
-    handle: cusolverSpHandle_t,
-    streamId: cudaStream_t,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe { crate::sys::cusolverSpSetStream(handle, streamId) };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpGetStream(
-    handle: cusolverSpHandle_t,
-) -> Result<cudaStream_t, crate::sys::cusolverStatus_t> {
-    let mut out_1: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
-    let status = unsafe { crate::sys::cusolverSpGetStream(handle, out_1.as_mut_ptr() as *mut _) };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        unsafe { Ok(out_1.assume_init()) }
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrissymHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: T,
-    csrEndPtrA: U,
-    csrColIndA: V,
-    mut issym: W,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrissymHost(
-            handle,
-            m,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrEndPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            issym.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrlsvluHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrlsvluHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f32,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f32,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrlsvluHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrlsvluHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f64,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f64,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrlsvluHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrlsvluHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrlsvluHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrlsvluHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuDoubleComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrlsvqr<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrlsvqr(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f32,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f32,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f32,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrlsvqr<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrlsvqr(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f64,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f64,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f64,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrlsvqr<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrlsvqr(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrlsvqr<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrlsvqr(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuDoubleComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrlsvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrlsvqrHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f32,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f32,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrlsvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrlsvqrHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f64,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f64,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrlsvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrlsvqrHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrlsvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrlsvqrHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuDoubleComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrlsvcholHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrlsvcholHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f32,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f32,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f32,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrlsvcholHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrlsvcholHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f64,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f64,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f64,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrlsvcholHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrlsvcholHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrlsvcholHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrlsvcholHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuDoubleComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrlsvchol<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrlsvchol(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f32,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f32,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f32,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrlsvchol<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrlsvchol(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f64,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f64,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut f64,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrlsvchol<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f32,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrlsvchol(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrlsvchol<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    b: W,
-    tol: f64,
-    reorder: ::std::os::raw::c_int,
-    mut x: X,
-    mut singularity: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrlsvchol(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuDoubleComplex,
-            tol,
-            reorder,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-            singularity.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrlsqvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
-    Z: ::cuda_libs::types::CudaAsPtr,
-    A: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f32,
-    mut rankA: X,
-    mut x: Y,
-    mut p: Z,
-    mut min_norm: A,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrlsqvqrHost(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f32,
-            tol,
-            rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            x.as_mut_ptr() as *mut f32,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            min_norm.as_mut_ptr() as *mut f32,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrlsqvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
-    Z: ::cuda_libs::types::CudaAsPtr,
-    A: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f64,
-    mut rankA: X,
-    mut x: Y,
-    mut p: Z,
-    mut min_norm: A,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrlsqvqrHost(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f64,
-            tol,
-            rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            x.as_mut_ptr() as *mut f64,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            min_norm.as_mut_ptr() as *mut f64,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrlsqvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
-    Z: ::cuda_libs::types::CudaAsPtr,
-    A: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f32,
-    mut rankA: X,
-    mut x: Y,
-    mut p: Z,
-    mut min_norm: A,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrlsqvqrHost(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuComplex,
-            tol,
-            rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            x.as_mut_ptr() as *mut cuComplex,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            min_norm.as_mut_ptr() as *mut f32,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrlsqvqrHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
-    Z: ::cuda_libs::types::CudaAsPtr,
-    A: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    tol: f64,
-    mut rankA: X,
-    mut x: Y,
-    mut p: Z,
-    mut min_norm: A,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrlsqvqrHost(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuDoubleComplex,
-            tol,
-            rankA.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            min_norm.as_mut_ptr() as *mut f64,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsreigvsiHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: f32,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    tol: f32,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsreigvsiHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const f32,
-            maxite,
-            tol,
-            mu.as_mut_ptr() as *mut f32,
-            x.as_mut_ptr() as *mut f32,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsreigvsiHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: f64,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    tol: f64,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsreigvsiHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const f64,
-            maxite,
-            tol,
-            mu.as_mut_ptr() as *mut f64,
-            x.as_mut_ptr() as *mut f64,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsreigvsiHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: cuComplex,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    tol: f32,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsreigvsiHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const cuComplex,
-            maxite,
-            tol,
-            mu.as_mut_ptr() as *mut cuComplex,
-            x.as_mut_ptr() as *mut cuComplex,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsreigvsiHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: cuDoubleComplex,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    tol: f64,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsreigvsiHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const cuDoubleComplex,
-            maxite,
-            tol,
-            mu.as_mut_ptr() as *mut cuDoubleComplex,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsreigvsi<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: f32,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    eps: f32,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsreigvsi(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const f32,
-            maxite,
-            eps,
-            mu.as_mut_ptr() as *mut f32,
-            x.as_mut_ptr() as *mut f32,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsreigvsi<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: f64,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    eps: f64,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsreigvsi(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const f64,
-            maxite,
-            eps,
-            mu.as_mut_ptr() as *mut f64,
-            x.as_mut_ptr() as *mut f64,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsreigvsi<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: cuComplex,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    eps: f32,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsreigvsi(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const cuComplex,
-            maxite,
-            eps,
-            mu.as_mut_ptr() as *mut cuComplex,
-            x.as_mut_ptr() as *mut cuComplex,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsreigvsi<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mu0: cuDoubleComplex,
-    x0: W,
-    maxite: ::std::os::raw::c_int,
-    eps: f64,
-    mut mu: X,
-    mut x: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsreigvsi(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            mu0,
-            x0.as_const_ptr() as *const cuDoubleComplex,
-            maxite,
-            eps,
-            mu.as_mut_ptr() as *mut cuDoubleComplex,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsreigsHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    left_bottom_corner: cuComplex,
-    right_upper_corner: cuComplex,
-    mut num_eigs: W,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsreigsHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            left_bottom_corner,
-            right_upper_corner,
-            num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsreigsHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    left_bottom_corner: cuDoubleComplex,
-    right_upper_corner: cuDoubleComplex,
-    mut num_eigs: W,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsreigsHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            left_bottom_corner,
-            right_upper_corner,
-            num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsreigsHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    left_bottom_corner: cuComplex,
-    right_upper_corner: cuComplex,
-    mut num_eigs: W,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsreigsHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            left_bottom_corner,
-            right_upper_corner,
-            num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsreigsHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    left_bottom_corner: cuDoubleComplex,
-    right_upper_corner: cuDoubleComplex,
-    mut num_eigs: W,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsreigsHost(
-            handle,
-            m,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            left_bottom_corner,
-            right_upper_corner,
-            num_eigs.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrsymrcmHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: T,
-    csrColIndA: U,
-    mut p: V,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrsymrcmHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrsymmdqHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: T,
-    csrColIndA: U,
-    mut p: V,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrsymmdqHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrsymamdHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: T,
-    csrColIndA: U,
-    mut p: V,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrsymamdHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrmetisndHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: T,
-    csrColIndA: U,
-    options: V,
-    mut p: W,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrmetisndHost(
-            handle,
-            n,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            options.as_const_ptr() as *const i64,
-            p.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrzfdHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mut P: W,
-    mut numnz: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrzfdHost(
-            handle,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            P.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrzfdHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mut P: W,
-    mut numnz: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrzfdHost(
-            handle,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            P.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrzfdHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mut P: W,
-    mut numnz: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrzfdHost(
-            handle,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            P.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrzfdHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    mut P: W,
-    mut numnz: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrzfdHost(
-            handle,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            P.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            numnz.as_mut_ptr() as *mut ::std::os::raw::c_int,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrperm_bufferSizeHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: T,
-    csrColIndA: U,
-    p: V,
-    q: W,
-    mut bufferSizeInBytes: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrperm_bufferSizeHost(
-            handle,
-            m,
-            n,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            p.as_const_ptr() as *const ::std::os::raw::c_int,
-            q.as_const_ptr() as *const ::std::os::raw::c_int,
-            bufferSizeInBytes.as_mut_ptr() as *mut usize,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrpermHost<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    mut csrRowPtrA: T,
-    mut csrColIndA: U,
-    p: V,
-    q: W,
-    mut map: X,
-    mut pBuffer: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrpermHost(
-            handle,
-            m,
-            n,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            csrColIndA.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            p.as_const_ptr() as *const ::std::os::raw::c_int,
-            q.as_const_ptr() as *const ::std::os::raw::c_int,
-            map.as_mut_ptr() as *mut ::std::os::raw::c_int,
-            pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpXcsrqrAnalysisBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: T,
-    csrColIndA: U,
-    info: csrqrInfo_t,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpXcsrqrAnalysisBatched(
-            handle,
-            m,
-            n,
-            nnzA,
-            descrA,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            info,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrqrBufferInfoBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut internalDataInBytes: W,
-    mut workspaceInBytes: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrqrBufferInfoBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f32,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            batchSize,
-            info,
-            internalDataInBytes.as_mut_ptr() as *mut usize,
-            workspaceInBytes.as_mut_ptr() as *mut usize,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrqrBufferInfoBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut internalDataInBytes: W,
-    mut workspaceInBytes: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrqrBufferInfoBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const f64,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            batchSize,
-            info,
-            internalDataInBytes.as_mut_ptr() as *mut usize,
-            workspaceInBytes.as_mut_ptr() as *mut usize,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrqrBufferInfoBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut internalDataInBytes: W,
-    mut workspaceInBytes: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrqrBufferInfoBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            batchSize,
-            info,
-            internalDataInBytes.as_mut_ptr() as *mut usize,
-            workspaceInBytes.as_mut_ptr() as *mut usize,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrqrBufferInfoBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrVal: T,
-    csrRowPtr: U,
-    csrColInd: V,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut internalDataInBytes: W,
-    mut workspaceInBytes: X,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrqrBufferInfoBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrVal.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtr.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColInd.as_const_ptr() as *const ::std::os::raw::c_int,
-            batchSize,
-            info,
-            internalDataInBytes.as_mut_ptr() as *mut usize,
-            workspaceInBytes.as_mut_ptr() as *mut usize,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpScsrqrsvBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    mut x: X,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut pBuffer: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpScsrqrsvBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f32,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f32,
-            x.as_mut_ptr() as *mut f32,
-            batchSize,
-            info,
-            pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpDcsrqrsvBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    mut x: X,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut pBuffer: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpDcsrqrsvBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const f64,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const f64,
-            x.as_mut_ptr() as *mut f64,
-            batchSize,
-            info,
-            pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpCcsrqrsvBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    mut x: X,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut pBuffer: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpCcsrqrsvBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuComplex,
-            x.as_mut_ptr() as *mut cuComplex,
-            batchSize,
-            info,
-            pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
-pub unsafe fn cusolverSpZcsrqrsvBatched<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
-    X: ::cuda_libs::types::CudaAsPtr,
-    Y: ::cuda_libs::types::CudaAsPtr,
->(
-    handle: cusolverSpHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    nnz: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrValA: T,
-    csrRowPtrA: U,
-    csrColIndA: V,
-    b: W,
-    mut x: X,
-    batchSize: ::std::os::raw::c_int,
-    info: csrqrInfo_t,
-    mut pBuffer: Y,
-) -> Result<(), crate::sys::cusolverStatus_t> {
-    let status = unsafe {
-        crate::sys::cusolverSpZcsrqrsvBatched(
-            handle,
-            m,
-            n,
-            nnz,
-            descrA,
-            csrValA.as_const_ptr() as *const cuDoubleComplex,
-            csrRowPtrA.as_const_ptr() as *const ::std::os::raw::c_int,
-            csrColIndA.as_const_ptr() as *const ::std::os::raw::c_int,
-            b.as_const_ptr() as *const cuDoubleComplex,
-            x.as_mut_ptr() as *mut cuDoubleComplex,
-            batchSize,
-            info,
-            pBuffer.as_mut_ptr() as *mut ::std::os::raw::c_void,
-        )
-    };
-    if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-        Ok(())
-    } else {
-        Err(status)
-    }
-}
 impl CusolverDnHandle {
     pub fn new() -> Result<Self, crate::sys::cusolverStatus_t> {
         unsafe {
@@ -16780,6 +16784,26 @@ impl Drop for CusolverDnHandle {
     fn drop(&mut self) {
         unsafe {
             crate::sys::cusolverDnDestroy(self.handle);
+        }
+    }
+}
+impl CusolverSpHandle {
+    pub fn new() -> Result<Self, crate::sys::cusolverStatus_t> {
+        unsafe {
+            let mut handle = std::ptr::null_mut();
+            let status = crate::sys::cusolverSpCreate(&mut handle);
+            if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
+                Ok(Self { handle })
+            } else {
+                Err(status)
+            }
+        }
+    }
+}
+impl Drop for CusolverSpHandle {
+    fn drop(&mut self) {
+        unsafe {
+            crate::sys::cusolverSpDestroy(self.handle);
         }
     }
 }

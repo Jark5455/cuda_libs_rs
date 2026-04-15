@@ -1,7 +1,7 @@
 pub use crate::sys::cufftResult as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
-use cuda_libs_rt::sys::*;
+use cuda_libs_cudart::sys::*;
 impl crate::sys::float2 {
     pub fn x(mut self, val: f32) -> Self {
         self.x = val;
