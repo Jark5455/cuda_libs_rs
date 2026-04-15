@@ -4,8 +4,8 @@ use lib_generator::{generate_library, LibraryConfig, HandleConfig};
 
 fn main() {
     generate_library(&LibraryConfig {
-        lib_name: "cuda_libs_rt",
-        out_dir: "../cuda_libs_rt/src",
+        lib_name: "cuda_libs_cudart",
+        out_dir: "../cuda_libs_cudart/src",
         headers: vec!["/opt/cuda/include/cuda_runtime.h"],
         allowlist_functions: "cuda.*",
         allowlist_types: "cuda.*",
