@@ -1,0 +1,9 @@
+[package]
+name = "cuda_libs_cusolver"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cuda_libs_rt = { path = "../cuda_libs_rt" }
+cuda_libs_cublas = { path = "../cuda_libs_cublas" }
+cuda_libs = { path = ".." }

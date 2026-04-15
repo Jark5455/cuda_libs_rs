@@ -1,0 +1,12 @@
+[package]
+name = "cuda_libs"
+version = "0.1.0"
+edition = "2024"
+
+[workspace]
+members = [
+    "autogen",
+    "cuda_libs_cublas"
+, "cuda_libs_cublas_lt", "cuda_libs_cudnn", "cuda_libs_cufft", "cuda_libs_curand", "cuda_libs_cusolver", "cuda_libs_cusparse", "cuda_libs_rt"]
+
+[dependencies]
