@@ -40,7 +40,6 @@ pub fn generate() {
                     let sig = &func.sig;
                     let fn_name = &sig.ident;
                     let mut safe_inputs = Vec::new();
-                    let mut safe_inputs_generics = Vec::<proc_macro2::TokenStream>::new();
                     let mut call_args = Vec::new();
                     let generic_letters = ["T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"];
                     let mut generic_idx = 0;
@@ -101,7 +100,7 @@ pub fn generate() {
                         let safe_fn = if is_array || is_3d_pitched {
                             quote! {
                                 pub unsafe fn #fn_name(#(#safe_inputs),*) -> Result<#output_type, crate::sys::cudaError> {
-                                    let mut dev_ptr: #output_type = std::mem::zeroed();
+                                    let mut dev_ptr: #output_type = unsafe { std::mem::zeroed() };
                                     let status = unsafe { crate::sys::#fn_name(#(#call_args),*) };
                                     if status == crate::sys::cudaError::cudaSuccess {
                                         Ok(dev_ptr)

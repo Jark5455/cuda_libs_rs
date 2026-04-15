@@ -3571,7 +3571,7 @@ pub unsafe fn cudaMallocArray(
     height: usize,
     flags: ::std::os::raw::c_uint,
 ) -> Result<cudaArray_t, crate::sys::cudaError> {
-    let mut dev_ptr: cudaArray_t = std::mem::zeroed();
+    let mut dev_ptr: cudaArray_t = unsafe { std::mem::zeroed() };
     let status = unsafe {
         crate::sys::cudaMallocArray(&mut dev_ptr as *mut _ as *mut _, desc, width, height, flags)
     };
@@ -3698,7 +3698,7 @@ pub unsafe fn cudaHostGetFlags(
     }
 }
 pub unsafe fn cudaMalloc3D(extent: cudaExtent) -> Result<cudaPitchedPtr, crate::sys::cudaError> {
-    let mut dev_ptr: cudaPitchedPtr = std::mem::zeroed();
+    let mut dev_ptr: cudaPitchedPtr = unsafe { std::mem::zeroed() };
     let status = unsafe { crate::sys::cudaMalloc3D(&mut dev_ptr as *mut _ as *mut _, extent) };
     if status == crate::sys::cudaError::cudaSuccess {
         Ok(dev_ptr)
@@ -3711,7 +3711,7 @@ pub unsafe fn cudaMalloc3DArray(
     extent: cudaExtent,
     flags: ::std::os::raw::c_uint,
 ) -> Result<cudaArray_t, crate::sys::cudaError> {
-    let mut dev_ptr: cudaArray_t = std::mem::zeroed();
+    let mut dev_ptr: cudaArray_t = unsafe { std::mem::zeroed() };
     let status = unsafe {
         crate::sys::cudaMalloc3DArray(&mut dev_ptr as *mut _ as *mut _, desc, extent, flags)
     };
@@ -3727,7 +3727,7 @@ pub unsafe fn cudaMallocMipmappedArray(
     numLevels: ::std::os::raw::c_uint,
     flags: ::std::os::raw::c_uint,
 ) -> Result<cudaMipmappedArray_t, crate::sys::cudaError> {
-    let mut dev_ptr: cudaMipmappedArray_t = std::mem::zeroed();
+    let mut dev_ptr: cudaMipmappedArray_t = unsafe { std::mem::zeroed() };
     let status = unsafe {
         crate::sys::cudaMallocMipmappedArray(
             &mut dev_ptr as *mut _ as *mut _,
