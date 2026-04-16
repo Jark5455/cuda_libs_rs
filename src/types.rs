@@ -1,15 +1,5 @@
 #![allow(non_camel_case_types)]
 
-use std::os::raw::c_int;
-
-pub enum CUstream_st {}
-pub type cudaStream_t = *mut CUstream_st;
-
-pub enum CUctx_st {}
-pub type cudaCtx_t = *mut CUctx_st;
-
-pub type cudaDevice_t = c_int;
-
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct cuDeviceAllocation<T>(pub *mut T);
