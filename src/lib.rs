@@ -145,18 +145,19 @@ pub fn runtime_link_load() {
 
         #[cfg(target_os = "windows")]
         {
-            extern "system" {
+            unsafe extern "system" {
                 fn LoadLibraryW(lpLibFileName: *const u16) -> *mut std::ffi::c_void;
                 fn GetProcAddress(
                     hModule: *mut std::ffi::c_void,
                     lpProcName: *const u8,
                 ) -> *mut std::ffi::c_void;
             }
+
             use std::os::windows::ffi::OsStrExt;
 
             let search_paths = [
-                std::path::Path::new(&home).join("lib"),
-                std::path::Path::new(&home).join("bin"),
+                std::path::Path::new(&home).join("lib").join("x64"),
+                std::path::Path::new(&home).join("bin").join("x64"),
             ];
             for path in search_paths {
                 if let Ok(entries) = std::fs::read_dir(&path) {
