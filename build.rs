@@ -12,7 +12,7 @@ fn main() {
     let cuda_home = env::var("CUDA_HOME");
     if let Ok(home) = cuda_home {
         let arch_paths = if cfg!(target_os = "windows") {
-            vec![format!("{}\\lib\\x64", home), format!("{}\\lib", home)]
+            vec![format!("{}\\bin\\x64", home), format!("{}\\bin", home), format!("{}\\lib\\x64", home), format!("{}\\lib", home)]
         } else if cfg!(target_os = "linux") {
             vec![format!("{}/lib64", home), format!("{}/lib", home)]
         } else {
