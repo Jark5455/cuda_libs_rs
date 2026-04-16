@@ -28,7 +28,12 @@ fn main() {
 
     let dynamic = env::var("CARGO_FEATURE_DYNAMIC_LINK").is_ok();
     let kind = if dynamic { "dylib" } else { "static" };
+
+    #[cfg(target_os = "linux")]
     let suffix = if dynamic { "" } else { "_static" };
+
+    #[cfg(target_os = "windows")]
+    let suffix = "";
 
     if env::var("CARGO_FEATURE_CUDART").is_ok() {
         println!("cargo:rustc-link-lib={}=cudart{}", kind, suffix);
