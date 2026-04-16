@@ -52,6 +52,25 @@ compile_error!("Feature `cusolver` requires feature `cublas` to be enabled.");
 #[cfg(all(feature = "cusparse", not(feature = "cudart")))]
 compile_error!("Feature `cusparse` requires feature `cudart` to be enabled.");
 
+pub mod prelude {
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::safe::*;
+    #[cfg(feature = "cublas")]
+    pub use cuda_libs_cublas::safe::*;
+    #[cfg(feature = "cublas_lt")]
+    pub use cuda_libs_cublas_lt::safe::*;
+    #[cfg(feature = "cudnn")]
+    pub use cuda_libs_cudnn::safe::*;
+    #[cfg(feature = "cufft")]
+    pub use cuda_libs_cufft::safe::*;
+    #[cfg(feature = "curand")]
+    pub use cuda_libs_curand::safe::*;
+    #[cfg(feature = "cusolver")]
+    pub use cuda_libs_cusolver::safe::*;
+    #[cfg(feature = "cusparse")]
+    pub use cuda_libs_cusparse::safe::*;
+}
+
 #[cfg(feature = "runtime-link")]
 pub fn runtime_link_load() {
     static INIT: std::sync::Once = std::sync::Once::new();
