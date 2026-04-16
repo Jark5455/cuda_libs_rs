@@ -145,16 +145,18 @@ pub fn generate_library(config: &LibraryConfig) {
             }
 
             #[cfg(feature = "runtime-link")]
-            pub static DYNAMIC_BINDINGS: std::sync::OnceLock<DynamicBindings> = std::sync::OnceLock::new();
+            pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 
             #(#dynamic_wrappers)*
 
             #[cfg(feature = "runtime-link")]
             pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
                 let bindings = unsafe {
-                    DynamicBindings {
-                        #(#dynamic_loaders),*
-                    }
+                    Box::new(
+                        DynamicBindings {
+                            #(#dynamic_loaders),*
+                        }
+                    )
                 };
                 DYNAMIC_BINDINGS.set(bindings).ok();
             }

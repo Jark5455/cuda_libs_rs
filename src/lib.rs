@@ -1,3 +1,5 @@
+#![allow(ambiguous_glob_reexports)]
+
 #[cfg(feature = "cudart")]
 pub use cuda_libs_cudart::types;
 

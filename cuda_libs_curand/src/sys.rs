@@ -602,7 +602,7 @@ pub struct DynamicBindings {
     >,
 }
 #[cfg(feature = "runtime-link")]
-pub static DYNAMIC_BINDINGS: std::sync::OnceLock<DynamicBindings> = std::sync::OnceLock::new();
+pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn curandCreateGenerator(
@@ -1147,7 +1147,7 @@ pub unsafe fn load_dynamic_bindings(
     get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void,
 ) {
     let bindings = unsafe {
-        DynamicBindings {
+        Box::new(DynamicBindings {
             curandCreateGenerator: {
                 let p = get_proc_addr(lib, b"curandCreateGenerator\0".as_ptr());
                 if p.is_null() {
@@ -1380,7 +1380,7 @@ pub unsafe fn load_dynamic_bindings(
                     Some(std::mem::transmute(p))
                 }
             },
-        }
+        })
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
