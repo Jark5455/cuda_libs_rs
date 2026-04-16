@@ -14,6 +14,41 @@ members = [
     "cuda_libs_curand",
     "cuda_libs_cusolver",
     "cuda_libs_cusparse",
+    "cuda_libs_macros", "cuda_libs_test",
 ]
 
 [dependencies]
+cuda_libs_cudart = { path = "cuda_libs_cudart", optional = true }
+cuda_libs_cublas = { path = "cuda_libs_cublas", optional = true }
+cuda_libs_cublas_lt = { path = "cuda_libs_cublas_lt", optional = true }
+cuda_libs_cudnn = { path = "cuda_libs_cudnn", optional = true }
+cuda_libs_cufft = { path = "cuda_libs_cufft", optional = true }
+cuda_libs_curand = { path = "cuda_libs_curand", optional = true }
+cuda_libs_cusolver = { path = "cuda_libs_cusolver", optional = true }
+cuda_libs_cusparse = { path = "cuda_libs_cusparse", optional = true }
+cuda_libs_macros = { path = "cuda_libs_macros", optional = true }
+libc = { version = "0.2.153", optional = true }
+
+[features]
+cudart = ["dep:cuda_libs_cudart"]
+cublas = ["dep:cuda_libs_cublas"]
+cublas_lt = ["dep:cuda_libs_cublas_lt"]
+cudnn = ["dep:cuda_libs_cudnn"]
+cufft = ["dep:cuda_libs_cufft"]
+curand = ["dep:cuda_libs_curand"]
+cusolver = ["dep:cuda_libs_cusolver"]
+cusparse = ["dep:cuda_libs_cusparse"]
+
+dynamic-link = []
+runtime-link = [
+    "dep:cuda_libs_macros", "dep:libc",
+    "cuda_libs_cudart?/runtime-link",
+    "cuda_libs_cublas?/runtime-link",
+    "cuda_libs_cublas_lt?/runtime-link",
+    "cuda_libs_cudnn?/runtime-link",
+    "cuda_libs_cufft?/runtime-link",
+    "cuda_libs_curand?/runtime-link",
+    "cuda_libs_cusolver?/runtime-link",
+    "cuda_libs_cusparse?/runtime-link"
+]
+

@@ -6,7 +6,5 @@
 #![allow(unused_mut)]
 #![allow(unnecessary_transmutes)]
 
-extern crate cuda_libs;
-
-pub mod sys;
 pub mod safe;
+pub mod sys;

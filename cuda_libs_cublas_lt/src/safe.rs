@@ -200,14 +200,14 @@ pub struct CublasLtHandle {
 impl CublasLtHandle {
     #[doc = " Execute matrix multiplication (D = alpha * op(A) * op(B) + beta * C).\n\n \\retval     CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n \\retval     CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\n                                             when workspaceSizeInBytes is less than workspace required by configured\n                                             algo\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\n                                             operation\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n \\retval     CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n \\retval     CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
     pub unsafe fn cublasLtMatmul<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         computeDesc: cublasLtMatmulDesc_t,
@@ -254,11 +254,11 @@ impl CublasLtHandle {
     }
     #[doc = " Matrix layout conversion helper (C = alpha * op(A) + beta * op(B))\n\n Can be used to change memory order of data or to scale and shift the values.\n\n \\retval     CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n \\retval     CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\n                                             when A is not NULL, but Adesc is NULL\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\n                                             operation\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n \\retval     CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n \\retval     CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
     pub unsafe fn cublasLtMatrixTransform<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         transformDesc: cublasLtMatrixTransformDesc_t,
@@ -362,7 +362,7 @@ impl CublasLtHandle {
         }
     }
     #[doc = " Initialize algo structure\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if algo is NULL or algoId is outside of recognized range\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED  if algoId is not supported for given combination of data types\n \\retval     CUBLAS_STATUS_SUCCESS        if the structure was successfully initialized"]
-    pub unsafe fn cublasLtMatmulAlgoInit<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cublasLtMatmulAlgoInit<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         computeType: cublasComputeType_t,
         scaleType: cudaDataType_t,
@@ -394,8 +394,8 @@ impl CublasLtHandle {
     }
     #[doc = " Check configured algo descriptor for correctness and support on current device.\n\n Result includes required workspace size and calculated wave count.\n\n CUBLAS_STATUS_SUCCESS doesn't fully guarantee algo will run (will fail if e.g. buffers are not correctly aligned);\n but if cublasLtMatmulAlgoCheck fails, the algo will not run.\n\n \\param[in]  algo    algo configuration to check\n \\param[out] result  result structure to report algo runtime characteristics; algo field is never updated\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if matrix layout descriptors or operation descriptor don't match algo\n                                          descriptor\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED  if algo configuration or data type combination is not currently supported on\n                                          given device\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH  if algo configuration cannot be run using the selected device\n \\retval     CUBLAS_STATUS_SUCCESS        if check was successful"]
     pub unsafe fn cublasLtMatmulAlgoCheck<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         operationDesc: cublasLtMatmulDesc_t,
@@ -494,9 +494,9 @@ pub unsafe fn cublasLtMatrixLayoutInit_internal(
 }
 #[doc = " Experimental: Internal. Do not use directly."]
 pub unsafe fn cublasLtGroupedMatrixLayoutInit_internal<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
+    V: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     matLayout: cublasLtMatrixLayout_t,
     size: usize,
@@ -524,7 +524,7 @@ pub unsafe fn cublasLtGroupedMatrixLayoutInit_internal<
     }
 }
 #[doc = " Set matrix layout descriptor attribute.\n\n \\param[in]  matLayout    The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatrixLayoutSetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cublasLtMatrixLayoutSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     matLayout: cublasLtMatrixLayout_t,
     attr: cublasLtMatrixLayoutAttribute_t,
     buf: T,
@@ -546,8 +546,8 @@ pub unsafe fn cublasLtMatrixLayoutSetAttribute<T: ::cuda_libs::types::CudaAsPtr>
 }
 #[doc = " Get matrix layout descriptor attribute.\n\n \\param[in]  matLayout    The descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
 pub unsafe fn cublasLtMatrixLayoutGetAttribute<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     matLayout: cublasLtMatrixLayout_t,
     attr: cublasLtMatrixLayoutAttribute_t,
@@ -587,7 +587,7 @@ pub unsafe fn cublasLtMatmulDescInit_internal(
     }
 }
 #[doc = " Set matmul operation descriptor attribute.\n\n \\param[in]  matmulDesc   The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatmulDescSetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cublasLtMatmulDescSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     matmulDesc: cublasLtMatmulDesc_t,
     attr: cublasLtMatmulDescAttributes_t,
     buf: T,
@@ -646,7 +646,7 @@ pub unsafe fn cublasLtMatrixTransformDescInit_internal(
     }
 }
 #[doc = " Set matrix transform operation descriptor attribute.\n\n \\param[in]  transformDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[in]  buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatrixTransformDescSetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cublasLtMatrixTransformDescSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     transformDesc: cublasLtMatrixTransformDesc_t,
     attr: cublasLtMatrixTransformDescAttributes_t,
     buf: T,
@@ -668,8 +668,8 @@ pub unsafe fn cublasLtMatrixTransformDescSetAttribute<T: ::cuda_libs::types::Cud
 }
 #[doc = " Get matrix transform operation descriptor attribute.\n\n \\param[in]  transformDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[out] buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\n of bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
 pub unsafe fn cublasLtMatrixTransformDescGetAttribute<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     transformDesc: cublasLtMatrixTransformDesc_t,
     attr: cublasLtMatrixTransformDescAttributes_t,
@@ -705,7 +705,7 @@ pub unsafe fn cublasLtEmulationDescInit_internal(
     }
 }
 #[doc = " Set emulation descriptor attribute.\n\n \\param[in]  emulationDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[in]  buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtEmulationDescSetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cublasLtEmulationDescSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     emulationDesc: cublasLtEmulationDesc_t,
     attr: cublasLtEmulationDescAttributes_t,
     buf: T,
@@ -761,7 +761,7 @@ pub unsafe fn cublasLtMatmulPreferenceInit_internal(
     }
 }
 #[doc = " Set matmul heuristic search preference descriptor attribute.\n\n \\param[in]  pref         The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatmulPreferenceSetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cublasLtMatmulPreferenceSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     pref: cublasLtMatmulPreference_t,
     attr: cublasLtMatmulPreferenceAttributes_t,
     buf: T,
@@ -829,8 +829,8 @@ pub unsafe fn cublasLtMatmulAlgoCapGetAttribute(
 }
 #[doc = " Set algo configuration attribute.\n\n \\param[in]  algo         The algo descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
 pub unsafe fn cublasLtMatmulAlgoConfigSetAttribute<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     mut algo: T,
     attr: cublasLtMatmulAlgoConfigAttributes_t,
@@ -886,7 +886,7 @@ pub unsafe fn cublasLtLoggerSetCallback(
     }
 }
 #[doc = " Experimental: Log file setter.\n\n \\param[in]  file                         an open file with write permissions\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log file was set successfully"]
-pub unsafe fn cublasLtLoggerSetFile<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cublasLtLoggerSetFile<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut file: T,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasLtLoggerSetFile(file.as_mut_ptr() as *mut FILE) };
@@ -897,7 +897,7 @@ pub unsafe fn cublasLtLoggerSetFile<T: ::cuda_libs::types::CudaAsPtr>(
     }
 }
 #[doc = " Experimental: Open log file.\n\n \\param[in]  logFile                      log file path. if the log file does not exist, it will be created\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log file was created successfully"]
-pub unsafe fn cublasLtLoggerOpenFile<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cublasLtLoggerOpenFile<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     logFile: T,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {

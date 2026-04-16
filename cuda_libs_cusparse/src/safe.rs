@@ -220,13 +220,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgemvi<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         transA: cusparseOperation_t,
@@ -267,7 +267,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseSgemvi_bufferSize<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseSgemvi_bufferSize<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         transA: cusparseOperation_t,
         m: ::std::os::raw::c_int,
@@ -292,13 +292,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgemvi<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         transA: cusparseOperation_t,
@@ -339,7 +339,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseDgemvi_bufferSize<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseDgemvi_bufferSize<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         transA: cusparseOperation_t,
         m: ::std::os::raw::c_int,
@@ -364,13 +364,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgemvi<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         transA: cusparseOperation_t,
@@ -411,7 +411,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseCgemvi_bufferSize<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseCgemvi_bufferSize<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         transA: cusparseOperation_t,
         m: ::std::os::raw::c_int,
@@ -436,13 +436,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgemvi<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         transA: cusparseOperation_t,
@@ -483,7 +483,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseZgemvi_bufferSize<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseZgemvi_bufferSize<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         transA: cusparseOperation_t,
         m: ::std::os::raw::c_int,
@@ -508,13 +508,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -558,13 +558,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -608,13 +608,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -658,13 +658,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -708,15 +708,15 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrxmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -766,15 +766,15 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrxmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -824,15 +824,15 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrxmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -882,15 +882,15 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrxmv<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -939,7 +939,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseXbsrsv2_zeroPivot<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseXbsrsv2_zeroPivot<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         info: bsrsv2Info_t,
         mut position: T,
@@ -958,10 +958,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsv2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -999,10 +999,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsv2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1040,10 +1040,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsv2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1081,10 +1081,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsv2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1122,10 +1122,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1163,10 +1163,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1204,10 +1204,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1245,10 +1245,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1286,10 +1286,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsv2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1329,10 +1329,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsv2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1372,10 +1372,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsv2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1415,10 +1415,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsv2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1458,13 +1458,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsv2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1510,13 +1510,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsv2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1562,13 +1562,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsv2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1614,13 +1614,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsv2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1666,13 +1666,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrmm<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1724,13 +1724,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrmm<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1782,13 +1782,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrmm<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1840,13 +1840,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrmm<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1897,7 +1897,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseXbsrsm2_zeroPivot<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseXbsrsm2_zeroPivot<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         info: bsrsm2Info_t,
         mut position: T,
@@ -1916,10 +1916,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsm2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -1961,10 +1961,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsm2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2006,10 +2006,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsm2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2051,10 +2051,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsm2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2096,10 +2096,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsm2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2141,10 +2141,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsm2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2186,10 +2186,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsm2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2231,10 +2231,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsm2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2276,10 +2276,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsm2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2323,10 +2323,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsm2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2370,10 +2370,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsm2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2417,10 +2417,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsm2_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2464,13 +2464,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrsm2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2524,13 +2524,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrsm2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2584,13 +2584,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrsm2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2644,13 +2644,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrsm2_solve<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -2704,8 +2704,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: csrilu02Info_t,
@@ -2729,8 +2729,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: csrilu02Info_t,
@@ -2754,8 +2754,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: csrilu02Info_t,
@@ -2779,8 +2779,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: csrilu02Info_t,
@@ -2803,7 +2803,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseXcsrilu02_zeroPivot<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseXcsrilu02_zeroPivot<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         info: csrilu02Info_t,
         mut position: T,
@@ -2822,10 +2822,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -2857,10 +2857,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -2892,10 +2892,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -2927,10 +2927,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -2962,10 +2962,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -2997,10 +2997,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3032,10 +3032,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3067,10 +3067,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3102,10 +3102,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3139,10 +3139,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3176,10 +3176,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3213,10 +3213,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3250,10 +3250,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3287,10 +3287,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3324,10 +3324,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3361,10 +3361,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -3398,8 +3398,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: bsrilu02Info_t,
@@ -3423,8 +3423,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: bsrilu02Info_t,
@@ -3448,8 +3448,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: bsrilu02Info_t,
@@ -3473,8 +3473,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrilu02_numericBoost<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         info: bsrilu02Info_t,
@@ -3497,7 +3497,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseXbsrilu02_zeroPivot<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseXbsrilu02_zeroPivot<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         info: bsrilu02Info_t,
         mut position: T,
@@ -3516,10 +3516,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3555,10 +3555,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3594,10 +3594,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3633,10 +3633,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrilu02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3672,10 +3672,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3711,10 +3711,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3750,10 +3750,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3789,10 +3789,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrilu02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3828,10 +3828,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3869,10 +3869,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3910,10 +3910,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3951,10 +3951,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrilu02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -3992,10 +3992,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4033,10 +4033,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4074,10 +4074,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4115,10 +4115,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsrilu02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4155,7 +4155,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseXcsric02_zeroPivot<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseXcsric02_zeroPivot<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         info: csric02Info_t,
         mut position: T,
@@ -4174,10 +4174,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4209,10 +4209,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4244,10 +4244,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4279,10 +4279,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4314,10 +4314,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4349,10 +4349,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4384,10 +4384,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4419,10 +4419,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4454,10 +4454,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4491,10 +4491,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4528,10 +4528,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4565,10 +4565,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4602,10 +4602,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4639,10 +4639,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4676,10 +4676,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4713,10 +4713,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -4749,7 +4749,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseXbsric02_zeroPivot<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseXbsric02_zeroPivot<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         info: bsric02Info_t,
         mut position: T,
@@ -4768,10 +4768,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4807,10 +4807,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4846,10 +4846,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4885,10 +4885,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsric02_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4924,10 +4924,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -4963,10 +4963,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5002,10 +5002,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5041,10 +5041,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsric02_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5080,10 +5080,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5121,10 +5121,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5162,10 +5162,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5203,10 +5203,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsric02_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5244,10 +5244,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5285,10 +5285,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5326,10 +5326,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5367,10 +5367,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsric02<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -5408,11 +5408,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5444,11 +5444,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5480,11 +5480,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5516,11 +5516,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsv2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5552,11 +5552,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsv2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5588,11 +5588,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsv2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5624,11 +5624,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsv2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5660,11 +5660,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsv2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5696,11 +5696,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsv2_nopivot_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5732,11 +5732,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsv2_nopivot_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5768,11 +5768,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsv2_nopivot_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5804,11 +5804,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsv2_nopivot_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5840,11 +5840,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsv2_nopivot<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5876,11 +5876,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsv2_nopivot<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5912,11 +5912,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsv2_nopivot<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5948,11 +5948,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsv2_nopivot<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -5984,11 +5984,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsv2StridedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6020,11 +6020,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsv2StridedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6056,11 +6056,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsv2StridedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6092,11 +6092,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsv2StridedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6128,11 +6128,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsv2StridedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6164,11 +6164,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsv2StridedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6200,11 +6200,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsv2StridedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6236,11 +6236,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsv2StridedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6272,11 +6272,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6308,11 +6308,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6344,11 +6344,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6380,11 +6380,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6416,11 +6416,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgtsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6452,11 +6452,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgtsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6488,11 +6488,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgtsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6524,11 +6524,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgtsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6560,13 +6560,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgpsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6602,13 +6602,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgpsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6644,13 +6644,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgpsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6686,13 +6686,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgpsvInterleavedBatch_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6728,13 +6728,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgpsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6770,13 +6770,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgpsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6812,13 +6812,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgpsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6854,13 +6854,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgpsvInterleavedBatch<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         algo: ::std::os::raw::c_int,
@@ -6896,18 +6896,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrgeam2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -6961,18 +6961,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrgeam2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7026,18 +7026,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrgeam2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7091,18 +7091,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrgeam2_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7156,13 +7156,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcsrgeam2Nnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7206,18 +7206,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrgeam2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7271,18 +7271,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrgeam2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7336,18 +7336,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrgeam2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7401,18 +7401,18 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrgeam2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
-        B: ::cuda_libs::types::CudaAsPtr,
-        C: ::cuda_libs::types::CudaAsPtr,
-        D: ::cuda_libs::types::CudaAsPtr,
-        E: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        B: ::cuda_libs_cudart::types::CudaAsPtr,
+        C: ::cuda_libs_cudart::types::CudaAsPtr,
+        D: ::cuda_libs_cudart::types::CudaAsPtr,
+        E: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7466,13 +7466,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsrcolor<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7510,13 +7510,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsrcolor<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7554,13 +7554,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsrcolor<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7598,13 +7598,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsrcolor<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7642,9 +7642,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSnnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -7676,9 +7676,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDnnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -7710,9 +7710,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCnnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -7744,9 +7744,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZnnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -7778,10 +7778,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSnnz_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7811,10 +7811,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDnnz_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7844,10 +7844,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCnnz_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7877,10 +7877,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZnnz_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7910,13 +7910,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsr2csr_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -7956,13 +7956,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsr2csr_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -8002,13 +8002,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsr2csr_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -8048,13 +8048,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsr2csr_compress<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -8094,8 +8094,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcoo2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         cooRowInd: T,
@@ -8121,8 +8121,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcsr2coo<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         csrSortedRowPtr: T,
@@ -8148,10 +8148,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcsr2bsrNnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8187,12 +8187,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsr2bsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8232,12 +8232,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsr2bsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8277,12 +8277,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsr2bsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8322,12 +8322,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsr2bsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8367,12 +8367,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSbsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8412,12 +8412,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDbsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8457,12 +8457,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCbsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8502,12 +8502,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZbsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -8547,10 +8547,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgebsr2gebsc_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8584,10 +8584,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgebsr2gebsc_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8621,10 +8621,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgebsr2gebsc_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8658,10 +8658,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgebsr2gebsc_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8695,10 +8695,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgebsr2gebsc_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8732,10 +8732,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgebsr2gebsc_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8769,10 +8769,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgebsr2gebsc_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8806,10 +8806,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgebsr2gebsc_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8843,13 +8843,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgebsr2gebsc<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8893,13 +8893,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgebsr2gebsc<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8943,13 +8943,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgebsr2gebsc<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -8993,13 +8993,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgebsr2gebsc<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mb: ::std::os::raw::c_int,
@@ -9043,10 +9043,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXgebsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9084,12 +9084,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgebsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9131,12 +9131,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgebsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9178,12 +9178,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgebsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9225,12 +9225,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgebsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9272,10 +9272,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9311,10 +9311,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9350,10 +9350,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9389,10 +9389,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9428,10 +9428,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9467,10 +9467,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9506,10 +9506,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9545,10 +9545,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9584,11 +9584,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcsr2gebsrNnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9628,13 +9628,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9678,13 +9678,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9728,13 +9728,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9778,13 +9778,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9828,10 +9828,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgebsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9873,10 +9873,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgebsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9918,10 +9918,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgebsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -9963,10 +9963,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgebsr2gebsr_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10008,10 +10008,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgebsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10053,10 +10053,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgebsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10098,10 +10098,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgebsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10143,10 +10143,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgebsr2gebsr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10188,11 +10188,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXgebsr2gebsrNnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10238,13 +10238,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSgebsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10294,13 +10294,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDgebsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10350,13 +10350,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCgebsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10406,13 +10406,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZgebsr2gebsr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         dirA: cusparseDirection_t,
@@ -10462,9 +10462,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcoosort_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10492,10 +10492,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcoosortByRow<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10525,10 +10525,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcoosortByColumn<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10558,9 +10558,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcsrsort_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10588,10 +10588,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcsrsort<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10623,9 +10623,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcscsort_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10653,10 +10653,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseXcscsort<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10688,10 +10688,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsru2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10723,10 +10723,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsru2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10758,10 +10758,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsru2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10793,10 +10793,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsru2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10828,10 +10828,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsru2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10865,10 +10865,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsru2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10902,10 +10902,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsru2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10939,10 +10939,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsru2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -10976,10 +10976,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseScsr2csru<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11013,10 +11013,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDcsr2csru<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11050,10 +11050,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCcsr2csru<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11087,10 +11087,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseZcsr2csru<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11124,12 +11124,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneDense2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11165,12 +11165,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneDense2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11206,11 +11206,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneDense2csrNnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11244,11 +11244,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneDense2csrNnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11282,12 +11282,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneDense2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11323,12 +11323,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneDense2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11364,14 +11364,14 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneCsr2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11413,14 +11413,14 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneCsr2csr_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11462,13 +11462,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneCsr2csrNnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11508,13 +11508,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneCsr2csrNnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11554,14 +11554,14 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneCsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11603,14 +11603,14 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneCsr2csr<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
-        A: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
+        A: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11652,11 +11652,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneDense2csrByPercentage_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11694,11 +11694,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneDense2csrByPercentage_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11736,10 +11736,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneDense2csrNnzByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11775,10 +11775,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneDense2csrNnzByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11814,11 +11814,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneDense2csrByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11856,11 +11856,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneDense2csrByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11898,13 +11898,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneCsr2csrByPercentage_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11948,13 +11948,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneCsr2csrByPercentage_bufferSizeExt<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -11998,12 +11998,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneCsr2csrNnzByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -12045,12 +12045,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneCsr2csrNnzByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -12092,13 +12092,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpruneCsr2csrByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -12142,13 +12142,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseDpruneCsr2csrByPercentage<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -12192,13 +12192,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCsr2cscEx2<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -12242,13 +12242,13 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseCsr2cscEx2_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
-        Z: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
+        Z: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         m: ::std::os::raw::c_int,
@@ -12292,8 +12292,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseAxpby<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         alpha: T,
@@ -12341,8 +12341,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseRot<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         c_coeff: T,
@@ -12366,8 +12366,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpVV_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opX: cusparseOperation_t,
@@ -12395,8 +12395,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpVV<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opX: cusparseOperation_t,
@@ -12423,7 +12423,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseSparseToDense_bufferSize<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseSparseToDense_bufferSize<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseDnMatDescr_t,
@@ -12445,7 +12445,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseSparseToDense<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseSparseToDense<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         matA: cusparseConstSpMatDescr_t,
         matB: cusparseDnMatDescr_t,
@@ -12467,7 +12467,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseDenseToSparse_bufferSize<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseDenseToSparse_bufferSize<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         matA: cusparseConstDnMatDescr_t,
         matB: cusparseSpMatDescr_t,
@@ -12489,7 +12489,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseDenseToSparse_analysis<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseDenseToSparse_analysis<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         matA: cusparseConstDnMatDescr_t,
         matB: cusparseSpMatDescr_t,
@@ -12511,7 +12511,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseDenseToSparse_convert<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseDenseToSparse_convert<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         matA: cusparseConstDnMatDescr_t,
         matB: cusparseSpMatDescr_t,
@@ -12534,9 +12534,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpMV<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12570,9 +12570,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpMV_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12606,9 +12606,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpMV_preprocess<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12642,8 +12642,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpSV_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12677,8 +12677,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpSV_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12711,7 +12711,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseSpSV_solve<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseSpSV_solve<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         opA: cusparseOperation_t,
         alpha: T,
@@ -12741,7 +12741,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseSpSV_updateMatrix<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseSpSV_updateMatrix<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         spsvDescr: cusparseSpSVDescr_t,
         mut newValues: T,
@@ -12762,8 +12762,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpSM_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12799,8 +12799,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpSM_analysis<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12835,7 +12835,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseSpSM_solve<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseSpSM_solve<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         opA: cusparseOperation_t,
         opB: cusparseOperation_t,
@@ -12867,7 +12867,7 @@ impl CusparseHandle {
             Err(status)
         }
     }
-    pub unsafe fn cusparseSpSM_updateMatrix<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cusparseSpSM_updateMatrix<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         spsmDescr: cusparseSpSMDescr_t,
         mut newValues: T,
@@ -12888,9 +12888,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpMM_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12926,9 +12926,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpMM_preprocess<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -12964,9 +12964,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpMM<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13002,10 +13002,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMM_workEstimation<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13045,11 +13045,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMM_estimateMemory<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13093,10 +13093,10 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMM_compute<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13136,8 +13136,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMM_copy<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13173,8 +13173,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMMreuse_workEstimation<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13208,12 +13208,12 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMMreuse_nnz<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
-        Y: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        Y: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13255,8 +13255,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMMreuse_copy<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13290,8 +13290,8 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpGEMMreuse_compute<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13327,9 +13327,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSDDMM_bufferSize<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13365,9 +13365,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSDDMM_preprocess<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13403,9 +13403,9 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSDDMM<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         opA: cusparseOperation_t,
@@ -13441,11 +13441,11 @@ impl CusparseHandle {
         }
     }
     pub unsafe fn cusparseSpMMOp_createPlan<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
-        X: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
+        X: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mut plan: T,
@@ -13518,7 +13518,7 @@ pub unsafe fn cusparseLoggerSetCallback(
         Err(status)
     }
 }
-pub unsafe fn cusparseLoggerSetFile<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseLoggerSetFile<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut file: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseLoggerSetFile(file.as_mut_ptr() as *mut FILE) };
@@ -13528,7 +13528,7 @@ pub unsafe fn cusparseLoggerSetFile<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseLoggerOpenFile<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseLoggerOpenFile<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     logFile: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
@@ -13726,7 +13726,7 @@ pub unsafe fn cusparseSpVecGetIndexBase(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpVecGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spVecDescr: cusparseSpVecDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13742,7 +13742,7 @@ pub unsafe fn cusparseSpVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseConstSpVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseConstSpVecGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spVecDescr: cusparseConstSpVecDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13758,7 +13758,7 @@ pub unsafe fn cusparseConstSpVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpVecSetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpVecSetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spVecDescr: cusparseSpVecDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13814,7 +13814,7 @@ pub unsafe fn cusparseConstDnVecGet(
         Err(status)
     }
 }
-pub unsafe fn cusparseDnVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseDnVecGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     dnVecDescr: cusparseDnVecDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13830,7 +13830,7 @@ pub unsafe fn cusparseDnVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseConstDnVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseConstDnVecGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     dnVecDescr: cusparseConstDnVecDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13846,7 +13846,7 @@ pub unsafe fn cusparseConstDnVecGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseDnVecSetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseDnVecSetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     dnVecDescr: cusparseDnVecDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13886,7 +13886,7 @@ pub unsafe fn cusparseSpMatGetIndexBase(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpMatGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spMatDescr: cusparseSpMatDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13902,7 +13902,7 @@ pub unsafe fn cusparseSpMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseConstSpMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseConstSpMatGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spMatDescr: cusparseConstSpMatDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -13918,7 +13918,7 @@ pub unsafe fn cusparseConstSpMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpMatSetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpMatSetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spMatDescr: cusparseSpMatDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -14028,7 +14028,7 @@ pub unsafe fn cusparseBsrSetStridedBatch(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpMatGetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpMatGetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spMatDescr: cusparseConstSpMatDescr_t,
     attribute: cusparseSpMatAttribute_t,
     mut data: T,
@@ -14048,7 +14048,7 @@ pub unsafe fn cusparseSpMatGetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpMatSetAttribute<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpMatSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spMatDescr: cusparseSpMatDescr_t,
     attribute: cusparseSpMatAttribute_t,
     mut data: T,
@@ -14289,9 +14289,9 @@ pub unsafe fn cusparseConstCscGet(
     }
 }
 pub unsafe fn cusparseCsrSetPointers<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
+    V: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     spMatDescr: cusparseSpMatDescr_t,
     mut csrRowOffsets: T,
@@ -14313,9 +14313,9 @@ pub unsafe fn cusparseCsrSetPointers<
     }
 }
 pub unsafe fn cusparseCscSetPointers<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
+    V: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     spMatDescr: cusparseSpMatDescr_t,
     mut cscColOffsets: T,
@@ -14439,9 +14439,9 @@ pub unsafe fn cusparseConstCooGet(
     }
 }
 pub unsafe fn cusparseCooSetPointers<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
+    V: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     spMatDescr: cusparseSpMatDescr_t,
     mut cooRows: T,
@@ -14636,7 +14636,7 @@ pub unsafe fn cusparseConstDnMatGet(
         Err(status)
     }
 }
-pub unsafe fn cusparseDnMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseDnMatGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     dnMatDescr: cusparseDnMatDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -14652,7 +14652,7 @@ pub unsafe fn cusparseDnMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseConstDnMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseConstDnMatGetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     dnMatDescr: cusparseConstDnMatDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -14668,7 +14668,7 @@ pub unsafe fn cusparseConstDnMatGetValues<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseDnMatSetValues<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseDnMatSetValues<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     dnMatDescr: cusparseDnMatDescr_t,
     mut values: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -14715,7 +14715,7 @@ pub unsafe fn cusparseDnMatGetStridedBatch(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpSV_createDescr<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpSV_createDescr<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut descr: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
@@ -14737,7 +14737,7 @@ pub unsafe fn cusparseSpSV_destroyDescr(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpSM_createDescr<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpSM_createDescr<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut descr: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
@@ -14759,7 +14759,7 @@ pub unsafe fn cusparseSpSM_destroyDescr(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpGEMM_createDescr<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMM_createDescr<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut descr: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
@@ -14781,7 +14781,7 @@ pub unsafe fn cusparseSpGEMM_destroyDescr(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpGEMM_getNumProducts<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMM_getNumProducts<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     spgemmDescr: cusparseSpGEMMDescr_t,
     mut num_prods: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {
@@ -14794,7 +14794,7 @@ pub unsafe fn cusparseSpGEMM_getNumProducts<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cusparseSpMMOp<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cusparseSpMMOp<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     plan: cusparseSpMMOpPlan_t,
     mut externalBuffer: T,
 ) -> Result<(), crate::sys::cusparseStatus_t> {

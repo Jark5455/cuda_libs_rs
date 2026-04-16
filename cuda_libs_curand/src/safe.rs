@@ -69,7 +69,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate 32-bit pseudo or quasirandom numbers.\n\n Use \\p generator to generate \\p num 32-bit results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 32-bit values with every bit random.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param num - Number of random 32-bit values to generate\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n     a previous kernel launch \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_TYPE_ERROR if the generator is a 64 bit quasirandom generator.\n (use ::curandGenerateLongLong() with 64 bit quasirandom generators)\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerate<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerate<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         num: usize,
@@ -88,7 +88,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate 64-bit quasirandom numbers.\n\n Use \\p generator to generate \\p num 64-bit results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 64-bit values with every bit random.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param num - Number of random 64-bit values to generate\n\n \\return\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n     a previous kernel launch \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_TYPE_ERROR if the generator is not a 64 bit quasirandom generator\\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerateLongLong<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateLongLong<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         num: usize,
@@ -107,7 +107,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate uniformly distributed floats.\n\n Use \\p generator to generate \\p num float results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 32-bit floating point values between \\p 0.0f and \\p 1.0f,\n excluding \\p 0.0f and including \\p 1.0f.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param num - Number of floats to generate\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n    a previous kernel launch \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension \\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerateUniform<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateUniform<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         num: usize,
@@ -122,7 +122,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate uniformly distributed doubles.\n\n Use \\p generator to generate \\p num double results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 64-bit double precision floating point values between\n \\p 0.0 and \\p 1.0, excluding \\p 0.0 and including \\p 1.0.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param num - Number of doubles to generate\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n    a previous kernel launch \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension \\n\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU does not support double precision \\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerateUniformDouble<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateUniformDouble<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         num: usize,
@@ -141,7 +141,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate normally distributed doubles.\n\n Use \\p generator to generate \\p n float results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 32-bit floating point values with mean \\p mean and standard\n deviation \\p stddev.\n\n Normally distributed results are generated from pseudorandom generators\n with a Box-Muller transform, and so require \\p n to be even.\n Quasirandom generators use an inverse cumulative distribution\n function to preserve dimensionality.\n\n There may be slight numerical differences between results generated\n on the GPU with generators created with ::curandCreateGenerator()\n and results calculated on the CPU with generators created with\n ::curandCreateGeneratorHost().  These differences arise because of\n differences in results for transcendental functions.  In addition,\n future versions of CURAND may use newer versions of the CUDA math\n library, so different versions of CURAND may give slightly different\n numerical values.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param n - Number of floats to generate\n \\param mean - Mean of normal distribution\n \\param stddev - Standard deviation of normal distribution\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n    a previous kernel launch \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension, or is not a multiple\n    of two for pseudorandom generators \\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerateNormal<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateNormal<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         n: usize,
@@ -164,7 +164,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate normally distributed doubles.\n\n Use \\p generator to generate \\p n double results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 64-bit floating point values with mean \\p mean and standard\n deviation \\p stddev.\n\n Normally distributed results are generated from pseudorandom generators\n with a Box-Muller transform, and so require \\p n to be even.\n Quasirandom generators use an inverse cumulative distribution\n function to preserve dimensionality.\n\n There may be slight numerical differences between results generated\n on the GPU with generators created with ::curandCreateGenerator()\n and results calculated on the CPU with generators created with\n ::curandCreateGeneratorHost().  These differences arise because of\n differences in results for transcendental functions.  In addition,\n future versions of CURAND may use newer versions of the CUDA math\n library, so different versions of CURAND may give slightly different\n numerical values.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param n - Number of doubles to generate\n \\param mean - Mean of normal distribution\n \\param stddev - Standard deviation of normal distribution\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n    a previous kernel launch \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension, or is not a multiple\n    of two for pseudorandom generators \\n\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU does not support double precision \\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerateNormalDouble<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateNormalDouble<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         n: usize,
@@ -187,7 +187,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate log-normally distributed floats.\n\n Use \\p generator to generate \\p n float results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 32-bit floating point values with log-normal distribution based on\n an associated normal distribution with mean \\p mean and standard deviation \\p stddev.\n\n Normally distributed results are generated from pseudorandom generators\n with a Box-Muller transform, and so require \\p n to be even.\n Quasirandom generators use an inverse cumulative distribution\n function to preserve dimensionality.\n The normally distributed results are transformed into log-normal distribution.\n\n There may be slight numerical differences between results generated\n on the GPU with generators created with ::curandCreateGenerator()\n and results calculated on the CPU with generators created with\n ::curandCreateGeneratorHost().  These differences arise because of\n differences in results for transcendental functions.  In addition,\n future versions of CURAND may use newer versions of the CUDA math\n library, so different versions of CURAND may give slightly different\n numerical values.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param n - Number of floats to generate\n \\param mean - Mean of associated normal distribution\n \\param stddev - Standard deviation of associated normal distribution\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n    a previous kernel launch \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension, or is not a multiple\n    of two for pseudorandom generators \\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerateLogNormal<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateLogNormal<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         n: usize,
@@ -210,7 +210,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate log-normally distributed doubles.\n\n Use \\p generator to generate \\p n double results into the device memory at\n \\p outputPtr.  The device memory must have been previously allocated and be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 64-bit floating point values with log-normal distribution based on\n an associated normal distribution with mean \\p mean and standard deviation \\p stddev.\n\n Normally distributed results are generated from pseudorandom generators\n with a Box-Muller transform, and so require \\p n to be even.\n Quasirandom generators use an inverse cumulative distribution\n function to preserve dimensionality.\n The normally distributed results are transformed into log-normal distribution.\n\n There may be slight numerical differences between results generated\n on the GPU with generators created with ::curandCreateGenerator()\n and results calculated on the CPU with generators created with\n ::curandCreateGeneratorHost().  These differences arise because of\n differences in results for transcendental functions.  In addition,\n future versions of CURAND may use newer versions of the CUDA math\n library, so different versions of CURAND may give slightly different\n numerical values.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param n - Number of doubles to generate\n \\param mean - Mean of normal distribution\n \\param stddev - Standard deviation of normal distribution\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n    a previous kernel launch \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension, or is not a multiple\n    of two for pseudorandom generators \\n\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU does not support double precision \\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGenerateLogNormalDouble<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateLogNormalDouble<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         n: usize,
@@ -233,7 +233,7 @@ impl CurandGenerator {
         }
     }
     #[doc = " \\brief Generate Poisson-distributed unsigned ints.\n\n Use \\p generator to generate \\p n unsigned int results into device memory at\n \\p outputPtr.  The device memory must have been previously allocated and must be\n large enough to hold all the results.  Launches are done with the stream\n set using ::curandSetStream(), or the null stream if no stream has been set.\n\n Results are 32-bit unsigned int point values with Poisson distribution, with lambda \\p lambda.\n\n \\param generator - Generator to use\n \\param outputPtr - Pointer to device memory to store CUDA-generated results, or\n                 Pointer to host memory to store CPU-generated results\n \\param n - Number of unsigned ints to generate\n \\param lambda - lambda for the Poisson distribution\n\n \\return\n - CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\n    a previous kernel launch \\n\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\n    not a multiple of the quasirandom dimension\\n\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU or sm does not support double precision \\n\n - CURAND_STATUS_OUT_OF_RANGE if lambda is non-positive or greater than 400,000 \\n\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n"]
-    pub unsafe fn curandGeneratePoisson<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGeneratePoisson<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         n: usize,
@@ -253,7 +253,7 @@ impl CurandGenerator {
             Err(status)
         }
     }
-    pub unsafe fn curandGeneratePoissonMethod<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGeneratePoissonMethod<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         n: usize,
@@ -275,7 +275,7 @@ impl CurandGenerator {
             Err(status)
         }
     }
-    pub unsafe fn curandGenerateBinomial<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateBinomial<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         num: usize,
@@ -297,7 +297,7 @@ impl CurandGenerator {
             Err(status)
         }
     }
-    pub unsafe fn curandGenerateBinomialMethod<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn curandGenerateBinomialMethod<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut outputPtr: T,
         num: usize,
@@ -354,7 +354,7 @@ pub unsafe fn curandGetProperty(
     }
 }
 #[doc = " \\brief Get direction vectors for 32-bit quasirandom number generation.\n\n Get a pointer to an array of direction vectors that can be used\n for quasirandom number generation.  The resulting pointer will\n reference an array of direction vectors in host memory.\n\n The array contains vectors for many dimensions.  Each dimension\n has 32 vectors.  Each individual vector is an unsigned int.\n\n Legal values for \\p set are:\n - CURAND_DIRECTION_VECTORS_32_JOEKUO6 (20,000 dimensions)\n - CURAND_SCRAMBLED_DIRECTION_VECTORS_32_JOEKUO6 (20,000 dimensions)\n\n \\param vectors - Address of pointer in which to return direction vectors\n \\param set - Which set of direction vectors to use\n\n \\return\n - CURAND_STATUS_OUT_OF_RANGE if the choice of set is invalid \\n\n - CURAND_STATUS_SUCCESS if the pointer was set successfully \\n"]
-pub unsafe fn curandGetDirectionVectors32<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn curandGetDirectionVectors32<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut vectors: T,
     set: curandDirectionVectorSet_t,
 ) -> Result<(), crate::sys::curandStatus_t> {
@@ -371,8 +371,8 @@ pub unsafe fn curandGetDirectionVectors32<T: ::cuda_libs::types::CudaAsPtr>(
     }
 }
 #[doc = " \\brief Get scramble constants for 32-bit scrambled Sobol' .\n\n Get a pointer to an array of scramble constants that can be used\n for quasirandom number generation.  The resulting pointer will\n reference an array of unsinged ints in host memory.\n\n The array contains constants for many dimensions.  Each dimension\n has a single unsigned int constant.\n\n \\param constants - Address of pointer in which to return scramble constants\n\n \\return\n - CURAND_STATUS_SUCCESS if the pointer was set successfully \\n"]
-pub unsafe fn curandGetScrambleConstants32(
-) -> Result<*mut ::std::os::raw::c_uint, crate::sys::curandStatus_t> {
+pub unsafe fn curandGetScrambleConstants32()
+-> Result<*mut ::std::os::raw::c_uint, crate::sys::curandStatus_t> {
     let mut out_0: std::mem::MaybeUninit<*mut ::std::os::raw::c_uint> =
         std::mem::MaybeUninit::uninit();
     let status = unsafe { crate::sys::curandGetScrambleConstants32(out_0.as_mut_ptr() as *mut _) };
@@ -383,7 +383,7 @@ pub unsafe fn curandGetScrambleConstants32(
     }
 }
 #[doc = " \\brief Get direction vectors for 64-bit quasirandom number generation.\n\n Get a pointer to an array of direction vectors that can be used\n for quasirandom number generation.  The resulting pointer will\n reference an array of direction vectors in host memory.\n\n The array contains vectors for many dimensions.  Each dimension\n has 64 vectors.  Each individual vector is an unsigned long long.\n\n Legal values for \\p set are:\n - CURAND_DIRECTION_VECTORS_64_JOEKUO6 (20,000 dimensions)\n - CURAND_SCRAMBLED_DIRECTION_VECTORS_64_JOEKUO6 (20,000 dimensions)\n\n \\param vectors - Address of pointer in which to return direction vectors\n \\param set - Which set of direction vectors to use\n\n \\return\n - CURAND_STATUS_OUT_OF_RANGE if the choice of set is invalid \\n\n - CURAND_STATUS_SUCCESS if the pointer was set successfully \\n"]
-pub unsafe fn curandGetDirectionVectors64<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn curandGetDirectionVectors64<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut vectors: T,
     set: curandDirectionVectorSet_t,
 ) -> Result<(), crate::sys::curandStatus_t> {
@@ -400,8 +400,8 @@ pub unsafe fn curandGetDirectionVectors64<T: ::cuda_libs::types::CudaAsPtr>(
     }
 }
 #[doc = " \\brief Get scramble constants for 64-bit scrambled Sobol' .\n\n Get a pointer to an array of scramble constants that can be used\n for quasirandom number generation.  The resulting pointer will\n reference an array of unsinged long longs in host memory.\n\n The array contains constants for many dimensions.  Each dimension\n has a single unsigned long long constant.\n\n \\param constants - Address of pointer in which to return scramble constants\n\n \\return\n - CURAND_STATUS_SUCCESS if the pointer was set successfully \\n"]
-pub unsafe fn curandGetScrambleConstants64(
-) -> Result<*mut ::std::os::raw::c_ulonglong, crate::sys::curandStatus_t> {
+pub unsafe fn curandGetScrambleConstants64()
+-> Result<*mut ::std::os::raw::c_ulonglong, crate::sys::curandStatus_t> {
     let mut out_0: std::mem::MaybeUninit<*mut ::std::os::raw::c_ulonglong> =
         std::mem::MaybeUninit::uninit();
     let status = unsafe { crate::sys::curandGetScrambleConstants64(out_0.as_mut_ptr() as *mut _) };

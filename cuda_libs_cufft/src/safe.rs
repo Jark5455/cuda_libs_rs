@@ -26,7 +26,7 @@ pub struct CufftHandle {
     pub(crate) handle: crate::sys::cufftHandle,
 }
 impl CufftHandle {
-    pub unsafe fn cufftMakePlan1d<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cufftMakePlan1d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         nx: ::std::os::raw::c_int,
         type_: cufftType,
@@ -48,7 +48,7 @@ impl CufftHandle {
             Err(status)
         }
     }
-    pub unsafe fn cufftMakePlan2d<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cufftMakePlan2d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         nx: ::std::os::raw::c_int,
         ny: ::std::os::raw::c_int,
@@ -70,7 +70,7 @@ impl CufftHandle {
             Err(status)
         }
     }
-    pub unsafe fn cufftMakePlan3d<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cufftMakePlan3d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         nx: ::std::os::raw::c_int,
         ny: ::std::os::raw::c_int,
@@ -95,10 +95,10 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftMakePlanMany<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         rank: ::std::os::raw::c_int,
@@ -136,10 +136,10 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftMakePlanMany64<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
-        V: ::cuda_libs::types::CudaAsPtr,
-        W: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
+        V: ::cuda_libs_cudart::types::CudaAsPtr,
+        W: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         rank: ::std::os::raw::c_int,
@@ -342,7 +342,7 @@ impl CufftHandle {
             Err(status)
         }
     }
-    pub unsafe fn cufftSetWorkArea<T: ::cuda_libs::types::CudaAsPtr>(
+    pub unsafe fn cufftSetWorkArea<T: ::cuda_libs_cudart::types::CudaAsPtr>(
         &self,
         mut workArea: T,
     ) -> Result<(), crate::sys::cufftResult> {
@@ -370,8 +370,8 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftExecC2C<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mut idata: T,
@@ -393,8 +393,8 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftExecR2C<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mut idata: T,
@@ -414,8 +414,8 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftExecC2R<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mut idata: T,
@@ -435,8 +435,8 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftExecZ2Z<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mut idata: T,
@@ -458,8 +458,8 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftExecD2Z<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mut idata: T,
@@ -479,8 +479,8 @@ impl CufftHandle {
         }
     }
     pub unsafe fn cufftExecZ2D<
-        T: ::cuda_libs::types::CudaAsPtr,
-        U: ::cuda_libs::types::CudaAsPtr,
+        T: ::cuda_libs_cudart::types::CudaAsPtr,
+        U: ::cuda_libs_cudart::types::CudaAsPtr,
     >(
         &self,
         mut idata: T,
@@ -554,7 +554,7 @@ impl CufftHandle {
         }
     }
 }
-pub unsafe fn cufftPlan1d<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cufftPlan1d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut plan: T,
     nx: ::std::os::raw::c_int,
     type_: cufftType,
@@ -568,7 +568,7 @@ pub unsafe fn cufftPlan1d<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cufftPlan2d<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cufftPlan2d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut plan: T,
     nx: ::std::os::raw::c_int,
     ny: ::std::os::raw::c_int,
@@ -582,7 +582,7 @@ pub unsafe fn cufftPlan2d<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cufftPlan3d<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cufftPlan3d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     mut plan: T,
     nx: ::std::os::raw::c_int,
     ny: ::std::os::raw::c_int,
@@ -599,10 +599,10 @@ pub unsafe fn cufftPlan3d<T: ::cuda_libs::types::CudaAsPtr>(
     }
 }
 pub unsafe fn cufftPlanMany<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
+    V: ::cuda_libs_cudart::types::CudaAsPtr,
+    W: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     mut plan: T,
     rank: ::std::os::raw::c_int,
@@ -637,7 +637,7 @@ pub unsafe fn cufftPlanMany<
         Err(status)
     }
 }
-pub unsafe fn cufftEstimate1d<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cufftEstimate1d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     nx: ::std::os::raw::c_int,
     type_: cufftType,
     batch: ::std::os::raw::c_int,
@@ -652,7 +652,7 @@ pub unsafe fn cufftEstimate1d<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cufftEstimate2d<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cufftEstimate2d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     nx: ::std::os::raw::c_int,
     ny: ::std::os::raw::c_int,
     type_: cufftType,
@@ -666,7 +666,7 @@ pub unsafe fn cufftEstimate2d<T: ::cuda_libs::types::CudaAsPtr>(
         Err(status)
     }
 }
-pub unsafe fn cufftEstimate3d<T: ::cuda_libs::types::CudaAsPtr>(
+pub unsafe fn cufftEstimate3d<T: ::cuda_libs_cudart::types::CudaAsPtr>(
     nx: ::std::os::raw::c_int,
     ny: ::std::os::raw::c_int,
     nz: ::std::os::raw::c_int,
@@ -683,10 +683,10 @@ pub unsafe fn cufftEstimate3d<T: ::cuda_libs::types::CudaAsPtr>(
     }
 }
 pub unsafe fn cufftEstimateMany<
-    T: ::cuda_libs::types::CudaAsPtr,
-    U: ::cuda_libs::types::CudaAsPtr,
-    V: ::cuda_libs::types::CudaAsPtr,
-    W: ::cuda_libs::types::CudaAsPtr,
+    T: ::cuda_libs_cudart::types::CudaAsPtr,
+    U: ::cuda_libs_cudart::types::CudaAsPtr,
+    V: ::cuda_libs_cudart::types::CudaAsPtr,
+    W: ::cuda_libs_cudart::types::CudaAsPtr,
 >(
     rank: ::std::os::raw::c_int,
     mut n: T,

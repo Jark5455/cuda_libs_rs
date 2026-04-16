@@ -6,7 +6,8 @@
 #![allow(unused_mut)]
 #![allow(unnecessary_transmutes)]
 
-extern crate cuda_libs;
+extern crate self as cuda_libs_cudart;
 
-pub mod sys;
 pub mod safe;
+pub mod sys;
+pub mod types;

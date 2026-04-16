@@ -1,11 +1,11 @@
 pub mod lib_generator;
 
-use lib_generator::{generate_library, LibraryConfig, HandleConfig};
+use lib_generator::{HandleConfig, LibraryConfig, generate_library};
 
 fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cudart",
-        out_dir: "../cuda_libs_cudart/src",
+        out_dir: "./cuda_libs_cudart/src",
         headers: vec!["/opt/cuda/include/cuda_runtime.h"],
         allowlist_functions: "cuda.*",
         allowlist_types: "cuda.*",
@@ -58,7 +58,7 @@ fn main() {
 
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cublas_lt",
-        out_dir: "../cuda_libs_cublas_lt/src",
+        out_dir: "./cuda_libs_cublas_lt/src",
         headers: vec!["/opt/cuda/include/cublasLt.h"],
         allowlist_functions: "cublasLt.*",
         allowlist_types: "cublasLt.*",
@@ -66,8 +66,18 @@ fn main() {
         blocklist_types: vec![".*cuda.*"],
         status_type: "cublasStatus_t",
         success_variant: "CUBLAS_STATUS_SUCCESS",
-        handles: vec![HandleConfig { wrapper_name: "CublasLtHandle", handle_type: "cublasLtHandle_t" }],
-        handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
+        handles: vec![HandleConfig {
+            wrapper_name: "CublasLtHandle",
+            handle_type: "cublasLtHandle_t",
+        }],
+        handle_types_regex: vec![
+            "Context",
+            "Stream_t",
+            "Stream",
+            "ctx",
+            "Device",
+            "CUstream_st",
+        ],
         extra_imports: vec![],
         extra_safe_code: "
             impl CublasLtHandle {
@@ -93,7 +103,7 @@ fn main() {
 
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cublas",
-        out_dir: "../cuda_libs_cublas/src",
+        out_dir: "./cuda_libs_cublas/src",
         headers: vec!["/opt/cuda/include/cublas_api.h"],
         allowlist_functions: "cublas.*",
         allowlist_types: "cublas.*",
@@ -101,8 +111,18 @@ fn main() {
         blocklist_types: vec![".*cuda.*"],
         status_type: "cublasStatus_t",
         success_variant: "CUBLAS_STATUS_SUCCESS",
-        handles: vec![HandleConfig { wrapper_name: "CublasHandle", handle_type: "cublasHandle_t" }],
-        handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
+        handles: vec![HandleConfig {
+            wrapper_name: "CublasHandle",
+            handle_type: "cublasHandle_t",
+        }],
+        handle_types_regex: vec![
+            "Context",
+            "Stream_t",
+            "Stream",
+            "ctx",
+            "Device",
+            "CUstream_st",
+        ],
         extra_imports: vec![],
         extra_safe_code: "
             impl CublasHandle {
@@ -128,8 +148,11 @@ fn main() {
 
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cusolver",
-        out_dir: "../cuda_libs_cusolver/src",
-        headers: vec!["/opt/cuda/include/cusolverDn.h", "/opt/cuda/include/cusolverSp.h"],
+        out_dir: "./cuda_libs_cusolver/src",
+        headers: vec![
+            "/opt/cuda/include/cusolverDn.h",
+            "/opt/cuda/include/cusolverSp.h",
+        ],
         allowlist_functions: "cusolver.*",
         allowlist_types: "cusolver.*",
         allowlist_vars: "CUSOLVER.*",
@@ -137,10 +160,23 @@ fn main() {
         status_type: "cusolverStatus_t",
         success_variant: "CUSOLVER_STATUS_SUCCESS",
         handles: vec![
-            HandleConfig { wrapper_name: "CusolverDnHandle", handle_type: "cusolverDnHandle_t" },
-            HandleConfig { wrapper_name: "CusolverSpHandle", handle_type: "cusolverSpHandle_t" },
+            HandleConfig {
+                wrapper_name: "CusolverDnHandle",
+                handle_type: "cusolverDnHandle_t",
+            },
+            HandleConfig {
+                wrapper_name: "CusolverSpHandle",
+                handle_type: "cusolverSpHandle_t",
+            },
         ],
-        handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
+        handle_types_regex: vec![
+            "Context",
+            "Stream_t",
+            "Stream",
+            "ctx",
+            "Device",
+            "CUstream_st",
+        ],
         extra_imports: vec![],
         extra_safe_code: "
             impl CusolverDnHandle {
@@ -185,7 +221,7 @@ fn main() {
 
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cufft",
-        out_dir: "../cuda_libs_cufft/src",
+        out_dir: "./cuda_libs_cufft/src",
         headers: vec!["/opt/cuda/include/cufft.h"],
         allowlist_functions: "cufft.*",
         allowlist_types: "cufft.*",
@@ -193,8 +229,18 @@ fn main() {
         blocklist_types: vec![".*cuda.*"],
         status_type: "cufftResult",
         success_variant: "CUFFT_SUCCESS",
-        handles: vec![HandleConfig { wrapper_name: "CufftHandle", handle_type: "cufftHandle" }],
-        handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
+        handles: vec![HandleConfig {
+            wrapper_name: "CufftHandle",
+            handle_type: "cufftHandle",
+        }],
+        handle_types_regex: vec![
+            "Context",
+            "Stream_t",
+            "Stream",
+            "ctx",
+            "Device",
+            "CUstream_st",
+        ],
         extra_imports: vec![],
         extra_safe_code: "
             impl CufftHandle {
@@ -220,7 +266,7 @@ fn main() {
 
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_curand",
-        out_dir: "../cuda_libs_curand/src",
+        out_dir: "./cuda_libs_curand/src",
         headers: vec!["/opt/cuda/include/curand.h"],
         allowlist_functions: "curand.*",
         allowlist_types: "curand.*",
@@ -255,7 +301,7 @@ fn main() {
 
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cusparse",
-        out_dir: "../cuda_libs_cusparse/src",
+        out_dir: "./cuda_libs_cusparse/src",
         headers: vec!["/opt/cuda/include/cusparse.h"],
         allowlist_functions: "cusparse.*",
         allowlist_types: "cusparse.*",
@@ -263,8 +309,18 @@ fn main() {
         blocklist_types: vec![".*cuda.*"],
         status_type: "cusparseStatus_t",
         success_variant: "CUSPARSE_STATUS_SUCCESS",
-        handles: vec![HandleConfig { wrapper_name: "CusparseHandle", handle_type: "cusparseHandle_t" }],
-        handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
+        handles: vec![HandleConfig {
+            wrapper_name: "CusparseHandle",
+            handle_type: "cusparseHandle_t",
+        }],
+        handle_types_regex: vec![
+            "Context",
+            "Stream_t",
+            "Stream",
+            "ctx",
+            "Device",
+            "CUstream_st",
+        ],
         extra_imports: vec![],
         extra_safe_code: "
             impl CusparseHandle {
@@ -290,7 +346,7 @@ fn main() {
 
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cudnn",
-        out_dir: "../cuda_libs_cudnn/src",
+        out_dir: "./cuda_libs_cudnn/src",
         headers: vec!["/usr/include/cudnn.h"],
         allowlist_functions: "cudnn.*",
         allowlist_types: "cudnn.*",
@@ -298,8 +354,18 @@ fn main() {
         blocklist_types: vec![".*cuda.*"],
         status_type: "cudnnStatus_t",
         success_variant: "CUDNN_STATUS_SUCCESS",
-        handles: vec![HandleConfig { wrapper_name: "CudnnHandle", handle_type: "cudnnHandle_t" }],
-        handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
+        handles: vec![HandleConfig {
+            wrapper_name: "CudnnHandle",
+            handle_type: "cudnnHandle_t",
+        }],
+        handle_types_regex: vec![
+            "Context",
+            "Stream_t",
+            "Stream",
+            "ctx",
+            "Device",
+            "CUstream_st",
+        ],
         extra_imports: vec![],
         extra_safe_code: "
             impl CudnnHandle {
