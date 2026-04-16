@@ -53,12 +53,12 @@ compile_error!("Feature `cusolver` requires feature `cublas` to be enabled.");
 compile_error!("Feature `cusparse` requires feature `cudart` to be enabled.");
 
 pub mod prelude {
-    #[cfg(feature = "cudart")]
-    pub use cuda_libs_cudart::safe::*;
     #[cfg(feature = "cublas")]
     pub use cuda_libs_cublas::safe::*;
     #[cfg(feature = "cublas_lt")]
     pub use cuda_libs_cublas_lt::safe::*;
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::safe::*;
     #[cfg(feature = "cudnn")]
     pub use cuda_libs_cudnn::safe::*;
     #[cfg(feature = "cufft")]

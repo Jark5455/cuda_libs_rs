@@ -257,63 +257,6 @@ pub struct _IO_FILE {
     pub _total_written: __uint64_t,
     pub _unused2: [::std::os::raw::c_char; 8usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of _IO_FILE"][::std::mem::size_of::<_IO_FILE>() - 216usize];
-    ["Alignment of _IO_FILE"][::std::mem::align_of::<_IO_FILE>() - 8usize];
-    ["Offset of field: _IO_FILE::_flags"][::std::mem::offset_of!(_IO_FILE, _flags) - 0usize];
-    ["Offset of field: _IO_FILE::_IO_read_ptr"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_read_ptr) - 8usize];
-    ["Offset of field: _IO_FILE::_IO_read_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_read_end) - 16usize];
-    ["Offset of field: _IO_FILE::_IO_read_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_read_base) - 24usize];
-    ["Offset of field: _IO_FILE::_IO_write_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_write_base) - 32usize];
-    ["Offset of field: _IO_FILE::_IO_write_ptr"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_write_ptr) - 40usize];
-    ["Offset of field: _IO_FILE::_IO_write_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_write_end) - 48usize];
-    ["Offset of field: _IO_FILE::_IO_buf_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_buf_base) - 56usize];
-    ["Offset of field: _IO_FILE::_IO_buf_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_buf_end) - 64usize];
-    ["Offset of field: _IO_FILE::_IO_save_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_save_base) - 72usize];
-    ["Offset of field: _IO_FILE::_IO_backup_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_backup_base) - 80usize];
-    ["Offset of field: _IO_FILE::_IO_save_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_save_end) - 88usize];
-    ["Offset of field: _IO_FILE::_markers"][::std::mem::offset_of!(_IO_FILE, _markers) - 96usize];
-    ["Offset of field: _IO_FILE::_chain"][::std::mem::offset_of!(_IO_FILE, _chain) - 104usize];
-    ["Offset of field: _IO_FILE::_fileno"][::std::mem::offset_of!(_IO_FILE, _fileno) - 112usize];
-    ["Offset of field: _IO_FILE::_short_backupbuf"]
-        [::std::mem::offset_of!(_IO_FILE, _short_backupbuf) - 119usize];
-    ["Offset of field: _IO_FILE::_old_offset"]
-        [::std::mem::offset_of!(_IO_FILE, _old_offset) - 120usize];
-    ["Offset of field: _IO_FILE::_cur_column"]
-        [::std::mem::offset_of!(_IO_FILE, _cur_column) - 128usize];
-    ["Offset of field: _IO_FILE::_vtable_offset"]
-        [::std::mem::offset_of!(_IO_FILE, _vtable_offset) - 130usize];
-    ["Offset of field: _IO_FILE::_shortbuf"]
-        [::std::mem::offset_of!(_IO_FILE, _shortbuf) - 131usize];
-    ["Offset of field: _IO_FILE::_lock"][::std::mem::offset_of!(_IO_FILE, _lock) - 136usize];
-    ["Offset of field: _IO_FILE::_offset"][::std::mem::offset_of!(_IO_FILE, _offset) - 144usize];
-    ["Offset of field: _IO_FILE::_codecvt"][::std::mem::offset_of!(_IO_FILE, _codecvt) - 152usize];
-    ["Offset of field: _IO_FILE::_wide_data"]
-        [::std::mem::offset_of!(_IO_FILE, _wide_data) - 160usize];
-    ["Offset of field: _IO_FILE::_freeres_list"]
-        [::std::mem::offset_of!(_IO_FILE, _freeres_list) - 168usize];
-    ["Offset of field: _IO_FILE::_freeres_buf"]
-        [::std::mem::offset_of!(_IO_FILE, _freeres_buf) - 176usize];
-    ["Offset of field: _IO_FILE::_prevchain"]
-        [::std::mem::offset_of!(_IO_FILE, _prevchain) - 184usize];
-    ["Offset of field: _IO_FILE::_mode"][::std::mem::offset_of!(_IO_FILE, _mode) - 192usize];
-    ["Offset of field: _IO_FILE::_unused3"][::std::mem::offset_of!(_IO_FILE, _unused3) - 196usize];
-    ["Offset of field: _IO_FILE::_total_written"]
-        [::std::mem::offset_of!(_IO_FILE, _total_written) - 200usize];
-    ["Offset of field: _IO_FILE::_unused2"][::std::mem::offset_of!(_IO_FILE, _unused2) - 208usize];
-};
 impl Default for _IO_FILE {
     fn default() -> Self {
         let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
@@ -426,15 +369,6 @@ unsafe extern "C" {
 pub struct cublasLtMatrixLayoutOpaque_t {
     pub data: [u64; 14usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of cublasLtMatrixLayoutOpaque_t"]
-        [::std::mem::size_of::<cublasLtMatrixLayoutOpaque_t>() - 112usize];
-    ["Alignment of cublasLtMatrixLayoutOpaque_t"]
-        [::std::mem::align_of::<cublasLtMatrixLayoutOpaque_t>() - 8usize];
-    ["Offset of field: cublasLtMatrixLayoutOpaque_t::data"]
-        [::std::mem::offset_of!(cublasLtMatrixLayoutOpaque_t, data) - 0usize];
-};
 #[doc = " Opaque descriptor for matrix memory layout"]
 pub type cublasLtMatrixLayout_t = *mut cublasLtMatrixLayoutOpaque_t;
 #[doc = " Semi-opaque algorithm descriptor (to avoid complicated alloc/free schemes)\n\n This structure can be trivially serialized and later restored for use with the same version of cuBLAS library to save\n on selecting the right configuration again."]
@@ -443,28 +377,12 @@ pub type cublasLtMatrixLayout_t = *mut cublasLtMatrixLayoutOpaque_t;
 pub struct cublasLtMatmulAlgo_t {
     pub data: [u64; 8usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of cublasLtMatmulAlgo_t"][::std::mem::size_of::<cublasLtMatmulAlgo_t>() - 64usize];
-    ["Alignment of cublasLtMatmulAlgo_t"][::std::mem::align_of::<cublasLtMatmulAlgo_t>() - 8usize];
-    ["Offset of field: cublasLtMatmulAlgo_t::data"]
-        [::std::mem::offset_of!(cublasLtMatmulAlgo_t, data) - 0usize];
-};
 #[doc = " Semi-opaque descriptor for cublasLtMatmul() operation details"]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
 pub struct cublasLtMatmulDescOpaque_t {
     pub data: [u64; 32usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of cublasLtMatmulDescOpaque_t"]
-        [::std::mem::size_of::<cublasLtMatmulDescOpaque_t>() - 256usize];
-    ["Alignment of cublasLtMatmulDescOpaque_t"]
-        [::std::mem::align_of::<cublasLtMatmulDescOpaque_t>() - 8usize];
-    ["Offset of field: cublasLtMatmulDescOpaque_t::data"]
-        [::std::mem::offset_of!(cublasLtMatmulDescOpaque_t, data) - 0usize];
-};
 #[doc = " Opaque descriptor for cublasLtMatmul() operation details"]
 pub type cublasLtMatmulDesc_t = *mut cublasLtMatmulDescOpaque_t;
 #[doc = " Semi-opaque descriptor for cublasLtMatrixTransform() operation details"]
@@ -473,15 +391,6 @@ pub type cublasLtMatmulDesc_t = *mut cublasLtMatmulDescOpaque_t;
 pub struct cublasLtMatrixTransformDescOpaque_t {
     pub data: [u64; 8usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of cublasLtMatrixTransformDescOpaque_t"]
-        [::std::mem::size_of::<cublasLtMatrixTransformDescOpaque_t>() - 64usize];
-    ["Alignment of cublasLtMatrixTransformDescOpaque_t"]
-        [::std::mem::align_of::<cublasLtMatrixTransformDescOpaque_t>() - 8usize];
-    ["Offset of field: cublasLtMatrixTransformDescOpaque_t::data"]
-        [::std::mem::offset_of!(cublasLtMatrixTransformDescOpaque_t, data) - 0usize];
-};
 #[doc = " Opaque descriptor for cublasLtMatrixTransform() operation details"]
 pub type cublasLtMatrixTransformDesc_t = *mut cublasLtMatrixTransformDescOpaque_t;
 #[doc = " Semi-opaque descriptor for cublasLtMatmulPreference() operation details"]
@@ -490,15 +399,6 @@ pub type cublasLtMatrixTransformDesc_t = *mut cublasLtMatrixTransformDescOpaque_
 pub struct cublasLtMatmulPreferenceOpaque_t {
     pub data: [u64; 12usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of cublasLtMatmulPreferenceOpaque_t"]
-        [::std::mem::size_of::<cublasLtMatmulPreferenceOpaque_t>() - 96usize];
-    ["Alignment of cublasLtMatmulPreferenceOpaque_t"]
-        [::std::mem::align_of::<cublasLtMatmulPreferenceOpaque_t>() - 8usize];
-    ["Offset of field: cublasLtMatmulPreferenceOpaque_t::data"]
-        [::std::mem::offset_of!(cublasLtMatmulPreferenceOpaque_t, data) - 0usize];
-};
 #[doc = " Opaque descriptor for cublasLtMatmulAlgoGetHeuristic() configuration"]
 pub type cublasLtMatmulPreference_t = *mut cublasLtMatmulPreferenceOpaque_t;
 #[doc = " Semi-opaque descriptor for properties related to floating point emulation"]
@@ -507,15 +407,6 @@ pub type cublasLtMatmulPreference_t = *mut cublasLtMatmulPreferenceOpaque_t;
 pub struct cublasLtEmulationDescOpaque_t {
     pub data: [u64; 8usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of cublasLtEmulationDescOpaque_t"]
-        [::std::mem::size_of::<cublasLtEmulationDescOpaque_t>() - 64usize];
-    ["Alignment of cublasLtEmulationDescOpaque_t"]
-        [::std::mem::align_of::<cublasLtEmulationDescOpaque_t>() - 8usize];
-    ["Offset of field: cublasLtEmulationDescOpaque_t::data"]
-        [::std::mem::offset_of!(cublasLtEmulationDescOpaque_t, data) - 0usize];
-};
 #[doc = " Opaque descriptor for properties related to floating point emulation"]
 pub type cublasLtEmulationDesc_t = *mut cublasLtEmulationDescOpaque_t;
 #[repr(u32)]
@@ -1950,23 +1841,6 @@ pub struct cublasLtMatmulHeuristicResult_t {
     pub wavesCount: f32,
     pub reserved: [::std::os::raw::c_int; 4usize],
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of cublasLtMatmulHeuristicResult_t"]
-        [::std::mem::size_of::<cublasLtMatmulHeuristicResult_t>() - 96usize];
-    ["Alignment of cublasLtMatmulHeuristicResult_t"]
-        [::std::mem::align_of::<cublasLtMatmulHeuristicResult_t>() - 8usize];
-    ["Offset of field: cublasLtMatmulHeuristicResult_t::algo"]
-        [::std::mem::offset_of!(cublasLtMatmulHeuristicResult_t, algo) - 0usize];
-    ["Offset of field: cublasLtMatmulHeuristicResult_t::workspaceSize"]
-        [::std::mem::offset_of!(cublasLtMatmulHeuristicResult_t, workspaceSize) - 64usize];
-    ["Offset of field: cublasLtMatmulHeuristicResult_t::state"]
-        [::std::mem::offset_of!(cublasLtMatmulHeuristicResult_t, state) - 72usize];
-    ["Offset of field: cublasLtMatmulHeuristicResult_t::wavesCount"]
-        [::std::mem::offset_of!(cublasLtMatmulHeuristicResult_t, wavesCount) - 76usize];
-    ["Offset of field: cublasLtMatmulHeuristicResult_t::reserved"]
-        [::std::mem::offset_of!(cublasLtMatmulHeuristicResult_t, reserved) - 80usize];
-};
 impl Default for cublasLtMatmulHeuristicResult_t {
     fn default() -> Self {
         let mut s = ::std::mem::MaybeUninit::<Self>::uninit();

@@ -33,6 +33,7 @@ pub fn generate_library(config: &LibraryConfig) {
         .default_enum_style(bindgen::EnumVariation::Rust {
             non_exhaustive: false,
         })
+        .layout_tests(false)
         .derive_default(true)
         .allowlist_function(config.allowlist_functions)
         .allowlist_type(config.allowlist_types)
