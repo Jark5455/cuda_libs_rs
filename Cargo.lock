@@ -91,7 +91,6 @@ name = "cuda_libs_cublas_lt"
 version = "0.1.0"
 dependencies = [
  "cuda_libs",
- "cuda_libs_cublas",
  "cuda_libs_cudart",
 ]
 
@@ -131,7 +130,6 @@ name = "cuda_libs_cusolver"
 version = "0.1.0"
 dependencies = [
  "cuda_libs",
- "cuda_libs_cublas",
  "cuda_libs_cudart",
 ]
 
