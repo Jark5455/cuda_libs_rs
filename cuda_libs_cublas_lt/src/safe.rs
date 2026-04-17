@@ -1,10 +1,15 @@
 pub use crate::sys::cublasStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
+use cuda_libs_cudart;
+#[allow(unused_imports)]
 use cuda_libs_cudart::sys::*;
+#[allow(unused_imports)]
+use cuda_libs_cudart::types;
+#[cfg(feature = "runtime-link")]
 impl crate::sys::_IO_FILE {
-    pub fn _flags(mut self, val: ::std::os::raw::c_int) -> Self {
-        self._flags = val;
+    pub fn _flags(mut self, val: i32) -> Self {
+        self._flags = val as _;
         self
     }
     pub fn _IO_read_ptr(mut self, val: *mut ::std::os::raw::c_char) -> Self {
@@ -59,8 +64,8 @@ impl crate::sys::_IO_FILE {
         self._chain = val;
         self
     }
-    pub fn _fileno(mut self, val: ::std::os::raw::c_int) -> Self {
-        self._fileno = val;
+    pub fn _fileno(mut self, val: i32) -> Self {
+        self._fileno = val as _;
         self
     }
     pub fn _bitfield_align_1(mut self, val: [u32; 0]) -> Self {
@@ -79,8 +84,8 @@ impl crate::sys::_IO_FILE {
         self._old_offset = val;
         self
     }
-    pub fn _cur_column(mut self, val: ::std::os::raw::c_ushort) -> Self {
-        self._cur_column = val;
+    pub fn _cur_column(mut self, val: u16) -> Self {
+        self._cur_column = val as _;
         self
     }
     pub fn _vtable_offset(mut self, val: ::std::os::raw::c_schar) -> Self {
@@ -119,12 +124,12 @@ impl crate::sys::_IO_FILE {
         self._prevchain = val;
         self
     }
-    pub fn _mode(mut self, val: ::std::os::raw::c_int) -> Self {
-        self._mode = val;
+    pub fn _mode(mut self, val: i32) -> Self {
+        self._mode = val as _;
         self
     }
-    pub fn _unused3(mut self, val: ::std::os::raw::c_int) -> Self {
-        self._unused3 = val;
+    pub fn _unused3(mut self, val: i32) -> Self {
+        self._unused3 = val as _;
         self
     }
     pub fn _total_written(mut self, val: __uint64_t) -> Self {
@@ -136,42 +141,49 @@ impl crate::sys::_IO_FILE {
         self
     }
 }
+#[cfg(feature = "runtime-link")]
 impl crate::sys::cublasLtMatrixLayoutOpaque_t {
     pub fn data(mut self, val: [u64; 14usize]) -> Self {
         self.data = val;
         self
     }
 }
+#[cfg(feature = "runtime-link")]
 impl crate::sys::cublasLtMatmulAlgo_t {
     pub fn data(mut self, val: [u64; 8usize]) -> Self {
         self.data = val;
         self
     }
 }
+#[cfg(feature = "runtime-link")]
 impl crate::sys::cublasLtMatmulDescOpaque_t {
     pub fn data(mut self, val: [u64; 32usize]) -> Self {
         self.data = val;
         self
     }
 }
+#[cfg(feature = "runtime-link")]
 impl crate::sys::cublasLtMatrixTransformDescOpaque_t {
     pub fn data(mut self, val: [u64; 8usize]) -> Self {
         self.data = val;
         self
     }
 }
+#[cfg(feature = "runtime-link")]
 impl crate::sys::cublasLtMatmulPreferenceOpaque_t {
     pub fn data(mut self, val: [u64; 12usize]) -> Self {
         self.data = val;
         self
     }
 }
+#[cfg(feature = "runtime-link")]
 impl crate::sys::cublasLtEmulationDescOpaque_t {
     pub fn data(mut self, val: [u64; 8usize]) -> Self {
         self.data = val;
         self
     }
 }
+#[cfg(feature = "runtime-link")]
 impl crate::sys::cublasLtMatmulHeuristicResult_t {
     pub fn algo(mut self, val: cublasLtMatmulAlgo_t) -> Self {
         self.algo = val;
@@ -194,20 +206,618 @@ impl crate::sys::cublasLtMatmulHeuristicResult_t {
         self
     }
 }
-pub struct CublasLtHandle {
-    pub(crate) handle: crate::sys::cublasLtHandle_t,
+#[cfg(feature = "runtime-link")]
+impl crate::sys::DynamicBindings {
+    pub fn cublasLtCreate(
+        mut self,
+        val: Option<unsafe extern "C" fn(lightHandle: *mut cublasLtHandle_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtCreate = val;
+        self
+    }
+    pub fn cublasLtDestroy(
+        mut self,
+        val: Option<unsafe extern "C" fn(lightHandle: cublasLtHandle_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtDestroy = val;
+        self
+    }
+    pub fn cublasLtGetStatusName(
+        mut self,
+        val: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    ) -> Self {
+        self.cublasLtGetStatusName = val;
+        self
+    }
+    pub fn cublasLtGetStatusString(
+        mut self,
+        val: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    ) -> Self {
+        self.cublasLtGetStatusString = val;
+        self
+    }
+    pub fn cublasLtGetVersion(mut self, val: Option<unsafe extern "C" fn() -> usize>) -> Self {
+        self.cublasLtGetVersion = val;
+        self
+    }
+    pub fn cublasLtGetCudartVersion(mut self, val: Option<unsafe extern "C" fn() -> usize>) -> Self {
+        self.cublasLtGetCudartVersion = val;
+        self
+    }
+    pub fn cublasLtGetProperty(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtGetProperty = val;
+        self
+    }
+    pub fn cublasLtHeuristicsCacheGetCapacity(
+        mut self,
+        val: Option<unsafe extern "C" fn(capacity: *mut usize) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtHeuristicsCacheGetCapacity = val;
+        self
+    }
+    pub fn cublasLtHeuristicsCacheSetCapacity(
+        mut self,
+        val: Option<unsafe extern "C" fn(capacity: usize) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtHeuristicsCacheSetCapacity = val;
+        self
+    }
+    pub fn cublasLtDisableCpuInstructionsSetMask(
+        mut self,
+        val: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_uint) -> ::std::os::raw::c_uint>,
+    ) -> Self {
+        self.cublasLtDisableCpuInstructionsSetMask = val;
+        self
+    }
+    pub fn cublasLtMatmul(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                lightHandle: cublasLtHandle_t,
+                computeDesc: cublasLtMatmulDesc_t,
+                alpha: *const ::std::os::raw::c_void,
+                A: *const ::std::os::raw::c_void,
+                Adesc: cublasLtMatrixLayout_t,
+                B: *const ::std::os::raw::c_void,
+                Bdesc: cublasLtMatrixLayout_t,
+                beta: *const ::std::os::raw::c_void,
+                C: *const ::std::os::raw::c_void,
+                Cdesc: cublasLtMatrixLayout_t,
+                D: *mut ::std::os::raw::c_void,
+                Ddesc: cublasLtMatrixLayout_t,
+                algo: *const cublasLtMatmulAlgo_t,
+                workspace: *mut ::std::os::raw::c_void,
+                workspaceSizeInBytes: usize,
+                stream: cudaStream_t,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmul = val;
+        self
+    }
+    pub fn cublasLtMatrixTransform(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                lightHandle: cublasLtHandle_t,
+                transformDesc: cublasLtMatrixTransformDesc_t,
+                alpha: *const ::std::os::raw::c_void,
+                A: *const ::std::os::raw::c_void,
+                Adesc: cublasLtMatrixLayout_t,
+                beta: *const ::std::os::raw::c_void,
+                B: *const ::std::os::raw::c_void,
+                Bdesc: cublasLtMatrixLayout_t,
+                C: *mut ::std::os::raw::c_void,
+                Cdesc: cublasLtMatrixLayout_t,
+                stream: cudaStream_t,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixTransform = val;
+        self
+    }
+    pub fn cublasLtMatrixLayoutInit_internal(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matLayout: cublasLtMatrixLayout_t,
+                size: usize,
+                type_: cudaDataType,
+                rows: u64,
+                cols: u64,
+                ld: i64,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixLayoutInit_internal = val;
+        self
+    }
+    pub fn cublasLtGroupedMatrixLayoutInit_internal(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matLayout: cublasLtMatrixLayout_t,
+                size: usize,
+                type_: cudaDataType,
+                groupCount: ::std::os::raw::c_int,
+                rows_array: *const ::std::os::raw::c_void,
+                cols_array: *const ::std::os::raw::c_void,
+                ld_array: *const ::std::os::raw::c_void,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtGroupedMatrixLayoutInit_internal = val;
+        self
+    }
+    pub fn cublasLtMatrixLayoutCreate(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matLayout: *mut cublasLtMatrixLayout_t,
+                type_: cudaDataType,
+                rows: u64,
+                cols: u64,
+                ld: i64,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixLayoutCreate = val;
+        self
+    }
+    pub fn cublasLtGroupedMatrixLayoutCreate(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matLayout: *mut cublasLtMatrixLayout_t,
+                type_: cudaDataType,
+                groupCount: ::std::os::raw::c_int,
+                rows_array: *const ::std::os::raw::c_void,
+                cols_array: *const ::std::os::raw::c_void,
+                ld_array: *const ::std::os::raw::c_void,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtGroupedMatrixLayoutCreate = val;
+        self
+    }
+    pub fn cublasLtMatrixLayoutDestroy(
+        mut self,
+        val: Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtMatrixLayoutDestroy = val;
+        self
+    }
+    pub fn cublasLtMatrixLayoutSetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matLayout: cublasLtMatrixLayout_t,
+                attr: cublasLtMatrixLayoutAttribute_t,
+                buf: *const ::std::os::raw::c_void,
+                sizeInBytes: usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixLayoutSetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatrixLayoutGetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matLayout: cublasLtMatrixLayout_t,
+                attr: cublasLtMatrixLayoutAttribute_t,
+                buf: *mut ::std::os::raw::c_void,
+                sizeInBytes: usize,
+                sizeWritten: *mut usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixLayoutGetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatmulDescInit_internal(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matmulDesc: cublasLtMatmulDesc_t,
+                size: usize,
+                computeType: cublasComputeType_t,
+                scaleType: cudaDataType_t,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulDescInit_internal = val;
+        self
+    }
+    pub fn cublasLtMatmulDescCreate(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matmulDesc: *mut cublasLtMatmulDesc_t,
+                computeType: cublasComputeType_t,
+                scaleType: cudaDataType_t,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulDescCreate = val;
+        self
+    }
+    pub fn cublasLtMatmulDescDestroy(
+        mut self,
+        val: Option<unsafe extern "C" fn(matmulDesc: cublasLtMatmulDesc_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtMatmulDescDestroy = val;
+        self
+    }
+    pub fn cublasLtMatmulDescSetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matmulDesc: cublasLtMatmulDesc_t,
+                attr: cublasLtMatmulDescAttributes_t,
+                buf: *const ::std::os::raw::c_void,
+                sizeInBytes: usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulDescSetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatmulDescGetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                matmulDesc: cublasLtMatmulDesc_t,
+                attr: cublasLtMatmulDescAttributes_t,
+                buf: *mut ::std::os::raw::c_void,
+                sizeInBytes: usize,
+                sizeWritten: *mut usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulDescGetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatrixTransformDescInit_internal(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                transformDesc: cublasLtMatrixTransformDesc_t,
+                size: usize,
+                scaleType: cudaDataType,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixTransformDescInit_internal = val;
+        self
+    }
+    pub fn cublasLtMatrixTransformDescCreate(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                transformDesc: *mut cublasLtMatrixTransformDesc_t,
+                scaleType: cudaDataType,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixTransformDescCreate = val;
+        self
+    }
+    pub fn cublasLtMatrixTransformDescDestroy(
+        mut self,
+        val: Option<unsafe extern "C" fn(transformDesc: cublasLtMatrixTransformDesc_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtMatrixTransformDescDestroy = val;
+        self
+    }
+    pub fn cublasLtMatrixTransformDescSetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                transformDesc: cublasLtMatrixTransformDesc_t,
+                attr: cublasLtMatrixTransformDescAttributes_t,
+                buf: *const ::std::os::raw::c_void,
+                sizeInBytes: usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixTransformDescSetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatrixTransformDescGetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                transformDesc: cublasLtMatrixTransformDesc_t,
+                attr: cublasLtMatrixTransformDescAttributes_t,
+                buf: *mut ::std::os::raw::c_void,
+                sizeInBytes: usize,
+                sizeWritten: *mut usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatrixTransformDescGetAttribute = val;
+        self
+    }
+    pub fn cublasLtEmulationDescInit_internal(
+        mut self,
+        val: Option<unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t, size: usize) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtEmulationDescInit_internal = val;
+        self
+    }
+    pub fn cublasLtEmulationDescCreate(
+        mut self,
+        val: Option<unsafe extern "C" fn(emulationDesc: *mut cublasLtEmulationDesc_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtEmulationDescCreate = val;
+        self
+    }
+    pub fn cublasLtEmulationDescDestroy(
+        mut self,
+        val: Option<unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtEmulationDescDestroy = val;
+        self
+    }
+    pub fn cublasLtEmulationDescSetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                emulationDesc: cublasLtEmulationDesc_t,
+                attr: cublasLtEmulationDescAttributes_t,
+                buf: *const ::std::os::raw::c_void,
+                sizeInBytes: usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtEmulationDescSetAttribute = val;
+        self
+    }
+    pub fn cublasLtEmulationDescGetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                emulationDesc: cublasLtEmulationDesc_t,
+                attr: cublasLtEmulationDescAttributes_t,
+                buf: *mut ::std::os::raw::c_void,
+                sizeInBytes: usize,
+                sizeWritten: *mut usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtEmulationDescGetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatmulPreferenceInit_internal(
+        mut self,
+        val: Option<unsafe extern "C" fn(pref: cublasLtMatmulPreference_t, size: usize) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtMatmulPreferenceInit_internal = val;
+        self
+    }
+    pub fn cublasLtMatmulPreferenceCreate(
+        mut self,
+        val: Option<unsafe extern "C" fn(pref: *mut cublasLtMatmulPreference_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtMatmulPreferenceCreate = val;
+        self
+    }
+    pub fn cublasLtMatmulPreferenceDestroy(
+        mut self,
+        val: Option<unsafe extern "C" fn(pref: cublasLtMatmulPreference_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtMatmulPreferenceDestroy = val;
+        self
+    }
+    pub fn cublasLtMatmulPreferenceSetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                pref: cublasLtMatmulPreference_t,
+                attr: cublasLtMatmulPreferenceAttributes_t,
+                buf: *const ::std::os::raw::c_void,
+                sizeInBytes: usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulPreferenceSetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatmulPreferenceGetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                pref: cublasLtMatmulPreference_t,
+                attr: cublasLtMatmulPreferenceAttributes_t,
+                buf: *mut ::std::os::raw::c_void,
+                sizeInBytes: usize,
+                sizeWritten: *mut usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulPreferenceGetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatmulAlgoGetHeuristic(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                lightHandle: cublasLtHandle_t,
+                operationDesc: cublasLtMatmulDesc_t,
+                Adesc: cublasLtMatrixLayout_t,
+                Bdesc: cublasLtMatrixLayout_t,
+                Cdesc: cublasLtMatrixLayout_t,
+                Ddesc: cublasLtMatrixLayout_t,
+                preference: cublasLtMatmulPreference_t,
+                requestedAlgoCount: ::std::os::raw::c_int,
+                heuristicResultsArray: *mut cublasLtMatmulHeuristicResult_t,
+                returnAlgoCount: *mut ::std::os::raw::c_int,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulAlgoGetHeuristic = val;
+        self
+    }
+    pub fn cublasLtMatmulAlgoGetIds(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                lightHandle: cublasLtHandle_t,
+                computeType: cublasComputeType_t,
+                scaleType: cudaDataType_t,
+                Atype: cudaDataType_t,
+                Btype: cudaDataType_t,
+                Ctype: cudaDataType_t,
+                Dtype: cudaDataType_t,
+                requestedAlgoCount: ::std::os::raw::c_int,
+                algoIdsArray: *mut ::std::os::raw::c_int,
+                returnAlgoCount: *mut ::std::os::raw::c_int,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulAlgoGetIds = val;
+        self
+    }
+    pub fn cublasLtMatmulAlgoInit(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                lightHandle: cublasLtHandle_t,
+                computeType: cublasComputeType_t,
+                scaleType: cudaDataType_t,
+                Atype: cudaDataType_t,
+                Btype: cudaDataType_t,
+                Ctype: cudaDataType_t,
+                Dtype: cudaDataType_t,
+                algoId: ::std::os::raw::c_int,
+                algo: *mut cublasLtMatmulAlgo_t,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulAlgoInit = val;
+        self
+    }
+    pub fn cublasLtMatmulAlgoCheck(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                lightHandle: cublasLtHandle_t,
+                operationDesc: cublasLtMatmulDesc_t,
+                Adesc: cublasLtMatrixLayout_t,
+                Bdesc: cublasLtMatrixLayout_t,
+                Cdesc: cublasLtMatrixLayout_t,
+                Ddesc: cublasLtMatrixLayout_t,
+                algo: *const cublasLtMatmulAlgo_t,
+                result: *mut cublasLtMatmulHeuristicResult_t,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulAlgoCheck = val;
+        self
+    }
+    pub fn cublasLtMatmulAlgoCapGetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                algo: *const cublasLtMatmulAlgo_t,
+                attr: cublasLtMatmulAlgoCapAttributes_t,
+                buf: *mut ::std::os::raw::c_void,
+                sizeInBytes: usize,
+                sizeWritten: *mut usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulAlgoCapGetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatmulAlgoConfigSetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                algo: *mut cublasLtMatmulAlgo_t,
+                attr: cublasLtMatmulAlgoConfigAttributes_t,
+                buf: *const ::std::os::raw::c_void,
+                sizeInBytes: usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulAlgoConfigSetAttribute = val;
+        self
+    }
+    pub fn cublasLtMatmulAlgoConfigGetAttribute(
+        mut self,
+        val: Option<
+            unsafe extern "C" fn(
+                algo: *const cublasLtMatmulAlgo_t,
+                attr: cublasLtMatmulAlgoConfigAttributes_t,
+                buf: *mut ::std::os::raw::c_void,
+                sizeInBytes: usize,
+                sizeWritten: *mut usize,
+            ) -> cublasStatus_t,
+        >,
+    ) -> Self {
+        self.cublasLtMatmulAlgoConfigGetAttribute = val;
+        self
+    }
+    pub fn cublasLtLoggerSetCallback(
+        mut self,
+        val: Option<unsafe extern "C" fn(callback: cublasLtLoggerCallback_t) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtLoggerSetCallback = val;
+        self
+    }
+    pub fn cublasLtLoggerSetFile(
+        mut self,
+        val: Option<unsafe extern "C" fn(file: *mut FILE) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtLoggerSetFile = val;
+        self
+    }
+    pub fn cublasLtLoggerOpenFile(
+        mut self,
+        val: Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtLoggerOpenFile = val;
+        self
+    }
+    pub fn cublasLtLoggerSetLevel(
+        mut self,
+        val: Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtLoggerSetLevel = val;
+        self
+    }
+    pub fn cublasLtLoggerSetMask(
+        mut self,
+        val: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cublasStatus_t>,
+    ) -> Self {
+        self.cublasLtLoggerSetMask = val;
+        self
+    }
+    pub fn cublasLtLoggerForceDisable(mut self, val: Option<unsafe extern "C" fn() -> cublasStatus_t>) -> Self {
+        self.cublasLtLoggerForceDisable = val;
+        self
+    }
 }
+pub struct CublasLtHandle(pub(crate) crate::sys::cublasLtHandle_t);
 impl CublasLtHandle {
-    #[doc = " Execute matrix multiplication (D = alpha * op(A) * op(B) + beta * C).\n\n \\retval     CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n \\retval     CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\n                                             when workspaceSizeInBytes is less than workspace required by configured\n                                             algo\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\n                                             operation\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n \\retval     CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n \\retval     CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
+    #[doc = "Execute matrix multiplication (D = alpha * op(A) * op(B) + beta * C).\n\\retval CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n\\retval CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\nwhen workspaceSizeInBytes is less than workspace required by configured\nalgo\n\\retval CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\noperation\n\\retval CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n\\retval CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n\\retval CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
     pub unsafe fn cublasLtMatmul<
-        T: ::cuda_libs_cudart::types::CudaAsPtr,
-        U: ::cuda_libs_cudart::types::CudaAsPtr,
-        V: ::cuda_libs_cudart::types::CudaAsPtr,
-        W: ::cuda_libs_cudart::types::CudaAsPtr,
-        X: ::cuda_libs_cudart::types::CudaAsPtr,
-        Y: ::cuda_libs_cudart::types::CudaAsPtr,
-        Z: ::cuda_libs_cudart::types::CudaAsPtr,
-        A: ::cuda_libs_cudart::types::CudaAsPtr,
+        T: types::CudaAsPtr,
+        U: types::CudaAsPtr,
+        V: types::CudaAsPtr,
+        W: types::CudaAsPtr,
+        X: types::CudaAsPtr,
+        Y: types::CudaAsPtr,
+        Z: types::CudaAsPtr,
+        A: types::CudaAsPtr,
     >(
         &self,
         computeDesc: cublasLtMatmulDesc_t,
@@ -228,20 +838,20 @@ impl CublasLtHandle {
     ) -> Result<(), crate::sys::cublasStatus_t> {
         let status = unsafe {
             crate::sys::cublasLtMatmul(
-                self.handle,
+                self.0,
                 computeDesc,
-                alpha.as_const_ptr() as *const ::std::os::raw::c_void,
-                A.as_const_ptr() as *const ::std::os::raw::c_void,
+                alpha.as_const_ptr() as *const _,
+                A.as_const_ptr() as *const _,
                 Adesc,
-                B.as_const_ptr() as *const ::std::os::raw::c_void,
+                B.as_const_ptr() as *const _,
                 Bdesc,
-                beta.as_const_ptr() as *const ::std::os::raw::c_void,
-                C.as_const_ptr() as *const ::std::os::raw::c_void,
+                beta.as_const_ptr() as *const _,
+                C.as_const_ptr() as *const _,
                 Cdesc,
-                D.as_mut_ptr() as *mut ::std::os::raw::c_void,
+                D.as_mut_ptr() as *mut _,
                 Ddesc,
-                algo.as_const_ptr() as *const cublasLtMatmulAlgo_t,
-                workspace.as_mut_ptr() as *mut ::std::os::raw::c_void,
+                algo.as_const_ptr() as *const _,
+                workspace.as_mut_ptr() as *mut _,
                 workspaceSizeInBytes,
                 stream,
             )
@@ -252,13 +862,13 @@ impl CublasLtHandle {
             Err(status)
         }
     }
-    #[doc = " Matrix layout conversion helper (C = alpha * op(A) + beta * op(B))\n\n Can be used to change memory order of data or to scale and shift the values.\n\n \\retval     CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n \\retval     CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\n                                             when A is not NULL, but Adesc is NULL\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\n                                             operation\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n \\retval     CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n \\retval     CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
+    #[doc = "Matrix layout conversion helper (C = alpha * op(A) + beta * op(B))\nCan be used to change memory order of data or to scale and shift the values.\n\\retval CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n\\retval CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\nwhen A is not NULL, but Adesc is NULL\n\\retval CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\noperation\n\\retval CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n\\retval CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n\\retval CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
     pub unsafe fn cublasLtMatrixTransform<
-        T: ::cuda_libs_cudart::types::CudaAsPtr,
-        U: ::cuda_libs_cudart::types::CudaAsPtr,
-        V: ::cuda_libs_cudart::types::CudaAsPtr,
-        W: ::cuda_libs_cudart::types::CudaAsPtr,
-        X: ::cuda_libs_cudart::types::CudaAsPtr,
+        T: types::CudaAsPtr,
+        U: types::CudaAsPtr,
+        V: types::CudaAsPtr,
+        W: types::CudaAsPtr,
+        X: types::CudaAsPtr,
     >(
         &self,
         transformDesc: cublasLtMatrixTransformDesc_t,
@@ -274,15 +884,15 @@ impl CublasLtHandle {
     ) -> Result<(), crate::sys::cublasStatus_t> {
         let status = unsafe {
             crate::sys::cublasLtMatrixTransform(
-                self.handle,
+                self.0,
                 transformDesc,
-                alpha.as_const_ptr() as *const ::std::os::raw::c_void,
-                A.as_const_ptr() as *const ::std::os::raw::c_void,
+                alpha.as_const_ptr() as *const _,
+                A.as_const_ptr() as *const _,
                 Adesc,
-                beta.as_const_ptr() as *const ::std::os::raw::c_void,
-                B.as_const_ptr() as *const ::std::os::raw::c_void,
+                beta.as_const_ptr() as *const _,
+                B.as_const_ptr() as *const _,
                 Bdesc,
-                C.as_mut_ptr() as *mut ::std::os::raw::c_void,
+                C.as_mut_ptr() as *mut _,
                 Cdesc,
                 stream,
             )
@@ -293,7 +903,7 @@ impl CublasLtHandle {
             Err(status)
         }
     }
-    #[doc = " Query cublasLt heuristic for algorithm appropriate for given use case.\n\n \\param[in]      lightHandle            Pointer to the allocated cuBLASLt handle for the cuBLASLt\n                                        context. See cublasLtHandle_t.\n \\param[in]      operationDesc          Handle to the matrix multiplication descriptor.\n \\param[in]      Adesc                  Handle to the layout descriptors for matrix A.\n \\param[in]      Bdesc                  Handle to the layout descriptors for matrix B.\n \\param[in]      Cdesc                  Handle to the layout descriptors for matrix C.\n \\param[in]      Ddesc                  Handle to the layout descriptors for matrix D.\n \\param[in]      preference             Pointer to the structure holding the heuristic search\n                                        preferences descriptor. See cublasLtMatrixLayout_t.\n \\param[in]      requestedAlgoCount     Size of heuristicResultsArray (in elements) and requested\n                                        maximum number of algorithms to return.\n \\param[in, out] heuristicResultsArray  Output algorithms and associated runtime characteristics,\n                                        ordered in increasing estimated compute time.\n \\param[out]     returnAlgoCount        The number of heuristicResultsArray elements written.\n\n \\retval  CUBLAS_STATUS_INVALID_VALUE   if requestedAlgoCount is less or equal to zero\n \\retval  CUBLAS_STATUS_NOT_SUPPORTED   if no heuristic function available for current configuration\n \\retval  CUBLAS_STATUS_SUCCESS         if query was successful, inspect\n                                        heuristicResultsArray[0 to (returnAlgoCount - 1)].state\n                                        for detail status of results"]
+    #[doc = "Query cublasLt heuristic for algorithm appropriate for given use case.\n\n# Arguments\n\n* `lightHandle` [in]  -            Pointer to the allocated cuBLASLt handle for the cuBLASLt\ncontext. See cublasLtHandle_t.\n* `operationDesc` [in]  -          Handle to the matrix multiplication descriptor.\n* `Adesc` [in]  -                  Handle to the layout descriptors for matrix A.\n* `Bdesc` [in]  -                  Handle to the layout descriptors for matrix B.\n* `Cdesc` [in]  -                  Handle to the layout descriptors for matrix C.\n* `Ddesc` [in]  -                  Handle to the layout descriptors for matrix D.\n* `preference` [in]  -             Pointer to the structure holding the heuristic search\npreferences descriptor. See cublasLtMatrixLayout_t.\n* `requestedAlgoCount` [in]  -     Size of heuristicResultsArray (in elements) and requested\nmaximum number of algorithms to return.\n* `heuristicResultsArray` [in, out]  -  Output algorithms and associated runtime characteristics,\nordered in increasing estimated compute time.\n* `returnAlgoCount` [out]  -        The number of heuristicResultsArray elements written.\n\\retval CUBLAS_STATUS_INVALID_VALUE   if requestedAlgoCount is less or equal to zero\n\\retval CUBLAS_STATUS_NOT_SUPPORTED   if no heuristic function available for current configuration\n\\retval CUBLAS_STATUS_SUCCESS         if query was successful, inspect\nheuristicResultsArray[0 to (returnAlgoCount - 1)].state\nfor detail status of results"]
     pub unsafe fn cublasLtMatmulAlgoGetHeuristic(
         &self,
         operationDesc: cublasLtMatmulDesc_t,
@@ -302,32 +912,31 @@ impl CublasLtHandle {
         Cdesc: cublasLtMatrixLayout_t,
         Ddesc: cublasLtMatrixLayout_t,
         preference: cublasLtMatmulPreference_t,
-        requestedAlgoCount: ::std::os::raw::c_int,
+        requestedAlgoCount: i32,
         heuristicResultsArray: *mut cublasLtMatmulHeuristicResult_t,
-    ) -> Result<::std::os::raw::c_int, crate::sys::cublasStatus_t> {
-        let mut out_9: std::mem::MaybeUninit<::std::os::raw::c_int> =
-            std::mem::MaybeUninit::uninit();
+    ) -> Result<i32, crate::sys::cublasStatus_t> {
+        let mut out_9: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
         let status = unsafe {
             crate::sys::cublasLtMatmulAlgoGetHeuristic(
-                self.handle,
+                self.0,
                 operationDesc,
                 Adesc,
                 Bdesc,
                 Cdesc,
                 Ddesc,
                 preference,
-                requestedAlgoCount,
+                requestedAlgoCount as _,
                 heuristicResultsArray,
                 out_9.as_mut_ptr() as *mut _,
             )
         };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            unsafe { Ok(out_9.assume_init()) }
+        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+            unsafe { Ok(out_9.assume_init() as i32) }
         } else {
-            Err(status)
+            Err(unsafe { std::mem::transmute(status) })
         }
     }
-    #[doc = " Routine to get all algo IDs that can potentially run\n\n \\param[in]  int              requestedAlgoCount requested number of algos (must be less or equal to size of algoIdsA\n (in elements)) \\param[out] algoIdsA         array to write algoIds to \\param[out] returnAlgoCount  number of algoIds\n actually written\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if requestedAlgoCount is less or equal to zero\n \\retval     CUBLAS_STATUS_SUCCESS        if query was successful, inspect returnAlgoCount to get actual number of IDs\n                                          available"]
+    #[doc = "Routine to get all algo IDs that can potentially run\n\n# Arguments\n\n* `int` [in]  -              requestedAlgoCount requested number of algos (must be less or equal to size of algoIdsA\n(in elements)) * `algoIdsA` [out]  -         array to write algoIds to * `returnAlgoCount` [out]  -  number of algoIds\nactually written\n\\retval CUBLAS_STATUS_INVALID_VALUE  if requestedAlgoCount is less or equal to zero\n\\retval CUBLAS_STATUS_SUCCESS        if query was successful, inspect returnAlgoCount to get actual number of IDs\navailable"]
     pub unsafe fn cublasLtMatmulAlgoGetIds(
         &self,
         computeType: cublasComputeType_t,
@@ -336,33 +945,32 @@ impl CublasLtHandle {
         Btype: cudaDataType_t,
         Ctype: cudaDataType_t,
         Dtype: cudaDataType_t,
-        requestedAlgoCount: ::std::os::raw::c_int,
+        requestedAlgoCount: i32,
         algoIdsArray: *mut ::std::os::raw::c_int,
-    ) -> Result<::std::os::raw::c_int, crate::sys::cublasStatus_t> {
-        let mut out_9: std::mem::MaybeUninit<::std::os::raw::c_int> =
-            std::mem::MaybeUninit::uninit();
+    ) -> Result<i32, crate::sys::cublasStatus_t> {
+        let mut out_9: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
         let status = unsafe {
             crate::sys::cublasLtMatmulAlgoGetIds(
-                self.handle,
+                self.0,
                 computeType,
                 scaleType,
                 Atype,
                 Btype,
                 Ctype,
                 Dtype,
-                requestedAlgoCount,
+                requestedAlgoCount as _,
                 algoIdsArray,
                 out_9.as_mut_ptr() as *mut _,
             )
         };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            unsafe { Ok(out_9.assume_init()) }
+        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+            unsafe { Ok(out_9.assume_init() as i32) }
         } else {
-            Err(status)
+            Err(unsafe { std::mem::transmute(status) })
         }
     }
-    #[doc = " Initialize algo structure\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if algo is NULL or algoId is outside of recognized range\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED  if algoId is not supported for given combination of data types\n \\retval     CUBLAS_STATUS_SUCCESS        if the structure was successfully initialized"]
-    pub unsafe fn cublasLtMatmulAlgoInit<T: ::cuda_libs_cudart::types::CudaAsPtr>(
+    #[doc = "Initialize algo structure\n\\retval CUBLAS_STATUS_INVALID_VALUE  if algo is NULL or algoId is outside of recognized range\n\\retval CUBLAS_STATUS_NOT_SUPPORTED  if algoId is not supported for given combination of data types\n\\retval CUBLAS_STATUS_SUCCESS        if the structure was successfully initialized"]
+    pub unsafe fn cublasLtMatmulAlgoInit<T: types::CudaAsPtr>(
         &self,
         computeType: cublasComputeType_t,
         scaleType: cudaDataType_t,
@@ -370,20 +978,20 @@ impl CublasLtHandle {
         Btype: cudaDataType_t,
         Ctype: cudaDataType_t,
         Dtype: cudaDataType_t,
-        algoId: ::std::os::raw::c_int,
+        algoId: i32,
         mut algo: T,
     ) -> Result<(), crate::sys::cublasStatus_t> {
         let status = unsafe {
             crate::sys::cublasLtMatmulAlgoInit(
-                self.handle,
+                self.0,
                 computeType,
                 scaleType,
                 Atype,
                 Btype,
                 Ctype,
                 Dtype,
-                algoId,
-                algo.as_mut_ptr() as *mut cublasLtMatmulAlgo_t,
+                algoId as _,
+                algo.as_mut_ptr() as *mut _,
             )
         };
         if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
@@ -392,11 +1000,8 @@ impl CublasLtHandle {
             Err(status)
         }
     }
-    #[doc = " Check configured algo descriptor for correctness and support on current device.\n\n Result includes required workspace size and calculated wave count.\n\n CUBLAS_STATUS_SUCCESS doesn't fully guarantee algo will run (will fail if e.g. buffers are not correctly aligned);\n but if cublasLtMatmulAlgoCheck fails, the algo will not run.\n\n \\param[in]  algo    algo configuration to check\n \\param[out] result  result structure to report algo runtime characteristics; algo field is never updated\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if matrix layout descriptors or operation descriptor don't match algo\n                                          descriptor\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED  if algo configuration or data type combination is not currently supported on\n                                          given device\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH  if algo configuration cannot be run using the selected device\n \\retval     CUBLAS_STATUS_SUCCESS        if check was successful"]
-    pub unsafe fn cublasLtMatmulAlgoCheck<
-        T: ::cuda_libs_cudart::types::CudaAsPtr,
-        U: ::cuda_libs_cudart::types::CudaAsPtr,
-    >(
+    #[doc = "Check configured algo descriptor for correctness and support on current device.\nResult includes required workspace size and calculated wave count.\nCUBLAS_STATUS_SUCCESS doesn't fully guarantee algo will run (will fail if e.g. buffers are not correctly aligned);\nbut if cublasLtMatmulAlgoCheck fails, the algo will not run.\n\n# Arguments\n\n* `algo` [in]  -    algo configuration to check\n* `result` [out]  -  result structure to report algo runtime characteristics; algo field is never updated\n\\retval CUBLAS_STATUS_INVALID_VALUE  if matrix layout descriptors or operation descriptor don't match algo\ndescriptor\n\\retval CUBLAS_STATUS_NOT_SUPPORTED  if algo configuration or data type combination is not currently supported on\ngiven device\n\\retval CUBLAS_STATUS_ARCH_MISMATCH  if algo configuration cannot be run using the selected device\n\\retval CUBLAS_STATUS_SUCCESS        if check was successful"]
+    pub unsafe fn cublasLtMatmulAlgoCheck<T: types::CudaAsPtr, U: types::CudaAsPtr>(
         &self,
         operationDesc: cublasLtMatmulDesc_t,
         Adesc: cublasLtMatrixLayout_t,
@@ -408,14 +1013,14 @@ impl CublasLtHandle {
     ) -> Result<(), crate::sys::cublasStatus_t> {
         let status = unsafe {
             crate::sys::cublasLtMatmulAlgoCheck(
-                self.handle,
+                self.0,
                 operationDesc,
                 Adesc,
                 Bdesc,
                 Cdesc,
                 Ddesc,
-                algo.as_const_ptr() as *const cublasLtMatmulAlgo_t,
-                result.as_mut_ptr() as *mut cublasLtMatmulHeuristicResult_t,
+                algo.as_const_ptr() as *const _,
+                result.as_mut_ptr() as *mut _,
             )
         };
         if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
@@ -437,30 +1042,25 @@ pub unsafe fn cublasLtGetVersion() -> usize {
 pub unsafe fn cublasLtGetCudartVersion() -> usize {
     unsafe { crate::sys::cublasLtGetCudartVersion() }
 }
-pub unsafe fn cublasLtGetProperty(
-    type_: libraryPropertyType,
-) -> Result<::std::os::raw::c_int, crate::sys::cublasStatus_t> {
+pub unsafe fn cublasLtGetProperty(type_: libraryPropertyType) -> Result<i32, crate::sys::cublasStatus_t> {
     let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
     let status = unsafe { crate::sys::cublasLtGetProperty(type_, out_1.as_mut_ptr() as *mut _) };
-    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-        unsafe { Ok(out_1.assume_init()) }
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as i32) }
     } else {
-        Err(status)
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
 pub unsafe fn cublasLtHeuristicsCacheGetCapacity() -> Result<usize, crate::sys::cublasStatus_t> {
     let mut out_0: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::uninit();
-    let status =
-        unsafe { crate::sys::cublasLtHeuristicsCacheGetCapacity(out_0.as_mut_ptr() as *mut _) };
-    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-        unsafe { Ok(out_0.assume_init()) }
+    let status = unsafe { crate::sys::cublasLtHeuristicsCacheGetCapacity(out_0.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_0.assume_init() as usize) }
     } else {
-        Err(status)
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cublasLtHeuristicsCacheSetCapacity(
-    capacity: usize,
-) -> Result<(), crate::sys::cublasStatus_t> {
+pub unsafe fn cublasLtHeuristicsCacheSetCapacity(capacity: usize) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasLtHeuristicsCacheSetCapacity(capacity) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
@@ -468,13 +1068,11 @@ pub unsafe fn cublasLtHeuristicsCacheSetCapacity(
         Err(status)
     }
 }
-#[doc = " Restricts usage of CPU instructions (ISA) specified by the flags in the mask.\n\n Flags can be combined with bitwise OR(|) operator. Supported flags:\n - 0x1 -- x86-64 AVX512 ISA\n\n Default mask: 0 (any applicable ISA is allowed).\n\n The function returns the previous value of the mask.\n The function takes precedence over the environment variable CUBLASLT_DISABLE_CPU_INSTRUCTIONS_MASK."]
-pub unsafe fn cublasLtDisableCpuInstructionsSetMask(
-    mask: ::std::os::raw::c_uint,
-) -> ::std::os::raw::c_uint {
-    unsafe { crate::sys::cublasLtDisableCpuInstructionsSetMask(mask) }
+#[doc = "Restricts usage of CPU instructions (ISA) specified by the flags in the mask.\nFlags can be combined with bitwise OR(|) operator. Supported flags:\n- 0x1 -- x86-64 AVX512 ISA\nDefault mask: 0 (any applicable ISA is allowed).\nThe function returns the previous value of the mask.\nThe function takes precedence over the environment variable CUBLASLT_DISABLE_CPU_INSTRUCTIONS_MASK."]
+pub unsafe fn cublasLtDisableCpuInstructionsSetMask(mask: u32) -> u32 {
+    (unsafe { crate::sys::cublasLtDisableCpuInstructionsSetMask(mask as _) }) as u32
 }
-#[doc = " Internal. Do not use directly."]
+#[doc = "Internal. Do not use directly."]
 pub unsafe fn cublasLtMatrixLayoutInit_internal(
     matLayout: cublasLtMatrixLayout_t,
     size: usize,
@@ -483,25 +1081,23 @@ pub unsafe fn cublasLtMatrixLayoutInit_internal(
     cols: u64,
     ld: i64,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasLtMatrixLayoutInit_internal(matLayout, size, type_, rows, cols, ld)
-    };
+    let status = unsafe { crate::sys::cublasLtMatrixLayoutInit_internal(matLayout, size, type_, rows, cols, ld) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
     } else {
         Err(status)
     }
 }
-#[doc = " Experimental: Internal. Do not use directly."]
+#[doc = "Experimental: Internal. Do not use directly."]
 pub unsafe fn cublasLtGroupedMatrixLayoutInit_internal<
-    T: ::cuda_libs_cudart::types::CudaAsPtr,
-    U: ::cuda_libs_cudart::types::CudaAsPtr,
-    V: ::cuda_libs_cudart::types::CudaAsPtr,
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
 >(
     matLayout: cublasLtMatrixLayout_t,
     size: usize,
     type_: cudaDataType,
-    groupCount: ::std::os::raw::c_int,
+    groupCount: i32,
     rows_array: T,
     cols_array: U,
     ld_array: V,
@@ -511,10 +1107,10 @@ pub unsafe fn cublasLtGroupedMatrixLayoutInit_internal<
             matLayout,
             size,
             type_,
-            groupCount,
-            rows_array.as_const_ptr() as *const ::std::os::raw::c_void,
-            cols_array.as_const_ptr() as *const ::std::os::raw::c_void,
-            ld_array.as_const_ptr() as *const ::std::os::raw::c_void,
+            groupCount as _,
+            rows_array.as_const_ptr() as *const _,
+            cols_array.as_const_ptr() as *const _,
+            ld_array.as_const_ptr() as *const _,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
@@ -523,20 +1119,15 @@ pub unsafe fn cublasLtGroupedMatrixLayoutInit_internal<
         Err(status)
     }
 }
-#[doc = " Set matrix layout descriptor attribute.\n\n \\param[in]  matLayout    The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatrixLayoutSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
+#[doc = "Set matrix layout descriptor attribute.\n\n# Arguments\n\n* `matLayout` [in]  -    The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+pub unsafe fn cublasLtMatrixLayoutSetAttribute<T: types::CudaAsPtr>(
     matLayout: cublasLtMatrixLayout_t,
     attr: cublasLtMatrixLayoutAttribute_t,
     buf: T,
     sizeInBytes: usize,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
-        crate::sys::cublasLtMatrixLayoutSetAttribute(
-            matLayout,
-            attr,
-            buf.as_const_ptr() as *const ::std::os::raw::c_void,
-            sizeInBytes,
-        )
+        crate::sys::cublasLtMatrixLayoutSetAttribute(matLayout, attr, buf.as_const_ptr() as *const _, sizeInBytes)
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
@@ -544,11 +1135,8 @@ pub unsafe fn cublasLtMatrixLayoutSetAttribute<T: ::cuda_libs_cudart::types::Cud
         Err(status)
     }
 }
-#[doc = " Get matrix layout descriptor attribute.\n\n \\param[in]  matLayout    The descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
-pub unsafe fn cublasLtMatrixLayoutGetAttribute<
-    T: ::cuda_libs_cudart::types::CudaAsPtr,
-    U: ::cuda_libs_cudart::types::CudaAsPtr,
->(
+#[doc = "Get matrix layout descriptor attribute.\n\n# Arguments\n\n* `matLayout` [in]  -    The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+pub unsafe fn cublasLtMatrixLayoutGetAttribute<T: types::CudaAsPtr, U: types::CudaAsPtr>(
     matLayout: cublasLtMatrixLayout_t,
     attr: cublasLtMatrixLayoutAttribute_t,
     mut buf: T,
@@ -559,9 +1147,9 @@ pub unsafe fn cublasLtMatrixLayoutGetAttribute<
         crate::sys::cublasLtMatrixLayoutGetAttribute(
             matLayout,
             attr,
-            buf.as_mut_ptr() as *mut ::std::os::raw::c_void,
+            buf.as_mut_ptr() as *mut _,
             sizeInBytes,
-            sizeWritten.as_mut_ptr() as *mut usize,
+            sizeWritten.as_mut_ptr() as *mut _,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
@@ -570,36 +1158,29 @@ pub unsafe fn cublasLtMatrixLayoutGetAttribute<
         Err(status)
     }
 }
-#[doc = " Internal. Do not use directly."]
+#[doc = "Internal. Do not use directly."]
 pub unsafe fn cublasLtMatmulDescInit_internal(
     matmulDesc: cublasLtMatmulDesc_t,
     size: usize,
     computeType: cublasComputeType_t,
     scaleType: cudaDataType_t,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasLtMatmulDescInit_internal(matmulDesc, size, computeType, scaleType)
-    };
+    let status = unsafe { crate::sys::cublasLtMatmulDescInit_internal(matmulDesc, size, computeType, scaleType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
     } else {
         Err(status)
     }
 }
-#[doc = " Set matmul operation descriptor attribute.\n\n \\param[in]  matmulDesc   The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatmulDescSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
+#[doc = "Set matmul operation descriptor attribute.\n\n# Arguments\n\n* `matmulDesc` [in]  -   The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+pub unsafe fn cublasLtMatmulDescSetAttribute<T: types::CudaAsPtr>(
     matmulDesc: cublasLtMatmulDesc_t,
     attr: cublasLtMatmulDescAttributes_t,
     buf: T,
     sizeInBytes: usize,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
-        crate::sys::cublasLtMatmulDescSetAttribute(
-            matmulDesc,
-            attr,
-            buf.as_const_ptr() as *const ::std::os::raw::c_void,
-            sizeInBytes,
-        )
+        crate::sys::cublasLtMatmulDescSetAttribute(matmulDesc, attr, buf.as_const_ptr() as *const _, sizeInBytes)
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
@@ -607,7 +1188,7 @@ pub unsafe fn cublasLtMatmulDescSetAttribute<T: ::cuda_libs_cudart::types::CudaA
         Err(status)
     }
 }
-#[doc = " Get matmul operation descriptor attribute.\n\n \\param[in]  matmulDesc   The descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+#[doc = "Get matmul operation descriptor attribute.\n\n# Arguments\n\n* `matmulDesc` [in]  -   The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
 pub unsafe fn cublasLtMatmulDescGetAttribute(
     matmulDesc: cublasLtMatmulDesc_t,
     attr: cublasLtMatmulDescAttributes_t,
@@ -616,37 +1197,29 @@ pub unsafe fn cublasLtMatmulDescGetAttribute(
 ) -> Result<usize, crate::sys::cublasStatus_t> {
     let mut out_4: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::uninit();
     let status = unsafe {
-        crate::sys::cublasLtMatmulDescGetAttribute(
-            matmulDesc,
-            attr,
-            buf,
-            sizeInBytes,
-            out_4.as_mut_ptr() as *mut _,
-        )
+        crate::sys::cublasLtMatmulDescGetAttribute(matmulDesc, attr, buf, sizeInBytes, out_4.as_mut_ptr() as *mut _)
     };
-    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-        unsafe { Ok(out_4.assume_init()) }
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_4.assume_init() as usize) }
     } else {
-        Err(status)
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
-#[doc = " Internal. Do not use directly."]
+#[doc = "Internal. Do not use directly."]
 pub unsafe fn cublasLtMatrixTransformDescInit_internal(
     transformDesc: cublasLtMatrixTransformDesc_t,
     size: usize,
     scaleType: cudaDataType,
 ) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasLtMatrixTransformDescInit_internal(transformDesc, size, scaleType)
-    };
+    let status = unsafe { crate::sys::cublasLtMatrixTransformDescInit_internal(transformDesc, size, scaleType) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
     } else {
         Err(status)
     }
 }
-#[doc = " Set matrix transform operation descriptor attribute.\n\n \\param[in]  transformDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[in]  buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatrixTransformDescSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
+#[doc = "Set matrix transform operation descriptor attribute.\n\n# Arguments\n\n* `transformDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [in]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+pub unsafe fn cublasLtMatrixTransformDescSetAttribute<T: types::CudaAsPtr>(
     transformDesc: cublasLtMatrixTransformDesc_t,
     attr: cublasLtMatrixTransformDescAttributes_t,
     buf: T,
@@ -656,7 +1229,7 @@ pub unsafe fn cublasLtMatrixTransformDescSetAttribute<T: ::cuda_libs_cudart::typ
         crate::sys::cublasLtMatrixTransformDescSetAttribute(
             transformDesc,
             attr,
-            buf.as_const_ptr() as *const ::std::os::raw::c_void,
+            buf.as_const_ptr() as *const _,
             sizeInBytes,
         )
     };
@@ -666,11 +1239,8 @@ pub unsafe fn cublasLtMatrixTransformDescSetAttribute<T: ::cuda_libs_cudart::typ
         Err(status)
     }
 }
-#[doc = " Get matrix transform operation descriptor attribute.\n\n \\param[in]  transformDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[out] buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\n of bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
-pub unsafe fn cublasLtMatrixTransformDescGetAttribute<
-    T: ::cuda_libs_cudart::types::CudaAsPtr,
-    U: ::cuda_libs_cudart::types::CudaAsPtr,
->(
+#[doc = "Get matrix transform operation descriptor attribute.\n\n# Arguments\n\n* `transformDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [out]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\nof bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+pub unsafe fn cublasLtMatrixTransformDescGetAttribute<T: types::CudaAsPtr, U: types::CudaAsPtr>(
     transformDesc: cublasLtMatrixTransformDesc_t,
     attr: cublasLtMatrixTransformDescAttributes_t,
     mut buf: T,
@@ -681,9 +1251,9 @@ pub unsafe fn cublasLtMatrixTransformDescGetAttribute<
         crate::sys::cublasLtMatrixTransformDescGetAttribute(
             transformDesc,
             attr,
-            buf.as_mut_ptr() as *mut ::std::os::raw::c_void,
+            buf.as_mut_ptr() as *mut _,
             sizeInBytes,
-            sizeWritten.as_mut_ptr() as *mut usize,
+            sizeWritten.as_mut_ptr() as *mut _,
         )
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
@@ -692,7 +1262,7 @@ pub unsafe fn cublasLtMatrixTransformDescGetAttribute<
         Err(status)
     }
 }
-#[doc = " Internal. Do not use directly."]
+#[doc = "Internal. Do not use directly."]
 pub unsafe fn cublasLtEmulationDescInit_internal(
     emulationDesc: cublasLtEmulationDesc_t,
     size: usize,
@@ -704,20 +1274,15 @@ pub unsafe fn cublasLtEmulationDescInit_internal(
         Err(status)
     }
 }
-#[doc = " Set emulation descriptor attribute.\n\n \\param[in]  emulationDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[in]  buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtEmulationDescSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
+#[doc = "Set emulation descriptor attribute.\n\n# Arguments\n\n* `emulationDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [in]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+pub unsafe fn cublasLtEmulationDescSetAttribute<T: types::CudaAsPtr>(
     emulationDesc: cublasLtEmulationDesc_t,
     attr: cublasLtEmulationDescAttributes_t,
     buf: T,
     sizeInBytes: usize,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
-        crate::sys::cublasLtEmulationDescSetAttribute(
-            emulationDesc,
-            attr,
-            buf.as_const_ptr() as *const ::std::os::raw::c_void,
-            sizeInBytes,
-        )
+        crate::sys::cublasLtEmulationDescSetAttribute(emulationDesc, attr, buf.as_const_ptr() as *const _, sizeInBytes)
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
@@ -725,7 +1290,7 @@ pub unsafe fn cublasLtEmulationDescSetAttribute<T: ::cuda_libs_cudart::types::Cu
         Err(status)
     }
 }
-#[doc = " Get emulation descriptor attribute.\n\n \\param[in]  emulationDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[out] buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\n of bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+#[doc = "Get emulation descriptor attribute.\n\n# Arguments\n\n* `emulationDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [out]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\nof bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
 pub unsafe fn cublasLtEmulationDescGetAttribute(
     emulationDesc: cublasLtEmulationDesc_t,
     attr: cublasLtEmulationDescAttributes_t,
@@ -742,13 +1307,13 @@ pub unsafe fn cublasLtEmulationDescGetAttribute(
             out_4.as_mut_ptr() as *mut _,
         )
     };
-    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-        unsafe { Ok(out_4.assume_init()) }
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_4.assume_init() as usize) }
     } else {
-        Err(status)
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
-#[doc = " Internal. Do not use directly."]
+#[doc = "Internal. Do not use directly."]
 pub unsafe fn cublasLtMatmulPreferenceInit_internal(
     pref: cublasLtMatmulPreference_t,
     size: usize,
@@ -760,20 +1325,15 @@ pub unsafe fn cublasLtMatmulPreferenceInit_internal(
         Err(status)
     }
 }
-#[doc = " Set matmul heuristic search preference descriptor attribute.\n\n \\param[in]  pref         The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatmulPreferenceSetAttribute<T: ::cuda_libs_cudart::types::CudaAsPtr>(
+#[doc = "Set matmul heuristic search preference descriptor attribute.\n\n# Arguments\n\n* `pref` [in]  -         The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+pub unsafe fn cublasLtMatmulPreferenceSetAttribute<T: types::CudaAsPtr>(
     pref: cublasLtMatmulPreference_t,
     attr: cublasLtMatmulPreferenceAttributes_t,
     buf: T,
     sizeInBytes: usize,
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
-        crate::sys::cublasLtMatmulPreferenceSetAttribute(
-            pref,
-            attr,
-            buf.as_const_ptr() as *const ::std::os::raw::c_void,
-            sizeInBytes,
-        )
+        crate::sys::cublasLtMatmulPreferenceSetAttribute(pref, attr, buf.as_const_ptr() as *const _, sizeInBytes)
     };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
@@ -781,7 +1341,7 @@ pub unsafe fn cublasLtMatmulPreferenceSetAttribute<T: ::cuda_libs_cudart::types:
         Err(status)
     }
 }
-#[doc = " Get matmul heuristic search preference descriptor attribute.\n\n \\param[in]  pref         The descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+#[doc = "Get matmul heuristic search preference descriptor attribute.\n\n# Arguments\n\n* `pref` [in]  -         The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
 pub unsafe fn cublasLtMatmulPreferenceGetAttribute(
     pref: cublasLtMatmulPreference_t,
     attr: cublasLtMatmulPreferenceAttributes_t,
@@ -790,21 +1350,15 @@ pub unsafe fn cublasLtMatmulPreferenceGetAttribute(
 ) -> Result<usize, crate::sys::cublasStatus_t> {
     let mut out_4: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::uninit();
     let status = unsafe {
-        crate::sys::cublasLtMatmulPreferenceGetAttribute(
-            pref,
-            attr,
-            buf,
-            sizeInBytes,
-            out_4.as_mut_ptr() as *mut _,
-        )
+        crate::sys::cublasLtMatmulPreferenceGetAttribute(pref, attr, buf, sizeInBytes, out_4.as_mut_ptr() as *mut _)
     };
-    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-        unsafe { Ok(out_4.assume_init()) }
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_4.assume_init() as usize) }
     } else {
-        Err(status)
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
-#[doc = " Get algo capability attribute.\n\n E.g. to get list of supported Tile IDs:\n      cublasLtMatmulTile_t tiles[CUBLASLT_MATMUL_TILE_END];\n      size_t num_tiles, size_written;\n      if (cublasLtMatmulAlgoCapGetAttribute(algo, CUBLASLT_ALGO_CAP_TILE_IDS, tiles, sizeof(tiles), size_written) ==\n CUBLAS_STATUS_SUCCESS) { num_tiles = size_written / sizeof(tiles[0]);\n      }\n\n \\param[in]  algo         The algo descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+#[doc = "Get algo capability attribute.\nE.g. to get list of supported Tile IDs:\ncublasLtMatmulTile_t tiles[CUBLASLT_MATMUL_TILE_END];\nsize_t num_tiles, size_written;\nif (cublasLtMatmulAlgoCapGetAttribute(algo, CUBLASLT_ALGO_CAP_TILE_IDS, tiles, sizeof(tiles), size_written) ==\nCUBLAS_STATUS_SUCCESS) { num_tiles = size_written / sizeof(tiles[0]);\n}\n\n# Arguments\n\n* `algo` [in]  -         The algo descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
 pub unsafe fn cublasLtMatmulAlgoCapGetAttribute(
     algo: *const cublasLtMatmulAlgo_t,
     attr: cublasLtMatmulAlgoCapAttributes_t,
@@ -813,25 +1367,16 @@ pub unsafe fn cublasLtMatmulAlgoCapGetAttribute(
 ) -> Result<usize, crate::sys::cublasStatus_t> {
     let mut out_4: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::uninit();
     let status = unsafe {
-        crate::sys::cublasLtMatmulAlgoCapGetAttribute(
-            algo,
-            attr,
-            buf,
-            sizeInBytes,
-            out_4.as_mut_ptr() as *mut _,
-        )
+        crate::sys::cublasLtMatmulAlgoCapGetAttribute(algo, attr, buf, sizeInBytes, out_4.as_mut_ptr() as *mut _)
     };
-    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-        unsafe { Ok(out_4.assume_init()) }
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_4.assume_init() as usize) }
     } else {
-        Err(status)
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
-#[doc = " Set algo configuration attribute.\n\n \\param[in]  algo         The algo descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
-pub unsafe fn cublasLtMatmulAlgoConfigSetAttribute<
-    T: ::cuda_libs_cudart::types::CudaAsPtr,
-    U: ::cuda_libs_cudart::types::CudaAsPtr,
->(
+#[doc = "Set algo configuration attribute.\n\n# Arguments\n\n* `algo` [in]  -         The algo descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+pub unsafe fn cublasLtMatmulAlgoConfigSetAttribute<T: types::CudaAsPtr, U: types::CudaAsPtr>(
     mut algo: T,
     attr: cublasLtMatmulAlgoConfigAttributes_t,
     buf: U,
@@ -839,9 +1384,9 @@ pub unsafe fn cublasLtMatmulAlgoConfigSetAttribute<
 ) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe {
         crate::sys::cublasLtMatmulAlgoConfigSetAttribute(
-            algo.as_mut_ptr() as *mut cublasLtMatmulAlgo_t,
+            algo.as_mut_ptr() as *mut _,
             attr,
-            buf.as_const_ptr() as *const ::std::os::raw::c_void,
+            buf.as_const_ptr() as *const _,
             sizeInBytes,
         )
     };
@@ -851,7 +1396,7 @@ pub unsafe fn cublasLtMatmulAlgoConfigSetAttribute<
         Err(status)
     }
 }
-#[doc = " Get algo configuration attribute.\n\n \\param[in]  algo         The algo descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+#[doc = "Get algo configuration attribute.\n\n# Arguments\n\n* `algo` [in]  -         The algo descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
 pub unsafe fn cublasLtMatmulAlgoConfigGetAttribute(
     algo: *const cublasLtMatmulAlgo_t,
     attr: cublasLtMatmulAlgoConfigAttributes_t,
@@ -860,24 +1405,16 @@ pub unsafe fn cublasLtMatmulAlgoConfigGetAttribute(
 ) -> Result<usize, crate::sys::cublasStatus_t> {
     let mut out_4: std::mem::MaybeUninit<usize> = std::mem::MaybeUninit::uninit();
     let status = unsafe {
-        crate::sys::cublasLtMatmulAlgoConfigGetAttribute(
-            algo,
-            attr,
-            buf,
-            sizeInBytes,
-            out_4.as_mut_ptr() as *mut _,
-        )
+        crate::sys::cublasLtMatmulAlgoConfigGetAttribute(algo, attr, buf, sizeInBytes, out_4.as_mut_ptr() as *mut _)
     };
-    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-        unsafe { Ok(out_4.assume_init()) }
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_4.assume_init() as usize) }
     } else {
-        Err(status)
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
-#[doc = " Experimental: Logger callback setter.\n\n \\param[in]  callback                     a user defined callback function to be called by the logger\n\n \\retval     CUBLAS_STATUS_SUCCESS        if callback was set successfully"]
-pub unsafe fn cublasLtLoggerSetCallback(
-    callback: cublasLtLoggerCallback_t,
-) -> Result<(), crate::sys::cublasStatus_t> {
+#[doc = "Experimental: Logger callback setter.\n\n# Arguments\n\n* `callback` [in]  -                     a user defined callback function to be called by the logger\n\\retval CUBLAS_STATUS_SUCCESS        if callback was set successfully"]
+pub unsafe fn cublasLtLoggerSetCallback(callback: cublasLtLoggerCallback_t) -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasLtLoggerSetCallback(callback) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
@@ -885,53 +1422,43 @@ pub unsafe fn cublasLtLoggerSetCallback(
         Err(status)
     }
 }
-#[doc = " Experimental: Log file setter.\n\n \\param[in]  file                         an open file with write permissions\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log file was set successfully"]
-pub unsafe fn cublasLtLoggerSetFile<T: ::cuda_libs_cudart::types::CudaAsPtr>(
-    mut file: T,
-) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasLtLoggerSetFile(file.as_mut_ptr() as *mut FILE) };
+#[doc = "Experimental: Log file setter.\n\n# Arguments\n\n* `file` [in]  -                         an open file with write permissions\n\\retval CUBLAS_STATUS_SUCCESS        if log file was set successfully"]
+pub unsafe fn cublasLtLoggerSetFile<T: types::CudaAsPtr>(mut file: T) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasLtLoggerSetFile(file.as_mut_ptr() as *mut _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
     } else {
         Err(status)
     }
 }
-#[doc = " Experimental: Open log file.\n\n \\param[in]  logFile                      log file path. if the log file does not exist, it will be created\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log file was created successfully"]
-pub unsafe fn cublasLtLoggerOpenFile<T: ::cuda_libs_cudart::types::CudaAsPtr>(
-    logFile: T,
-) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe {
-        crate::sys::cublasLtLoggerOpenFile(logFile.as_const_ptr() as *const ::std::os::raw::c_char)
-    };
+#[doc = "Experimental: Open log file.\n\n# Arguments\n\n* `logFile` [in]  -                      log file path. if the log file does not exist, it will be created\n\\retval CUBLAS_STATUS_SUCCESS        if log file was created successfully"]
+pub unsafe fn cublasLtLoggerOpenFile<T: types::CudaAsPtr>(logFile: T) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasLtLoggerOpenFile(logFile.as_const_ptr() as *const _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
     } else {
         Err(status)
     }
 }
-#[doc = " Experimental: Log level setter.\n\n \\param[in]  level                        log level, should be one of the following:\n                                          0. Off\n                                          1. Errors\n                                          2. Performance Trace\n                                          3. Performance Hints\n                                          4. Heuristics Trace\n                                          5. API Trace\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if log level is not one of the above levels\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log level was set successfully"]
-pub unsafe fn cublasLtLoggerSetLevel(
-    level: ::std::os::raw::c_int,
-) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasLtLoggerSetLevel(level) };
+#[doc = "Experimental: Log level setter.\n\n# Arguments\n\n* `level` [in]  -                        log level, should be one of the following:\n0. Off\n1. Errors\n2. Performance Trace\n3. Performance Hints\n4. Heuristics Trace\n5. API Trace\n\\retval CUBLAS_STATUS_INVALID_VALUE  if log level is not one of the above levels\n\\retval CUBLAS_STATUS_SUCCESS        if log level was set successfully"]
+pub unsafe fn cublasLtLoggerSetLevel(level: i32) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasLtLoggerSetLevel(level as _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
     } else {
         Err(status)
     }
 }
-#[doc = " Experimental: Log mask setter.\n\n \\param[in]  mask                         log mask, should be a combination of the following masks:\n                                          0.  Off\n                                          1.  Errors\n                                          2.  Performance Trace\n                                          4.  Performance Hints\n                                          8.  Heuristics Trace\n                                          16. API Trace\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log mask was set successfully"]
-pub unsafe fn cublasLtLoggerSetMask(
-    mask: ::std::os::raw::c_int,
-) -> Result<(), crate::sys::cublasStatus_t> {
-    let status = unsafe { crate::sys::cublasLtLoggerSetMask(mask) };
+#[doc = "Experimental: Log mask setter.\n\n# Arguments\n\n* `mask` [in]  -                         log mask, should be a combination of the following masks:\n0.  Off\n1.  Errors\n2.  Performance Trace\n4.  Performance Hints\n8.  Heuristics Trace\n16. API Trace\n\\retval CUBLAS_STATUS_SUCCESS        if log mask was set successfully"]
+pub unsafe fn cublasLtLoggerSetMask(mask: i32) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasLtLoggerSetMask(mask as _) };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
         Ok(())
     } else {
         Err(status)
     }
 }
-#[doc = " Experimental: Disable logging for the entire session.\n\n \\retval     CUBLAS_STATUS_SUCCESS        if disabled logging"]
+#[doc = "Experimental: Disable logging for the entire session.\n\\retval CUBLAS_STATUS_SUCCESS        if disabled logging"]
 pub unsafe fn cublasLtLoggerForceDisable() -> Result<(), crate::sys::cublasStatus_t> {
     let status = unsafe { crate::sys::cublasLtLoggerForceDisable() };
     if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
@@ -946,7 +1473,7 @@ impl CublasLtHandle {
             let mut handle = std::ptr::null_mut();
             let status = crate::sys::cublasLtCreate(&mut handle);
             if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-                Ok(Self { handle })
+                Ok(Self(handle))
             } else {
                 Err(status)
             }
@@ -956,7 +1483,7 @@ impl CublasLtHandle {
 impl Drop for CublasLtHandle {
     fn drop(&mut self) {
         unsafe {
-            crate::sys::cublasLtDestroy(self.handle);
+            crate::sys::cublasLtDestroy(self.0);
         }
     }
 }

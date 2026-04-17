@@ -1,4 +1,4 @@
-pub use cuda_libs_cudart::sys::*;
+use cuda_libs_cudart::sys::*;
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct __BindgenBitfieldUnit<Storage> {
@@ -35,9 +35,7 @@ where
     pub unsafe fn raw_get_bit(this: *const Self, index: usize) -> bool {
         debug_assert!(index / 8 < core::mem::size_of::<Storage>());
         let byte_index = index / 8;
-        let byte = unsafe {
-            *(core::ptr::addr_of!((*this).storage) as *const u8).offset(byte_index as isize)
-        };
+        let byte = unsafe { *(core::ptr::addr_of!((*this).storage) as *const u8).offset(byte_index as isize) };
         Self::extract_bit(byte, index)
     }
     #[inline]
@@ -61,9 +59,7 @@ where
     pub unsafe fn raw_set_bit(this: *mut Self, index: usize, val: bool) {
         debug_assert!(index / 8 < core::mem::size_of::<Storage>());
         let byte_index = index / 8;
-        let byte = unsafe {
-            (core::ptr::addr_of_mut!((*this).storage) as *mut u8).offset(byte_index as isize)
-        };
+        let byte = unsafe { (core::ptr::addr_of_mut!((*this).storage) as *mut u8).offset(byte_index as isize) };
         unsafe { *byte = Self::change_bit(*byte, index, val) };
     }
     #[inline]
@@ -315,7 +311,7 @@ impl _IO_FILE {
 pub struct cublasLtContext {
     _unused: [u8; 0],
 }
-#[doc = " Opaque structure holding CUBLASLT context"]
+#[doc = "Opaque structure holding CUBLASLT context"]
 pub type cublasLtHandle_t = *mut cublasLtContext;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -343,10 +339,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasLtGetProperty(
-        type_: libraryPropertyType,
-        value: *mut ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasLtGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -358,59 +351,57 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Restricts usage of CPU instructions (ISA) specified by the flags in the mask.\n\n Flags can be combined with bitwise OR(|) operator. Supported flags:\n - 0x1 -- x86-64 AVX512 ISA\n\n Default mask: 0 (any applicable ISA is allowed).\n\n The function returns the previous value of the mask.\n The function takes precedence over the environment variable CUBLASLT_DISABLE_CPU_INSTRUCTIONS_MASK."]
-    pub fn cublasLtDisableCpuInstructionsSetMask(
-        mask: ::std::os::raw::c_uint,
-    ) -> ::std::os::raw::c_uint;
+    #[doc = "Restricts usage of CPU instructions (ISA) specified by the flags in the mask.\nFlags can be combined with bitwise OR(|) operator. Supported flags:\n- 0x1 -- x86-64 AVX512 ISA\nDefault mask: 0 (any applicable ISA is allowed).\nThe function returns the previous value of the mask.\nThe function takes precedence over the environment variable CUBLASLT_DISABLE_CPU_INSTRUCTIONS_MASK."]
+    pub fn cublasLtDisableCpuInstructionsSetMask(mask: ::std::os::raw::c_uint) -> ::std::os::raw::c_uint;
 }
-#[doc = " Semi-opaque descriptor for matrix memory layout"]
+#[doc = "Semi-opaque descriptor for matrix memory layout"]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
 pub struct cublasLtMatrixLayoutOpaque_t {
     pub data: [u64; 14usize],
 }
-#[doc = " Opaque descriptor for matrix memory layout"]
+#[doc = "Opaque descriptor for matrix memory layout"]
 pub type cublasLtMatrixLayout_t = *mut cublasLtMatrixLayoutOpaque_t;
-#[doc = " Semi-opaque algorithm descriptor (to avoid complicated alloc/free schemes)\n\n This structure can be trivially serialized and later restored for use with the same version of cuBLAS library to save\n on selecting the right configuration again."]
+#[doc = "Semi-opaque algorithm descriptor (to avoid complicated alloc/free schemes)\nThis structure can be trivially serialized and later restored for use with the same version of cuBLAS library to save\non selecting the right configuration again."]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
 pub struct cublasLtMatmulAlgo_t {
     pub data: [u64; 8usize],
 }
-#[doc = " Semi-opaque descriptor for cublasLtMatmul() operation details"]
+#[doc = "Semi-opaque descriptor for cublasLtMatmul() operation details"]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
 pub struct cublasLtMatmulDescOpaque_t {
     pub data: [u64; 32usize],
 }
-#[doc = " Opaque descriptor for cublasLtMatmul() operation details"]
+#[doc = "Opaque descriptor for cublasLtMatmul() operation details"]
 pub type cublasLtMatmulDesc_t = *mut cublasLtMatmulDescOpaque_t;
-#[doc = " Semi-opaque descriptor for cublasLtMatrixTransform() operation details"]
+#[doc = "Semi-opaque descriptor for cublasLtMatrixTransform() operation details"]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
 pub struct cublasLtMatrixTransformDescOpaque_t {
     pub data: [u64; 8usize],
 }
-#[doc = " Opaque descriptor for cublasLtMatrixTransform() operation details"]
+#[doc = "Opaque descriptor for cublasLtMatrixTransform() operation details"]
 pub type cublasLtMatrixTransformDesc_t = *mut cublasLtMatrixTransformDescOpaque_t;
-#[doc = " Semi-opaque descriptor for cublasLtMatmulPreference() operation details"]
+#[doc = "Semi-opaque descriptor for cublasLtMatmulPreference() operation details"]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
 pub struct cublasLtMatmulPreferenceOpaque_t {
     pub data: [u64; 12usize],
 }
-#[doc = " Opaque descriptor for cublasLtMatmulAlgoGetHeuristic() configuration"]
+#[doc = "Opaque descriptor for cublasLtMatmulAlgoGetHeuristic() configuration"]
 pub type cublasLtMatmulPreference_t = *mut cublasLtMatmulPreferenceOpaque_t;
-#[doc = " Semi-opaque descriptor for properties related to floating point emulation"]
+#[doc = "Semi-opaque descriptor for properties related to floating point emulation"]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
 pub struct cublasLtEmulationDescOpaque_t {
     pub data: [u64; 8usize],
 }
-#[doc = " Opaque descriptor for properties related to floating point emulation"]
+#[doc = "Opaque descriptor for properties related to floating point emulation"]
 pub type cublasLtEmulationDesc_t = *mut cublasLtEmulationDescOpaque_t;
 #[repr(u32)]
-#[doc = " Tile size (in C/D matrix Rows x Cols)\n\n General order of tile IDs is sorted by size first and by first dimension second."]
+#[doc = "Tile size (in C/D matrix Rows x Cols)\nGeneral order of tile IDs is sorted by size first and by first dimension second."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulTile_t {
     CUBLASLT_MATMUL_TILE_UNDEFINED = 0,
@@ -1051,7 +1042,7 @@ pub enum cublasLtMatmulTile_t {
     CUBLASLT_MATMUL_TILE_END = 635,
 }
 #[repr(u32)]
-#[doc = " Size and number of stages in which elements are read into shared memory\n\n General order of stages IDs is sorted by stage size first and by number of stages second."]
+#[doc = "Size and number of stages in which elements are read into shared memory\nGeneral order of stages IDs is sorted by stage size first and by number of stages second."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulStages_t {
     CUBLASLT_MATMUL_STAGES_UNDEFINED = 0,
@@ -1094,116 +1085,116 @@ pub enum cublasLtMatmulStages_t {
     CUBLASLT_MATMUL_STAGES_END = 39,
 }
 #[repr(u32)]
-#[doc = " Thread Block Cluster size\n\n Typically dimensioned similar to cublasLtMatmulTile_t, with the third coordinate unused at this time."]
+#[doc = "Thread Block Cluster size\nTypically dimensioned similar to cublasLtMatmulTile_t, with the third coordinate unused at this time."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtClusterShape_t {
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_AUTO = 0,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x1x1 = 2,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x1x1 = 3,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_4x1x1 = 4,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x2x1 = 5,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x2x1 = 6,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_4x2x1 = 7,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x4x1 = 8,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x4x1 = 9,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_4x4x1 = 10,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_8x1x1 = 11,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x8x1 = 12,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_8x2x1 = 13,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x8x1 = 14,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_16x1x1 = 15,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x16x1 = 16,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_3x1x1 = 17,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_5x1x1 = 18,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_6x1x1 = 19,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_7x1x1 = 20,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_9x1x1 = 21,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_10x1x1 = 22,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_11x1x1 = 23,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_12x1x1 = 24,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_13x1x1 = 25,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_14x1x1 = 26,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_15x1x1 = 27,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_3x2x1 = 28,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_5x2x1 = 29,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_6x2x1 = 30,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_7x2x1 = 31,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x3x1 = 32,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x3x1 = 33,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_3x3x1 = 34,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_4x3x1 = 35,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_5x3x1 = 36,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_3x4x1 = 37,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x5x1 = 38,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x5x1 = 39,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_3x5x1 = 40,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x6x1 = 41,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x6x1 = 42,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x7x1 = 43,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_2x7x1 = 44,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x9x1 = 45,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x10x1 = 46,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x11x1 = 47,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x12x1 = 48,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x13x1 = 49,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x14x1 = 50,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_1x15x1 = 51,
-    #[doc = " Let library pick cluster shape automatically"]
+    #[doc = "Let library pick cluster shape automatically"]
     CUBLASLT_CLUSTER_SHAPE_END = 52,
 }
 #[repr(u32)]
-#[doc = " Inner size of the kernel\n\n Represents various aspects of internal kernel design, that don't impact CUDA grid size but may have other more subtle\n effects.\n"]
+#[doc = "Inner size of the kernel\nRepresents various aspects of internal kernel design, that don't impact CUDA grid size but may have other more subtle\neffects.\n"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulInnerShape_t {
     CUBLASLT_MATMUL_INNER_SHAPE_UNDEFINED = 0,
@@ -1214,60 +1205,60 @@ pub enum cublasLtMatmulInnerShape_t {
     CUBLASLT_MATMUL_INNER_SHAPE_END = 5,
 }
 #[repr(u32)]
-#[doc = " Scaling mode for per-matrix scaling. See documentation for layout information."]
+#[doc = "Scaling mode for per-matrix scaling. See documentation for layout information."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulMatrixScale_t {
-    #[doc = " Scaling factors are single precision scalars applied to the whole tensor."]
+    #[doc = "Scaling factors are single precision scalars applied to the whole tensor."]
     CUBLASLT_MATMUL_MATRIX_SCALE_SCALAR_32F = 0,
-    #[doc = " Scaling factors are tensors that contain a dedicated scaling factor stored as an 8-bit CUDA_R_8F_UE4M3 value for\n each 16-element block in the innermost dimension of the corresponding data tensor."]
+    #[doc = "Scaling factors are tensors that contain a dedicated scaling factor stored as an 8-bit CUDA_R_8F_UE4M3 value for\neach 16-element block in the innermost dimension of the corresponding data tensor."]
     CUBLASLT_MATMUL_MATRIX_SCALE_VEC16_UE4M3 = 1,
-    #[doc = " Same as above, except that scaling factor tensor elements have type CUDA_R_8F_UE8M0 and the block size is 32\n elements."]
+    #[doc = "Same as above, except that scaling factor tensor elements have type CUDA_R_8F_UE8M0 and the block size is 32\nelements."]
     CUBLASLT_MATMUL_MATRIX_SCALE_VEC32_UE8M0 = 2,
-    #[doc = " Scaling factors are vectors of CUDA_R_32F values. This mode is only applicable to matrices A and B, in which case\n the vectors are expected to have M and N elements respectively, and each (i, j)-th element of product of A and B is\n multiplied by i-th element of A scale and j-th element of B scale."]
+    #[doc = "Scaling factors are vectors of CUDA_R_32F values. This mode is only applicable to matrices A and B, in which case\nthe vectors are expected to have M and N elements respectively, and each (i, j)-th element of product of A and B is\nmultiplied by i-th element of A scale and j-th element of B scale."]
     CUBLASLT_MATMUL_MATRIX_SCALE_OUTER_VEC_32F = 3,
-    #[doc = " Scaling factors are tensors that contain a dedicated CUDA_R_32F scaling factor for each 128-element block in the\n innermost dimension of the corresponding data tensor."]
+    #[doc = "Scaling factors are tensors that contain a dedicated CUDA_R_32F scaling factor for each 128-element block in the\ninnermost dimension of the corresponding data tensor."]
     CUBLASLT_MATMUL_MATRIX_SCALE_VEC128_32F = 4,
-    #[doc = " Scaling factors are tensors that contain a dedicated CUDA_R_32F scaling factor for each 128x128-element block in\n the the corresponding data tensor."]
+    #[doc = "Scaling factors are tensors that contain a dedicated CUDA_R_32F scaling factor for each 128x128-element block in\nthe the corresponding data tensor."]
     CUBLASLT_MATMUL_MATRIX_SCALE_BLK128x128_32F = 5,
-    #[doc = " Experimental: Scaling factors are single precision scalars applied to the whole tensor. Each batch has its own\n scaling factor."]
+    #[doc = "Experimental: Scaling factors are single precision scalars applied to the whole tensor. Each batch has its own\nscaling factor."]
     CUBLASLT_MATMUL_MATRIX_SCALE_PER_BATCH_SCALAR_32F = 6,
-    #[doc = " Experimental: Scaling factors are single precision scalars applied to the whole tensor. Each batch has its own\n scaling factor."]
+    #[doc = "Experimental: Scaling factors are single precision scalars applied to the whole tensor. Each batch has its own\nscaling factor."]
     CUBLASLT_MATMUL_MATRIX_SCALE_END = 7,
 }
 #[repr(u32)]
-#[doc = " Pointer mode to use for alpha/beta"]
+#[doc = "Pointer mode to use for alpha/beta"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtPointerMode_t {
-    #[doc = " matches CUBLAS_POINTER_MODE_HOST, pointer targets a single value host memory"]
+    #[doc = "matches CUBLAS_POINTER_MODE_HOST, pointer targets a single value host memory"]
     CUBLASLT_POINTER_MODE_HOST = 0,
-    #[doc = " matches CUBLAS_POINTER_MODE_DEVICE, pointer targets a single value device memory"]
+    #[doc = "matches CUBLAS_POINTER_MODE_DEVICE, pointer targets a single value device memory"]
     CUBLASLT_POINTER_MODE_DEVICE = 1,
-    #[doc = " pointer targets an array in device memory"]
+    #[doc = "pointer targets an array in device memory"]
     CUBLASLT_POINTER_MODE_DEVICE_VECTOR = 2,
-    #[doc = " alpha pointer targets an array in device memory, beta is zero. Note:\nCUBLASLT_MATMUL_DESC_ALPHA_VECTOR_BATCH_STRIDE is not supported, must be 0."]
+    #[doc = "alpha pointer targets an array in device memory, beta is zero. Note:\nCUBLASLT_MATMUL_DESC_ALPHA_VECTOR_BATCH_STRIDE is not supported, must be 0."]
     CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_ZERO = 3,
-    #[doc = " alpha pointer targets an array in device memory, beta is a single value in host memory."]
+    #[doc = "alpha pointer targets an array in device memory, beta is a single value in host memory."]
     CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_HOST = 4,
 }
 #[repr(u32)]
-#[doc = " Mask to define pointer mode capability"]
+#[doc = "Mask to define pointer mode capability"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtPointerModeMask_t {
-    #[doc = " see CUBLASLT_POINTER_MODE_HOST"]
+    #[doc = "see CUBLASLT_POINTER_MODE_HOST"]
     CUBLASLT_POINTER_MODE_MASK_HOST = 1,
-    #[doc = " see CUBLASLT_POINTER_MODE_DEVICE"]
+    #[doc = "see CUBLASLT_POINTER_MODE_DEVICE"]
     CUBLASLT_POINTER_MODE_MASK_DEVICE = 2,
-    #[doc = " see CUBLASLT_POINTER_MODE_DEVICE_VECTOR"]
+    #[doc = "see CUBLASLT_POINTER_MODE_DEVICE_VECTOR"]
     CUBLASLT_POINTER_MODE_MASK_DEVICE_VECTOR = 4,
-    #[doc = " see CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_ZERO"]
+    #[doc = "see CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_ZERO"]
     CUBLASLT_POINTER_MODE_MASK_ALPHA_DEVICE_VECTOR_BETA_ZERO = 8,
-    #[doc = " see CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_HOST"]
+    #[doc = "see CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_HOST"]
     CUBLASLT_POINTER_MODE_MASK_ALPHA_DEVICE_VECTOR_BETA_HOST = 16,
 }
 pub type cublasLtNumericalImplFlags_t = u64;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Execute matrix multiplication (D = alpha * op(A) * op(B) + beta * C).\n\n \\retval     CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n \\retval     CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\n                                             when workspaceSizeInBytes is less than workspace required by configured\n                                             algo\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\n                                             operation\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n \\retval     CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n \\retval     CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
+    #[doc = "Execute matrix multiplication (D = alpha * op(A) * op(B) + beta * C).\n\\retval CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n\\retval CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\nwhen workspaceSizeInBytes is less than workspace required by configured\nalgo\n\\retval CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\noperation\n\\retval CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n\\retval CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n\\retval CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
     pub fn cublasLtMatmul(
         lightHandle: cublasLtHandle_t,
         computeDesc: cublasLtMatmulDesc_t,
@@ -1289,7 +1280,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Matrix layout conversion helper (C = alpha * op(A) + beta * op(B))\n\n Can be used to change memory order of data or to scale and shift the values.\n\n \\retval     CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n \\retval     CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\n                                             when A is not NULL, but Adesc is NULL\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\n                                             operation\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n \\retval     CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n \\retval     CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
+    #[doc = "Matrix layout conversion helper (C = alpha * op(A) + beta * op(B))\nCan be used to change memory order of data or to scale and shift the values.\n\\retval CUBLAS_STATUS_NOT_INITIALIZED   if cuBLASLt handle has not been initialized\n\\retval CUBLAS_STATUS_INVALID_VALUE     if parameters are in conflict or in an impossible configuration; e.g.\nwhen A is not NULL, but Adesc is NULL\n\\retval CUBLAS_STATUS_NOT_SUPPORTED     if current implementation on selected device doesn't support configured\noperation\n\\retval CUBLAS_STATUS_ARCH_MISMATCH     if configured operation cannot be run using selected device\n\\retval CUBLAS_STATUS_EXECUTION_FAILED  if cuda reported execution error from the device\n\\retval CUBLAS_STATUS_SUCCESS           if the operation completed successfully"]
     pub fn cublasLtMatrixTransform(
         lightHandle: cublasLtHandle_t,
         transformDesc: cublasLtMatrixTransformDesc_t,
@@ -1305,76 +1296,76 @@ unsafe extern "C" {
     ) -> cublasStatus_t;
 }
 #[repr(u32)]
-#[doc = " Enum for data ordering"]
+#[doc = "Enum for data ordering"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtOrder_t {
-    #[doc = " Column-major\n\n Leading dimension is the stride (in elements) to the beginning of next column in memory."]
+    #[doc = "Column-major\nLeading dimension is the stride (in elements) to the beginning of next column in memory."]
     CUBLASLT_ORDER_COL = 0,
-    #[doc = " Row major\n\n Leading dimension is the stride (in elements) to the beginning of next row in memory."]
+    #[doc = "Row major\nLeading dimension is the stride (in elements) to the beginning of next row in memory."]
     CUBLASLT_ORDER_ROW = 1,
-    #[doc = " Column-major ordered tiles of 32 columns.\n\n Leading dimension is the stride (in elements) to the beginning of next group of 32-columns. E.g. if matrix has 33\n columns and 2 rows, ld must be at least (32) * 2 = 64."]
+    #[doc = "Column-major ordered tiles of 32 columns.\nLeading dimension is the stride (in elements) to the beginning of next group of 32-columns. E.g. if matrix has 33\ncolumns and 2 rows, ld must be at least (32) * 2 = 64."]
     CUBLASLT_ORDER_COL32 = 2,
-    #[doc = " Column-major ordered tiles of composite tiles with total 32 columns and 8 rows, tile composed of interleaved\n inner tiles of 4 columns within 4 even or odd rows in an alternating pattern.\n\n Leading dimension is the stride (in elements) to the beginning of the first 32 column x 8 row tile for the next\n 32-wide group of columns. E.g. if matrix has 33 columns and 1 row, ld must be at least (32 * 8) * 1 = 256."]
+    #[doc = "Column-major ordered tiles of composite tiles with total 32 columns and 8 rows, tile composed of interleaved\ninner tiles of 4 columns within 4 even or odd rows in an alternating pattern.\nLeading dimension is the stride (in elements) to the beginning of the first 32 column x 8 row tile for the next\n32-wide group of columns. E.g. if matrix has 33 columns and 1 row, ld must be at least (32 * 8) * 1 = 256."]
     CUBLASLT_ORDER_COL4_4R2_8C = 3,
-    #[doc = " Column-major ordered tiles of composite tiles with total 32 columns ands 32 rows.\n Element offset within the tile is calculated as (((row%8)/2*4+row/8)*2+row%2)*32+col.\n\n Leading dimension is the stride (in elements) to the beginning of the first 32 column x 32 row tile for the next\n 32-wide group of columns. E.g. if matrix has 33 columns and 1 row, ld must be at least (32*32)*1 = 1024."]
+    #[doc = "Column-major ordered tiles of composite tiles with total 32 columns ands 32 rows.\nElement offset within the tile is calculated as (((row%8)/2*4+row/8)*2+row%2)*32+col.\nLeading dimension is the stride (in elements) to the beginning of the first 32 column x 32 row tile for the next\n32-wide group of columns. E.g. if matrix has 33 columns and 1 row, ld must be at least (32*32)*1 = 1024."]
     CUBLASLT_ORDER_COL32_2R_4R4 = 4,
 }
 #[repr(u32)]
-#[doc = " Enum for batch mode"]
+#[doc = "Enum for batch mode"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtBatchMode_t {
-    #[doc = " Strided\n\n The matrices of each instance of the batch are located at fixed offsets in number of elements from their locations\n in the previous instance."]
+    #[doc = "Strided\nThe matrices of each instance of the batch are located at fixed offsets in number of elements from their locations\nin the previous instance."]
     CUBLASLT_BATCH_MODE_STRIDED = 0,
-    #[doc = " Pointer array\n\n The address of the matrix of each instance of the batch are read from arrays of pointers."]
+    #[doc = "Pointer array\nThe address of the matrix of each instance of the batch are read from arrays of pointers."]
     CUBLASLT_BATCH_MODE_POINTER_ARRAY = 1,
-    #[doc = " Grouped\n\n Experimental: The address of the matrix of each instance of the group are read from device arrays of pointers.\n Each group can have different columns, rows, and leading dimensions.\n The shapes are read from device arrays of pointers."]
+    #[doc = "Grouped\nExperimental: The address of the matrix of each instance of the group are read from device arrays of pointers.\nEach group can have different columns, rows, and leading dimensions.\nThe shapes are read from device arrays of pointers."]
     CUBLASLT_BATCH_MODE_GROUPED = 2,
 }
 #[repr(u32)]
-#[doc = " Experimental: Enum for integer width of array pointer elements"]
+#[doc = "Experimental: Enum for integer width of array pointer elements"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtIntegerWidth_t {
-    #[doc = " 32-bit integer width"]
+    #[doc = "32-bit integer width"]
     CUBLASLT_INTEGER_WIDTH_32 = 0,
-    #[doc = " 64-bit integer width"]
+    #[doc = "64-bit integer width"]
     CUBLASLT_INTEGER_WIDTH_64 = 1,
 }
 #[repr(u32)]
-#[doc = " Attributes of memory layout"]
+#[doc = "Attributes of memory layout"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatrixLayoutAttribute_t {
-    #[doc = " Data type, see cudaDataType.\n\n uint32_t"]
+    #[doc = "Data type, see cudaDataType.\nuint32_t"]
     CUBLASLT_MATRIX_LAYOUT_TYPE = 0,
-    #[doc = " Memory order of the data, see cublasLtOrder_t.\n\n int32_t, default: CUBLASLT_ORDER_COL"]
+    #[doc = "Memory order of the data, see cublasLtOrder_t.\nint32_t, default: CUBLASLT_ORDER_COL"]
     CUBLASLT_MATRIX_LAYOUT_ORDER = 1,
-    #[doc = " Number of rows.\n\n Usually only values that can be expressed as int32_t are supported.\n\n uint64_t"]
+    #[doc = "Number of rows.\nUsually only values that can be expressed as int32_t are supported.\nuint64_t"]
     CUBLASLT_MATRIX_LAYOUT_ROWS = 2,
-    #[doc = " Number of columns.\n\n Usually only values that can be expressed as int32_t are supported.\n\n uint64_t"]
+    #[doc = "Number of columns.\nUsually only values that can be expressed as int32_t are supported.\nuint64_t"]
     CUBLASLT_MATRIX_LAYOUT_COLS = 3,
-    #[doc = " Matrix leading dimension.\n\n For CUBLASLT_ORDER_COL this is stride (in elements) of matrix column, for more details and documentation for\n other memory orders see documentation for cublasLtOrder_t values.\n\n Currently only non-negative values are supported, must be large enough so that matrix memory locations are not\n overlapping (e.g. greater or equal to CUBLASLT_MATRIX_LAYOUT_ROWS in case of CUBLASLT_ORDER_COL).\n\n int64_t;"]
+    #[doc = "Matrix leading dimension.\nFor CUBLASLT_ORDER_COL this is stride (in elements) of matrix column, for more details and documentation for\nother memory orders see documentation for cublasLtOrder_t values.\nCurrently only non-negative values are supported, must be large enough so that matrix memory locations are not\noverlapping (e.g. greater or equal to CUBLASLT_MATRIX_LAYOUT_ROWS in case of CUBLASLT_ORDER_COL).\nint64_t;"]
     CUBLASLT_MATRIX_LAYOUT_LD = 4,
-    #[doc = " Number of matmul operations to perform in the batch.\n\n See also CUBLASLT_ALGO_CAP_STRIDED_BATCH_SUPPORT, CUBLASLT_ALGO_CAP_POINTER_ARRAY_BATCH_SUPPORT, and\n CUBLASLT_ALGO_CAP_POINTER_ARRAY_GROUPED_SUPPORT\n\n int32_t, default: 1"]
+    #[doc = "Number of matmul operations to perform in the batch.\nSee also CUBLASLT_ALGO_CAP_STRIDED_BATCH_SUPPORT, CUBLASLT_ALGO_CAP_POINTER_ARRAY_BATCH_SUPPORT, and\nCUBLASLT_ALGO_CAP_POINTER_ARRAY_GROUPED_SUPPORT\nint32_t, default: 1"]
     CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT = 5,
-    #[doc = " Stride (in elements) to the next matrix for strided batch operation.\n\n When matrix type is planar-complex (CUBLASLT_MATRIX_LAYOUT_PLANE_OFFSET != 0), batch stride\n is interpreted by cublasLtMatmul() in number of real valued sub-elements. E.g. for data of type CUDA_C_16F,\n offset of 1024B is encoded as a stride of value 512 (since each element of the real and imaginary matrices\n is a 2B (16bit) floating point type).\n\n NOTE: A bug in cublasLtMatrixTransform() causes it to interpret the batch stride for a planar-complex matrix\n as if it was specified in number of complex elements. Therefore an offset of 1024B must be encoded as stride\n value 256 when calling cublasLtMatrixTransform() (each complex element is 4B with real and imaginary values 2B\n each). This behavior is expected to be corrected in the next major cuBLAS version.\n\n int64_t, default: 0"]
+    #[doc = "Stride (in elements) to the next matrix for strided batch operation.\nWhen matrix type is planar-complex (CUBLASLT_MATRIX_LAYOUT_PLANE_OFFSET != 0), batch stride\nis interpreted by cublasLtMatmul() in number of real valued sub-elements. E.g. for data of type CUDA_C_16F,\noffset of 1024B is encoded as a stride of value 512 (since each element of the real and imaginary matrices\nis a 2B (16bit) floating point type).\nNOTE: A bug in cublasLtMatrixTransform() causes it to interpret the batch stride for a planar-complex matrix\nas if it was specified in number of complex elements. Therefore an offset of 1024B must be encoded as stride\nvalue 256 when calling cublasLtMatrixTransform() (each complex element is 4B with real and imaginary values 2B\neach). This behavior is expected to be corrected in the next major cuBLAS version.\nint64_t, default: 0"]
     CUBLASLT_MATRIX_LAYOUT_STRIDED_BATCH_OFFSET = 6,
-    #[doc = " Stride (in bytes) to the imaginary plane for planar complex layout.\n\n int64_t, default: 0 - 0 means that layout is regular (real and imaginary parts of complex numbers are interleaved\n in memory in each element)"]
+    #[doc = "Stride (in bytes) to the imaginary plane for planar complex layout.\nint64_t, default: 0 - 0 means that layout is regular (real and imaginary parts of complex numbers are interleaved\nin memory in each element)"]
     CUBLASLT_MATRIX_LAYOUT_PLANE_OFFSET = 7,
-    #[doc = " Batch mode.\n\n uint32_t, default: 0 - 0 means that batch mode is CUBLASLT_BATCH_MODE_STRIDED."]
+    #[doc = "Batch mode.\nuint32_t, default: 0 - 0 means that batch mode is CUBLASLT_BATCH_MODE_STRIDED."]
     CUBLASLT_MATRIX_LAYOUT_BATCH_MODE = 8,
-    #[doc = " Experimental: Device pointer to array of rows.\n\n int64_t*, default: NULL"]
+    #[doc = "Experimental: Device pointer to array of rows.\nint64_t*, default: NULL"]
     CUBLASLT_GROUPED_MATRIX_LAYOUT_ROWS_ARRAY = 9,
-    #[doc = " Experimental: Device pointer to array of columns.\n\n int64_t*, default: NULL"]
+    #[doc = "Experimental: Device pointer to array of columns.\nint64_t*, default: NULL"]
     CUBLASLT_GROUPED_MATRIX_LAYOUT_COLS_ARRAY = 10,
-    #[doc = " Experimental: Device pointer to array of leading dimensions.\n\n int64_t*, default: NULL"]
+    #[doc = "Experimental: Device pointer to array of leading dimensions.\nint64_t*, default: NULL"]
     CUBLASLT_GROUPED_MATRIX_LAYOUT_LD_ARRAY = 11,
-    #[doc = " Experimental: Int width for rows and cols arrays.\n\n int32_t, default: CUBLASLT_INTEGER_WIDTH_32. See cublasLtIntegerWidth_t for possible values."]
+    #[doc = "Experimental: Int width for rows and cols arrays.\nint32_t, default: CUBLASLT_INTEGER_WIDTH_32. See cublasLtIntegerWidth_t for possible values."]
     CUBLASLT_GROUPED_MATRIX_LAYOUT_ROWS_COLS_ARRAY_INTEGER_WIDTH = 12,
-    #[doc = " Experimental: Int width for ld arrays.\n\n int32_t, default: CUBLASLT_INTEGER_WIDTH_32. See cublasLtIntegerWidth_t for possible values."]
+    #[doc = "Experimental: Int width for ld arrays.\nint32_t, default: CUBLASLT_INTEGER_WIDTH_32. See cublasLtIntegerWidth_t for possible values."]
     CUBLASLT_GROUPED_MATRIX_LAYOUT_LD_ARRAY_INTEGER_WIDTH = 13,
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Internal. Do not use directly."]
+    #[doc = "Internal. Do not use directly."]
     pub fn cublasLtMatrixLayoutInit_internal(
         matLayout: cublasLtMatrixLayout_t,
         size: usize,
@@ -1386,7 +1377,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Internal. Do not use directly."]
+    #[doc = "Experimental: Internal. Do not use directly."]
     pub fn cublasLtGroupedMatrixLayoutInit_internal(
         matLayout: cublasLtMatrixLayout_t,
         size: usize,
@@ -1399,7 +1390,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Create new matrix layout descriptor.\n\n \\retval     CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n \\retval     CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
+    #[doc = "Create new matrix layout descriptor.\n\\retval CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n\\retval CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
     pub fn cublasLtMatrixLayoutCreate(
         matLayout: *mut cublasLtMatrixLayout_t,
         type_: cudaDataType,
@@ -1410,7 +1401,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Create new grouped matrix layout descriptor.\n\n \\retval     CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n \\retval     CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
+    #[doc = "Experimental: Create new grouped matrix layout descriptor.\n\\retval CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n\\retval CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
     pub fn cublasLtGroupedMatrixLayoutCreate(
         matLayout: *mut cublasLtMatrixLayout_t,
         type_: cudaDataType,
@@ -1422,12 +1413,12 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Destroy matrix layout descriptor.\n\n \\retval     CUBLAS_STATUS_SUCCESS  if operation was successful"]
+    #[doc = "Destroy matrix layout descriptor.\n\\retval CUBLAS_STATUS_SUCCESS  if operation was successful"]
     pub fn cublasLtMatrixLayoutDestroy(matLayout: cublasLtMatrixLayout_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Set matrix layout descriptor attribute.\n\n \\param[in]  matLayout    The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+    #[doc = "Set matrix layout descriptor attribute.\n\n# Arguments\n\n* `matLayout` [in]  -    The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
     pub fn cublasLtMatrixLayoutSetAttribute(
         matLayout: cublasLtMatrixLayout_t,
         attr: cublasLtMatrixLayoutAttribute_t,
@@ -1437,7 +1428,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Get matrix layout descriptor attribute.\n\n \\param[in]  matLayout    The descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+    #[doc = "Get matrix layout descriptor attribute.\n\n# Arguments\n\n* `matLayout` [in]  -    The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
     pub fn cublasLtMatrixLayoutGetAttribute(
         matLayout: cublasLtMatrixLayout_t,
         attr: cublasLtMatrixLayoutAttribute_t,
@@ -1447,83 +1438,83 @@ unsafe extern "C" {
     ) -> cublasStatus_t;
 }
 #[repr(u32)]
-#[doc = " Matmul descriptor attributes to define details of the operation."]
+#[doc = "Matmul descriptor attributes to define details of the operation."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulDescAttributes_t {
-    #[doc = " Compute type, see cudaDataType. Defines data type used for multiply and accumulate operations and the\n accumulator during matrix multiplication.\n\n int32_t"]
+    #[doc = "Compute type, see cudaDataType. Defines data type used for multiply and accumulate operations and the\naccumulator during matrix multiplication.\nint32_t"]
     CUBLASLT_MATMUL_DESC_COMPUTE_TYPE = 0,
-    #[doc = " Scale type, see cudaDataType. Defines data type of alpha and beta. Accumulator and value from matrix C are\n typically converted to scale type before final scaling. Value is then converted from scale type to type of matrix\n D before being stored in memory.\n\n int32_t, default: same as CUBLASLT_MATMUL_DESC_COMPUTE_TYPE"]
+    #[doc = "Scale type, see cudaDataType. Defines data type of alpha and beta. Accumulator and value from matrix C are\ntypically converted to scale type before final scaling. Value is then converted from scale type to type of matrix\nD before being stored in memory.\nint32_t, default: same as CUBLASLT_MATMUL_DESC_COMPUTE_TYPE"]
     CUBLASLT_MATMUL_DESC_SCALE_TYPE = 1,
-    #[doc = " Pointer mode of alpha and beta, see cublasLtPointerMode_t. When CUBLASLT_POINTER_MODE_DEVICE_VECTOR is in use,\n alpha/beta vector lengths must match number of output matrix rows.\n\n int32_t, default: CUBLASLT_POINTER_MODE_HOST"]
+    #[doc = "Pointer mode of alpha and beta, see cublasLtPointerMode_t. When CUBLASLT_POINTER_MODE_DEVICE_VECTOR is in use,\nalpha/beta vector lengths must match number of output matrix rows.\nint32_t, default: CUBLASLT_POINTER_MODE_HOST"]
     CUBLASLT_MATMUL_DESC_POINTER_MODE = 2,
-    #[doc = " Transform of matrix A, see cublasOperation_t.\n\n int32_t, default: CUBLAS_OP_N"]
+    #[doc = "Transform of matrix A, see cublasOperation_t.\nint32_t, default: CUBLAS_OP_N"]
     CUBLASLT_MATMUL_DESC_TRANSA = 3,
-    #[doc = " Transform of matrix B, see cublasOperation_t.\n\n int32_t, default: CUBLAS_OP_N"]
+    #[doc = "Transform of matrix B, see cublasOperation_t.\nint32_t, default: CUBLAS_OP_N"]
     CUBLASLT_MATMUL_DESC_TRANSB = 4,
-    #[doc = " Transform of matrix C, see cublasOperation_t.\n\n Currently only CUBLAS_OP_N is supported.\n\n int32_t, default: CUBLAS_OP_N"]
+    #[doc = "Transform of matrix C, see cublasOperation_t.\nCurrently only CUBLAS_OP_N is supported.\nint32_t, default: CUBLAS_OP_N"]
     CUBLASLT_MATMUL_DESC_TRANSC = 5,
-    #[doc = " Matrix fill mode, see cublasFillMode_t.\n\n int32_t, default: CUBLAS_FILL_MODE_FULL"]
+    #[doc = "Matrix fill mode, see cublasFillMode_t.\nint32_t, default: CUBLAS_FILL_MODE_FULL"]
     CUBLASLT_MATMUL_DESC_FILL_MODE = 6,
-    #[doc = " Epilogue function, see cublasLtEpilogue_t.\n\n uint32_t, default: CUBLASLT_EPILOGUE_DEFAULT"]
+    #[doc = "Epilogue function, see cublasLtEpilogue_t.\nuint32_t, default: CUBLASLT_EPILOGUE_DEFAULT"]
     CUBLASLT_MATMUL_DESC_EPILOGUE = 7,
-    #[doc = " Bias or bias gradient vector pointer in the device memory.\n\n Bias case. See CUBLASLT_EPILOGUE_BIAS.\n For bias data type see CUBLASLT_MATMUL_DESC_BIAS_DATA_TYPE.\n\n Bias vector length must match matrix D rows count.\n\n Bias gradient case. See CUBLASLT_EPILOGUE_DRELU_BGRAD and CUBLASLT_EPILOGUE_DGELU_BGRAD.\n Bias gradient vector elements are the same type as the output elements\n (Ctype) with the exception of IMMA kernels (see above).\n\n Routines that don't dereference this pointer, like cublasLtMatmulAlgoGetHeuristic()\n depend on its value to determine expected pointer alignment.\n\n Bias case: const void *, default: NULL\n Bias gradient case: void *, default: NULL"]
+    #[doc = "Bias or bias gradient vector pointer in the device memory.\nBias case. See CUBLASLT_EPILOGUE_BIAS.\nFor bias data type see CUBLASLT_MATMUL_DESC_BIAS_DATA_TYPE.\nBias vector length must match matrix D rows count.\nBias gradient case. See CUBLASLT_EPILOGUE_DRELU_BGRAD and CUBLASLT_EPILOGUE_DGELU_BGRAD.\nBias gradient vector elements are the same type as the output elements\n(Ctype) with the exception of IMMA kernels (see above).\nRoutines that don't dereference this pointer, like cublasLtMatmulAlgoGetHeuristic()\ndepend on its value to determine expected pointer alignment.\nBias case: const void *, default: NULL\nBias gradient case: void *, default: NULL"]
     CUBLASLT_MATMUL_DESC_BIAS_POINTER = 8,
-    #[doc = " Batch stride for bias or bias gradient vector.\n\n Used together with CUBLASLT_MATMUL_DESC_BIAS_POINTER when matrix D's CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1.\n\n int64_t, default: 0"]
+    #[doc = "Batch stride for bias or bias gradient vector.\nUsed together with CUBLASLT_MATMUL_DESC_BIAS_POINTER when matrix D's CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1.\nint64_t, default: 0"]
     CUBLASLT_MATMUL_DESC_BIAS_BATCH_STRIDE = 10,
-    #[doc = " Pointer for epilogue auxiliary buffer.\n\n - Output vector for ReLu bit-mask in forward pass when CUBLASLT_EPILOGUE_RELU_AUX\n   or CUBLASLT_EPILOGUE_RELU_AUX_BIAS epilogue is used.\n - Input vector for ReLu bit-mask in backward pass when\n   CUBLASLT_EPILOGUE_DRELU_BGRAD epilogue is used.\n\n - Output of GELU input matrix in forward pass when\n   CUBLASLT_EPILOGUE_GELU_AUX_BIAS epilogue is used.\n - Input of GELU input matrix for backward pass when\n   CUBLASLT_EPILOGUE_DGELU_BGRAD epilogue is used.\n\n For aux data type see CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_DATA_TYPE.\n\n Routines that don't dereference this pointer, like cublasLtMatmulAlgoGetHeuristic()\n depend on its value to determine expected pointer alignment.\n\n Requires setting CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_LD attribute.\n\n Forward pass: void *, default: NULL\n Backward pass: const void *, default: NULL"]
+    #[doc = "Pointer for epilogue auxiliary buffer.\n- Output vector for ReLu bit-mask in forward pass when CUBLASLT_EPILOGUE_RELU_AUX\nor CUBLASLT_EPILOGUE_RELU_AUX_BIAS epilogue is used.\n- Input vector for ReLu bit-mask in backward pass when\nCUBLASLT_EPILOGUE_DRELU_BGRAD epilogue is used.\n- Output of GELU input matrix in forward pass when\nCUBLASLT_EPILOGUE_GELU_AUX_BIAS epilogue is used.\n- Input of GELU input matrix for backward pass when\nCUBLASLT_EPILOGUE_DGELU_BGRAD epilogue is used.\nFor aux data type see CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_DATA_TYPE.\nRoutines that don't dereference this pointer, like cublasLtMatmulAlgoGetHeuristic()\ndepend on its value to determine expected pointer alignment.\nRequires setting CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_LD attribute.\nForward pass: void *, default: NULL\nBackward pass: const void *, default: NULL"]
     CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER = 11,
-    #[doc = " Leading dimension for epilogue auxiliary buffer.\n\n - ReLu bit-mask matrix leading dimension in elements (i.e. bits)\n   when CUBLASLT_EPILOGUE_RELU_AUX, CUBLASLT_EPILOGUE_RELU_AUX_BIAS or CUBLASLT_EPILOGUE_DRELU_BGRAD epilogue is\n used. Must be divisible by 128 and be no less than the number of rows in the output matrix.\n\n - GELU input matrix leading dimension in elements\n   when CUBLASLT_EPILOGUE_GELU_AUX_BIAS or CUBLASLT_EPILOGUE_DGELU_BGRAD epilogue used.\n   Must be divisible by 8 and be no less than the number of rows in the output matrix.\n\n int64_t, default: 0"]
+    #[doc = "Leading dimension for epilogue auxiliary buffer.\n- ReLu bit-mask matrix leading dimension in elements (i.e. bits)\nwhen CUBLASLT_EPILOGUE_RELU_AUX, CUBLASLT_EPILOGUE_RELU_AUX_BIAS or CUBLASLT_EPILOGUE_DRELU_BGRAD epilogue is\nused. Must be divisible by 128 and be no less than the number of rows in the output matrix.\n- GELU input matrix leading dimension in elements\nwhen CUBLASLT_EPILOGUE_GELU_AUX_BIAS or CUBLASLT_EPILOGUE_DGELU_BGRAD epilogue used.\nMust be divisible by 8 and be no less than the number of rows in the output matrix.\nint64_t, default: 0"]
     CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_LD = 12,
-    #[doc = " Batch stride for epilogue auxiliary buffer.\n\n - ReLu bit-mask matrix batch stride in elements (i.e. bits)\n   when CUBLASLT_EPILOGUE_RELU_AUX, CUBLASLT_EPILOGUE_RELU_AUX_BIAS or CUBLASLT_EPILOGUE_DRELU_BGRAD epilogue is\n used. Must be divisible by 128.\n\n - GELU input matrix batch stride in elements\n   when CUBLASLT_EPILOGUE_GELU_AUX_BIAS or CUBLASLT_EPILOGUE_DGELU_BGRAD epilogue used.\n   Must be divisible by 8.\n\n int64_t, default: 0"]
+    #[doc = "Batch stride for epilogue auxiliary buffer.\n- ReLu bit-mask matrix batch stride in elements (i.e. bits)\nwhen CUBLASLT_EPILOGUE_RELU_AUX, CUBLASLT_EPILOGUE_RELU_AUX_BIAS or CUBLASLT_EPILOGUE_DRELU_BGRAD epilogue is\nused. Must be divisible by 128.\n- GELU input matrix batch stride in elements\nwhen CUBLASLT_EPILOGUE_GELU_AUX_BIAS or CUBLASLT_EPILOGUE_DGELU_BGRAD epilogue used.\nMust be divisible by 8.\nint64_t, default: 0"]
     CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_BATCH_STRIDE = 13,
-    #[doc = " Batch stride for alpha vector.\n\n Used together with CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_HOST when matrix D's\n CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1. If CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_ZERO is set then\n CUBLASLT_MATMUL_DESC_ALPHA_VECTOR_BATCH_STRIDE must be set to 0 as this mode doesnt supported batched alpha vector.\n\n int64_t, default: 0"]
+    #[doc = "Batch stride for alpha vector.\nUsed together with CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_HOST when matrix D's\nCUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1. If CUBLASLT_POINTER_MODE_ALPHA_DEVICE_VECTOR_BETA_ZERO is set then\nCUBLASLT_MATMUL_DESC_ALPHA_VECTOR_BATCH_STRIDE must be set to 0 as this mode doesnt supported batched alpha vector.\nint64_t, default: 0"]
     CUBLASLT_MATMUL_DESC_ALPHA_VECTOR_BATCH_STRIDE = 14,
-    #[doc = " Number of SMs to target for parallel execution. Optimizes heuristics for execution on a different number of SMs\n  when user expects a concurrent stream to be using some of the device resources.\n\n  int32_t, default: 0 - use the number reported by the device."]
+    #[doc = "Number of SMs to target for parallel execution. Optimizes heuristics for execution on a different number of SMs\nwhen user expects a concurrent stream to be using some of the device resources.\nint32_t, default: 0 - use the number reported by the device."]
     CUBLASLT_MATMUL_DESC_SM_COUNT_TARGET = 15,
-    #[doc = " Device pointer to the scale factor value that converts data in matrix A to the compute data type range.\n\n  The scaling factor value must have the same type as the compute type.\n\n  If not specified, or set to NULL, the scaling factor is assumed to be 1.\n\n  If set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\n  will return CUBLAS_INVALID_VALUE.\n\n  const void *, default: NULL"]
+    #[doc = "Device pointer to the scale factor value that converts data in matrix A to the compute data type range.\nThe scaling factor value must have the same type as the compute type.\nIf not specified, or set to NULL, the scaling factor is assumed to be 1.\nIf set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\nwill return CUBLAS_INVALID_VALUE.\nconst void *, default: NULL"]
     CUBLASLT_MATMUL_DESC_A_SCALE_POINTER = 17,
-    #[doc = " Device pointer to the scale factor value to convert data in matrix B to compute data type range.\n\n  The scaling factor value must have the same type as the compute type.\n\n  If not specified, or set to NULL, the scaling factor is assumed to be 1.\n\n  If set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\n  will return CUBLAS_INVALID_VALUE.\n\n  const void *, default: NULL"]
+    #[doc = "Device pointer to the scale factor value to convert data in matrix B to compute data type range.\nThe scaling factor value must have the same type as the compute type.\nIf not specified, or set to NULL, the scaling factor is assumed to be 1.\nIf set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\nwill return CUBLAS_INVALID_VALUE.\nconst void *, default: NULL"]
     CUBLASLT_MATMUL_DESC_B_SCALE_POINTER = 18,
-    #[doc = " Device pointer to the scale factor value to convert data in matrix C to compute data type range.\n\n  The scaling factor value must have the same type as the compute type.\n\n  If not specified, or set to NULL, the scaling factor is assumed to be 1.\n\n  If set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\n  will return CUBLAS_INVALID_VALUE.\n\n  const void *, default: NULL"]
+    #[doc = "Device pointer to the scale factor value to convert data in matrix C to compute data type range.\nThe scaling factor value must have the same type as the compute type.\nIf not specified, or set to NULL, the scaling factor is assumed to be 1.\nIf set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\nwill return CUBLAS_INVALID_VALUE.\nconst void *, default: NULL"]
     CUBLASLT_MATMUL_DESC_C_SCALE_POINTER = 19,
-    #[doc = " Device pointer to the scale factor value to convert data in matrix D to compute data type range.\n\n  The scaling factor value must have the same type as the compute type.\n\n  If not specified, or set to NULL, the scaling factor is assumed to be 1.\n\n  If set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\n  will return CUBLAS_INVALID_VALUE.\n\n  const void *, default: NULL"]
+    #[doc = "Device pointer to the scale factor value to convert data in matrix D to compute data type range.\nThe scaling factor value must have the same type as the compute type.\nIf not specified, or set to NULL, the scaling factor is assumed to be 1.\nIf set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\nwill return CUBLAS_INVALID_VALUE.\nconst void *, default: NULL"]
     CUBLASLT_MATMUL_DESC_D_SCALE_POINTER = 20,
-    #[doc = " Device pointer to the memory location that on completion will be set to the maximum of absolute values in the\n  output matrix.\n\n  The computed value has the same type as the compute type.\n\n  If not specified or set to NULL, the maximum absolute value is not computed. If set for an unsupported matrix\n  data, scale, and compute type combination, calling cublasLtMatmul() will return CUBLAS_INVALID_VALUE.\n\n  void *, default: NULL"]
+    #[doc = "Device pointer to the memory location that on completion will be set to the maximum of absolute values in the\noutput matrix.\nThe computed value has the same type as the compute type.\nIf not specified or set to NULL, the maximum absolute value is not computed. If set for an unsupported matrix\ndata, scale, and compute type combination, calling cublasLtMatmul() will return CUBLAS_INVALID_VALUE.\nvoid *, default: NULL"]
     CUBLASLT_MATMUL_DESC_AMAX_D_POINTER = 21,
-    #[doc = " Type of the data to be stored to the memory pointed to by CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER.\n\n  If unset, the data type defaults to the type of elements of the output matrix with some exceptions, see details\n below.\n\n  ReLu uses a bit-mask.\n\n  GELU input matrix elements type is the same as the type of elements of\n  the output matrix with some exceptions, see details below.\n\n  For fp8 kernels with output type CUDA_R_8F_E4M3 the aux data type can be CUDA_R_8F_E4M3 or CUDA_R_16F with some\n  restrictions.  See https://docs.nvidia.com/cuda/cublas/index.html#cublasLtMatmulDescAttributes_t for more details.\n\n  If set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\n  will return CUBLAS_INVALID_VALUE.\n\n  int32_t based on cudaDataType, default: -1"]
+    #[doc = "Type of the data to be stored to the memory pointed to by CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER.\nIf unset, the data type defaults to the type of elements of the output matrix with some exceptions, see details\nbelow.\nReLu uses a bit-mask.\nGELU input matrix elements type is the same as the type of elements of\nthe output matrix with some exceptions, see details below.\nFor fp8 kernels with output type CUDA_R_8F_E4M3 the aux data type can be CUDA_R_8F_E4M3 or CUDA_R_16F with some\nrestrictions.  See https://docs.nvidia.com/cuda/cublas/index.html#cublasLtMatmulDescAttributes_t for more details.\nIf set for an unsupported matrix data, scale, and compute type combination, calling cublasLtMatmul()\nwill return CUBLAS_INVALID_VALUE.\nint32_t based on cudaDataType, default: -1"]
     CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_DATA_TYPE = 22,
-    #[doc = " Device pointer to the scaling factor value to convert results from compute type data range to storage\n  data range in the auxiliary matrix that is set via CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER.\n\n  The scaling factor value must have the same type as the compute type.\n\n  If not specified, or set to NULL, the scaling factor is assumed to be 1. If set for an unsupported matrix data,\n  scale, and compute type combination, calling cublasLtMatmul() will return CUBLAS_INVALID_VALUE.\n\n  void *, default: NULL"]
+    #[doc = "Device pointer to the scaling factor value to convert results from compute type data range to storage\ndata range in the auxiliary matrix that is set via CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER.\nThe scaling factor value must have the same type as the compute type.\nIf not specified, or set to NULL, the scaling factor is assumed to be 1. If set for an unsupported matrix data,\nscale, and compute type combination, calling cublasLtMatmul() will return CUBLAS_INVALID_VALUE.\nvoid *, default: NULL"]
     CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_SCALE_POINTER = 23,
-    #[doc = " Device pointer to the memory location that on completion will be set to the maximum of absolute values in the\n  buffer that is set via CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER.\n\n  The computed value has the same type as the compute type.\n\n  If not specified or set to NULL, the maximum absolute value is not computed. If set for an unsupported matrix\n  data, scale, and compute type combination, calling cublasLtMatmul() will return CUBLAS_INVALID_VALUE.\n\n  void *, default: NULL"]
+    #[doc = "Device pointer to the memory location that on completion will be set to the maximum of absolute values in the\nbuffer that is set via CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER.\nThe computed value has the same type as the compute type.\nIf not specified or set to NULL, the maximum absolute value is not computed. If set for an unsupported matrix\ndata, scale, and compute type combination, calling cublasLtMatmul() will return CUBLAS_INVALID_VALUE.\nvoid *, default: NULL"]
     CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_AMAX_POINTER = 24,
-    #[doc = " Flag for managing fp8 fast accumulation mode.\n  When enabled, problem execution might be faster but at the cost of lower accuracy because intermediate results\n  will not periodically be promoted to a higher precision.\n\n  int8_t, default: 0 - fast accumulation mode is disabled."]
+    #[doc = "Flag for managing fp8 fast accumulation mode.\nWhen enabled, problem execution might be faster but at the cost of lower accuracy because intermediate results\nwill not periodically be promoted to a higher precision.\nint8_t, default: 0 - fast accumulation mode is disabled."]
     CUBLASLT_MATMUL_DESC_FAST_ACCUM = 25,
-    #[doc = " Type of bias or bias gradient vector in the device memory.\n\n Bias case: see CUBLASLT_EPILOGUE_BIAS.\n\n Bias vector elements are the same type as the elements of output matrix (Dtype) with the following exceptions:\n - IMMA kernels with computeType=CUDA_R_32I and Ctype=CUDA_R_8I where the bias vector elements\n   are the same type as alpha, beta (CUBLASLT_MATMUL_DESC_SCALE_TYPE=CUDA_R_32F)\n - fp8 kernels with an output type of CUDA_R_32F, CUDA_R_8F_E4M3 or CUDA_R_8F_E5M2, See\n   https://docs.nvidia.com/cuda/cublas/index.html#cublasLtMatmul for details.\n\n int32_t based on cudaDataType, default: -1"]
+    #[doc = "Type of bias or bias gradient vector in the device memory.\nBias case: see CUBLASLT_EPILOGUE_BIAS.\nBias vector elements are the same type as the elements of output matrix (Dtype) with the following exceptions:\n- IMMA kernels with computeType=CUDA_R_32I and Ctype=CUDA_R_8I where the bias vector elements\nare the same type as alpha, beta (CUBLASLT_MATMUL_DESC_SCALE_TYPE=CUDA_R_32F)\n- fp8 kernels with an output type of CUDA_R_32F, CUDA_R_8F_E4M3 or CUDA_R_8F_E5M2, See\nhttps://docs.nvidia.com/cuda/cublas/index.html#cublasLtMatmul for details.\nint32_t based on cudaDataType, default: -1"]
     CUBLASLT_MATMUL_DESC_BIAS_DATA_TYPE = 26,
-    #[doc = " Scaling mode that defines how the matrix scaling factor for matrix A is interpreted\n\n int32_t, default: 0"]
+    #[doc = "Scaling mode that defines how the matrix scaling factor for matrix A is interpreted\nint32_t, default: 0"]
     CUBLASLT_MATMUL_DESC_A_SCALE_MODE = 31,
-    #[doc = " Scaling mode that defines how the matrix scaling factor for matrix B is interpreted\n\n int32_t, default: 0"]
+    #[doc = "Scaling mode that defines how the matrix scaling factor for matrix B is interpreted\nint32_t, default: 0"]
     CUBLASLT_MATMUL_DESC_B_SCALE_MODE = 32,
-    #[doc = " Scaling mode that defines how the matrix scaling factor for matrix C is interpreted\n\n int32_t, default: 0"]
+    #[doc = "Scaling mode that defines how the matrix scaling factor for matrix C is interpreted\nint32_t, default: 0"]
     CUBLASLT_MATMUL_DESC_C_SCALE_MODE = 33,
-    #[doc = " Scaling mode that defines how the matrix scaling factor for matrix D is interpreted\n\n int32_t, default: 0"]
+    #[doc = "Scaling mode that defines how the matrix scaling factor for matrix D is interpreted\nint32_t, default: 0"]
     CUBLASLT_MATMUL_DESC_D_SCALE_MODE = 34,
-    #[doc = " Scaling mode that defines how the matrix scaling factor for the auxiliary matrix is interpreted\n\n int32_t, default: 0"]
+    #[doc = "Scaling mode that defines how the matrix scaling factor for the auxiliary matrix is interpreted\nint32_t, default: 0"]
     CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_SCALE_MODE = 35,
-    #[doc = " Device pointer to the scale factors that are used to convert data in matrix D to the compute data type range.\n\n  The scaling factor value type is defined by the scaling mode (see CUBLASLT_MATMUL_DESC_D_OUT_SCALE_MODE)\n\n  If set for an unsupported matrix data, scale, scale mode, and compute type combination, calling cublasLtMatmul()\n  will return CUBLAS_INVALID_VALUE.\n\n  void *, default: NULL"]
+    #[doc = "Device pointer to the scale factors that are used to convert data in matrix D to the compute data type range.\nThe scaling factor value type is defined by the scaling mode (see CUBLASLT_MATMUL_DESC_D_OUT_SCALE_MODE)\nIf set for an unsupported matrix data, scale, scale mode, and compute type combination, calling cublasLtMatmul()\nwill return CUBLAS_INVALID_VALUE.\nvoid *, default: NULL"]
     CUBLASLT_MATMUL_DESC_D_OUT_SCALE_POINTER = 36,
-    #[doc = " Scaling mode that defines how the output matrix scaling factor for matrix D is interpreted\n\n int32_t, default: 0"]
+    #[doc = "Scaling mode that defines how the output matrix scaling factor for matrix D is interpreted\nint32_t, default: 0"]
     CUBLASLT_MATMUL_DESC_D_OUT_SCALE_MODE = 37,
-    #[doc = " A cublasLtEmulationDesc_t used to configure floating point emulation parameters.\n\n cublasLtEmulationDesc_t, default: NULL"]
+    #[doc = "A cublasLtEmulationDesc_t used to configure floating point emulation parameters.\ncublasLtEmulationDesc_t, default: NULL"]
     CUBLASLT_MATMUL_DESC_EMULATION_DESCRIPTOR = 38,
-    #[doc = " Experimental: Batch stride for alpha.\n\n Used when matrix D's CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1.\n int64_t, default: 0"]
+    #[doc = "Experimental: Batch stride for alpha.\nUsed when matrix D's CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1.\nint64_t, default: 0"]
     CUBLASLT_MATMUL_DESC_ALPHA_BATCH_STRIDE = 39,
-    #[doc = " Experimental: Batch stride for beta.\n\n Used when matrix D's CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1.\n int64_t, default: 0"]
+    #[doc = "Experimental: Batch stride for beta.\nUsed when matrix D's CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT > 1.\nint64_t, default: 0"]
     CUBLASLT_MATMUL_DESC_BETA_BATCH_STRIDE = 40,
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Internal. Do not use directly."]
+    #[doc = "Internal. Do not use directly."]
     pub fn cublasLtMatmulDescInit_internal(
         matmulDesc: cublasLtMatmulDesc_t,
         size: usize,
@@ -1533,7 +1524,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Create new matmul operation descriptor.\n\n \\retval     CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n \\retval     CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
+    #[doc = "Create new matmul operation descriptor.\n\\retval CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n\\retval CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
     pub fn cublasLtMatmulDescCreate(
         matmulDesc: *mut cublasLtMatmulDesc_t,
         computeType: cublasComputeType_t,
@@ -1542,12 +1533,12 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Destroy matmul operation descriptor.\n\n \\retval     CUBLAS_STATUS_SUCCESS  if operation was successful"]
+    #[doc = "Destroy matmul operation descriptor.\n\\retval CUBLAS_STATUS_SUCCESS  if operation was successful"]
     pub fn cublasLtMatmulDescDestroy(matmulDesc: cublasLtMatmulDesc_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Set matmul operation descriptor attribute.\n\n \\param[in]  matmulDesc   The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+    #[doc = "Set matmul operation descriptor attribute.\n\n# Arguments\n\n* `matmulDesc` [in]  -   The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
     pub fn cublasLtMatmulDescSetAttribute(
         matmulDesc: cublasLtMatmulDesc_t,
         attr: cublasLtMatmulDescAttributes_t,
@@ -1557,7 +1548,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Get matmul operation descriptor attribute.\n\n \\param[in]  matmulDesc   The descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+    #[doc = "Get matmul operation descriptor attribute.\n\n# Arguments\n\n* `matmulDesc` [in]  -   The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
     pub fn cublasLtMatmulDescGetAttribute(
         matmulDesc: cublasLtMatmulDesc_t,
         attr: cublasLtMatmulDescAttributes_t,
@@ -1567,21 +1558,21 @@ unsafe extern "C" {
     ) -> cublasStatus_t;
 }
 #[repr(u32)]
-#[doc = " Matrix transform descriptor attributes to define details of the operation."]
+#[doc = "Matrix transform descriptor attributes to define details of the operation."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatrixTransformDescAttributes_t {
-    #[doc = " Scale type, see cudaDataType. Inputs are converted to scale type for scaling and summation and results are then\n converted to output type to store in memory.\n\n int32_t"]
+    #[doc = "Scale type, see cudaDataType. Inputs are converted to scale type for scaling and summation and results are then\nconverted to output type to store in memory.\nint32_t"]
     CUBLASLT_MATRIX_TRANSFORM_DESC_SCALE_TYPE = 0,
-    #[doc = " Pointer mode of alpha and beta, see cublasLtPointerMode_t.\n\n int32_t, default: CUBLASLT_POINTER_MODE_HOST"]
+    #[doc = "Pointer mode of alpha and beta, see cublasLtPointerMode_t.\nint32_t, default: CUBLASLT_POINTER_MODE_HOST"]
     CUBLASLT_MATRIX_TRANSFORM_DESC_POINTER_MODE = 1,
-    #[doc = " Transform of matrix A, see cublasOperation_t.\n\n int32_t, default: CUBLAS_OP_N"]
+    #[doc = "Transform of matrix A, see cublasOperation_t.\nint32_t, default: CUBLAS_OP_N"]
     CUBLASLT_MATRIX_TRANSFORM_DESC_TRANSA = 2,
-    #[doc = " Transform of matrix B, see cublasOperation_t.\n\n int32_t, default: CUBLAS_OP_N"]
+    #[doc = "Transform of matrix B, see cublasOperation_t.\nint32_t, default: CUBLAS_OP_N"]
     CUBLASLT_MATRIX_TRANSFORM_DESC_TRANSB = 3,
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Internal. Do not use directly."]
+    #[doc = "Internal. Do not use directly."]
     pub fn cublasLtMatrixTransformDescInit_internal(
         transformDesc: cublasLtMatrixTransformDesc_t,
         size: usize,
@@ -1590,7 +1581,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Create new matrix transform operation descriptor.\n\n \\retval     CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n \\retval     CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
+    #[doc = "Create new matrix transform operation descriptor.\n\\retval CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n\\retval CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
     pub fn cublasLtMatrixTransformDescCreate(
         transformDesc: *mut cublasLtMatrixTransformDesc_t,
         scaleType: cudaDataType,
@@ -1598,14 +1589,12 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Destroy matrix transform operation descriptor.\n\n \\retval     CUBLAS_STATUS_SUCCESS  if operation was successful"]
-    pub fn cublasLtMatrixTransformDescDestroy(
-        transformDesc: cublasLtMatrixTransformDesc_t,
-    ) -> cublasStatus_t;
+    #[doc = "Destroy matrix transform operation descriptor.\n\\retval CUBLAS_STATUS_SUCCESS  if operation was successful"]
+    pub fn cublasLtMatrixTransformDescDestroy(transformDesc: cublasLtMatrixTransformDesc_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Set matrix transform operation descriptor attribute.\n\n \\param[in]  transformDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[in]  buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+    #[doc = "Set matrix transform operation descriptor attribute.\n\n# Arguments\n\n* `transformDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [in]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
     pub fn cublasLtMatrixTransformDescSetAttribute(
         transformDesc: cublasLtMatrixTransformDesc_t,
         attr: cublasLtMatrixTransformDescAttributes_t,
@@ -1615,7 +1604,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Get matrix transform operation descriptor attribute.\n\n \\param[in]  transformDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[out] buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\n of bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+    #[doc = "Get matrix transform operation descriptor attribute.\n\n# Arguments\n\n* `transformDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [out]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\nof bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
     pub fn cublasLtMatrixTransformDescGetAttribute(
         transformDesc: cublasLtMatrixTransformDesc_t,
         attr: cublasLtMatrixTransformDescAttributes_t,
@@ -1625,45 +1614,40 @@ unsafe extern "C" {
     ) -> cublasStatus_t;
 }
 #[repr(u32)]
-#[doc = " Emulation descriptor attributes to configure floating point emulation"]
+#[doc = "Emulation descriptor attributes to configure floating point emulation"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtEmulationDescAttributes_t {
-    #[doc = " Strategy, see cublasEmulationStrategy_t.  Defines when to use floating point emulation\n algorithms.\n\n int32_t, default: 0"]
+    #[doc = "Strategy, see cublasEmulationStrategy_t.  Defines when to use floating point emulation\nalgorithms.\nint32_t, default: 0"]
     CUBLASLT_EMULATION_DESC_STRATEGY = 0,
-    #[doc = " Special values support, see cudaEmulationSpecialValuesSupport.  Defines a bit mask of special\n cases in floating-point representations that must be supported.\n\n int32_t, default: 0xFFFF"]
+    #[doc = "Special values support, see cudaEmulationSpecialValuesSupport.  Defines a bit mask of special\ncases in floating-point representations that must be supported.\nint32_t, default: 0xFFFF"]
     CUBLASLT_EMULATION_DESC_SPECIAL_VALUES_SUPPORT = 1,
-    #[doc = " Mantissa control, see cudaEmulationMantissaControl.  For fixed-point emulation, defines how to compute the number\n of retained mantissa bits.\n\n Fixed-point emulation relies on lower precision data types.  We define a \"quantize\" function which upscales the\n input mantissa bit count to a value greater than or equal to the input.  This quantized value fully leverages the\n underlying representation without increasing the number of lower precision data types required.\n\n For a \"dynamic\" mantissa control, the recommended number of retained mantissa bits are computed to have the same or\n higher accuracy as the floating-point representation being emulated and then quantized as follows:\n   mantissa_bit_count = quantize(recommended_mantissa_bit_count + mantissa_bit_offset);\n\n  - NOTE: If the mantissa_bit_count exceeds quantize(max_mantissa_bit_count), then a floating-point\n          representation is used.\n\n For a \"fixed\" mantissa control, the number of retained mantissa bits are computed as follows:\n   mantissa_bitcount = quantize(max_mantissa_bit_count)\n\n For more details on quantization and fixed-point emulation, see:\n https://docs.nvidia.com/cuda/cublas/index.html#floating-point-emulation\n\n int32_t, default: 0"]
+    #[doc = "Mantissa control, see cudaEmulationMantissaControl.  For fixed-point emulation, defines how to compute the number\nof retained mantissa bits.\nFixed-point emulation relies on lower precision data types.  We define a \"quantize\" function which upscales the\ninput mantissa bit count to a value greater than or equal to the input.  This quantized value fully leverages the\nunderlying representation without increasing the number of lower precision data types required.\nFor a \"dynamic\" mantissa control, the recommended number of retained mantissa bits are computed to have the same or\nhigher accuracy as the floating-point representation being emulated and then quantized as follows:\nmantissa_bit_count = quantize(recommended_mantissa_bit_count + mantissa_bit_offset);\n- NOTE: If the mantissa_bit_count exceeds quantize(max_mantissa_bit_count), then a floating-point\nrepresentation is used.\nFor a \"fixed\" mantissa control, the number of retained mantissa bits are computed as follows:\nmantissa_bitcount = quantize(max_mantissa_bit_count)\nFor more details on quantization and fixed-point emulation, see:\nhttps://docs.nvidia.com/cuda/cublas/index.html#floating-point-emulation\nint32_t, default: 0"]
     CUBLASLT_EMULATION_DESC_FIXEDPOINT_MANTISSA_CONTROL = 2,
-    #[doc = " For fixed-point emulation only.  An int32_t representing the maximum (up to quantization) number of mantissa bits\n to retain during fixed-point emulation.\n\n A default value of 0 allows the library to select a reasonable value based on device properties, see the\n floating-point emulation documentation for more details.\n\n int32_t, default: 0"]
+    #[doc = "For fixed-point emulation only.  An int32_t representing the maximum (up to quantization) number of mantissa bits\nto retain during fixed-point emulation.\nA default value of 0 allows the library to select a reasonable value based on device properties, see the\nfloating-point emulation documentation for more details.\nint32_t, default: 0"]
     CUBLASLT_EMULATION_DESC_FIXEDPOINT_MAX_MANTISSA_BIT_COUNT = 3,
-    #[doc = " This parameter is for fixed-point emulation with a \"dynamic\" mantissa control.  An integer which can be used to\n bias the number of recommended mantissa bits.\n\n int32_t, default: 0"]
+    #[doc = "This parameter is for fixed-point emulation with a \"dynamic\" mantissa control.  An integer which can be used to\nbias the number of recommended mantissa bits.\nint32_t, default: 0"]
     CUBLASLT_EMULATION_DESC_FIXEDPOINT_MANTISSA_BIT_OFFSET = 4,
-    #[doc = " This parameter is for fixed-point emulation.  A device pointer which will contain the number of mantissa bits that\n were retained.\n\n If emulation is not used, the pointer will contain -1.\n\n int32_t *, default: NULL"]
+    #[doc = "This parameter is for fixed-point emulation.  A device pointer which will contain the number of mantissa bits that\nwere retained.\nIf emulation is not used, the pointer will contain -1.\nint32_t *, default: NULL"]
     CUBLASLT_EMULATION_DESC_FIXEDPOINT_MANTISSA_BIT_COUNT_POINTER = 5,
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Internal. Do not use directly."]
-    pub fn cublasLtEmulationDescInit_internal(
-        emulationDesc: cublasLtEmulationDesc_t,
-        size: usize,
-    ) -> cublasStatus_t;
+    #[doc = "Internal. Do not use directly."]
+    pub fn cublasLtEmulationDescInit_internal(emulationDesc: cublasLtEmulationDesc_t, size: usize) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Create new emulation descriptor.\n\n \\retval     CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n \\retval     CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
-    pub fn cublasLtEmulationDescCreate(
-        emulationDesc: *mut cublasLtEmulationDesc_t,
-    ) -> cublasStatus_t;
+    #[doc = "Create new emulation descriptor.\n\\retval CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n\\retval CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
+    pub fn cublasLtEmulationDescCreate(emulationDesc: *mut cublasLtEmulationDesc_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Destroy emulation descriptor.\n\n \\retval     CUBLAS_STATUS_SUCCESS  if operation was successful"]
+    #[doc = "Destroy emulation descriptor.\n\\retval CUBLAS_STATUS_SUCCESS  if operation was successful"]
     pub fn cublasLtEmulationDescDestroy(emulationDesc: cublasLtEmulationDesc_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Set emulation descriptor attribute.\n\n \\param[in]  emulationDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[in]  buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+    #[doc = "Set emulation descriptor attribute.\n\n# Arguments\n\n* `emulationDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [in]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
     pub fn cublasLtEmulationDescSetAttribute(
         emulationDesc: cublasLtEmulationDesc_t,
         attr: cublasLtEmulationDescAttributes_t,
@@ -1673,7 +1657,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Get emulation descriptor attribute.\n\n \\param[in]  emulationDesc  The descriptor\n \\param[in]  attr           The attribute\n \\param[out] buf            memory address containing the new value\n \\param[in]  sizeInBytes    size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\n of bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+    #[doc = "Get emulation descriptor attribute.\n\n# Arguments\n\n* `emulationDesc` [in]  -  The descriptor\n* `attr` [in]  -           The attribute\n* `buf` [out]  -            memory address containing the new value\n* `sizeInBytes` [in]  -    size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -    only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number\nof bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
     pub fn cublasLtEmulationDescGetAttribute(
         emulationDesc: cublasLtEmulationDesc_t,
         attr: cublasLtEmulationDescAttributes_t,
@@ -1683,132 +1667,129 @@ unsafe extern "C" {
     ) -> cublasStatus_t;
 }
 #[repr(u32)]
-#[doc = " Reduction scheme for portions of the dot-product calculated in parallel (a. k. a. \"split - K\")."]
+#[doc = "Reduction scheme for portions of the dot-product calculated in parallel (a. k. a. \"split - K\")."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtReductionScheme_t {
-    #[doc = " No reduction scheme, dot-product shall be performed in one sequence."]
+    #[doc = "No reduction scheme, dot-product shall be performed in one sequence."]
     CUBLASLT_REDUCTION_SCHEME_NONE = 0,
-    #[doc = " Reduction is performed \"in place\" - using the output buffer (and output data type) and counters (in workspace) to\n guarantee the sequentiality."]
+    #[doc = "Reduction is performed \"in place\" - using the output buffer (and output data type) and counters (in workspace) to\nguarantee the sequentiality."]
     CUBLASLT_REDUCTION_SCHEME_INPLACE = 1,
-    #[doc = " Intermediate results are stored in compute type in the workspace and reduced in a separate step."]
+    #[doc = "Intermediate results are stored in compute type in the workspace and reduced in a separate step."]
     CUBLASLT_REDUCTION_SCHEME_COMPUTE_TYPE = 2,
-    #[doc = " Intermediate results are stored in output type in the workspace and reduced in a separate step."]
+    #[doc = "Intermediate results are stored in output type in the workspace and reduced in a separate step."]
     CUBLASLT_REDUCTION_SCHEME_OUTPUT_TYPE = 4,
-    #[doc = " Intermediate results are stored in output type in the workspace and reduced in a separate step."]
+    #[doc = "Intermediate results are stored in output type in the workspace and reduced in a separate step."]
     CUBLASLT_REDUCTION_SCHEME_MASK = 7,
 }
 #[repr(u32)]
-#[doc = " Postprocessing options for the epilogue"]
+#[doc = "Postprocessing options for the epilogue"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtEpilogue_t {
-    #[doc = " No special postprocessing, just scale and quantize results if necessary."]
+    #[doc = "No special postprocessing, just scale and quantize results if necessary."]
     CUBLASLT_EPILOGUE_DEFAULT = 1,
-    #[doc = " ReLu, apply ReLu point-wise transform to the results (x:=max(x, 0))."]
+    #[doc = "ReLu, apply ReLu point-wise transform to the results (x:=max(x, 0))."]
     CUBLASLT_EPILOGUE_RELU = 2,
-    #[doc = " ReLu, apply ReLu point-wise transform to the results (x:=max(x, 0)).\n\n This epilogue mode produces an extra output, a ReLu bit-mask matrix,\n see CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "ReLu, apply ReLu point-wise transform to the results (x:=max(x, 0)).\nThis epilogue mode produces an extra output, a ReLu bit-mask matrix,\nsee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_RELU_AUX = 130,
-    #[doc = " Bias, apply (broadcasted) Bias from bias vector. Bias vector length must match matrix D rows, it must be packed\n (stride between vector elements is 1). Bias vector is broadcasted to all columns and added before applying final\n postprocessing."]
+    #[doc = "Bias, apply (broadcasted) Bias from bias vector. Bias vector length must match matrix D rows, it must be packed\n(stride between vector elements is 1). Bias vector is broadcasted to all columns and added before applying final\npostprocessing."]
     CUBLASLT_EPILOGUE_BIAS = 4,
-    #[doc = " ReLu and Bias, apply Bias and then ReLu transform"]
+    #[doc = "ReLu and Bias, apply Bias and then ReLu transform"]
     CUBLASLT_EPILOGUE_RELU_BIAS = 6,
-    #[doc = " ReLu and Bias, apply Bias and then ReLu transform\n\n This epilogue mode produces an extra output, a ReLu bit-mask matrix,\n see CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "ReLu and Bias, apply Bias and then ReLu transform\nThis epilogue mode produces an extra output, a ReLu bit-mask matrix,\nsee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_RELU_AUX_BIAS = 134,
-    #[doc = " ReLu and Bias, apply Bias and then ReLu transform\n\n This epilogue mode produces an extra output, a ReLu bit-mask matrix,\n see CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "ReLu and Bias, apply Bias and then ReLu transform\nThis epilogue mode produces an extra output, a ReLu bit-mask matrix,\nsee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_DRELU = 136,
-    #[doc = " ReLu and Bias, apply Bias and then ReLu transform\n\n This epilogue mode produces an extra output, a ReLu bit-mask matrix,\n see CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "ReLu and Bias, apply Bias and then ReLu transform\nThis epilogue mode produces an extra output, a ReLu bit-mask matrix,\nsee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_DRELU_BGRAD = 152,
-    #[doc = " GELU, apply GELU point-wise transform to the results (x:=GELU(x))."]
+    #[doc = "GELU, apply GELU point-wise transform to the results (x:=GELU(x))."]
     CUBLASLT_EPILOGUE_GELU = 32,
-    #[doc = " GELU, apply GELU point-wise transform to the results (x:=GELU(x)).\n\n This epilogue mode outputs GELU input as a separate matrix (useful for training).\n See CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "GELU, apply GELU point-wise transform to the results (x:=GELU(x)).\nThis epilogue mode outputs GELU input as a separate matrix (useful for training).\nSee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_GELU_AUX = 160,
-    #[doc = " GELU and Bias, apply Bias and then GELU transform"]
+    #[doc = "GELU and Bias, apply Bias and then GELU transform"]
     CUBLASLT_EPILOGUE_GELU_BIAS = 36,
-    #[doc = " GELU and Bias, apply Bias and then GELU transform\n\n This epilogue mode outputs GELU input as a separate matrix (useful for training).\n See CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "GELU and Bias, apply Bias and then GELU transform\nThis epilogue mode outputs GELU input as a separate matrix (useful for training).\nSee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_GELU_AUX_BIAS = 164,
-    #[doc = " GELU and Bias, apply Bias and then GELU transform\n\n This epilogue mode outputs GELU input as a separate matrix (useful for training).\n See CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "GELU and Bias, apply Bias and then GELU transform\nThis epilogue mode outputs GELU input as a separate matrix (useful for training).\nSee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_DGELU = 192,
-    #[doc = " GELU and Bias, apply Bias and then GELU transform\n\n This epilogue mode outputs GELU input as a separate matrix (useful for training).\n See CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
+    #[doc = "GELU and Bias, apply Bias and then GELU transform\nThis epilogue mode outputs GELU input as a separate matrix (useful for training).\nSee CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER."]
     CUBLASLT_EPILOGUE_DGELU_BGRAD = 208,
-    #[doc = " Bias gradient based on the input matrix A.\n\n The bias size corresponds to the number of rows of the matrix D.\n The reduction happens over the GEMM's \"k\" dimension.\n\n Stores Bias gradient in the auxiliary output\n (see CUBLASLT_MATMUL_DESC_BIAS_POINTER)."]
+    #[doc = "Bias gradient based on the input matrix A.\nThe bias size corresponds to the number of rows of the matrix D.\nThe reduction happens over the GEMM's \"k\" dimension.\nStores Bias gradient in the auxiliary output\n(see CUBLASLT_MATMUL_DESC_BIAS_POINTER)."]
     CUBLASLT_EPILOGUE_BGRADA = 256,
-    #[doc = " Bias gradient based on the input matrix B.\n\n The bias size corresponds to the number of columns of the matrix D.\n The reduction happens over the GEMM's \"k\" dimension.\n\n Stores Bias gradient in the auxiliary output\n (see CUBLASLT_MATMUL_DESC_BIAS_POINTER)."]
+    #[doc = "Bias gradient based on the input matrix B.\nThe bias size corresponds to the number of columns of the matrix D.\nThe reduction happens over the GEMM's \"k\" dimension.\nStores Bias gradient in the auxiliary output\n(see CUBLASLT_MATMUL_DESC_BIAS_POINTER)."]
     CUBLASLT_EPILOGUE_BGRADB = 512,
 }
 #[repr(u32)]
-#[doc = " Matmul heuristic search mode"]
+#[doc = "Matmul heuristic search mode"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulSearch_t {
-    #[doc = " ask heuristics for best algo for given usecase"]
+    #[doc = "ask heuristics for best algo for given usecase"]
     CUBLASLT_SEARCH_BEST_FIT = 0,
-    #[doc = " only try to find best config for preconfigured algo id"]
+    #[doc = "only try to find best config for preconfigured algo id"]
     CUBLASLT_SEARCH_LIMITED_BY_ALGO_ID = 1,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_02 = 2,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_03 = 3,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_04 = 4,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_05 = 5,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_06 = 6,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_07 = 7,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_08 = 8,
-    #[doc = " reserved for future use"]
+    #[doc = "reserved for future use"]
     CUBLASLT_SEARCH_RESERVED_09 = 9,
 }
 #[repr(u32)]
-#[doc = " Algo search preference to fine tune the heuristic function."]
+#[doc = "Algo search preference to fine tune the heuristic function."]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulPreferenceAttributes_t {
-    #[doc = " Search mode, see cublasLtMatmulSearch_t.\n\n uint32_t, default: CUBLASLT_SEARCH_BEST_FIT"]
+    #[doc = "Search mode, see cublasLtMatmulSearch_t.\nuint32_t, default: CUBLASLT_SEARCH_BEST_FIT"]
     CUBLASLT_MATMUL_PREF_SEARCH_MODE = 0,
-    #[doc = " Maximum allowed workspace size in bytes.\n\n uint64_t, default: 0 - no workspace allowed"]
+    #[doc = "Maximum allowed workspace size in bytes.\nuint64_t, default: 0 - no workspace allowed"]
     CUBLASLT_MATMUL_PREF_MAX_WORKSPACE_BYTES = 1,
-    #[doc = " Reduction scheme mask, see cublasLtReductionScheme_t. Filters heuristic result to only include algo configs that\n use one of the required modes.\n\n E.g. mask value of 0x03 will allow only INPLACE and COMPUTE_TYPE reduction schemes.\n\n uint32_t, default: CUBLASLT_REDUCTION_SCHEME_MASK (allows all reduction schemes)"]
+    #[doc = "Reduction scheme mask, see cublasLtReductionScheme_t. Filters heuristic result to only include algo configs that\nuse one of the required modes.\nE.g. mask value of 0x03 will allow only INPLACE and COMPUTE_TYPE reduction schemes.\nuint32_t, default: CUBLASLT_REDUCTION_SCHEME_MASK (allows all reduction schemes)"]
     CUBLASLT_MATMUL_PREF_REDUCTION_SCHEME_MASK = 3,
-    #[doc = " Minimum buffer alignment for matrix A (in bytes).\n\n Selecting a smaller value will exclude algorithms that can not work with matrix A that is not as strictly aligned\n as they need.\n\n uint32_t, default: 256"]
+    #[doc = "Minimum buffer alignment for matrix A (in bytes).\nSelecting a smaller value will exclude algorithms that can not work with matrix A that is not as strictly aligned\nas they need.\nuint32_t, default: 256"]
     CUBLASLT_MATMUL_PREF_MIN_ALIGNMENT_A_BYTES = 5,
-    #[doc = " Minimum buffer alignment for matrix B (in bytes).\n\n Selecting a smaller value will exclude algorithms that can not work with matrix B that is not as strictly aligned\n as they need.\n\n uint32_t, default: 256"]
+    #[doc = "Minimum buffer alignment for matrix B (in bytes).\nSelecting a smaller value will exclude algorithms that can not work with matrix B that is not as strictly aligned\nas they need.\nuint32_t, default: 256"]
     CUBLASLT_MATMUL_PREF_MIN_ALIGNMENT_B_BYTES = 6,
-    #[doc = " Minimum buffer alignment for matrix C (in bytes).\n\n Selecting a smaller value will exclude algorithms that can not work with matrix C that is not as strictly aligned\n as they need.\n\n uint32_t, default: 256"]
+    #[doc = "Minimum buffer alignment for matrix C (in bytes).\nSelecting a smaller value will exclude algorithms that can not work with matrix C that is not as strictly aligned\nas they need.\nuint32_t, default: 256"]
     CUBLASLT_MATMUL_PREF_MIN_ALIGNMENT_C_BYTES = 7,
-    #[doc = " Minimum buffer alignment for matrix D (in bytes).\n\n Selecting a smaller value will exclude algorithms that can not work with matrix D that is not as strictly aligned\n as they need.\n\n uint32_t, default: 256"]
+    #[doc = "Minimum buffer alignment for matrix D (in bytes).\nSelecting a smaller value will exclude algorithms that can not work with matrix D that is not as strictly aligned\nas they need.\nuint32_t, default: 256"]
     CUBLASLT_MATMUL_PREF_MIN_ALIGNMENT_D_BYTES = 8,
-    #[doc = " Maximum wave count.\n\n See cublasLtMatmulHeuristicResult_t::wavesCount.\n\n Selecting a non-zero value will exclude algorithms that report device utilization higher than specified.\n\n float, default: 0.0f"]
+    #[doc = "Maximum wave count.\nSee cublasLtMatmulHeuristicResult_t::wavesCount.\nSelecting a non-zero value will exclude algorithms that report device utilization higher than specified.\nfloat, default: 0.0f"]
     CUBLASLT_MATMUL_PREF_MAX_WAVES_COUNT = 9,
-    #[doc = " Numerical implementation details mask, see cublasLtNumericalImplFlags_t. Filters heuristic result to only include\n algorithms that use the allowed implementations.\n\n uint64_t, default: uint64_t(-1) (allow everything)"]
+    #[doc = "Numerical implementation details mask, see cublasLtNumericalImplFlags_t. Filters heuristic result to only include\nalgorithms that use the allowed implementations.\nuint64_t, default: uint64_t(-1) (allow everything)"]
     CUBLASLT_MATMUL_PREF_IMPL_MASK = 12,
-    #[doc = " Experimental: Average reduction dimension.\n\n uint32_t, default: 0"]
+    #[doc = "Experimental: Average reduction dimension.\nuint32_t, default: 0"]
     CUBLASLT_MATMUL_PREF_GROUPED_AVERAGE_REDUCTION_DIM = 13,
-    #[doc = " Experimental: Average rows of matrix D.\n\n uint32_t, default: 0"]
+    #[doc = "Experimental: Average rows of matrix D.\nuint32_t, default: 0"]
     CUBLASLT_MATMUL_PREF_GROUPED_DESC_D_AVERAGE_ROWS = 14,
-    #[doc = " Experimental: Average columns of matrix D.\n\n uint32_t, default: 0"]
+    #[doc = "Experimental: Average columns of matrix D.\nuint32_t, default: 0"]
     CUBLASLT_MATMUL_PREF_GROUPED_DESC_D_AVERAGE_COLS = 15,
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Internal. Do not use directly."]
-    pub fn cublasLtMatmulPreferenceInit_internal(
-        pref: cublasLtMatmulPreference_t,
-        size: usize,
-    ) -> cublasStatus_t;
+    #[doc = "Internal. Do not use directly."]
+    pub fn cublasLtMatmulPreferenceInit_internal(pref: cublasLtMatmulPreference_t, size: usize) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Create new matmul heuristic search preference descriptor.\n\n \\retval     CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n \\retval     CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
+    #[doc = "Create new matmul heuristic search preference descriptor.\n\\retval CUBLAS_STATUS_ALLOC_FAILED  if memory could not be allocated\n\\retval CUBLAS_STATUS_SUCCESS       if desciptor was created successfully"]
     pub fn cublasLtMatmulPreferenceCreate(pref: *mut cublasLtMatmulPreference_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Destroy matmul heuristic search preference descriptor.\n\n \\retval     CUBLAS_STATUS_SUCCESS  if operation was successful"]
+    #[doc = "Destroy matmul heuristic search preference descriptor.\n\\retval CUBLAS_STATUS_SUCCESS  if operation was successful"]
     pub fn cublasLtMatmulPreferenceDestroy(pref: cublasLtMatmulPreference_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Set matmul heuristic search preference descriptor attribute.\n\n \\param[in]  pref         The descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+    #[doc = "Set matmul heuristic search preference descriptor attribute.\n\n# Arguments\n\n* `pref` [in]  -         The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
     pub fn cublasLtMatmulPreferenceSetAttribute(
         pref: cublasLtMatmulPreference_t,
         attr: cublasLtMatmulPreferenceAttributes_t,
@@ -1818,7 +1799,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Get matmul heuristic search preference descriptor attribute.\n\n \\param[in]  pref         The descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+    #[doc = "Get matmul heuristic search preference descriptor attribute.\n\n# Arguments\n\n* `pref` [in]  -         The descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
     pub fn cublasLtMatmulPreferenceGetAttribute(
         pref: cublasLtMatmulPreference_t,
         attr: cublasLtMatmulPreferenceAttributes_t,
@@ -1827,17 +1808,17 @@ unsafe extern "C" {
         sizeWritten: *mut usize,
     ) -> cublasStatus_t;
 }
-#[doc = " Results structure used by cublasLtMatmulAlgoGetHeuristic\n\n Holds returned configured algo descriptor and its runtime properties."]
+#[doc = "Results structure used by cublasLtMatmulAlgoGetHeuristic\nHolds returned configured algo descriptor and its runtime properties."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct cublasLtMatmulHeuristicResult_t {
-    #[doc = " Matmul algorithm descriptor.\n\n Must be initialized with cublasLtMatmulAlgoInit() if preferences' CUBLASLT_MATMUL_PERF_SEARCH_MODE is set to\n CUBLASLT_SEARCH_LIMITED_BY_ALGO_ID"]
+    #[doc = "Matmul algorithm descriptor.\nMust be initialized with cublasLtMatmulAlgoInit() if preferences' CUBLASLT_MATMUL_PERF_SEARCH_MODE is set to\nCUBLASLT_SEARCH_LIMITED_BY_ALGO_ID"]
     pub algo: cublasLtMatmulAlgo_t,
-    #[doc = " Actual size of workspace memory required."]
+    #[doc = "Actual size of workspace memory required."]
     pub workspaceSize: usize,
-    #[doc = " Result status, other fields are only valid if after call to cublasLtMatmulAlgoGetHeuristic() this member is set to\n CUBLAS_STATUS_SUCCESS."]
+    #[doc = "Result status, other fields are only valid if after call to cublasLtMatmulAlgoGetHeuristic() this member is set to\nCUBLAS_STATUS_SUCCESS."]
     pub state: cublasStatus_t,
-    #[doc = " Waves count - a device utilization metric.\n\n wavesCount value of 1.0f suggests that when kernel is launched it will fully occupy the GPU."]
+    #[doc = "Waves count - a device utilization metric.\nwavesCount value of 1.0f suggests that when kernel is launched it will fully occupy the GPU."]
     pub wavesCount: f32,
     pub reserved: [::std::os::raw::c_int; 4usize],
 }
@@ -1852,7 +1833,7 @@ impl Default for cublasLtMatmulHeuristicResult_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Query cublasLt heuristic for algorithm appropriate for given use case.\n\n \\param[in]      lightHandle            Pointer to the allocated cuBLASLt handle for the cuBLASLt\n                                        context. See cublasLtHandle_t.\n \\param[in]      operationDesc          Handle to the matrix multiplication descriptor.\n \\param[in]      Adesc                  Handle to the layout descriptors for matrix A.\n \\param[in]      Bdesc                  Handle to the layout descriptors for matrix B.\n \\param[in]      Cdesc                  Handle to the layout descriptors for matrix C.\n \\param[in]      Ddesc                  Handle to the layout descriptors for matrix D.\n \\param[in]      preference             Pointer to the structure holding the heuristic search\n                                        preferences descriptor. See cublasLtMatrixLayout_t.\n \\param[in]      requestedAlgoCount     Size of heuristicResultsArray (in elements) and requested\n                                        maximum number of algorithms to return.\n \\param[in, out] heuristicResultsArray  Output algorithms and associated runtime characteristics,\n                                        ordered in increasing estimated compute time.\n \\param[out]     returnAlgoCount        The number of heuristicResultsArray elements written.\n\n \\retval  CUBLAS_STATUS_INVALID_VALUE   if requestedAlgoCount is less or equal to zero\n \\retval  CUBLAS_STATUS_NOT_SUPPORTED   if no heuristic function available for current configuration\n \\retval  CUBLAS_STATUS_SUCCESS         if query was successful, inspect\n                                        heuristicResultsArray[0 to (returnAlgoCount - 1)].state\n                                        for detail status of results"]
+    #[doc = "Query cublasLt heuristic for algorithm appropriate for given use case.\n\n# Arguments\n\n* `lightHandle` [in]  -            Pointer to the allocated cuBLASLt handle for the cuBLASLt\ncontext. See cublasLtHandle_t.\n* `operationDesc` [in]  -          Handle to the matrix multiplication descriptor.\n* `Adesc` [in]  -                  Handle to the layout descriptors for matrix A.\n* `Bdesc` [in]  -                  Handle to the layout descriptors for matrix B.\n* `Cdesc` [in]  -                  Handle to the layout descriptors for matrix C.\n* `Ddesc` [in]  -                  Handle to the layout descriptors for matrix D.\n* `preference` [in]  -             Pointer to the structure holding the heuristic search\npreferences descriptor. See cublasLtMatrixLayout_t.\n* `requestedAlgoCount` [in]  -     Size of heuristicResultsArray (in elements) and requested\nmaximum number of algorithms to return.\n* `heuristicResultsArray` [in, out]  -  Output algorithms and associated runtime characteristics,\nordered in increasing estimated compute time.\n* `returnAlgoCount` [out]  -        The number of heuristicResultsArray elements written.\n\\retval CUBLAS_STATUS_INVALID_VALUE   if requestedAlgoCount is less or equal to zero\n\\retval CUBLAS_STATUS_NOT_SUPPORTED   if no heuristic function available for current configuration\n\\retval CUBLAS_STATUS_SUCCESS         if query was successful, inspect\nheuristicResultsArray[0 to (returnAlgoCount - 1)].state\nfor detail status of results"]
     pub fn cublasLtMatmulAlgoGetHeuristic(
         lightHandle: cublasLtHandle_t,
         operationDesc: cublasLtMatmulDesc_t,
@@ -1868,7 +1849,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Routine to get all algo IDs that can potentially run\n\n \\param[in]  int              requestedAlgoCount requested number of algos (must be less or equal to size of algoIdsA\n (in elements)) \\param[out] algoIdsA         array to write algoIds to \\param[out] returnAlgoCount  number of algoIds\n actually written\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if requestedAlgoCount is less or equal to zero\n \\retval     CUBLAS_STATUS_SUCCESS        if query was successful, inspect returnAlgoCount to get actual number of IDs\n                                          available"]
+    #[doc = "Routine to get all algo IDs that can potentially run\n\n# Arguments\n\n* `int` [in]  -              requestedAlgoCount requested number of algos (must be less or equal to size of algoIdsA\n(in elements)) * `algoIdsA` [out]  -         array to write algoIds to * `returnAlgoCount` [out]  -  number of algoIds\nactually written\n\\retval CUBLAS_STATUS_INVALID_VALUE  if requestedAlgoCount is less or equal to zero\n\\retval CUBLAS_STATUS_SUCCESS        if query was successful, inspect returnAlgoCount to get actual number of IDs\navailable"]
     pub fn cublasLtMatmulAlgoGetIds(
         lightHandle: cublasLtHandle_t,
         computeType: cublasComputeType_t,
@@ -1884,7 +1865,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Initialize algo structure\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if algo is NULL or algoId is outside of recognized range\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED  if algoId is not supported for given combination of data types\n \\retval     CUBLAS_STATUS_SUCCESS        if the structure was successfully initialized"]
+    #[doc = "Initialize algo structure\n\\retval CUBLAS_STATUS_INVALID_VALUE  if algo is NULL or algoId is outside of recognized range\n\\retval CUBLAS_STATUS_NOT_SUPPORTED  if algoId is not supported for given combination of data types\n\\retval CUBLAS_STATUS_SUCCESS        if the structure was successfully initialized"]
     pub fn cublasLtMatmulAlgoInit(
         lightHandle: cublasLtHandle_t,
         computeType: cublasComputeType_t,
@@ -1899,7 +1880,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Check configured algo descriptor for correctness and support on current device.\n\n Result includes required workspace size and calculated wave count.\n\n CUBLAS_STATUS_SUCCESS doesn't fully guarantee algo will run (will fail if e.g. buffers are not correctly aligned);\n but if cublasLtMatmulAlgoCheck fails, the algo will not run.\n\n \\param[in]  algo    algo configuration to check\n \\param[out] result  result structure to report algo runtime characteristics; algo field is never updated\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if matrix layout descriptors or operation descriptor don't match algo\n                                          descriptor\n \\retval     CUBLAS_STATUS_NOT_SUPPORTED  if algo configuration or data type combination is not currently supported on\n                                          given device\n \\retval     CUBLAS_STATUS_ARCH_MISMATCH  if algo configuration cannot be run using the selected device\n \\retval     CUBLAS_STATUS_SUCCESS        if check was successful"]
+    #[doc = "Check configured algo descriptor for correctness and support on current device.\nResult includes required workspace size and calculated wave count.\nCUBLAS_STATUS_SUCCESS doesn't fully guarantee algo will run (will fail if e.g. buffers are not correctly aligned);\nbut if cublasLtMatmulAlgoCheck fails, the algo will not run.\n\n# Arguments\n\n* `algo` [in]  -    algo configuration to check\n* `result` [out]  -  result structure to report algo runtime characteristics; algo field is never updated\n\\retval CUBLAS_STATUS_INVALID_VALUE  if matrix layout descriptors or operation descriptor don't match algo\ndescriptor\n\\retval CUBLAS_STATUS_NOT_SUPPORTED  if algo configuration or data type combination is not currently supported on\ngiven device\n\\retval CUBLAS_STATUS_ARCH_MISMATCH  if algo configuration cannot be run using the selected device\n\\retval CUBLAS_STATUS_SUCCESS        if check was successful"]
     pub fn cublasLtMatmulAlgoCheck(
         lightHandle: cublasLtHandle_t,
         operationDesc: cublasLtMatmulDesc_t,
@@ -1912,55 +1893,55 @@ unsafe extern "C" {
     ) -> cublasStatus_t;
 }
 #[repr(u32)]
-#[doc = " Capabilities Attributes that can be retrieved from an initialized Algo structure"]
+#[doc = "Capabilities Attributes that can be retrieved from an initialized Algo structure"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulAlgoCapAttributes_t {
-    #[doc = " support for split K, see CUBLASLT_ALGO_CONFIG_SPLITK_NUM\n\n int32_t, 0 means no support, supported otherwise"]
+    #[doc = "support for split K, see CUBLASLT_ALGO_CONFIG_SPLITK_NUM\nint32_t, 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_SPLITK_SUPPORT = 0,
-    #[doc = " reduction scheme mask, see cublasLtReductionScheme_t; shows supported reduction schemes, if reduction scheme is\n not masked out it is supported.\n\n e.g. int isReductionSchemeComputeTypeSupported ? (reductionSchemeMask & CUBLASLT_REDUCTION_SCHEME_COMPUTE_TYPE) ==\n CUBLASLT_REDUCTION_SCHEME_COMPUTE_TYPE ? 1 : 0;\n\n uint32_t"]
+    #[doc = "reduction scheme mask, see cublasLtReductionScheme_t; shows supported reduction schemes, if reduction scheme is\nnot masked out it is supported.\ne.g. int isReductionSchemeComputeTypeSupported ? (reductionSchemeMask & CUBLASLT_REDUCTION_SCHEME_COMPUTE_TYPE) ==\nCUBLASLT_REDUCTION_SCHEME_COMPUTE_TYPE ? 1 : 0;\nuint32_t"]
     CUBLASLT_ALGO_CAP_REDUCTION_SCHEME_MASK = 1,
-    #[doc = " support for cta swizzling, see CUBLASLT_ALGO_CONFIG_CTA_SWIZZLING\n\n uint32_t, 0 means no support, 1 means supported value of 1, other values are reserved"]
+    #[doc = "support for cta swizzling, see CUBLASLT_ALGO_CONFIG_CTA_SWIZZLING\nuint32_t, 0 means no support, 1 means supported value of 1, other values are reserved"]
     CUBLASLT_ALGO_CAP_CTA_SWIZZLING_SUPPORT = 2,
-    #[doc = " support strided batch\n\n int32_t, 0 means no support, supported otherwise"]
+    #[doc = "support strided batch\nint32_t, 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_STRIDED_BATCH_SUPPORT = 3,
-    #[doc = " support results out of place (D != C in D = alpha.A.B + beta.C)\n\n int32_t, 0 means no support, supported otherwise"]
+    #[doc = "support results out of place (D != C in D = alpha.A.B + beta.C)\nint32_t, 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_OUT_OF_PLACE_RESULT_SUPPORT = 4,
-    #[doc = " syrk/herk support (on top of regular gemm)\n\n int32_t, 0 means no support, supported otherwise"]
+    #[doc = "syrk/herk support (on top of regular gemm)\nint32_t, 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_UPLO_SUPPORT = 5,
-    #[doc = " tile ids possible to use, see cublasLtMatmulTile_t; if no tile ids are supported use\n CUBLASLT_MATMUL_TILE_UNDEFINED\n\n use cublasLtMatmulAlgoCapGetAttribute() with sizeInBytes=0 to query actual count\n\n array of uint32_t"]
+    #[doc = "tile ids possible to use, see cublasLtMatmulTile_t; if no tile ids are supported use\nCUBLASLT_MATMUL_TILE_UNDEFINED\nuse cublasLtMatmulAlgoCapGetAttribute() with sizeInBytes=0 to query actual count\narray of uint32_t"]
     CUBLASLT_ALGO_CAP_TILE_IDS = 6,
-    #[doc = " custom option range is from 0 to CUBLASLT_ALGO_CAP_CUSTOM_OPTION_MAX (inclusive), see\n CUBLASLT_ALGO_CONFIG_CUSTOM_OPTION\n\n int32_t"]
+    #[doc = "custom option range is from 0 to CUBLASLT_ALGO_CAP_CUSTOM_OPTION_MAX (inclusive), see\nCUBLASLT_ALGO_CONFIG_CUSTOM_OPTION\nint32_t"]
     CUBLASLT_ALGO_CAP_CUSTOM_OPTION_MAX = 7,
-    #[doc = " describes if the algorithm supports custom (not COL or ROW memory order), see cublasLtOrder_t\n\n int32_t 0 means only COL and ROW memory order is allowed, non-zero means that algo might have different\n requirements;"]
+    #[doc = "describes if the algorithm supports custom (not COL or ROW memory order), see cublasLtOrder_t\nint32_t 0 means only COL and ROW memory order is allowed, non-zero means that algo might have different\nrequirements;"]
     CUBLASLT_ALGO_CAP_CUSTOM_MEMORY_ORDER = 10,
-    #[doc = " bitmask enumerating pointer modes algorithm supports\n\n uint32_t, see cublasLtPointerModeMask_t"]
+    #[doc = "bitmask enumerating pointer modes algorithm supports\nuint32_t, see cublasLtPointerModeMask_t"]
     CUBLASLT_ALGO_CAP_POINTER_MODE_MASK = 11,
-    #[doc = " bitmask enumerating kinds of postprocessing algorithm supports in the epilogue\n\n uint32_t, see cublasLtEpilogue_t"]
+    #[doc = "bitmask enumerating kinds of postprocessing algorithm supports in the epilogue\nuint32_t, see cublasLtEpilogue_t"]
     CUBLASLT_ALGO_CAP_EPILOGUE_MASK = 12,
-    #[doc = " stages ids possible to use, see cublasLtMatmulStages_t; if no stages ids are supported use\n CUBLASLT_MATMUL_STAGES_UNDEFINED\n\n use cublasLtMatmulAlgoCapGetAttribute() with sizeInBytes=0 to query actual count\n\n array of uint32_t"]
+    #[doc = "stages ids possible to use, see cublasLtMatmulStages_t; if no stages ids are supported use\nCUBLASLT_MATMUL_STAGES_UNDEFINED\nuse cublasLtMatmulAlgoCapGetAttribute() with sizeInBytes=0 to query actual count\narray of uint32_t"]
     CUBLASLT_ALGO_CAP_STAGES_IDS = 13,
-    #[doc = " support for nagative ld for all of the matrices\n\n int32_t 0 means no support, supported otherwise"]
+    #[doc = "support for nagative ld for all of the matrices\nint32_t 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_LD_NEGATIVE = 14,
-    #[doc = " details about algorithm's implementation that affect it's numerical behavior\n\n uint64_t, see cublasLtNumericalImplFlags_t"]
+    #[doc = "details about algorithm's implementation that affect it's numerical behavior\nuint64_t, see cublasLtNumericalImplFlags_t"]
     CUBLASLT_ALGO_CAP_NUMERICAL_IMPL_FLAGS = 15,
-    #[doc = " minimum alignment required for A matrix in bytes\n  (required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\n\n uint32_t"]
+    #[doc = "minimum alignment required for A matrix in bytes\n(required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\nuint32_t"]
     CUBLASLT_ALGO_CAP_MIN_ALIGNMENT_A_BYTES = 16,
-    #[doc = " minimum alignment required for B matrix in bytes\n  (required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\n\n uint32_t"]
+    #[doc = "minimum alignment required for B matrix in bytes\n(required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\nuint32_t"]
     CUBLASLT_ALGO_CAP_MIN_ALIGNMENT_B_BYTES = 17,
-    #[doc = " minimum alignment required for C matrix in bytes\n  (required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\n\n uint32_t"]
+    #[doc = "minimum alignment required for C matrix in bytes\n(required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\nuint32_t"]
     CUBLASLT_ALGO_CAP_MIN_ALIGNMENT_C_BYTES = 18,
-    #[doc = " minimum alignment required for D matrix in bytes\n  (required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\n\n uint32_t"]
+    #[doc = "minimum alignment required for D matrix in bytes\n(required for buffer pointer, leading dimension, and possibly other strides defined for matrix memory order)\nuint32_t"]
     CUBLASLT_ALGO_CAP_MIN_ALIGNMENT_D_BYTES = 19,
-    #[doc = " support pointer array batch\n\n int32_t, 0 means no support, supported otherwise"]
+    #[doc = "support pointer array batch\nint32_t, 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_POINTER_ARRAY_BATCH_SUPPORT = 21,
-    #[doc = " describes if the algorithm supports floating point emulation\n\n int32_t, 0 means no support, supported otherwise"]
+    #[doc = "describes if the algorithm supports floating point emulation\nint32_t, 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_FLOATING_POINT_EMULATION_SUPPORT = 22,
-    #[doc = " support pointer array grouped\n\n int32_t, 0 means no support, supported otherwise"]
+    #[doc = "support pointer array grouped\nint32_t, 0 means no support, supported otherwise"]
     CUBLASLT_ALGO_CAP_POINTER_ARRAY_GROUPED_SUPPORT = 23,
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Get algo capability attribute.\n\n E.g. to get list of supported Tile IDs:\n      cublasLtMatmulTile_t tiles[CUBLASLT_MATMUL_TILE_END];\n      size_t num_tiles, size_written;\n      if (cublasLtMatmulAlgoCapGetAttribute(algo, CUBLASLT_ALGO_CAP_TILE_IDS, tiles, sizeof(tiles), size_written) ==\n CUBLAS_STATUS_SUCCESS) { num_tiles = size_written / sizeof(tiles[0]);\n      }\n\n \\param[in]  algo         The algo descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+    #[doc = "Get algo capability attribute.\nE.g. to get list of supported Tile IDs:\ncublasLtMatmulTile_t tiles[CUBLASLT_MATMUL_TILE_END];\nsize_t num_tiles, size_written;\nif (cublasLtMatmulAlgoCapGetAttribute(algo, CUBLASLT_ALGO_CAP_TILE_IDS, tiles, sizeof(tiles), size_written) ==\nCUBLAS_STATUS_SUCCESS) { num_tiles = size_written / sizeof(tiles[0]);\n}\n\n# Arguments\n\n* `algo` [in]  -         The algo descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
     pub fn cublasLtMatmulAlgoCapGetAttribute(
         algo: *const cublasLtMatmulAlgo_t,
         attr: cublasLtMatmulAlgoCapAttributes_t,
@@ -1970,31 +1951,31 @@ unsafe extern "C" {
     ) -> cublasStatus_t;
 }
 #[repr(u32)]
-#[doc = " Algo Configuration Attributes that can be set according to the Algo capabilities"]
+#[doc = "Algo Configuration Attributes that can be set according to the Algo capabilities"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasLtMatmulAlgoConfigAttributes_t {
-    #[doc = " algorithm index, see cublasLtMatmulAlgoGetIds()\n\n readonly, set by cublasLtMatmulAlgoInit()\n int32_t"]
+    #[doc = "algorithm index, see cublasLtMatmulAlgoGetIds()\nreadonly, set by cublasLtMatmulAlgoInit()\nint32_t"]
     CUBLASLT_ALGO_CONFIG_ID = 0,
-    #[doc = " tile id, see cublasLtMatmulTile_t\n\n uint32_t, default: CUBLASLT_MATMUL_TILE_UNDEFINED"]
+    #[doc = "tile id, see cublasLtMatmulTile_t\nuint32_t, default: CUBLASLT_MATMUL_TILE_UNDEFINED"]
     CUBLASLT_ALGO_CONFIG_TILE_ID = 1,
-    #[doc = " Number of K splits. If the number of K splits is greater than one, SPLITK_NUM parts\n of matrix multiplication will be computed in parallel. The results will be accumulated\n according to CUBLASLT_ALGO_CONFIG_REDUCTION_SCHEME\n\n int32_t, default: 1"]
+    #[doc = "Number of K splits. If the number of K splits is greater than one, SPLITK_NUM parts\nof matrix multiplication will be computed in parallel. The results will be accumulated\naccording to CUBLASLT_ALGO_CONFIG_REDUCTION_SCHEME\nint32_t, default: 1"]
     CUBLASLT_ALGO_CONFIG_SPLITK_NUM = 2,
-    #[doc = " reduction scheme, see cublasLtReductionScheme_t\n\n uint32_t, default: CUBLASLT_REDUCTION_SCHEME_NONE"]
+    #[doc = "reduction scheme, see cublasLtReductionScheme_t\nuint32_t, default: CUBLASLT_REDUCTION_SCHEME_NONE"]
     CUBLASLT_ALGO_CONFIG_REDUCTION_SCHEME = 3,
-    #[doc = " cta swizzling, change mapping from CUDA grid coordinates to parts of the matrices\n\n possible values: 0, 1, other values reserved\n\n uint32_t, default: 0"]
+    #[doc = "cta swizzling, change mapping from CUDA grid coordinates to parts of the matrices\npossible values: 0, 1, other values reserved\nuint32_t, default: 0"]
     CUBLASLT_ALGO_CONFIG_CTA_SWIZZLING = 4,
-    #[doc = " custom option, each algorithm can support some custom options that don't fit description of the other config\n attributes, see CUBLASLT_ALGO_CAP_CUSTOM_OPTION_MAX to get accepted range for any specific case\n\n uint32_t, default: 0"]
+    #[doc = "custom option, each algorithm can support some custom options that don't fit description of the other config\nattributes, see CUBLASLT_ALGO_CAP_CUSTOM_OPTION_MAX to get accepted range for any specific case\nuint32_t, default: 0"]
     CUBLASLT_ALGO_CONFIG_CUSTOM_OPTION = 5,
-    #[doc = " stages id, see cublasLtMatmulStages_t\n\n uint32_t, default: CUBLASLT_MATMUL_STAGES_UNDEFINED"]
+    #[doc = "stages id, see cublasLtMatmulStages_t\nuint32_t, default: CUBLASLT_MATMUL_STAGES_UNDEFINED"]
     CUBLASLT_ALGO_CONFIG_STAGES_ID = 6,
-    #[doc = " inner shape id, see cublasLtMatmulInnerShape_t\n\n uint16_t, default: 0 (CUBLASLT_MATMUL_INNER_SHAPE_UNDEFINED)"]
+    #[doc = "inner shape id, see cublasLtMatmulInnerShape_t\nuint16_t, default: 0 (CUBLASLT_MATMUL_INNER_SHAPE_UNDEFINED)"]
     CUBLASLT_ALGO_CONFIG_INNER_SHAPE_ID = 7,
-    #[doc = " Thread Block Cluster shape id, see cublasLtClusterShape_t. Defines cluster size to use.\n\n uint16_t, default: 0 (CUBLASLT_CLUSTER_SHAPE_AUTO)"]
+    #[doc = "Thread Block Cluster shape id, see cublasLtClusterShape_t. Defines cluster size to use.\nuint16_t, default: 0 (CUBLASLT_CLUSTER_SHAPE_AUTO)"]
     CUBLASLT_ALGO_CONFIG_CLUSTER_SHAPE_ID = 8,
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Set algo configuration attribute.\n\n \\param[in]  algo         The algo descriptor\n \\param[in]  attr         The attribute\n \\param[in]  buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
+    #[doc = "Set algo configuration attribute.\n\n# Arguments\n\n* `algo` [in]  -         The algo descriptor\n* `attr` [in]  -         The attribute\n* `buf` [in]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n\\retval CUBLAS_STATUS_INVALID_VALUE  if buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute was set successfully"]
     pub fn cublasLtMatmulAlgoConfigSetAttribute(
         algo: *mut cublasLtMatmulAlgo_t,
         attr: cublasLtMatmulAlgoConfigAttributes_t,
@@ -2004,7 +1985,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Get algo configuration attribute.\n\n \\param[in]  algo         The algo descriptor\n \\param[in]  attr         The attribute\n \\param[out] buf          memory address containing the new value\n \\param[in]  sizeInBytes  size of buf buffer for verification (in bytes)\n \\param[out] sizeWritten  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\n                          bytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\n                                          and buf is NULL or sizeInBytes doesn't match size of internal storage for\n                                          selected attribute\n \\retval     CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
+    #[doc = "Get algo configuration attribute.\n\n# Arguments\n\n* `algo` [in]  -         The algo descriptor\n* `attr` [in]  -         The attribute\n* `buf` [out]  -          memory address containing the new value\n* `sizeInBytes` [in]  -  size of buf buffer for verification (in bytes)\n* `sizeWritten` [out]  -  only valid when return value is CUBLAS_STATUS_SUCCESS. If sizeInBytes is non-zero: number of\nbytes actually written, if sizeInBytes is 0: number of bytes needed to write full contents\n\\retval CUBLAS_STATUS_INVALID_VALUE  if sizeInBytes is 0 and sizeWritten is NULL, or if  sizeInBytes is non-zero\nand buf is NULL or sizeInBytes doesn't match size of internal storage for\nselected attribute\n\\retval CUBLAS_STATUS_SUCCESS        if attribute's value was successfully written to user memory"]
     pub fn cublasLtMatmulAlgoConfigGetAttribute(
         algo: *const cublasLtMatmulAlgo_t,
         attr: cublasLtMatmulAlgoConfigAttributes_t,
@@ -2013,7 +1994,7 @@ unsafe extern "C" {
         sizeWritten: *mut usize,
     ) -> cublasStatus_t;
 }
-#[doc = " Experimental: Logger callback type."]
+#[doc = "Experimental: Logger callback type."]
 pub type cublasLtLoggerCallback_t = ::std::option::Option<
     unsafe extern "C" fn(
         logLevel: ::std::os::raw::c_int,
@@ -2023,56 +2004,46 @@ pub type cublasLtLoggerCallback_t = ::std::option::Option<
 >;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Logger callback setter.\n\n \\param[in]  callback                     a user defined callback function to be called by the logger\n\n \\retval     CUBLAS_STATUS_SUCCESS        if callback was set successfully"]
+    #[doc = "Experimental: Logger callback setter.\n\n# Arguments\n\n* `callback` [in]  -                     a user defined callback function to be called by the logger\n\\retval CUBLAS_STATUS_SUCCESS        if callback was set successfully"]
     pub fn cublasLtLoggerSetCallback(callback: cublasLtLoggerCallback_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Log file setter.\n\n \\param[in]  file                         an open file with write permissions\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log file was set successfully"]
+    #[doc = "Experimental: Log file setter.\n\n# Arguments\n\n* `file` [in]  -                         an open file with write permissions\n\\retval CUBLAS_STATUS_SUCCESS        if log file was set successfully"]
     pub fn cublasLtLoggerSetFile(file: *mut FILE) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Open log file.\n\n \\param[in]  logFile                      log file path. if the log file does not exist, it will be created\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log file was created successfully"]
+    #[doc = "Experimental: Open log file.\n\n# Arguments\n\n* `logFile` [in]  -                      log file path. if the log file does not exist, it will be created\n\\retval CUBLAS_STATUS_SUCCESS        if log file was created successfully"]
     pub fn cublasLtLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Log level setter.\n\n \\param[in]  level                        log level, should be one of the following:\n                                          0. Off\n                                          1. Errors\n                                          2. Performance Trace\n                                          3. Performance Hints\n                                          4. Heuristics Trace\n                                          5. API Trace\n\n \\retval     CUBLAS_STATUS_INVALID_VALUE  if log level is not one of the above levels\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log level was set successfully"]
+    #[doc = "Experimental: Log level setter.\n\n# Arguments\n\n* `level` [in]  -                        log level, should be one of the following:\n0. Off\n1. Errors\n2. Performance Trace\n3. Performance Hints\n4. Heuristics Trace\n5. API Trace\n\\retval CUBLAS_STATUS_INVALID_VALUE  if log level is not one of the above levels\n\\retval CUBLAS_STATUS_SUCCESS        if log level was set successfully"]
     pub fn cublasLtLoggerSetLevel(level: ::std::os::raw::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Log mask setter.\n\n \\param[in]  mask                         log mask, should be a combination of the following masks:\n                                          0.  Off\n                                          1.  Errors\n                                          2.  Performance Trace\n                                          4.  Performance Hints\n                                          8.  Heuristics Trace\n                                          16. API Trace\n\n \\retval     CUBLAS_STATUS_SUCCESS        if log mask was set successfully"]
+    #[doc = "Experimental: Log mask setter.\n\n# Arguments\n\n* `mask` [in]  -                         log mask, should be a combination of the following masks:\n0.  Off\n1.  Errors\n2.  Performance Trace\n4.  Performance Hints\n8.  Heuristics Trace\n16. API Trace\n\\retval CUBLAS_STATUS_SUCCESS        if log mask was set successfully"]
     pub fn cublasLtLoggerSetMask(mask: ::std::os::raw::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Experimental: Disable logging for the entire session.\n\n \\retval     CUBLAS_STATUS_SUCCESS        if disabled logging"]
+    #[doc = "Experimental: Disable logging for the entire session.\n\\retval CUBLAS_STATUS_SUCCESS        if disabled logging"]
     pub fn cublasLtLoggerForceDisable() -> cublasStatus_t;
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cublasLtCreate:
-        Option<unsafe extern "C" fn(lightHandle: *mut cublasLtHandle_t) -> cublasStatus_t>,
-    pub cublasLtDestroy:
-        Option<unsafe extern "C" fn(lightHandle: cublasLtHandle_t) -> cublasStatus_t>,
-    pub cublasLtGetStatusName:
-        Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cublasLtGetStatusString:
-        Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cublasLtCreate: Option<unsafe extern "C" fn(lightHandle: *mut cublasLtHandle_t) -> cublasStatus_t>,
+    pub cublasLtDestroy: Option<unsafe extern "C" fn(lightHandle: cublasLtHandle_t) -> cublasStatus_t>,
+    pub cublasLtGetStatusName: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cublasLtGetStatusString: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
     pub cublasLtGetVersion: Option<unsafe extern "C" fn() -> usize>,
     pub cublasLtGetCudartVersion: Option<unsafe extern "C" fn() -> usize>,
-    pub cublasLtGetProperty: Option<
-        unsafe extern "C" fn(
-            type_: libraryPropertyType,
-            value: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasLtHeuristicsCacheGetCapacity:
-        Option<unsafe extern "C" fn(capacity: *mut usize) -> cublasStatus_t>,
-    pub cublasLtHeuristicsCacheSetCapacity:
-        Option<unsafe extern "C" fn(capacity: usize) -> cublasStatus_t>,
+    pub cublasLtGetProperty:
+        Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasLtHeuristicsCacheGetCapacity: Option<unsafe extern "C" fn(capacity: *mut usize) -> cublasStatus_t>,
+    pub cublasLtHeuristicsCacheSetCapacity: Option<unsafe extern "C" fn(capacity: usize) -> cublasStatus_t>,
     pub cublasLtDisableCpuInstructionsSetMask:
         Option<unsafe extern "C" fn(mask: ::std::os::raw::c_uint) -> ::std::os::raw::c_uint>,
     pub cublasLtMatmul: Option<
@@ -2150,8 +2121,7 @@ pub struct DynamicBindings {
             ld_array: *const ::std::os::raw::c_void,
         ) -> cublasStatus_t,
     >,
-    pub cublasLtMatrixLayoutDestroy:
-        Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t) -> cublasStatus_t>,
+    pub cublasLtMatrixLayoutDestroy: Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t) -> cublasStatus_t>,
     pub cublasLtMatrixLayoutSetAttribute: Option<
         unsafe extern "C" fn(
             matLayout: cublasLtMatrixLayout_t,
@@ -2184,8 +2154,7 @@ pub struct DynamicBindings {
             scaleType: cudaDataType_t,
         ) -> cublasStatus_t,
     >,
-    pub cublasLtMatmulDescDestroy:
-        Option<unsafe extern "C" fn(matmulDesc: cublasLtMatmulDesc_t) -> cublasStatus_t>,
+    pub cublasLtMatmulDescDestroy: Option<unsafe extern "C" fn(matmulDesc: cublasLtMatmulDesc_t) -> cublasStatus_t>,
     pub cublasLtMatmulDescSetAttribute: Option<
         unsafe extern "C" fn(
             matmulDesc: cublasLtMatmulDesc_t,
@@ -2216,9 +2185,8 @@ pub struct DynamicBindings {
             scaleType: cudaDataType,
         ) -> cublasStatus_t,
     >,
-    pub cublasLtMatrixTransformDescDestroy: Option<
-        unsafe extern "C" fn(transformDesc: cublasLtMatrixTransformDesc_t) -> cublasStatus_t,
-    >,
+    pub cublasLtMatrixTransformDescDestroy:
+        Option<unsafe extern "C" fn(transformDesc: cublasLtMatrixTransformDesc_t) -> cublasStatus_t>,
     pub cublasLtMatrixTransformDescSetAttribute: Option<
         unsafe extern "C" fn(
             transformDesc: cublasLtMatrixTransformDesc_t,
@@ -2236,9 +2204,8 @@ pub struct DynamicBindings {
             sizeWritten: *mut usize,
         ) -> cublasStatus_t,
     >,
-    pub cublasLtEmulationDescInit_internal: Option<
-        unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t, size: usize) -> cublasStatus_t,
-    >,
+    pub cublasLtEmulationDescInit_internal:
+        Option<unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t, size: usize) -> cublasStatus_t>,
     pub cublasLtEmulationDescCreate:
         Option<unsafe extern "C" fn(emulationDesc: *mut cublasLtEmulationDesc_t) -> cublasStatus_t>,
     pub cublasLtEmulationDescDestroy:
@@ -2260,9 +2227,8 @@ pub struct DynamicBindings {
             sizeWritten: *mut usize,
         ) -> cublasStatus_t,
     >,
-    pub cublasLtMatmulPreferenceInit_internal: Option<
-        unsafe extern "C" fn(pref: cublasLtMatmulPreference_t, size: usize) -> cublasStatus_t,
-    >,
+    pub cublasLtMatmulPreferenceInit_internal:
+        Option<unsafe extern "C" fn(pref: cublasLtMatmulPreference_t, size: usize) -> cublasStatus_t>,
     pub cublasLtMatmulPreferenceCreate:
         Option<unsafe extern "C" fn(pref: *mut cublasLtMatmulPreference_t) -> cublasStatus_t>,
     pub cublasLtMatmulPreferenceDestroy:
@@ -2363,15 +2329,11 @@ pub struct DynamicBindings {
             sizeWritten: *mut usize,
         ) -> cublasStatus_t,
     >,
-    pub cublasLtLoggerSetCallback:
-        Option<unsafe extern "C" fn(callback: cublasLtLoggerCallback_t) -> cublasStatus_t>,
+    pub cublasLtLoggerSetCallback: Option<unsafe extern "C" fn(callback: cublasLtLoggerCallback_t) -> cublasStatus_t>,
     pub cublasLtLoggerSetFile: Option<unsafe extern "C" fn(file: *mut FILE) -> cublasStatus_t>,
-    pub cublasLtLoggerOpenFile:
-        Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cublasStatus_t>,
-    pub cublasLtLoggerSetLevel:
-        Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasLtLoggerSetMask:
-        Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasLtLoggerOpenFile: Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cublasStatus_t>,
+    pub cublasLtLoggerSetLevel: Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasLtLoggerSetMask: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cublasStatus_t>,
     pub cublasLtLoggerForceDisable: Option<unsafe extern "C" fn() -> cublasStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
@@ -2408,9 +2370,7 @@ pub unsafe extern "C" fn cublasLtDestroy(lightHandle: cublasLtHandle_t) -> cubla
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtGetStatusName(
-    status: cublasStatus_t,
-) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cublasLtGetStatusName(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -2425,9 +2385,7 @@ pub unsafe extern "C" fn cublasLtGetStatusName(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtGetStatusString(
-    status: cublasStatus_t,
-) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cublasLtGetStatusString(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -2490,9 +2448,7 @@ pub unsafe extern "C" fn cublasLtGetProperty(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtHeuristicsCacheGetCapacity(
-    capacity: *mut usize,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtHeuristicsCacheGetCapacity(capacity: *mut usize) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -2522,9 +2478,7 @@ pub unsafe extern "C" fn cublasLtHeuristicsCacheSetCapacity(capacity: usize) -> 
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtDisableCpuInstructionsSetMask(
-    mask: ::std::os::raw::c_uint,
-) -> ::std::os::raw::c_uint {
+pub unsafe extern "C" fn cublasLtDisableCpuInstructionsSetMask(mask: ::std::os::raw::c_uint) -> ::std::os::raw::c_uint {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -2667,11 +2621,7 @@ pub unsafe extern "C" fn cublasLtGroupedMatrixLayoutInit_internal(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasLtGroupedMatrixLayoutInit_internal
     {
-        Some(____func) => unsafe {
-            ____func(
-                matLayout, size, type_, groupCount, rows_array, cols_array, ld_array,
-            )
-        },
+        Some(____func) => unsafe { ____func(matLayout, size, type_, groupCount, rows_array, cols_array, ld_array) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasLtGroupedMatrixLayoutInit_internal"
@@ -2714,11 +2664,7 @@ pub unsafe extern "C" fn cublasLtGroupedMatrixLayoutCreate(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasLtGroupedMatrixLayoutCreate
     {
-        Some(____func) => unsafe {
-            ____func(
-                matLayout, type_, groupCount, rows_array, cols_array, ld_array,
-            )
-        },
+        Some(____func) => unsafe { ____func(matLayout, type_, groupCount, rows_array, cols_array, ld_array) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasLtGroupedMatrixLayoutCreate"
@@ -2727,9 +2673,7 @@ pub unsafe extern "C" fn cublasLtGroupedMatrixLayoutCreate(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtMatrixLayoutDestroy(
-    matLayout: cublasLtMatrixLayout_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtMatrixLayoutDestroy(matLayout: cublasLtMatrixLayout_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -2824,9 +2768,7 @@ pub unsafe extern "C" fn cublasLtMatmulDescCreate(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtMatmulDescDestroy(
-    matmulDesc: cublasLtMatmulDesc_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtMatmulDescDestroy(matmulDesc: cublasLtMatmulDesc_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -2995,9 +2937,7 @@ pub unsafe extern "C" fn cublasLtEmulationDescInit_internal(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtEmulationDescCreate(
-    emulationDesc: *mut cublasLtEmulationDesc_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtEmulationDescCreate(emulationDesc: *mut cublasLtEmulationDesc_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -3012,9 +2952,7 @@ pub unsafe extern "C" fn cublasLtEmulationDescCreate(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtEmulationDescDestroy(
-    emulationDesc: cublasLtEmulationDesc_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtEmulationDescDestroy(emulationDesc: cublasLtEmulationDesc_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -3088,9 +3026,7 @@ pub unsafe extern "C" fn cublasLtMatmulPreferenceInit_internal(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtMatmulPreferenceCreate(
-    pref: *mut cublasLtMatmulPreference_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtMatmulPreferenceCreate(pref: *mut cublasLtMatmulPreference_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -3105,9 +3041,7 @@ pub unsafe extern "C" fn cublasLtMatmulPreferenceCreate(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtMatmulPreferenceDestroy(
-    pref: cublasLtMatmulPreference_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtMatmulPreferenceDestroy(pref: cublasLtMatmulPreference_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -3293,18 +3227,7 @@ pub unsafe extern "C" fn cublasLtMatmulAlgoCheck(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasLtMatmulAlgoCheck
     {
-        Some(____func) => unsafe {
-            ____func(
-                lightHandle,
-                operationDesc,
-                Adesc,
-                Bdesc,
-                Cdesc,
-                Ddesc,
-                algo,
-                result,
-            )
-        },
+        Some(____func) => unsafe { ____func(lightHandle, operationDesc, Adesc, Bdesc, Cdesc, Ddesc, algo, result) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasLtMatmulAlgoCheck"
@@ -3375,9 +3298,7 @@ pub unsafe extern "C" fn cublasLtMatmulAlgoConfigGetAttribute(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtLoggerSetCallback(
-    callback: cublasLtLoggerCallback_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtLoggerSetCallback(callback: cublasLtLoggerCallback_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -3407,9 +3328,7 @@ pub unsafe extern "C" fn cublasLtLoggerSetFile(file: *mut FILE) -> cublasStatus_
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasLtLoggerOpenFile(
-    logFile: *const ::std::os::raw::c_char,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasLtLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")

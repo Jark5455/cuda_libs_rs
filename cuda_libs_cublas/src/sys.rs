@@ -1,4 +1,4 @@
-pub use cuda_libs_cudart::sys::*;
+use cuda_libs_cudart::sys::*;
 pub const CUBLAS_VER_MAJOR: u32 = 13;
 pub const CUBLAS_VER_MINOR: u32 = 4;
 pub const CUBLAS_VER_PATCH: u32 = 0;
@@ -94,8 +94,7 @@ impl cublasGemmAlgo_t {
     pub const CUBLAS_GEMM_DEFAULT: cublasGemmAlgo_t = cublasGemmAlgo_t::CUBLAS_GEMM_DFALT;
 }
 impl cublasGemmAlgo_t {
-    pub const CUBLAS_GEMM_DFALT_TENSOR_OP: cublasGemmAlgo_t =
-        cublasGemmAlgo_t::CUBLAS_GEMM_DEFAULT_TENSOR_OP;
+    pub const CUBLAS_GEMM_DFALT_TENSOR_OP: cublasGemmAlgo_t = cublasGemmAlgo_t::CUBLAS_GEMM_DEFAULT_TENSOR_OP;
 }
 #[repr(i32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -155,7 +154,7 @@ pub enum cublasMath_t {
     CUBLAS_FP64_EMULATED_FIXEDPOINT_MATH = 8,
     CUBLAS_MATH_DISALLOW_REDUCED_PRECISION_REDUCTION = 16,
 }
-pub use self::cudaDataType as cublasDataType_t;
+pub use cuda_libs_cudart::sys::cudaDataType as cublasDataType_t;
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasComputeType_t {
@@ -186,8 +185,7 @@ pub struct cublasContext {
     _unused: [u8; 0],
 }
 pub type cublasHandle_t = *mut cublasContext;
-pub type cublasLogCallback =
-    ::std::option::Option<unsafe extern "C" fn(msg: *const ::std::os::raw::c_char)>;
+pub type cublasLogCallback = ::std::option::Option<unsafe extern "C" fn(msg: *const ::std::os::raw::c_char)>;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cublasCreate_v2(handle: *mut cublasHandle_t) -> cublasStatus_t;
@@ -198,17 +196,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetVersion_v2(
-        handle: cublasHandle_t,
-        version: *mut ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasGetVersion_v2(handle: cublasHandle_t, version: *mut ::std::os::raw::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetProperty(
-        type_: libraryPropertyType,
-        value: *mut ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -228,38 +220,23 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetStream_v2(
-        handle: cublasHandle_t,
-        streamId: *mut cudaStream_t,
-    ) -> cublasStatus_t;
+    pub fn cublasGetStream_v2(handle: cublasHandle_t, streamId: *mut cudaStream_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetPointerMode_v2(
-        handle: cublasHandle_t,
-        mode: *mut cublasPointerMode_t,
-    ) -> cublasStatus_t;
+    pub fn cublasGetPointerMode_v2(handle: cublasHandle_t, mode: *mut cublasPointerMode_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetPointerMode_v2(
-        handle: cublasHandle_t,
-        mode: cublasPointerMode_t,
-    ) -> cublasStatus_t;
+    pub fn cublasSetPointerMode_v2(handle: cublasHandle_t, mode: cublasPointerMode_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetAtomicsMode(
-        handle: cublasHandle_t,
-        mode: *mut cublasAtomicsMode_t,
-    ) -> cublasStatus_t;
+    pub fn cublasGetAtomicsMode(handle: cublasHandle_t, mode: *mut cublasAtomicsMode_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetAtomicsMode(
-        handle: cublasHandle_t,
-        mode: cublasAtomicsMode_t,
-    ) -> cublasStatus_t;
+    pub fn cublasSetAtomicsMode(handle: cublasHandle_t, mode: cublasAtomicsMode_t) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -271,17 +248,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasGetSmCountTarget(
-        handle: cublasHandle_t,
-        smCountTarget: *mut ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasGetSmCountTarget(handle: cublasHandle_t, smCountTarget: *mut ::std::os::raw::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSetSmCountTarget(
-        handle: cublasHandle_t,
-        smCountTarget: ::std::os::raw::c_int,
-    ) -> cublasStatus_t;
+    pub fn cublasSetSmCountTarget(handle: cublasHandle_t, smCountTarget: ::std::os::raw::c_int) -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1906,23 +1877,13 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasSrotg_v2(
-        handle: cublasHandle_t,
-        a: *mut f32,
-        b: *mut f32,
-        c: *mut f32,
-        s: *mut f32,
-    ) -> cublasStatus_t;
+    pub fn cublasSrotg_v2(handle: cublasHandle_t, a: *mut f32, b: *mut f32, c: *mut f32, s: *mut f32)
+    -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cublasDrotg_v2(
-        handle: cublasHandle_t,
-        a: *mut f64,
-        b: *mut f64,
-        c: *mut f64,
-        s: *mut f64,
-    ) -> cublasStatus_t;
+    pub fn cublasDrotg_v2(handle: cublasHandle_t, a: *mut f64, b: *mut f64, c: *mut f64, s: *mut f64)
+    -> cublasStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -7731,21 +7692,12 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cublasCreate_v2:
-        Option<unsafe extern "C" fn(handle: *mut cublasHandle_t) -> cublasStatus_t>,
+    pub cublasCreate_v2: Option<unsafe extern "C" fn(handle: *mut cublasHandle_t) -> cublasStatus_t>,
     pub cublasDestroy_v2: Option<unsafe extern "C" fn(handle: cublasHandle_t) -> cublasStatus_t>,
-    pub cublasGetVersion_v2: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            version: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasGetProperty: Option<
-        unsafe extern "C" fn(
-            type_: libraryPropertyType,
-            value: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasGetVersion_v2:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, version: *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasGetProperty:
+        Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t>,
     pub cublasGetCudartVersion: Option<unsafe extern "C" fn() -> usize>,
     pub cublasSetWorkspace_v2: Option<
         unsafe extern "C" fn(
@@ -7754,47 +7706,26 @@ pub struct DynamicBindings {
             workspaceSizeInBytes: usize,
         ) -> cublasStatus_t,
     >,
-    pub cublasSetStream_v2: Option<
-        unsafe extern "C" fn(handle: cublasHandle_t, streamId: cudaStream_t) -> cublasStatus_t,
-    >,
-    pub cublasGetStream_v2: Option<
-        unsafe extern "C" fn(handle: cublasHandle_t, streamId: *mut cudaStream_t) -> cublasStatus_t,
-    >,
-    pub cublasGetPointerMode_v2: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mode: *mut cublasPointerMode_t,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasSetPointerMode_v2: Option<
-        unsafe extern "C" fn(handle: cublasHandle_t, mode: cublasPointerMode_t) -> cublasStatus_t,
-    >,
-    pub cublasGetAtomicsMode: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mode: *mut cublasAtomicsMode_t,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasSetAtomicsMode: Option<
-        unsafe extern "C" fn(handle: cublasHandle_t, mode: cublasAtomicsMode_t) -> cublasStatus_t,
-    >,
-    pub cublasGetMathMode: Option<
-        unsafe extern "C" fn(handle: cublasHandle_t, mode: *mut cublasMath_t) -> cublasStatus_t,
-    >,
-    pub cublasSetMathMode:
-        Option<unsafe extern "C" fn(handle: cublasHandle_t, mode: cublasMath_t) -> cublasStatus_t>,
+    pub cublasSetStream_v2:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, streamId: cudaStream_t) -> cublasStatus_t>,
+    pub cublasGetStream_v2:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, streamId: *mut cudaStream_t) -> cublasStatus_t>,
+    pub cublasGetPointerMode_v2:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, mode: *mut cublasPointerMode_t) -> cublasStatus_t>,
+    pub cublasSetPointerMode_v2:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, mode: cublasPointerMode_t) -> cublasStatus_t>,
+    pub cublasGetAtomicsMode:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, mode: *mut cublasAtomicsMode_t) -> cublasStatus_t>,
+    pub cublasSetAtomicsMode:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, mode: cublasAtomicsMode_t) -> cublasStatus_t>,
+    pub cublasGetMathMode:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, mode: *mut cublasMath_t) -> cublasStatus_t>,
+    pub cublasSetMathMode: Option<unsafe extern "C" fn(handle: cublasHandle_t, mode: cublasMath_t) -> cublasStatus_t>,
     pub cublasGetSmCountTarget: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            smCountTarget: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, smCountTarget: *mut ::std::os::raw::c_int) -> cublasStatus_t,
     >,
-    pub cublasSetSmCountTarget: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            smCountTarget: ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasSetSmCountTarget:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, smCountTarget: ::std::os::raw::c_int) -> cublasStatus_t>,
     pub cublasGetEmulationStrategy: Option<
         unsafe extern "C" fn(
             handle: cublasHandle_t,
@@ -7802,23 +7733,13 @@ pub struct DynamicBindings {
         ) -> cublasStatus_t,
     >,
     pub cublasSetEmulationStrategy: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            emulationStrategy: cublasEmulationStrategy_t,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, emulationStrategy: cublasEmulationStrategy_t) -> cublasStatus_t,
     >,
     pub cublasGetEmulationSpecialValuesSupport: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mask: *mut cudaEmulationSpecialValuesSupport,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, mask: *mut cudaEmulationSpecialValuesSupport) -> cublasStatus_t,
     >,
-    pub cublasSetEmulationSpecialValuesSupport: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mask: cudaEmulationSpecialValuesSupport,
-        ) -> cublasStatus_t,
-    >,
+    pub cublasSetEmulationSpecialValuesSupport:
+        Option<unsafe extern "C" fn(handle: cublasHandle_t, mask: cudaEmulationSpecialValuesSupport) -> cublasStatus_t>,
     pub cublasGetFixedPointEmulationMantissaControl: Option<
         unsafe extern "C" fn(
             handle: cublasHandle_t,
@@ -7826,34 +7747,19 @@ pub struct DynamicBindings {
         ) -> cublasStatus_t,
     >,
     pub cublasSetFixedPointEmulationMantissaControl: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mantissaControl: cudaEmulationMantissaControl,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, mantissaControl: cudaEmulationMantissaControl) -> cublasStatus_t,
     >,
     pub cublasGetFixedPointEmulationMaxMantissaBitCount: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            maxMantissaBitCount: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, maxMantissaBitCount: *mut ::std::os::raw::c_int) -> cublasStatus_t,
     >,
     pub cublasSetFixedPointEmulationMaxMantissaBitCount: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            maxMantissaBitCount: ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, maxMantissaBitCount: ::std::os::raw::c_int) -> cublasStatus_t,
     >,
     pub cublasGetFixedPointEmulationMantissaBitOffset: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mantissaBitOffset: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cublasStatus_t,
     >,
     pub cublasSetFixedPointEmulationMantissaBitOffset: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mantissaBitOffset: ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cublasStatus_t,
     >,
     pub cublasGetFixedPointEmulationMantissaBitCountPointer: Option<
         unsafe extern "C" fn(
@@ -7862,15 +7768,10 @@ pub struct DynamicBindings {
         ) -> cublasStatus_t,
     >,
     pub cublasSetFixedPointEmulationMantissaBitCountPointer: Option<
-        unsafe extern "C" fn(
-            handle: cublasHandle_t,
-            mantissaBitCount: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(handle: cublasHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cublasStatus_t,
     >,
-    pub cublasGetStatusName:
-        Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cublasGetStatusString:
-        Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cublasGetStatusName: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cublasGetStatusString: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
     pub cublasLoggerConfigure: Option<
         unsafe extern "C" fn(
             logIsOn: ::std::os::raw::c_int,
@@ -7879,10 +7780,8 @@ pub struct DynamicBindings {
             logFileName: *const ::std::os::raw::c_char,
         ) -> cublasStatus_t,
     >,
-    pub cublasSetLoggerCallback:
-        Option<unsafe extern "C" fn(userCallback: cublasLogCallback) -> cublasStatus_t>,
-    pub cublasGetLoggerCallback:
-        Option<unsafe extern "C" fn(userCallback: *mut cublasLogCallback) -> cublasStatus_t>,
+    pub cublasSetLoggerCallback: Option<unsafe extern "C" fn(userCallback: cublasLogCallback) -> cublasStatus_t>,
+    pub cublasGetLoggerCallback: Option<unsafe extern "C" fn(userCallback: *mut cublasLogCallback) -> cublasStatus_t>,
     pub cublasSetVector: Option<
         unsafe extern "C" fn(
             n: ::std::os::raw::c_int,
@@ -8059,9 +7958,7 @@ pub struct DynamicBindings {
             stream: cudaStream_t,
         ) -> cublasStatus_t,
     >,
-    pub cublasXerbla: Option<
-        unsafe extern "C" fn(srName: *const ::std::os::raw::c_char, info: ::std::os::raw::c_int),
-    >,
+    pub cublasXerbla: Option<unsafe extern "C" fn(srName: *const ::std::os::raw::c_char, info: ::std::os::raw::c_int)>,
     pub cublasNrm2Ex: Option<
         unsafe extern "C" fn(
             handle: cublasHandle_t,
@@ -14841,10 +14738,7 @@ pub unsafe extern "C" fn cublasSetWorkspace_v2(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetStream_v2(
-    handle: cublasHandle_t,
-    streamId: cudaStream_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetStream_v2(handle: cublasHandle_t, streamId: cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14859,10 +14753,7 @@ pub unsafe extern "C" fn cublasSetStream_v2(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetStream_v2(
-    handle: cublasHandle_t,
-    streamId: *mut cudaStream_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetStream_v2(handle: cublasHandle_t, streamId: *mut cudaStream_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14895,10 +14786,7 @@ pub unsafe extern "C" fn cublasGetPointerMode_v2(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetPointerMode_v2(
-    handle: cublasHandle_t,
-    mode: cublasPointerMode_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetPointerMode_v2(handle: cublasHandle_t, mode: cublasPointerMode_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14931,10 +14819,7 @@ pub unsafe extern "C" fn cublasGetAtomicsMode(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetAtomicsMode(
-    handle: cublasHandle_t,
-    mode: cublasAtomicsMode_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetAtomicsMode(handle: cublasHandle_t, mode: cublasAtomicsMode_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14949,10 +14834,7 @@ pub unsafe extern "C" fn cublasSetAtomicsMode(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetMathMode(
-    handle: cublasHandle_t,
-    mode: *mut cublasMath_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetMathMode(handle: cublasHandle_t, mode: *mut cublasMath_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14967,10 +14849,7 @@ pub unsafe extern "C" fn cublasGetMathMode(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetMathMode(
-    handle: cublasHandle_t,
-    mode: cublasMath_t,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetMathMode(handle: cublasHandle_t, mode: cublasMath_t) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -15237,9 +15116,7 @@ pub unsafe extern "C" fn cublasSetFixedPointEmulationMantissaBitCountPointer(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetStatusName(
-    status: cublasStatus_t,
-) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cublasGetStatusName(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -15254,9 +15131,7 @@ pub unsafe extern "C" fn cublasGetStatusName(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetStatusString(
-    status: cublasStatus_t,
-) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cublasGetStatusString(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -15291,9 +15166,7 @@ pub unsafe extern "C" fn cublasLoggerConfigure(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasSetLoggerCallback(
-    userCallback: cublasLogCallback,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasSetLoggerCallback(userCallback: cublasLogCallback) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -15308,9 +15181,7 @@ pub unsafe extern "C" fn cublasSetLoggerCallback(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasGetLoggerCallback(
-    userCallback: *mut cublasLogCallback,
-) -> cublasStatus_t {
+pub unsafe extern "C" fn cublasGetLoggerCallback(userCallback: *mut cublasLogCallback) -> cublasStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -15693,10 +15564,7 @@ pub unsafe extern "C" fn cublasGetMatrixAsync_64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cublasXerbla(
-    srName: *const ::std::os::raw::c_char,
-    info: ::std::os::raw::c_int,
-) {
+pub unsafe extern "C" fn cublasXerbla(srName: *const ::std::os::raw::c_char, info: ::std::os::raw::c_int) {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -15726,9 +15594,7 @@ pub unsafe extern "C" fn cublasNrm2Ex(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasNrm2Ex
     {
-        Some(____func) => unsafe {
-            ____func(handle, n, x, xType, incx, result, resultType, executionType)
-        },
+        Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executionType) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasNrm2Ex"
@@ -15752,9 +15618,7 @@ pub unsafe extern "C" fn cublasNrm2Ex_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasNrm2Ex_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, n, x, xType, incx, result, resultType, executionType)
-        },
+        Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executionType) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasNrm2Ex_64"
@@ -16386,9 +16250,7 @@ pub unsafe extern "C" fn cublasScalEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasScalEx
     {
-        Some(____func) => unsafe {
-            ____func(handle, n, alpha, alphaType, x, xType, incx, executionType)
-        },
+        Some(____func) => unsafe { ____func(handle, n, alpha, alphaType, x, xType, incx, executionType) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasScalEx"
@@ -16412,9 +16274,7 @@ pub unsafe extern "C" fn cublasScalEx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasScalEx_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, n, alpha, alphaType, x, xType, incx, executionType)
-        },
+        Some(____func) => unsafe { ____func(handle, n, alpha, alphaType, x, xType, incx, executionType) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasScalEx_64"
@@ -17828,9 +17688,7 @@ pub unsafe extern "C" fn cublasAsumEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasAsumEx
     {
-        Some(____func) => unsafe {
-            ____func(handle, n, x, xType, incx, result, resultType, executiontype)
-        },
+        Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executiontype) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasAsumEx"
@@ -17854,9 +17712,7 @@ pub unsafe extern "C" fn cublasAsumEx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasAsumEx_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, n, x, xType, incx, result, resultType, executiontype)
-        },
+        Some(____func) => unsafe { ____func(handle, n, x, xType, incx, result, resultType, executiontype) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasAsumEx_64"
@@ -18340,22 +18196,7 @@ pub unsafe extern "C" fn cublasRotEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasRotEx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                x,
-                xType,
-                incx,
-                y,
-                yType,
-                incy,
-                c,
-                s,
-                csType,
-                executiontype,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, n, x, xType, incx, y, yType, incy, c, s, csType, executiontype) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasRotEx"
@@ -18383,22 +18224,7 @@ pub unsafe extern "C" fn cublasRotEx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasRotEx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                x,
-                xType,
-                incx,
-                y,
-                yType,
-                incy,
-                c,
-                s,
-                csType,
-                executiontype,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, n, x, xType, incx, y, yType, incy, c, s, csType, executiontype) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasRotEx_64"
@@ -18795,9 +18621,7 @@ pub unsafe extern "C" fn cublasSgemv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgemv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgemv_v2"
@@ -18825,9 +18649,7 @@ pub unsafe extern "C" fn cublasSgemv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgemv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgemv_v2_64"
@@ -18855,9 +18677,7 @@ pub unsafe extern "C" fn cublasDgemv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgemv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgemv_v2"
@@ -18885,9 +18705,7 @@ pub unsafe extern "C" fn cublasDgemv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgemv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgemv_v2_64"
@@ -18915,9 +18733,7 @@ pub unsafe extern "C" fn cublasCgemv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgemv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgemv_v2"
@@ -18945,9 +18761,7 @@ pub unsafe extern "C" fn cublasCgemv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgemv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgemv_v2_64"
@@ -18975,9 +18789,7 @@ pub unsafe extern "C" fn cublasZgemv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgemv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgemv_v2"
@@ -19005,9 +18817,7 @@ pub unsafe extern "C" fn cublasZgemv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgemv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgemv_v2_64"
@@ -19037,11 +18847,7 @@ pub unsafe extern "C" fn cublasSgbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgbmv_v2"
@@ -19071,11 +18877,7 @@ pub unsafe extern "C" fn cublasSgbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgbmv_v2_64"
@@ -19105,11 +18907,7 @@ pub unsafe extern "C" fn cublasDgbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgbmv_v2"
@@ -19139,11 +18937,7 @@ pub unsafe extern "C" fn cublasDgbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgbmv_v2_64"
@@ -19173,11 +18967,7 @@ pub unsafe extern "C" fn cublasCgbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgbmv_v2"
@@ -19207,11 +18997,7 @@ pub unsafe extern "C" fn cublasCgbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgbmv_v2_64"
@@ -19241,11 +19027,7 @@ pub unsafe extern "C" fn cublasZgbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgbmv_v2"
@@ -19275,11 +19057,7 @@ pub unsafe extern "C" fn cublasZgbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgbmv_v2_64"
@@ -20506,9 +20284,7 @@ pub unsafe extern "C" fn cublasSsymv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsymv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsymv_v2"
@@ -20535,9 +20311,7 @@ pub unsafe extern "C" fn cublasSsymv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsymv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsymv_v2_64"
@@ -20564,9 +20338,7 @@ pub unsafe extern "C" fn cublasDsymv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsymv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsymv_v2"
@@ -20593,9 +20365,7 @@ pub unsafe extern "C" fn cublasDsymv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsymv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsymv_v2_64"
@@ -20622,9 +20392,7 @@ pub unsafe extern "C" fn cublasCsymv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsymv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsymv_v2"
@@ -20651,9 +20419,7 @@ pub unsafe extern "C" fn cublasCsymv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsymv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsymv_v2_64"
@@ -20680,9 +20446,7 @@ pub unsafe extern "C" fn cublasZsymv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsymv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsymv_v2"
@@ -20709,9 +20473,7 @@ pub unsafe extern "C" fn cublasZsymv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsymv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsymv_v2_64"
@@ -20738,9 +20500,7 @@ pub unsafe extern "C" fn cublasChemv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasChemv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasChemv_v2"
@@ -20767,9 +20527,7 @@ pub unsafe extern "C" fn cublasChemv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasChemv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasChemv_v2_64"
@@ -20796,9 +20554,7 @@ pub unsafe extern "C" fn cublasZhemv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZhemv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZhemv_v2"
@@ -20825,9 +20581,7 @@ pub unsafe extern "C" fn cublasZhemv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZhemv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZhemv_v2_64"
@@ -20855,9 +20609,7 @@ pub unsafe extern "C" fn cublasSsbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsbmv_v2"
@@ -20885,9 +20637,7 @@ pub unsafe extern "C" fn cublasSsbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsbmv_v2_64"
@@ -20915,9 +20665,7 @@ pub unsafe extern "C" fn cublasDsbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsbmv_v2"
@@ -20945,9 +20693,7 @@ pub unsafe extern "C" fn cublasDsbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsbmv_v2_64"
@@ -20975,9 +20721,7 @@ pub unsafe extern "C" fn cublasChbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasChbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasChbmv_v2"
@@ -21005,9 +20749,7 @@ pub unsafe extern "C" fn cublasChbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasChbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasChbmv_v2_64"
@@ -21035,9 +20777,7 @@ pub unsafe extern "C" fn cublasZhbmv_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZhbmv_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZhbmv_v2"
@@ -21065,9 +20805,7 @@ pub unsafe extern "C" fn cublasZhbmv_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZhbmv_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, incy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZhbmv_v2_64"
@@ -22602,8 +22340,7 @@ pub unsafe extern "C" fn cublasSgemvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22636,8 +22373,7 @@ pub unsafe extern "C" fn cublasSgemvBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22670,8 +22406,7 @@ pub unsafe extern "C" fn cublasDgemvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22704,8 +22439,7 @@ pub unsafe extern "C" fn cublasDgemvBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22738,8 +22472,7 @@ pub unsafe extern "C" fn cublasCgemvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22772,8 +22505,7 @@ pub unsafe extern "C" fn cublasCgemvBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22806,8 +22538,7 @@ pub unsafe extern "C" fn cublasZgemvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22840,8 +22571,7 @@ pub unsafe extern "C" fn cublasZgemvBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy,
-                batchCount,
+                handle, trans, m, n, alpha, Aarray, lda, xarray, incx, beta, yarray, incy, batchCount,
             )
         },
         None => panic!(
@@ -22877,8 +22607,7 @@ pub unsafe extern "C" fn cublasSgemvStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -22914,8 +22643,7 @@ pub unsafe extern "C" fn cublasSgemvStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -22951,8 +22679,7 @@ pub unsafe extern "C" fn cublasDgemvStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -22988,8 +22715,7 @@ pub unsafe extern "C" fn cublasDgemvStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -23025,8 +22751,7 @@ pub unsafe extern "C" fn cublasCgemvStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -23062,8 +22787,7 @@ pub unsafe extern "C" fn cublasCgemvStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -23099,8 +22823,7 @@ pub unsafe extern "C" fn cublasZgemvStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -23136,8 +22859,7 @@ pub unsafe extern "C" fn cublasZgemvStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy,
-                stridey, batchCount,
+                handle, trans, m, n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batchCount,
             )
         },
         None => panic!(
@@ -23169,11 +22891,7 @@ pub unsafe extern "C" fn cublasSgemm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgemm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgemm_v2"
@@ -23203,11 +22921,7 @@ pub unsafe extern "C" fn cublasSgemm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgemm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgemm_v2_64"
@@ -23237,11 +22951,7 @@ pub unsafe extern "C" fn cublasDgemm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgemm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgemm_v2"
@@ -23271,11 +22981,7 @@ pub unsafe extern "C" fn cublasDgemm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgemm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgemm_v2_64"
@@ -23305,11 +23011,7 @@ pub unsafe extern "C" fn cublasCgemm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgemm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgemm_v2"
@@ -23339,11 +23041,7 @@ pub unsafe extern "C" fn cublasCgemm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgemm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgemm_v2_64"
@@ -23373,11 +23071,7 @@ pub unsafe extern "C" fn cublasCgemm3m(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgemm3m
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgemm3m"
@@ -23407,11 +23101,7 @@ pub unsafe extern "C" fn cublasCgemm3m_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgemm3m_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgemm3m_64"
@@ -23446,8 +23136,7 @@ pub unsafe extern "C" fn cublasCgemm3mEx(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C,
-                Ctype, ldc,
+                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc,
             )
         },
         None => panic!(
@@ -23484,8 +23173,7 @@ pub unsafe extern "C" fn cublasCgemm3mEx_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C,
-                Ctype, ldc,
+                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc,
             )
         },
         None => panic!(
@@ -23517,11 +23205,7 @@ pub unsafe extern "C" fn cublasZgemm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgemm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgemm_v2"
@@ -23551,11 +23235,7 @@ pub unsafe extern "C" fn cublasZgemm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgemm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgemm_v2_64"
@@ -23585,11 +23265,7 @@ pub unsafe extern "C" fn cublasZgemm3m(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgemm3m
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgemm3m"
@@ -23619,11 +23295,7 @@ pub unsafe extern "C" fn cublasZgemm3m_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgemm3m_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgemm3m_64"
@@ -23658,8 +23330,7 @@ pub unsafe extern "C" fn cublasSgemmEx(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C,
-                Ctype, ldc,
+                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc,
             )
         },
         None => panic!(
@@ -23696,8 +23367,7 @@ pub unsafe extern "C" fn cublasSgemmEx_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C,
-                Ctype, ldc,
+                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc,
             )
         },
         None => panic!(
@@ -23848,8 +23518,7 @@ pub unsafe extern "C" fn cublasCgemmEx(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C,
-                Ctype, ldc,
+                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc,
             )
         },
         None => panic!(
@@ -23886,8 +23555,7 @@ pub unsafe extern "C" fn cublasCgemmEx_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C,
-                Ctype, ldc,
+                handle, transa, transb, m, n, k, alpha, A, Atype, lda, B, Btype, ldb, beta, C, Ctype, ldc,
             )
         },
         None => panic!(
@@ -23916,9 +23584,7 @@ pub unsafe extern "C" fn cublasSsyrk_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsyrk_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsyrk_v2"
@@ -23945,9 +23611,7 @@ pub unsafe extern "C" fn cublasSsyrk_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsyrk_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsyrk_v2_64"
@@ -23974,9 +23638,7 @@ pub unsafe extern "C" fn cublasDsyrk_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsyrk_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsyrk_v2"
@@ -24003,9 +23665,7 @@ pub unsafe extern "C" fn cublasDsyrk_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsyrk_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsyrk_v2_64"
@@ -24032,9 +23692,7 @@ pub unsafe extern "C" fn cublasCsyrk_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrk_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrk_v2"
@@ -24061,9 +23719,7 @@ pub unsafe extern "C" fn cublasCsyrk_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrk_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrk_v2_64"
@@ -24090,9 +23746,7 @@ pub unsafe extern "C" fn cublasZsyrk_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsyrk_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsyrk_v2"
@@ -24119,9 +23773,7 @@ pub unsafe extern "C" fn cublasZsyrk_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsyrk_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsyrk_v2_64"
@@ -24150,11 +23802,7 @@ pub unsafe extern "C" fn cublasCsyrkEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrkEx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrkEx"
@@ -24183,11 +23831,7 @@ pub unsafe extern "C" fn cublasCsyrkEx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrkEx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrkEx_64"
@@ -24216,11 +23860,7 @@ pub unsafe extern "C" fn cublasCsyrk3mEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrk3mEx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrk3mEx"
@@ -24249,11 +23889,7 @@ pub unsafe extern "C" fn cublasCsyrk3mEx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrk3mEx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrk3mEx_64"
@@ -24280,9 +23916,7 @@ pub unsafe extern "C" fn cublasCherk_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherk_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherk_v2"
@@ -24309,9 +23943,7 @@ pub unsafe extern "C" fn cublasCherk_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherk_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherk_v2_64"
@@ -24338,9 +23970,7 @@ pub unsafe extern "C" fn cublasZherk_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZherk_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZherk_v2"
@@ -24367,9 +23997,7 @@ pub unsafe extern "C" fn cublasZherk_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZherk_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZherk_v2_64"
@@ -24398,11 +24026,7 @@ pub unsafe extern "C" fn cublasCherkEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherkEx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherkEx"
@@ -24431,11 +24055,7 @@ pub unsafe extern "C" fn cublasCherkEx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherkEx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherkEx_64"
@@ -24464,11 +24084,7 @@ pub unsafe extern "C" fn cublasCherk3mEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherk3mEx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherk3mEx"
@@ -24497,11 +24113,7 @@ pub unsafe extern "C" fn cublasCherk3mEx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherk3mEx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, Atype, lda, beta, C, Ctype, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherk3mEx_64"
@@ -24530,11 +24142,7 @@ pub unsafe extern "C" fn cublasSsyr2k_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsyr2k_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsyr2k_v2"
@@ -24563,11 +24171,7 @@ pub unsafe extern "C" fn cublasSsyr2k_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsyr2k_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsyr2k_v2_64"
@@ -24596,11 +24200,7 @@ pub unsafe extern "C" fn cublasDsyr2k_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsyr2k_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsyr2k_v2"
@@ -24629,11 +24229,7 @@ pub unsafe extern "C" fn cublasDsyr2k_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsyr2k_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsyr2k_v2_64"
@@ -24662,11 +24258,7 @@ pub unsafe extern "C" fn cublasCsyr2k_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyr2k_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyr2k_v2"
@@ -24695,11 +24287,7 @@ pub unsafe extern "C" fn cublasCsyr2k_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyr2k_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyr2k_v2_64"
@@ -24728,11 +24316,7 @@ pub unsafe extern "C" fn cublasZsyr2k_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsyr2k_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsyr2k_v2"
@@ -24761,11 +24345,7 @@ pub unsafe extern "C" fn cublasZsyr2k_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsyr2k_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsyr2k_v2_64"
@@ -24794,11 +24374,7 @@ pub unsafe extern "C" fn cublasCher2k_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCher2k_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCher2k_v2"
@@ -24827,11 +24403,7 @@ pub unsafe extern "C" fn cublasCher2k_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCher2k_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCher2k_v2_64"
@@ -24860,11 +24432,7 @@ pub unsafe extern "C" fn cublasZher2k_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZher2k_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZher2k_v2"
@@ -24893,11 +24461,7 @@ pub unsafe extern "C" fn cublasZher2k_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZher2k_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZher2k_v2_64"
@@ -24926,11 +24490,7 @@ pub unsafe extern "C" fn cublasSsyrkx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsyrkx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsyrkx"
@@ -24959,11 +24519,7 @@ pub unsafe extern "C" fn cublasSsyrkx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsyrkx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsyrkx_64"
@@ -24992,11 +24548,7 @@ pub unsafe extern "C" fn cublasDsyrkx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsyrkx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsyrkx"
@@ -25025,11 +24577,7 @@ pub unsafe extern "C" fn cublasDsyrkx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsyrkx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsyrkx_64"
@@ -25058,11 +24606,7 @@ pub unsafe extern "C" fn cublasCsyrkx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrkx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrkx"
@@ -25091,11 +24635,7 @@ pub unsafe extern "C" fn cublasCsyrkx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsyrkx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsyrkx_64"
@@ -25124,11 +24664,7 @@ pub unsafe extern "C" fn cublasZsyrkx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsyrkx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsyrkx"
@@ -25157,11 +24693,7 @@ pub unsafe extern "C" fn cublasZsyrkx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsyrkx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsyrkx_64"
@@ -25190,11 +24722,7 @@ pub unsafe extern "C" fn cublasCherkx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherkx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherkx"
@@ -25223,11 +24751,7 @@ pub unsafe extern "C" fn cublasCherkx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCherkx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCherkx_64"
@@ -25256,11 +24780,7 @@ pub unsafe extern "C" fn cublasZherkx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZherkx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZherkx"
@@ -25289,11 +24809,7 @@ pub unsafe extern "C" fn cublasZherkx_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZherkx_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZherkx_64"
@@ -25322,11 +24838,7 @@ pub unsafe extern "C" fn cublasSsymm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsymm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsymm_v2"
@@ -25355,11 +24867,7 @@ pub unsafe extern "C" fn cublasSsymm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSsymm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSsymm_v2_64"
@@ -25388,11 +24896,7 @@ pub unsafe extern "C" fn cublasDsymm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsymm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsymm_v2"
@@ -25421,11 +24925,7 @@ pub unsafe extern "C" fn cublasDsymm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDsymm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDsymm_v2_64"
@@ -25454,11 +24954,7 @@ pub unsafe extern "C" fn cublasCsymm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsymm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsymm_v2"
@@ -25487,11 +24983,7 @@ pub unsafe extern "C" fn cublasCsymm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCsymm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCsymm_v2_64"
@@ -25520,11 +25012,7 @@ pub unsafe extern "C" fn cublasZsymm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsymm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsymm_v2"
@@ -25553,11 +25041,7 @@ pub unsafe extern "C" fn cublasZsymm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZsymm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZsymm_v2_64"
@@ -25586,11 +25070,7 @@ pub unsafe extern "C" fn cublasChemm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasChemm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasChemm_v2"
@@ -25619,11 +25099,7 @@ pub unsafe extern "C" fn cublasChemm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasChemm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasChemm_v2_64"
@@ -25652,11 +25128,7 @@ pub unsafe extern "C" fn cublasZhemm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZhemm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZhemm_v2"
@@ -25685,11 +25157,7 @@ pub unsafe extern "C" fn cublasZhemm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZhemm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZhemm_v2_64"
@@ -25717,9 +25185,7 @@ pub unsafe extern "C" fn cublasStrsm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasStrsm_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasStrsm_v2"
@@ -25747,9 +25213,7 @@ pub unsafe extern "C" fn cublasStrsm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasStrsm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasStrsm_v2_64"
@@ -25777,9 +25241,7 @@ pub unsafe extern "C" fn cublasDtrsm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDtrsm_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDtrsm_v2"
@@ -25807,9 +25269,7 @@ pub unsafe extern "C" fn cublasDtrsm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDtrsm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDtrsm_v2_64"
@@ -25837,9 +25297,7 @@ pub unsafe extern "C" fn cublasCtrsm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCtrsm_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCtrsm_v2"
@@ -25867,9 +25325,7 @@ pub unsafe extern "C" fn cublasCtrsm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCtrsm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCtrsm_v2_64"
@@ -25897,9 +25353,7 @@ pub unsafe extern "C" fn cublasZtrsm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZtrsm_v2
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZtrsm_v2"
@@ -25927,9 +25381,7 @@ pub unsafe extern "C" fn cublasZtrsm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZtrsm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZtrsm_v2_64"
@@ -25959,11 +25411,7 @@ pub unsafe extern "C" fn cublasStrmm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasStrmm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasStrmm_v2"
@@ -25993,11 +25441,7 @@ pub unsafe extern "C" fn cublasStrmm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasStrmm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasStrmm_v2_64"
@@ -26027,11 +25471,7 @@ pub unsafe extern "C" fn cublasDtrmm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDtrmm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDtrmm_v2"
@@ -26061,11 +25501,7 @@ pub unsafe extern "C" fn cublasDtrmm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDtrmm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDtrmm_v2_64"
@@ -26095,11 +25531,7 @@ pub unsafe extern "C" fn cublasCtrmm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCtrmm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCtrmm_v2"
@@ -26129,11 +25561,7 @@ pub unsafe extern "C" fn cublasCtrmm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCtrmm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCtrmm_v2_64"
@@ -26163,11 +25591,7 @@ pub unsafe extern "C" fn cublasZtrmm_v2(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZtrmm_v2
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZtrmm_v2"
@@ -26197,11 +25621,7 @@ pub unsafe extern "C" fn cublasZtrmm_v2_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZtrmm_v2_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZtrmm_v2_64"
@@ -26234,8 +25654,7 @@ pub unsafe extern "C" fn cublasSgemmBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26270,8 +25689,7 @@ pub unsafe extern "C" fn cublasSgemmBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26306,8 +25724,7 @@ pub unsafe extern "C" fn cublasDgemmBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26342,8 +25759,7 @@ pub unsafe extern "C" fn cublasDgemmBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26378,8 +25794,7 @@ pub unsafe extern "C" fn cublasCgemmBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26414,8 +25829,7 @@ pub unsafe extern "C" fn cublasCgemmBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26450,8 +25864,7 @@ pub unsafe extern "C" fn cublasCgemm3mBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26486,8 +25899,7 @@ pub unsafe extern "C" fn cublasCgemm3mBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26522,8 +25934,7 @@ pub unsafe extern "C" fn cublasZgemmBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26558,8 +25969,7 @@ pub unsafe extern "C" fn cublasZgemmBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray,
-                ldc, batchCount,
+                handle, transa, transb, m, n, k, alpha, Aarray, lda, Barray, ldb, beta, Carray, ldc, batchCount,
             )
         },
         None => panic!(
@@ -26597,8 +26007,8 @@ pub unsafe extern "C" fn cublasSgemmStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26636,8 +26046,8 @@ pub unsafe extern "C" fn cublasSgemmStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26675,8 +26085,8 @@ pub unsafe extern "C" fn cublasDgemmStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26714,8 +26124,8 @@ pub unsafe extern "C" fn cublasDgemmStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26753,8 +26163,8 @@ pub unsafe extern "C" fn cublasCgemmStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26792,8 +26202,8 @@ pub unsafe extern "C" fn cublasCgemmStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26831,8 +26241,8 @@ pub unsafe extern "C" fn cublasCgemm3mStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26870,8 +26280,8 @@ pub unsafe extern "C" fn cublasCgemm3mStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26909,8 +26319,8 @@ pub unsafe extern "C" fn cublasZgemmStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -26948,8 +26358,8 @@ pub unsafe extern "C" fn cublasZgemmStridedBatched_64(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C,
-                ldc, strideC, batchCount,
+                handle, transa, transb, m, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC,
+                batchCount,
             )
         },
         None => panic!(
@@ -27550,11 +26960,7 @@ pub unsafe extern "C" fn cublasSgeam(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgeam
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgeam"
@@ -27583,11 +26989,7 @@ pub unsafe extern "C" fn cublasSgeam_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasSgeam_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasSgeam_64"
@@ -27616,11 +27018,7 @@ pub unsafe extern "C" fn cublasDgeam(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgeam
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgeam"
@@ -27649,11 +27047,7 @@ pub unsafe extern "C" fn cublasDgeam_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDgeam_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDgeam_64"
@@ -27682,11 +27076,7 @@ pub unsafe extern "C" fn cublasCgeam(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgeam
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgeam"
@@ -27715,11 +27105,7 @@ pub unsafe extern "C" fn cublasCgeam_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCgeam_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCgeam_64"
@@ -27748,11 +27134,7 @@ pub unsafe extern "C" fn cublasZgeam(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgeam
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgeam"
@@ -27781,11 +27163,7 @@ pub unsafe extern "C" fn cublasZgeam_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZgeam_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZgeam_64"
@@ -27814,11 +27192,7 @@ pub unsafe extern "C" fn cublasStrsmBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasStrsmBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasStrsmBatched"
@@ -27847,11 +27221,7 @@ pub unsafe extern "C" fn cublasStrsmBatched_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasStrsmBatched_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasStrsmBatched_64"
@@ -27880,11 +27250,7 @@ pub unsafe extern "C" fn cublasDtrsmBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDtrsmBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDtrsmBatched"
@@ -27913,11 +27279,7 @@ pub unsafe extern "C" fn cublasDtrsmBatched_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasDtrsmBatched_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasDtrsmBatched_64"
@@ -27946,11 +27308,7 @@ pub unsafe extern "C" fn cublasCtrsmBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCtrsmBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCtrsmBatched"
@@ -27979,11 +27337,7 @@ pub unsafe extern "C" fn cublasCtrsmBatched_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasCtrsmBatched_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasCtrsmBatched_64"
@@ -28012,11 +27366,7 @@ pub unsafe extern "C" fn cublasZtrsmBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZtrsmBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZtrsmBatched"
@@ -28045,11 +27395,7 @@ pub unsafe extern "C" fn cublasZtrsmBatched_64(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cublasZtrsmBatched_64
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, diag, m, n, alpha, A, lda, B, ldb, batchCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cublasZtrsmBatched_64"
@@ -29149,8 +28495,8 @@ pub unsafe extern "C" fn cublasUint8gemmBias(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, transa, transb, transc, m, n, k, A, A_bias, lda, B, B_bias, ldb, C, C_bias,
-                ldc, C_mult, C_shift,
+                handle, transa, transb, transc, m, n, k, A, A_bias, lda, B, B_bias, ldb, C, C_bias, ldc, C_mult,
+                C_shift,
             )
         },
         None => panic!(
@@ -29327,10 +28673,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasGetFixedPointEmulationMantissaControl: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasGetFixedPointEmulationMantissaControl\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasGetFixedPointEmulationMantissaControl\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -29338,10 +28681,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasSetFixedPointEmulationMantissaControl: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasSetFixedPointEmulationMantissaControl\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasSetFixedPointEmulationMantissaControl\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -29349,10 +28689,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasGetFixedPointEmulationMaxMantissaBitCount: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasGetFixedPointEmulationMaxMantissaBitCount\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasGetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -29360,10 +28697,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasSetFixedPointEmulationMaxMantissaBitCount: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasSetFixedPointEmulationMaxMantissaBitCount\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasSetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -29371,10 +28705,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasGetFixedPointEmulationMantissaBitOffset: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasGetFixedPointEmulationMantissaBitOffset\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasGetFixedPointEmulationMantissaBitOffset\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -29382,10 +28713,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasSetFixedPointEmulationMantissaBitOffset: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasSetFixedPointEmulationMantissaBitOffset\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasSetFixedPointEmulationMantissaBitOffset\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -29393,10 +28721,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasGetFixedPointEmulationMantissaBitCountPointer: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasGetFixedPointEmulationMantissaBitCountPointer\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasGetFixedPointEmulationMantissaBitCountPointer\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -29404,10 +28729,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cublasSetFixedPointEmulationMantissaBitCountPointer: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cublasSetFixedPointEmulationMantissaBitCountPointer\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cublasSetFixedPointEmulationMantissaBitCountPointer\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {

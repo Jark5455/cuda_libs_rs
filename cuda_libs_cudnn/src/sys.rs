@@ -1,4 +1,4 @@
-pub use cuda_libs_cudart::sys::*;
+use cuda_libs_cudart::sys::*;
 pub const CUDNN_MAJOR: u32 = 9;
 pub const CUDNN_MINOR: u32 = 20;
 pub const CUDNN_PATCHLEVEL: u32 = 0;
@@ -73,8 +73,7 @@ impl cudnnStatus_t {
         cudnnStatus_t::CUDNN_STATUS_INTERNAL_ERROR_HOST_ALLOCATION_FAILED;
 }
 impl cudnnStatus_t {
-    pub const CUDNN_STATUS_ARCH_MISMATCH: cudnnStatus_t =
-        cudnnStatus_t::CUDNN_STATUS_NOT_SUPPORTED_ARCH_MISMATCH;
+    pub const CUDNN_STATUS_ARCH_MISMATCH: cudnnStatus_t = cudnnStatus_t::CUDNN_STATUS_NOT_SUPPORTED_ARCH_MISMATCH;
 }
 impl cudnnStatus_t {
     pub const CUDNN_STATUS_MAPPING_ERROR: cudnnStatus_t =
@@ -85,8 +84,7 @@ impl cudnnStatus_t {
         cudnnStatus_t::CUDNN_STATUS_NOT_SUPPORTED_RUNTIME_PREREQUISITE_MISSING;
 }
 impl cudnnStatus_t {
-    pub const CUDNN_STATUS_VERSION_MISMATCH: cudnnStatus_t =
-        cudnnStatus_t::CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH;
+    pub const CUDNN_STATUS_VERSION_MISMATCH: cudnnStatus_t = cudnnStatus_t::CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -172,10 +170,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnGetProperty(
-        type_: libraryPropertyType,
-        value: *mut ::std::os::raw::c_int,
-    ) -> cudnnStatus_t;
+    pub fn cudnnGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -406,8 +401,7 @@ pub enum cudnnPointwiseMode_t {
     CUDNN_POINTWISE_BINARY_SELECT = 601,
 }
 impl cudnnResampleMode_t {
-    pub const CUDNN_RESAMPLE_AVGPOOL_INCLUDE_PADDING: cudnnResampleMode_t =
-        cudnnResampleMode_t::CUDNN_RESAMPLE_AVGPOOL;
+    pub const CUDNN_RESAMPLE_AVGPOOL_INCLUDE_PADDING: cudnnResampleMode_t = cudnnResampleMode_t::CUDNN_RESAMPLE_AVGPOOL;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -1179,10 +1173,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnGetTensorSizeInBytes(
-        tensorDesc: cudnnTensorDescriptor_t,
-        size: *mut usize,
-    ) -> cudnnStatus_t;
+    pub fn cudnnGetTensorSizeInBytes(tensorDesc: cudnnTensorDescriptor_t, size: *mut usize) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1196,7 +1187,7 @@ pub enum cudnnFoldingDirection_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Create a destination descriptor for cudnnTransformTensor"]
+    #[doc = "Create a destination descriptor for cudnnTransformTensor"]
     pub fn cudnnInitTransformDest(
         transformDesc: cudnnTensorTransformDescriptor_t,
         srcDesc: cudnnTensorDescriptor_t,
@@ -1206,14 +1197,12 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Create an empty tensor transform descriptor"]
-    pub fn cudnnCreateTensorTransformDescriptor(
-        transformDesc: *mut cudnnTensorTransformDescriptor_t,
-    ) -> cudnnStatus_t;
+    #[doc = "Create an empty tensor transform descriptor"]
+    pub fn cudnnCreateTensorTransformDescriptor(transformDesc: *mut cudnnTensorTransformDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Initialize a previously created tensor transform descriptor."]
+    #[doc = "Initialize a previously created tensor transform descriptor."]
     pub fn cudnnSetTensorTransformDescriptor(
         transformDesc: cudnnTensorTransformDescriptor_t,
         nbDims: u32,
@@ -1226,7 +1215,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Retrieves the values stored in a previously initialized tensor transform\n descriptor."]
+    #[doc = "Retrieves the values stored in a previously initialized tensor transform\ndescriptor."]
     pub fn cudnnGetTensorTransformDescriptor(
         transformDesc: cudnnTensorTransformDescriptor_t,
         nbDimsRequested: u32,
@@ -1239,10 +1228,8 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    #[doc = " Destroys a previously created tensor transform descriptor."]
-    pub fn cudnnDestroyTensorTransformDescriptor(
-        transformDesc: cudnnTensorTransformDescriptor_t,
-    ) -> cudnnStatus_t;
+    #[doc = "Destroys a previously created tensor transform descriptor."]
+    pub fn cudnnDestroyTensorTransformDescriptor(transformDesc: cudnnTensorTransformDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1293,9 +1280,7 @@ pub enum cudnnOpTensorOp_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateOpTensorDescriptor(
-        opTensorDesc: *mut cudnnOpTensorDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateOpTensorDescriptor(opTensorDesc: *mut cudnnOpTensorDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1317,8 +1302,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDestroyOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescriptor_t)
-    -> cudnnStatus_t;
+    pub fn cudnnDestroyOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1352,9 +1336,7 @@ pub enum cudnnIndicesType_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateReduceTensorDescriptor(
-        reduceTensorDesc: *mut cudnnReduceTensorDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateReduceTensorDescriptor(reduceTensorDesc: *mut cudnnReduceTensorDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1380,9 +1362,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDestroyReduceTensorDescriptor(
-        reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDestroyReduceTensorDescriptor(reduceTensorDesc: cudnnReduceTensorDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1490,10 +1470,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnGetFilterSizeInBytes(
-        filterDesc: cudnnFilterDescriptor_t,
-        size: *mut usize,
-    ) -> cudnnStatus_t;
+    pub fn cudnnGetFilterSizeInBytes(filterDesc: cudnnFilterDescriptor_t, size: *mut usize) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1549,9 +1526,7 @@ pub enum cudnnPoolingMode_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreatePoolingDescriptor(
-        poolingDesc: *mut cudnnPoolingDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreatePoolingDescriptor(poolingDesc: *mut cudnnPoolingDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1645,9 +1620,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateActivationDescriptor(
-        activationDesc: *mut cudnnActivationDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateActivationDescriptor(activationDesc: *mut cudnnActivationDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1683,9 +1656,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDestroyActivationDescriptor(
-        activationDesc: cudnnActivationDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDestroyActivationDescriptor(activationDesc: cudnnActivationDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1872,9 +1843,7 @@ pub enum cudnnSamplerType_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateSpatialTransformerDescriptor(
-        stDesc: *mut cudnnSpatialTransformerDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateSpatialTransformerDescriptor(stDesc: *mut cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1888,9 +1857,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDestroySpatialTransformerDescriptor(
-        stDesc: cudnnSpatialTransformerDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDestroySpatialTransformerDescriptor(stDesc: cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1923,9 +1890,7 @@ pub struct cudnnDropoutStruct {
 pub type cudnnDropoutDescriptor_t = *mut cudnnDropoutStruct;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateDropoutDescriptor(
-        dropoutDesc: *mut cudnnDropoutDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateDropoutDescriptor(dropoutDesc: *mut cudnnDropoutDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -1933,17 +1898,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDropoutGetStatesSize(
-        handle: cudnnHandle_t,
-        sizeInBytes: *mut usize,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDropoutGetStatesSize(handle: cudnnHandle_t, sizeInBytes: *mut usize) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDropoutGetReserveSpaceSize(
-        xdesc: cudnnTensorDescriptor_t,
-        sizeInBytes: *mut usize,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDropoutGetReserveSpaceSize(xdesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2634,9 +2593,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateRNNDataDescriptor(
-        rnnDataDesc: *mut cudnnRNNDataDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateRNNDataDescriptor(rnnDataDesc: *mut cudnnRNNDataDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2710,9 +2667,7 @@ pub struct cudnnSeqDataStruct {
 pub type cudnnSeqDataDescriptor_t = *mut cudnnSeqDataStruct;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateSeqDataDescriptor(
-        seqDataDesc: *mut cudnnSeqDataDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateSeqDataDescriptor(seqDataDesc: *mut cudnnSeqDataDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2988,16 +2943,12 @@ pub enum cudnnLossNormalizationMode_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateCTCLossDescriptor(
-        ctcLossDesc: *mut cudnnCTCLossDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateCTCLossDescriptor(ctcLossDesc: *mut cudnnCTCLossDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnSetCTCLossDescriptor(
-        ctcLossDesc: cudnnCTCLossDescriptor_t,
-        compType: cudnnDataType_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnSetCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t)
+    -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3158,15 +3109,11 @@ impl Default for cudnnConvolutionFwdAlgoPerfStruct {
 pub type cudnnConvolutionFwdAlgoPerf_t = cudnnConvolutionFwdAlgoPerfStruct;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateConvolutionDescriptor(
-        convDesc: *mut cudnnConvolutionDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateConvolutionDescriptor(convDesc: *mut cudnnConvolutionDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDestroyConvolutionDescriptor(
-        convDesc: cudnnConvolutionDescriptor_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDestroyConvolutionDescriptor(convDesc: cudnnConvolutionDescriptor_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3772,9 +3719,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDestroyFusedOpsConstParamPack(
-        constPack: cudnnFusedOpsConstParamPack_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDestroyFusedOpsConstParamPack(constPack: cudnnFusedOpsConstParamPack_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3802,9 +3747,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnDestroyFusedOpsVariantParamPack(
-        varPack: cudnnFusedOpsVariantParamPack_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnDestroyFusedOpsVariantParamPack(varPack: cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3824,10 +3767,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cudnnCreateFusedOpsPlan(
-        plan: *mut cudnnFusedOpsPlan_t,
-        ops: cudnnFusedOps_t,
-    ) -> cudnnStatus_t;
+    pub fn cudnnCreateFusedOpsPlan(plan: *mut cudnnFusedOpsPlan_t, ops: cudnnFusedOps_t) -> cudnnStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3855,10 +3795,8 @@ pub struct DynamicBindings {
     pub cudnnGetVersion: Option<unsafe extern "C" fn() -> usize>,
     pub cudnnGetMaxDeviceVersion: Option<unsafe extern "C" fn() -> usize>,
     pub cudnnGetCudartVersion: Option<unsafe extern "C" fn() -> usize>,
-    pub cudnnGetErrorString:
-        Option<unsafe extern "C" fn(status: cudnnStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cudnnGetLastErrorString:
-        Option<unsafe extern "C" fn(message: *mut ::std::os::raw::c_char, max_size: usize)>,
+    pub cudnnGetErrorString: Option<unsafe extern "C" fn(status: cudnnStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cudnnGetLastErrorString: Option<unsafe extern "C" fn(message: *mut ::std::os::raw::c_char, max_size: usize)>,
     pub cudnnQueryRuntimeError: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -3867,20 +3805,13 @@ pub struct DynamicBindings {
             tag: *mut cudnnRuntimeTag_t,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetProperty: Option<
-        unsafe extern "C" fn(
-            type_: libraryPropertyType,
-            value: *mut ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetProperty:
+        Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnCreate: Option<unsafe extern "C" fn(handle: *mut cudnnHandle_t) -> cudnnStatus_t>,
     pub cudnnDestroy: Option<unsafe extern "C" fn(handle: cudnnHandle_t) -> cudnnStatus_t>,
-    pub cudnnSetStream: Option<
-        unsafe extern "C" fn(handle: cudnnHandle_t, streamId: cudaStream_t) -> cudnnStatus_t,
-    >,
-    pub cudnnGetStream: Option<
-        unsafe extern "C" fn(handle: cudnnHandle_t, streamId: *mut cudaStream_t) -> cudnnStatus_t,
-    >,
+    pub cudnnSetStream: Option<unsafe extern "C" fn(handle: cudnnHandle_t, streamId: cudaStream_t) -> cudnnStatus_t>,
+    pub cudnnGetStream:
+        Option<unsafe extern "C" fn(handle: cudnnHandle_t, streamId: *mut cudaStream_t) -> cudnnStatus_t>,
     pub cudnnSetCallback: Option<
         unsafe extern "C" fn(
             mask: ::std::os::raw::c_uint,
@@ -3904,10 +3835,8 @@ pub struct DynamicBindings {
     >,
     pub cudnnBackendDestroyDescriptor:
         Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnBackendInitialize:
-        Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnBackendFinalize:
-        Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnBackendInitialize: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnBackendFinalize: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
     pub cudnnBackendSetAttribute: Option<
         unsafe extern "C" fn(
             descriptor: cudnnBackendDescriptor_t,
@@ -4019,12 +3948,8 @@ pub struct DynamicBindings {
             strideA: *mut ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetTensorSizeInBytes: Option<
-        unsafe extern "C" fn(
-            tensorDesc: cudnnTensorDescriptor_t,
-            size: *mut usize,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetTensorSizeInBytes:
+        Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, size: *mut usize) -> cudnnStatus_t>,
     pub cudnnDestroyTensorDescriptor:
         Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t) -> cudnnStatus_t>,
     pub cudnnInitTransformDest: Option<
@@ -4035,9 +3960,8 @@ pub struct DynamicBindings {
             destSizeInBytes: *mut usize,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateTensorTransformDescriptor: Option<
-        unsafe extern "C" fn(transformDesc: *mut cudnnTensorTransformDescriptor_t) -> cudnnStatus_t,
-    >,
+    pub cudnnCreateTensorTransformDescriptor:
+        Option<unsafe extern "C" fn(transformDesc: *mut cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetTensorTransformDescriptor: Option<
         unsafe extern "C" fn(
             transformDesc: cudnnTensorTransformDescriptor_t,
@@ -4060,9 +3984,8 @@ pub struct DynamicBindings {
             direction: *mut cudnnFoldingDirection_t,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnDestroyTensorTransformDescriptor: Option<
-        unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t) -> cudnnStatus_t,
-    >,
+    pub cudnnDestroyTensorTransformDescriptor:
+        Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>,
     pub cudnnTransformTensor: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -4132,9 +4055,8 @@ pub struct DynamicBindings {
             C: *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateReduceTensorDescriptor: Option<
-        unsafe extern "C" fn(reduceTensorDesc: *mut cudnnReduceTensorDescriptor_t) -> cudnnStatus_t,
-    >,
+    pub cudnnCreateReduceTensorDescriptor:
+        Option<unsafe extern "C" fn(reduceTensorDesc: *mut cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetReduceTensorDescriptor: Option<
         unsafe extern "C" fn(
             reduceTensorDesc: cudnnReduceTensorDescriptor_t,
@@ -4155,9 +4077,8 @@ pub struct DynamicBindings {
             reduceTensorIndicesType: *mut cudnnIndicesType_t,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnDestroyReduceTensorDescriptor: Option<
-        unsafe extern "C" fn(reduceTensorDesc: cudnnReduceTensorDescriptor_t) -> cudnnStatus_t,
-    >,
+    pub cudnnDestroyReduceTensorDescriptor:
+        Option<unsafe extern "C" fn(reduceTensorDesc: cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>,
     pub cudnnGetReductionIndicesSize: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -4251,12 +4172,8 @@ pub struct DynamicBindings {
             filterDimA: *mut ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetFilterSizeInBytes: Option<
-        unsafe extern "C" fn(
-            filterDesc: cudnnFilterDescriptor_t,
-            size: *mut usize,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetFilterSizeInBytes:
+        Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, size: *mut usize) -> cudnnStatus_t>,
     pub cudnnTransformFilter: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -4367,9 +4284,8 @@ pub struct DynamicBindings {
             y: *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateActivationDescriptor: Option<
-        unsafe extern "C" fn(activationDesc: *mut cudnnActivationDescriptor_t) -> cudnnStatus_t,
-    >,
+    pub cudnnCreateActivationDescriptor:
+        Option<unsafe extern "C" fn(activationDesc: *mut cudnnActivationDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetActivationDescriptor: Option<
         unsafe extern "C" fn(
             activationDesc: cudnnActivationDescriptor_t,
@@ -4386,17 +4302,10 @@ pub struct DynamicBindings {
             coef: *mut f64,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnSetActivationDescriptorSwishBeta: Option<
-        unsafe extern "C" fn(
-            activationDesc: cudnnActivationDescriptor_t,
-            swish_beta: f64,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnSetActivationDescriptorSwishBeta:
+        Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, swish_beta: f64) -> cudnnStatus_t>,
     pub cudnnGetActivationDescriptorSwishBeta: Option<
-        unsafe extern "C" fn(
-            activationDesc: cudnnActivationDescriptor_t,
-            swish_beta: *mut f64,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, swish_beta: *mut f64) -> cudnnStatus_t,
     >,
     pub cudnnDestroyActivationDescriptor:
         Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t) -> cudnnStatus_t>,
@@ -4412,8 +4321,7 @@ pub struct DynamicBindings {
             y: *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateLRNDescriptor:
-        Option<unsafe extern "C" fn(normDesc: *mut cudnnLRNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnCreateLRNDescriptor: Option<unsafe extern "C" fn(normDesc: *mut cudnnLRNDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetLRNDescriptor: Option<
         unsafe extern "C" fn(
             normDesc: cudnnLRNDescriptor_t,
@@ -4432,8 +4340,7 @@ pub struct DynamicBindings {
             lrnK: *mut f64,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnDestroyLRNDescriptor:
-        Option<unsafe extern "C" fn(lrnDesc: cudnnLRNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyLRNDescriptor: Option<unsafe extern "C" fn(lrnDesc: cudnnLRNDescriptor_t) -> cudnnStatus_t>,
     pub cudnnLRNCrossChannelForward: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -4522,9 +4429,8 @@ pub struct DynamicBindings {
             groupCnt: ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateSpatialTransformerDescriptor: Option<
-        unsafe extern "C" fn(stDesc: *mut cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t,
-    >,
+    pub cudnnCreateSpatialTransformerDescriptor:
+        Option<unsafe extern "C" fn(stDesc: *mut cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetSpatialTransformerNdDescriptor: Option<
         unsafe extern "C" fn(
             stDesc: cudnnSpatialTransformerDescriptor_t,
@@ -4561,15 +4467,10 @@ pub struct DynamicBindings {
         Option<unsafe extern "C" fn(dropoutDesc: *mut cudnnDropoutDescriptor_t) -> cudnnStatus_t>,
     pub cudnnDestroyDropoutDescriptor:
         Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDropoutGetStatesSize: Option<
-        unsafe extern "C" fn(handle: cudnnHandle_t, sizeInBytes: *mut usize) -> cudnnStatus_t,
-    >,
-    pub cudnnDropoutGetReserveSpaceSize: Option<
-        unsafe extern "C" fn(
-            xdesc: cudnnTensorDescriptor_t,
-            sizeInBytes: *mut usize,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnDropoutGetStatesSize:
+        Option<unsafe extern "C" fn(handle: cudnnHandle_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
+    pub cudnnDropoutGetReserveSpaceSize:
+        Option<unsafe extern "C" fn(xdesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
     pub cudnnSetDropoutDescriptor: Option<
         unsafe extern "C" fn(
             dropoutDesc: cudnnDropoutDescriptor_t,
@@ -4992,10 +4893,8 @@ pub struct DynamicBindings {
             reserveSpaceSizeInBytes: usize,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateRNNDescriptor:
-        Option<unsafe extern "C" fn(rnnDesc: *mut cudnnRNNDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroyRNNDescriptor:
-        Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnCreateRNNDescriptor: Option<unsafe extern "C" fn(rnnDesc: *mut cudnnRNNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyRNNDescriptor: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetRNNDescriptor_v8: Option<
         unsafe extern "C" fn(
             rnnDesc: cudnnRNNDescriptor_t,
@@ -5189,10 +5088,8 @@ pub struct DynamicBindings {
             paddingFill: *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateAttnDescriptor:
-        Option<unsafe extern "C" fn(attnDesc: *mut cudnnAttnDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroyAttnDescriptor:
-        Option<unsafe extern "C" fn(attnDesc: cudnnAttnDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnCreateAttnDescriptor: Option<unsafe extern "C" fn(attnDesc: *mut cudnnAttnDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyAttnDescriptor: Option<unsafe extern "C" fn(attnDesc: cudnnAttnDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetAttnDescriptor: Option<
         unsafe extern "C" fn(
             attnDesc: cudnnAttnDescriptor_t,
@@ -5385,12 +5282,8 @@ pub struct DynamicBindings {
     >,
     pub cudnnCreateCTCLossDescriptor:
         Option<unsafe extern "C" fn(ctcLossDesc: *mut cudnnCTCLossDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetCTCLossDescriptor: Option<
-        unsafe extern "C" fn(
-            ctcLossDesc: cudnnCTCLossDescriptor_t,
-            compType: cudnnDataType_t,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnSetCTCLossDescriptor:
+        Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t) -> cudnnStatus_t>,
     pub cudnnSetCTCLossDescriptorEx: Option<
         unsafe extern "C" fn(
             ctcLossDesc: cudnnCTCLossDescriptor_t,
@@ -5418,10 +5311,7 @@ pub struct DynamicBindings {
         ) -> cudnnStatus_t,
     >,
     pub cudnnGetCTCLossDescriptor: Option<
-        unsafe extern "C" fn(
-            ctcLossDesc: cudnnCTCLossDescriptor_t,
-            compType: *mut cudnnDataType_t,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t) -> cudnnStatus_t,
     >,
     pub cudnnGetCTCLossDescriptorEx: Option<
         unsafe extern "C" fn(
@@ -5513,16 +5403,10 @@ pub struct DynamicBindings {
     pub cudnnDestroyConvolutionDescriptor:
         Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetConvolutionMathType: Option<
-        unsafe extern "C" fn(
-            convDesc: cudnnConvolutionDescriptor_t,
-            mathType: cudnnMathType_t,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, mathType: cudnnMathType_t) -> cudnnStatus_t,
     >,
     pub cudnnGetConvolutionMathType: Option<
-        unsafe extern "C" fn(
-            convDesc: cudnnConvolutionDescriptor_t,
-            mathType: *mut cudnnMathType_t,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, mathType: *mut cudnnMathType_t) -> cudnnStatus_t,
     >,
     pub cudnnSetConvolutionGroupCount: Option<
         unsafe extern "C" fn(
@@ -5537,10 +5421,7 @@ pub struct DynamicBindings {
         ) -> cudnnStatus_t,
     >,
     pub cudnnSetConvolutionReorderType: Option<
-        unsafe extern "C" fn(
-            convDesc: cudnnConvolutionDescriptor_t,
-            reorderType: cudnnReorderType_t,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, reorderType: cudnnReorderType_t) -> cudnnStatus_t,
     >,
     pub cudnnGetConvolutionReorderType: Option<
         unsafe extern "C" fn(
@@ -5617,12 +5498,8 @@ pub struct DynamicBindings {
             tensorOuputDimA: *mut ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetConvolutionForwardAlgorithmMaxCount: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            count: *mut ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetConvolutionForwardAlgorithmMaxCount:
+        Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnGetConvolutionForwardAlgorithm_v7: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -5736,12 +5613,8 @@ pub struct DynamicBindings {
             y: *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetConvolutionBackwardDataAlgorithmMaxCount: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            count: *mut ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetConvolutionBackwardDataAlgorithmMaxCount:
+        Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnFindConvolutionBackwardDataAlgorithm: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -5830,12 +5703,8 @@ pub struct DynamicBindings {
         ) -> cudnnStatus_t,
     >,
     pub cudnnCnnVersionCheck: Option<unsafe extern "C" fn() -> cudnnStatus_t>,
-    pub cudnnGetConvolutionBackwardFilterAlgorithmMaxCount: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            count: *mut ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetConvolutionBackwardFilterAlgorithmMaxCount:
+        Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnFindConvolutionBackwardFilterAlgorithm: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -5917,10 +5786,7 @@ pub struct DynamicBindings {
         ) -> cudnnStatus_t,
     >,
     pub cudnnCreateFusedOpsConstParamPack: Option<
-        unsafe extern "C" fn(
-            constPack: *mut cudnnFusedOpsConstParamPack_t,
-            ops: cudnnFusedOps_t,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(constPack: *mut cudnnFusedOpsConstParamPack_t, ops: cudnnFusedOps_t) -> cudnnStatus_t,
     >,
     pub cudnnDestroyFusedOpsConstParamPack:
         Option<unsafe extern "C" fn(constPack: cudnnFusedOpsConstParamPack_t) -> cudnnStatus_t>,
@@ -5940,10 +5806,7 @@ pub struct DynamicBindings {
         ) -> cudnnStatus_t,
     >,
     pub cudnnCreateFusedOpsVariantParamPack: Option<
-        unsafe extern "C" fn(
-            varPack: *mut cudnnFusedOpsVariantParamPack_t,
-            ops: cudnnFusedOps_t,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(varPack: *mut cudnnFusedOpsVariantParamPack_t, ops: cudnnFusedOps_t) -> cudnnStatus_t,
     >,
     pub cudnnDestroyFusedOpsVariantParamPack:
         Option<unsafe extern "C" fn(varPack: cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>,
@@ -5961,11 +5824,9 @@ pub struct DynamicBindings {
             ptr: *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateFusedOpsPlan: Option<
-        unsafe extern "C" fn(plan: *mut cudnnFusedOpsPlan_t, ops: cudnnFusedOps_t) -> cudnnStatus_t,
-    >,
-    pub cudnnDestroyFusedOpsPlan:
-        Option<unsafe extern "C" fn(plan: cudnnFusedOpsPlan_t) -> cudnnStatus_t>,
+    pub cudnnCreateFusedOpsPlan:
+        Option<unsafe extern "C" fn(plan: *mut cudnnFusedOpsPlan_t, ops: cudnnFusedOps_t) -> cudnnStatus_t>,
+    pub cudnnDestroyFusedOpsPlan: Option<unsafe extern "C" fn(plan: cudnnFusedOpsPlan_t) -> cudnnStatus_t>,
     pub cudnnMakeFusedOpsPlan: Option<
         unsafe extern "C" fn(
             handle: cudnnHandle_t,
@@ -6031,9 +5892,7 @@ pub unsafe extern "C" fn cudnnGetCudartVersion() -> usize {
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnGetErrorString(
-    status: cudnnStatus_t,
-) -> *const ::std::os::raw::c_char {
+pub unsafe extern "C" fn cudnnGetErrorString(status: cudnnStatus_t) -> *const ::std::os::raw::c_char {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6048,10 +5907,7 @@ pub unsafe extern "C" fn cudnnGetErrorString(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnGetLastErrorString(
-    message: *mut ::std::os::raw::c_char,
-    max_size: usize,
-) {
+pub unsafe extern "C" fn cudnnGetLastErrorString(message: *mut ::std::os::raw::c_char, max_size: usize) {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6134,10 +5990,7 @@ pub unsafe extern "C" fn cudnnDestroy(handle: cudnnHandle_t) -> cudnnStatus_t {
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnSetStream(
-    handle: cudnnHandle_t,
-    streamId: cudaStream_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnSetStream(handle: cudnnHandle_t, streamId: cudaStream_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6152,10 +6005,7 @@ pub unsafe extern "C" fn cudnnSetStream(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnGetStream(
-    handle: cudnnHandle_t,
-    streamId: *mut cudaStream_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnGetStream(handle: cudnnHandle_t, streamId: *mut cudaStream_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6241,9 +6091,7 @@ pub unsafe extern "C" fn cudnnBackendCreateDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnBackendDestroyDescriptor(
-    descriptor: cudnnBackendDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnBackendDestroyDescriptor(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6258,9 +6106,7 @@ pub unsafe extern "C" fn cudnnBackendDestroyDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnBackendInitialize(
-    descriptor: cudnnBackendDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnBackendInitialize(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6275,9 +6121,7 @@ pub unsafe extern "C" fn cudnnBackendInitialize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnBackendFinalize(
-    descriptor: cudnnBackendDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnBackendFinalize(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6304,15 +6148,7 @@ pub unsafe extern "C" fn cudnnBackendSetAttribute(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnBackendSetAttribute
     {
-        Some(____func) => unsafe {
-            ____func(
-                descriptor,
-                attributeName,
-                attributeType,
-                elementCount,
-                arrayOfElements,
-            )
-        },
+        Some(____func) => unsafe { ____func(descriptor, attributeName, attributeType, elementCount, arrayOfElements) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnBackendSetAttribute"
@@ -6411,9 +6247,7 @@ pub unsafe extern "C" fn cudnnBackendUpdateCudaGraph(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateTensorDescriptor(
-    tensorDesc: *mut cudnnTensorDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateTensorDescriptor(tensorDesc: *mut cudnnTensorDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6468,11 +6302,7 @@ pub unsafe extern "C" fn cudnnSetTensor4dDescriptorEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSetTensor4dDescriptorEx
     {
-        Some(____func) => unsafe {
-            ____func(
-                tensorDesc, dataType, n, c, h, w, nStride, cStride, hStride, wStride,
-            )
-        },
+        Some(____func) => unsafe { ____func(tensorDesc, dataType, n, c, h, w, nStride, cStride, hStride, wStride) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSetTensor4dDescriptorEx"
@@ -6498,11 +6328,7 @@ pub unsafe extern "C" fn cudnnGetTensor4dDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetTensor4dDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(
-                tensorDesc, dataType, n, c, h, w, nStride, cStride, hStride, wStride,
-            )
-        },
+        Some(____func) => unsafe { ____func(tensorDesc, dataType, n, c, h, w, nStride, cStride, hStride, wStride) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetTensor4dDescriptor"
@@ -6566,9 +6392,7 @@ pub unsafe extern "C" fn cudnnGetTensorNdDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetTensorNdDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(tensorDesc, nbDimsRequested, dataType, nbDims, dimA, strideA)
-        },
+        Some(____func) => unsafe { ____func(tensorDesc, nbDimsRequested, dataType, nbDims, dimA, strideA) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetTensorNdDescriptor"
@@ -6595,9 +6419,7 @@ pub unsafe extern "C" fn cudnnGetTensorSizeInBytes(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyTensorDescriptor(
-    tensorDesc: cudnnTensorDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyTensorDescriptor(tensorDesc: cudnnTensorDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6770,11 +6592,7 @@ pub unsafe extern "C" fn cudnnTransformTensorEx(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnTransformTensorEx
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transDesc, alpha, srcDesc, srcData, beta, destDesc, destData,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transDesc, alpha, srcDesc, srcData, beta, destDesc, destData) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnTransformTensorEx"
@@ -6806,9 +6624,7 @@ pub unsafe extern "C" fn cudnnAddTensor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateOpTensorDescriptor(
-    opTensorDesc: *mut cudnnOpTensorDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateOpTensorDescriptor(opTensorDesc: *mut cudnnOpTensorDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6834,9 +6650,7 @@ pub unsafe extern "C" fn cudnnSetOpTensorDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSetOpTensorDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(opTensorDesc, opTensorOp, opTensorCompType, opTensorNanOpt)
-        },
+        Some(____func) => unsafe { ____func(opTensorDesc, opTensorOp, opTensorCompType, opTensorNanOpt) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSetOpTensorDescriptor"
@@ -6856,9 +6670,7 @@ pub unsafe extern "C" fn cudnnGetOpTensorDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetOpTensorDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(opTensorDesc, opTensorOp, opTensorCompType, opTensorNanOpt)
-        },
+        Some(____func) => unsafe { ____func(opTensorDesc, opTensorOp, opTensorCompType, opTensorNanOpt) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetOpTensorDescriptor"
@@ -6867,9 +6679,7 @@ pub unsafe extern "C" fn cudnnGetOpTensorDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyOpTensorDescriptor(
-    opTensorDesc: cudnnOpTensorDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -6902,21 +6712,7 @@ pub unsafe extern "C" fn cudnnOpTensor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnOpTensor
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                opTensorDesc,
-                alpha1,
-                aDesc,
-                A,
-                alpha2,
-                bDesc,
-                B,
-                beta,
-                cDesc,
-                C,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, opTensorDesc, alpha1, aDesc, A, alpha2, bDesc, B, beta, cDesc, C) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnOpTensor"
@@ -7146,9 +6942,7 @@ pub unsafe extern "C" fn cudnnScaleTensor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateFilterDescriptor(
-    filterDesc: *mut cudnnFilterDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateFilterDescriptor(filterDesc: *mut cudnnFilterDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -7243,16 +7037,7 @@ pub unsafe extern "C" fn cudnnGetFilterNdDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetFilterNdDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(
-                filterDesc,
-                nbDimsRequested,
-                dataType,
-                format,
-                nbDims,
-                filterDimA,
-            )
-        },
+        Some(____func) => unsafe { ____func(filterDesc, nbDimsRequested, dataType, format, nbDims, filterDimA) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetFilterNdDescriptor"
@@ -7294,11 +7079,7 @@ pub unsafe extern "C" fn cudnnTransformFilter(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnTransformFilter
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, transDesc, alpha, srcDesc, srcData, beta, destDesc, destData,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, transDesc, alpha, srcDesc, srcData, beta, destDesc, destData) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnTransformFilter"
@@ -7307,9 +7088,7 @@ pub unsafe extern "C" fn cudnnTransformFilter(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyFilterDescriptor(
-    filterDesc: cudnnFilterDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyFilterDescriptor(filterDesc: cudnnFilterDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -7349,9 +7128,7 @@ pub unsafe extern "C" fn cudnnSoftmaxForward(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreatePoolingDescriptor(
-    poolingDesc: *mut cudnnPoolingDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreatePoolingDescriptor(poolingDesc: *mut cudnnPoolingDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -7519,9 +7296,7 @@ pub unsafe extern "C" fn cudnnGetPoolingNdForwardOutputDim(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetPoolingNdForwardOutputDim
     {
-        Some(____func) => unsafe {
-            ____func(poolingDesc, inputTensorDesc, nbDims, outputTensorDimA)
-        },
+        Some(____func) => unsafe { ____func(poolingDesc, inputTensorDesc, nbDims, outputTensorDimA) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetPoolingNdForwardOutputDim"
@@ -7552,9 +7327,7 @@ pub unsafe extern "C" fn cudnnGetPooling2dForwardOutputDim(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyPoolingDescriptor(
-    poolingDesc: cudnnPoolingDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyPoolingDescriptor(poolingDesc: cudnnPoolingDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -7718,9 +7491,7 @@ pub unsafe extern "C" fn cudnnActivationForward(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnActivationForward
     {
-        Some(____func) => unsafe {
-            ____func(handle, activationDesc, alpha, xDesc, x, beta, yDesc, y)
-        },
+        Some(____func) => unsafe { ____func(handle, activationDesc, alpha, xDesc, x, beta, yDesc, y) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnActivationForward"
@@ -7729,9 +7500,7 @@ pub unsafe extern "C" fn cudnnActivationForward(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateLRNDescriptor(
-    normDesc: *mut cudnnLRNDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateLRNDescriptor(normDesc: *mut cudnnLRNDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -7819,9 +7588,7 @@ pub unsafe extern "C" fn cudnnLRNCrossChannelForward(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnLRNCrossChannelForward
     {
-        Some(____func) => unsafe {
-            ____func(handle, normDesc, lrnMode, alpha, xDesc, x, beta, yDesc, y)
-        },
+        Some(____func) => unsafe { ____func(handle, normDesc, lrnMode, alpha, xDesc, x, beta, yDesc, y) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnLRNCrossChannelForward"
@@ -7940,15 +7707,7 @@ pub unsafe extern "C" fn cudnnDeriveNormTensorDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnDeriveNormTensorDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(
-                derivedNormScaleBiasDesc,
-                derivedNormMeanVarDesc,
-                xDesc,
-                mode,
-                groupCnt,
-            )
-        },
+        Some(____func) => unsafe { ____func(derivedNormScaleBiasDesc, derivedNormMeanVarDesc, xDesc, mode, groupCnt) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnDeriveNormTensorDescriptor"
@@ -8109,9 +7868,7 @@ pub unsafe extern "C" fn cudnnSpatialTfSamplerForward(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSpatialTfSamplerForward
     {
-        Some(____func) => unsafe {
-            ____func(handle, stDesc, alpha, xDesc, x, grid, beta, yDesc, y)
-        },
+        Some(____func) => unsafe { ____func(handle, stDesc, alpha, xDesc, x, grid, beta, yDesc, y) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSpatialTfSamplerForward"
@@ -8120,9 +7877,7 @@ pub unsafe extern "C" fn cudnnSpatialTfSamplerForward(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateDropoutDescriptor(
-    dropoutDesc: *mut cudnnDropoutDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateDropoutDescriptor(dropoutDesc: *mut cudnnDropoutDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -8137,9 +7892,7 @@ pub unsafe extern "C" fn cudnnCreateDropoutDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyDropoutDescriptor(
-    dropoutDesc: cudnnDropoutDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyDropoutDescriptor(dropoutDesc: cudnnDropoutDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -8154,10 +7907,7 @@ pub unsafe extern "C" fn cudnnDestroyDropoutDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDropoutGetStatesSize(
-    handle: cudnnHandle_t,
-    sizeInBytes: *mut usize,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDropoutGetStatesSize(handle: cudnnHandle_t, sizeInBytes: *mut usize) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -8203,9 +7953,7 @@ pub unsafe extern "C" fn cudnnSetDropoutDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSetDropoutDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(dropoutDesc, handle, dropout, states, stateSizeInBytes, seed)
-        },
+        Some(____func) => unsafe { ____func(dropoutDesc, handle, dropout, states, stateSizeInBytes, seed) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSetDropoutDescriptor"
@@ -8227,9 +7975,7 @@ pub unsafe extern "C" fn cudnnRestoreDropoutDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnRestoreDropoutDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(dropoutDesc, handle, dropout, states, stateSizeInBytes, seed)
-        },
+        Some(____func) => unsafe { ____func(dropoutDesc, handle, dropout, states, stateSizeInBytes, seed) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnRestoreDropoutDescriptor"
@@ -8327,11 +8073,7 @@ pub unsafe extern "C" fn cudnnSoftmaxBackward(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSoftmaxBackward
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, algo, mode, alpha, yDesc, y, dyDesc, dy, beta, dxDesc, dx,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, algo, mode, alpha, yDesc, y, dyDesc, dy, beta, dxDesc, dx) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSoftmaxBackward"
@@ -8597,9 +8339,7 @@ pub unsafe extern "C" fn cudnnGetBatchNormalizationTrainingExReserveSpaceSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetBatchNormalizationTrainingExReserveSpaceSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, mode, bnOps, activationDesc, xDesc, sizeInBytes)
-        },
+        Some(____func) => unsafe { ____func(handle, mode, bnOps, activationDesc, xDesc, sizeInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetBatchNormalizationTrainingExReserveSpaceSize"
@@ -9194,8 +8934,7 @@ pub unsafe extern "C" fn cudnnSpatialTfSamplerBackward(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, stDesc, alpha, xDesc, x, beta, dxDesc, dx, alphaDgrid, dyDesc, dy, grid,
-                betaDgrid, dgrid,
+                handle, stDesc, alpha, xDesc, x, beta, dxDesc, dx, alphaDgrid, dyDesc, dy, grid, betaDgrid, dgrid,
             )
         },
         None => panic!(
@@ -9241,9 +8980,7 @@ pub unsafe extern "C" fn cudnnDropoutBackward(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateRNNDescriptor(
-    rnnDesc: *mut cudnnRNNDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateRNNDescriptor(rnnDesc: *mut cudnnRNNDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -9485,16 +9222,7 @@ pub unsafe extern "C" fn cudnnGetRNNTempSpaceSizes(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetRNNTempSpaceSizes
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                rnnDesc,
-                fwdMode,
-                xDesc,
-                workSpaceSize,
-                reserveSpaceSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, rnnDesc, fwdMode, xDesc, workSpaceSize, reserveSpaceSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetRNNTempSpaceSizes"
@@ -9561,9 +9289,7 @@ pub unsafe extern "C" fn cudnnGetRNNWeightParams(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateRNNDataDescriptor(
-    rnnDataDesc: *mut cudnnRNNDataDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateRNNDataDescriptor(rnnDataDesc: *mut cudnnRNNDataDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -9578,9 +9304,7 @@ pub unsafe extern "C" fn cudnnCreateRNNDataDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyRNNDataDescriptor(
-    rnnDataDesc: cudnnRNNDataDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -9726,9 +9450,7 @@ pub unsafe extern "C" fn cudnnRNNForward(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateSeqDataDescriptor(
-    seqDataDesc: *mut cudnnSeqDataDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateSeqDataDescriptor(seqDataDesc: *mut cudnnSeqDataDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -9743,9 +9465,7 @@ pub unsafe extern "C" fn cudnnCreateSeqDataDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroySeqDataDescriptor(
-    seqDataDesc: cudnnSeqDataDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroySeqDataDescriptor(seqDataDesc: cudnnSeqDataDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -9834,9 +9554,7 @@ pub unsafe extern "C" fn cudnnGetSeqDataDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateAttnDescriptor(
-    attnDesc: *mut cudnnAttnDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateAttnDescriptor(attnDesc: *mut cudnnAttnDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -9851,9 +9569,7 @@ pub unsafe extern "C" fn cudnnCreateAttnDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyAttnDescriptor(
-    attnDesc: cudnnAttnDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyAttnDescriptor(attnDesc: cudnnAttnDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -10029,17 +9745,7 @@ pub unsafe extern "C" fn cudnnGetMultiHeadAttnWeights(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetMultiHeadAttnWeights
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                attnDesc,
-                wKind,
-                weightSizeInBytes,
-                weights,
-                wDesc,
-                wAddr,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, attnDesc, wKind, weightSizeInBytes, weights, wDesc, wAddr) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetMultiHeadAttnWeights"
@@ -10360,9 +10066,7 @@ pub unsafe extern "C" fn cudnnMultiHeadAttnBackwardWeights(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnCreateCTCLossDescriptor(
-    ctcLossDesc: *mut cudnnCTCLossDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnCreateCTCLossDescriptor(ctcLossDesc: *mut cudnnCTCLossDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -10427,9 +10131,7 @@ pub unsafe extern "C" fn cudnnSetCTCLossDescriptor_v8(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSetCTCLossDescriptor_v8
     {
-        Some(____func) => unsafe {
-            ____func(ctcLossDesc, compType, normMode, gradMode, maxLabelLength)
-        },
+        Some(____func) => unsafe { ____func(ctcLossDesc, compType, normMode, gradMode, maxLabelLength) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSetCTCLossDescriptor_v8"
@@ -10450,9 +10152,7 @@ pub unsafe extern "C" fn cudnnSetCTCLossDescriptor_v9(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSetCTCLossDescriptor_v9
     {
-        Some(____func) => unsafe {
-            ____func(ctcLossDesc, compType, normMode, ctcGradMode, maxLabelLength)
-        },
+        Some(____func) => unsafe { ____func(ctcLossDesc, compType, normMode, ctcGradMode, maxLabelLength) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSetCTCLossDescriptor_v9"
@@ -10511,9 +10211,7 @@ pub unsafe extern "C" fn cudnnGetCTCLossDescriptor_v8(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetCTCLossDescriptor_v8
     {
-        Some(____func) => unsafe {
-            ____func(ctcLossDesc, compType, normMode, gradMode, maxLabelLength)
-        },
+        Some(____func) => unsafe { ____func(ctcLossDesc, compType, normMode, gradMode, maxLabelLength) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetCTCLossDescriptor_v8"
@@ -10534,9 +10232,7 @@ pub unsafe extern "C" fn cudnnGetCTCLossDescriptor_v9(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetCTCLossDescriptor_v9
     {
-        Some(____func) => unsafe {
-            ____func(ctcLossDesc, compType, normMode, ctcGradMode, maxLabelLength)
-        },
+        Some(____func) => unsafe { ____func(ctcLossDesc, compType, normMode, ctcGradMode, maxLabelLength) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetCTCLossDescriptor_v9"
@@ -10545,9 +10241,7 @@ pub unsafe extern "C" fn cudnnGetCTCLossDescriptor_v9(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyCTCLossDescriptor(
-    ctcLossDesc: cudnnCTCLossDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -10702,16 +10396,7 @@ pub unsafe extern "C" fn cudnnGetCTCLossWorkspaceSize_v8(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetCTCLossWorkspaceSize_v8
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                algo,
-                ctcLossDesc,
-                probsDesc,
-                gradientsDesc,
-                sizeInBytes,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, algo, ctcLossDesc, probsDesc, gradientsDesc, sizeInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetCTCLossWorkspaceSize_v8"
@@ -10737,9 +10422,7 @@ pub unsafe extern "C" fn cudnnCreateConvolutionDescriptor(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyConvolutionDescriptor(
-    convDesc: cudnnConvolutionDescriptor_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyConvolutionDescriptor(convDesc: cudnnConvolutionDescriptor_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -10878,19 +10561,7 @@ pub unsafe extern "C" fn cudnnSetConvolution2dDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSetConvolution2dDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(
-                convDesc,
-                pad_h,
-                pad_w,
-                u,
-                v,
-                dilation_h,
-                dilation_w,
-                mode,
-                computeType,
-            )
-        },
+        Some(____func) => unsafe { ____func(convDesc, pad_h, pad_w, u, v, dilation_h, dilation_w, mode, computeType) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSetConvolution2dDescriptor"
@@ -10915,19 +10586,7 @@ pub unsafe extern "C" fn cudnnGetConvolution2dDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetConvolution2dDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(
-                convDesc,
-                pad_h,
-                pad_w,
-                u,
-                v,
-                dilation_h,
-                dilation_w,
-                mode,
-                computeType,
-            )
-        },
+        Some(____func) => unsafe { ____func(convDesc, pad_h, pad_w, u, v, dilation_h, dilation_w, mode, computeType) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetConvolution2dDescriptor"
@@ -10950,17 +10609,7 @@ pub unsafe extern "C" fn cudnnSetConvolutionNdDescriptor(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnSetConvolutionNdDescriptor
     {
-        Some(____func) => unsafe {
-            ____func(
-                convDesc,
-                arrayLength,
-                padA,
-                filterStrideA,
-                dilationA,
-                mode,
-                computeType,
-            )
-        },
+        Some(____func) => unsafe { ____func(convDesc, arrayLength, padA, filterStrideA, dilationA, mode, computeType) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnSetConvolutionNdDescriptor"
@@ -11039,15 +10688,7 @@ pub unsafe extern "C" fn cudnnGetConvolutionNdForwardOutputDim(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetConvolutionNdForwardOutputDim
     {
-        Some(____func) => unsafe {
-            ____func(
-                convDesc,
-                inputTensorDesc,
-                filterDesc,
-                nbDims,
-                tensorOuputDimA,
-            )
-        },
+        Some(____func) => unsafe { ____func(convDesc, inputTensorDesc, filterDesc, nbDims, tensorOuputDimA) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetConvolutionNdForwardOutputDim"
@@ -11260,9 +10901,7 @@ pub unsafe extern "C" fn cudnnGetConvolutionForwardWorkspaceSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetConvolutionForwardWorkspaceSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, xDesc, wDesc, convDesc, yDesc, algo, sizeInBytes)
-        },
+        Some(____func) => unsafe { ____func(handle, xDesc, wDesc, convDesc, yDesc, algo, sizeInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetConvolutionForwardWorkspaceSize"
@@ -11518,9 +11157,7 @@ pub unsafe extern "C" fn cudnnGetConvolutionBackwardDataWorkspaceSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetConvolutionBackwardDataWorkspaceSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, wDesc, dyDesc, convDesc, dxDesc, algo, sizeInBytes)
-        },
+        Some(____func) => unsafe { ____func(handle, wDesc, dyDesc, convDesc, dxDesc, algo, sizeInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetConvolutionBackwardDataWorkspaceSize"
@@ -11783,9 +11420,7 @@ pub unsafe extern "C" fn cudnnGetConvolutionBackwardFilterWorkspaceSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cudnnGetConvolutionBackwardFilterWorkspaceSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, xDesc, dyDesc, convDesc, gradDesc, algo, sizeInBytes)
-        },
+        Some(____func) => unsafe { ____func(handle, xDesc, dyDesc, convDesc, gradDesc, algo, sizeInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cudnnGetConvolutionBackwardFilterWorkspaceSize"
@@ -11880,9 +11515,7 @@ pub unsafe extern "C" fn cudnnCreateFusedOpsConstParamPack(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cudnnDestroyFusedOpsConstParamPack(
-    constPack: cudnnFusedOpsConstParamPack_t,
-) -> cudnnStatus_t {
+pub unsafe extern "C" fn cudnnDestroyFusedOpsConstParamPack(constPack: cudnnFusedOpsConstParamPack_t) -> cudnnStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -12962,10 +12595,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetBatchNormalizationBackwardExWorkspaceSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetBatchNormalizationBackwardExWorkspaceSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationBackwardExWorkspaceSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -12973,10 +12603,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetBatchNormalizationTrainingExReserveSpaceSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetBatchNormalizationTrainingExReserveSpaceSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationTrainingExReserveSpaceSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13016,10 +12643,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetNormalizationForwardTrainingWorkspaceSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetNormalizationForwardTrainingWorkspaceSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetNormalizationForwardTrainingWorkspaceSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13027,10 +12651,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetNormalizationBackwardWorkspaceSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetNormalizationBackwardWorkspaceSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetNormalizationBackwardWorkspaceSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13038,10 +12659,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetNormalizationTrainingReserveSpaceSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetNormalizationTrainingReserveSpaceSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetNormalizationTrainingReserveSpaceSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13577,10 +13195,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetConvolutionForwardAlgorithmMaxCount: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetConvolutionForwardAlgorithmMaxCount\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetConvolutionForwardAlgorithmMaxCount\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13652,10 +13267,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetConvolutionBackwardDataAlgorithmMaxCount: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetConvolutionBackwardDataAlgorithmMaxCount\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataAlgorithmMaxCount\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13671,10 +13283,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnFindConvolutionBackwardDataAlgorithmEx: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnFindConvolutionBackwardDataAlgorithmEx\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardDataAlgorithmEx\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13682,10 +13291,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetConvolutionBackwardDataAlgorithm_v7: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetConvolutionBackwardDataAlgorithm_v7\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataAlgorithm_v7\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13693,10 +13299,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetConvolutionBackwardDataWorkspaceSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetConvolutionBackwardDataWorkspaceSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataWorkspaceSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13728,10 +13331,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetConvolutionBackwardFilterAlgorithmMaxCount: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetConvolutionBackwardFilterAlgorithmMaxCount\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterAlgorithmMaxCount\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13739,10 +13339,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnFindConvolutionBackwardFilterAlgorithm: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnFindConvolutionBackwardFilterAlgorithm\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardFilterAlgorithm\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13750,10 +13347,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnFindConvolutionBackwardFilterAlgorithmEx: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnFindConvolutionBackwardFilterAlgorithmEx\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardFilterAlgorithmEx\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13761,10 +13355,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetConvolutionBackwardFilterAlgorithm_v7: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetConvolutionBackwardFilterAlgorithm_v7\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterAlgorithm_v7\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -13772,10 +13363,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cudnnGetConvolutionBackwardFilterWorkspaceSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cudnnGetConvolutionBackwardFilterWorkspaceSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterWorkspaceSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {

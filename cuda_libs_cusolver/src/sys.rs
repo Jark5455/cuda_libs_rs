@@ -1,4 +1,4 @@
-pub use cuda_libs_cudart::sys::*;
+use cuda_libs_cudart::sys::*;
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct __BindgenBitfieldUnit<Storage> {
@@ -35,9 +35,7 @@ where
     pub unsafe fn raw_get_bit(this: *const Self, index: usize) -> bool {
         debug_assert!(index / 8 < core::mem::size_of::<Storage>());
         let byte_index = index / 8;
-        let byte = unsafe {
-            *(core::ptr::addr_of!((*this).storage) as *const u8).offset(byte_index as isize)
-        };
+        let byte = unsafe { *(core::ptr::addr_of!((*this).storage) as *const u8).offset(byte_index as isize) };
         Self::extract_bit(byte, index)
     }
     #[inline]
@@ -61,9 +59,7 @@ where
     pub unsafe fn raw_set_bit(this: *mut Self, index: usize, val: bool) {
         debug_assert!(index / 8 < core::mem::size_of::<Storage>());
         let byte_index = index / 8;
-        let byte = unsafe {
-            (core::ptr::addr_of_mut!((*this).storage) as *mut u8).offset(byte_index as isize)
-        };
+        let byte = unsafe { (core::ptr::addr_of_mut!((*this).storage) as *mut u8).offset(byte_index as isize) };
         unsafe { *byte = Self::change_bit(*byte, index, val) };
     }
     #[inline]
@@ -483,10 +479,7 @@ pub enum cusolverMathMode_t {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverGetProperty(
-        type_: libraryPropertyType,
-        value: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -502,17 +495,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetStream(
-        handle: cusolverDnHandle_t,
-        streamId: cudaStream_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetStream(handle: cusolverDnHandle_t, streamId: cudaStream_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetStream(
-        handle: cusolverDnHandle_t,
-        streamId: *mut cudaStream_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetStream(handle: cusolverDnHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -530,17 +517,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetMathMode(
-        handle: cusolverDnHandle_t,
-        mode: cusolverMathMode_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetMathMode(handle: cusolverDnHandle_t, mode: cusolverMathMode_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetMathMode(
-        handle: cusolverDnHandle_t,
-        mode: *mut cusolverMathMode_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetMathMode(handle: cusolverDnHandle_t, mode: *mut cusolverMathMode_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -655,17 +636,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsSetTolInner(
-        params: cusolverDnIRSParams_t,
-        val: f64,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsSetTolInner(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsSetMaxIters(
-        params: cusolverDnIRSParams_t,
-        maxiters: cusolver_int_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsSetMaxIters(params: cusolverDnIRSParams_t, maxiters: cusolver_int_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -699,10 +674,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSInfosGetNiters(
-        infos: cusolverDnIRSInfos_t,
-        niters: *mut cusolver_int_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSInfosGetNiters(infos: cusolverDnIRSInfos_t, niters: *mut cusolver_int_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4796,17 +4768,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXsyevjSetMaxSweeps(
-        info: syevjInfo_t,
-        max_sweeps: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXsyevjSetMaxSweeps(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXsyevjSetSortEig(
-        info: syevjInfo_t,
-        sort_eig: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXsyevjSetSortEig(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5230,17 +5196,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgesvdjSetMaxSweeps(
-        info: gesvdjInfo_t,
-        max_sweeps: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXgesvdjSetMaxSweeps(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgesvdjSetSortEig(
-        info: gesvdjInfo_t,
-        sort_svd: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXgesvdjSetSortEig(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -6465,17 +6425,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpSetStream(
-        handle: cusolverSpHandle_t,
-        streamId: cudaStream_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverSpSetStream(handle: cusolverSpHandle_t, streamId: cudaStream_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpGetStream(
-        handle: cusolverSpHandle_t,
-        streamId: *mut cudaStream_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverSpGetStream(handle: cusolverSpHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -7409,71 +7363,31 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cusolverGetProperty: Option<
-        unsafe extern "C" fn(
-            type_: libraryPropertyType,
-            value: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverGetVersion:
-        Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCreate:
-        Option<unsafe extern "C" fn(handle: *mut cusolverDnHandle_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroy:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t) -> cusolverStatus_t>,
-    pub cusolverDnSetStream: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            streamId: cudaStream_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnGetStream: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            streamId: *mut cudaStream_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSetDeterministicMode: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mode: cusolverDeterministicMode_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverGetProperty:
+        Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverGetVersion: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCreate: Option<unsafe extern "C" fn(handle: *mut cusolverDnHandle_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroy: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t) -> cusolverStatus_t>,
+    pub cusolverDnSetStream:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverDnGetStream:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverDnSetDeterministicMode:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverDeterministicMode_t) -> cusolverStatus_t>,
     pub cusolverDnGetDeterministicMode: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mode: *mut cusolverDeterministicMode_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverDeterministicMode_t) -> cusolverStatus_t,
     >,
-    pub cusolverDnSetMathMode: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mode: cusolverMathMode_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnGetMathMode: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mode: *mut cusolverMathMode_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSetEmulationStrategy: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            strategy: cudaEmulationStrategy_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSetMathMode:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverMathMode_t) -> cusolverStatus_t>,
+    pub cusolverDnGetMathMode:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverMathMode_t) -> cusolverStatus_t>,
+    pub cusolverDnSetEmulationStrategy:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: cudaEmulationStrategy_t) -> cusolverStatus_t>,
     pub cusolverDnGetEmulationStrategy: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            strategy: *mut cudaEmulationStrategy_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: *mut cudaEmulationStrategy_t) -> cusolverStatus_t,
     >,
     pub cusolverDnSetFixedPointEmulationMantissaControl: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            control: cudaEmulationMantissaControl_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, control: cudaEmulationMantissaControl_t) -> cusolverStatus_t,
     >,
     pub cusolverDnGetFixedPointEmulationMantissaControl: Option<
         unsafe extern "C" fn(
@@ -7482,10 +7396,7 @@ pub struct DynamicBindings {
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSetFixedPointEmulationMaxMantissaBitCount: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mantissaBitCount: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnGetFixedPointEmulationMaxMantissaBitCount: Option<
         unsafe extern "C" fn(
@@ -7494,10 +7405,7 @@ pub struct DynamicBindings {
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSetFixedPointEmulationMantissaBitOffset: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mantissaBitOffset: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnGetFixedPointEmulationMantissaBitOffset: Option<
         unsafe extern "C" fn(
@@ -7506,10 +7414,7 @@ pub struct DynamicBindings {
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSetEmulationSpecialValuesSupport: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mask: cudaEmulationSpecialValuesSupport_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, mask: cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t,
     >,
     pub cusolverDnGetEmulationSpecialValuesSupport: Option<
         unsafe extern "C" fn(
@@ -7519,8 +7424,7 @@ pub struct DynamicBindings {
     >,
     pub cusolverDnIRSParamsCreate:
         Option<unsafe extern "C" fn(params_ptr: *mut cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsDestroy:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsDestroy: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
     pub cusolverDnIRSParamsSetRefinementSolver: Option<
         unsafe extern "C" fn(
             params: cusolverDnIRSParams_t,
@@ -7550,43 +7454,23 @@ pub struct DynamicBindings {
         Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
     pub cusolverDnIRSParamsSetTolInner:
         Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetMaxIters: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnIRSParams_t,
-            maxiters: cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSParamsSetMaxItersInner: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnIRSParams_t,
-            maxiters_inner: cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSParamsGetMaxIters: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnIRSParams_t,
-            maxiters: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnIRSParamsSetMaxIters:
+        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetMaxItersInner:
+        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters_inner: cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsGetMaxIters:
+        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnIRSParamsEnableFallback:
         Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
     pub cusolverDnIRSParamsDisableFallback:
         Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosDestroy:
-        Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosDestroy: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
     pub cusolverDnIRSInfosCreate:
         Option<unsafe extern "C" fn(infos_ptr: *mut cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetNiters: Option<
-        unsafe extern "C" fn(
-            infos: cusolverDnIRSInfos_t,
-            niters: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnIRSInfosGetNiters:
+        Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, niters: *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnIRSInfosGetOuterNiters: Option<
-        unsafe extern "C" fn(
-            infos: cusolverDnIRSInfos_t,
-            outer_niters: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, outer_niters: *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnIRSInfosRequestResidual:
         Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
@@ -7596,12 +7480,8 @@ pub struct DynamicBindings {
             residual_history: *mut *mut ::std::os::raw::c_void,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnIRSInfosGetMaxIters: Option<
-        unsafe extern "C" fn(
-            infos: cusolverDnIRSInfos_t,
-            maxiters: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnIRSInfosGetMaxIters:
+        Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnZZgesv: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -11399,30 +11279,16 @@ pub struct DynamicBindings {
             d_info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnCreateSyevjInfo:
-        Option<unsafe extern "C" fn(info: *mut syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroySyevjInfo:
-        Option<unsafe extern "C" fn(info: syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnCreateSyevjInfo: Option<unsafe extern "C" fn(info: *mut syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroySyevjInfo: Option<unsafe extern "C" fn(info: syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnXsyevjSetTolerance:
         Option<unsafe extern "C" fn(info: syevjInfo_t, tolerance: f64) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetMaxSweeps: Option<
-        unsafe extern "C" fn(
-            info: syevjInfo_t,
-            max_sweeps: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXsyevjSetSortEig: Option<
-        unsafe extern "C" fn(
-            info: syevjInfo_t,
-            sort_eig: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXsyevjSetMaxSweeps:
+        Option<unsafe extern "C" fn(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetSortEig:
+        Option<unsafe extern "C" fn(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnXsyevjGetResidual: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            info: syevjInfo_t,
-            residual: *mut f64,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, info: syevjInfo_t, residual: *mut f64) -> cusolverStatus_t,
     >,
     pub cusolverDnXsyevjGetSweeps: Option<
         unsafe extern "C" fn(
@@ -11799,30 +11665,16 @@ pub struct DynamicBindings {
             params: syevjInfo_t,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnCreateGesvdjInfo:
-        Option<unsafe extern "C" fn(info: *mut gesvdjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroyGesvdjInfo:
-        Option<unsafe extern "C" fn(info: gesvdjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnCreateGesvdjInfo: Option<unsafe extern "C" fn(info: *mut gesvdjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroyGesvdjInfo: Option<unsafe extern "C" fn(info: gesvdjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnXgesvdjSetTolerance:
         Option<unsafe extern "C" fn(info: gesvdjInfo_t, tolerance: f64) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetMaxSweeps: Option<
-        unsafe extern "C" fn(
-            info: gesvdjInfo_t,
-            max_sweeps: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXgesvdjSetSortEig: Option<
-        unsafe extern "C" fn(
-            info: gesvdjInfo_t,
-            sort_svd: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXgesvdjSetMaxSweeps:
+        Option<unsafe extern "C" fn(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetSortEig:
+        Option<unsafe extern "C" fn(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnXgesvdjGetResidual: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            info: gesvdjInfo_t,
-            residual: *mut f64,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, info: gesvdjInfo_t, residual: *mut f64) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvdjGetSweeps: Option<
         unsafe extern "C" fn(
@@ -12323,10 +12175,8 @@ pub struct DynamicBindings {
             batchSize: ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnCreateParams:
-        Option<unsafe extern "C" fn(params: *mut cusolverDnParams_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroyParams:
-        Option<unsafe extern "C" fn(params: cusolverDnParams_t) -> cusolverStatus_t>,
+    pub cusolverDnCreateParams: Option<unsafe extern "C" fn(params: *mut cusolverDnParams_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroyParams: Option<unsafe extern "C" fn(params: cusolverDnParams_t) -> cusolverStatus_t>,
     pub cusolverDnSetAdvOptions: Option<
         unsafe extern "C" fn(
             params: cusolverDnParams_t,
@@ -12885,10 +12735,8 @@ pub struct DynamicBindings {
     pub cusolverDnLoggerSetFile: Option<unsafe extern "C" fn(file: *mut FILE) -> cusolverStatus_t>,
     pub cusolverDnLoggerOpenFile:
         Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t>,
-    pub cusolverDnLoggerSetLevel:
-        Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnLoggerSetMask:
-        Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetLevel: Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetMask: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnLoggerForceDisable: Option<unsafe extern "C" fn() -> cusolverStatus_t>,
     pub cusolverDnXpolar_bufferSize: Option<
         unsafe extern "C" fn(
@@ -12932,22 +12780,12 @@ pub struct DynamicBindings {
             d_info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpCreate:
-        Option<unsafe extern "C" fn(handle: *mut cusolverSpHandle_t) -> cusolverStatus_t>,
-    pub cusolverSpDestroy:
-        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t) -> cusolverStatus_t>,
-    pub cusolverSpSetStream: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            streamId: cudaStream_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpGetStream: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            streamId: *mut cudaStream_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpCreate: Option<unsafe extern "C" fn(handle: *mut cusolverSpHandle_t) -> cusolverStatus_t>,
+    pub cusolverSpDestroy: Option<unsafe extern "C" fn(handle: cusolverSpHandle_t) -> cusolverStatus_t>,
+    pub cusolverSpSetStream:
+        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverSpGetStream:
+        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
     pub cusolverSpXcsrissymHost: Option<
         unsafe extern "C" fn(
             handle: cusolverSpHandle_t,
@@ -13670,10 +13508,8 @@ pub struct DynamicBindings {
             pBuffer: *mut ::std::os::raw::c_void,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpCreateCsrqrInfo:
-        Option<unsafe extern "C" fn(info: *mut csrqrInfo_t) -> cusolverStatus_t>,
-    pub cusolverSpDestroyCsrqrInfo:
-        Option<unsafe extern "C" fn(info: csrqrInfo_t) -> cusolverStatus_t>,
+    pub cusolverSpCreateCsrqrInfo: Option<unsafe extern "C" fn(info: *mut csrqrInfo_t) -> cusolverStatus_t>,
+    pub cusolverSpDestroyCsrqrInfo: Option<unsafe extern "C" fn(info: csrqrInfo_t) -> cusolverStatus_t>,
     pub cusolverSpXcsrqrAnalysisBatched: Option<
         unsafe extern "C" fn(
             handle: cusolverSpHandle_t,
@@ -13841,9 +13677,7 @@ pub unsafe extern "C" fn cusolverGetProperty(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverGetVersion(
-    version: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverGetVersion(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -13888,10 +13722,7 @@ pub unsafe extern "C" fn cusolverDnDestroy(handle: cusolverDnHandle_t) -> cusolv
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetStream(
-    handle: cusolverDnHandle_t,
-    streamId: cudaStream_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnSetStream(handle: cusolverDnHandle_t, streamId: cudaStream_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14176,9 +14007,7 @@ pub unsafe extern "C" fn cusolverDnGetEmulationSpecialValuesSupport(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsCreate(
-    params_ptr: *mut cusolverDnIRSParams_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSParamsCreate(params_ptr: *mut cusolverDnIRSParams_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14193,9 +14022,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsCreate(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsDestroy(
-    params: cusolverDnIRSParams_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSParamsDestroy(params: cusolverDnIRSParams_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14274,9 +14101,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverPrecisions(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnIRSParamsSetSolverPrecisions
     {
-        Some(____func) => unsafe {
-            ____func(params, solver_main_precision, solver_lowest_precision)
-        },
+        Some(____func) => unsafe { ____func(params, solver_main_precision, solver_lowest_precision) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnIRSParamsSetSolverPrecisions"
@@ -14285,10 +14110,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverPrecisions(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetTol(
-    params: cusolverDnIRSParams_t,
-    val: f64,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetTol(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14303,10 +14125,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetTol(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetTolInner(
-    params: cusolverDnIRSParams_t,
-    val: f64,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetTolInner(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14375,9 +14194,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsGetMaxIters(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsEnableFallback(
-    params: cusolverDnIRSParams_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSParamsEnableFallback(params: cusolverDnIRSParams_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14392,9 +14209,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsEnableFallback(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsDisableFallback(
-    params: cusolverDnIRSParams_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSParamsDisableFallback(params: cusolverDnIRSParams_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14409,9 +14224,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsDisableFallback(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosDestroy(
-    infos: cusolverDnIRSInfos_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSInfosDestroy(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14426,9 +14239,7 @@ pub unsafe extern "C" fn cusolverDnIRSInfosDestroy(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosCreate(
-    infos_ptr: *mut cusolverDnIRSInfos_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSInfosCreate(infos_ptr: *mut cusolverDnIRSInfos_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -14479,9 +14290,7 @@ pub unsafe extern "C" fn cusolverDnIRSInfosGetOuterNiters(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosRequestResidual(
-    infos: cusolverDnIRSInfos_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnIRSInfosRequestResidual(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -18308,9 +18117,7 @@ pub unsafe extern "C" fn cusolverDnSpotrsBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSpotrsBatched
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSpotrsBatched"
@@ -18336,9 +18143,7 @@ pub unsafe extern "C" fn cusolverDnDpotrsBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDpotrsBatched
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDpotrsBatched"
@@ -18364,9 +18169,7 @@ pub unsafe extern "C" fn cusolverDnCpotrsBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCpotrsBatched
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCpotrsBatched"
@@ -18392,9 +18195,7 @@ pub unsafe extern "C" fn cusolverDnZpotrsBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZpotrsBatched
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZpotrsBatched"
@@ -19148,9 +18949,7 @@ pub unsafe extern "C" fn cusolverDnSgetrs(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSgetrs
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSgetrs"
@@ -19176,9 +18975,7 @@ pub unsafe extern "C" fn cusolverDnDgetrs(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDgetrs
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDgetrs"
@@ -19204,9 +19001,7 @@ pub unsafe extern "C" fn cusolverDnCgetrs(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCgetrs
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCgetrs"
@@ -19232,9 +19027,7 @@ pub unsafe extern "C" fn cusolverDnZgetrs(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZgetrs
     {
-        Some(____func) => unsafe {
-            ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZgetrs"
@@ -19650,9 +19443,7 @@ pub unsafe extern "C" fn cusolverDnSormqr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSormqr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSormqr_bufferSize"
@@ -19680,9 +19471,7 @@ pub unsafe extern "C" fn cusolverDnDormqr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDormqr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDormqr_bufferSize"
@@ -19710,9 +19499,7 @@ pub unsafe extern "C" fn cusolverDnCunmqr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCunmqr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCunmqr_bufferSize"
@@ -19740,9 +19527,7 @@ pub unsafe extern "C" fn cusolverDnZunmqr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZunmqr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZunmqr_bufferSize"
@@ -19772,11 +19557,7 @@ pub unsafe extern "C" fn cusolverDnSormqr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSormqr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSormqr"
@@ -19806,11 +19587,7 @@ pub unsafe extern "C" fn cusolverDnDormqr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDormqr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDormqr"
@@ -19840,11 +19617,7 @@ pub unsafe extern "C" fn cusolverDnCunmqr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCunmqr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCunmqr"
@@ -19874,11 +19647,7 @@ pub unsafe extern "C" fn cusolverDnZunmqr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZunmqr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZunmqr"
@@ -20458,9 +20227,7 @@ pub unsafe extern "C" fn cusolverDnSgebrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSgebrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSgebrd"
@@ -20488,9 +20255,7 @@ pub unsafe extern "C" fn cusolverDnDgebrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDgebrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDgebrd"
@@ -20518,9 +20283,7 @@ pub unsafe extern "C" fn cusolverDnCgebrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCgebrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCgebrd"
@@ -20548,9 +20311,7 @@ pub unsafe extern "C" fn cusolverDnZgebrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZgebrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo)
-        },
+        Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZgebrd"
@@ -20677,9 +20438,7 @@ pub unsafe extern "C" fn cusolverDnSorgbr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSorgbr
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSorgbr"
@@ -20706,9 +20465,7 @@ pub unsafe extern "C" fn cusolverDnDorgbr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDorgbr
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDorgbr"
@@ -20735,9 +20492,7 @@ pub unsafe extern "C" fn cusolverDnCungbr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCungbr
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCungbr"
@@ -20764,9 +20519,7 @@ pub unsafe extern "C" fn cusolverDnZungbr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZungbr
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZungbr"
@@ -20893,9 +20646,7 @@ pub unsafe extern "C" fn cusolverDnSsytrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsytrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsytrd"
@@ -20922,9 +20673,7 @@ pub unsafe extern "C" fn cusolverDnDsytrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsytrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsytrd"
@@ -20951,9 +20700,7 @@ pub unsafe extern "C" fn cusolverDnChetrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnChetrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnChetrd"
@@ -20980,9 +20727,7 @@ pub unsafe extern "C" fn cusolverDnZhetrd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZhetrd
     {
-        Some(____func) => unsafe {
-            ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info)
-        },
+        Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZhetrd"
@@ -21202,9 +20947,7 @@ pub unsafe extern "C" fn cusolverDnSormtr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSormtr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSormtr_bufferSize"
@@ -21232,9 +20975,7 @@ pub unsafe extern "C" fn cusolverDnDormtr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDormtr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDormtr_bufferSize"
@@ -21262,9 +21003,7 @@ pub unsafe extern "C" fn cusolverDnCunmtr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCunmtr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCunmtr_bufferSize"
@@ -21292,9 +21031,7 @@ pub unsafe extern "C" fn cusolverDnZunmtr_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZunmtr_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZunmtr_bufferSize"
@@ -21324,11 +21061,7 @@ pub unsafe extern "C" fn cusolverDnSormtr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSormtr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSormtr"
@@ -21358,11 +21091,7 @@ pub unsafe extern "C" fn cusolverDnDormtr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDormtr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDormtr"
@@ -21392,11 +21121,7 @@ pub unsafe extern "C" fn cusolverDnCunmtr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCunmtr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCunmtr"
@@ -21426,11 +21151,7 @@ pub unsafe extern "C" fn cusolverDnZunmtr(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZunmtr
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZunmtr"
@@ -21884,11 +21605,7 @@ pub unsafe extern "C" fn cusolverDnSsyevdx_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsyevdx_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsyevdx_bufferSize"
@@ -21918,11 +21635,7 @@ pub unsafe extern "C" fn cusolverDnDsyevdx_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsyevdx_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsyevdx_bufferSize"
@@ -21952,11 +21665,7 @@ pub unsafe extern "C" fn cusolverDnCheevdx_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCheevdx_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCheevdx_bufferSize"
@@ -21986,11 +21695,7 @@ pub unsafe extern "C" fn cusolverDnZheevdx_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZheevdx_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZheevdx_bufferSize"
@@ -22319,8 +22024,7 @@ pub unsafe extern "C" fn cusolverDnSsygvdx(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work,
-                lwork, info,
+                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
             )
         },
         None => panic!(
@@ -22359,8 +22063,7 @@ pub unsafe extern "C" fn cusolverDnDsygvdx(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work,
-                lwork, info,
+                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
             )
         },
         None => panic!(
@@ -22399,8 +22102,7 @@ pub unsafe extern "C" fn cusolverDnChegvdx(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work,
-                lwork, info,
+                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
             )
         },
         None => panic!(
@@ -22439,8 +22141,7 @@ pub unsafe extern "C" fn cusolverDnZhegvdx(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work,
-                lwork, info,
+                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
             )
         },
         None => panic!(
@@ -22469,9 +22170,7 @@ pub unsafe extern "C" fn cusolverDnSsygvd_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsygvd_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsygvd_bufferSize"
@@ -22498,9 +22197,7 @@ pub unsafe extern "C" fn cusolverDnDsygvd_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsygvd_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsygvd_bufferSize"
@@ -22527,9 +22224,7 @@ pub unsafe extern "C" fn cusolverDnChegvd_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnChegvd_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnChegvd_bufferSize"
@@ -22556,9 +22251,7 @@ pub unsafe extern "C" fn cusolverDnZhegvd_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZhegvd_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork)
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZhegvd_bufferSize"
@@ -22587,11 +22280,7 @@ pub unsafe extern "C" fn cusolverDnSsygvd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsygvd
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsygvd"
@@ -22620,11 +22309,7 @@ pub unsafe extern "C" fn cusolverDnDsygvd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsygvd
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsygvd"
@@ -22653,11 +22338,7 @@ pub unsafe extern "C" fn cusolverDnChegvd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnChegvd
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnChegvd"
@@ -22686,11 +22367,7 @@ pub unsafe extern "C" fn cusolverDnZhegvd(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZhegvd
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZhegvd"
@@ -22975,10 +22652,7 @@ pub unsafe extern "C" fn cusolverDnDestroySyevjInfo(info: syevjInfo_t) -> cusolv
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjSetTolerance(
-    info: syevjInfo_t,
-    tolerance: f64,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXsyevjSetTolerance(info: syevjInfo_t, tolerance: f64) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -23084,9 +22758,7 @@ pub unsafe extern "C" fn cusolverDnSsyevjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsyevjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsyevjBatched_bufferSize"
@@ -23112,9 +22784,7 @@ pub unsafe extern "C" fn cusolverDnDsyevjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsyevjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsyevjBatched_bufferSize"
@@ -23140,9 +22810,7 @@ pub unsafe extern "C" fn cusolverDnCheevjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCheevjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCheevjBatched_bufferSize"
@@ -23168,9 +22836,7 @@ pub unsafe extern "C" fn cusolverDnZheevjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZheevjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZheevjBatched_bufferSize"
@@ -23198,11 +22864,7 @@ pub unsafe extern "C" fn cusolverDnSsyevjBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsyevjBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsyevjBatched"
@@ -23230,11 +22892,7 @@ pub unsafe extern "C" fn cusolverDnDsyevjBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsyevjBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsyevjBatched"
@@ -23262,11 +22920,7 @@ pub unsafe extern "C" fn cusolverDnCheevjBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCheevjBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCheevjBatched"
@@ -23294,11 +22948,7 @@ pub unsafe extern "C" fn cusolverDnZheevjBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZheevjBatched
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZheevjBatched"
@@ -23425,9 +23075,7 @@ pub unsafe extern "C" fn cusolverDnSsyevj(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsyevj
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsyevj"
@@ -23454,9 +23102,7 @@ pub unsafe extern "C" fn cusolverDnDsyevj(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsyevj
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsyevj"
@@ -23483,9 +23129,7 @@ pub unsafe extern "C" fn cusolverDnCheevj(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCheevj
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCheevj"
@@ -23512,9 +23156,7 @@ pub unsafe extern "C" fn cusolverDnZheevj(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZheevj
     {
-        Some(____func) => unsafe {
-            ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params)
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZheevj"
@@ -23542,11 +23184,7 @@ pub unsafe extern "C" fn cusolverDnSsygvj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSsygvj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsygvj_bufferSize"
@@ -23574,11 +23212,7 @@ pub unsafe extern "C" fn cusolverDnDsygvj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDsygvj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsygvj_bufferSize"
@@ -23606,11 +23240,7 @@ pub unsafe extern "C" fn cusolverDnChegvj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnChegvj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnChegvj_bufferSize"
@@ -23638,11 +23268,7 @@ pub unsafe extern "C" fn cusolverDnZhegvj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZhegvj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZhegvj_bufferSize"
@@ -23817,10 +23443,7 @@ pub unsafe extern "C" fn cusolverDnDestroyGesvdjInfo(info: gesvdjInfo_t) -> cuso
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjSetTolerance(
-    info: gesvdjInfo_t,
-    tolerance: f64,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnXgesvdjSetTolerance(info: gesvdjInfo_t, tolerance: f64) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -23930,11 +23553,7 @@ pub unsafe extern "C" fn cusolverDnSgesvdjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSgesvdjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSgesvdjBatched_bufferSize"
@@ -23964,11 +23583,7 @@ pub unsafe extern "C" fn cusolverDnDgesvdjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDgesvdjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDgesvdjBatched_bufferSize"
@@ -23998,11 +23613,7 @@ pub unsafe extern "C" fn cusolverDnCgesvdjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCgesvdjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCgesvdjBatched_bufferSize"
@@ -24032,11 +23643,7 @@ pub unsafe extern "C" fn cusolverDnZgesvdjBatched_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZgesvdjBatched_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZgesvdjBatched_bufferSize"
@@ -24210,11 +23817,7 @@ pub unsafe extern "C" fn cusolverDnSgesvdj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnSgesvdj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSgesvdj_bufferSize"
@@ -24244,11 +23847,7 @@ pub unsafe extern "C" fn cusolverDnDgesvdj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnDgesvdj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDgesvdj_bufferSize"
@@ -24278,11 +23877,7 @@ pub unsafe extern "C" fn cusolverDnCgesvdj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnCgesvdj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCgesvdj_bufferSize"
@@ -24312,11 +23907,7 @@ pub unsafe extern "C" fn cusolverDnZgesvdj_bufferSize(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverDnZgesvdj_bufferSize
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZgesvdj_bufferSize"
@@ -24496,8 +24087,8 @@ pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched_bufferSize(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, lwork, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
+                batchSize,
             )
         },
         None => panic!(
@@ -24535,8 +24126,8 @@ pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched_bufferSize(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, lwork, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
+                batchSize,
             )
         },
         None => panic!(
@@ -24574,8 +24165,8 @@ pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched_bufferSize(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, lwork, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
+                batchSize,
             )
         },
         None => panic!(
@@ -24613,8 +24204,8 @@ pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched_bufferSize(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, lwork, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
+                batchSize,
             )
         },
         None => panic!(
@@ -24655,8 +24246,8 @@ pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
+                d_work, lwork, d_info, h_R_nrmF, batchSize,
             )
         },
         None => panic!(
@@ -24697,8 +24288,8 @@ pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
+                d_work, lwork, d_info, h_R_nrmF, batchSize,
             )
         },
         None => panic!(
@@ -24739,8 +24330,8 @@ pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
+                d_work, lwork, d_info, h_R_nrmF, batchSize,
             )
         },
         None => panic!(
@@ -24781,8 +24372,8 @@ pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V,
-                ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize,
+                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
+                d_work, lwork, d_info, h_R_nrmF, batchSize,
             )
         },
         None => panic!(
@@ -24793,9 +24384,7 @@ pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCreateParams(
-    params: *mut cusolverDnParams_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnCreateParams(params: *mut cusolverDnParams_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -26199,9 +25788,7 @@ pub unsafe extern "C" fn cusolverDnXlarft(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnLoggerSetCallback(
-    callback: cusolverDnLoggerCallback_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnLoggerSetCallback(callback: cusolverDnLoggerCallback_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -26231,9 +25818,7 @@ pub unsafe extern "C" fn cusolverDnLoggerSetFile(file: *mut FILE) -> cusolverSta
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnLoggerOpenFile(
-    logFile: *const ::std::os::raw::c_char,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -26248,9 +25833,7 @@ pub unsafe extern "C" fn cusolverDnLoggerOpenFile(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnLoggerSetLevel(
-    level: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverDnLoggerSetLevel(level: ::std::os::raw::c_int) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -26431,10 +26014,7 @@ pub unsafe extern "C" fn cusolverSpDestroy(handle: cusolverSpHandle_t) -> cusolv
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpSetStream(
-    handle: cusolverSpHandle_t,
-    streamId: cudaStream_t,
-) -> cusolverStatus_t {
+pub unsafe extern "C" fn cusolverSpSetStream(handle: cusolverSpHandle_t, streamId: cudaStream_t) -> cusolverStatus_t {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -26482,11 +26062,7 @@ pub unsafe extern "C" fn cusolverSpXcsrissymHost(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpXcsrissymHost
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnzA, descrA, csrRowPtrA, csrEndPtrA, csrColIndA, issym,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, m, nnzA, descrA, csrRowPtrA, csrEndPtrA, csrColIndA, issym) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpXcsrissymHost"
@@ -27378,8 +26954,7 @@ pub unsafe extern "C" fn cusolverSpScsrlsqvqrHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p,
-                min_norm,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
             )
         },
         None => panic!(
@@ -27413,8 +26988,7 @@ pub unsafe extern "C" fn cusolverSpDcsrlsqvqrHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p,
-                min_norm,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
             )
         },
         None => panic!(
@@ -27448,8 +27022,7 @@ pub unsafe extern "C" fn cusolverSpCcsrlsqvqrHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p,
-                min_norm,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
             )
         },
         None => panic!(
@@ -27483,8 +27056,7 @@ pub unsafe extern "C" fn cusolverSpZcsrlsqvqrHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p,
-                min_norm,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
             )
         },
         None => panic!(
@@ -27517,8 +27089,7 @@ pub unsafe extern "C" fn cusolverSpScsreigvsiHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
             )
         },
         None => panic!(
@@ -27551,8 +27122,7 @@ pub unsafe extern "C" fn cusolverSpDcsreigvsiHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
             )
         },
         None => panic!(
@@ -27585,8 +27155,7 @@ pub unsafe extern "C" fn cusolverSpCcsreigvsiHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
             )
         },
         None => panic!(
@@ -27619,8 +27188,7 @@ pub unsafe extern "C" fn cusolverSpZcsreigvsiHost(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
             )
         },
         None => panic!(
@@ -27653,8 +27221,7 @@ pub unsafe extern "C" fn cusolverSpScsreigvsi(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
             )
         },
         None => panic!(
@@ -27687,8 +27254,7 @@ pub unsafe extern "C" fn cusolverSpDcsreigvsi(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
             )
         },
         None => panic!(
@@ -27721,8 +27287,7 @@ pub unsafe extern "C" fn cusolverSpCcsreigvsi(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
             )
         },
         None => panic!(
@@ -27755,8 +27320,7 @@ pub unsafe extern "C" fn cusolverSpZcsreigvsi(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu,
-                x,
+                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
             )
         },
         None => panic!(
@@ -28007,9 +27571,7 @@ pub unsafe extern "C" fn cusolverSpXcsrmetisndHost(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpXcsrmetisndHost
     {
-        Some(____func) => unsafe {
-            ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, options, p)
-        },
+        Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, options, p) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpXcsrmetisndHost"
@@ -28034,11 +27596,7 @@ pub unsafe extern "C" fn cusolverSpScsrzfdHost(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpScsrzfdHost
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpScsrzfdHost"
@@ -28063,11 +27621,7 @@ pub unsafe extern "C" fn cusolverSpDcsrzfdHost(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpDcsrzfdHost
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpDcsrzfdHost"
@@ -28092,11 +27646,7 @@ pub unsafe extern "C" fn cusolverSpCcsrzfdHost(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpCcsrzfdHost
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpCcsrzfdHost"
@@ -28121,11 +27671,7 @@ pub unsafe extern "C" fn cusolverSpZcsrzfdHost(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpZcsrzfdHost
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpZcsrzfdHost"
@@ -28191,11 +27737,7 @@ pub unsafe extern "C" fn cusolverSpXcsrpermHost(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpXcsrpermHost
     {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, p, q, map, pBuffer,
-            )
-        },
+        Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, p, q, map, pBuffer) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpXcsrpermHost"
@@ -28249,9 +27791,7 @@ pub unsafe extern "C" fn cusolverSpXcsrqrAnalysisBatched(
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
         .cusolverSpXcsrqrAnalysisBatched
     {
-        Some(____func) => unsafe {
-            ____func(handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, info)
-        },
+        Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpXcsrqrAnalysisBatched"
@@ -28454,8 +27994,7 @@ pub unsafe extern "C" fn cusolverSpScsrqrsvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info,
-                pBuffer,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
             )
         },
         None => panic!(
@@ -28488,8 +28027,7 @@ pub unsafe extern "C" fn cusolverSpDcsrqrsvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info,
-                pBuffer,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
             )
         },
         None => panic!(
@@ -28522,8 +28060,7 @@ pub unsafe extern "C" fn cusolverSpCcsrqrsvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info,
-                pBuffer,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
             )
         },
         None => panic!(
@@ -28556,8 +28093,7 @@ pub unsafe extern "C" fn cusolverSpZcsrqrsvBatched(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info,
-                pBuffer,
+                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
             )
         },
         None => panic!(
@@ -28670,10 +28206,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnSetFixedPointEmulationMantissaControl: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnSetFixedPointEmulationMantissaControl\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaControl\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28681,10 +28214,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnGetFixedPointEmulationMantissaControl: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnGetFixedPointEmulationMantissaControl\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaControl\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28692,10 +28222,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnSetFixedPointEmulationMaxMantissaBitCount: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnSetFixedPointEmulationMaxMantissaBitCount\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28703,10 +28230,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnGetFixedPointEmulationMaxMantissaBitCount: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnGetFixedPointEmulationMaxMantissaBitCount\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28714,10 +28238,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnSetFixedPointEmulationMantissaBitOffset: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnSetFixedPointEmulationMantissaBitOffset\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaBitOffset\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28725,10 +28246,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnGetFixedPointEmulationMantissaBitOffset: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnGetFixedPointEmulationMantissaBitOffset\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaBitOffset\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28736,10 +28254,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnSetEmulationSpecialValuesSupport: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnSetEmulationSpecialValuesSupport\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnSetEmulationSpecialValuesSupport\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28747,10 +28262,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnGetEmulationSpecialValuesSupport: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnGetEmulationSpecialValuesSupport\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnGetEmulationSpecialValuesSupport\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -28790,10 +28302,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnIRSParamsSetSolverLowestPrecision: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnIRSParamsSetSolverLowestPrecision\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverLowestPrecision\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -31401,10 +30910,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnSgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnSgesvdaStridedBatched_bufferSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnSgesvdaStridedBatched_bufferSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -31412,10 +30918,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnDgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnDgesvdaStridedBatched_bufferSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnDgesvdaStridedBatched_bufferSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -31423,10 +30926,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnCgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnCgesvdaStridedBatched_bufferSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnCgesvdaStridedBatched_bufferSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {
@@ -31434,10 +30934,7 @@ pub unsafe fn load_dynamic_bindings(
                 }
             },
             cusolverDnZgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(
-                    lib,
-                    b"cusolverDnZgesvdaStridedBatched_bufferSize\0".as_ptr(),
-                );
+                let p = get_proc_addr(lib, b"cusolverDnZgesvdaStridedBatched_bufferSize\0".as_ptr());
                 if p.is_null() {
                     None
                 } else {

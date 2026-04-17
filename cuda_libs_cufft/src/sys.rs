@@ -1,4 +1,4 @@
-pub use cuda_libs_cudart::sys::*;
+use cuda_libs_cudart::sys::*;
 pub const CUFFT_VER_MAJOR: u32 = 12;
 pub const CUFFT_VER_MINOR: u32 = 2;
 pub const CUFFT_VER_PATCH: u32 = 0;
@@ -310,17 +310,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftSetWorkArea(
-        plan: cufftHandle,
-        workArea: *mut ::std::os::raw::c_void,
-    ) -> cufftResult;
+    pub fn cufftSetWorkArea(plan: cufftHandle, workArea: *mut ::std::os::raw::c_void) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftSetAutoAllocation(
-        plan: cufftHandle,
-        autoAllocate: ::std::os::raw::c_int,
-    ) -> cufftResult;
+    pub fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -333,19 +327,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftExecR2C(
-        plan: cufftHandle,
-        idata: *mut cufftReal,
-        odata: *mut cufftComplex,
-    ) -> cufftResult;
+    pub fn cufftExecR2C(plan: cufftHandle, idata: *mut cufftReal, odata: *mut cufftComplex) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftExecC2R(
-        plan: cufftHandle,
-        idata: *mut cufftComplex,
-        odata: *mut cufftReal,
-    ) -> cufftResult;
+    pub fn cufftExecC2R(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftReal) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -358,19 +344,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftExecD2Z(
-        plan: cufftHandle,
-        idata: *mut cufftDoubleReal,
-        odata: *mut cufftDoubleComplex,
-    ) -> cufftResult;
+    pub fn cufftExecD2Z(plan: cufftHandle, idata: *mut cufftDoubleReal, odata: *mut cufftDoubleComplex) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftExecZ2D(
-        plan: cufftHandle,
-        idata: *mut cufftDoubleComplex,
-        odata: *mut cufftDoubleReal,
-    ) -> cufftResult;
+    pub fn cufftExecZ2D(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleReal) -> cufftResult;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -386,10 +364,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cufftGetProperty(
-        type_: libraryPropertyType,
-        value: *mut ::std::os::raw::c_int,
-    ) -> cufftResult;
+    pub fn cufftGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cufftResult;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -621,17 +596,11 @@ pub struct DynamicBindings {
             workArea: *mut usize,
         ) -> cufftResult,
     >,
-    pub cufftGetSize:
-        Option<unsafe extern "C" fn(handle: cufftHandle, workSize: *mut usize) -> cufftResult>,
-    pub cufftSetWorkArea: Option<
-        unsafe extern "C" fn(
-            plan: cufftHandle,
-            workArea: *mut ::std::os::raw::c_void,
-        ) -> cufftResult,
-    >,
-    pub cufftSetAutoAllocation: Option<
-        unsafe extern "C" fn(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult,
-    >,
+    pub cufftGetSize: Option<unsafe extern "C" fn(handle: cufftHandle, workSize: *mut usize) -> cufftResult>,
+    pub cufftSetWorkArea:
+        Option<unsafe extern "C" fn(plan: cufftHandle, workArea: *mut ::std::os::raw::c_void) -> cufftResult>,
+    pub cufftSetAutoAllocation:
+        Option<unsafe extern "C" fn(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult>,
     pub cufftExecC2C: Option<
         unsafe extern "C" fn(
             plan: cufftHandle,
@@ -640,20 +609,10 @@ pub struct DynamicBindings {
             direction: ::std::os::raw::c_int,
         ) -> cufftResult,
     >,
-    pub cufftExecR2C: Option<
-        unsafe extern "C" fn(
-            plan: cufftHandle,
-            idata: *mut cufftReal,
-            odata: *mut cufftComplex,
-        ) -> cufftResult,
-    >,
-    pub cufftExecC2R: Option<
-        unsafe extern "C" fn(
-            plan: cufftHandle,
-            idata: *mut cufftComplex,
-            odata: *mut cufftReal,
-        ) -> cufftResult,
-    >,
+    pub cufftExecR2C:
+        Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftReal, odata: *mut cufftComplex) -> cufftResult>,
+    pub cufftExecC2R:
+        Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftReal) -> cufftResult>,
     pub cufftExecZ2Z: Option<
         unsafe extern "C" fn(
             plan: cufftHandle,
@@ -676,17 +635,11 @@ pub struct DynamicBindings {
             odata: *mut cufftDoubleReal,
         ) -> cufftResult,
     >,
-    pub cufftSetStream:
-        Option<unsafe extern "C" fn(plan: cufftHandle, stream: cudaStream_t) -> cufftResult>,
+    pub cufftSetStream: Option<unsafe extern "C" fn(plan: cufftHandle, stream: cudaStream_t) -> cufftResult>,
     pub cufftDestroy: Option<unsafe extern "C" fn(plan: cufftHandle) -> cufftResult>,
-    pub cufftGetVersion:
-        Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftGetProperty: Option<
-        unsafe extern "C" fn(
-            type_: libraryPropertyType,
-            value: *mut ::std::os::raw::c_int,
-        ) -> cufftResult,
-    >,
+    pub cufftGetVersion: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftGetProperty:
+        Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cufftResult>,
     pub cufftSetPlanPropertyInt64: Option<
         unsafe extern "C" fn(
             plan: cufftHandle,
@@ -701,8 +654,7 @@ pub struct DynamicBindings {
             returnPtrValue: *mut ::std::os::raw::c_longlong,
         ) -> cufftResult,
     >,
-    pub cufftResetPlanProperty:
-        Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty) -> cufftResult>,
+    pub cufftResetPlanProperty: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty) -> cufftResult>,
 }
 #[cfg(feature = "runtime-link")]
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
@@ -885,8 +837,7 @@ pub unsafe extern "C" fn cufftMakePlanMany(
     {
         Some(____func) => unsafe {
             ____func(
-                plan, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch,
-                workSize,
+                plan, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch, workSize,
             )
         },
         None => panic!(
@@ -918,8 +869,7 @@ pub unsafe extern "C" fn cufftMakePlanMany64(
     {
         Some(____func) => unsafe {
             ____func(
-                plan, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch,
-                workSize,
+                plan, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch, workSize,
             )
         },
         None => panic!(
@@ -951,8 +901,7 @@ pub unsafe extern "C" fn cufftGetSizeMany64(
     {
         Some(____func) => unsafe {
             ____func(
-                plan, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch,
-                workSize,
+                plan, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch, workSize,
             )
         },
         None => panic!(
@@ -1155,8 +1104,7 @@ pub unsafe extern "C" fn cufftGetSizeMany(
     {
         Some(____func) => unsafe {
             ____func(
-                handle, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch,
-                workArea,
+                handle, rank, n, inembed, istride, idist, onembed, ostride, odist, type_, batch, workArea,
             )
         },
         None => panic!(
@@ -1182,10 +1130,7 @@ pub unsafe extern "C" fn cufftGetSize(handle: cufftHandle, workSize: *mut usize)
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftSetWorkArea(
-    plan: cufftHandle,
-    workArea: *mut ::std::os::raw::c_void,
-) -> cufftResult {
+pub unsafe extern "C" fn cufftSetWorkArea(plan: cufftHandle, workArea: *mut ::std::os::raw::c_void) -> cufftResult {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -1200,10 +1145,7 @@ pub unsafe extern "C" fn cufftSetWorkArea(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftSetAutoAllocation(
-    plan: cufftHandle,
-    autoAllocate: ::std::os::raw::c_int,
-) -> cufftResult {
+pub unsafe extern "C" fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
@@ -1435,10 +1377,7 @@ pub unsafe extern "C" fn cufftGetPlanPropertyInt64(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cufftResetPlanProperty(
-    plan: cufftHandle,
-    property: cufftProperty,
-) -> cufftResult {
+pub unsafe extern "C" fn cufftResetPlanProperty(plan: cufftHandle, property: cufftProperty) -> cufftResult {
     match DYNAMIC_BINDINGS
         .get()
         .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")

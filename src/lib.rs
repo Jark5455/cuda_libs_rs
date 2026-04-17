@@ -77,8 +77,7 @@ pub mod prelude {
 pub fn runtime_link_load() {
     static INIT: std::sync::Once = std::sync::Once::new();
     INIT.call_once(|| {
-        let home =
-            std::env::var("CUDA_HOME").expect("CUDA_HOME must be set when using runtime linking");
+        let home = std::env::var("CUDA_HOME").expect("CUDA_HOME must be set when using runtime linking");
 
         let mut names = std::vec::Vec::new();
         #[cfg(feature = "cudart")]
@@ -147,10 +146,7 @@ pub fn runtime_link_load() {
         {
             unsafe extern "system" {
                 fn LoadLibraryW(lpLibFileName: *const u16) -> *mut std::ffi::c_void;
-                fn GetProcAddress(
-                    hModule: *mut std::ffi::c_void,
-                    lpProcName: *const u8,
-                ) -> *mut std::ffi::c_void;
+                fn GetProcAddress(hModule: *mut std::ffi::c_void, lpProcName: *const u8) -> *mut std::ffi::c_void;
             }
 
             use std::os::windows::ffi::OsStrExt;
@@ -169,8 +165,7 @@ pub fn runtime_link_load() {
                                     if file_name.starts_with(&format!("{}64_", name))
                                         || file_name == &format!("{}.dll", name)
                                     {
-                                        let mut wide: std::vec::Vec<u16> =
-                                            p.as_os_str().encode_wide().collect();
+                                        let mut wide: std::vec::Vec<u16> = p.as_os_str().encode_wide().collect();
                                         wide.push(0);
                                         unsafe {
                                             let lib = LoadLibraryW(wide.as_ptr());
@@ -209,23 +204,24 @@ pub fn runtime_link_load() {
                         if p.extension().and_then(|s| s.to_str()) == Some("so") {
                             for name in &names {
                                 if let Some(file_name) = p.file_name().and_then(|n| n.to_str()) {
-                                    if file_name.starts_with(&format!("lib{}", name)) {
-                                        let mut bytes = p.as_os_str().as_bytes().to_vec();
-                                        bytes.push(0);
-                                        unsafe {
-                                            let lib = libc::dlopen(
-                                                bytes.as_ptr() as *const libc::c_char,
-                                                flag,
-                                            );
-                                            if !lib.is_null() {
-                                                unsafe fn fetch_p(
-                                                    handle: *mut core::ffi::c_void,
-                                                    sym: *const u8,
-                                                ) -> *mut core::ffi::c_void
-                                                {
-                                                    unsafe { libc::dlsym(handle, sym as *const _) }
+                                    let lib_prefix = format!("lib{}", name);
+                                    if file_name.starts_with(&lib_prefix) {
+                                        let suffix = &file_name[lib_prefix.len()..];
+                                        if suffix.is_empty() || suffix.starts_with('.') {
+                                            let mut bytes = p.as_os_str().as_bytes().to_vec();
+                                            bytes.push(0);
+                                            unsafe {
+                                                let lib = libc::dlopen(bytes.as_ptr() as *const libc::c_char, flag);
+                                                if !lib.is_null() {
+                                                    unsafe fn fetch_p(
+                                                        handle: *mut core::ffi::c_void,
+                                                        sym: *const u8,
+                                                    ) -> *mut core::ffi::c_void
+                                                    {
+                                                        unsafe { libc::dlsym(handle, sym as *const _) }
+                                                    }
+                                                    bind_sys!(lib, fetch_p, name);
                                                 }
-                                                bind_sys!(lib, fetch_p, name);
                                             }
                                         }
                                     }
