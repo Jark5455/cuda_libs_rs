@@ -151,10 +151,7 @@ pub fn runtime_link_load() {
 
             use std::os::windows::ffi::OsStrExt;
 
-            let search_paths = [
-                std::path::Path::new(&home).join("lib").join("x64"),
-                std::path::Path::new(&home).join("bin").join("x64"),
-            ];
+            let search_paths = [std::path::Path::new(&home).join("lib").join("x64"), std::path::Path::new(&home).join("bin").join("x64")];
             for path in search_paths {
                 if let Ok(entries) = std::fs::read_dir(&path) {
                     for entry in entries.filter_map(std::result::Result::ok) {
@@ -162,19 +159,13 @@ pub fn runtime_link_load() {
                         if p.extension().and_then(|s| s.to_str()) == Some("dll") {
                             for name in &names {
                                 if let Some(file_name) = p.file_name().and_then(|n| n.to_str()) {
-                                    if file_name.starts_with(&format!("{}64_", name))
-                                        || file_name == &format!("{}.dll", name)
-                                    {
+                                    if file_name.starts_with(&format!("{}64_", name)) || file_name == &format!("{}.dll", name) {
                                         let mut wide: std::vec::Vec<u16> = p.as_os_str().encode_wide().collect();
                                         wide.push(0);
                                         unsafe {
                                             let lib = LoadLibraryW(wide.as_ptr());
                                             if !lib.is_null() {
-                                                unsafe fn fetch_p(
-                                                    handle: *mut core::ffi::c_void,
-                                                    sym: *const u8,
-                                                ) -> *mut core::ffi::c_void
-                                                {
+                                                unsafe fn fetch_p(handle: *mut core::ffi::c_void, sym: *const u8) -> *mut core::ffi::c_void {
                                                     GetProcAddress(handle, sym)
                                                 }
                                                 bind_sys!(lib, fetch_p, name);
@@ -193,10 +184,7 @@ pub fn runtime_link_load() {
             use std::os::unix::ffi::OsStrExt;
             let flag = libc::RTLD_LAZY | libc::RTLD_GLOBAL;
 
-            let search_paths = [
-                std::path::Path::new(&home).join("lib64"),
-                std::path::Path::new(&home).join("lib"),
-            ];
+            let search_paths = [std::path::Path::new(&home).join("lib64"), std::path::Path::new(&home).join("lib")];
             for path in search_paths {
                 if let Ok(entries) = std::fs::read_dir(&path) {
                     for entry in entries.filter_map(std::result::Result::ok) {
@@ -213,11 +201,7 @@ pub fn runtime_link_load() {
                                             unsafe {
                                                 let lib = libc::dlopen(bytes.as_ptr() as *const libc::c_char, flag);
                                                 if !lib.is_null() {
-                                                    unsafe fn fetch_p(
-                                                        handle: *mut core::ffi::c_void,
-                                                        sym: *const u8,
-                                                    ) -> *mut core::ffi::c_void
-                                                    {
+                                                    unsafe fn fetch_p(handle: *mut core::ffi::c_void, sym: *const u8) -> *mut core::ffi::c_void {
                                                         unsafe { libc::dlsym(handle, sym as *const _) }
                                                     }
                                                     bind_sys!(lib, fetch_p, name);

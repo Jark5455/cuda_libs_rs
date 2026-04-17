@@ -51,15 +51,8 @@ struct Generator<'a> {
 
 impl<'a> Generator<'a> {
     fn new(config: &'a LibraryConfig) -> Self {
-        let blocklist_funcs = config
-            .blocklist_functions
-            .iter()
-            .map(|s| Regex::new(s).expect("Invalid blocklist function regex"))
-            .collect();
-        Self {
-            config,
-            blocklist_funcs,
-        }
+        let blocklist_funcs = config.blocklist_functions.iter().map(|s| Regex::new(s).expect("Invalid blocklist function regex")).collect();
+        Self { config, blocklist_funcs }
     }
 
     fn generate(&mut self) {
@@ -156,9 +149,7 @@ impl<'a> Generator<'a> {
         for item in &ast.items {
             if let syn::Item::ForeignMod(foreign_mod) = item {
                 let mut fm_static = foreign_mod.clone();
-                fm_static
-                    .attrs
-                    .push(syn::parse_quote!(#[cfg(not(feature = "runtime-link"))]));
+                fm_static.attrs.push(syn::parse_quote!(#[cfg(not(feature = "runtime-link"))]));
                 new_sys_items.push(syn::Item::ForeignMod(fm_static));
 
                 for foreign_item in &foreign_mod.items {
@@ -169,10 +160,7 @@ impl<'a> Generator<'a> {
                         }
                         let fn_name = &sig.ident;
                         let fn_name_str = fn_name.to_string();
-                        let fn_name_nul = syn::LitByteStr::new(
-                            format!("{}\0", fn_name_str).as_bytes(),
-                            proc_macro2::Span::call_site(),
-                        );
+                        let fn_name_nul = syn::LitByteStr::new(format!("{}\0", fn_name_str).as_bytes(), proc_macro2::Span::call_site());
 
                         let mut arg_types = Vec::new();
                         let mut arg_names = Vec::new();
@@ -279,11 +267,7 @@ impl<'a> Generator<'a> {
             _ => None,
         };
 
-        if let Some(new_ty) = new_ty_str {
-            (syn::parse_str(new_ty).unwrap(), true)
-        } else {
-            (ty.clone(), false)
-        }
+        if let Some(new_ty) = new_ty_str { (syn::parse_str(new_ty).unwrap(), true) } else { (ty.clone(), false) }
     }
 
     fn should_skip_function(&self, func: &syn::ForeignItemFn) -> bool {
@@ -297,11 +281,7 @@ impl<'a> Generator<'a> {
         let fn_str = fn_name.to_string();
         let attrs = &func.attrs;
 
-        let is_getter = (fn_str.contains("Get") || fn_str.contains("Create") || fn_str.contains("Plan"))
-            && !fn_str.contains("String")
-            && !fn_str.contains("Name")
-            && !fn_str.contains("Vector")
-            && !fn_str.contains("Matrix");
+        let is_getter = (fn_str.contains("Get") || fn_str.contains("Create") || fn_str.contains("Plan")) && !fn_str.contains("String") && !fn_str.contains("Name") && !fn_str.contains("Vector") && !fn_str.contains("Matrix");
 
         if is_getter {
             if let Some(wrapper) = self.generate_getter_wrapper(func) {
@@ -327,12 +307,7 @@ impl<'a> Generator<'a> {
                     let inner_ty = &ptr_ty.elem;
                     let inner_ty_str = quote!(#inner_ty).to_string().replace(" ", "");
 
-                    let mut is_handle = inner_ty_str.contains("Context")
-                        || inner_ty_str.contains("Stream_t")
-                        || inner_ty_str.contains("Stream")
-                        || inner_ty_str.contains("ctx")
-                        || inner_ty_str.contains("Device")
-                        || inner_ty_str.contains("CUstream_st");
+                    let mut is_handle = inner_ty_str.contains("Context") || inner_ty_str.contains("Stream_t") || inner_ty_str.contains("Stream") || inner_ty_str.contains("ctx") || inner_ty_str.contains("Device") || inner_ty_str.contains("CUstream_st");
 
                     for handle_check in &self.config.handle_types_regex {
                         if inner_ty_str.contains(handle_check) {
@@ -371,22 +346,14 @@ impl<'a> Generator<'a> {
             }
         }
 
-        let ret_ty_str = if let ReturnType::Type(_, ty) = &sig.output {
-            quote!(#ty).to_string().replace(" ", "")
-        } else {
-            String::new()
-        };
+        let ret_ty_str = if let ReturnType::Type(_, ty) = &sig.output { quote!(#ty).to_string().replace(" ", "") } else { String::new() };
         let status_type = self.config.status_type;
         let has_status_ret = ret_ty_str == status_type || ret_ty_str == format!("{}_t", status_type);
 
         let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
         let success_variant_ident = syn::Ident::new(self.config.success_variant, proc_macro2::Span::call_site());
 
-        let generics_block = if safe_inputs_generics.is_empty() {
-            quote!()
-        } else {
-            quote!(<#(#safe_inputs_generics),*>)
-        };
+        let generics_block = if safe_inputs_generics.is_empty() { quote!() } else { quote!(<#(#safe_inputs_generics),*>) };
 
         let safe_fn = if has_status_ret {
             quote! {
@@ -438,6 +405,8 @@ impl<'a> Generator<'a> {
         let mut call_args = Vec::new();
         let mut has_output = false;
 
+        let fn_str = fn_name.to_string();
+
         for (i, input) in sig.inputs.iter().enumerate() {
             if let syn::FnArg::Typed(pat_type) = input {
                 let pat = &pat_type.pat;
@@ -447,17 +416,22 @@ impl<'a> Generator<'a> {
 
                 let mut handled_as_output = false;
                 if let Type::Ptr(ptr_ty) = &**ty {
-                    if ptr_ty.mutability.is_some()
-                        && !ty_str.contains("c_void")
-                        && !quote!(#pat).to_string().contains("Array")
-                    {
-                        handled_as_output = true;
-                        has_output = true;
+                    let is_plan_or_create = fn_str.contains("Create") || fn_str.contains("Plan");
+                    let is_get = fn_str.contains("Get");
+
+                    if ptr_ty.mutability.is_some() && !ty_str.contains("c_void") && !quote!(#pat).to_string().contains("Array") {
+                        if is_get || (is_plan_or_create && i == 0) {
+                            handled_as_output = true;
+                            has_output = true;
+                        }
+                    }
+
+                    if handled_as_output {
                         let inner_ty = &ptr_ty.elem;
                         let (mapped_inner_ty, _) = self.map_ffi_type_to_rust(inner_ty);
                         let var_name = quote::format_ident!("out_{}", i);
                         out_dcls.push(quote! {
-                            let mut #var_name: std::mem::MaybeUninit<#inner_ty> = std::mem::MaybeUninit::uninit();
+                            let mut #var_name: std::mem::MaybeUninit<#inner_ty> = std::mem::MaybeUninit::zeroed();
                         });
                         call_args.push(quote! { #var_name.as_mut_ptr() as *mut _ });
                         out_vars.push(quote! { #var_name.assume_init() as #mapped_inner_ty });
@@ -501,18 +475,12 @@ impl<'a> Generator<'a> {
         let (ret_expr, ret_ty) = if let ReturnType::Type(_, ty) = &sig.output {
             let (mapped_ret_ty, transformed_ret) = self.map_ffi_type_to_rust(ty);
             if transformed_ret {
-                (
-                    quote!((unsafe { crate::sys::#fn_name(#(#call_args),*) }) as #mapped_ret_ty),
-                    mapped_ret_ty,
-                )
+                (quote!((unsafe { crate::sys::#fn_name(#(#call_args),*) }) as #mapped_ret_ty), mapped_ret_ty)
             } else {
                 (quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) }), *ty.clone())
             }
         } else {
-            (
-                quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) }),
-                syn::parse_quote!(()),
-            )
+            (quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) }), syn::parse_quote!(()))
         };
 
         Some(quote! {
@@ -704,13 +672,7 @@ impl<'a> Generator<'a> {
         None
     }
 
-    fn write_safe_rs(
-        &self,
-        out_dir: &std::path::Path,
-        standalone_funcs: Vec<proc_macro2::TokenStream>,
-        handle_methods: HashMap<String, Vec<proc_macro2::TokenStream>>,
-        builder_impls: Vec<proc_macro2::TokenStream>,
-    ) {
+    fn write_safe_rs(&self, out_dir: &std::path::Path, standalone_funcs: Vec<proc_macro2::TokenStream>, handle_methods: HashMap<String, Vec<proc_macro2::TokenStream>>, builder_impls: Vec<proc_macro2::TokenStream>) {
         let mut extra_safes = Vec::new();
         if self.config.lib_name != "cuda_libs_cudart" {
             extra_safes.push(quote!(

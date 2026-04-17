@@ -12,12 +12,7 @@ fn main() {
     let cuda_home = env::var("CUDA_HOME");
     if let Ok(home) = cuda_home {
         let arch_paths = if cfg!(target_os = "windows") {
-            vec![
-                format!("{}\\bin\\x64", home),
-                format!("{}\\bin", home),
-                format!("{}\\lib\\x64", home),
-                format!("{}\\lib", home),
-            ]
+            vec![format!("{}\\bin\\x64", home), format!("{}\\bin", home), format!("{}\\lib\\x64", home), format!("{}\\lib", home)]
         } else if cfg!(target_os = "linux") {
             vec![format!("{}/lib64", home), format!("{}/lib", home)]
         } else {
@@ -41,11 +36,7 @@ fn main() {
             for path in paths {
                 let path = PathBuf::from(path);
                 if let Ok(entries) = fs::read_dir(&path) {
-                    let mut versions: Vec<String> = entries
-                        .filter_map(|e| e.ok())
-                        .filter(|e| e.path().is_dir())
-                        .filter_map(|e| e.file_name().into_string().ok())
-                        .collect();
+                    let mut versions: Vec<String> = entries.filter_map(|e| e.ok()).filter(|e| e.path().is_dir()).filter_map(|e| e.file_name().into_string().ok()).collect();
 
                     versions.sort_by(|a, b| a.partial_cmp(b).unwrap());
 

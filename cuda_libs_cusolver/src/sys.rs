@@ -16,11 +16,7 @@ where
 {
     #[inline]
     fn extract_bit(byte: u8, index: usize) -> bool {
-        let bit_index = if cfg!(target_endian = "big") {
-            7 - (index % 8)
-        } else {
-            index % 8
-        };
+        let bit_index = if cfg!(target_endian = "big") { 7 - (index % 8) } else { index % 8 };
         let mask = 1 << bit_index;
         byte & mask == mask
     }
@@ -40,11 +36,7 @@ where
     }
     #[inline]
     fn change_bit(byte: u8, index: usize, val: bool) -> u8 {
-        let bit_index = if cfg!(target_endian = "big") {
-            7 - (index % 8)
-        } else {
-            index % 8
-        };
+        let bit_index = if cfg!(target_endian = "big") { 7 - (index % 8) } else { index % 8 };
         let mask = 1 << bit_index;
         if val { byte | mask } else { byte & !mask }
     }
@@ -70,11 +62,7 @@ where
         let mut val = 0;
         for i in 0..(bit_width as usize) {
             if self.get_bit(i + bit_offset) {
-                let index = if cfg!(target_endian = "big") {
-                    bit_width as usize - 1 - i
-                } else {
-                    i
-                };
+                let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
                 val |= 1 << index;
             }
         }
@@ -88,11 +76,7 @@ where
         let mut val = 0;
         for i in 0..(bit_width as usize) {
             if unsafe { Self::raw_get_bit(this, i + bit_offset) } {
-                let index = if cfg!(target_endian = "big") {
-                    bit_width as usize - 1 - i
-                } else {
-                    i
-                };
+                let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
                 val |= 1 << index;
             }
         }
@@ -106,11 +90,7 @@ where
         for i in 0..(bit_width as usize) {
             let mask = 1 << i;
             let val_bit_is_set = val & mask == mask;
-            let index = if cfg!(target_endian = "big") {
-                bit_width as usize - 1 - i
-            } else {
-                i
-            };
+            let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
             self.set_bit(index + bit_offset, val_bit_is_set);
         }
     }
@@ -122,11 +102,7 @@ where
         for i in 0..(bit_width as usize) {
             let mask = 1 << i;
             let val_bit_is_set = val & mask == mask;
-            let index = if cfg!(target_endian = "big") {
-                bit_width as usize - 1 - i
-            } else {
-                i
-            };
+            let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
             unsafe { Self::raw_set_bit(this, index + bit_offset, val_bit_is_set) };
         }
     }
@@ -260,24 +236,13 @@ impl _IO_FILE {
     }
     #[inline]
     pub unsafe fn _flags2_raw(this: *const Self) -> ::std::os::raw::c_int {
-        unsafe {
-            ::std::mem::transmute(<__BindgenBitfieldUnit<[u8; 3usize]>>::raw_get(
-                ::std::ptr::addr_of!((*this)._bitfield_1),
-                0usize,
-                24u8,
-            ) as u32)
-        }
+        unsafe { ::std::mem::transmute(<__BindgenBitfieldUnit<[u8; 3usize]>>::raw_get(::std::ptr::addr_of!((*this)._bitfield_1), 0usize, 24u8) as u32) }
     }
     #[inline]
     pub unsafe fn set__flags2_raw(this: *mut Self, val: ::std::os::raw::c_int) {
         unsafe {
             let val: u32 = ::std::mem::transmute(val);
-            <__BindgenBitfieldUnit<[u8; 3usize]>>::raw_set(
-                ::std::ptr::addr_of_mut!((*this)._bitfield_1),
-                0usize,
-                24u8,
-                val as u64,
-            )
+            <__BindgenBitfieldUnit<[u8; 3usize]>>::raw_set(::std::ptr::addr_of_mut!((*this)._bitfield_1), 0usize, 24u8, val as u64)
         }
     }
     #[inline]
@@ -503,17 +468,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetDeterministicMode(
-        handle: cusolverDnHandle_t,
-        mode: cusolverDeterministicMode_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetDeterministicMode(handle: cusolverDnHandle_t, mode: cusolverDeterministicMode_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetDeterministicMode(
-        handle: cusolverDnHandle_t,
-        mode: *mut cusolverDeterministicMode_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetDeterministicMode(handle: cusolverDnHandle_t, mode: *mut cusolverDeterministicMode_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -525,73 +484,43 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetEmulationStrategy(
-        handle: cusolverDnHandle_t,
-        strategy: cudaEmulationStrategy_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetEmulationStrategy(handle: cusolverDnHandle_t, strategy: cudaEmulationStrategy_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetEmulationStrategy(
-        handle: cusolverDnHandle_t,
-        strategy: *mut cudaEmulationStrategy_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetEmulationStrategy(handle: cusolverDnHandle_t, strategy: *mut cudaEmulationStrategy_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetFixedPointEmulationMantissaControl(
-        handle: cusolverDnHandle_t,
-        control: cudaEmulationMantissaControl_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetFixedPointEmulationMantissaControl(handle: cusolverDnHandle_t, control: cudaEmulationMantissaControl_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetFixedPointEmulationMantissaControl(
-        handle: cusolverDnHandle_t,
-        control: *mut cudaEmulationMantissaControl_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetFixedPointEmulationMantissaControl(handle: cusolverDnHandle_t, control: *mut cudaEmulationMantissaControl_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(
-        handle: cusolverDnHandle_t,
-        mantissaBitCount: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(
-        handle: cusolverDnHandle_t,
-        mantissaBitCount: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetFixedPointEmulationMantissaBitOffset(
-        handle: cusolverDnHandle_t,
-        mantissaBitOffset: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetFixedPointEmulationMantissaBitOffset(
-        handle: cusolverDnHandle_t,
-        mantissaBitOffset: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetEmulationSpecialValuesSupport(
-        handle: cusolverDnHandle_t,
-        mask: cudaEmulationSpecialValuesSupport_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetEmulationSpecialValuesSupport(handle: cusolverDnHandle_t, mask: cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnGetEmulationSpecialValuesSupport(
-        handle: cusolverDnHandle_t,
-        mask: *mut cudaEmulationSpecialValuesSupport_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnGetEmulationSpecialValuesSupport(handle: cusolverDnHandle_t, mask: *mut cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -603,32 +532,19 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsSetRefinementSolver(
-        params: cusolverDnIRSParams_t,
-        refinement_solver: cusolverIRSRefinement_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsSetRefinementSolver(params: cusolverDnIRSParams_t, refinement_solver: cusolverIRSRefinement_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsSetSolverMainPrecision(
-        params: cusolverDnIRSParams_t,
-        solver_main_precision: cusolverPrecType_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsSetSolverMainPrecision(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsSetSolverLowestPrecision(
-        params: cusolverDnIRSParams_t,
-        solver_lowest_precision: cusolverPrecType_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsSetSolverLowestPrecision(params: cusolverDnIRSParams_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsSetSolverPrecisions(
-        params: cusolverDnIRSParams_t,
-        solver_main_precision: cusolverPrecType_t,
-        solver_lowest_precision: cusolverPrecType_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsSetSolverPrecisions(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -644,17 +560,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsSetMaxItersInner(
-        params: cusolverDnIRSParams_t,
-        maxiters_inner: cusolver_int_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsSetMaxItersInner(params: cusolverDnIRSParams_t, maxiters_inner: cusolver_int_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSParamsGetMaxIters(
-        params: cusolverDnIRSParams_t,
-        maxiters: *mut cusolver_int_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSParamsGetMaxIters(params: cusolverDnIRSParams_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -678,10 +588,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSInfosGetOuterNiters(
-        infos: cusolverDnIRSInfos_t,
-        outer_niters: *mut cusolver_int_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSInfosGetOuterNiters(infos: cusolverDnIRSInfos_t, outer_niters: *mut cusolver_int_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -689,17 +596,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSInfosGetResidualHistory(
-        infos: cusolverDnIRSInfos_t,
-        residual_history: *mut *mut ::std::os::raw::c_void,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSInfosGetResidualHistory(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSInfosGetMaxIters(
-        infos: cusolverDnIRSInfos_t,
-        maxiters: *mut cusolver_int_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSInfosGetMaxIters(infos: cusolverDnIRSInfos_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2019,13 +1920,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSXgesv_bufferSize(
-        handle: cusolverDnHandle_t,
-        params: cusolverDnIRSParams_t,
-        n: cusolver_int_t,
-        nrhs: cusolver_int_t,
-        lwork_bytes: *mut usize,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSXgesv_bufferSize(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2050,214 +1945,72 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnIRSXgels_bufferSize(
-        handle: cusolverDnHandle_t,
-        params: cusolverDnIRSParams_t,
-        m: cusolver_int_t,
-        n: cusolver_int_t,
-        nrhs: cusolver_int_t,
-        lwork_bytes: *mut usize,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnIRSXgels_bufferSize(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, m: cusolver_int_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut f32,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut f64,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut cuComplex,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut cuDoubleComplex,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrs(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        B: *mut f32,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, B: *mut f32, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrs(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        B: *mut f64,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, B: *mut f64, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrs(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        B: *mut cuComplex,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, B: *mut cuComplex, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrs(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        nrhs: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        B: *mut cuDoubleComplex,
-        ldb: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, B: *mut cuDoubleComplex, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int)
+    -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotrfBatched(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        Aarray: *mut *mut f32,
-        lda: ::std::os::raw::c_int,
-        infoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f32, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotrfBatched(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        Aarray: *mut *mut f64,
-        lda: ::std::os::raw::c_int,
-        infoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f64, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotrfBatched(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        Aarray: *mut *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        infoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotrfBatched(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        Aarray: *mut *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        infoArray: *mut ::std::os::raw::c_int,
-        batchSize: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2321,113 +2074,39 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSpotri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDpotri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCpotri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZpotri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXtrtri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        dataTypeA: cudaDataType,
-        A: *mut ::std::os::raw::c_void,
-        lda: i64,
-        workspaceInBytesOnDevice: *mut usize,
-        workspaceInBytesOnHost: *mut usize,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXtrtri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::std::os::raw::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2448,247 +2127,83 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSlauum_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDlauum_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnClauum_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnClauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZlauum_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSlauum(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDlauum(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnClauum(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnClauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZlauum(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgetrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgetrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgetrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgetrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgetrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut f32,
-        devIpiv: *mut ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgetrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut f64,
-        devIpiv: *mut ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgetrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut cuComplex,
-        devIpiv: *mut ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgetrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        Workspace: *mut cuDoubleComplex,
-        devIpiv: *mut ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSlaswp(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        k1: ::std::os::raw::c_int,
-        k2: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
-        incx: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDlaswp(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        k1: ::std::os::raw::c_int,
-        k2: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
-        incx: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnClaswp(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        k1: ::std::os::raw::c_int,
-        k2: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
-        incx: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnClaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZlaswp(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        k1: ::std::os::raw::c_int,
-        k2: ::std::os::raw::c_int,
-        devIpiv: *const ::std::os::raw::c_int,
-        incx: ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2752,89 +2267,31 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgeqrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgeqrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgeqrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgeqrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgeqrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        TAU: *mut f32,
-        Workspace: *mut f32,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgeqrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        TAU: *mut f64,
-        Workspace: *mut f64,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgeqrf(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        TAU: *mut cuComplex,
-        Workspace: *mut cuComplex,
-        Lwork: ::std::os::raw::c_int,
-        devInfo: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, TAU: *mut cuComplex, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -2852,85 +2309,27 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgqr_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        tau: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgqr_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        tau: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungqr_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZungqr_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuDoubleComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgqr(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        tau: *const f32,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSorgqr(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgqr(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        tau: *const f64,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDorgqr(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3108,85 +2507,31 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZsytrf_bufferSize(
-        handle: cusolverDnHandle_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        ipiv: *mut ::std::os::raw::c_int,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        ipiv: *mut ::std::os::raw::c_int,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytrf(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        ipiv: *mut ::std::os::raw::c_int,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3243,93 +2588,31 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZsytri_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCsytri(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        ipiv: *const ::std::os::raw::c_int,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3347,39 +2630,19 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgebrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgebrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgebrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgebrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        Lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3451,45 +2714,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgbr_bufferSize(
-        handle: cusolverDnHandle_t,
-        side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        tau: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgbr_bufferSize(
-        handle: cusolverDnHandle_t,
-        side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        tau: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungbr_bufferSize(
-        handle: cusolverDnHandle_t,
-        side: cublasSideMode_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        k: ::std::os::raw::c_int,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCungbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3571,91 +2804,27 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        d: *const f32,
-        e: *const f32,
-        tau: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        d: *const f64,
-        e: *const f64,
-        tau: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnChetrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        d: *const f32,
-        e: *const f32,
-        tau: *const cuComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnChetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZhetrd_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        d: *const f64,
-        e: *const f64,
-        tau: *const cuDoubleComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZhetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsytrd(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        d: *mut f32,
-        e: *mut f32,
-        tau: *mut f32,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, d: *mut f32, e: *mut f32, tau: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsytrd(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        d: *mut f64,
-        e: *mut f64,
-        tau: *mut f64,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsytrd(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, d: *mut f64, e: *mut f64, tau: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3691,107 +2860,36 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgtr_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        tau: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgtr_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        tau: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungtr_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZungtr_bufferSize(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuDoubleComplex,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSorgtr(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        tau: *const f32,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDorgtr(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        tau: *const f64,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCungtr(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuComplex,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZungtr(
-        handle: cusolverDnHandle_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        tau: *const cuDoubleComplex,
-        work: *mut cuDoubleComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int)
+    -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -3939,39 +3037,19 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSgesvd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDgesvd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCgesvd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZgesvd_bufferSize(
-        handle: cusolverDnHandle_t,
-        m: ::std::os::raw::c_int,
-        n: ::std::os::raw::c_int,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4059,100 +3137,31 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsyevd_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsyevd_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCheevd_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZheevd_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsyevd(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f32,
-        lda: ::std::os::raw::c_int,
-        W: *mut f32,
-        work: *mut f32,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsyevd(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut f64,
-        lda: ::std::os::raw::c_int,
-        W: *mut f64,
-        work: *mut f64,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, W: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCheevd(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *mut cuComplex,
-        lda: ::std::os::raw::c_int,
-        W: *mut f32,
-        work: *mut cuComplex,
-        lwork: ::std::os::raw::c_int,
-        info: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCheevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4776,19 +3785,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXsyevjGetResidual(
-        handle: cusolverDnHandle_t,
-        info: syevjInfo_t,
-        residual: *mut f64,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXsyevjGetResidual(handle: cusolverDnHandle_t, info: syevjInfo_t, residual: *mut f64) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXsyevjGetSweeps(
-        handle: cusolverDnHandle_t,
-        info: syevjInfo_t,
-        executed_sweeps: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXsyevjGetSweeps(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -4920,59 +3921,19 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSsyevj_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f32,
-        lda: ::std::os::raw::c_int,
-        W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-        params: syevjInfo_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnDsyevj_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const f64,
-        lda: ::std::os::raw::c_int,
-        W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-        params: syevjInfo_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnDsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnCheevj_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuComplex,
-        lda: ::std::os::raw::c_int,
-        W: *const f32,
-        lwork: *mut ::std::os::raw::c_int,
-        params: syevjInfo_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnCheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnZheevj_bufferSize(
-        handle: cusolverDnHandle_t,
-        jobz: cusolverEigMode_t,
-        uplo: cublasFillMode_t,
-        n: ::std::os::raw::c_int,
-        A: *const cuDoubleComplex,
-        lda: ::std::os::raw::c_int,
-        W: *const f64,
-        lwork: *mut ::std::os::raw::c_int,
-        params: syevjInfo_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnZheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5204,19 +4165,11 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgesvdjGetResidual(
-        handle: cusolverDnHandle_t,
-        info: gesvdjInfo_t,
-        residual: *mut f64,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXgesvdjGetResidual(handle: cusolverDnHandle_t, info: gesvdjInfo_t, residual: *mut f64) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnXgesvdjGetSweeps(
-        handle: cusolverDnHandle_t,
-        info: gesvdjInfo_t,
-        executed_sweeps: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -5744,11 +4697,7 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverDnSetAdvOptions(
-        params: cusolverDnParams_t,
-        function: cusolverDnFunction_t,
-        algo: cusolverAlgMode_t,
-    ) -> cusolverStatus_t;
+    pub fn cusolverDnSetAdvOptions(params: cusolverDnParams_t, function: cusolverDnFunction_t, algo: cusolverAlgMode_t) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -6322,13 +5271,7 @@ unsafe extern "C" {
         workspaceInBytesOnHost: usize,
     ) -> cusolverStatus_t;
 }
-pub type cusolverDnLoggerCallback_t = ::std::option::Option<
-    unsafe extern "C" fn(
-        logLevel: ::std::os::raw::c_int,
-        functionName: *const ::std::os::raw::c_char,
-        message: *const ::std::os::raw::c_char,
-    ),
->;
+pub type cusolverDnLoggerCallback_t = ::std::option::Option<unsafe extern "C" fn(logLevel: ::std::os::raw::c_int, functionName: *const ::std::os::raw::c_char, message: *const ::std::os::raw::c_char)>;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     pub fn cusolverDnLoggerSetCallback(callback: cusolverDnLoggerCallback_t) -> cusolverStatus_t;
@@ -7066,39 +6009,15 @@ unsafe extern "C" {
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrsymrcmHost(
-        handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        p: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrsymrcmHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrsymmdqHost(
-        handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        p: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrsymmdqHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
-    pub fn cusolverSpXcsrsymamdHost(
-        handle: cusolverSpHandle_t,
-        n: ::std::os::raw::c_int,
-        nnzA: ::std::os::raw::c_int,
-        descrA: cusparseMatDescr_t,
-        csrRowPtrA: *const ::std::os::raw::c_int,
-        csrColIndA: *const ::std::os::raw::c_int,
-        p: *mut ::std::os::raw::c_int,
-    ) -> cusolverStatus_t;
+    pub fn cusolverSpXcsrsymamdHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t;
 }
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
@@ -7363,125 +6282,46 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cusolverGetProperty:
-        Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverGetProperty: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverGetVersion: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnCreate: Option<unsafe extern "C" fn(handle: *mut cusolverDnHandle_t) -> cusolverStatus_t>,
     pub cusolverDnDestroy: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t) -> cusolverStatus_t>,
-    pub cusolverDnSetStream:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverDnGetStream:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverDnSetDeterministicMode:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverDeterministicMode_t) -> cusolverStatus_t>,
-    pub cusolverDnGetDeterministicMode: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverDeterministicMode_t) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSetMathMode:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverMathMode_t) -> cusolverStatus_t>,
-    pub cusolverDnGetMathMode:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverMathMode_t) -> cusolverStatus_t>,
-    pub cusolverDnSetEmulationStrategy:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: cudaEmulationStrategy_t) -> cusolverStatus_t>,
-    pub cusolverDnGetEmulationStrategy: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: *mut cudaEmulationStrategy_t) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSetFixedPointEmulationMantissaControl: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, control: cudaEmulationMantissaControl_t) -> cusolverStatus_t,
-    >,
-    pub cusolverDnGetFixedPointEmulationMantissaControl: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            control: *mut cudaEmulationMantissaControl_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSetFixedPointEmulationMaxMantissaBitCount: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnGetFixedPointEmulationMaxMantissaBitCount: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mantissaBitCount: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSetFixedPointEmulationMantissaBitOffset: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnGetFixedPointEmulationMantissaBitOffset: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mantissaBitOffset: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSetEmulationSpecialValuesSupport: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, mask: cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t,
-    >,
-    pub cusolverDnGetEmulationSpecialValuesSupport: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            mask: *mut cudaEmulationSpecialValuesSupport_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSParamsCreate:
-        Option<unsafe extern "C" fn(params_ptr: *mut cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnSetStream: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverDnGetStream: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverDnSetDeterministicMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverDeterministicMode_t) -> cusolverStatus_t>,
+    pub cusolverDnGetDeterministicMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverDeterministicMode_t) -> cusolverStatus_t>,
+    pub cusolverDnSetMathMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverMathMode_t) -> cusolverStatus_t>,
+    pub cusolverDnGetMathMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverMathMode_t) -> cusolverStatus_t>,
+    pub cusolverDnSetEmulationStrategy: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: cudaEmulationStrategy_t) -> cusolverStatus_t>,
+    pub cusolverDnGetEmulationStrategy: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: *mut cudaEmulationStrategy_t) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, control: cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, control: *mut cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mask: cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
+    pub cusolverDnGetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mask: *mut cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsCreate: Option<unsafe extern "C" fn(params_ptr: *mut cusolverDnIRSParams_t) -> cusolverStatus_t>,
     pub cusolverDnIRSParamsDestroy: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetRefinementSolver: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnIRSParams_t,
-            refinement_solver: cusolverIRSRefinement_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSParamsSetSolverMainPrecision: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnIRSParams_t,
-            solver_main_precision: cusolverPrecType_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSParamsSetSolverLowestPrecision: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnIRSParams_t,
-            solver_lowest_precision: cusolverPrecType_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSParamsSetSolverPrecisions: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnIRSParams_t,
-            solver_main_precision: cusolverPrecType_t,
-            solver_lowest_precision: cusolverPrecType_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSParamsSetTol:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetTolInner:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetMaxIters:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetMaxItersInner:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters_inner: cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsGetMaxIters:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsEnableFallback:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsDisableFallback:
-        Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetRefinementSolver: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, refinement_solver: cusolverIRSRefinement_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetSolverMainPrecision: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetSolverLowestPrecision: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetSolverPrecisions: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetTol: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetTolInner: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetMaxIters: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetMaxItersInner: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters_inner: cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsGetMaxIters: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsEnableFallback: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsDisableFallback: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
     pub cusolverDnIRSInfosDestroy: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosCreate:
-        Option<unsafe extern "C" fn(infos_ptr: *mut cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetNiters:
-        Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, niters: *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetOuterNiters: Option<
-        unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, outer_niters: *mut cusolver_int_t) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSInfosRequestResidual:
-        Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetResidualHistory: Option<
-        unsafe extern "C" fn(
-            infos: cusolverDnIRSInfos_t,
-            residual_history: *mut *mut ::std::os::raw::c_void,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnIRSInfosGetMaxIters:
-        Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosCreate: Option<unsafe extern "C" fn(infos_ptr: *mut cusolverDnIRSInfos_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetNiters: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, niters: *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetOuterNiters: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, outer_niters: *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosRequestResidual: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetResidualHistory: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetMaxIters: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnZZgesv: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -8725,15 +7565,7 @@ pub struct DynamicBindings {
             d_info: *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnIRSXgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnIRSParams_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnIRSXgesv_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t>,
     pub cusolverDnIRSXgels: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -8754,143 +7586,22 @@ pub struct DynamicBindings {
             d_info: *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnIRSXgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnIRSParams_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSpotrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDpotrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCpotrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZpotrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSpotrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut f32,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDpotrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut f64,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCpotrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut cuComplex,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZpotrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut cuDoubleComplex,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSpotrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            B: *mut f32,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDpotrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            B: *mut f64,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCpotrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuComplex,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnIRSXgels_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, m: cusolver_int_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrf:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrs:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, B: *mut f32, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrs:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, B: *mut f64, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrs:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, B: *mut cuComplex, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnZpotrs: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -8904,50 +7615,10 @@ pub struct DynamicBindings {
             devInfo: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSpotrfBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            Aarray: *mut *mut f32,
-            lda: ::std::os::raw::c_int,
-            infoArray: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDpotrfBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            Aarray: *mut *mut f64,
-            lda: ::std::os::raw::c_int,
-            infoArray: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCpotrfBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            Aarray: *mut *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            infoArray: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZpotrfBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            Aarray: *mut *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            infoArray: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f32, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f64, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSpotrsBatched: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -9004,107 +7675,17 @@ pub struct DynamicBindings {
             batchSize: ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSpotri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDpotri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCpotri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZpotri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSpotri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDpotri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCpotri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZpotri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXtrtri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            diag: cublasDiagType_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotri: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotri: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotri: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotri:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXtrtri_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::std::os::raw::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXtrtri: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -9121,230 +7702,30 @@ pub struct DynamicBindings {
             devInfo: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSlauum_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDlauum_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnClauum_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZlauum_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSlauum: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDlauum: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnClauum: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZlauum: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSgetrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgetrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgetrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZgetrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSgetrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut f32,
-            devIpiv: *mut ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgetrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut f64,
-            devIpiv: *mut ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgetrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut cuComplex,
-            devIpiv: *mut ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZgetrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            Workspace: *mut cuDoubleComplex,
-            devIpiv: *mut ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSlaswp: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            k1: ::std::os::raw::c_int,
-            k2: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            incx: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDlaswp: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            k1: ::std::os::raw::c_int,
-            k2: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            incx: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnClaswp: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            k1: ::std::os::raw::c_int,
-            k2: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            incx: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZlaswp: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            k1: ::std::os::raw::c_int,
-            k2: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            incx: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSlauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlauum: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlauum: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClauum: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlauum:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrf:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrf:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlaswp: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlaswp: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClaswp: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlaswp:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgetrs: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -9401,85 +7782,14 @@ pub struct DynamicBindings {
             devInfo: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSgeqrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgeqrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgeqrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZgeqrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSgeqrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            TAU: *mut f32,
-            Workspace: *mut f32,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgeqrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            TAU: *mut f64,
-            Workspace: *mut f64,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgeqrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            TAU: *mut cuComplex,
-            Workspace: *mut cuComplex,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgeqrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgeqrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgeqrf:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, TAU: *mut cuComplex, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnZgeqrf: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -9493,81 +7803,16 @@ pub struct DynamicBindings {
             devInfo: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSorgqr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDorgqr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCungqr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZungqr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSorgqr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgqr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungqr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungqr_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSorgqr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnDorgqr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnCungqr: Option<
         unsafe extern "C" fn(
@@ -9733,80 +7978,16 @@ pub struct DynamicBindings {
             devInfo: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsytrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsytrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCsytrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZsytrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsytrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            ipiv: *mut ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsytrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            ipiv: *mut ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrf:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrf:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnCsytrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            ipiv: *mut ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnZsytrf: Option<
         unsafe extern "C" fn(
@@ -9858,88 +8039,16 @@ pub struct DynamicBindings {
             info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsytri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsytri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCsytri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZsytri_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsytri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsytri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytri:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytri:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnCsytri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnZsytri: Option<
         unsafe extern "C" fn(
@@ -9954,38 +8063,10 @@ pub struct DynamicBindings {
             info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSgebrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgebrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgebrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZgebrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            Lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgebrd: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -10050,57 +8131,14 @@ pub struct DynamicBindings {
             devInfo: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSorgbr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDorgbr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCungbr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSorgbr_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgbr_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungbr_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnZungbr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnSorgbr: Option<
         unsafe extern "C" fn(
@@ -10162,88 +8200,16 @@ pub struct DynamicBindings {
             info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsytrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            d: *const f32,
-            e: *const f32,
-            tau: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsytrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            d: *const f64,
-            e: *const f64,
-            tau: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnChetrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            d: *const f32,
-            e: *const f32,
-            tau: *const cuComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZhetrd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            d: *const f64,
-            e: *const f64,
-            tau: *const cuDoubleComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsytrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            d: *mut f32,
-            e: *mut f32,
-            tau: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsytrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            d: *mut f64,
-            e: *mut f64,
-            tau: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsytrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChetrd_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZhetrd_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrd:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, d: *mut f32, e: *mut f32, tau: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrd:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, d: *mut f64, e: *mut f64, tau: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnChetrd: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -10274,89 +8240,14 @@ pub struct DynamicBindings {
             info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSorgtr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDorgtr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCungtr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZungtr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSorgtr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDorgtr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCungtr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSorgtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgtr: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgtr: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungtr:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnZungtr: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -10506,38 +8397,10 @@ pub struct DynamicBindings {
             info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSgesvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgesvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgesvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZgesvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgesvd: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -10618,95 +8481,16 @@ pub struct DynamicBindings {
             info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsyevd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsyevd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCheevd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZheevd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsyevd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsyevd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsyevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevd:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevd:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, W: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnCheevd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnZheevd: Option<
         unsafe extern "C" fn(
@@ -11281,49 +9065,16 @@ pub struct DynamicBindings {
     >,
     pub cusolverDnCreateSyevjInfo: Option<unsafe extern "C" fn(info: *mut syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnDestroySyevjInfo: Option<unsafe extern "C" fn(info: syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetTolerance:
-        Option<unsafe extern "C" fn(info: syevjInfo_t, tolerance: f64) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetMaxSweeps:
-        Option<unsafe extern "C" fn(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetSortEig:
-        Option<unsafe extern "C" fn(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjGetResidual: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, info: syevjInfo_t, residual: *mut f64) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXsyevjGetSweeps: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            info: syevjInfo_t,
-            executed_sweeps: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXsyevjSetTolerance: Option<unsafe extern "C" fn(info: syevjInfo_t, tolerance: f64) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetMaxSweeps: Option<unsafe extern "C" fn(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetSortEig: Option<unsafe extern "C" fn(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjGetResidual: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: syevjInfo_t, residual: *mut f64) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjGetSweeps: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSsyevjBatched_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnDsyevjBatched_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnCheevjBatched_bufferSize: Option<
         unsafe extern "C" fn(
@@ -11417,58 +9168,14 @@ pub struct DynamicBindings {
             batchSize: ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsyevj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsyevj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCheevj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZheevj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsyevj_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsyevj_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnCheevj_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnZheevj_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnSsyevj: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -11667,22 +9374,11 @@ pub struct DynamicBindings {
     >,
     pub cusolverDnCreateGesvdjInfo: Option<unsafe extern "C" fn(info: *mut gesvdjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnDestroyGesvdjInfo: Option<unsafe extern "C" fn(info: gesvdjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetTolerance:
-        Option<unsafe extern "C" fn(info: gesvdjInfo_t, tolerance: f64) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetMaxSweeps:
-        Option<unsafe extern "C" fn(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetSortEig:
-        Option<unsafe extern "C" fn(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjGetResidual: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, info: gesvdjInfo_t, residual: *mut f64) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXgesvdjGetSweeps: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            info: gesvdjInfo_t,
-            executed_sweeps: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXgesvdjSetTolerance: Option<unsafe extern "C" fn(info: gesvdjInfo_t, tolerance: f64) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetMaxSweeps: Option<unsafe extern "C" fn(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetSortEig: Option<unsafe extern "C" fn(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjGetResidual: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: gesvdjInfo_t, residual: *mut f64) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjGetSweeps: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgesvdjBatched_bufferSize: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -12177,13 +9873,7 @@ pub struct DynamicBindings {
     >,
     pub cusolverDnCreateParams: Option<unsafe extern "C" fn(params: *mut cusolverDnParams_t) -> cusolverStatus_t>,
     pub cusolverDnDestroyParams: Option<unsafe extern "C" fn(params: cusolverDnParams_t) -> cusolverStatus_t>,
-    pub cusolverDnSetAdvOptions: Option<
-        unsafe extern "C" fn(
-            params: cusolverDnParams_t,
-            function: cusolverDnFunction_t,
-            algo: cusolverAlgMode_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSetAdvOptions: Option<unsafe extern "C" fn(params: cusolverDnParams_t, function: cusolverDnFunction_t, algo: cusolverAlgMode_t) -> cusolverStatus_t>,
     pub cusolverDnXpotrf_bufferSize: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -12266,20 +9956,8 @@ pub struct DynamicBindings {
             info: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnXgetrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXgetrf_bufferSize:
+        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, params: cusolverDnParams_t, m: i64, n: i64, dataTypeA: cudaDataType, A: *const ::std::os::raw::c_void, lda: i64, computeType: cudaDataType, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXgetrf: Option<
         unsafe extern "C" fn(
             handle: cusolverDnHandle_t,
@@ -12730,11 +10408,9 @@ pub struct DynamicBindings {
             workspaceInBytesOnHost: usize,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnLoggerSetCallback:
-        Option<unsafe extern "C" fn(callback: cusolverDnLoggerCallback_t) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetCallback: Option<unsafe extern "C" fn(callback: cusolverDnLoggerCallback_t) -> cusolverStatus_t>,
     pub cusolverDnLoggerSetFile: Option<unsafe extern "C" fn(file: *mut FILE) -> cusolverStatus_t>,
-    pub cusolverDnLoggerOpenFile:
-        Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t>,
+    pub cusolverDnLoggerOpenFile: Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t>,
     pub cusolverDnLoggerSetLevel: Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnLoggerSetMask: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnLoggerForceDisable: Option<unsafe extern "C" fn() -> cusolverStatus_t>,
@@ -12782,10 +10458,8 @@ pub struct DynamicBindings {
     >,
     pub cusolverSpCreate: Option<unsafe extern "C" fn(handle: *mut cusolverSpHandle_t) -> cusolverStatus_t>,
     pub cusolverSpDestroy: Option<unsafe extern "C" fn(handle: cusolverSpHandle_t) -> cusolverStatus_t>,
-    pub cusolverSpSetStream:
-        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverSpGetStream:
-        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverSpSetStream: Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverSpGetStream: Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
     pub cusolverSpXcsrissymHost: Option<
         unsafe extern "C" fn(
             handle: cusolverSpHandle_t,
@@ -13382,50 +11056,14 @@ pub struct DynamicBindings {
             num_eigs: *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpXcsrsymrcmHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            p: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpXcsrsymmdqHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            p: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpXcsrsymamdHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            p: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpXcsrsymrcmHost:
+        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymmdqHost:
+        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymamdHost:
+        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverSpXcsrmetisndHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            options: *const i64,
-            p: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, options: *const i64, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverSpScsrzfdHost: Option<
         unsafe extern "C" fn(
@@ -13510,18 +11148,8 @@ pub struct DynamicBindings {
     >,
     pub cusolverSpCreateCsrqrInfo: Option<unsafe extern "C" fn(info: *mut csrqrInfo_t) -> cusolverStatus_t>,
     pub cusolverSpDestroyCsrqrInfo: Option<unsafe extern "C" fn(info: csrqrInfo_t) -> cusolverStatus_t>,
-    pub cusolverSpXcsrqrAnalysisBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpXcsrqrAnalysisBatched:
+        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, info: csrqrInfo_t) -> cusolverStatus_t>,
     pub cusolverSpScsrqrBufferInfoBatched: Option<
         unsafe extern "C" fn(
             handle: cusolverSpHandle_t,
@@ -13659,111 +11287,56 @@ pub struct DynamicBindings {
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverGetProperty(
-    type_: libraryPropertyType,
-    value: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverGetProperty
-    {
+pub unsafe extern "C" fn cusolverGetProperty(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverGetProperty {
         Some(____func) => unsafe { ____func(type_, value) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverGetProperty"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverGetProperty"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverGetVersion(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverGetVersion
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverGetVersion {
         Some(____func) => unsafe { ____func(version) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverGetVersion"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverGetVersion"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnCreate(handle: *mut cusolverDnHandle_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCreate
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCreate {
         Some(____func) => unsafe { ____func(handle) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCreate"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCreate"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnDestroy(handle: cusolverDnHandle_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDestroy
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDestroy {
         Some(____func) => unsafe { ____func(handle) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDestroy"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDestroy"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnSetStream(handle: cusolverDnHandle_t, streamId: cudaStream_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetStream
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetStream {
         Some(____func) => unsafe { ____func(handle, streamId) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSetStream"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSetStream"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetStream(
-    handle: cusolverDnHandle_t,
-    streamId: *mut cudaStream_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetStream
-    {
+pub unsafe extern "C" fn cusolverDnGetStream(handle: cusolverDnHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetStream {
         Some(____func) => unsafe { ____func(handle, streamId) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnGetStream"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnGetStream"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetDeterministicMode(
-    handle: cusolverDnHandle_t,
-    mode: cusolverDeterministicMode_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetDeterministicMode
-    {
+pub unsafe extern "C" fn cusolverDnSetDeterministicMode(handle: cusolverDnHandle_t, mode: cusolverDeterministicMode_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetDeterministicMode {
         Some(____func) => unsafe { ____func(handle, mode) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13773,15 +11346,8 @@ pub unsafe extern "C" fn cusolverDnSetDeterministicMode(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetDeterministicMode(
-    handle: cusolverDnHandle_t,
-    mode: *mut cusolverDeterministicMode_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetDeterministicMode
-    {
+pub unsafe extern "C" fn cusolverDnGetDeterministicMode(handle: cusolverDnHandle_t, mode: *mut cusolverDeterministicMode_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetDeterministicMode {
         Some(____func) => unsafe { ____func(handle, mode) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13791,51 +11357,24 @@ pub unsafe extern "C" fn cusolverDnGetDeterministicMode(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetMathMode(
-    handle: cusolverDnHandle_t,
-    mode: cusolverMathMode_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetMathMode
-    {
+pub unsafe extern "C" fn cusolverDnSetMathMode(handle: cusolverDnHandle_t, mode: cusolverMathMode_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetMathMode {
         Some(____func) => unsafe { ____func(handle, mode) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSetMathMode"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSetMathMode"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetMathMode(
-    handle: cusolverDnHandle_t,
-    mode: *mut cusolverMathMode_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetMathMode
-    {
+pub unsafe extern "C" fn cusolverDnGetMathMode(handle: cusolverDnHandle_t, mode: *mut cusolverMathMode_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetMathMode {
         Some(____func) => unsafe { ____func(handle, mode) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnGetMathMode"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnGetMathMode"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetEmulationStrategy(
-    handle: cusolverDnHandle_t,
-    strategy: cudaEmulationStrategy_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetEmulationStrategy
-    {
+pub unsafe extern "C" fn cusolverDnSetEmulationStrategy(handle: cusolverDnHandle_t, strategy: cudaEmulationStrategy_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetEmulationStrategy {
         Some(____func) => unsafe { ____func(handle, strategy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13845,15 +11384,8 @@ pub unsafe extern "C" fn cusolverDnSetEmulationStrategy(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetEmulationStrategy(
-    handle: cusolverDnHandle_t,
-    strategy: *mut cudaEmulationStrategy_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetEmulationStrategy
-    {
+pub unsafe extern "C" fn cusolverDnGetEmulationStrategy(handle: cusolverDnHandle_t, strategy: *mut cudaEmulationStrategy_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetEmulationStrategy {
         Some(____func) => unsafe { ____func(handle, strategy) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13863,15 +11395,8 @@ pub unsafe extern "C" fn cusolverDnGetEmulationStrategy(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaControl(
-    handle: cusolverDnHandle_t,
-    control: cudaEmulationMantissaControl_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetFixedPointEmulationMantissaControl
-    {
+pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaControl(handle: cusolverDnHandle_t, control: cudaEmulationMantissaControl_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetFixedPointEmulationMantissaControl {
         Some(____func) => unsafe { ____func(handle, control) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13881,15 +11406,8 @@ pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaControl(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaControl(
-    handle: cusolverDnHandle_t,
-    control: *mut cudaEmulationMantissaControl_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetFixedPointEmulationMantissaControl
-    {
+pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaControl(handle: cusolverDnHandle_t, control: *mut cudaEmulationMantissaControl_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetFixedPointEmulationMantissaControl {
         Some(____func) => unsafe { ____func(handle, control) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13899,15 +11417,8 @@ pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaControl(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(
-    handle: cusolverDnHandle_t,
-    mantissaBitCount: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetFixedPointEmulationMaxMantissaBitCount
-    {
+pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetFixedPointEmulationMaxMantissaBitCount {
         Some(____func) => unsafe { ____func(handle, mantissaBitCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13917,15 +11428,8 @@ pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMaxMantissaBitCount(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(
-    handle: cusolverDnHandle_t,
-    mantissaBitCount: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetFixedPointEmulationMaxMantissaBitCount
-    {
+pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetFixedPointEmulationMaxMantissaBitCount {
         Some(____func) => unsafe { ____func(handle, mantissaBitCount) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13935,15 +11439,8 @@ pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMaxMantissaBitCount(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaBitOffset(
-    handle: cusolverDnHandle_t,
-    mantissaBitOffset: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetFixedPointEmulationMantissaBitOffset
-    {
+pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetFixedPointEmulationMantissaBitOffset {
         Some(____func) => unsafe { ____func(handle, mantissaBitOffset) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13953,15 +11450,8 @@ pub unsafe extern "C" fn cusolverDnSetFixedPointEmulationMantissaBitOffset(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaBitOffset(
-    handle: cusolverDnHandle_t,
-    mantissaBitOffset: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetFixedPointEmulationMantissaBitOffset
-    {
+pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaBitOffset(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetFixedPointEmulationMantissaBitOffset {
         Some(____func) => unsafe { ____func(handle, mantissaBitOffset) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13971,15 +11461,8 @@ pub unsafe extern "C" fn cusolverDnGetFixedPointEmulationMantissaBitOffset(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetEmulationSpecialValuesSupport(
-    handle: cusolverDnHandle_t,
-    mask: cudaEmulationSpecialValuesSupport_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetEmulationSpecialValuesSupport
-    {
+pub unsafe extern "C" fn cusolverDnSetEmulationSpecialValuesSupport(handle: cusolverDnHandle_t, mask: cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetEmulationSpecialValuesSupport {
         Some(____func) => unsafe { ____func(handle, mask) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -13989,15 +11472,8 @@ pub unsafe extern "C" fn cusolverDnSetEmulationSpecialValuesSupport(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnGetEmulationSpecialValuesSupport(
-    handle: cusolverDnHandle_t,
-    mask: *mut cudaEmulationSpecialValuesSupport_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnGetEmulationSpecialValuesSupport
-    {
+pub unsafe extern "C" fn cusolverDnGetEmulationSpecialValuesSupport(handle: cusolverDnHandle_t, mask: *mut cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnGetEmulationSpecialValuesSupport {
         Some(____func) => unsafe { ____func(handle, mask) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14008,11 +11484,7 @@ pub unsafe extern "C" fn cusolverDnGetEmulationSpecialValuesSupport(
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSParamsCreate(params_ptr: *mut cusolverDnIRSParams_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsCreate
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsCreate {
         Some(____func) => unsafe { ____func(params_ptr) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14023,11 +11495,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsCreate(params_ptr: *mut cusolverDnIR
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSParamsDestroy(params: cusolverDnIRSParams_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsDestroy
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsDestroy {
         Some(____func) => unsafe { ____func(params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14037,15 +11505,8 @@ pub unsafe extern "C" fn cusolverDnIRSParamsDestroy(params: cusolverDnIRSParams_
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetRefinementSolver(
-    params: cusolverDnIRSParams_t,
-    refinement_solver: cusolverIRSRefinement_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetRefinementSolver
-    {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetRefinementSolver(params: cusolverDnIRSParams_t, refinement_solver: cusolverIRSRefinement_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetRefinementSolver {
         Some(____func) => unsafe { ____func(params, refinement_solver) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14055,15 +11516,8 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetRefinementSolver(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverMainPrecision(
-    params: cusolverDnIRSParams_t,
-    solver_main_precision: cusolverPrecType_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetSolverMainPrecision
-    {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverMainPrecision(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetSolverMainPrecision {
         Some(____func) => unsafe { ____func(params, solver_main_precision) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14073,15 +11527,8 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverMainPrecision(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverLowestPrecision(
-    params: cusolverDnIRSParams_t,
-    solver_lowest_precision: cusolverPrecType_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetSolverLowestPrecision
-    {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverLowestPrecision(params: cusolverDnIRSParams_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetSolverLowestPrecision {
         Some(____func) => unsafe { ____func(params, solver_lowest_precision) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14091,16 +11538,8 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverLowestPrecision(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverPrecisions(
-    params: cusolverDnIRSParams_t,
-    solver_main_precision: cusolverPrecType_t,
-    solver_lowest_precision: cusolverPrecType_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetSolverPrecisions
-    {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverPrecisions(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetSolverPrecisions {
         Some(____func) => unsafe { ____func(params, solver_main_precision, solver_lowest_precision) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14111,11 +11550,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetSolverPrecisions(
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSParamsSetTol(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetTol
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetTol {
         Some(____func) => unsafe { ____func(params, val) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14126,11 +11561,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetTol(params: cusolverDnIRSParams_t
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSParamsSetTolInner(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetTolInner
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetTolInner {
         Some(____func) => unsafe { ____func(params, val) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14140,15 +11571,8 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetTolInner(params: cusolverDnIRSPar
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetMaxIters(
-    params: cusolverDnIRSParams_t,
-    maxiters: cusolver_int_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetMaxIters
-    {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetMaxIters(params: cusolverDnIRSParams_t, maxiters: cusolver_int_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetMaxIters {
         Some(____func) => unsafe { ____func(params, maxiters) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14158,15 +11582,8 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetMaxIters(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsSetMaxItersInner(
-    params: cusolverDnIRSParams_t,
-    maxiters_inner: cusolver_int_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsSetMaxItersInner
-    {
+pub unsafe extern "C" fn cusolverDnIRSParamsSetMaxItersInner(params: cusolverDnIRSParams_t, maxiters_inner: cusolver_int_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsSetMaxItersInner {
         Some(____func) => unsafe { ____func(params, maxiters_inner) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14176,15 +11593,8 @@ pub unsafe extern "C" fn cusolverDnIRSParamsSetMaxItersInner(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSParamsGetMaxIters(
-    params: cusolverDnIRSParams_t,
-    maxiters: *mut cusolver_int_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsGetMaxIters
-    {
+pub unsafe extern "C" fn cusolverDnIRSParamsGetMaxIters(params: cusolverDnIRSParams_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsGetMaxIters {
         Some(____func) => unsafe { ____func(params, maxiters) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14195,11 +11605,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsGetMaxIters(
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSParamsEnableFallback(params: cusolverDnIRSParams_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsEnableFallback
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsEnableFallback {
         Some(____func) => unsafe { ____func(params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14210,11 +11616,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsEnableFallback(params: cusolverDnIRS
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSParamsDisableFallback(params: cusolverDnIRSParams_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSParamsDisableFallback
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSParamsDisableFallback {
         Some(____func) => unsafe { ____func(params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14225,11 +11627,7 @@ pub unsafe extern "C" fn cusolverDnIRSParamsDisableFallback(params: cusolverDnIR
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSInfosDestroy(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSInfosDestroy
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosDestroy {
         Some(____func) => unsafe { ____func(infos) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14240,29 +11638,15 @@ pub unsafe extern "C" fn cusolverDnIRSInfosDestroy(infos: cusolverDnIRSInfos_t) 
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSInfosCreate(infos_ptr: *mut cusolverDnIRSInfos_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSInfosCreate
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosCreate {
         Some(____func) => unsafe { ____func(infos_ptr) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnIRSInfosCreate"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnIRSInfosCreate"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosGetNiters(
-    infos: cusolverDnIRSInfos_t,
-    niters: *mut cusolver_int_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSInfosGetNiters
-    {
+pub unsafe extern "C" fn cusolverDnIRSInfosGetNiters(infos: cusolverDnIRSInfos_t, niters: *mut cusolver_int_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosGetNiters {
         Some(____func) => unsafe { ____func(infos, niters) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14272,15 +11656,8 @@ pub unsafe extern "C" fn cusolverDnIRSInfosGetNiters(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosGetOuterNiters(
-    infos: cusolverDnIRSInfos_t,
-    outer_niters: *mut cusolver_int_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSInfosGetOuterNiters
-    {
+pub unsafe extern "C" fn cusolverDnIRSInfosGetOuterNiters(infos: cusolverDnIRSInfos_t, outer_niters: *mut cusolver_int_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosGetOuterNiters {
         Some(____func) => unsafe { ____func(infos, outer_niters) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14291,11 +11668,7 @@ pub unsafe extern "C" fn cusolverDnIRSInfosGetOuterNiters(
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnIRSInfosRequestResidual(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSInfosRequestResidual
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosRequestResidual {
         Some(____func) => unsafe { ____func(infos) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14305,15 +11678,8 @@ pub unsafe extern "C" fn cusolverDnIRSInfosRequestResidual(infos: cusolverDnIRSI
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosGetResidualHistory(
-    infos: cusolverDnIRSInfos_t,
-    residual_history: *mut *mut ::std::os::raw::c_void,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSInfosGetResidualHistory
-    {
+pub unsafe extern "C" fn cusolverDnIRSInfosGetResidualHistory(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosGetResidualHistory {
         Some(____func) => unsafe { ____func(infos, residual_history) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14323,15 +11689,8 @@ pub unsafe extern "C" fn cusolverDnIRSInfosGetResidualHistory(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSInfosGetMaxIters(
-    infos: cusolverDnIRSInfos_t,
-    maxiters: *mut cusolver_int_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSInfosGetMaxIters
-    {
+pub unsafe extern "C" fn cusolverDnIRSInfosGetMaxIters(infos: cusolverDnIRSInfos_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSInfosGetMaxIters {
         Some(____func) => unsafe { ____func(infos, maxiters) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -14357,33 +11716,9 @@ pub unsafe extern "C" fn cusolverDnZZgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZZgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZZgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZZgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZZgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14404,33 +11739,9 @@ pub unsafe extern "C" fn cusolverDnZCgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZCgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZCgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZCgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZCgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14451,33 +11762,9 @@ pub unsafe extern "C" fn cusolverDnZKgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZKgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZKgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZKgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZKgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14498,33 +11785,9 @@ pub unsafe extern "C" fn cusolverDnZEgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZEgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZEgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZEgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZEgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14545,33 +11808,9 @@ pub unsafe extern "C" fn cusolverDnZYgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZYgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZYgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZYgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZYgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14592,33 +11831,9 @@ pub unsafe extern "C" fn cusolverDnCCgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCCgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCCgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCCgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCCgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14639,33 +11854,9 @@ pub unsafe extern "C" fn cusolverDnCEgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCEgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCEgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCEgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCEgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14686,33 +11877,9 @@ pub unsafe extern "C" fn cusolverDnCKgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCKgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCKgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCKgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCKgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14733,33 +11900,9 @@ pub unsafe extern "C" fn cusolverDnCYgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCYgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCYgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCYgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCYgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14780,33 +11923,9 @@ pub unsafe extern "C" fn cusolverDnDDgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDDgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDDgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDDgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDDgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14827,33 +11946,9 @@ pub unsafe extern "C" fn cusolverDnDSgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDSgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDSgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDSgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDSgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14874,33 +11969,9 @@ pub unsafe extern "C" fn cusolverDnDHgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDHgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDHgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDHgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDHgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14921,33 +11992,9 @@ pub unsafe extern "C" fn cusolverDnDBgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDBgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDBgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDBgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDBgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -14968,33 +12015,9 @@ pub unsafe extern "C" fn cusolverDnDXgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDXgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDXgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDXgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDXgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -15015,33 +12038,9 @@ pub unsafe extern "C" fn cusolverDnSSgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSSgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSSgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSSgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSSgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -15062,33 +12061,9 @@ pub unsafe extern "C" fn cusolverDnSHgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSHgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSHgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSHgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSHgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -15109,33 +12084,9 @@ pub unsafe extern "C" fn cusolverDnSBgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSBgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSBgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSBgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSBgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -15156,33 +12107,9 @@ pub unsafe extern "C" fn cusolverDnSXgesv(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSXgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSXgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSXgesv {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSXgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -15201,27 +12128,8 @@ pub unsafe extern "C" fn cusolverDnZZgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZZgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZZgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZZgesv_bufferSize"
@@ -15244,27 +12152,8 @@ pub unsafe extern "C" fn cusolverDnZCgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZCgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZCgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZCgesv_bufferSize"
@@ -15287,27 +12176,8 @@ pub unsafe extern "C" fn cusolverDnZKgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZKgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZKgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZKgesv_bufferSize"
@@ -15330,27 +12200,8 @@ pub unsafe extern "C" fn cusolverDnZEgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZEgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZEgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZEgesv_bufferSize"
@@ -15373,27 +12224,8 @@ pub unsafe extern "C" fn cusolverDnZYgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZYgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZYgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZYgesv_bufferSize"
@@ -15416,27 +12248,8 @@ pub unsafe extern "C" fn cusolverDnCCgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCCgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCCgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCCgesv_bufferSize"
@@ -15459,27 +12272,8 @@ pub unsafe extern "C" fn cusolverDnCKgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCKgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCKgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCKgesv_bufferSize"
@@ -15502,27 +12296,8 @@ pub unsafe extern "C" fn cusolverDnCEgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCEgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCEgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCEgesv_bufferSize"
@@ -15545,27 +12320,8 @@ pub unsafe extern "C" fn cusolverDnCYgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCYgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCYgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCYgesv_bufferSize"
@@ -15588,27 +12344,8 @@ pub unsafe extern "C" fn cusolverDnDDgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDDgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDDgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDDgesv_bufferSize"
@@ -15631,27 +12368,8 @@ pub unsafe extern "C" fn cusolverDnDSgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDSgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDSgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDSgesv_bufferSize"
@@ -15674,27 +12392,8 @@ pub unsafe extern "C" fn cusolverDnDHgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDHgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDHgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDHgesv_bufferSize"
@@ -15717,27 +12416,8 @@ pub unsafe extern "C" fn cusolverDnDBgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDBgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDBgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDBgesv_bufferSize"
@@ -15760,27 +12440,8 @@ pub unsafe extern "C" fn cusolverDnDXgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDXgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDXgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDXgesv_bufferSize"
@@ -15803,27 +12464,8 @@ pub unsafe extern "C" fn cusolverDnSSgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSSgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSSgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSSgesv_bufferSize"
@@ -15846,27 +12488,8 @@ pub unsafe extern "C" fn cusolverDnSHgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSHgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSHgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSHgesv_bufferSize"
@@ -15889,27 +12512,8 @@ pub unsafe extern "C" fn cusolverDnSBgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSBgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSBgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSBgesv_bufferSize"
@@ -15932,27 +12536,8 @@ pub unsafe extern "C" fn cusolverDnSXgesv_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSXgesv_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dipiv,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSXgesv_bufferSize {
+        Some(____func) => unsafe { ____func(handle, n, nrhs, dA, ldda, dipiv, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSXgesv_bufferSize"
@@ -15977,33 +12562,9 @@ pub unsafe extern "C" fn cusolverDnZZgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZZgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZZgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZZgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZZgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16024,33 +12585,9 @@ pub unsafe extern "C" fn cusolverDnZCgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZCgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZCgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZCgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZCgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16071,33 +12608,9 @@ pub unsafe extern "C" fn cusolverDnZKgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZKgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZKgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZKgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZKgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16118,33 +12631,9 @@ pub unsafe extern "C" fn cusolverDnZEgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZEgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZEgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZEgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZEgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16165,33 +12654,9 @@ pub unsafe extern "C" fn cusolverDnZYgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZYgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZYgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZYgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZYgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16212,33 +12677,9 @@ pub unsafe extern "C" fn cusolverDnCCgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCCgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCCgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCCgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCCgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16259,33 +12700,9 @@ pub unsafe extern "C" fn cusolverDnCKgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCKgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCKgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCKgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCKgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16306,33 +12723,9 @@ pub unsafe extern "C" fn cusolverDnCEgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCEgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCEgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCEgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCEgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16353,33 +12746,9 @@ pub unsafe extern "C" fn cusolverDnCYgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCYgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCYgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCYgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCYgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16400,33 +12769,9 @@ pub unsafe extern "C" fn cusolverDnDDgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDDgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDDgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDDgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDDgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16447,33 +12792,9 @@ pub unsafe extern "C" fn cusolverDnDSgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDSgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDSgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDSgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDSgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16494,33 +12815,9 @@ pub unsafe extern "C" fn cusolverDnDHgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDHgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDHgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDHgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDHgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16541,33 +12838,9 @@ pub unsafe extern "C" fn cusolverDnDBgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDBgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDBgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDBgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDBgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16588,33 +12861,9 @@ pub unsafe extern "C" fn cusolverDnDXgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDXgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDXgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDXgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDXgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16635,33 +12884,9 @@ pub unsafe extern "C" fn cusolverDnSSgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSSgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSSgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSSgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSSgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16682,33 +12907,9 @@ pub unsafe extern "C" fn cusolverDnSHgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSHgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSHgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSHgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSHgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16729,33 +12930,9 @@ pub unsafe extern "C" fn cusolverDnSBgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSBgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSBgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSBgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSBgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16776,33 +12953,9 @@ pub unsafe extern "C" fn cusolverDnSXgels(
     iter: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSXgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                iter,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSXgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSXgels {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, iter, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSXgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -16821,27 +12974,8 @@ pub unsafe extern "C" fn cusolverDnZZgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZZgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZZgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZZgels_bufferSize"
@@ -16864,27 +12998,8 @@ pub unsafe extern "C" fn cusolverDnZCgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZCgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZCgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZCgels_bufferSize"
@@ -16907,27 +13022,8 @@ pub unsafe extern "C" fn cusolverDnZKgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZKgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZKgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZKgels_bufferSize"
@@ -16950,27 +13046,8 @@ pub unsafe extern "C" fn cusolverDnZEgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZEgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZEgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZEgels_bufferSize"
@@ -16993,27 +13070,8 @@ pub unsafe extern "C" fn cusolverDnZYgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZYgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZYgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZYgels_bufferSize"
@@ -17036,27 +13094,8 @@ pub unsafe extern "C" fn cusolverDnCCgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCCgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCCgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCCgels_bufferSize"
@@ -17079,27 +13118,8 @@ pub unsafe extern "C" fn cusolverDnCKgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCKgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCKgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCKgels_bufferSize"
@@ -17122,27 +13142,8 @@ pub unsafe extern "C" fn cusolverDnCEgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCEgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCEgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCEgels_bufferSize"
@@ -17165,27 +13166,8 @@ pub unsafe extern "C" fn cusolverDnCYgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCYgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCYgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCYgels_bufferSize"
@@ -17208,27 +13190,8 @@ pub unsafe extern "C" fn cusolverDnDDgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDDgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDDgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDDgels_bufferSize"
@@ -17251,27 +13214,8 @@ pub unsafe extern "C" fn cusolverDnDSgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDSgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDSgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDSgels_bufferSize"
@@ -17294,27 +13238,8 @@ pub unsafe extern "C" fn cusolverDnDHgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDHgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDHgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDHgels_bufferSize"
@@ -17337,27 +13262,8 @@ pub unsafe extern "C" fn cusolverDnDBgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDBgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDBgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDBgels_bufferSize"
@@ -17380,27 +13286,8 @@ pub unsafe extern "C" fn cusolverDnDXgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDXgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDXgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDXgels_bufferSize"
@@ -17423,27 +13310,8 @@ pub unsafe extern "C" fn cusolverDnSSgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSSgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSSgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSSgels_bufferSize"
@@ -17466,27 +13334,8 @@ pub unsafe extern "C" fn cusolverDnSHgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSHgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSHgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSHgels_bufferSize"
@@ -17509,27 +13358,8 @@ pub unsafe extern "C" fn cusolverDnSBgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSBgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSBgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSBgels_bufferSize"
@@ -17552,27 +13382,8 @@ pub unsafe extern "C" fn cusolverDnSXgels_bufferSize(
     dWorkspace: *mut ::std::os::raw::c_void,
     lwork_bytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSXgels_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSXgels_bufferSize {
+        Some(____func) => unsafe { ____func(handle, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSXgels_bufferSize"
@@ -17598,50 +13409,15 @@ pub unsafe extern "C" fn cusolverDnIRSXgesv(
     niters: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSXgesv
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                gesv_irs_params,
-                gesv_irs_infos,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                niters,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnIRSXgesv"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSXgesv {
+        Some(____func) => unsafe { ____func(handle, gesv_irs_params, gesv_irs_infos, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, niters, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnIRSXgesv"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSXgesv_bufferSize(
-    handle: cusolverDnHandle_t,
-    params: cusolverDnIRSParams_t,
-    n: cusolver_int_t,
-    nrhs: cusolver_int_t,
-    lwork_bytes: *mut usize,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSXgesv_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnIRSXgesv_bufferSize(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSXgesv_bufferSize {
         Some(____func) => unsafe { ____func(handle, params, n, nrhs, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -17669,52 +13445,15 @@ pub unsafe extern "C" fn cusolverDnIRSXgels(
     niters: *mut cusolver_int_t,
     d_info: *mut cusolver_int_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSXgels
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                gels_irs_params,
-                gels_irs_infos,
-                m,
-                n,
-                nrhs,
-                dA,
-                ldda,
-                dB,
-                lddb,
-                dX,
-                lddx,
-                dWorkspace,
-                lwork_bytes,
-                niters,
-                d_info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnIRSXgels"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSXgels {
+        Some(____func) => unsafe { ____func(handle, gels_irs_params, gels_irs_infos, m, n, nrhs, dA, ldda, dB, lddb, dX, lddx, dWorkspace, lwork_bytes, niters, d_info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnIRSXgels"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnIRSXgels_bufferSize(
-    handle: cusolverDnHandle_t,
-    params: cusolverDnIRSParams_t,
-    m: cusolver_int_t,
-    n: cusolver_int_t,
-    nrhs: cusolver_int_t,
-    lwork_bytes: *mut usize,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnIRSXgels_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnIRSXgels_bufferSize(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, m: cusolver_int_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnIRSXgels_bufferSize {
         Some(____func) => unsafe { ____func(handle, params, m, n, nrhs, lwork_bytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -17724,19 +13463,8 @@ pub unsafe extern "C" fn cusolverDnIRSXgels_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSpotrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -17746,19 +13474,8 @@ pub unsafe extern "C" fn cusolverDnSpotrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDpotrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -17768,19 +13485,8 @@ pub unsafe extern "C" fn cusolverDnDpotrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCpotrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -17790,19 +13496,8 @@ pub unsafe extern "C" fn cusolverDnCpotrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZpotrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZpotrf_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -17812,148 +13507,50 @@ pub unsafe extern "C" fn cusolverDnZpotrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrf(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut f32,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSpotrf
-    {
+pub unsafe extern "C" fn cusolverDnSpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSpotrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrf(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut f64,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDpotrf
-    {
+pub unsafe extern "C" fn cusolverDnDpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDpotrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotrf(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut cuComplex,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCpotrf
-    {
+pub unsafe extern "C" fn cusolverDnCpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCpotrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotrf(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut cuDoubleComplex,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZpotrf
-    {
+pub unsafe extern "C" fn cusolverDnZpotrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZpotrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrs(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    B: *mut f32,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSpotrs
-    {
+pub unsafe extern "C" fn cusolverDnSpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, B: *mut f32, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSpotrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrs(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    nrhs: ::std::os::raw::c_int,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    B: *mut f64,
-    ldb: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDpotrs
-    {
+pub unsafe extern "C" fn cusolverDnDpotrs(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, B: *mut f64, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDpotrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -17969,16 +13566,9 @@ pub unsafe extern "C" fn cusolverDnCpotrs(
     ldb: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCpotrs
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCpotrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -17994,108 +13584,41 @@ pub unsafe extern "C" fn cusolverDnZpotrs(
     ldb: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZpotrs
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrs {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZpotrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotrfBatched(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    Aarray: *mut *mut f32,
-    lda: ::std::os::raw::c_int,
-    infoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSpotrfBatched
-    {
+pub unsafe extern "C" fn cusolverDnSpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f32, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSpotrfBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotrfBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotrfBatched(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    Aarray: *mut *mut f64,
-    lda: ::std::os::raw::c_int,
-    infoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDpotrfBatched
-    {
+pub unsafe extern "C" fn cusolverDnDpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f64, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDpotrfBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotrfBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotrfBatched(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    Aarray: *mut *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    infoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCpotrfBatched
-    {
+pub unsafe extern "C" fn cusolverDnCpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCpotrfBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotrfBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotrfBatched(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    Aarray: *mut *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    infoArray: *mut ::std::os::raw::c_int,
-    batchSize: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZpotrfBatched
-    {
+pub unsafe extern "C" fn cusolverDnZpotrfBatched(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrfBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, Aarray, lda, infoArray, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZpotrfBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotrfBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18112,16 +13635,9 @@ pub unsafe extern "C" fn cusolverDnSpotrsBatched(
     d_info: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSpotrsBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSpotrsBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotrsBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18138,16 +13654,9 @@ pub unsafe extern "C" fn cusolverDnDpotrsBatched(
     d_info: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDpotrsBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDpotrsBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotrsBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18164,16 +13673,9 @@ pub unsafe extern "C" fn cusolverDnCpotrsBatched(
     d_info: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCpotrsBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCpotrsBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotrsBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18190,33 +13692,15 @@ pub unsafe extern "C" fn cusolverDnZpotrsBatched(
     d_info: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZpotrsBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotrsBatched {
         Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, A, lda, B, ldb, d_info, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZpotrsBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotrsBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSpotri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18226,19 +13710,8 @@ pub unsafe extern "C" fn cusolverDnSpotri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDpotri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18248,19 +13721,8 @@ pub unsafe extern "C" fn cusolverDnDpotri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCpotri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18270,19 +13732,8 @@ pub unsafe extern "C" fn cusolverDnCpotri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZpotri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZpotri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18292,131 +13743,41 @@ pub unsafe extern "C" fn cusolverDnZpotri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSpotri(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSpotri
-    {
+pub unsafe extern "C" fn cusolverDnSpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSpotri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSpotri"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDpotri(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDpotri
-    {
+pub unsafe extern "C" fn cusolverDnDpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDpotri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDpotri"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCpotri(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCpotri
-    {
+pub unsafe extern "C" fn cusolverDnCpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCpotri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCpotri"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZpotri(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZpotri
-    {
+pub unsafe extern "C" fn cusolverDnZpotri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZpotri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZpotri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZpotri"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXtrtri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    diag: cublasDiagType_t,
-    n: i64,
-    dataTypeA: cudaDataType,
-    A: *mut ::std::os::raw::c_void,
-    lda: i64,
-    workspaceInBytesOnDevice: *mut usize,
-    workspaceInBytesOnHost: *mut usize,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXtrtri_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                uplo,
-                diag,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+pub unsafe extern "C" fn cusolverDnXtrtri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::std::os::raw::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXtrtri_bufferSize {
+        Some(____func) => unsafe { ____func(handle, uplo, diag, n, dataTypeA, A, lda, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXtrtri_bufferSize"
@@ -18439,48 +13800,15 @@ pub unsafe extern "C" fn cusolverDnXtrtri(
     workspaceInBytesOnHost: usize,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXtrtri
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                uplo,
-                diag,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                devInfo,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXtrtri"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXtrtri {
+        Some(____func) => unsafe { ____func(handle, uplo, diag, n, dataTypeA, A, lda, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, devInfo) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXtrtri"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSlauum_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSlauum_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSlauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18490,19 +13818,8 @@ pub unsafe extern "C" fn cusolverDnSlauum_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDlauum_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDlauum_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDlauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18512,19 +13829,8 @@ pub unsafe extern "C" fn cusolverDnDlauum_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnClauum_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnClauum_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnClauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnClauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18534,19 +13840,8 @@ pub unsafe extern "C" fn cusolverDnClauum_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZlauum_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZlauum_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZlauum_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZlauum_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18556,115 +13851,40 @@ pub unsafe extern "C" fn cusolverDnZlauum_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSlauum(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSlauum
-    {
+pub unsafe extern "C" fn cusolverDnSlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSlauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSlauum"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSlauum"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDlauum(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDlauum
-    {
+pub unsafe extern "C" fn cusolverDnDlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDlauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDlauum"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDlauum"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnClauum(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnClauum
-    {
+pub unsafe extern "C" fn cusolverDnClauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnClauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnClauum"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnClauum"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZlauum(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    work: *mut cuDoubleComplex,
-    lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZlauum
-    {
+pub unsafe extern "C" fn cusolverDnZlauum(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZlauum {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZlauum"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZlauum"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgetrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgetrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18674,19 +13894,8 @@ pub unsafe extern "C" fn cusolverDnSgetrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgetrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgetrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18696,19 +13905,8 @@ pub unsafe extern "C" fn cusolverDnDgetrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgetrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgetrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18718,19 +13916,8 @@ pub unsafe extern "C" fn cusolverDnCgetrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgetrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgetrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZgetrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgetrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -18740,74 +13927,26 @@ pub unsafe extern "C" fn cusolverDnZgetrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgetrf(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut f32,
-    devIpiv: *mut ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgetrf
-    {
+pub unsafe extern "C" fn cusolverDnSgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSgetrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgetrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgetrf(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut f64,
-    devIpiv: *mut ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgetrf
-    {
+pub unsafe extern "C" fn cusolverDnDgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDgetrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgetrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgetrf(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    Workspace: *mut cuComplex,
-    devIpiv: *mut ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgetrf
-    {
+pub unsafe extern "C" fn cusolverDnCgetrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCgetrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgetrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18822,112 +13961,41 @@ pub unsafe extern "C" fn cusolverDnZgetrf(
     devIpiv: *mut ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgetrf
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgetrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, Workspace, devIpiv, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZgetrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgetrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSlaswp(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    k1: ::std::os::raw::c_int,
-    k2: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
-    incx: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSlaswp
-    {
+pub unsafe extern "C" fn cusolverDnSlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSlaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSlaswp"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSlaswp"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDlaswp(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    k1: ::std::os::raw::c_int,
-    k2: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
-    incx: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDlaswp
-    {
+pub unsafe extern "C" fn cusolverDnDlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDlaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDlaswp"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDlaswp"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnClaswp(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    k1: ::std::os::raw::c_int,
-    k2: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
-    incx: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnClaswp
-    {
+pub unsafe extern "C" fn cusolverDnClaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnClaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnClaswp"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnClaswp"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZlaswp(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    k1: ::std::os::raw::c_int,
-    k2: ::std::os::raw::c_int,
-    devIpiv: *const ::std::os::raw::c_int,
-    incx: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZlaswp
-    {
+pub unsafe extern "C" fn cusolverDnZlaswp(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZlaswp {
         Some(____func) => unsafe { ____func(handle, n, A, lda, k1, k2, devIpiv, incx) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZlaswp"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZlaswp"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18944,16 +14012,9 @@ pub unsafe extern "C" fn cusolverDnSgetrs(
     ldb: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgetrs
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSgetrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgetrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18970,16 +14031,9 @@ pub unsafe extern "C" fn cusolverDnDgetrs(
     ldb: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgetrs
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDgetrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgetrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -18996,16 +14050,9 @@ pub unsafe extern "C" fn cusolverDnCgetrs(
     ldb: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgetrs
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCgetrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgetrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19022,33 +14069,15 @@ pub unsafe extern "C" fn cusolverDnZgetrs(
     ldb: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgetrs
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgetrs {
         Some(____func) => unsafe { ____func(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZgetrs"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgetrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgeqrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgeqrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19058,19 +14087,8 @@ pub unsafe extern "C" fn cusolverDnSgeqrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgeqrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgeqrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19080,19 +14098,8 @@ pub unsafe extern "C" fn cusolverDnDgeqrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgeqrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgeqrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19102,19 +14109,8 @@ pub unsafe extern "C" fn cusolverDnCgeqrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgeqrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgeqrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZgeqrf_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgeqrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19124,52 +14120,18 @@ pub unsafe extern "C" fn cusolverDnZgeqrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgeqrf(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    TAU: *mut f32,
-    Workspace: *mut f32,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgeqrf
-    {
+pub unsafe extern "C" fn cusolverDnSgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSgeqrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgeqrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgeqrf(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    TAU: *mut f64,
-    Workspace: *mut f64,
-    Lwork: ::std::os::raw::c_int,
-    devInfo: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgeqrf
-    {
+pub unsafe extern "C" fn cusolverDnDgeqrf(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDgeqrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgeqrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19185,16 +14147,9 @@ pub unsafe extern "C" fn cusolverDnCgeqrf(
     Lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgeqrf
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCgeqrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgeqrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19210,35 +14165,15 @@ pub unsafe extern "C" fn cusolverDnZgeqrf(
     Lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgeqrf
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgeqrf {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, TAU, Workspace, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZgeqrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgeqrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgqr_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    tau: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSorgqr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19248,21 +14183,8 @@ pub unsafe extern "C" fn cusolverDnSorgqr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgqr_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    tau: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDorgqr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDorgqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19272,21 +14194,8 @@ pub unsafe extern "C" fn cusolverDnDorgqr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCungqr_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    tau: *const cuComplex,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCungqr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19296,21 +14205,8 @@ pub unsafe extern "C" fn cusolverDnCungqr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZungqr_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    tau: *const cuDoubleComplex,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZungqr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZungqr_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19332,16 +14228,9 @@ pub unsafe extern "C" fn cusolverDnSorgqr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSorgqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSorgqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSorgqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19358,16 +14247,9 @@ pub unsafe extern "C" fn cusolverDnDorgqr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDorgqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDorgqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDorgqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19384,16 +14266,9 @@ pub unsafe extern "C" fn cusolverDnCungqr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCungqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCungqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCungqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19410,16 +14285,9 @@ pub unsafe extern "C" fn cusolverDnZungqr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZungqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungqr {
         Some(____func) => unsafe { ____func(handle, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZungqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZungqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19438,11 +14306,7 @@ pub unsafe extern "C" fn cusolverDnSormqr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSormqr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19466,11 +14330,7 @@ pub unsafe extern "C" fn cusolverDnDormqr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDormqr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19494,11 +14354,7 @@ pub unsafe extern "C" fn cusolverDnCunmqr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCunmqr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19522,11 +14378,7 @@ pub unsafe extern "C" fn cusolverDnZunmqr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZunmqr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmqr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19552,16 +14404,9 @@ pub unsafe extern "C" fn cusolverDnSormqr(
     lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSormqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSormqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSormqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19582,16 +14427,9 @@ pub unsafe extern "C" fn cusolverDnDormqr(
     lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDormqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDormqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDormqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19612,16 +14450,9 @@ pub unsafe extern "C" fn cusolverDnCunmqr(
     lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCunmqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCunmqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCunmqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19642,32 +14473,15 @@ pub unsafe extern "C" fn cusolverDnZunmqr(
     lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZunmqr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmqr {
         Some(____func) => unsafe { ____func(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZunmqr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZunmqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsytrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19677,18 +14491,8 @@ pub unsafe extern "C" fn cusolverDnSsytrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsytrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19698,18 +14502,8 @@ pub unsafe extern "C" fn cusolverDnDsytrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCsytrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCsytrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19719,18 +14513,8 @@ pub unsafe extern "C" fn cusolverDnCsytrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZsytrf_bufferSize(
-    handle: cusolverDnHandle_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZsytrf_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZsytrf_bufferSize(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytrf_bufferSize {
         Some(____func) => unsafe { ____func(handle, n, A, lda, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19740,52 +14524,18 @@ pub unsafe extern "C" fn cusolverDnZsytrf_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytrf(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    ipiv: *mut ::std::os::raw::c_int,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsytrf
-    {
+pub unsafe extern "C" fn cusolverDnSsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsytrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsytrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytrf(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    ipiv: *mut ::std::os::raw::c_int,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsytrf
-    {
+pub unsafe extern "C" fn cusolverDnDsytrf(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsytrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsytrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19801,16 +14551,9 @@ pub unsafe extern "C" fn cusolverDnCsytrf(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCsytrf
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCsytrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCsytrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19826,16 +14569,9 @@ pub unsafe extern "C" fn cusolverDnZsytrf(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZsytrf
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytrf {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZsytrf"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZsytrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -19855,28 +14591,8 @@ pub unsafe extern "C" fn cusolverDnXsytrs_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsytrs_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                uplo,
-                n,
-                nrhs,
-                dataTypeA,
-                A,
-                lda,
-                ipiv,
-                dataTypeB,
-                B,
-                ldb,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsytrs_bufferSize {
+        Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, dataTypeA, A, lda, ipiv, dataTypeB, B, ldb, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXsytrs_bufferSize"
@@ -19903,53 +14619,15 @@ pub unsafe extern "C" fn cusolverDnXsytrs(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsytrs
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                uplo,
-                n,
-                nrhs,
-                dataTypeA,
-                A,
-                lda,
-                ipiv,
-                dataTypeB,
-                B,
-                ldb,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXsytrs"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsytrs {
+        Some(____func) => unsafe { ____func(handle, uplo, n, nrhs, dataTypeA, A, lda, ipiv, dataTypeB, B, ldb, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXsytrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsytri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19959,20 +14637,8 @@ pub unsafe extern "C" fn cusolverDnSsytri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsytri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -19982,20 +14648,8 @@ pub unsafe extern "C" fn cusolverDnDsytri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCsytri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCsytri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20005,20 +14659,8 @@ pub unsafe extern "C" fn cusolverDnCsytri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZsytri_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZsytri_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZsytri_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytri_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20028,52 +14670,18 @@ pub unsafe extern "C" fn cusolverDnZsytri_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytri(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsytri
-    {
+pub unsafe extern "C" fn cusolverDnSsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsytri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsytri"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytri(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    ipiv: *const ::std::os::raw::c_int,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsytri
-    {
+pub unsafe extern "C" fn cusolverDnDsytri(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsytri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsytri"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20089,16 +14697,9 @@ pub unsafe extern "C" fn cusolverDnCsytri(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCsytri
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCsytri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCsytri"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20114,31 +14715,15 @@ pub unsafe extern "C" fn cusolverDnZsytri(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZsytri
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZsytri {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, ipiv, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZsytri"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZsytri"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgebrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgebrd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20148,17 +14733,8 @@ pub unsafe extern "C" fn cusolverDnSgebrd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgebrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgebrd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20168,17 +14744,8 @@ pub unsafe extern "C" fn cusolverDnDgebrd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgebrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgebrd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20188,17 +14755,8 @@ pub unsafe extern "C" fn cusolverDnCgebrd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgebrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    Lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgebrd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZgebrd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgebrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, Lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20222,16 +14780,9 @@ pub unsafe extern "C" fn cusolverDnSgebrd(
     Lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgebrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSgebrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgebrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20250,16 +14801,9 @@ pub unsafe extern "C" fn cusolverDnDgebrd(
     Lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgebrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDgebrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgebrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20278,16 +14822,9 @@ pub unsafe extern "C" fn cusolverDnCgebrd(
     Lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgebrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCgebrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgebrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20306,36 +14843,15 @@ pub unsafe extern "C" fn cusolverDnZgebrd(
     Lwork: ::std::os::raw::c_int,
     devInfo: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgebrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgebrd {
         Some(____func) => unsafe { ____func(handle, m, n, A, lda, D, E, TAUQ, TAUP, Work, Lwork, devInfo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZgebrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgebrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgbr_bufferSize(
-    handle: cusolverDnHandle_t,
-    side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    tau: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSorgbr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20345,22 +14861,8 @@ pub unsafe extern "C" fn cusolverDnSorgbr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgbr_bufferSize(
-    handle: cusolverDnHandle_t,
-    side: cublasSideMode_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    k: ::std::os::raw::c_int,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    tau: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDorgbr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDorgbr_bufferSize(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20381,11 +14883,7 @@ pub unsafe extern "C" fn cusolverDnCungbr_bufferSize(
     tau: *const cuComplex,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCungbr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20406,11 +14904,7 @@ pub unsafe extern "C" fn cusolverDnZungbr_bufferSize(
     tau: *const cuDoubleComplex,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZungbr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungbr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20433,16 +14927,9 @@ pub unsafe extern "C" fn cusolverDnSorgbr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSorgbr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSorgbr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSorgbr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20460,16 +14947,9 @@ pub unsafe extern "C" fn cusolverDnDorgbr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDorgbr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDorgbr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDorgbr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20487,16 +14967,9 @@ pub unsafe extern "C" fn cusolverDnCungbr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCungbr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCungbr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCungbr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20514,36 +14987,15 @@ pub unsafe extern "C" fn cusolverDnZungbr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZungbr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungbr {
         Some(____func) => unsafe { ____func(handle, side, m, n, k, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZungbr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZungbr"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsytrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    d: *const f32,
-    e: *const f32,
-    tau: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsytrd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20553,22 +15005,8 @@ pub unsafe extern "C" fn cusolverDnSsytrd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsytrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    d: *const f64,
-    e: *const f64,
-    tau: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsytrd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDsytrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20578,22 +15016,8 @@ pub unsafe extern "C" fn cusolverDnDsytrd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnChetrd_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    d: *const f32,
-    e: *const f32,
-    tau: *const cuComplex,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChetrd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnChetrd_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChetrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20614,11 +15038,7 @@ pub unsafe extern "C" fn cusolverDnZhetrd_bufferSize(
     tau: *const cuDoubleComplex,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhetrd_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhetrd_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20641,16 +15061,9 @@ pub unsafe extern "C" fn cusolverDnSsytrd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsytrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsytrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsytrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsytrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20668,16 +15081,9 @@ pub unsafe extern "C" fn cusolverDnDsytrd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsytrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsytrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsytrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsytrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20695,16 +15101,9 @@ pub unsafe extern "C" fn cusolverDnChetrd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChetrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChetrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnChetrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnChetrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20722,34 +15121,15 @@ pub unsafe extern "C" fn cusolverDnZhetrd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhetrd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhetrd {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, d, e, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZhetrd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZhetrd"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgtr_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    tau: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSorgtr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20759,20 +15139,8 @@ pub unsafe extern "C" fn cusolverDnSorgtr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgtr_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    tau: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDorgtr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDorgtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20782,20 +15150,8 @@ pub unsafe extern "C" fn cusolverDnDorgtr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCungtr_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    tau: *const cuComplex,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCungtr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20805,20 +15161,8 @@ pub unsafe extern "C" fn cusolverDnCungtr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZungtr_bufferSize(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    tau: *const cuDoubleComplex,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZungtr_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZungtr_bufferSize(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20828,77 +15172,26 @@ pub unsafe extern "C" fn cusolverDnZungtr_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSorgtr(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    tau: *const f32,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSorgtr
-    {
+pub unsafe extern "C" fn cusolverDnSorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSorgtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSorgtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSorgtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDorgtr(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    tau: *const f64,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDorgtr
-    {
+pub unsafe extern "C" fn cusolverDnDorgtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDorgtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDorgtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDorgtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCungtr(
-    handle: cusolverDnHandle_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut cuComplex,
-    lda: ::std::os::raw::c_int,
-    tau: *const cuComplex,
-    work: *mut cuComplex,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCungtr
-    {
+pub unsafe extern "C" fn cusolverDnCungtr(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCungtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCungtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCungtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20914,16 +15207,9 @@ pub unsafe extern "C" fn cusolverDnZungtr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZungtr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZungtr {
         Some(____func) => unsafe { ____func(handle, uplo, n, A, lda, tau, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZungtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZungtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -20942,11 +15228,7 @@ pub unsafe extern "C" fn cusolverDnSormtr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSormtr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20970,11 +15252,7 @@ pub unsafe extern "C" fn cusolverDnDormtr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDormtr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -20998,11 +15276,7 @@ pub unsafe extern "C" fn cusolverDnCunmtr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCunmtr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21026,11 +15300,7 @@ pub unsafe extern "C" fn cusolverDnZunmtr_bufferSize(
     ldc: ::std::os::raw::c_int,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZunmtr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmtr_bufferSize {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21056,16 +15326,9 @@ pub unsafe extern "C" fn cusolverDnSormtr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSormtr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSormtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSormtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSormtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21086,16 +15349,9 @@ pub unsafe extern "C" fn cusolverDnDormtr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDormtr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDormtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDormtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDormtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21116,16 +15372,9 @@ pub unsafe extern "C" fn cusolverDnCunmtr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCunmtr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCunmtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCunmtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCunmtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21146,31 +15395,15 @@ pub unsafe extern "C" fn cusolverDnZunmtr(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZunmtr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZunmtr {
         Some(____func) => unsafe { ____func(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZunmtr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZunmtr"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSgesvd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21180,17 +15413,8 @@ pub unsafe extern "C" fn cusolverDnSgesvd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDgesvd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21200,17 +15424,8 @@ pub unsafe extern "C" fn cusolverDnDgesvd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCgesvd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21220,17 +15435,8 @@ pub unsafe extern "C" fn cusolverDnCgesvd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZgesvd_bufferSize(
-    handle: cusolverDnHandle_t,
-    m: ::std::os::raw::c_int,
-    n: ::std::os::raw::c_int,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZgesvd_bufferSize(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, m, n, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21258,20 +15464,9 @@ pub unsafe extern "C" fn cusolverDnSgesvd(
     rwork: *mut f32,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvd
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSgesvd"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvd {
+        Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgesvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21294,20 +15489,9 @@ pub unsafe extern "C" fn cusolverDnDgesvd(
     rwork: *mut f64,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvd
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDgesvd"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvd {
+        Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgesvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21330,20 +15514,9 @@ pub unsafe extern "C" fn cusolverDnCgesvd(
     rwork: *mut f32,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvd
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCgesvd"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvd {
+        Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgesvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21366,39 +15539,15 @@ pub unsafe extern "C" fn cusolverDnZgesvd(
     rwork: *mut f64,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvd
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZgesvd"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvd {
+        Some(____func) => unsafe { ____func(handle, jobu, jobvt, m, n, A, lda, S, U, ldu, VT, ldvt, work, lwork, rwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgesvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsyevd_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21408,21 +15557,8 @@ pub unsafe extern "C" fn cusolverDnSsyevd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsyevd_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDsyevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21432,21 +15568,8 @@ pub unsafe extern "C" fn cusolverDnDsyevd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCheevd_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21456,21 +15579,8 @@ pub unsafe extern "C" fn cusolverDnCheevd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnZheevd_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuDoubleComplex,
-    lda: ::std::os::raw::c_int,
-    W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevd_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnZheevd_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevd_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21480,54 +15590,18 @@ pub unsafe extern "C" fn cusolverDnZheevd_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsyevd(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f32,
-    lda: ::std::os::raw::c_int,
-    W: *mut f32,
-    work: *mut f32,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevd
-    {
+pub unsafe extern "C" fn cusolverDnSsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsyevd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsyevd"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsyevd(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *mut f64,
-    lda: ::std::os::raw::c_int,
-    W: *mut f64,
-    work: *mut f64,
-    lwork: ::std::os::raw::c_int,
-    info: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevd
-    {
+pub unsafe extern "C" fn cusolverDnDsyevd(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, W: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsyevd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsyevd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21544,16 +15618,9 @@ pub unsafe extern "C" fn cusolverDnCheevd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCheevd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCheevd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21570,16 +15637,9 @@ pub unsafe extern "C" fn cusolverDnZheevd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevd {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZheevd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZheevd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21600,11 +15660,7 @@ pub unsafe extern "C" fn cusolverDnSsyevdx_bufferSize(
     W: *const f32,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevdx_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21630,11 +15686,7 @@ pub unsafe extern "C" fn cusolverDnDsyevdx_bufferSize(
     W: *const f64,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevdx_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21660,11 +15712,7 @@ pub unsafe extern "C" fn cusolverDnCheevdx_bufferSize(
     W: *const f32,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevdx_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21690,11 +15738,7 @@ pub unsafe extern "C" fn cusolverDnZheevdx_bufferSize(
     W: *const f64,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevdx_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevdx_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -21722,20 +15766,9 @@ pub unsafe extern "C" fn cusolverDnSsyevdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsyevdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevdx {
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsyevdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21758,20 +15791,9 @@ pub unsafe extern "C" fn cusolverDnDsyevdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsyevdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevdx {
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsyevdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21794,20 +15816,9 @@ pub unsafe extern "C" fn cusolverDnCheevdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCheevdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevdx {
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCheevdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21830,20 +15841,9 @@ pub unsafe extern "C" fn cusolverDnZheevdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZheevdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevdx {
+        Some(____func) => unsafe { ____func(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZheevdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -21867,16 +15867,8 @@ pub unsafe extern "C" fn cusolverDnSsygvdx_bufferSize(
     W: *const f32,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsygvdx_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvdx_bufferSize {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSsygvdx_bufferSize"
@@ -21904,16 +15896,8 @@ pub unsafe extern "C" fn cusolverDnDsygvdx_bufferSize(
     W: *const f64,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsygvdx_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvdx_bufferSize {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDsygvdx_bufferSize"
@@ -21941,16 +15925,8 @@ pub unsafe extern "C" fn cusolverDnChegvdx_bufferSize(
     W: *const f32,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChegvdx_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvdx_bufferSize {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnChegvdx_bufferSize"
@@ -21978,16 +15954,8 @@ pub unsafe extern "C" fn cusolverDnZhegvdx_bufferSize(
     W: *const f64,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhegvdx_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvdx_bufferSize {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZhegvdx_bufferSize"
@@ -22017,20 +15985,9 @@ pub unsafe extern "C" fn cusolverDnSsygvdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsygvdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsygvdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvdx {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsygvdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22056,20 +16013,9 @@ pub unsafe extern "C" fn cusolverDnDsygvdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsygvdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsygvdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvdx {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsygvdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22095,20 +16041,9 @@ pub unsafe extern "C" fn cusolverDnChegvdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChegvdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnChegvdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvdx {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnChegvdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22134,20 +16069,9 @@ pub unsafe extern "C" fn cusolverDnZhegvdx(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhegvdx
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZhegvdx"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvdx {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, iu, meig, W, work, lwork, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZhegvdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22165,11 +16089,7 @@ pub unsafe extern "C" fn cusolverDnSsygvd_bufferSize(
     W: *const f32,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsygvd_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22192,11 +16112,7 @@ pub unsafe extern "C" fn cusolverDnDsygvd_bufferSize(
     W: *const f64,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsygvd_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22219,11 +16135,7 @@ pub unsafe extern "C" fn cusolverDnChegvd_bufferSize(
     W: *const f32,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChegvd_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22246,11 +16158,7 @@ pub unsafe extern "C" fn cusolverDnZhegvd_bufferSize(
     W: *const f64,
     lwork: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhegvd_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvd_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22275,16 +16183,9 @@ pub unsafe extern "C" fn cusolverDnSsygvd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsygvd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsygvd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsygvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22304,16 +16205,9 @@ pub unsafe extern "C" fn cusolverDnDsygvd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsygvd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsygvd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsygvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22333,16 +16227,9 @@ pub unsafe extern "C" fn cusolverDnChegvd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChegvd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnChegvd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnChegvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22362,16 +16249,9 @@ pub unsafe extern "C" fn cusolverDnZhegvd(
     lwork: ::std::os::raw::c_int,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhegvd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvd {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZhegvd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZhegvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22395,32 +16275,8 @@ pub unsafe extern "C" fn cusolverDnXsygvd_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsygvd_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                itype,
-                jobz,
-                uplo,
-                n,
-                dataTypeA,
-                d_A,
-                lda,
-                dataTypeB,
-                d_B,
-                ldb,
-                dataTypeW,
-                d_W,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsygvd_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, itype, jobz, uplo, n, dataTypeA, d_A, lda, dataTypeB, d_B, ldb, dataTypeW, d_W, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXsygvd_bufferSize"
@@ -22451,11 +16307,7 @@ pub unsafe extern "C" fn cusolverDnXsygvd(
     workspaceInBytesOnHost: usize,
     d_info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsygvd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsygvd {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -22480,10 +16332,7 @@ pub unsafe extern "C" fn cusolverDnXsygvd(
                 d_info,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXsygvd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXsygvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22512,37 +16361,8 @@ pub unsafe extern "C" fn cusolverDnXsygvdx_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsygvdx_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                itype,
-                jobz,
-                uplo,
-                n,
-                dataTypeA,
-                d_A,
-                lda,
-                dataTypeB,
-                d_B,
-                ldb,
-                vl,
-                vu,
-                il,
-                iu,
-                meig,
-                dataTypeW,
-                d_W,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsygvdx_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, itype, jobz, uplo, n, dataTypeA, d_A, lda, dataTypeB, d_B, ldb, vl, vu, il, iu, meig, dataTypeW, d_W, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXsygvdx_bufferSize"
@@ -22579,11 +16399,7 @@ pub unsafe extern "C" fn cusolverDnXsygvdx(
     workspaceInBytesOnHost: usize,
     d_info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsygvdx
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsygvdx {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -22614,20 +16430,13 @@ pub unsafe extern "C" fn cusolverDnXsygvdx(
                 d_info,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXsygvdx"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXsygvdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnCreateSyevjInfo(info: *mut syevjInfo_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCreateSyevjInfo
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCreateSyevjInfo {
         Some(____func) => unsafe { ____func(info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22638,11 +16447,7 @@ pub unsafe extern "C" fn cusolverDnCreateSyevjInfo(info: *mut syevjInfo_t) -> cu
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnDestroySyevjInfo(info: syevjInfo_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDestroySyevjInfo
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDestroySyevjInfo {
         Some(____func) => unsafe { ____func(info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22653,11 +16458,7 @@ pub unsafe extern "C" fn cusolverDnDestroySyevjInfo(info: syevjInfo_t) -> cusolv
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnXsyevjSetTolerance(info: syevjInfo_t, tolerance: f64) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevjSetTolerance
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjSetTolerance {
         Some(____func) => unsafe { ____func(info, tolerance) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22667,15 +16468,8 @@ pub unsafe extern "C" fn cusolverDnXsyevjSetTolerance(info: syevjInfo_t, toleran
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjSetMaxSweeps(
-    info: syevjInfo_t,
-    max_sweeps: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevjSetMaxSweeps
-    {
+pub unsafe extern "C" fn cusolverDnXsyevjSetMaxSweeps(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjSetMaxSweeps {
         Some(____func) => unsafe { ____func(info, max_sweeps) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22685,15 +16479,8 @@ pub unsafe extern "C" fn cusolverDnXsyevjSetMaxSweeps(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjSetSortEig(
-    info: syevjInfo_t,
-    sort_eig: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevjSetSortEig
-    {
+pub unsafe extern "C" fn cusolverDnXsyevjSetSortEig(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjSetSortEig {
         Some(____func) => unsafe { ____func(info, sort_eig) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22703,16 +16490,8 @@ pub unsafe extern "C" fn cusolverDnXsyevjSetSortEig(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjGetResidual(
-    handle: cusolverDnHandle_t,
-    info: syevjInfo_t,
-    residual: *mut f64,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevjGetResidual
-    {
+pub unsafe extern "C" fn cusolverDnXsyevjGetResidual(handle: cusolverDnHandle_t, info: syevjInfo_t, residual: *mut f64) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjGetResidual {
         Some(____func) => unsafe { ____func(handle, info, residual) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22722,16 +16501,8 @@ pub unsafe extern "C" fn cusolverDnXsyevjGetResidual(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXsyevjGetSweeps(
-    handle: cusolverDnHandle_t,
-    info: syevjInfo_t,
-    executed_sweeps: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevjGetSweeps
-    {
+pub unsafe extern "C" fn cusolverDnXsyevjGetSweeps(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevjGetSweeps {
         Some(____func) => unsafe { ____func(handle, info, executed_sweeps) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22753,11 +16524,7 @@ pub unsafe extern "C" fn cusolverDnSsyevjBatched_bufferSize(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22779,11 +16546,7 @@ pub unsafe extern "C" fn cusolverDnDsyevjBatched_bufferSize(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22805,11 +16568,7 @@ pub unsafe extern "C" fn cusolverDnCheevjBatched_bufferSize(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22831,11 +16590,7 @@ pub unsafe extern "C" fn cusolverDnZheevjBatched_bufferSize(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22859,16 +16614,9 @@ pub unsafe extern "C" fn cusolverDnSsyevjBatched(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevjBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsyevjBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsyevjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22887,16 +16635,9 @@ pub unsafe extern "C" fn cusolverDnDsyevjBatched(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevjBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsyevjBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsyevjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22915,16 +16656,9 @@ pub unsafe extern "C" fn cusolverDnCheevjBatched(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevjBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCheevjBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCheevjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -22943,36 +16677,15 @@ pub unsafe extern "C" fn cusolverDnZheevjBatched(
     params: syevjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevjBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevjBatched {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params, batchSize) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZheevjBatched"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZheevjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSsyevj_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f32,
-    lda: ::std::os::raw::c_int,
-    W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-    params: syevjInfo_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevj_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnSsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -22982,22 +16695,8 @@ pub unsafe extern "C" fn cusolverDnSsyevj_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnDsyevj_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const f64,
-    lda: ::std::os::raw::c_int,
-    W: *const f64,
-    lwork: *mut ::std::os::raw::c_int,
-    params: syevjInfo_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevj_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnDsyevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23007,22 +16706,8 @@ pub unsafe extern "C" fn cusolverDnDsyevj_bufferSize(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnCheevj_bufferSize(
-    handle: cusolverDnHandle_t,
-    jobz: cusolverEigMode_t,
-    uplo: cublasFillMode_t,
-    n: ::std::os::raw::c_int,
-    A: *const cuComplex,
-    lda: ::std::os::raw::c_int,
-    W: *const f32,
-    lwork: *mut ::std::os::raw::c_int,
-    params: syevjInfo_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevj_bufferSize
-    {
+pub unsafe extern "C" fn cusolverDnCheevj_bufferSize(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23043,11 +16728,7 @@ pub unsafe extern "C" fn cusolverDnZheevj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23070,16 +16751,9 @@ pub unsafe extern "C" fn cusolverDnSsyevj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsyevj
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsyevj {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsyevj"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsyevj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23097,16 +16771,9 @@ pub unsafe extern "C" fn cusolverDnDsyevj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsyevj
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsyevj {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsyevj"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsyevj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23124,16 +16791,9 @@ pub unsafe extern "C" fn cusolverDnCheevj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCheevj
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCheevj {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCheevj"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCheevj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23151,16 +16811,9 @@ pub unsafe extern "C" fn cusolverDnZheevj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZheevj
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZheevj {
         Some(____func) => unsafe { ____func(handle, jobz, uplo, n, A, lda, W, work, lwork, info, params) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZheevj"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZheevj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23179,11 +16832,7 @@ pub unsafe extern "C" fn cusolverDnSsygvj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsygvj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvj_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23207,11 +16856,7 @@ pub unsafe extern "C" fn cusolverDnDsygvj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsygvj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvj_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23235,11 +16880,7 @@ pub unsafe extern "C" fn cusolverDnChegvj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChegvj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvj_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23263,11 +16904,7 @@ pub unsafe extern "C" fn cusolverDnZhegvj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhegvj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvj_bufferSize {
         Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23293,20 +16930,9 @@ pub unsafe extern "C" fn cusolverDnSsygvj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSsygvj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSsygvj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSsygvj {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSsygvj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23327,20 +16953,9 @@ pub unsafe extern "C" fn cusolverDnDsygvj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDsygvj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDsygvj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDsygvj {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDsygvj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23361,20 +16976,9 @@ pub unsafe extern "C" fn cusolverDnChegvj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnChegvj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnChegvj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnChegvj {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnChegvj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23395,30 +16999,15 @@ pub unsafe extern "C" fn cusolverDnZhegvj(
     info: *mut ::std::os::raw::c_int,
     params: syevjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZhegvj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZhegvj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZhegvj {
+        Some(____func) => unsafe { ____func(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZhegvj"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnCreateGesvdjInfo(info: *mut gesvdjInfo_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCreateGesvdjInfo
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCreateGesvdjInfo {
         Some(____func) => unsafe { ____func(info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23429,11 +17018,7 @@ pub unsafe extern "C" fn cusolverDnCreateGesvdjInfo(info: *mut gesvdjInfo_t) -> 
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnDestroyGesvdjInfo(info: gesvdjInfo_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDestroyGesvdjInfo
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDestroyGesvdjInfo {
         Some(____func) => unsafe { ____func(info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23444,11 +17029,7 @@ pub unsafe extern "C" fn cusolverDnDestroyGesvdjInfo(info: gesvdjInfo_t) -> cuso
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnXgesvdjSetTolerance(info: gesvdjInfo_t, tolerance: f64) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdjSetTolerance
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjSetTolerance {
         Some(____func) => unsafe { ____func(info, tolerance) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23458,15 +17039,8 @@ pub unsafe extern "C" fn cusolverDnXgesvdjSetTolerance(info: gesvdjInfo_t, toler
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjSetMaxSweeps(
-    info: gesvdjInfo_t,
-    max_sweeps: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdjSetMaxSweeps
-    {
+pub unsafe extern "C" fn cusolverDnXgesvdjSetMaxSweeps(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjSetMaxSweeps {
         Some(____func) => unsafe { ____func(info, max_sweeps) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23476,15 +17050,8 @@ pub unsafe extern "C" fn cusolverDnXgesvdjSetMaxSweeps(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjSetSortEig(
-    info: gesvdjInfo_t,
-    sort_svd: ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdjSetSortEig
-    {
+pub unsafe extern "C" fn cusolverDnXgesvdjSetSortEig(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjSetSortEig {
         Some(____func) => unsafe { ____func(info, sort_svd) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23494,16 +17061,8 @@ pub unsafe extern "C" fn cusolverDnXgesvdjSetSortEig(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjGetResidual(
-    handle: cusolverDnHandle_t,
-    info: gesvdjInfo_t,
-    residual: *mut f64,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdjGetResidual
-    {
+pub unsafe extern "C" fn cusolverDnXgesvdjGetResidual(handle: cusolverDnHandle_t, info: gesvdjInfo_t, residual: *mut f64) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjGetResidual {
         Some(____func) => unsafe { ____func(handle, info, residual) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23513,16 +17072,8 @@ pub unsafe extern "C" fn cusolverDnXgesvdjGetResidual(
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnXgesvdjGetSweeps(
-    handle: cusolverDnHandle_t,
-    info: gesvdjInfo_t,
-    executed_sweeps: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdjGetSweeps
-    {
+pub unsafe extern "C" fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdjGetSweeps {
         Some(____func) => unsafe { ____func(handle, info, executed_sweeps) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23548,11 +17099,7 @@ pub unsafe extern "C" fn cusolverDnSgesvdjBatched_bufferSize(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvdjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23578,11 +17125,7 @@ pub unsafe extern "C" fn cusolverDnDgesvdjBatched_bufferSize(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvdjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23608,11 +17151,7 @@ pub unsafe extern "C" fn cusolverDnCgesvdjBatched_bufferSize(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvdjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23638,11 +17177,7 @@ pub unsafe extern "C" fn cusolverDnZgesvdjBatched_bufferSize(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvdjBatched_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdjBatched_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, lwork, params, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23670,20 +17205,9 @@ pub unsafe extern "C" fn cusolverDnSgesvdjBatched(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvdjBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSgesvdjBatched"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdjBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgesvdjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23706,20 +17230,9 @@ pub unsafe extern "C" fn cusolverDnDgesvdjBatched(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvdjBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDgesvdjBatched"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdjBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgesvdjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23742,20 +17255,9 @@ pub unsafe extern "C" fn cusolverDnCgesvdjBatched(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvdjBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCgesvdjBatched"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdjBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgesvdjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23778,20 +17280,9 @@ pub unsafe extern "C" fn cusolverDnZgesvdjBatched(
     params: gesvdjInfo_t,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvdjBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZgesvdjBatched"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdjBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params, batchSize) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgesvdjBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23812,11 +17303,7 @@ pub unsafe extern "C" fn cusolverDnSgesvdj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvdj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23842,11 +17329,7 @@ pub unsafe extern "C" fn cusolverDnDgesvdj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvdj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23872,11 +17355,7 @@ pub unsafe extern "C" fn cusolverDnCgesvdj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvdj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23902,11 +17381,7 @@ pub unsafe extern "C" fn cusolverDnZgesvdj_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvdj_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdj_bufferSize {
         Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, lwork, params) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -23934,20 +17409,9 @@ pub unsafe extern "C" fn cusolverDnSgesvdj(
     info: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvdj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSgesvdj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdj {
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSgesvdj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -23970,20 +17434,9 @@ pub unsafe extern "C" fn cusolverDnDgesvdj(
     info: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvdj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDgesvdj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdj {
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDgesvdj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24006,20 +17459,9 @@ pub unsafe extern "C" fn cusolverDnCgesvdj(
     info: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvdj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCgesvdj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdj {
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCgesvdj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24042,20 +17484,9 @@ pub unsafe extern "C" fn cusolverDnZgesvdj(
     info: *mut ::std::os::raw::c_int,
     params: gesvdjInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvdj
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnZgesvdj"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdj {
+        Some(____func) => unsafe { ____func(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, lwork, info, params) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnZgesvdj"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24080,17 +17511,8 @@ pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvdaStridedBatched_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
-                batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdaStridedBatched_bufferSize {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSgesvdaStridedBatched_bufferSize"
@@ -24119,17 +17541,8 @@ pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvdaStridedBatched_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
-                batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdaStridedBatched_bufferSize {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDgesvdaStridedBatched_bufferSize"
@@ -24158,17 +17571,8 @@ pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvdaStridedBatched_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
-                batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdaStridedBatched_bufferSize {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCgesvdaStridedBatched_bufferSize"
@@ -24197,17 +17601,8 @@ pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched_bufferSize(
     lwork: *mut ::std::os::raw::c_int,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvdaStridedBatched_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork,
-                batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdaStridedBatched_bufferSize {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, lwork, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZgesvdaStridedBatched_bufferSize"
@@ -24239,17 +17634,8 @@ pub unsafe extern "C" fn cusolverDnSgesvdaStridedBatched(
     h_R_nrmF: *mut f64,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSgesvdaStridedBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
-                d_work, lwork, d_info, h_R_nrmF, batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSgesvdaStridedBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnSgesvdaStridedBatched"
@@ -24281,17 +17667,8 @@ pub unsafe extern "C" fn cusolverDnDgesvdaStridedBatched(
     h_R_nrmF: *mut f64,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDgesvdaStridedBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
-                d_work, lwork, d_info, h_R_nrmF, batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDgesvdaStridedBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnDgesvdaStridedBatched"
@@ -24323,17 +17700,8 @@ pub unsafe extern "C" fn cusolverDnCgesvdaStridedBatched(
     h_R_nrmF: *mut f64,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCgesvdaStridedBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
-                d_work, lwork, d_info, h_R_nrmF, batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCgesvdaStridedBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnCgesvdaStridedBatched"
@@ -24365,17 +17733,8 @@ pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched(
     h_R_nrmF: *mut f64,
     batchSize: ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnZgesvdaStridedBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV,
-                d_work, lwork, d_info, h_R_nrmF, batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnZgesvdaStridedBatched {
+        Some(____func) => unsafe { ____func(handle, jobz, rank, m, n, d_A, lda, strideA, d_S, strideS, d_U, ldu, strideU, d_V, ldv, strideV, d_work, lwork, d_info, h_R_nrmF, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnZgesvdaStridedBatched"
@@ -24385,50 +17744,25 @@ pub unsafe extern "C" fn cusolverDnZgesvdaStridedBatched(
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnCreateParams(params: *mut cusolverDnParams_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnCreateParams
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnCreateParams {
         Some(____func) => unsafe { ____func(params) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnCreateParams"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnCreateParams"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnDestroyParams(params: cusolverDnParams_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnDestroyParams
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnDestroyParams {
         Some(____func) => unsafe { ____func(params) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnDestroyParams"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnDestroyParams"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverDnSetAdvOptions(
-    params: cusolverDnParams_t,
-    function: cusolverDnFunction_t,
-    algo: cusolverAlgMode_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnSetAdvOptions
-    {
+pub unsafe extern "C" fn cusolverDnSetAdvOptions(params: cusolverDnParams_t, function: cusolverDnFunction_t, algo: cusolverAlgMode_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnSetAdvOptions {
         Some(____func) => unsafe { ____func(params, function, algo) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnSetAdvOptions"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnSetAdvOptions"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24445,25 +17779,8 @@ pub unsafe extern "C" fn cusolverDnXpotrf_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXpotrf_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                uplo,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpotrf_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, uplo, n, dataTypeA, A, lda, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXpotrf_bufferSize"
@@ -24487,32 +17804,9 @@ pub unsafe extern "C" fn cusolverDnXpotrf(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXpotrf
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                uplo,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                computeType,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXpotrf"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpotrf {
+        Some(____func) => unsafe { ____func(handle, params, uplo, n, dataTypeA, A, lda, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXpotrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24531,20 +17825,9 @@ pub unsafe extern "C" fn cusolverDnXpotrs(
     ldb: i64,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXpotrs
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, params, uplo, n, nrhs, dataTypeA, A, lda, dataTypeB, B, ldb, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXpotrs"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpotrs {
+        Some(____func) => unsafe { ____func(handle, params, uplo, n, nrhs, dataTypeA, A, lda, dataTypeB, B, ldb, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXpotrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24563,27 +17846,8 @@ pub unsafe extern "C" fn cusolverDnXgeqrf_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgeqrf_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                m,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeTau,
-                tau,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgeqrf_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, m, n, dataTypeA, A, lda, dataTypeTau, tau, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXgeqrf_bufferSize"
@@ -24609,34 +17873,9 @@ pub unsafe extern "C" fn cusolverDnXgeqrf(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgeqrf
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                m,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeTau,
-                tau,
-                computeType,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXgeqrf"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgeqrf {
+        Some(____func) => unsafe { ____func(handle, params, m, n, dataTypeA, A, lda, dataTypeTau, tau, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXgeqrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24653,25 +17892,8 @@ pub unsafe extern "C" fn cusolverDnXgetrf_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgetrf_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                m,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgetrf_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, m, n, dataTypeA, A, lda, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXgetrf_bufferSize"
@@ -24696,33 +17918,9 @@ pub unsafe extern "C" fn cusolverDnXgetrf(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgetrf
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                m,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                ipiv,
-                computeType,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXgetrf"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgetrf {
+        Some(____func) => unsafe { ____func(handle, params, m, n, dataTypeA, A, lda, ipiv, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXgetrf"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24742,20 +17940,9 @@ pub unsafe extern "C" fn cusolverDnXgetrs(
     ldb: i64,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgetrs
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, params, trans, n, nrhs, dataTypeA, A, lda, ipiv, dataTypeB, B, ldb, info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXgetrs"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgetrs {
+        Some(____func) => unsafe { ____func(handle, params, trans, n, nrhs, dataTypeA, A, lda, ipiv, dataTypeB, B, ldb, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXgetrs"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24775,28 +17962,8 @@ pub unsafe extern "C" fn cusolverDnXsyevd_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevd_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobz,
-                uplo,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeW,
-                W,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevd_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, jobz, uplo, n, dataTypeA, A, lda, dataTypeW, W, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXsyevd_bufferSize"
@@ -24823,35 +17990,9 @@ pub unsafe extern "C" fn cusolverDnXsyevd(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevd
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobz,
-                uplo,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeW,
-                W,
-                computeType,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXsyevd"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevd {
+        Some(____func) => unsafe { ____func(handle, params, jobz, uplo, n, dataTypeA, A, lda, dataTypeW, W, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXsyevd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24871,28 +18012,8 @@ pub unsafe extern "C" fn cusolverDnXstedc_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXstedc_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                compz,
-                n,
-                dataTypeDE,
-                D,
-                E,
-                dataTypeZ,
-                Z,
-                ldz,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXstedc_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, compz, n, dataTypeDE, D, E, dataTypeZ, Z, ldz, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXstedc_bufferSize"
@@ -24919,35 +18040,9 @@ pub unsafe extern "C" fn cusolverDnXstedc(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXstedc
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                compz,
-                n,
-                dataTypeDE,
-                D,
-                E,
-                dataTypeZ,
-                Z,
-                ldz,
-                computeType,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                info,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXstedc"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXstedc {
+        Some(____func) => unsafe { ____func(handle, params, compz, n, dataTypeDE, D, E, dataTypeZ, Z, ldz, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXstedc"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -24968,29 +18063,8 @@ pub unsafe extern "C" fn cusolverDnXsyevBatched_bufferSize(
     workspaceInBytesOnHost: *mut usize,
     batchSize: i64,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevBatched_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobz,
-                uplo,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeW,
-                W,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-                batchSize,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevBatched_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, jobz, uplo, n, dataTypeA, A, lda, dataTypeW, W, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost, batchSize) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXsyevBatched_bufferSize"
@@ -25018,36 +18092,9 @@ pub unsafe extern "C" fn cusolverDnXsyevBatched(
     info: *mut ::std::os::raw::c_int,
     batchSize: i64,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobz,
-                uplo,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeW,
-                W,
-                computeType,
-                bufferOnDevice,
-                workspaceInBytesOnDevice,
-                bufferOnHost,
-                workspaceInBytesOnHost,
-                info,
-                batchSize,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXsyevBatched"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevBatched {
+        Some(____func) => unsafe { ____func(handle, params, jobz, uplo, n, dataTypeA, A, lda, dataTypeW, W, computeType, bufferOnDevice, workspaceInBytesOnDevice, bufferOnHost, workspaceInBytesOnHost, info, batchSize) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXsyevBatched"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -25073,34 +18120,8 @@ pub unsafe extern "C" fn cusolverDnXsyevdx_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevdx_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobz,
-                range,
-                uplo,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                vl,
-                vu,
-                il,
-                iu,
-                h_meig,
-                dataTypeW,
-                W,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevdx_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, jobz, range, uplo, n, dataTypeA, A, lda, vl, vu, il, iu, h_meig, dataTypeW, W, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXsyevdx_bufferSize"
@@ -25133,11 +18154,7 @@ pub unsafe extern "C" fn cusolverDnXsyevdx(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXsyevdx
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXsyevdx {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25164,10 +18181,7 @@ pub unsafe extern "C" fn cusolverDnXsyevdx(
                 info,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXsyevdx"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXsyevdx"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -25193,34 +18207,8 @@ pub unsafe extern "C" fn cusolverDnXgeev_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgeev_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobvl,
-                jobvr,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeW,
-                W,
-                dataTypeVL,
-                VL,
-                ldvl,
-                dataTypeVR,
-                VR,
-                ldvr,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgeev_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, jobvl, jobvr, n, dataTypeA, A, lda, dataTypeW, W, dataTypeVL, VL, ldvl, dataTypeVR, VR, ldvr, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXgeev_bufferSize"
@@ -25253,11 +18241,7 @@ pub unsafe extern "C" fn cusolverDnXgeev(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgeev
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgeev {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25284,10 +18268,7 @@ pub unsafe extern "C" fn cusolverDnXgeev(
                 info,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXgeev"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXgeev"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -25314,35 +18295,8 @@ pub unsafe extern "C" fn cusolverDnXgesvd_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvd_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobu,
-                jobvt,
-                m,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeS,
-                S,
-                dataTypeU,
-                U,
-                ldu,
-                dataTypeVT,
-                VT,
-                ldvt,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvd_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, jobu, jobvt, m, n, dataTypeA, A, lda, dataTypeS, S, dataTypeU, U, ldu, dataTypeVT, VT, ldvt, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXgesvd_bufferSize"
@@ -25376,11 +18330,7 @@ pub unsafe extern "C" fn cusolverDnXgesvd(
     workspaceInBytesOnHost: usize,
     info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvd
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvd {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25408,10 +18358,7 @@ pub unsafe extern "C" fn cusolverDnXgesvd(
                 info,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXgesvd"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXgesvd"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -25438,35 +18385,8 @@ pub unsafe extern "C" fn cusolverDnXgesvdp_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdp_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                jobz,
-                econ,
-                m,
-                n,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeS,
-                S,
-                dataTypeU,
-                U,
-                ldu,
-                dataTypeV,
-                V,
-                ldv,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdp_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, jobz, econ, m, n, dataTypeA, A, lda, dataTypeS, S, dataTypeU, U, ldu, dataTypeV, V, ldv, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXgesvdp_bufferSize"
@@ -25501,11 +18421,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdp(
     d_info: *mut ::std::os::raw::c_int,
     h_err_sigma: *mut f64,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdp
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdp {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25534,10 +18450,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdp(
                 h_err_sigma,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXgesvdp"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXgesvdp"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -25567,11 +18480,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdr_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdr_bufferSize
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdr_bufferSize {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25635,11 +18544,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdr(
     workspaceInBytesOnHost: usize,
     d_info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXgesvdr
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXgesvdr {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25670,10 +18575,7 @@ pub unsafe extern "C" fn cusolverDnXgesvdr(
                 d_info,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXgesvdr"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXgesvdr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -25697,32 +18599,8 @@ pub unsafe extern "C" fn cusolverDnXlarft_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXlarft_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                direct,
-                storev,
-                n,
-                k,
-                dataTypeV,
-                V,
-                ldv,
-                dataTypeTau,
-                tau,
-                dataTypeT,
-                T,
-                ldt,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXlarft_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, direct, storev, n, k, dataTypeV, V, ldv, dataTypeTau, tau, dataTypeT, T, ldt, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXlarft_bufferSize"
@@ -25752,11 +18630,7 @@ pub unsafe extern "C" fn cusolverDnXlarft(
     bufferOnHost: *mut ::std::os::raw::c_void,
     workspaceInBytesOnHost: usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXlarft
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXlarft {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25780,20 +18654,13 @@ pub unsafe extern "C" fn cusolverDnXlarft(
                 workspaceInBytesOnHost,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXlarft"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXlarft"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnLoggerSetCallback(callback: cusolverDnLoggerCallback_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnLoggerSetCallback
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerSetCallback {
         Some(____func) => unsafe { ____func(callback) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -25804,71 +18671,39 @@ pub unsafe extern "C" fn cusolverDnLoggerSetCallback(callback: cusolverDnLoggerC
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnLoggerSetFile(file: *mut FILE) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnLoggerSetFile
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerSetFile {
         Some(____func) => unsafe { ____func(file) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnLoggerSetFile"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnLoggerSetFile"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnLoggerOpenFile(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnLoggerOpenFile
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerOpenFile {
         Some(____func) => unsafe { ____func(logFile) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnLoggerOpenFile"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnLoggerOpenFile"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnLoggerSetLevel(level: ::std::os::raw::c_int) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnLoggerSetLevel
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerSetLevel {
         Some(____func) => unsafe { ____func(level) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnLoggerSetLevel"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnLoggerSetLevel"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnLoggerSetMask(mask: ::std::os::raw::c_int) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnLoggerSetMask
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerSetMask {
         Some(____func) => unsafe { ____func(mask) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnLoggerSetMask"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnLoggerSetMask"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverDnLoggerForceDisable() -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnLoggerForceDisable
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnLoggerForceDisable {
         Some(____func) => unsafe { ____func() },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -25894,29 +18729,8 @@ pub unsafe extern "C" fn cusolverDnXpolar_bufferSize(
     workspaceInBytesOnDevice: *mut usize,
     workspaceInBytesOnHost: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXpolar_bufferSize
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                params,
-                uplo,
-                M,
-                N,
-                dataTypeA,
-                A,
-                lda,
-                dataTypeH,
-                H,
-                ldh,
-                computeType,
-                workspaceInBytesOnDevice,
-                workspaceInBytesOnHost,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpolar_bufferSize {
+        Some(____func) => unsafe { ____func(handle, params, uplo, M, N, dataTypeA, A, lda, dataTypeH, H, ldh, computeType, workspaceInBytesOnDevice, workspaceInBytesOnHost) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverDnXpolar_bufferSize"
@@ -25947,11 +18761,7 @@ pub unsafe extern "C" fn cusolverDnXpolar(
     d_rcond: *mut f64,
     d_info: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverDnXpolar
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverDnXpolar {
         Some(____func) => unsafe {
             ____func(
                 handle,
@@ -25976,73 +18786,39 @@ pub unsafe extern "C" fn cusolverDnXpolar(
                 d_info,
             )
         },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverDnXpolar"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverDnXpolar"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCreate(handle: *mut cusolverSpHandle_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCreate
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCreate {
         Some(____func) => unsafe { ____func(handle) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCreate"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCreate"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDestroy(handle: cusolverSpHandle_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDestroy
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDestroy {
         Some(____func) => unsafe { ____func(handle) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDestroy"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDestroy"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpSetStream(handle: cusolverSpHandle_t, streamId: cudaStream_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpSetStream
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpSetStream {
         Some(____func) => unsafe { ____func(handle, streamId) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpSetStream"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpSetStream"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpGetStream(
-    handle: cusolverSpHandle_t,
-    streamId: *mut cudaStream_t,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpGetStream
-    {
+pub unsafe extern "C" fn cusolverSpGetStream(handle: cusolverSpHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpGetStream {
         Some(____func) => unsafe { ____func(handle, streamId) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpGetStream"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpGetStream"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26057,16 +18833,9 @@ pub unsafe extern "C" fn cusolverSpXcsrissymHost(
     csrColIndA: *const ::std::os::raw::c_int,
     issym: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrissymHost
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrissymHost {
         Some(____func) => unsafe { ____func(handle, m, nnzA, descrA, csrRowPtrA, csrEndPtrA, csrColIndA, issym) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpXcsrissymHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrissymHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26085,31 +18854,9 @@ pub unsafe extern "C" fn cusolverSpScsrlsvluHost(
     x: *mut f32,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrlsvluHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nnzA,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsrlsvluHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvluHost {
+        Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsrlsvluHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26128,31 +18875,9 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvluHost(
     x: *mut f64,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrlsvluHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nnzA,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsrlsvluHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvluHost {
+        Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsrlsvluHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26171,31 +18896,9 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvluHost(
     x: *mut cuComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrlsvluHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nnzA,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsrlsvluHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvluHost {
+        Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsrlsvluHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26214,31 +18917,9 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvluHost(
     x: *mut cuDoubleComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrlsvluHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                n,
-                nnzA,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsrlsvluHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvluHost {
+        Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsrlsvluHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26257,31 +18938,9 @@ pub unsafe extern "C" fn cusolverSpScsrlsvqr(
     x: *mut f32,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrlsvqr
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsrlsvqr"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvqr {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsrlsvqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26300,31 +18959,9 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvqr(
     x: *mut f64,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrlsvqr
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsrlsvqr"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvqr {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsrlsvqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26343,31 +18980,9 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvqr(
     x: *mut cuComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrlsvqr
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsrlsvqr"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvqr {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsrlsvqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26386,31 +19001,9 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvqr(
     x: *mut cuDoubleComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrlsvqr
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsrlsvqr"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvqr {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsrlsvqr"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26429,31 +19022,9 @@ pub unsafe extern "C" fn cusolverSpScsrlsvqrHost(
     x: *mut f32,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrlsvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsrlsvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsrlsvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26472,31 +19043,9 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvqrHost(
     x: *mut f64,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrlsvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsrlsvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsrlsvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26515,31 +19064,9 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvqrHost(
     x: *mut cuComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrlsvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsrlsvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsrlsvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26558,31 +19085,9 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvqrHost(
     x: *mut cuDoubleComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrlsvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsrlsvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsrlsvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26601,27 +19106,8 @@ pub unsafe extern "C" fn cusolverSpScsrlsvcholHost(
     x: *mut f32,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrlsvcholHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvcholHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpScsrlsvcholHost"
@@ -26644,27 +19130,8 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvcholHost(
     x: *mut f64,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrlsvcholHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvcholHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpDcsrlsvcholHost"
@@ -26687,27 +19154,8 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvcholHost(
     x: *mut cuComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrlsvcholHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvcholHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpCcsrlsvcholHost"
@@ -26730,27 +19178,8 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvcholHost(
     x: *mut cuDoubleComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrlsvcholHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvcholHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpZcsrlsvcholHost"
@@ -26773,31 +19202,9 @@ pub unsafe extern "C" fn cusolverSpScsrlsvchol(
     x: *mut f32,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrlsvchol
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsrlsvchol"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsvchol {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsrlsvchol"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26816,31 +19223,9 @@ pub unsafe extern "C" fn cusolverSpDcsrlsvchol(
     x: *mut f64,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrlsvchol
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsrlsvchol"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsvchol {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsrlsvchol"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26859,31 +19244,9 @@ pub unsafe extern "C" fn cusolverSpCcsrlsvchol(
     x: *mut cuComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrlsvchol
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsrlsvchol"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsvchol {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsrlsvchol"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26902,31 +19265,9 @@ pub unsafe extern "C" fn cusolverSpZcsrlsvchol(
     x: *mut cuDoubleComplex,
     singularity: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrlsvchol
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                b,
-                tol,
-                reorder,
-                x,
-                singularity,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsrlsvchol"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsvchol {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrVal, csrRowPtr, csrColInd, b, tol, reorder, x, singularity) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsrlsvchol"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26947,20 +19288,9 @@ pub unsafe extern "C" fn cusolverSpScsrlsqvqrHost(
     p: *mut ::std::os::raw::c_int,
     min_norm: *mut f32,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrlsqvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsrlsqvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrlsqvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsrlsqvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -26981,20 +19311,9 @@ pub unsafe extern "C" fn cusolverSpDcsrlsqvqrHost(
     p: *mut ::std::os::raw::c_int,
     min_norm: *mut f64,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrlsqvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsrlsqvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrlsqvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsrlsqvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27015,20 +19334,9 @@ pub unsafe extern "C" fn cusolverSpCcsrlsqvqrHost(
     p: *mut ::std::os::raw::c_int,
     min_norm: *mut f32,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrlsqvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsrlsqvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrlsqvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsrlsqvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27049,20 +19357,9 @@ pub unsafe extern "C" fn cusolverSpZcsrlsqvqrHost(
     p: *mut ::std::os::raw::c_int,
     min_norm: *mut f64,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrlsqvqrHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsrlsqvqrHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrlsqvqrHost {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, tol, rankA, x, p, min_norm) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsrlsqvqrHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27082,20 +19379,9 @@ pub unsafe extern "C" fn cusolverSpScsreigvsiHost(
     mu: *mut f32,
     x: *mut f32,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsreigvsiHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsreigvsiHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsreigvsiHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsreigvsiHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27115,20 +19401,9 @@ pub unsafe extern "C" fn cusolverSpDcsreigvsiHost(
     mu: *mut f64,
     x: *mut f64,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsreigvsiHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsreigvsiHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsreigvsiHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsreigvsiHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27148,20 +19423,9 @@ pub unsafe extern "C" fn cusolverSpCcsreigvsiHost(
     mu: *mut cuComplex,
     x: *mut cuComplex,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsreigvsiHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsreigvsiHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsreigvsiHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsreigvsiHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27181,20 +19445,9 @@ pub unsafe extern "C" fn cusolverSpZcsreigvsiHost(
     mu: *mut cuDoubleComplex,
     x: *mut cuDoubleComplex,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsreigvsiHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsreigvsiHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsreigvsiHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, tol, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsreigvsiHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27214,20 +19467,9 @@ pub unsafe extern "C" fn cusolverSpScsreigvsi(
     mu: *mut f32,
     x: *mut f32,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsreigvsi
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsreigvsi"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsreigvsi {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsreigvsi"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27247,20 +19489,9 @@ pub unsafe extern "C" fn cusolverSpDcsreigvsi(
     mu: *mut f64,
     x: *mut f64,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsreigvsi
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsreigvsi"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsreigvsi {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsreigvsi"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27280,20 +19511,9 @@ pub unsafe extern "C" fn cusolverSpCcsreigvsi(
     mu: *mut cuComplex,
     x: *mut cuComplex,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsreigvsi
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsreigvsi"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsreigvsi {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsreigvsi"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27313,20 +19533,9 @@ pub unsafe extern "C" fn cusolverSpZcsreigvsi(
     mu: *mut cuDoubleComplex,
     x: *mut cuDoubleComplex,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsreigvsi
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsreigvsi"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsreigvsi {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, mu0, x0, maxite, eps, mu, x) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsreigvsi"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27343,29 +19552,9 @@ pub unsafe extern "C" fn cusolverSpScsreigsHost(
     right_upper_corner: cuComplex,
     num_eigs: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsreigsHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                left_bottom_corner,
-                right_upper_corner,
-                num_eigs,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsreigsHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsreigsHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsreigsHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27382,29 +19571,9 @@ pub unsafe extern "C" fn cusolverSpDcsreigsHost(
     right_upper_corner: cuDoubleComplex,
     num_eigs: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsreigsHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                left_bottom_corner,
-                right_upper_corner,
-                num_eigs,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsreigsHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsreigsHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsreigsHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27421,29 +19590,9 @@ pub unsafe extern "C" fn cusolverSpCcsreigsHost(
     right_upper_corner: cuComplex,
     num_eigs: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsreigsHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                left_bottom_corner,
-                right_upper_corner,
-                num_eigs,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsreigsHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsreigsHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsreigsHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27460,98 +19609,33 @@ pub unsafe extern "C" fn cusolverSpZcsreigsHost(
     right_upper_corner: cuDoubleComplex,
     num_eigs: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsreigsHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                nnz,
-                descrA,
-                csrValA,
-                csrRowPtrA,
-                csrColIndA,
-                left_bottom_corner,
-                right_upper_corner,
-                num_eigs,
-            )
-        },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsreigsHost"
-        ),
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsreigsHost {
+        Some(____func) => unsafe { ____func(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, left_bottom_corner, right_upper_corner, num_eigs) },
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsreigsHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpXcsrsymrcmHost(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    p: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrsymrcmHost
-    {
+pub unsafe extern "C" fn cusolverSpXcsrsymrcmHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrsymrcmHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, p) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpXcsrsymrcmHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrsymrcmHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpXcsrsymmdqHost(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    p: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrsymmdqHost
-    {
+pub unsafe extern "C" fn cusolverSpXcsrsymmdqHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrsymmdqHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, p) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpXcsrsymmdqHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrsymmdqHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
-pub unsafe extern "C" fn cusolverSpXcsrsymamdHost(
-    handle: cusolverSpHandle_t,
-    n: ::std::os::raw::c_int,
-    nnzA: ::std::os::raw::c_int,
-    descrA: cusparseMatDescr_t,
-    csrRowPtrA: *const ::std::os::raw::c_int,
-    csrColIndA: *const ::std::os::raw::c_int,
-    p: *mut ::std::os::raw::c_int,
-) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrsymamdHost
-    {
+pub unsafe extern "C" fn cusolverSpXcsrsymamdHost(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrsymamdHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, p) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpXcsrsymamdHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrsymamdHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27566,11 +19650,7 @@ pub unsafe extern "C" fn cusolverSpXcsrmetisndHost(
     options: *const i64,
     p: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrmetisndHost
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrmetisndHost {
         Some(____func) => unsafe { ____func(handle, n, nnzA, descrA, csrRowPtrA, csrColIndA, options, p) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -27591,16 +19671,9 @@ pub unsafe extern "C" fn cusolverSpScsrzfdHost(
     P: *mut ::std::os::raw::c_int,
     numnz: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrzfdHost
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpScsrzfdHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpScsrzfdHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27616,16 +19689,9 @@ pub unsafe extern "C" fn cusolverSpDcsrzfdHost(
     P: *mut ::std::os::raw::c_int,
     numnz: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrzfdHost
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpDcsrzfdHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpDcsrzfdHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27641,16 +19707,9 @@ pub unsafe extern "C" fn cusolverSpCcsrzfdHost(
     P: *mut ::std::os::raw::c_int,
     numnz: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrzfdHost
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpCcsrzfdHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpCcsrzfdHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27666,16 +19725,9 @@ pub unsafe extern "C" fn cusolverSpZcsrzfdHost(
     P: *mut ::std::os::raw::c_int,
     numnz: *mut ::std::os::raw::c_int,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrzfdHost
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrzfdHost {
         Some(____func) => unsafe { ____func(handle, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, P, numnz) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpZcsrzfdHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpZcsrzfdHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
@@ -27692,25 +19744,8 @@ pub unsafe extern "C" fn cusolverSpXcsrperm_bufferSizeHost(
     q: *const ::std::os::raw::c_int,
     bufferSizeInBytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrperm_bufferSizeHost
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nnzA,
-                descrA,
-                csrRowPtrA,
-                csrColIndA,
-                p,
-                q,
-                bufferSizeInBytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrperm_bufferSizeHost {
+        Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, p, q, bufferSizeInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpXcsrperm_bufferSizeHost"
@@ -27732,26 +19767,15 @@ pub unsafe extern "C" fn cusolverSpXcsrpermHost(
     map: *mut ::std::os::raw::c_int,
     pBuffer: *mut ::std::os::raw::c_void,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrpermHost
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrpermHost {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, p, q, map, pBuffer) },
-        None => panic!(
-            "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
-            "cusolverSpXcsrpermHost"
-        ),
+        None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", "cusolverSpXcsrpermHost"),
     }
 }
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpCreateCsrqrInfo(info: *mut csrqrInfo_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCreateCsrqrInfo
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCreateCsrqrInfo {
         Some(____func) => unsafe { ____func(info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -27762,11 +19786,7 @@ pub unsafe extern "C" fn cusolverSpCreateCsrqrInfo(info: *mut csrqrInfo_t) -> cu
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
 pub unsafe extern "C" fn cusolverSpDestroyCsrqrInfo(info: csrqrInfo_t) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDestroyCsrqrInfo
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDestroyCsrqrInfo {
         Some(____func) => unsafe { ____func(info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -27786,11 +19806,7 @@ pub unsafe extern "C" fn cusolverSpXcsrqrAnalysisBatched(
     csrColIndA: *const ::std::os::raw::c_int,
     info: csrqrInfo_t,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpXcsrqrAnalysisBatched
-    {
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpXcsrqrAnalysisBatched {
         Some(____func) => unsafe { ____func(handle, m, n, nnzA, descrA, csrRowPtrA, csrColIndA, info) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
@@ -27814,27 +19830,8 @@ pub unsafe extern "C" fn cusolverSpScsrqrBufferInfoBatched(
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrqrBufferInfoBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                batchSize,
-                info,
-                internalDataInBytes,
-                workspaceInBytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrqrBufferInfoBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, batchSize, info, internalDataInBytes, workspaceInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpScsrqrBufferInfoBatched"
@@ -27857,27 +19854,8 @@ pub unsafe extern "C" fn cusolverSpDcsrqrBufferInfoBatched(
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrqrBufferInfoBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                batchSize,
-                info,
-                internalDataInBytes,
-                workspaceInBytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrqrBufferInfoBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, batchSize, info, internalDataInBytes, workspaceInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpDcsrqrBufferInfoBatched"
@@ -27900,27 +19878,8 @@ pub unsafe extern "C" fn cusolverSpCcsrqrBufferInfoBatched(
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrqrBufferInfoBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                batchSize,
-                info,
-                internalDataInBytes,
-                workspaceInBytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrqrBufferInfoBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, batchSize, info, internalDataInBytes, workspaceInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpCcsrqrBufferInfoBatched"
@@ -27943,27 +19902,8 @@ pub unsafe extern "C" fn cusolverSpZcsrqrBufferInfoBatched(
     internalDataInBytes: *mut usize,
     workspaceInBytes: *mut usize,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrqrBufferInfoBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle,
-                m,
-                n,
-                nnz,
-                descrA,
-                csrVal,
-                csrRowPtr,
-                csrColInd,
-                batchSize,
-                info,
-                internalDataInBytes,
-                workspaceInBytes,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrqrBufferInfoBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, batchSize, info, internalDataInBytes, workspaceInBytes) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpZcsrqrBufferInfoBatched"
@@ -27987,16 +19927,8 @@ pub unsafe extern "C" fn cusolverSpScsrqrsvBatched(
     info: csrqrInfo_t,
     pBuffer: *mut ::std::os::raw::c_void,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpScsrqrsvBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpScsrqrsvBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpScsrqrsvBatched"
@@ -28020,16 +19952,8 @@ pub unsafe extern "C" fn cusolverSpDcsrqrsvBatched(
     info: csrqrInfo_t,
     pBuffer: *mut ::std::os::raw::c_void,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpDcsrqrsvBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpDcsrqrsvBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpDcsrqrsvBatched"
@@ -28053,16 +19977,8 @@ pub unsafe extern "C" fn cusolverSpCcsrqrsvBatched(
     info: csrqrInfo_t,
     pBuffer: *mut ::std::os::raw::c_void,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpCcsrqrsvBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpCcsrqrsvBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpCcsrqrsvBatched"
@@ -28086,16 +20002,8 @@ pub unsafe extern "C" fn cusolverSpZcsrqrsvBatched(
     info: csrqrInfo_t,
     pBuffer: *mut ::std::os::raw::c_void,
 ) -> cusolverStatus_t {
-    match DYNAMIC_BINDINGS
-        .get()
-        .expect("CUDA library not loaded. Did you forget to call #[cuda_load]?")
-        .cusolverSpZcsrqrsvBatched
-    {
-        Some(____func) => unsafe {
-            ____func(
-                handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer,
-            )
-        },
+    match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").cusolverSpZcsrqrsvBatched {
+        Some(____func) => unsafe { ____func(handle, m, n, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, b, x, batchSize, info, pBuffer) },
         None => panic!(
             "CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.",
             "cusolverSpZcsrqrsvBatched"
@@ -28103,3667 +20011,1836 @@ pub unsafe extern "C" fn cusolverSpZcsrqrsvBatched(
     }
 }
 #[cfg(feature = "runtime-link")]
-pub unsafe fn load_dynamic_bindings(
-    lib: *mut std::ffi::c_void,
-    get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void,
-) {
+pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
     let bindings = unsafe {
         Box::new(DynamicBindings {
             cusolverGetProperty: {
                 let p = get_proc_addr(lib, b"cusolverGetProperty\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverGetVersion: {
                 let p = get_proc_addr(lib, b"cusolverGetVersion\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCreate: {
                 let p = get_proc_addr(lib, b"cusolverDnCreate\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDestroy: {
                 let p = get_proc_addr(lib, b"cusolverDnDestroy\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetStream: {
                 let p = get_proc_addr(lib, b"cusolverDnSetStream\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetStream: {
                 let p = get_proc_addr(lib, b"cusolverDnGetStream\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetDeterministicMode: {
                 let p = get_proc_addr(lib, b"cusolverDnSetDeterministicMode\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetDeterministicMode: {
                 let p = get_proc_addr(lib, b"cusolverDnGetDeterministicMode\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetMathMode: {
                 let p = get_proc_addr(lib, b"cusolverDnSetMathMode\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetMathMode: {
                 let p = get_proc_addr(lib, b"cusolverDnGetMathMode\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetEmulationStrategy: {
                 let p = get_proc_addr(lib, b"cusolverDnSetEmulationStrategy\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetEmulationStrategy: {
                 let p = get_proc_addr(lib, b"cusolverDnGetEmulationStrategy\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetFixedPointEmulationMantissaControl: {
                 let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaControl\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetFixedPointEmulationMantissaControl: {
                 let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaControl\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetFixedPointEmulationMaxMantissaBitCount: {
                 let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetFixedPointEmulationMaxMantissaBitCount: {
                 let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetFixedPointEmulationMantissaBitOffset: {
                 let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaBitOffset\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetFixedPointEmulationMantissaBitOffset: {
                 let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaBitOffset\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetEmulationSpecialValuesSupport: {
                 let p = get_proc_addr(lib, b"cusolverDnSetEmulationSpecialValuesSupport\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnGetEmulationSpecialValuesSupport: {
                 let p = get_proc_addr(lib, b"cusolverDnGetEmulationSpecialValuesSupport\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsCreate: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsCreate\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsDestroy: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsDestroy\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetRefinementSolver: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetRefinementSolver\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetSolverMainPrecision: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverMainPrecision\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetSolverLowestPrecision: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverLowestPrecision\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetSolverPrecisions: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverPrecisions\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetTol: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetTol\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetTolInner: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetTolInner\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetMaxIters: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetMaxIters\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsSetMaxItersInner: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetMaxItersInner\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsGetMaxIters: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsGetMaxIters\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsEnableFallback: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsEnableFallback\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSParamsDisableFallback: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSParamsDisableFallback\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSInfosDestroy: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSInfosDestroy\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSInfosCreate: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSInfosCreate\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSInfosGetNiters: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetNiters\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSInfosGetOuterNiters: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetOuterNiters\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSInfosRequestResidual: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSInfosRequestResidual\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSInfosGetResidualHistory: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetResidualHistory\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSInfosGetMaxIters: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetMaxIters\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZZgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnZZgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZCgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnZCgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZKgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnZKgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZEgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnZEgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZYgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnZYgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCCgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnCCgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCEgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnCEgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCKgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnCKgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCYgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnCYgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDDgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnDDgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDSgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnDSgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDHgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnDHgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDBgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnDBgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDXgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnDXgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSSgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnSSgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSHgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnSHgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSBgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnSBgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSXgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnSXgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZZgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZZgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZCgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZCgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZKgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZKgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZEgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZEgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZYgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZYgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCCgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCCgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCKgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCKgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCEgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCEgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCYgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCYgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDDgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDDgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDSgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDSgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDHgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDHgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDBgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDBgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDXgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDXgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSSgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSSgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSHgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSHgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSBgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSBgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSXgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSXgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZZgels: {
                 let p = get_proc_addr(lib, b"cusolverDnZZgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZCgels: {
                 let p = get_proc_addr(lib, b"cusolverDnZCgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZKgels: {
                 let p = get_proc_addr(lib, b"cusolverDnZKgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZEgels: {
                 let p = get_proc_addr(lib, b"cusolverDnZEgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZYgels: {
                 let p = get_proc_addr(lib, b"cusolverDnZYgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCCgels: {
                 let p = get_proc_addr(lib, b"cusolverDnCCgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCKgels: {
                 let p = get_proc_addr(lib, b"cusolverDnCKgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCEgels: {
                 let p = get_proc_addr(lib, b"cusolverDnCEgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCYgels: {
                 let p = get_proc_addr(lib, b"cusolverDnCYgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDDgels: {
                 let p = get_proc_addr(lib, b"cusolverDnDDgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDSgels: {
                 let p = get_proc_addr(lib, b"cusolverDnDSgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDHgels: {
                 let p = get_proc_addr(lib, b"cusolverDnDHgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDBgels: {
                 let p = get_proc_addr(lib, b"cusolverDnDBgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDXgels: {
                 let p = get_proc_addr(lib, b"cusolverDnDXgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSSgels: {
                 let p = get_proc_addr(lib, b"cusolverDnSSgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSHgels: {
                 let p = get_proc_addr(lib, b"cusolverDnSHgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSBgels: {
                 let p = get_proc_addr(lib, b"cusolverDnSBgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSXgels: {
                 let p = get_proc_addr(lib, b"cusolverDnSXgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZZgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZZgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZCgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZCgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZKgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZKgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZEgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZEgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZYgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZYgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCCgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCCgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCKgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCKgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCEgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCEgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCYgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCYgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDDgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDDgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDSgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDSgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDHgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDHgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDBgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDBgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDXgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDXgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSSgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSSgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSHgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSHgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSBgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSBgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSXgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSXgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSXgesv: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSXgesv\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSXgesv_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSXgesv_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSXgels: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSXgels\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnIRSXgels_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnIRSXgels_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSpotrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSpotrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDpotrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDpotrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCpotrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCpotrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZpotrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZpotrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSpotrf: {
                 let p = get_proc_addr(lib, b"cusolverDnSpotrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDpotrf: {
                 let p = get_proc_addr(lib, b"cusolverDnDpotrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCpotrf: {
                 let p = get_proc_addr(lib, b"cusolverDnCpotrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZpotrf: {
                 let p = get_proc_addr(lib, b"cusolverDnZpotrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSpotrs: {
                 let p = get_proc_addr(lib, b"cusolverDnSpotrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDpotrs: {
                 let p = get_proc_addr(lib, b"cusolverDnDpotrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCpotrs: {
                 let p = get_proc_addr(lib, b"cusolverDnCpotrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZpotrs: {
                 let p = get_proc_addr(lib, b"cusolverDnZpotrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSpotrfBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnSpotrfBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDpotrfBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnDpotrfBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCpotrfBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnCpotrfBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZpotrfBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnZpotrfBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSpotrsBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnSpotrsBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDpotrsBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnDpotrsBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCpotrsBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnCpotrsBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZpotrsBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnZpotrsBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSpotri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSpotri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDpotri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDpotri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCpotri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCpotri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZpotri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZpotri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSpotri: {
                 let p = get_proc_addr(lib, b"cusolverDnSpotri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDpotri: {
                 let p = get_proc_addr(lib, b"cusolverDnDpotri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCpotri: {
                 let p = get_proc_addr(lib, b"cusolverDnCpotri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZpotri: {
                 let p = get_proc_addr(lib, b"cusolverDnZpotri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXtrtri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXtrtri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXtrtri: {
                 let p = get_proc_addr(lib, b"cusolverDnXtrtri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSlauum_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSlauum_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDlauum_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDlauum_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnClauum_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnClauum_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZlauum_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZlauum_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSlauum: {
                 let p = get_proc_addr(lib, b"cusolverDnSlauum\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDlauum: {
                 let p = get_proc_addr(lib, b"cusolverDnDlauum\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnClauum: {
                 let p = get_proc_addr(lib, b"cusolverDnClauum\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZlauum: {
                 let p = get_proc_addr(lib, b"cusolverDnZlauum\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgetrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSgetrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgetrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDgetrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgetrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCgetrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgetrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZgetrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgetrf: {
                 let p = get_proc_addr(lib, b"cusolverDnSgetrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgetrf: {
                 let p = get_proc_addr(lib, b"cusolverDnDgetrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgetrf: {
                 let p = get_proc_addr(lib, b"cusolverDnCgetrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgetrf: {
                 let p = get_proc_addr(lib, b"cusolverDnZgetrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSlaswp: {
                 let p = get_proc_addr(lib, b"cusolverDnSlaswp\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDlaswp: {
                 let p = get_proc_addr(lib, b"cusolverDnDlaswp\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnClaswp: {
                 let p = get_proc_addr(lib, b"cusolverDnClaswp\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZlaswp: {
                 let p = get_proc_addr(lib, b"cusolverDnZlaswp\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgetrs: {
                 let p = get_proc_addr(lib, b"cusolverDnSgetrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgetrs: {
                 let p = get_proc_addr(lib, b"cusolverDnDgetrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgetrs: {
                 let p = get_proc_addr(lib, b"cusolverDnCgetrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgetrs: {
                 let p = get_proc_addr(lib, b"cusolverDnZgetrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgeqrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgeqrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgeqrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgeqrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgeqrf: {
                 let p = get_proc_addr(lib, b"cusolverDnSgeqrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgeqrf: {
                 let p = get_proc_addr(lib, b"cusolverDnDgeqrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgeqrf: {
                 let p = get_proc_addr(lib, b"cusolverDnCgeqrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgeqrf: {
                 let p = get_proc_addr(lib, b"cusolverDnZgeqrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSorgqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSorgqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDorgqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDorgqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCungqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCungqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZungqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZungqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSorgqr: {
                 let p = get_proc_addr(lib, b"cusolverDnSorgqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDorgqr: {
                 let p = get_proc_addr(lib, b"cusolverDnDorgqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCungqr: {
                 let p = get_proc_addr(lib, b"cusolverDnCungqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZungqr: {
                 let p = get_proc_addr(lib, b"cusolverDnZungqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSormqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSormqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDormqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDormqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCunmqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCunmqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZunmqr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZunmqr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSormqr: {
                 let p = get_proc_addr(lib, b"cusolverDnSormqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDormqr: {
                 let p = get_proc_addr(lib, b"cusolverDnDormqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCunmqr: {
                 let p = get_proc_addr(lib, b"cusolverDnCunmqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZunmqr: {
                 let p = get_proc_addr(lib, b"cusolverDnZunmqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsytrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsytrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsytrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsytrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCsytrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCsytrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZsytrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZsytrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsytrf: {
                 let p = get_proc_addr(lib, b"cusolverDnSsytrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsytrf: {
                 let p = get_proc_addr(lib, b"cusolverDnDsytrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCsytrf: {
                 let p = get_proc_addr(lib, b"cusolverDnCsytrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZsytrf: {
                 let p = get_proc_addr(lib, b"cusolverDnZsytrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsytrs_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXsytrs_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsytrs: {
                 let p = get_proc_addr(lib, b"cusolverDnXsytrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsytri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsytri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsytri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsytri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCsytri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCsytri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZsytri_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZsytri_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsytri: {
                 let p = get_proc_addr(lib, b"cusolverDnSsytri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsytri: {
                 let p = get_proc_addr(lib, b"cusolverDnDsytri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCsytri: {
                 let p = get_proc_addr(lib, b"cusolverDnCsytri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZsytri: {
                 let p = get_proc_addr(lib, b"cusolverDnZsytri\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgebrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSgebrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgebrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDgebrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgebrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCgebrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgebrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZgebrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgebrd: {
                 let p = get_proc_addr(lib, b"cusolverDnSgebrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgebrd: {
                 let p = get_proc_addr(lib, b"cusolverDnDgebrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgebrd: {
                 let p = get_proc_addr(lib, b"cusolverDnCgebrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgebrd: {
                 let p = get_proc_addr(lib, b"cusolverDnZgebrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSorgbr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSorgbr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDorgbr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDorgbr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCungbr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCungbr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZungbr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZungbr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSorgbr: {
                 let p = get_proc_addr(lib, b"cusolverDnSorgbr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDorgbr: {
                 let p = get_proc_addr(lib, b"cusolverDnDorgbr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCungbr: {
                 let p = get_proc_addr(lib, b"cusolverDnCungbr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZungbr: {
                 let p = get_proc_addr(lib, b"cusolverDnZungbr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsytrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsytrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsytrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsytrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChetrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnChetrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhetrd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZhetrd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsytrd: {
                 let p = get_proc_addr(lib, b"cusolverDnSsytrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsytrd: {
                 let p = get_proc_addr(lib, b"cusolverDnDsytrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChetrd: {
                 let p = get_proc_addr(lib, b"cusolverDnChetrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhetrd: {
                 let p = get_proc_addr(lib, b"cusolverDnZhetrd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSorgtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSorgtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDorgtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDorgtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCungtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCungtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZungtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZungtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSorgtr: {
                 let p = get_proc_addr(lib, b"cusolverDnSorgtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDorgtr: {
                 let p = get_proc_addr(lib, b"cusolverDnDorgtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCungtr: {
                 let p = get_proc_addr(lib, b"cusolverDnCungtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZungtr: {
                 let p = get_proc_addr(lib, b"cusolverDnZungtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSormtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSormtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDormtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDormtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCunmtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCunmtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZunmtr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZunmtr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSormtr: {
                 let p = get_proc_addr(lib, b"cusolverDnSormtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDormtr: {
                 let p = get_proc_addr(lib, b"cusolverDnDormtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCunmtr: {
                 let p = get_proc_addr(lib, b"cusolverDnCunmtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZunmtr: {
                 let p = get_proc_addr(lib, b"cusolverDnZunmtr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvd: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvd: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvd: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvd: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevd: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevd: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevd: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevd: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevdx: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevdx: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevdx: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevdx: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsygvdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsygvdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsygvdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsygvdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChegvdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnChegvdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhegvdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZhegvdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsygvdx: {
                 let p = get_proc_addr(lib, b"cusolverDnSsygvdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsygvdx: {
                 let p = get_proc_addr(lib, b"cusolverDnDsygvdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChegvdx: {
                 let p = get_proc_addr(lib, b"cusolverDnChegvdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhegvdx: {
                 let p = get_proc_addr(lib, b"cusolverDnZhegvdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsygvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsygvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsygvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsygvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChegvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnChegvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhegvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZhegvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsygvd: {
                 let p = get_proc_addr(lib, b"cusolverDnSsygvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsygvd: {
                 let p = get_proc_addr(lib, b"cusolverDnDsygvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChegvd: {
                 let p = get_proc_addr(lib, b"cusolverDnChegvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhegvd: {
                 let p = get_proc_addr(lib, b"cusolverDnZhegvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsygvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXsygvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsygvd: {
                 let p = get_proc_addr(lib, b"cusolverDnXsygvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsygvdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXsygvdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsygvdx: {
                 let p = get_proc_addr(lib, b"cusolverDnXsygvdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCreateSyevjInfo: {
                 let p = get_proc_addr(lib, b"cusolverDnCreateSyevjInfo\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDestroySyevjInfo: {
                 let p = get_proc_addr(lib, b"cusolverDnDestroySyevjInfo\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevjSetTolerance: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevjSetTolerance\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevjSetMaxSweeps: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevjSetMaxSweeps\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevjSetSortEig: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevjSetSortEig\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevjGetResidual: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevjGetResidual\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevjGetSweeps: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevjGetSweeps\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsyevj: {
                 let p = get_proc_addr(lib, b"cusolverDnSsyevj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsyevj: {
                 let p = get_proc_addr(lib, b"cusolverDnDsyevj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCheevj: {
                 let p = get_proc_addr(lib, b"cusolverDnCheevj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZheevj: {
                 let p = get_proc_addr(lib, b"cusolverDnZheevj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsygvj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSsygvj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsygvj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDsygvj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChegvj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnChegvj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhegvj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZhegvj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSsygvj: {
                 let p = get_proc_addr(lib, b"cusolverDnSsygvj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDsygvj: {
                 let p = get_proc_addr(lib, b"cusolverDnDsygvj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnChegvj: {
                 let p = get_proc_addr(lib, b"cusolverDnChegvj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZhegvj: {
                 let p = get_proc_addr(lib, b"cusolverDnZhegvj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCreateGesvdjInfo: {
                 let p = get_proc_addr(lib, b"cusolverDnCreateGesvdjInfo\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDestroyGesvdjInfo: {
                 let p = get_proc_addr(lib, b"cusolverDnDestroyGesvdjInfo\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdjSetTolerance: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetTolerance\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdjSetMaxSweeps: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetMaxSweeps\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdjSetSortEig: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetSortEig\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdjGetResidual: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdjGetResidual\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdjGetSweeps: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdjGetSweeps\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvdjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvdjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvdjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvdjBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvdjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvdjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvdjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvdjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvdjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvdjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvdjBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvdjBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvdj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvdj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvdj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvdj_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvdj: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvdj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvdj: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvdj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvdj: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvdj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvdj: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvdj\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvdaStridedBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvdaStridedBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvdaStridedBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvdaStridedBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSgesvdaStridedBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnSgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDgesvdaStridedBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnDgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCgesvdaStridedBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnCgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnZgesvdaStridedBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnZgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnCreateParams: {
                 let p = get_proc_addr(lib, b"cusolverDnCreateParams\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnDestroyParams: {
                 let p = get_proc_addr(lib, b"cusolverDnDestroyParams\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnSetAdvOptions: {
                 let p = get_proc_addr(lib, b"cusolverDnSetAdvOptions\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXpotrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXpotrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXpotrf: {
                 let p = get_proc_addr(lib, b"cusolverDnXpotrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXpotrs: {
                 let p = get_proc_addr(lib, b"cusolverDnXpotrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgeqrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgeqrf: {
                 let p = get_proc_addr(lib, b"cusolverDnXgeqrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgetrf_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXgetrf_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgetrf: {
                 let p = get_proc_addr(lib, b"cusolverDnXgetrf\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgetrs: {
                 let p = get_proc_addr(lib, b"cusolverDnXgetrs\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevd: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXstedc_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXstedc_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXstedc: {
                 let p = get_proc_addr(lib, b"cusolverDnXstedc\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevBatched_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevBatched_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevBatched: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevdx_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevdx_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXsyevdx: {
                 let p = get_proc_addr(lib, b"cusolverDnXsyevdx\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgeev_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXgeev_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgeev: {
                 let p = get_proc_addr(lib, b"cusolverDnXgeev\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvd_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvd_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvd: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvd\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdp_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdp_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdp: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdp\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdr_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdr_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXgesvdr: {
                 let p = get_proc_addr(lib, b"cusolverDnXgesvdr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXlarft_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXlarft_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXlarft: {
                 let p = get_proc_addr(lib, b"cusolverDnXlarft\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnLoggerSetCallback: {
                 let p = get_proc_addr(lib, b"cusolverDnLoggerSetCallback\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnLoggerSetFile: {
                 let p = get_proc_addr(lib, b"cusolverDnLoggerSetFile\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnLoggerOpenFile: {
                 let p = get_proc_addr(lib, b"cusolverDnLoggerOpenFile\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnLoggerSetLevel: {
                 let p = get_proc_addr(lib, b"cusolverDnLoggerSetLevel\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnLoggerSetMask: {
                 let p = get_proc_addr(lib, b"cusolverDnLoggerSetMask\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnLoggerForceDisable: {
                 let p = get_proc_addr(lib, b"cusolverDnLoggerForceDisable\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXpolar_bufferSize: {
                 let p = get_proc_addr(lib, b"cusolverDnXpolar_bufferSize\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverDnXpolar: {
                 let p = get_proc_addr(lib, b"cusolverDnXpolar\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCreate: {
                 let p = get_proc_addr(lib, b"cusolverSpCreate\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDestroy: {
                 let p = get_proc_addr(lib, b"cusolverSpDestroy\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpSetStream: {
                 let p = get_proc_addr(lib, b"cusolverSpSetStream\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpGetStream: {
                 let p = get_proc_addr(lib, b"cusolverSpGetStream\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrissymHost: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrissymHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrlsvluHost: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrlsvluHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrlsvluHost: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrlsvluHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrlsvluHost: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrlsvluHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrlsvluHost: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrlsvluHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrlsvqr: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrlsvqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrlsvqr: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrlsvqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrlsvqr: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrlsvqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrlsvqr: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrlsvqr\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrlsvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrlsvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrlsvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrlsvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrlsvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrlsvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrlsvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrlsvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrlsvcholHost: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrlsvcholHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrlsvcholHost: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrlsvcholHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrlsvcholHost: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrlsvcholHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrlsvcholHost: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrlsvcholHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrlsvchol: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrlsvchol\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrlsvchol: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrlsvchol\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrlsvchol: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrlsvchol\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrlsvchol: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrlsvchol\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrlsqvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrlsqvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrlsqvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrlsqvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrlsqvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrlsqvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrlsqvqrHost: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrlsqvqrHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsreigvsiHost: {
                 let p = get_proc_addr(lib, b"cusolverSpScsreigvsiHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsreigvsiHost: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsreigvsiHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsreigvsiHost: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsreigvsiHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsreigvsiHost: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsreigvsiHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsreigvsi: {
                 let p = get_proc_addr(lib, b"cusolverSpScsreigvsi\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsreigvsi: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsreigvsi\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsreigvsi: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsreigvsi\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsreigvsi: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsreigvsi\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsreigsHost: {
                 let p = get_proc_addr(lib, b"cusolverSpScsreigsHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsreigsHost: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsreigsHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsreigsHost: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsreigsHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsreigsHost: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsreigsHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrsymrcmHost: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrsymrcmHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrsymmdqHost: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrsymmdqHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrsymamdHost: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrsymamdHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrmetisndHost: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrmetisndHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrzfdHost: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrzfdHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrzfdHost: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrzfdHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrzfdHost: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrzfdHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrzfdHost: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrzfdHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrperm_bufferSizeHost: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrperm_bufferSizeHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrpermHost: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrpermHost\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCreateCsrqrInfo: {
                 let p = get_proc_addr(lib, b"cusolverSpCreateCsrqrInfo\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDestroyCsrqrInfo: {
                 let p = get_proc_addr(lib, b"cusolverSpDestroyCsrqrInfo\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpXcsrqrAnalysisBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpXcsrqrAnalysisBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrqrBufferInfoBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrqrBufferInfoBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrqrBufferInfoBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrqrBufferInfoBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpScsrqrsvBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpScsrqrsvBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpDcsrqrsvBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpDcsrqrsvBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpCcsrqrsvBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpCcsrqrsvBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
             cusolverSpZcsrqrsvBatched: {
                 let p = get_proc_addr(lib, b"cusolverSpZcsrqrsvBatched\0".as_ptr());
-                if p.is_null() {
-                    None
-                } else {
-                    Some(std::mem::transmute(p))
-                }
+                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
             },
         })
     };

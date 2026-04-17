@@ -18,15 +18,7 @@ fn main() {
             wrapper_name: "CudaExecutionContext",
             handle_type: "cudaExecutionContext_t",
         }],
-        handle_types_regex: vec![
-            "Context",
-            "Stream_t",
-            "Handle",
-            "Stream",
-            "ctx",
-            "Device",
-            "CUstream_st",
-        ],
+        handle_types_regex: vec!["Context", "Stream_t", "Handle", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec![],
         extra_safe_code: "
             #[allow(non_upper_case_globals)]
@@ -135,15 +127,7 @@ fn main() {
             wrapper_name: "CurandGenerator",
             handle_type: "curandGenerator_t",
         }],
-        handle_types_regex: vec![
-            "Generator",
-            "Context",
-            "Stream_t",
-            "Stream",
-            "ctx",
-            "Device",
-            "CUstream_st",
-        ],
+        handle_types_regex: vec!["Generator", "Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
     });
