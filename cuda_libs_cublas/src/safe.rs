@@ -10086,16717 +10086,30 @@ impl crate::sys::DynamicBindings {
         self
     }
 }
-pub struct CublasHandle(pub(crate) crate::sys::cublasHandle_t);
-impl CublasHandle {
-    pub unsafe fn cublasGetVersion_v2(&self) -> Result<i32, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cublasGetVersion_v2(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as i32) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetWorkspace_v2<T: types::CudaAsPtr>(
-        &self,
-        mut workspace: T,
-        workspaceSizeInBytes: usize,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSetWorkspace_v2(self.0, workspace.as_mut_ptr() as *mut _, workspaceSizeInBytes)
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSetStream_v2(&self, streamId: cudaStream_t) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetStream_v2(self.0, streamId) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetStream_v2(&self) -> Result<cudaStream_t, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cublasGetStream_v2(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as cudaStream_t) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasGetPointerMode_v2(&self) -> Result<cublasPointerMode_t, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<cublasPointerMode_t> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cublasGetPointerMode_v2(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as cublasPointerMode_t) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetPointerMode_v2(&self, mode: cublasPointerMode_t) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetPointerMode_v2(self.0, mode) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetAtomicsMode(&self) -> Result<cublasAtomicsMode_t, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<cublasAtomicsMode_t> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cublasGetAtomicsMode(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as cublasAtomicsMode_t) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetAtomicsMode(&self, mode: cublasAtomicsMode_t) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetAtomicsMode(self.0, mode) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetMathMode(&self) -> Result<cublasMath_t, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<cublasMath_t> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cublasGetMathMode(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as cublasMath_t) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetMathMode(&self, mode: cublasMath_t) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetMathMode(self.0, mode) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetSmCountTarget(&self) -> Result<i32, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cublasGetSmCountTarget(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as i32) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetSmCountTarget(&self, smCountTarget: i32) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetSmCountTarget(self.0, smCountTarget as _) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetEmulationStrategy(&self) -> Result<cublasEmulationStrategy_t, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<cublasEmulationStrategy_t> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cublasGetEmulationStrategy(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as cublasEmulationStrategy_t) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetEmulationStrategy(
-        &self,
-        emulationStrategy: cublasEmulationStrategy_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetEmulationStrategy(self.0, emulationStrategy) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetEmulationSpecialValuesSupport(
-        &self,
-    ) -> Result<cudaEmulationSpecialValuesSupport, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<cudaEmulationSpecialValuesSupport> = std::mem::MaybeUninit::uninit();
-        let status =
-            unsafe { crate::sys::cublasGetEmulationSpecialValuesSupport(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as cudaEmulationSpecialValuesSupport) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetEmulationSpecialValuesSupport(
-        &self,
-        mask: cudaEmulationSpecialValuesSupport,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetEmulationSpecialValuesSupport(self.0, mask) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetFixedPointEmulationMantissaControl(
-        &self,
-    ) -> Result<cudaEmulationMantissaControl, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<cudaEmulationMantissaControl> = std::mem::MaybeUninit::uninit();
-        let status =
-            unsafe { crate::sys::cublasGetFixedPointEmulationMantissaControl(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as cudaEmulationMantissaControl) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetFixedPointEmulationMantissaControl(
-        &self,
-        mantissaControl: cudaEmulationMantissaControl,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe { crate::sys::cublasSetFixedPointEmulationMantissaControl(self.0, mantissaControl) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetFixedPointEmulationMaxMantissaBitCount(&self) -> Result<i32, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
-        let status = unsafe {
-            crate::sys::cublasGetFixedPointEmulationMaxMantissaBitCount(self.0, out_1.as_mut_ptr() as *mut _)
-        };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as i32) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetFixedPointEmulationMaxMantissaBitCount(
-        &self,
-        maxMantissaBitCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status =
-            unsafe { crate::sys::cublasSetFixedPointEmulationMaxMantissaBitCount(self.0, maxMantissaBitCount as _) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetFixedPointEmulationMantissaBitOffset(&self) -> Result<i32, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
-        let status =
-            unsafe { crate::sys::cublasGetFixedPointEmulationMantissaBitOffset(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as i32) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetFixedPointEmulationMantissaBitOffset(
-        &self,
-        mantissaBitOffset: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status =
-            unsafe { crate::sys::cublasSetFixedPointEmulationMantissaBitOffset(self.0, mantissaBitOffset as _) };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGetFixedPointEmulationMantissaBitCountPointer(
-        &self,
-    ) -> Result<*mut ::std::os::raw::c_int, crate::sys::cublasStatus_t> {
-        let mut out_1: std::mem::MaybeUninit<*mut ::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
-        let status = unsafe {
-            crate::sys::cublasGetFixedPointEmulationMantissaBitCountPointer(self.0, out_1.as_mut_ptr() as *mut _)
-        };
-        if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
-            unsafe { Ok(out_1.assume_init() as *mut ::std::os::raw::c_int) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    pub unsafe fn cublasSetFixedPointEmulationMantissaBitCountPointer<T: types::CudaAsPtr>(
-        &self,
-        mut mantissaBitCount: T,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSetFixedPointEmulationMantissaBitCountPointer(
-                self.0,
-                mantissaBitCount.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasNrm2Ex<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut result: U,
-        resultType: cudaDataType,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasNrm2Ex(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasNrm2Ex_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut result: U,
-        resultType: cudaDataType,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasNrm2Ex_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSnrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSnrm2_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSnrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSnrm2_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDnrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDnrm2_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDnrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDnrm2_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScnrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScnrm2_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScnrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScnrm2_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDznrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDznrm2_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDznrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDznrm2_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDotEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        xType: cudaDataType,
-        incx: i32,
-        y: U,
-        yType: cudaDataType,
-        incy: i32,
-        mut result: V,
-        resultType: cudaDataType,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDotEx(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                yType,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDotEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        xType: cudaDataType,
-        incx: i64,
-        y: U,
-        yType: cudaDataType,
-        incy: i64,
-        mut result: V,
-        resultType: cudaDataType,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDotEx_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                y.as_const_ptr() as *const _,
-                yType,
-                incy,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDotcEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        xType: cudaDataType,
-        incx: i32,
-        y: U,
-        yType: cudaDataType,
-        incy: i32,
-        mut result: V,
-        resultType: cudaDataType,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDotcEx(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                yType,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDotcEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        xType: cudaDataType,
-        incx: i64,
-        y: U,
-        yType: cudaDataType,
-        incy: i64,
-        mut result: V,
-        resultType: cudaDataType,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDotcEx_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                y.as_const_ptr() as *const _,
-                yType,
-                incy,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSdot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        y: U,
-        incy: i32,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSdot_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSdot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        y: U,
-        incy: i64,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSdot_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDdot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        y: U,
-        incy: i32,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDdot_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDdot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        y: U,
-        incy: i64,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDdot_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCdotu_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        y: U,
-        incy: i32,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCdotu_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCdotu_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        y: U,
-        incy: i64,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCdotu_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCdotc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        y: U,
-        incy: i32,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCdotc_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCdotc_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        y: U,
-        incy: i64,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCdotc_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdotu_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        y: U,
-        incy: i32,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdotu_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdotu_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        y: U,
-        incy: i64,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdotu_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdotc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        y: U,
-        incy: i32,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdotc_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdotc_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        y: U,
-        incy: i64,
-        mut result: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdotc_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScalEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        alphaType: cudaDataType,
-        mut x: U,
-        xType: cudaDataType,
-        incx: i32,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScalEx(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                alphaType,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx as _,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScalEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        alphaType: cudaDataType,
-        mut x: U,
-        xType: cudaDataType,
-        incx: i64,
-        executionType: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScalEx_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                alphaType,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx,
-                executionType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSscal_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSscal_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDscal_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDscal_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCscal_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCscal_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsscal_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsscal_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZscal_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZscal_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdscal_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdscal_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasAxpyEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        alphaType: cudaDataType,
-        x: U,
-        xType: cudaDataType,
-        incx: i32,
-        mut y: V,
-        yType: cudaDataType,
-        incy: i32,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasAxpyEx(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                alphaType,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy as _,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasAxpyEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        alphaType: cudaDataType,
-        x: U,
-        xType: cudaDataType,
-        incx: i64,
-        mut y: V,
-        yType: cudaDataType,
-        incy: i64,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasAxpyEx_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                alphaType,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut y: V,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSaxpy_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut y: V,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSaxpy_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut y: V,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDaxpy_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut y: V,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDaxpy_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut y: V,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCaxpy_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut y: V,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCaxpy_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut y: V,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZaxpy_v2(
-                self.0,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut y: V,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZaxpy_v2_64(
-                self.0,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCopyEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCopyEx(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCopyEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCopyEx_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScopy_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScopy_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDcopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDcopy_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDcopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDcopy_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCcopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCcopy_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCcopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCcopy_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZcopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZcopy_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZcopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZcopy_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSswap_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSswap_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDswap_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDswap_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCswap_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCswap_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZswap_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZswap_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSwapEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSwapEx(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSwapEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSwapEx_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIsamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIsamax_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIsamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIsamax_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIdamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIdamax_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIdamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIdamax_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIcamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIcamax_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIcamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIcamax_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIzamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIzamax_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIzamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIzamax_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIamaxEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIamaxEx(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIamaxEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIamaxEx_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIsamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIsamin_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIsamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIsamin_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIdamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIdamin_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIdamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIdamin_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIcamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIcamin_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIcamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIcamin_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIzamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIzamin_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIzamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIzamin_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIaminEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIaminEx(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasIaminEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasIaminEx_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasAsumEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut result: U,
-        resultType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasAsumEx(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasAsumEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut result: U,
-        resultType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasAsumEx_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                xType,
-                incx,
-                result.as_mut_ptr() as *mut _,
-                resultType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSasum_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSasum_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDasum_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDasum_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScasum_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasScasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasScasum_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDzasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        x: T,
-        incx: i32,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDzasum_v2(
-                self.0,
-                n as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDzasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        x: T,
-        incx: i64,
-        mut result: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDzasum_v2_64(
-                self.0,
-                n,
-                x.as_const_ptr() as *const _,
-                incx,
-                result.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSrot_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSrot_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSrot_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDrot_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDrot_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDrot_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCrot_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCrot_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCrot_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsrot_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsrot_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsrot_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZrot_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZrot_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZrot_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdrot_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdrot_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        c: V,
-        s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdrot_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasRotEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i32,
-        c: V,
-        s: W,
-        csType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasRotEx(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy as _,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-                csType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasRotEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i64,
-        c: V,
-        s: W,
-        csType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasRotEx_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy,
-                c.as_const_ptr() as *const _,
-                s.as_const_ptr() as *const _,
-                csType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        mut a: T,
-        mut b: U,
-        mut c: V,
-        mut s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSrotg_v2(
-                self.0,
-                a.as_mut_ptr() as *mut _,
-                b.as_mut_ptr() as *mut _,
-                c.as_mut_ptr() as *mut _,
-                s.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        mut a: T,
-        mut b: U,
-        mut c: V,
-        mut s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDrotg_v2(
-                self.0,
-                a.as_mut_ptr() as *mut _,
-                b.as_mut_ptr() as *mut _,
-                c.as_mut_ptr() as *mut _,
-                s.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        mut a: T,
-        mut b: U,
-        mut c: V,
-        mut s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCrotg_v2(
-                self.0,
-                a.as_mut_ptr() as *mut _,
-                b.as_mut_ptr() as *mut _,
-                c.as_mut_ptr() as *mut _,
-                s.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        mut a: T,
-        mut b: U,
-        mut c: V,
-        mut s: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZrotg_v2(
-                self.0,
-                a.as_mut_ptr() as *mut _,
-                b.as_mut_ptr() as *mut _,
-                c.as_mut_ptr() as *mut _,
-                s.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasRotgEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        mut a: T,
-        mut b: U,
-        abType: cudaDataType,
-        mut c: V,
-        mut s: W,
-        csType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasRotgEx(
-                self.0,
-                a.as_mut_ptr() as *mut _,
-                b.as_mut_ptr() as *mut _,
-                abType,
-                c.as_mut_ptr() as *mut _,
-                s.as_mut_ptr() as *mut _,
-                csType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSrotm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        param: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSrotm_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                param.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSrotm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        param: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSrotm_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                param.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDrotm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        incx: i32,
-        mut y: U,
-        incy: i32,
-        param: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDrotm_v2(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                param.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDrotm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        incx: i64,
-        mut y: U,
-        incy: i64,
-        param: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDrotm_v2_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                param.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasRotmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        mut x: T,
-        xType: cudaDataType,
-        incx: i32,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i32,
-        param: V,
-        paramType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasRotmEx(
-                self.0,
-                n as _,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx as _,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy as _,
-                param.as_const_ptr() as *const _,
-                paramType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasRotmEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i64,
-        mut x: T,
-        xType: cudaDataType,
-        incx: i64,
-        mut y: U,
-        yType: cudaDataType,
-        incy: i64,
-        param: V,
-        paramType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasRotmEx_64(
-                self.0,
-                n,
-                x.as_mut_ptr() as *mut _,
-                xType,
-                incx,
-                y.as_mut_ptr() as *mut _,
-                yType,
-                incy,
-                param.as_const_ptr() as *const _,
-                paramType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSrotmg_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        mut d1: T,
-        mut d2: U,
-        mut x1: V,
-        y1: W,
-        mut param: X,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSrotmg_v2(
-                self.0,
-                d1.as_mut_ptr() as *mut _,
-                d2.as_mut_ptr() as *mut _,
-                x1.as_mut_ptr() as *mut _,
-                y1.as_const_ptr() as *const _,
-                param.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDrotmg_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        mut d1: T,
-        mut d2: U,
-        mut x1: V,
-        y1: W,
-        mut param: X,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDrotmg_v2(
-                self.0,
-                d1.as_mut_ptr() as *mut _,
-                d2.as_mut_ptr() as *mut _,
-                x1.as_mut_ptr() as *mut _,
-                y1.as_const_ptr() as *const _,
-                param.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasRotmgEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        mut d1: T,
-        d1Type: cudaDataType,
-        mut d2: U,
-        d2Type: cudaDataType,
-        mut x1: V,
-        x1Type: cudaDataType,
-        y1: W,
-        y1Type: cudaDataType,
-        mut param: X,
-        paramType: cudaDataType,
-        executiontype: cudaDataType,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasRotmgEx(
-                self.0,
-                d1.as_mut_ptr() as *mut _,
-                d1Type,
-                d2.as_mut_ptr() as *mut _,
-                d2Type,
-                x1.as_mut_ptr() as *mut _,
-                x1Type,
-                y1.as_const_ptr() as *const _,
-                y1Type,
-                param.as_mut_ptr() as *mut _,
-                paramType,
-                executiontype,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        kl: i32,
-        ku: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgbmv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                kl as _,
-                ku as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        kl: i64,
-        ku: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgbmv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                kl,
-                ku,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        kl: i32,
-        ku: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgbmv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                kl as _,
-                ku as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        kl: i64,
-        ku: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgbmv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                kl,
-                ku,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        kl: i32,
-        ku: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgbmv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                kl as _,
-                ku as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        kl: i64,
-        ku: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgbmv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                kl,
-                ku,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        kl: i32,
-        ku: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgbmv_v2(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                kl as _,
-                ku as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        kl: i64,
-        ku: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgbmv_v2_64(
-                self.0,
-                trans,
-                m,
-                n,
-                kl,
-                ku,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStbmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStbmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtbmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtbmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtbmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtbmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtbmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtbmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStpmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStpmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtpmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtpmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtpmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtpmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtpmv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtpmv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStpsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStpsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtpsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtpsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtpsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtpsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        AP: T,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtpsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        AP: T,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtpsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                AP.as_const_ptr() as *const _,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStbsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStbsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtbsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtbsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtbsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtbsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i32,
-        k: i32,
-        A: T,
-        lda: i32,
-        mut x: U,
-        incx: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtbsv_v2(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_mut_ptr() as *mut _,
-                incx as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        n: i64,
-        k: i64,
-        A: T,
-        lda: i64,
-        mut x: U,
-        incx: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtbsv_v2_64(
-                self.0,
-                uplo,
-                trans,
-                diag,
-                n,
-                k,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_mut_ptr() as *mut _,
-                incx,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsymv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsymv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsymv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsymv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsymv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsymv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsymv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsymv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsymv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsymv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsymv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsymv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsymv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsymv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsymv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsymv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChemv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChemv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChemv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChemv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhemv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhemv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhemv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhemv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsbmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsbmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsbmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsbmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChbmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChbmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhbmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhbmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhbmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhbmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSspmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSspmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSspmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSspmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDspmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDspmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDspmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDspmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChpmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChpmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChpmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChpmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhpmv_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i32,
-        beta: W,
-        mut y: X,
-        incy: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhpmv_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhpmv_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        AP: U,
-        x: V,
-        incx: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhpmv_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                AP.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSger_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSger_v2(
-                self.0,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSger_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        m: i64,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSger_v2_64(
-                self.0,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDger_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDger_v2(
-                self.0,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDger_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        m: i64,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDger_v2_64(
-                self.0,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgeru_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgeru_v2(
-                self.0,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgeru_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        m: i64,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgeru_v2_64(
-                self.0,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgerc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgerc_v2(
-                self.0,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgerc_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        m: i64,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgerc_v2_64(
-                self.0,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgeru_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgeru_v2(
-                self.0,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgeru_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        m: i64,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgeru_v2_64(
-                self.0,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgerc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgerc_v2(
-                self.0,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgerc_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        m: i64,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgerc_v2_64(
-                self.0,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut A: V,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut A: V,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut A: V,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut A: V,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut A: V,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut A: V,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut A: V,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut A: V,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCher_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut A: V,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCher_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCher_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut A: V,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCher_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZher_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut A: V,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZher_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZher_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut A: V,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZher_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSspr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSspr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSspr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSspr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDspr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDspr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDspr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDspr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChpr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChpr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChpr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChpr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhpr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhpr_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhpr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        mut AP: V,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhpr_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCher2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCher2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCher2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCher2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZher2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut A: W,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZher2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZher2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut A: W,
-        lda: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZher2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                A.as_mut_ptr() as *mut _,
-                lda,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSspr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSspr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSspr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSspr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDspr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDspr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDspr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDspr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChpr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChpr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChpr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChpr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhpr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        alpha: T,
-        x: U,
-        incx: i32,
-        y: V,
-        incy: i32,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhpr2_v2(
-                self.0,
-                uplo,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                y.as_const_ptr() as *const _,
-                incy as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhpr2_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i64,
-        alpha: T,
-        x: U,
-        incx: i64,
-        y: V,
-        incy: i64,
-        mut AP: W,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhpr2_v2_64(
-                self.0,
-                uplo,
-                n,
-                alpha.as_const_ptr() as *const _,
-                x.as_const_ptr() as *const _,
-                incx,
-                y.as_const_ptr() as *const _,
-                incy,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemvBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        xarray: V,
-        incx: i32,
-        beta: W,
-        yarray: X,
-        incy: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemvBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                xarray.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemvBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        xarray: V,
-        incx: i64,
-        beta: W,
-        yarray: X,
-        incy: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemvBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                xarray.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemvBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        xarray: V,
-        incx: i32,
-        beta: W,
-        yarray: X,
-        incy: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemvBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                xarray.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemvBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        xarray: V,
-        incx: i64,
-        beta: W,
-        yarray: X,
-        incy: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemvBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                xarray.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemvBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        xarray: V,
-        incx: i32,
-        beta: W,
-        yarray: X,
-        incy: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemvBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                xarray.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemvBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        xarray: V,
-        incx: i64,
-        beta: W,
-        yarray: X,
-        incy: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemvBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                xarray.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemvBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        xarray: V,
-        incx: i32,
-        beta: W,
-        yarray: X,
-        incy: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemvBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                xarray.as_const_ptr() as *const _,
-                incx as _,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemvBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        xarray: V,
-        incx: i64,
-        beta: W,
-        yarray: X,
-        incy: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemvBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                xarray.as_const_ptr() as *const _,
-                incx,
-                beta.as_const_ptr() as *const _,
-                yarray.as_const_ptr() as *const _,
-                incy,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemvStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        x: V,
-        incx: i32,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i32,
-        stridey: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemvStridedBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                stridey as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemvStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        x: V,
-        incx: i64,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-        stridey: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemvStridedBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                stridey as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemvStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        x: V,
-        incx: i32,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i32,
-        stridey: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemvStridedBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                stridey as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemvStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        x: V,
-        incx: i64,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-        stridey: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemvStridedBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                stridey as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemvStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        x: V,
-        incx: i32,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i32,
-        stridey: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemvStridedBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                stridey as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemvStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        x: V,
-        incx: i64,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-        stridey: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemvStridedBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                stridey as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemvStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        x: V,
-        incx: i32,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i32,
-        stridey: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemvStridedBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy as _,
-                stridey as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemvStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        x: V,
-        incx: i64,
-        stridex: i64,
-        beta: W,
-        mut y: X,
-        incy: i64,
-        stridey: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemvStridedBatched_64(
-                self.0,
-                trans,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                x.as_const_ptr() as *const _,
-                incx,
-                stridex as _,
-                beta.as_const_ptr() as *const _,
-                y.as_mut_ptr() as *mut _,
-                incy,
-                stridey as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemm_v2(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemm_v2_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemm_v2(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemm_v2_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm_v2(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm_v2_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3m<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3m(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3m_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3m_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3mEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3mEx(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3mEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3mEx_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemm_v2(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemm_v2_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemm3m<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemm3m(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemm3m_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemm3m_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmEx(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmEx_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i32,
-        computeType: cublasComputeType_t,
-        algo: cublasGemmAlgo_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmEx(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-                computeType,
-                algo,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i64,
-        computeType: cublasComputeType_t,
-        algo: cublasGemmAlgo_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmEx_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-                computeType,
-                algo,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemmEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemmEx(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemmEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemmEx_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyrk_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyrk_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyrk_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyrk_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyrk_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyrk_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrk_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrk_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrk_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyrk_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyrk_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyrk_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrkEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrkEx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrkEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrkEx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrk3mEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrk3mEx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrk3mEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrk3mEx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherk_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherk_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherk_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZherk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZherk_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZherk_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZherk_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherkEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherkEx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherkEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherkEx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherk3mEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherk3mEx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherk3mEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        beta: V,
-        mut C: W,
-        Ctype: cudaDataType,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherk3mEx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyr2k_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyr2k_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyr2k_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyr2k_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyr2k_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyr2k_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyr2k_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyr2k_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyr2k_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyr2k_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyr2k_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyr2k_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyr2k_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyr2k_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyr2k_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyr2k_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCher2k_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCher2k_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCher2k_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCher2k_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZher2k_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZher2k_v2(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZher2k_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZher2k_v2_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyrkx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyrkx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsyrkx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsyrkx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyrkx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyrkx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsyrkx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsyrkx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrkx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrkx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsyrkx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsyrkx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyrkx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyrkx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsyrkx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsyrkx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherkx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherkx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCherkx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCherkx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZherkx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZherkx(
-                self.0,
-                uplo,
-                trans,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZherkx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZherkx_64(
-                self.0,
-                uplo,
-                trans,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsymm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsymm_v2(
-                self.0,
-                side,
-                uplo,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSsymm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSsymm_v2_64(
-                self.0,
-                side,
-                uplo,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsymm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsymm_v2(
-                self.0,
-                side,
-                uplo,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDsymm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDsymm_v2_64(
-                self.0,
-                side,
-                uplo,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsymm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsymm_v2(
-                self.0,
-                side,
-                uplo,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCsymm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCsymm_v2_64(
-                self.0,
-                side,
-                uplo,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsymm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsymm_v2(
-                self.0,
-                side,
-                uplo,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZsymm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZsymm_v2_64(
-                self.0,
-                side,
-                uplo,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChemm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChemm_v2(
-                self.0,
-                side,
-                uplo,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasChemm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasChemm_v2_64(
-                self.0,
-                side,
-                uplo,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhemm_v2<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhemm_v2(
-                self.0,
-                side,
-                uplo,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZhemm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZhemm_v2_64(
-                self.0,
-                side,
-                uplo,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        mut B: V,
-        ldb: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrsm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_mut_ptr() as *mut _,
-                ldb as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        mut B: V,
-        ldb: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrsm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_mut_ptr() as *mut _,
-                ldb,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        mut B: V,
-        ldb: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrsm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_mut_ptr() as *mut _,
-                ldb as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        mut B: V,
-        ldb: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrsm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_mut_ptr() as *mut _,
-                ldb,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        mut B: V,
-        ldb: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrsm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_mut_ptr() as *mut _,
-                ldb as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        mut B: V,
-        ldb: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrsm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_mut_ptr() as *mut _,
-                ldb,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        mut B: V,
-        ldb: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrsm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_mut_ptr() as *mut _,
-                ldb as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        mut B: V,
-        ldb: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrsm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_mut_ptr() as *mut _,
-                ldb,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrmm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrmm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrmm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrmm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrmm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrmm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrmm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrmm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrmm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        mut C: W,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrmm_v2(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrmm_v2_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        mut C: W,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrmm_v2_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        Barray: V,
-        ldb: i32,
-        beta: W,
-        Carray: X,
-        ldc: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        Barray: V,
-        ldb: i64,
-        beta: W,
-        Carray: X,
-        ldc: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                Barray.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemmBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        Barray: V,
-        ldb: i32,
-        beta: W,
-        Carray: X,
-        ldc: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemmBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemmBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        Barray: V,
-        ldb: i64,
-        beta: W,
-        Carray: X,
-        ldc: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemmBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                Barray.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemmBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        Barray: V,
-        ldb: i32,
-        beta: W,
-        Carray: X,
-        ldc: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemmBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemmBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        Barray: V,
-        ldb: i64,
-        beta: W,
-        Carray: X,
-        ldc: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemmBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                Barray.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3mBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        Barray: V,
-        ldb: i32,
-        beta: W,
-        Carray: X,
-        ldc: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3mBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3mBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        Barray: V,
-        ldb: i64,
-        beta: W,
-        Carray: X,
-        ldc: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3mBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                Barray.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemmBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        Aarray: U,
-        lda: i32,
-        Barray: V,
-        ldb: i32,
-        beta: W,
-        Carray: X,
-        ldc: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemmBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemmBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        Aarray: U,
-        lda: i64,
-        Barray: V,
-        ldb: i64,
-        beta: W,
-        Carray: X,
-        ldc: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemmBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda,
-                Barray.as_const_ptr() as *const _,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        B: V,
-        ldb: i32,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-        strideC: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmStridedBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-                strideC as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        B: V,
-        ldb: i64,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-        strideC: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmStridedBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-                strideC as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemmStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        B: V,
-        ldb: i32,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-        strideC: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemmStridedBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-                strideC as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemmStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        B: V,
-        ldb: i64,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-        strideC: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemmStridedBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-                strideC as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemmStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        B: V,
-        ldb: i32,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-        strideC: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemmStridedBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-                strideC as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemmStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        B: V,
-        ldb: i64,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-        strideC: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemmStridedBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-                strideC as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3mStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        B: V,
-        ldb: i32,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-        strideC: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3mStridedBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-                strideC as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgemm3mStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        B: V,
-        ldb: i64,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-        strideC: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgemm3mStridedBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-                strideC as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemmStridedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        strideA: i64,
-        B: V,
-        ldb: i32,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i32,
-        strideC: i64,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemmStridedBatched(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-                strideC as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgemmStridedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        strideA: i64,
-        B: V,
-        ldb: i64,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        ldc: i64,
-        strideC: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgemmStridedBatched_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-                strideC as _,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmBatchedEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        Aarray: U,
-        Atype: cudaDataType,
-        lda: i32,
-        Barray: V,
-        Btype: cudaDataType,
-        ldb: i32,
-        beta: W,
-        Carray: X,
-        Ctype: cudaDataType,
-        ldc: i32,
-        batchCount: i32,
-        computeType: cublasComputeType_t,
-        algo: cublasGemmAlgo_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmBatchedEx(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                Barray.as_const_ptr() as *const _,
-                Btype,
-                ldb as _,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                Ctype,
-                ldc as _,
-                batchCount as _,
-                computeType,
-                algo,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmBatchedEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        Aarray: U,
-        Atype: cudaDataType,
-        lda: i64,
-        Barray: V,
-        Btype: cudaDataType,
-        ldb: i64,
-        beta: W,
-        Carray: X,
-        Ctype: cudaDataType,
-        ldc: i64,
-        batchCount: i64,
-        computeType: cublasComputeType_t,
-        algo: cublasGemmAlgo_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmBatchedEx_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                Barray.as_const_ptr() as *const _,
-                Btype,
-                ldb,
-                beta.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                Ctype,
-                ldc,
-                batchCount,
-                computeType,
-                algo,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmStridedBatchedEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i32,
-        strideA: i64,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i32,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i32,
-        strideC: i64,
-        batchCount: i32,
-        computeType: cublasComputeType_t,
-        algo: cublasGemmAlgo_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmStridedBatchedEx(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                k as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda as _,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb as _,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc as _,
-                strideC as _,
-                batchCount as _,
-                computeType,
-                algo,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmStridedBatchedEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        k: i64,
-        alpha: T,
-        A: U,
-        Atype: cudaDataType,
-        lda: i64,
-        strideA: i64,
-        B: V,
-        Btype: cudaDataType,
-        ldb: i64,
-        strideB: i64,
-        beta: W,
-        mut C: X,
-        Ctype: cudaDataType,
-        ldc: i64,
-        strideC: i64,
-        batchCount: i64,
-        computeType: cublasComputeType_t,
-        algo: cublasGemmAlgo_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmStridedBatchedEx_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                k,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                Atype,
-                lda,
-                strideA as _,
-                B.as_const_ptr() as *const _,
-                Btype,
-                ldb,
-                strideB as _,
-                beta.as_const_ptr() as *const _,
-                C.as_mut_ptr() as *mut _,
-                Ctype,
-                ldc,
-                strideC as _,
-                batchCount,
-                computeType,
-                algo,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmGroupedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-        Y: types::CudaAsPtr,
-        Z: types::CudaAsPtr,
-        A: types::CudaAsPtr,
-        B: types::CudaAsPtr,
-        C: types::CudaAsPtr,
-        D: types::CudaAsPtr,
-        E: types::CudaAsPtr,
-        F: types::CudaAsPtr,
-        T13: types::CudaAsPtr,
-    >(
-        &self,
-        transa_array: T,
-        transb_array: U,
-        m_array: V,
-        n_array: W,
-        k_array: X,
-        alpha_array: Y,
-        Aarray: Z,
-        lda_array: A,
-        Barray: B,
-        ldb_array: C,
-        beta_array: D,
-        Carray: E,
-        ldc_array: F,
-        group_count: i32,
-        group_size: T13,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmGroupedBatched(
-                self.0,
-                transa_array.as_const_ptr() as *const _,
-                transb_array.as_const_ptr() as *const _,
-                m_array.as_const_ptr() as *const _,
-                n_array.as_const_ptr() as *const _,
-                k_array.as_const_ptr() as *const _,
-                alpha_array.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda_array.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb_array.as_const_ptr() as *const _,
-                beta_array.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc_array.as_const_ptr() as *const _,
-                group_count as _,
-                group_size.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgemmGroupedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-        Y: types::CudaAsPtr,
-        Z: types::CudaAsPtr,
-        A: types::CudaAsPtr,
-        B: types::CudaAsPtr,
-        C: types::CudaAsPtr,
-        D: types::CudaAsPtr,
-        E: types::CudaAsPtr,
-        F: types::CudaAsPtr,
-        T13: types::CudaAsPtr,
-    >(
-        &self,
-        transa_array: T,
-        transb_array: U,
-        m_array: V,
-        n_array: W,
-        k_array: X,
-        alpha_array: Y,
-        Aarray: Z,
-        lda_array: A,
-        Barray: B,
-        ldb_array: C,
-        beta_array: D,
-        Carray: E,
-        ldc_array: F,
-        group_count: i64,
-        group_size: T13,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgemmGroupedBatched_64(
-                self.0,
-                transa_array.as_const_ptr() as *const _,
-                transb_array.as_const_ptr() as *const _,
-                m_array.as_const_ptr() as *const _,
-                n_array.as_const_ptr() as *const _,
-                k_array.as_const_ptr() as *const _,
-                alpha_array.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda_array.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb_array.as_const_ptr() as *const _,
-                beta_array.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc_array.as_const_ptr() as *const _,
-                group_count,
-                group_size.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemmGroupedBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-        Y: types::CudaAsPtr,
-        Z: types::CudaAsPtr,
-        A: types::CudaAsPtr,
-        B: types::CudaAsPtr,
-        C: types::CudaAsPtr,
-        D: types::CudaAsPtr,
-        E: types::CudaAsPtr,
-        F: types::CudaAsPtr,
-        T13: types::CudaAsPtr,
-    >(
-        &self,
-        transa_array: T,
-        transb_array: U,
-        m_array: V,
-        n_array: W,
-        k_array: X,
-        alpha_array: Y,
-        Aarray: Z,
-        lda_array: A,
-        Barray: B,
-        ldb_array: C,
-        beta_array: D,
-        Carray: E,
-        ldc_array: F,
-        group_count: i32,
-        group_size: T13,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemmGroupedBatched(
-                self.0,
-                transa_array.as_const_ptr() as *const _,
-                transb_array.as_const_ptr() as *const _,
-                m_array.as_const_ptr() as *const _,
-                n_array.as_const_ptr() as *const _,
-                k_array.as_const_ptr() as *const _,
-                alpha_array.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda_array.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb_array.as_const_ptr() as *const _,
-                beta_array.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc_array.as_const_ptr() as *const _,
-                group_count as _,
-                group_size.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgemmGroupedBatched_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-        Y: types::CudaAsPtr,
-        Z: types::CudaAsPtr,
-        A: types::CudaAsPtr,
-        B: types::CudaAsPtr,
-        C: types::CudaAsPtr,
-        D: types::CudaAsPtr,
-        E: types::CudaAsPtr,
-        F: types::CudaAsPtr,
-        T13: types::CudaAsPtr,
-    >(
-        &self,
-        transa_array: T,
-        transb_array: U,
-        m_array: V,
-        n_array: W,
-        k_array: X,
-        alpha_array: Y,
-        Aarray: Z,
-        lda_array: A,
-        Barray: B,
-        ldb_array: C,
-        beta_array: D,
-        Carray: E,
-        ldc_array: F,
-        group_count: i64,
-        group_size: T13,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgemmGroupedBatched_64(
-                self.0,
-                transa_array.as_const_ptr() as *const _,
-                transb_array.as_const_ptr() as *const _,
-                m_array.as_const_ptr() as *const _,
-                n_array.as_const_ptr() as *const _,
-                k_array.as_const_ptr() as *const _,
-                alpha_array.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                lda_array.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb_array.as_const_ptr() as *const _,
-                beta_array.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                ldc_array.as_const_ptr() as *const _,
-                group_count,
-                group_size.as_const_ptr() as *const _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmGroupedBatchedEx<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-        Y: types::CudaAsPtr,
-        Z: types::CudaAsPtr,
-        A: types::CudaAsPtr,
-        B: types::CudaAsPtr,
-        C: types::CudaAsPtr,
-        D: types::CudaAsPtr,
-        E: types::CudaAsPtr,
-        F: types::CudaAsPtr,
-        T13: types::CudaAsPtr,
-    >(
-        &self,
-        transa_array: T,
-        transb_array: U,
-        m_array: V,
-        n_array: W,
-        k_array: X,
-        alpha_array: Y,
-        Aarray: Z,
-        Atype: cudaDataType_t,
-        lda_array: A,
-        Barray: B,
-        Btype: cudaDataType_t,
-        ldb_array: C,
-        beta_array: D,
-        Carray: E,
-        Ctype: cudaDataType_t,
-        ldc_array: F,
-        group_count: i32,
-        group_size: T13,
-        computeType: cublasComputeType_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmGroupedBatchedEx(
-                self.0,
-                transa_array.as_const_ptr() as *const _,
-                transb_array.as_const_ptr() as *const _,
-                m_array.as_const_ptr() as *const _,
-                n_array.as_const_ptr() as *const _,
-                k_array.as_const_ptr() as *const _,
-                alpha_array.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                Atype,
-                lda_array.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                Btype,
-                ldb_array.as_const_ptr() as *const _,
-                beta_array.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                Ctype,
-                ldc_array.as_const_ptr() as *const _,
-                group_count as _,
-                group_size.as_const_ptr() as *const _,
-                computeType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasGemmGroupedBatchedEx_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-        Y: types::CudaAsPtr,
-        Z: types::CudaAsPtr,
-        A: types::CudaAsPtr,
-        B: types::CudaAsPtr,
-        C: types::CudaAsPtr,
-        D: types::CudaAsPtr,
-        E: types::CudaAsPtr,
-        F: types::CudaAsPtr,
-        T13: types::CudaAsPtr,
-    >(
-        &self,
-        transa_array: T,
-        transb_array: U,
-        m_array: V,
-        n_array: W,
-        k_array: X,
-        alpha_array: Y,
-        Aarray: Z,
-        Atype: cudaDataType_t,
-        lda_array: A,
-        Barray: B,
-        Btype: cudaDataType_t,
-        ldb_array: C,
-        beta_array: D,
-        Carray: E,
-        Ctype: cudaDataType_t,
-        ldc_array: F,
-        group_count: i64,
-        group_size: T13,
-        computeType: cublasComputeType_t,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasGemmGroupedBatchedEx_64(
-                self.0,
-                transa_array.as_const_ptr() as *const _,
-                transb_array.as_const_ptr() as *const _,
-                m_array.as_const_ptr() as *const _,
-                n_array.as_const_ptr() as *const _,
-                k_array.as_const_ptr() as *const _,
-                alpha_array.as_const_ptr() as *const _,
-                Aarray.as_const_ptr() as *const _,
-                Atype,
-                lda_array.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                Btype,
-                ldb_array.as_const_ptr() as *const _,
-                beta_array.as_const_ptr() as *const _,
-                Carray.as_const_ptr() as *const _,
-                Ctype,
-                ldc_array.as_const_ptr() as *const _,
-                group_count,
-                group_size.as_const_ptr() as *const _,
-                computeType,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgeam<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        B: W,
-        ldb: i32,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgeam(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgeam_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        B: W,
-        ldb: i64,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgeam_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgeam<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        B: W,
-        ldb: i32,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgeam(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgeam_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        B: W,
-        ldb: i64,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgeam_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgeam<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        B: W,
-        ldb: i32,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgeam(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgeam_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        B: W,
-        ldb: i64,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgeam_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgeam<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        beta: V,
-        B: W,
-        ldb: i32,
-        mut C: X,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgeam(
-                self.0,
-                transa,
-                transb,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgeam_64<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-        X: types::CudaAsPtr,
-    >(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        beta: V,
-        B: W,
-        ldb: i64,
-        mut C: X,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgeam_64(
-                self.0,
-                transa,
-                transb,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                beta.as_const_ptr() as *const _,
-                B.as_const_ptr() as *const _,
-                ldb,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrsmBatched(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrsmBatched_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrsmBatched(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrsmBatched_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrsmBatched(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrsmBatched_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i32,
-        n: i32,
-        alpha: T,
-        A: U,
-        lda: i32,
-        B: V,
-        ldb: i32,
-        batchCount: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrsmBatched(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m as _,
-                n as _,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                ldb as _,
-                batchCount as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        side: cublasSideMode_t,
-        uplo: cublasFillMode_t,
-        trans: cublasOperation_t,
-        diag: cublasDiagType_t,
-        m: i64,
-        n: i64,
-        alpha: T,
-        A: U,
-        lda: i64,
-        B: V,
-        ldb: i64,
-        batchCount: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrsmBatched_64(
-                self.0,
-                side,
-                uplo,
-                trans,
-                diag,
-                m,
-                n,
-                alpha.as_const_ptr() as *const _,
-                A.as_const_ptr() as *const _,
-                lda,
-                B.as_const_ptr() as *const _,
-                ldb,
-                batchCount,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i32,
-        n: i32,
-        A: T,
-        lda: i32,
-        x: U,
-        incx: i32,
-        mut C: V,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSdgmm(
-                self.0,
-                mode,
-                m as _,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i64,
-        n: i64,
-        A: T,
-        lda: i64,
-        x: U,
-        incx: i64,
-        mut C: V,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSdgmm_64(
-                self.0,
-                mode,
-                m,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i32,
-        n: i32,
-        A: T,
-        lda: i32,
-        x: U,
-        incx: i32,
-        mut C: V,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDdgmm(
-                self.0,
-                mode,
-                m as _,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i64,
-        n: i64,
-        A: T,
-        lda: i64,
-        x: U,
-        incx: i64,
-        mut C: V,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDdgmm_64(
-                self.0,
-                mode,
-                m,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i32,
-        n: i32,
-        A: T,
-        lda: i32,
-        x: U,
-        incx: i32,
-        mut C: V,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCdgmm(
-                self.0,
-                mode,
-                m as _,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i64,
-        n: i64,
-        A: T,
-        lda: i64,
-        x: U,
-        incx: i64,
-        mut C: V,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCdgmm_64(
-                self.0,
-                mode,
-                m,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i32,
-        n: i32,
-        A: T,
-        lda: i32,
-        x: U,
-        incx: i32,
-        mut C: V,
-        ldc: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdgmm(
-                self.0,
-                mode,
-                m as _,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                x.as_const_ptr() as *const _,
-                incx as _,
-                C.as_mut_ptr() as *mut _,
-                ldc as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        mode: cublasSideMode_t,
-        m: i64,
-        n: i64,
-        A: T,
-        lda: i64,
-        x: U,
-        incx: i64,
-        mut C: V,
-        ldc: i64,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZdgmm_64(
-                self.0,
-                mode,
-                m,
-                n,
-                A.as_const_ptr() as *const _,
-                lda,
-                x.as_const_ptr() as *const _,
-                incx,
-                C.as_mut_ptr() as *mut _,
-                ldc,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        Ainv: U,
-        lda_inv: i32,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSmatinvBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                Ainv.as_const_ptr() as *const _,
-                lda_inv as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        Ainv: U,
-        lda_inv: i32,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDmatinvBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                Ainv.as_const_ptr() as *const _,
-                lda_inv as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        Ainv: U,
-        lda_inv: i32,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCmatinvBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                Ainv.as_const_ptr() as *const _,
-                lda_inv as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        Ainv: U,
-        lda_inv: i32,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZmatinvBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                Ainv.as_const_ptr() as *const _,
-                lda_inv as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        Aarray: T,
-        lda: i32,
-        TauArray: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgeqrfBatched(
-                self.0,
-                m as _,
-                n as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                TauArray.as_const_ptr() as *const _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        Aarray: T,
-        lda: i32,
-        TauArray: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgeqrfBatched(
-                self.0,
-                m as _,
-                n as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                TauArray.as_const_ptr() as *const _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        Aarray: T,
-        lda: i32,
-        TauArray: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgeqrfBatched(
-                self.0,
-                m as _,
-                n as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                TauArray.as_const_ptr() as *const _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        m: i32,
-        n: i32,
-        Aarray: T,
-        lda: i32,
-        TauArray: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgeqrfBatched(
-                self.0,
-                m as _,
-                n as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                TauArray.as_const_ptr() as *const _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgelsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        Carray: U,
-        ldc: i32,
-        mut info: V,
-        mut devInfoArray: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgelsBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                devInfoArray.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgelsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        Carray: U,
-        ldc: i32,
-        mut info: V,
-        mut devInfoArray: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgelsBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                devInfoArray.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgelsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        Carray: U,
-        ldc: i32,
-        mut info: V,
-        mut devInfoArray: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgelsBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                devInfoArray.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgelsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        m: i32,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        Carray: U,
-        ldc: i32,
-        mut info: V,
-        mut devInfoArray: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgelsBatched(
-                self.0,
-                trans,
-                m as _,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                Carray.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                devInfoArray.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        AP: T,
-        mut A: U,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStpttr(
-                self.0,
-                uplo,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        AP: T,
-        mut A: U,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtpttr(
-                self.0,
-                uplo,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        AP: T,
-        mut A: U,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtpttr(
-                self.0,
-                uplo,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        AP: T,
-        mut A: U,
-        lda: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtpttr(
-                self.0,
-                uplo,
-                n as _,
-                AP.as_const_ptr() as *const _,
-                A.as_mut_ptr() as *mut _,
-                lda as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasStrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut AP: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasStrttp(
-                self.0,
-                uplo,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDtrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut AP: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDtrttp(
-                self.0,
-                uplo,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCtrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut AP: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCtrttp(
-                self.0,
-                uplo,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZtrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
-        &self,
-        uplo: cublasFillMode_t,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut AP: U,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZtrttp(
-                self.0,
-                uplo,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                AP.as_mut_ptr() as *mut _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut P: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgetrfBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_mut_ptr() as *mut _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut P: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgetrfBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_mut_ptr() as *mut _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut P: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgetrfBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_mut_ptr() as *mut _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        mut P: U,
-        mut info: V,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgetrfBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_mut_ptr() as *mut _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgetriBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        P: U,
-        C: V,
-        ldc: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgetriBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_const_ptr() as *const _,
-                C.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgetriBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        P: U,
-        C: V,
-        ldc: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgetriBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_const_ptr() as *const _,
-                C.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgetriBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        P: U,
-        C: V,
-        ldc: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgetriBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_const_ptr() as *const _,
-                C.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgetriBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        n: i32,
-        A: T,
-        lda: i32,
-        P: U,
-        C: V,
-        ldc: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgetriBatched(
-                self.0,
-                n as _,
-                A.as_const_ptr() as *const _,
-                lda as _,
-                P.as_const_ptr() as *const _,
-                C.as_const_ptr() as *const _,
-                ldc as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasSgetrsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        devIpiv: U,
-        Barray: V,
-        ldb: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasSgetrsBatched(
-                self.0,
-                trans,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                devIpiv.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasDgetrsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        devIpiv: U,
-        Barray: V,
-        ldb: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasDgetrsBatched(
-                self.0,
-                trans,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                devIpiv.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasCgetrsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        devIpiv: U,
-        Barray: V,
-        ldb: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasCgetrsBatched(
-                self.0,
-                trans,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                devIpiv.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasZgetrsBatched<
-        T: types::CudaAsPtr,
-        U: types::CudaAsPtr,
-        V: types::CudaAsPtr,
-        W: types::CudaAsPtr,
-    >(
-        &self,
-        trans: cublasOperation_t,
-        n: i32,
-        nrhs: i32,
-        Aarray: T,
-        lda: i32,
-        devIpiv: U,
-        Barray: V,
-        ldb: i32,
-        mut info: W,
-        batchSize: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasZgetrsBatched(
-                self.0,
-                trans,
-                n as _,
-                nrhs as _,
-                Aarray.as_const_ptr() as *const _,
-                lda as _,
-                devIpiv.as_const_ptr() as *const _,
-                Barray.as_const_ptr() as *const _,
-                ldb as _,
-                info.as_mut_ptr() as *mut _,
-                batchSize as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    pub unsafe fn cublasUint8gemmBias<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
-        &self,
-        transa: cublasOperation_t,
-        transb: cublasOperation_t,
-        transc: cublasOperation_t,
-        m: i32,
-        n: i32,
-        k: i32,
-        A: T,
-        A_bias: i32,
-        lda: i32,
-        B: U,
-        B_bias: i32,
-        ldb: i32,
-        mut C: V,
-        C_bias: i32,
-        ldc: i32,
-        C_mult: i32,
-        C_shift: i32,
-    ) -> Result<(), crate::sys::cublasStatus_t> {
-        let status = unsafe {
-            crate::sys::cublasUint8gemmBias(
-                self.0,
-                transa,
-                transb,
-                transc,
-                m as _,
-                n as _,
-                k as _,
-                A.as_const_ptr() as *const _,
-                A_bias as _,
-                lda as _,
-                B.as_const_ptr() as *const _,
-                B_bias as _,
-                ldb as _,
-                C.as_mut_ptr() as *mut _,
-                C_bias as _,
-                ldc as _,
-                C_mult as _,
-                C_shift as _,
-            )
-        };
-        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-            Ok(())
-        } else {
-            Err(status)
-        }
+pub unsafe fn cublasCreate_v2() -> Result<cublasHandle_t, crate::sys::cublasStatus_t> {
+    let mut out_0: std::mem::MaybeUninit<cublasHandle_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasCreate_v2(out_0.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_0.assume_init() as cublasHandle_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasDestroy_v2(handle: cublasHandle_t) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasDestroy_v2(handle) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetVersion_v2(handle: cublasHandle_t) -> Result<i32, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetVersion_v2(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as i32) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
 pub unsafe fn cublasGetProperty(type_: libraryPropertyType) -> Result<i32, crate::sys::cublasStatus_t> {
@@ -26810,6 +10123,258 @@ pub unsafe fn cublasGetProperty(type_: libraryPropertyType) -> Result<i32, crate
 }
 pub unsafe fn cublasGetCudartVersion() -> usize {
     unsafe { crate::sys::cublasGetCudartVersion() }
+}
+pub unsafe fn cublasSetWorkspace_v2<T: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mut workspace: T,
+    workspaceSizeInBytes: usize,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status =
+        unsafe { crate::sys::cublasSetWorkspace_v2(handle, workspace.as_mut_ptr() as *mut _, workspaceSizeInBytes) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSetStream_v2(
+    handle: cublasHandle_t,
+    streamId: cudaStream_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetStream_v2(handle, streamId) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetStream_v2(handle: cublasHandle_t) -> Result<cudaStream_t, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetStream_v2(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as cudaStream_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasGetPointerMode_v2(
+    handle: cublasHandle_t,
+) -> Result<cublasPointerMode_t, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<cublasPointerMode_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetPointerMode_v2(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as cublasPointerMode_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetPointerMode_v2(
+    handle: cublasHandle_t,
+    mode: cublasPointerMode_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetPointerMode_v2(handle, mode) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetAtomicsMode(handle: cublasHandle_t) -> Result<cublasAtomicsMode_t, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<cublasAtomicsMode_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetAtomicsMode(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as cublasAtomicsMode_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetAtomicsMode(
+    handle: cublasHandle_t,
+    mode: cublasAtomicsMode_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetAtomicsMode(handle, mode) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetMathMode(handle: cublasHandle_t) -> Result<cublasMath_t, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<cublasMath_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetMathMode(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as cublasMath_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetMathMode(handle: cublasHandle_t, mode: cublasMath_t) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetMathMode(handle, mode) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetSmCountTarget(handle: cublasHandle_t) -> Result<i32, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetSmCountTarget(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as i32) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetSmCountTarget(
+    handle: cublasHandle_t,
+    smCountTarget: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetSmCountTarget(handle, smCountTarget as _) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetEmulationStrategy(
+    handle: cublasHandle_t,
+) -> Result<cublasEmulationStrategy_t, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<cublasEmulationStrategy_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetEmulationStrategy(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as cublasEmulationStrategy_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetEmulationStrategy(
+    handle: cublasHandle_t,
+    emulationStrategy: cublasEmulationStrategy_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetEmulationStrategy(handle, emulationStrategy) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetEmulationSpecialValuesSupport(
+    handle: cublasHandle_t,
+) -> Result<cudaEmulationSpecialValuesSupport, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<cudaEmulationSpecialValuesSupport> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cublasGetEmulationSpecialValuesSupport(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as cudaEmulationSpecialValuesSupport) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetEmulationSpecialValuesSupport(
+    handle: cublasHandle_t,
+    mask: cudaEmulationSpecialValuesSupport,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetEmulationSpecialValuesSupport(handle, mask) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetFixedPointEmulationMantissaControl(
+    handle: cublasHandle_t,
+) -> Result<cudaEmulationMantissaControl, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<cudaEmulationMantissaControl> = std::mem::MaybeUninit::uninit();
+    let status =
+        unsafe { crate::sys::cublasGetFixedPointEmulationMantissaControl(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as cudaEmulationMantissaControl) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetFixedPointEmulationMantissaControl(
+    handle: cublasHandle_t,
+    mantissaControl: cudaEmulationMantissaControl,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetFixedPointEmulationMantissaControl(handle, mantissaControl) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetFixedPointEmulationMaxMantissaBitCount(
+    handle: cublasHandle_t,
+) -> Result<i32, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
+    let status =
+        unsafe { crate::sys::cublasGetFixedPointEmulationMaxMantissaBitCount(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as i32) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetFixedPointEmulationMaxMantissaBitCount(
+    handle: cublasHandle_t,
+    maxMantissaBitCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status =
+        unsafe { crate::sys::cublasSetFixedPointEmulationMaxMantissaBitCount(handle, maxMantissaBitCount as _) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetFixedPointEmulationMantissaBitOffset(
+    handle: cublasHandle_t,
+) -> Result<i32, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
+    let status =
+        unsafe { crate::sys::cublasGetFixedPointEmulationMantissaBitOffset(handle, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as i32) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetFixedPointEmulationMantissaBitOffset(
+    handle: cublasHandle_t,
+    mantissaBitOffset: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe { crate::sys::cublasSetFixedPointEmulationMantissaBitOffset(handle, mantissaBitOffset as _) };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGetFixedPointEmulationMantissaBitCountPointer(
+    handle: cublasHandle_t,
+) -> Result<*mut ::std::os::raw::c_int, crate::sys::cublasStatus_t> {
+    let mut out_1: std::mem::MaybeUninit<*mut ::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
+    let status = unsafe {
+        crate::sys::cublasGetFixedPointEmulationMantissaBitCountPointer(handle, out_1.as_mut_ptr() as *mut _)
+    };
+    if status as usize == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS as usize {
+        unsafe { Ok(out_1.assume_init() as *mut ::std::os::raw::c_int) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+pub unsafe fn cublasSetFixedPointEmulationMantissaBitCountPointer<T: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mut mantissaBitCount: T,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSetFixedPointEmulationMantissaBitCountPointer(handle, mantissaBitCount.as_mut_ptr() as *mut _)
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
 }
 pub unsafe fn cublasGetStatusName(status: cublasStatus_t) -> *const ::std::os::raw::c_char {
     unsafe { crate::sys::cublasGetStatusName(status) }
@@ -27273,23 +10838,16255 @@ pub unsafe fn cublasGetMatrixAsync_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
 pub unsafe fn cublasXerbla<T: types::CudaAsPtr>(srName: T, info: i32) {
     unsafe { crate::sys::cublasXerbla(srName.as_const_ptr() as *const _, info as _) }
 }
-impl CublasHandle {
-    pub fn new() -> Result<Self, crate::sys::cublasStatus_t> {
-        unsafe {
-            let mut handle = std::ptr::null_mut();
-            let status = crate::sys::cublasCreate_v2(&mut handle);
-            if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-                Ok(Self(handle))
-            } else {
-                Err(status)
-            }
-        }
+pub unsafe fn cublasNrm2Ex<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut result: U,
+    resultType: cudaDataType,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasNrm2Ex(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
     }
 }
-impl Drop for CublasHandle {
-    fn drop(&mut self) {
-        unsafe {
-            crate::sys::cublasDestroy_v2(self.0);
-        }
+pub unsafe fn cublasNrm2Ex_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut result: U,
+    resultType: cudaDataType,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasNrm2Ex_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSnrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSnrm2_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSnrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSnrm2_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDnrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDnrm2_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDnrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDnrm2_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScnrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScnrm2_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScnrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScnrm2_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDznrm2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDznrm2_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDznrm2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDznrm2_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDotEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    xType: cudaDataType,
+    incx: i32,
+    y: U,
+    yType: cudaDataType,
+    incy: i32,
+    mut result: V,
+    resultType: cudaDataType,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDotEx(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            yType,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDotEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    xType: cudaDataType,
+    incx: i64,
+    y: U,
+    yType: cudaDataType,
+    incy: i64,
+    mut result: V,
+    resultType: cudaDataType,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDotEx_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            y.as_const_ptr() as *const _,
+            yType,
+            incy,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDotcEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    xType: cudaDataType,
+    incx: i32,
+    y: U,
+    yType: cudaDataType,
+    incy: i32,
+    mut result: V,
+    resultType: cudaDataType,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDotcEx(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            yType,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDotcEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    xType: cudaDataType,
+    incx: i64,
+    y: U,
+    yType: cudaDataType,
+    incy: i64,
+    mut result: V,
+    resultType: cudaDataType,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDotcEx_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            y.as_const_ptr() as *const _,
+            yType,
+            incy,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSdot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    y: U,
+    incy: i32,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSdot_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSdot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    y: U,
+    incy: i64,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSdot_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDdot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    y: U,
+    incy: i32,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDdot_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDdot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    y: U,
+    incy: i64,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDdot_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCdotu_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    y: U,
+    incy: i32,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCdotu_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCdotu_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    y: U,
+    incy: i64,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCdotu_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCdotc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    y: U,
+    incy: i32,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCdotc_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCdotc_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    y: U,
+    incy: i64,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCdotc_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdotu_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    y: U,
+    incy: i32,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdotu_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdotu_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    y: U,
+    incy: i64,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdotu_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdotc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    y: U,
+    incy: i32,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdotc_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdotc_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    y: U,
+    incy: i64,
+    mut result: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdotc_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScalEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    alphaType: cudaDataType,
+    mut x: U,
+    xType: cudaDataType,
+    incx: i32,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScalEx(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            alphaType,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx as _,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScalEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    alphaType: cudaDataType,
+    mut x: U,
+    xType: cudaDataType,
+    incx: i64,
+    executionType: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScalEx_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            alphaType,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx,
+            executionType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSscal_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSscal_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDscal_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDscal_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCscal_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCscal_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsscal_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsscal_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZscal_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZscal_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdscal_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdscal_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdscal_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdscal_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasAxpyEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    alphaType: cudaDataType,
+    x: U,
+    xType: cudaDataType,
+    incx: i32,
+    mut y: V,
+    yType: cudaDataType,
+    incy: i32,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasAxpyEx(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            alphaType,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy as _,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasAxpyEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    alphaType: cudaDataType,
+    x: U,
+    xType: cudaDataType,
+    incx: i64,
+    mut y: V,
+    yType: cudaDataType,
+    incy: i64,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasAxpyEx_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            alphaType,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut y: V,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSaxpy_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut y: V,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSaxpy_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut y: V,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDaxpy_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut y: V,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDaxpy_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut y: V,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCaxpy_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut y: V,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCaxpy_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZaxpy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut y: V,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZaxpy_v2(
+            handle,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZaxpy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut y: V,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZaxpy_v2_64(
+            handle,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCopyEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCopyEx(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCopyEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCopyEx_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScopy_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScopy_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDcopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDcopy_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDcopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDcopy_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCcopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCcopy_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCcopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCcopy_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZcopy_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZcopy_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZcopy_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZcopy_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSswap_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSswap_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDswap_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDswap_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCswap_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCswap_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZswap_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZswap_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZswap_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZswap_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSwapEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSwapEx(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSwapEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSwapEx_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIsamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIsamax_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIsamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIsamax_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIdamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIdamax_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIdamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIdamax_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIcamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIcamax_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIcamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIcamax_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIzamax_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIzamax_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIzamax_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIzamax_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIamaxEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIamaxEx(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIamaxEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIamaxEx_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIsamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIsamin_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIsamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIsamin_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIdamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIdamin_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIdamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIdamin_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIcamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIcamin_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIcamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIcamin_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIzamin_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIzamin_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIzamin_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIzamin_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIaminEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIaminEx(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasIaminEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasIaminEx_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasAsumEx<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut result: U,
+    resultType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasAsumEx(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasAsumEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut result: U,
+    resultType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasAsumEx_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            xType,
+            incx,
+            result.as_mut_ptr() as *mut _,
+            resultType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSasum_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSasum_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDasum_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDasum_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScasum_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasScasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasScasum_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDzasum_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    x: T,
+    incx: i32,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDzasum_v2(
+            handle,
+            n as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDzasum_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    x: T,
+    incx: i64,
+    mut result: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDzasum_v2_64(
+            handle,
+            n,
+            x.as_const_ptr() as *const _,
+            incx,
+            result.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSrot_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSrot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSrot_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDrot_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDrot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDrot_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCrot_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCrot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCrot_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsrot_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsrot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsrot_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZrot_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZrot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZrot_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdrot_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdrot_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdrot_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    c: V,
+    s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdrot_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasRotEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i32,
+    c: V,
+    s: W,
+    csType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasRotEx(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy as _,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+            csType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasRotEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i64,
+    c: V,
+    s: W,
+    csType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasRotEx_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy,
+            c.as_const_ptr() as *const _,
+            s.as_const_ptr() as *const _,
+            csType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mut a: T,
+    mut b: U,
+    mut c: V,
+    mut s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSrotg_v2(
+            handle,
+            a.as_mut_ptr() as *mut _,
+            b.as_mut_ptr() as *mut _,
+            c.as_mut_ptr() as *mut _,
+            s.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mut a: T,
+    mut b: U,
+    mut c: V,
+    mut s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDrotg_v2(
+            handle,
+            a.as_mut_ptr() as *mut _,
+            b.as_mut_ptr() as *mut _,
+            c.as_mut_ptr() as *mut _,
+            s.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mut a: T,
+    mut b: U,
+    mut c: V,
+    mut s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCrotg_v2(
+            handle,
+            a.as_mut_ptr() as *mut _,
+            b.as_mut_ptr() as *mut _,
+            c.as_mut_ptr() as *mut _,
+            s.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZrotg_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mut a: T,
+    mut b: U,
+    mut c: V,
+    mut s: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZrotg_v2(
+            handle,
+            a.as_mut_ptr() as *mut _,
+            b.as_mut_ptr() as *mut _,
+            c.as_mut_ptr() as *mut _,
+            s.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasRotgEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mut a: T,
+    mut b: U,
+    abType: cudaDataType,
+    mut c: V,
+    mut s: W,
+    csType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasRotgEx(
+            handle,
+            a.as_mut_ptr() as *mut _,
+            b.as_mut_ptr() as *mut _,
+            abType,
+            c.as_mut_ptr() as *mut _,
+            s.as_mut_ptr() as *mut _,
+            csType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSrotm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    param: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSrotm_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            param.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSrotm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    param: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSrotm_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            param.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDrotm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    incx: i32,
+    mut y: U,
+    incy: i32,
+    param: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDrotm_v2(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            param.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDrotm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    incx: i64,
+    mut y: U,
+    incy: i64,
+    param: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDrotm_v2_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            param.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasRotmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    mut x: T,
+    xType: cudaDataType,
+    incx: i32,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i32,
+    param: V,
+    paramType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasRotmEx(
+            handle,
+            n as _,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx as _,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy as _,
+            param.as_const_ptr() as *const _,
+            paramType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasRotmEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i64,
+    mut x: T,
+    xType: cudaDataType,
+    incx: i64,
+    mut y: U,
+    yType: cudaDataType,
+    incy: i64,
+    param: V,
+    paramType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasRotmEx_64(
+            handle,
+            n,
+            x.as_mut_ptr() as *mut _,
+            xType,
+            incx,
+            y.as_mut_ptr() as *mut _,
+            yType,
+            incy,
+            param.as_const_ptr() as *const _,
+            paramType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSrotmg_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    mut d1: T,
+    mut d2: U,
+    mut x1: V,
+    y1: W,
+    mut param: X,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSrotmg_v2(
+            handle,
+            d1.as_mut_ptr() as *mut _,
+            d2.as_mut_ptr() as *mut _,
+            x1.as_mut_ptr() as *mut _,
+            y1.as_const_ptr() as *const _,
+            param.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDrotmg_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    mut d1: T,
+    mut d2: U,
+    mut x1: V,
+    y1: W,
+    mut param: X,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDrotmg_v2(
+            handle,
+            d1.as_mut_ptr() as *mut _,
+            d2.as_mut_ptr() as *mut _,
+            x1.as_mut_ptr() as *mut _,
+            y1.as_const_ptr() as *const _,
+            param.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasRotmgEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    mut d1: T,
+    d1Type: cudaDataType,
+    mut d2: U,
+    d2Type: cudaDataType,
+    mut x1: V,
+    x1Type: cudaDataType,
+    y1: W,
+    y1Type: cudaDataType,
+    mut param: X,
+    paramType: cudaDataType,
+    executiontype: cudaDataType,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasRotmgEx(
+            handle,
+            d1.as_mut_ptr() as *mut _,
+            d1Type,
+            d2.as_mut_ptr() as *mut _,
+            d2Type,
+            x1.as_mut_ptr() as *mut _,
+            x1Type,
+            y1.as_const_ptr() as *const _,
+            y1Type,
+            param.as_mut_ptr() as *mut _,
+            paramType,
+            executiontype,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    kl: i32,
+    ku: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgbmv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            kl as _,
+            ku as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    kl: i64,
+    ku: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgbmv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            kl,
+            ku,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    kl: i32,
+    ku: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgbmv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            kl as _,
+            ku as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    kl: i64,
+    ku: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgbmv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            kl,
+            ku,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    kl: i32,
+    ku: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgbmv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            kl as _,
+            ku as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    kl: i64,
+    ku: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgbmv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            kl,
+            ku,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    kl: i32,
+    ku: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgbmv_v2(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            kl as _,
+            ku as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    kl: i64,
+    ku: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgbmv_v2_64(
+            handle,
+            trans,
+            m,
+            n,
+            kl,
+            ku,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStbmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStbmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtbmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtbmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtbmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtbmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtbmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtbmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtbmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtbmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStpmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStpmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtpmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtpmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtpmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtpmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtpmv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtpmv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtpmv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtpmv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStpsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStpsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtpsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtpsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtpsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtpsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtpsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    AP: T,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtpsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtpsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    AP: T,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtpsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            AP.as_const_ptr() as *const _,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStbsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStbsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtbsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtbsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtbsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtbsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtbsv_v2<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i32,
+    k: i32,
+    A: T,
+    lda: i32,
+    mut x: U,
+    incx: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtbsv_v2(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_mut_ptr() as *mut _,
+            incx as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtbsv_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    n: i64,
+    k: i64,
+    A: T,
+    lda: i64,
+    mut x: U,
+    incx: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtbsv_v2_64(
+            handle,
+            uplo,
+            trans,
+            diag,
+            n,
+            k,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_mut_ptr() as *mut _,
+            incx,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsymv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsymv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsymv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsymv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsymv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsymv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsymv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsymv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsymv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsymv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsymv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsymv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsymv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsymv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsymv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsymv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChemv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChemv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChemv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChemv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhemv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhemv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhemv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhemv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsbmv_v2(
+            handle,
+            uplo,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsbmv_v2_64(
+            handle,
+            uplo,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsbmv_v2(
+            handle,
+            uplo,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsbmv_v2_64(
+            handle,
+            uplo,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChbmv_v2(
+            handle,
+            uplo,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChbmv_v2_64(
+            handle,
+            uplo,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhbmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhbmv_v2(
+            handle,
+            uplo,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhbmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhbmv_v2_64(
+            handle,
+            uplo,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSspmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSspmv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSspmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSspmv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDspmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDspmv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDspmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDspmv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChpmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChpmv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChpmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChpmv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhpmv_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i32,
+    beta: W,
+    mut y: X,
+    incy: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhpmv_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhpmv_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    AP: U,
+    x: V,
+    incx: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhpmv_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            AP.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSger_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSger_v2(
+            handle,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSger_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSger_v2_64(
+            handle,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDger_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDger_v2(
+            handle,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDger_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDger_v2_64(
+            handle,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgeru_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgeru_v2(
+            handle,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgeru_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgeru_v2_64(
+            handle,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgerc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgerc_v2(
+            handle,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgerc_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgerc_v2_64(
+            handle,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgeru_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgeru_v2(
+            handle,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgeru_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgeru_v2_64(
+            handle,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgerc_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgerc_v2(
+            handle,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgerc_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgerc_v2_64(
+            handle,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut A: V,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut A: V,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut A: V,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut A: V,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut A: V,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut A: V,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut A: V,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut A: V,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCher_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut A: V,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCher_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCher_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut A: V,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCher_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZher_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut A: V,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZher_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZher_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut A: V,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZher_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSspr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSspr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSspr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSspr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDspr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDspr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDspr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDspr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChpr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChpr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChpr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChpr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhpr_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhpr_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhpr_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    mut AP: V,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhpr_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCher2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCher2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCher2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCher2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZher2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut A: W,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZher2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZher2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut A: W,
+    lda: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZher2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            A.as_mut_ptr() as *mut _,
+            lda,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSspr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSspr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSspr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSspr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDspr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDspr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDspr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDspr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChpr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChpr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChpr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChpr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhpr2_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    alpha: T,
+    x: U,
+    incx: i32,
+    y: V,
+    incy: i32,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhpr2_v2(
+            handle,
+            uplo,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            y.as_const_ptr() as *const _,
+            incy as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhpr2_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i64,
+    alpha: T,
+    x: U,
+    incx: i64,
+    y: V,
+    incy: i64,
+    mut AP: W,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhpr2_v2_64(
+            handle,
+            uplo,
+            n,
+            alpha.as_const_ptr() as *const _,
+            x.as_const_ptr() as *const _,
+            incx,
+            y.as_const_ptr() as *const _,
+            incy,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemvBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    xarray: V,
+    incx: i32,
+    beta: W,
+    yarray: X,
+    incy: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemvBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            xarray.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemvBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    xarray: V,
+    incx: i64,
+    beta: W,
+    yarray: X,
+    incy: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemvBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            xarray.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemvBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    xarray: V,
+    incx: i32,
+    beta: W,
+    yarray: X,
+    incy: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemvBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            xarray.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemvBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    xarray: V,
+    incx: i64,
+    beta: W,
+    yarray: X,
+    incy: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemvBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            xarray.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemvBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    xarray: V,
+    incx: i32,
+    beta: W,
+    yarray: X,
+    incy: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemvBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            xarray.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemvBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    xarray: V,
+    incx: i64,
+    beta: W,
+    yarray: X,
+    incy: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemvBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            xarray.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemvBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    xarray: V,
+    incx: i32,
+    beta: W,
+    yarray: X,
+    incy: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemvBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            xarray.as_const_ptr() as *const _,
+            incx as _,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemvBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    xarray: V,
+    incx: i64,
+    beta: W,
+    yarray: X,
+    incy: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemvBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            xarray.as_const_ptr() as *const _,
+            incx,
+            beta.as_const_ptr() as *const _,
+            yarray.as_const_ptr() as *const _,
+            incy,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemvStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    x: V,
+    incx: i32,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i32,
+    stridey: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemvStridedBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            stridey as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemvStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    x: V,
+    incx: i64,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+    stridey: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemvStridedBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            stridey as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemvStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    x: V,
+    incx: i32,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i32,
+    stridey: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemvStridedBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            stridey as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemvStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    x: V,
+    incx: i64,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+    stridey: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemvStridedBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            stridey as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemvStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    x: V,
+    incx: i32,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i32,
+    stridey: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemvStridedBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            stridey as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemvStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    x: V,
+    incx: i64,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+    stridey: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemvStridedBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            stridey as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemvStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    x: V,
+    incx: i32,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i32,
+    stridey: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemvStridedBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy as _,
+            stridey as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemvStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    x: V,
+    incx: i64,
+    stridex: i64,
+    beta: W,
+    mut y: X,
+    incy: i64,
+    stridey: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemvStridedBatched_64(
+            handle,
+            trans,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            x.as_const_ptr() as *const _,
+            incx,
+            stridex as _,
+            beta.as_const_ptr() as *const _,
+            y.as_mut_ptr() as *mut _,
+            incy,
+            stridey as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemm_v2(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemm_v2_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemm_v2(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemm_v2_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm_v2(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm_v2_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3m<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3m(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3m_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3m_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3mEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3mEx(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3mEx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3mEx_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemm_v2(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemm_v2_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemm3m<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemm3m(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemm3m_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemm3m_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmEx(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmEx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmEx_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i32,
+    computeType: cublasComputeType_t,
+    algo: cublasGemmAlgo_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmEx(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+            computeType,
+            algo,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmEx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i64,
+    computeType: cublasComputeType_t,
+    algo: cublasGemmAlgo_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmEx_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+            computeType,
+            algo,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemmEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemmEx(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemmEx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemmEx_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyrk_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyrk_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyrk_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyrk_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyrk_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyrk_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrk_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrk_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrk_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyrk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyrk_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyrk_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyrk_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrkEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrkEx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrkEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrkEx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrk3mEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrk3mEx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrk3mEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrk3mEx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherk_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherk_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherk_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZherk_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZherk_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZherk_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZherk_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherkEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherkEx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherkEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherkEx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherk3mEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherk3mEx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherk3mEx_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    beta: V,
+    mut C: W,
+    Ctype: cudaDataType,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherk3mEx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyr2k_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyr2k_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyr2k_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyr2k_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyr2k_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyr2k_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyr2k_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyr2k_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyr2k_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyr2k_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyr2k_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyr2k_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyr2k_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyr2k_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyr2k_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyr2k_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCher2k_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCher2k_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCher2k_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCher2k_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZher2k_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZher2k_v2(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZher2k_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZher2k_v2_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyrkx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyrkx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsyrkx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsyrkx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyrkx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyrkx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsyrkx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsyrkx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrkx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrkx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsyrkx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsyrkx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyrkx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyrkx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsyrkx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsyrkx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherkx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherkx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCherkx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCherkx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZherkx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZherkx(
+            handle,
+            uplo,
+            trans,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZherkx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZherkx_64(
+            handle,
+            uplo,
+            trans,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsymm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsymm_v2(
+            handle,
+            side,
+            uplo,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSsymm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSsymm_v2_64(
+            handle,
+            side,
+            uplo,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsymm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsymm_v2(
+            handle,
+            side,
+            uplo,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDsymm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDsymm_v2_64(
+            handle,
+            side,
+            uplo,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsymm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsymm_v2(
+            handle,
+            side,
+            uplo,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCsymm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCsymm_v2_64(
+            handle,
+            side,
+            uplo,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsymm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsymm_v2(
+            handle,
+            side,
+            uplo,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZsymm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZsymm_v2_64(
+            handle,
+            side,
+            uplo,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChemm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChemm_v2(
+            handle,
+            side,
+            uplo,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasChemm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasChemm_v2_64(
+            handle,
+            side,
+            uplo,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhemm_v2<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhemm_v2(
+            handle,
+            side,
+            uplo,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZhemm_v2_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZhemm_v2_64(
+            handle,
+            side,
+            uplo,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    mut B: V,
+    ldb: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrsm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_mut_ptr() as *mut _,
+            ldb as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    mut B: V,
+    ldb: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrsm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_mut_ptr() as *mut _,
+            ldb,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    mut B: V,
+    ldb: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrsm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_mut_ptr() as *mut _,
+            ldb as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    mut B: V,
+    ldb: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrsm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_mut_ptr() as *mut _,
+            ldb,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    mut B: V,
+    ldb: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrsm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_mut_ptr() as *mut _,
+            ldb as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    mut B: V,
+    ldb: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrsm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_mut_ptr() as *mut _,
+            ldb,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrsm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    mut B: V,
+    ldb: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrsm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_mut_ptr() as *mut _,
+            ldb as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrsm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    mut B: V,
+    ldb: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrsm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_mut_ptr() as *mut _,
+            ldb,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrmm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrmm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrmm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrmm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrmm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrmm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrmm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrmm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrmm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrmm_v2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    mut C: W,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrmm_v2(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrmm_v2_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    mut C: W,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrmm_v2_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    Barray: V,
+    ldb: i32,
+    beta: W,
+    Carray: X,
+    ldc: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    Barray: V,
+    ldb: i64,
+    beta: W,
+    Carray: X,
+    ldc: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            Barray.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemmBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    Barray: V,
+    ldb: i32,
+    beta: W,
+    Carray: X,
+    ldc: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemmBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemmBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    Barray: V,
+    ldb: i64,
+    beta: W,
+    Carray: X,
+    ldc: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemmBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            Barray.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemmBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    Barray: V,
+    ldb: i32,
+    beta: W,
+    Carray: X,
+    ldc: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemmBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemmBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    Barray: V,
+    ldb: i64,
+    beta: W,
+    Carray: X,
+    ldc: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemmBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            Barray.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3mBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    Barray: V,
+    ldb: i32,
+    beta: W,
+    Carray: X,
+    ldc: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3mBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3mBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    Barray: V,
+    ldb: i64,
+    beta: W,
+    Carray: X,
+    ldc: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3mBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            Barray.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemmBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    Aarray: U,
+    lda: i32,
+    Barray: V,
+    ldb: i32,
+    beta: W,
+    Carray: X,
+    ldc: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemmBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemmBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    Aarray: U,
+    lda: i64,
+    Barray: V,
+    ldb: i64,
+    beta: W,
+    Carray: X,
+    ldc: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemmBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda,
+            Barray.as_const_ptr() as *const _,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    B: V,
+    ldb: i32,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+    strideC: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmStridedBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+            strideC as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    B: V,
+    ldb: i64,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+    strideC: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmStridedBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+            strideC as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemmStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    B: V,
+    ldb: i32,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+    strideC: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemmStridedBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+            strideC as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemmStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    B: V,
+    ldb: i64,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+    strideC: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemmStridedBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+            strideC as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemmStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    B: V,
+    ldb: i32,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+    strideC: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemmStridedBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+            strideC as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemmStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    B: V,
+    ldb: i64,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+    strideC: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemmStridedBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+            strideC as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3mStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    B: V,
+    ldb: i32,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+    strideC: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3mStridedBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+            strideC as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgemm3mStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    B: V,
+    ldb: i64,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+    strideC: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgemm3mStridedBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+            strideC as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemmStridedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    strideA: i64,
+    B: V,
+    ldb: i32,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i32,
+    strideC: i64,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemmStridedBatched(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+            strideC as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgemmStridedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    strideA: i64,
+    B: V,
+    ldb: i64,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    ldc: i64,
+    strideC: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgemmStridedBatched_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+            strideC as _,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmBatchedEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    Aarray: U,
+    Atype: cudaDataType,
+    lda: i32,
+    Barray: V,
+    Btype: cudaDataType,
+    ldb: i32,
+    beta: W,
+    Carray: X,
+    Ctype: cudaDataType,
+    ldc: i32,
+    batchCount: i32,
+    computeType: cublasComputeType_t,
+    algo: cublasGemmAlgo_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmBatchedEx(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            Barray.as_const_ptr() as *const _,
+            Btype,
+            ldb as _,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            Ctype,
+            ldc as _,
+            batchCount as _,
+            computeType,
+            algo,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmBatchedEx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    Aarray: U,
+    Atype: cudaDataType,
+    lda: i64,
+    Barray: V,
+    Btype: cudaDataType,
+    ldb: i64,
+    beta: W,
+    Carray: X,
+    Ctype: cudaDataType,
+    ldc: i64,
+    batchCount: i64,
+    computeType: cublasComputeType_t,
+    algo: cublasGemmAlgo_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmBatchedEx_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            Barray.as_const_ptr() as *const _,
+            Btype,
+            ldb,
+            beta.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            Ctype,
+            ldc,
+            batchCount,
+            computeType,
+            algo,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmStridedBatchedEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i32,
+    strideA: i64,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i32,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i32,
+    strideC: i64,
+    batchCount: i32,
+    computeType: cublasComputeType_t,
+    algo: cublasGemmAlgo_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmStridedBatchedEx(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            k as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda as _,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb as _,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc as _,
+            strideC as _,
+            batchCount as _,
+            computeType,
+            algo,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmStridedBatchedEx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    k: i64,
+    alpha: T,
+    A: U,
+    Atype: cudaDataType,
+    lda: i64,
+    strideA: i64,
+    B: V,
+    Btype: cudaDataType,
+    ldb: i64,
+    strideB: i64,
+    beta: W,
+    mut C: X,
+    Ctype: cudaDataType,
+    ldc: i64,
+    strideC: i64,
+    batchCount: i64,
+    computeType: cublasComputeType_t,
+    algo: cublasGemmAlgo_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmStridedBatchedEx_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            k,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            Atype,
+            lda,
+            strideA as _,
+            B.as_const_ptr() as *const _,
+            Btype,
+            ldb,
+            strideB as _,
+            beta.as_const_ptr() as *const _,
+            C.as_mut_ptr() as *mut _,
+            Ctype,
+            ldc,
+            strideC as _,
+            batchCount,
+            computeType,
+            algo,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmGroupedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+    Y: types::CudaAsPtr,
+    Z: types::CudaAsPtr,
+    A: types::CudaAsPtr,
+    B: types::CudaAsPtr,
+    C: types::CudaAsPtr,
+    D: types::CudaAsPtr,
+    E: types::CudaAsPtr,
+    F: types::CudaAsPtr,
+    T13: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa_array: T,
+    transb_array: U,
+    m_array: V,
+    n_array: W,
+    k_array: X,
+    alpha_array: Y,
+    Aarray: Z,
+    lda_array: A,
+    Barray: B,
+    ldb_array: C,
+    beta_array: D,
+    Carray: E,
+    ldc_array: F,
+    group_count: i32,
+    group_size: T13,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmGroupedBatched(
+            handle,
+            transa_array.as_const_ptr() as *const _,
+            transb_array.as_const_ptr() as *const _,
+            m_array.as_const_ptr() as *const _,
+            n_array.as_const_ptr() as *const _,
+            k_array.as_const_ptr() as *const _,
+            alpha_array.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda_array.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb_array.as_const_ptr() as *const _,
+            beta_array.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc_array.as_const_ptr() as *const _,
+            group_count as _,
+            group_size.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgemmGroupedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+    Y: types::CudaAsPtr,
+    Z: types::CudaAsPtr,
+    A: types::CudaAsPtr,
+    B: types::CudaAsPtr,
+    C: types::CudaAsPtr,
+    D: types::CudaAsPtr,
+    E: types::CudaAsPtr,
+    F: types::CudaAsPtr,
+    T13: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa_array: T,
+    transb_array: U,
+    m_array: V,
+    n_array: W,
+    k_array: X,
+    alpha_array: Y,
+    Aarray: Z,
+    lda_array: A,
+    Barray: B,
+    ldb_array: C,
+    beta_array: D,
+    Carray: E,
+    ldc_array: F,
+    group_count: i64,
+    group_size: T13,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgemmGroupedBatched_64(
+            handle,
+            transa_array.as_const_ptr() as *const _,
+            transb_array.as_const_ptr() as *const _,
+            m_array.as_const_ptr() as *const _,
+            n_array.as_const_ptr() as *const _,
+            k_array.as_const_ptr() as *const _,
+            alpha_array.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda_array.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb_array.as_const_ptr() as *const _,
+            beta_array.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc_array.as_const_ptr() as *const _,
+            group_count,
+            group_size.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemmGroupedBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+    Y: types::CudaAsPtr,
+    Z: types::CudaAsPtr,
+    A: types::CudaAsPtr,
+    B: types::CudaAsPtr,
+    C: types::CudaAsPtr,
+    D: types::CudaAsPtr,
+    E: types::CudaAsPtr,
+    F: types::CudaAsPtr,
+    T13: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa_array: T,
+    transb_array: U,
+    m_array: V,
+    n_array: W,
+    k_array: X,
+    alpha_array: Y,
+    Aarray: Z,
+    lda_array: A,
+    Barray: B,
+    ldb_array: C,
+    beta_array: D,
+    Carray: E,
+    ldc_array: F,
+    group_count: i32,
+    group_size: T13,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemmGroupedBatched(
+            handle,
+            transa_array.as_const_ptr() as *const _,
+            transb_array.as_const_ptr() as *const _,
+            m_array.as_const_ptr() as *const _,
+            n_array.as_const_ptr() as *const _,
+            k_array.as_const_ptr() as *const _,
+            alpha_array.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda_array.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb_array.as_const_ptr() as *const _,
+            beta_array.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc_array.as_const_ptr() as *const _,
+            group_count as _,
+            group_size.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgemmGroupedBatched_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+    Y: types::CudaAsPtr,
+    Z: types::CudaAsPtr,
+    A: types::CudaAsPtr,
+    B: types::CudaAsPtr,
+    C: types::CudaAsPtr,
+    D: types::CudaAsPtr,
+    E: types::CudaAsPtr,
+    F: types::CudaAsPtr,
+    T13: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa_array: T,
+    transb_array: U,
+    m_array: V,
+    n_array: W,
+    k_array: X,
+    alpha_array: Y,
+    Aarray: Z,
+    lda_array: A,
+    Barray: B,
+    ldb_array: C,
+    beta_array: D,
+    Carray: E,
+    ldc_array: F,
+    group_count: i64,
+    group_size: T13,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgemmGroupedBatched_64(
+            handle,
+            transa_array.as_const_ptr() as *const _,
+            transb_array.as_const_ptr() as *const _,
+            m_array.as_const_ptr() as *const _,
+            n_array.as_const_ptr() as *const _,
+            k_array.as_const_ptr() as *const _,
+            alpha_array.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            lda_array.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb_array.as_const_ptr() as *const _,
+            beta_array.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            ldc_array.as_const_ptr() as *const _,
+            group_count,
+            group_size.as_const_ptr() as *const _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmGroupedBatchedEx<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+    Y: types::CudaAsPtr,
+    Z: types::CudaAsPtr,
+    A: types::CudaAsPtr,
+    B: types::CudaAsPtr,
+    C: types::CudaAsPtr,
+    D: types::CudaAsPtr,
+    E: types::CudaAsPtr,
+    F: types::CudaAsPtr,
+    T13: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa_array: T,
+    transb_array: U,
+    m_array: V,
+    n_array: W,
+    k_array: X,
+    alpha_array: Y,
+    Aarray: Z,
+    Atype: cudaDataType_t,
+    lda_array: A,
+    Barray: B,
+    Btype: cudaDataType_t,
+    ldb_array: C,
+    beta_array: D,
+    Carray: E,
+    Ctype: cudaDataType_t,
+    ldc_array: F,
+    group_count: i32,
+    group_size: T13,
+    computeType: cublasComputeType_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmGroupedBatchedEx(
+            handle,
+            transa_array.as_const_ptr() as *const _,
+            transb_array.as_const_ptr() as *const _,
+            m_array.as_const_ptr() as *const _,
+            n_array.as_const_ptr() as *const _,
+            k_array.as_const_ptr() as *const _,
+            alpha_array.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            Atype,
+            lda_array.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            Btype,
+            ldb_array.as_const_ptr() as *const _,
+            beta_array.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            Ctype,
+            ldc_array.as_const_ptr() as *const _,
+            group_count as _,
+            group_size.as_const_ptr() as *const _,
+            computeType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasGemmGroupedBatchedEx_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+    Y: types::CudaAsPtr,
+    Z: types::CudaAsPtr,
+    A: types::CudaAsPtr,
+    B: types::CudaAsPtr,
+    C: types::CudaAsPtr,
+    D: types::CudaAsPtr,
+    E: types::CudaAsPtr,
+    F: types::CudaAsPtr,
+    T13: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa_array: T,
+    transb_array: U,
+    m_array: V,
+    n_array: W,
+    k_array: X,
+    alpha_array: Y,
+    Aarray: Z,
+    Atype: cudaDataType_t,
+    lda_array: A,
+    Barray: B,
+    Btype: cudaDataType_t,
+    ldb_array: C,
+    beta_array: D,
+    Carray: E,
+    Ctype: cudaDataType_t,
+    ldc_array: F,
+    group_count: i64,
+    group_size: T13,
+    computeType: cublasComputeType_t,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasGemmGroupedBatchedEx_64(
+            handle,
+            transa_array.as_const_ptr() as *const _,
+            transb_array.as_const_ptr() as *const _,
+            m_array.as_const_ptr() as *const _,
+            n_array.as_const_ptr() as *const _,
+            k_array.as_const_ptr() as *const _,
+            alpha_array.as_const_ptr() as *const _,
+            Aarray.as_const_ptr() as *const _,
+            Atype,
+            lda_array.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            Btype,
+            ldb_array.as_const_ptr() as *const _,
+            beta_array.as_const_ptr() as *const _,
+            Carray.as_const_ptr() as *const _,
+            Ctype,
+            ldc_array.as_const_ptr() as *const _,
+            group_count,
+            group_size.as_const_ptr() as *const _,
+            computeType,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgeam<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    B: W,
+    ldb: i32,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgeam(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgeam_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    B: W,
+    ldb: i64,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgeam_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgeam<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    B: W,
+    ldb: i32,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgeam(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgeam_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    B: W,
+    ldb: i64,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgeam_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgeam<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    B: W,
+    ldb: i32,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgeam(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgeam_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    B: W,
+    ldb: i64,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgeam_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgeam<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    beta: V,
+    B: W,
+    ldb: i32,
+    mut C: X,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgeam(
+            handle,
+            transa,
+            transb,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgeam_64<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    beta: V,
+    B: W,
+    ldb: i64,
+    mut C: X,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgeam_64(
+            handle,
+            transa,
+            transb,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            beta.as_const_ptr() as *const _,
+            B.as_const_ptr() as *const _,
+            ldb,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrsmBatched(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrsmBatched_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrsmBatched(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrsmBatched_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrsmBatched(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrsmBatched_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrsmBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i32,
+    n: i32,
+    alpha: T,
+    A: U,
+    lda: i32,
+    B: V,
+    ldb: i32,
+    batchCount: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrsmBatched(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m as _,
+            n as _,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            ldb as _,
+            batchCount as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrsmBatched_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    side: cublasSideMode_t,
+    uplo: cublasFillMode_t,
+    trans: cublasOperation_t,
+    diag: cublasDiagType_t,
+    m: i64,
+    n: i64,
+    alpha: T,
+    A: U,
+    lda: i64,
+    B: V,
+    ldb: i64,
+    batchCount: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrsmBatched_64(
+            handle,
+            side,
+            uplo,
+            trans,
+            diag,
+            m,
+            n,
+            alpha.as_const_ptr() as *const _,
+            A.as_const_ptr() as *const _,
+            lda,
+            B.as_const_ptr() as *const _,
+            ldb,
+            batchCount,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i32,
+    n: i32,
+    A: T,
+    lda: i32,
+    x: U,
+    incx: i32,
+    mut C: V,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSdgmm(
+            handle,
+            mode,
+            m as _,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i64,
+    n: i64,
+    A: T,
+    lda: i64,
+    x: U,
+    incx: i64,
+    mut C: V,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSdgmm_64(
+            handle,
+            mode,
+            m,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i32,
+    n: i32,
+    A: T,
+    lda: i32,
+    x: U,
+    incx: i32,
+    mut C: V,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDdgmm(
+            handle,
+            mode,
+            m as _,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i64,
+    n: i64,
+    A: T,
+    lda: i64,
+    x: U,
+    incx: i64,
+    mut C: V,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDdgmm_64(
+            handle,
+            mode,
+            m,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i32,
+    n: i32,
+    A: T,
+    lda: i32,
+    x: U,
+    incx: i32,
+    mut C: V,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCdgmm(
+            handle,
+            mode,
+            m as _,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i64,
+    n: i64,
+    A: T,
+    lda: i64,
+    x: U,
+    incx: i64,
+    mut C: V,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCdgmm_64(
+            handle,
+            mode,
+            m,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdgmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i32,
+    n: i32,
+    A: T,
+    lda: i32,
+    x: U,
+    incx: i32,
+    mut C: V,
+    ldc: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdgmm(
+            handle,
+            mode,
+            m as _,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            x.as_const_ptr() as *const _,
+            incx as _,
+            C.as_mut_ptr() as *mut _,
+            ldc as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZdgmm_64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    mode: cublasSideMode_t,
+    m: i64,
+    n: i64,
+    A: T,
+    lda: i64,
+    x: U,
+    incx: i64,
+    mut C: V,
+    ldc: i64,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZdgmm_64(
+            handle,
+            mode,
+            m,
+            n,
+            A.as_const_ptr() as *const _,
+            lda,
+            x.as_const_ptr() as *const _,
+            incx,
+            C.as_mut_ptr() as *mut _,
+            ldc,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    Ainv: U,
+    lda_inv: i32,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSmatinvBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            Ainv.as_const_ptr() as *const _,
+            lda_inv as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    Ainv: U,
+    lda_inv: i32,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDmatinvBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            Ainv.as_const_ptr() as *const _,
+            lda_inv as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    Ainv: U,
+    lda_inv: i32,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCmatinvBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            Ainv.as_const_ptr() as *const _,
+            lda_inv as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZmatinvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    Ainv: U,
+    lda_inv: i32,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZmatinvBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            Ainv.as_const_ptr() as *const _,
+            lda_inv as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    Aarray: T,
+    lda: i32,
+    TauArray: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgeqrfBatched(
+            handle,
+            m as _,
+            n as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            TauArray.as_const_ptr() as *const _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    Aarray: T,
+    lda: i32,
+    TauArray: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgeqrfBatched(
+            handle,
+            m as _,
+            n as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            TauArray.as_const_ptr() as *const _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    Aarray: T,
+    lda: i32,
+    TauArray: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgeqrfBatched(
+            handle,
+            m as _,
+            n as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            TauArray.as_const_ptr() as *const _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgeqrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    m: i32,
+    n: i32,
+    Aarray: T,
+    lda: i32,
+    TauArray: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgeqrfBatched(
+            handle,
+            m as _,
+            n as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            TauArray.as_const_ptr() as *const _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgelsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    Carray: U,
+    ldc: i32,
+    mut info: V,
+    mut devInfoArray: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgelsBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            devInfoArray.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgelsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    Carray: U,
+    ldc: i32,
+    mut info: V,
+    mut devInfoArray: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgelsBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            devInfoArray.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgelsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    Carray: U,
+    ldc: i32,
+    mut info: V,
+    mut devInfoArray: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgelsBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            devInfoArray.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgelsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    m: i32,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    Carray: U,
+    ldc: i32,
+    mut info: V,
+    mut devInfoArray: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgelsBatched(
+            handle,
+            trans,
+            m as _,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            Carray.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            devInfoArray.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    AP: T,
+    mut A: U,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStpttr(
+            handle,
+            uplo,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    AP: T,
+    mut A: U,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtpttr(
+            handle,
+            uplo,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    AP: T,
+    mut A: U,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtpttr(
+            handle,
+            uplo,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtpttr<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    AP: T,
+    mut A: U,
+    lda: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtpttr(
+            handle,
+            uplo,
+            n as _,
+            AP.as_const_ptr() as *const _,
+            A.as_mut_ptr() as *mut _,
+            lda as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasStrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut AP: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasStrttp(
+            handle,
+            uplo,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDtrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut AP: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDtrttp(
+            handle,
+            uplo,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCtrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut AP: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCtrttp(
+            handle,
+            uplo,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZtrttp<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut AP: U,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZtrttp(
+            handle,
+            uplo,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            AP.as_mut_ptr() as *mut _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut P: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgetrfBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_mut_ptr() as *mut _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut P: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgetrfBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_mut_ptr() as *mut _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut P: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgetrfBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_mut_ptr() as *mut _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgetrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    mut P: U,
+    mut info: V,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgetrfBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_mut_ptr() as *mut _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgetriBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    P: U,
+    C: V,
+    ldc: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgetriBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_const_ptr() as *const _,
+            C.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgetriBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    P: U,
+    C: V,
+    ldc: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgetriBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_const_ptr() as *const _,
+            C.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgetriBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    P: U,
+    C: V,
+    ldc: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgetriBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_const_ptr() as *const _,
+            C.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgetriBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    n: i32,
+    A: T,
+    lda: i32,
+    P: U,
+    C: V,
+    ldc: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgetriBatched(
+            handle,
+            n as _,
+            A.as_const_ptr() as *const _,
+            lda as _,
+            P.as_const_ptr() as *const _,
+            C.as_const_ptr() as *const _,
+            ldc as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasSgetrsBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    devIpiv: U,
+    Barray: V,
+    ldb: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasSgetrsBatched(
+            handle,
+            trans,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            devIpiv.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasDgetrsBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    devIpiv: U,
+    Barray: V,
+    ldb: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasDgetrsBatched(
+            handle,
+            trans,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            devIpiv.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasCgetrsBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    devIpiv: U,
+    Barray: V,
+    ldb: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasCgetrsBatched(
+            handle,
+            trans,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            devIpiv.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasZgetrsBatched<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+>(
+    handle: cublasHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    Aarray: T,
+    lda: i32,
+    devIpiv: U,
+    Barray: V,
+    ldb: i32,
+    mut info: W,
+    batchSize: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasZgetrsBatched(
+            handle,
+            trans,
+            n as _,
+            nrhs as _,
+            Aarray.as_const_ptr() as *const _,
+            lda as _,
+            devIpiv.as_const_ptr() as *const _,
+            Barray.as_const_ptr() as *const _,
+            ldb as _,
+            info.as_mut_ptr() as *mut _,
+            batchSize as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+pub unsafe fn cublasUint8gemmBias<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+    handle: cublasHandle_t,
+    transa: cublasOperation_t,
+    transb: cublasOperation_t,
+    transc: cublasOperation_t,
+    m: i32,
+    n: i32,
+    k: i32,
+    A: T,
+    A_bias: i32,
+    lda: i32,
+    B: U,
+    B_bias: i32,
+    ldb: i32,
+    mut C: V,
+    C_bias: i32,
+    ldc: i32,
+    C_mult: i32,
+    C_shift: i32,
+) -> Result<(), crate::sys::cublasStatus_t> {
+    let status = unsafe {
+        crate::sys::cublasUint8gemmBias(
+            handle,
+            transa,
+            transb,
+            transc,
+            m as _,
+            n as _,
+            k as _,
+            A.as_const_ptr() as *const _,
+            A_bias as _,
+            lda as _,
+            B.as_const_ptr() as *const _,
+            B_bias as _,
+            ldb as _,
+            C.as_mut_ptr() as *mut _,
+            C_bias as _,
+            ldc as _,
+            C_mult as _,
+            C_shift as _,
+        )
+    };
+    if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
+        Ok(())
+    } else {
+        Err(status)
     }
 }

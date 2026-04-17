@@ -92,12 +92,8 @@ impl<'a> Generator<'a> {
                                 }
                             }
 
-                            let (safe_fn, receiver) = self.generate_function_wrapper(func);
-                            if let Some(wrapper) = receiver {
-                                handle_methods.get_mut(&wrapper).unwrap().push(safe_fn);
-                            } else {
-                                standalone_funcs.push(safe_fn);
-                            }
+                            let (safe_fn, _) = self.generate_function_wrapper(func);
+                            standalone_funcs.push(safe_fn);
                         }
                     }
                 }
@@ -295,48 +291,21 @@ impl<'a> Generator<'a> {
         self.blocklist_funcs.iter().any(|r| r.is_match(&name))
     }
 
-    fn identify_receiver(&self, sig: &syn::Signature) -> Option<&HandleConfig> {
-        if let Some(first_input) = sig.inputs.first() {
-            if let syn::FnArg::Typed(pat_type) = first_input {
-                let ty = &pat_type.ty;
-                let ty_str = quote!(#ty).to_string().replace(" ", "");
-
-                let is_mut_ptr = if let syn::Type::Ptr(p) = &**ty {
-                    p.mutability.is_some()
-                } else {
-                    false
-                };
-
-                if !is_mut_ptr {
-                    for h in &self.config.handles {
-                        if ty_str.contains(h.handle_type) {
-                            return Some(h);
-                        }
-                    }
-                }
-            }
-        }
-        None
-    }
-
     fn generate_function_wrapper(&self, func: &syn::ForeignItemFn) -> (proc_macro2::TokenStream, Option<String>) {
         let sig = &func.sig;
         let fn_name = &sig.ident;
         let fn_str = fn_name.to_string();
         let attrs = &func.attrs;
 
-        let receiver_handle = self.identify_receiver(sig);
-        let receiver_wrapper_name = receiver_handle.map(|h| h.wrapper_name.to_string());
-
-        let is_getter = fn_str.contains("Get")
+        let is_getter = (fn_str.contains("Get") || fn_str.contains("Create") || fn_str.contains("Plan"))
             && !fn_str.contains("String")
             && !fn_str.contains("Name")
             && !fn_str.contains("Vector")
             && !fn_str.contains("Matrix");
 
         if is_getter {
-            if let Some(wrapper) = self.generate_getter_wrapper(func, receiver_handle) {
-                return (wrapper, receiver_wrapper_name);
+            if let Some(wrapper) = self.generate_getter_wrapper(func) {
+                return (wrapper, None);
             }
         }
 
@@ -351,15 +320,7 @@ impl<'a> Generator<'a> {
                 let pat = &pat_type.pat;
                 let ty = &pat_type.ty;
                 let (mapped_ty, transformed) = self.map_ffi_type_to_rust(ty);
-                let ty_str = quote!(#ty).to_string().replace(" ", "");
-
-                // Handle receiver injection
-                if let Some(h) = receiver_handle {
-                    if ty_str.contains(h.handle_type) {
-                        call_args.push(quote!(self.0));
-                        continue;
-                    }
-                }
+                let _ty_str = quote!(#ty).to_string().replace(" ", "");
 
                 // Handle pointer arguments
                 if let Type::Ptr(ptr_ty) = &**ty {
@@ -421,12 +382,6 @@ impl<'a> Generator<'a> {
         let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
         let success_variant_ident = syn::Ident::new(self.config.success_variant, proc_macro2::Span::call_site());
 
-        let self_arg = if receiver_handle.is_some() {
-            quote!(&self,)
-        } else {
-            quote!()
-        };
-
         let generics_block = if safe_inputs_generics.is_empty() {
             quote!()
         } else {
@@ -436,7 +391,7 @@ impl<'a> Generator<'a> {
         let safe_fn = if has_status_ret {
             quote! {
                 #(#attrs)*
-                pub unsafe fn #fn_name #generics_block (#self_arg #(#safe_inputs),*) -> Result<(), crate::sys::#status_type_ident> {
+                pub unsafe fn #fn_name #generics_block (#(#safe_inputs),*) -> Result<(), crate::sys::#status_type_ident> {
                     let status = unsafe { crate::sys::#fn_name(#(#call_args),*) };
                     if status == crate::sys::#status_type_ident::#success_variant_ident {
                         Ok(())
@@ -455,27 +410,23 @@ impl<'a> Generator<'a> {
 
             quote! {
                 #(#attrs)*
-                pub unsafe fn #fn_name #generics_block (#self_arg #(#safe_inputs),*) -> #mapped_ret_ty {
+                pub unsafe fn #fn_name #generics_block (#(#safe_inputs),*) -> #mapped_ret_ty {
                     #ret_expr
                 }
             }
         } else {
             quote! {
                 #(#attrs)*
-                pub unsafe fn #fn_name #generics_block (#self_arg #(#safe_inputs),*) {
+                pub unsafe fn #fn_name #generics_block (#(#safe_inputs),*) {
                     unsafe { crate::sys::#fn_name(#(#call_args),*) }
                 }
             }
         };
 
-        (safe_fn, receiver_wrapper_name)
+        (safe_fn, None)
     }
 
-    fn generate_getter_wrapper(
-        &self,
-        func: &syn::ForeignItemFn,
-        receiver: Option<&HandleConfig>,
-    ) -> Option<proc_macro2::TokenStream> {
+    fn generate_getter_wrapper(&self, func: &syn::ForeignItemFn) -> Option<proc_macro2::TokenStream> {
         let sig = &func.sig;
         let fn_name = &sig.ident;
         let attrs = &func.attrs;
@@ -493,13 +444,6 @@ impl<'a> Generator<'a> {
                 let ty = &pat_type.ty;
                 let (mapped_ty, transformed) = self.map_ffi_type_to_rust(ty);
                 let ty_str = quote!(#ty).to_string().replace(" ", "");
-
-                if let Some(h) = receiver {
-                    if ty_str.contains(h.handle_type) {
-                        call_args.push(quote!(self.0));
-                        continue;
-                    }
-                }
 
                 let mut handled_as_output = false;
                 if let Type::Ptr(ptr_ty) = &**ty {
@@ -571,11 +515,9 @@ impl<'a> Generator<'a> {
             )
         };
 
-        let self_arg = if receiver.is_some() { quote!(&self,) } else { quote!() };
-
         Some(quote! {
             #(#attrs)*
-            pub unsafe fn #fn_name(#self_arg #(#safe_inputs),*) -> Result<#return_type, crate::sys::#status_type_ident> {
+            pub unsafe fn #fn_name(#(#safe_inputs),*) -> Result<#return_type, crate::sys::#status_type_ident> {
                 #(#out_dcls)*
                 let status = #ret_expr;
                 if status as usize == crate::sys::#status_type_ident::#success_variant_ident as usize {
@@ -769,21 +711,6 @@ impl<'a> Generator<'a> {
         handle_methods: HashMap<String, Vec<proc_macro2::TokenStream>>,
         builder_impls: Vec<proc_macro2::TokenStream>,
     ) {
-        let mut wrapper_structs = Vec::new();
-        for h in &self.config.handles {
-            let h_type_ident = syn::Ident::new(h.handle_type, proc_macro2::Span::call_site());
-            let w_name_ident = syn::Ident::new(h.wrapper_name, proc_macro2::Span::call_site());
-            let methods = handle_methods.get(h.wrapper_name).unwrap();
-
-            wrapper_structs.push(quote! {
-                pub struct #w_name_ident(pub(crate) crate::sys::#h_type_ident);
-
-                impl #w_name_ident {
-                    #(#methods)*
-                }
-            });
-        }
-
         let mut extra_safes = Vec::new();
         if self.config.lib_name != "cuda_libs_cudart" {
             extra_safes.push(quote!(
@@ -820,7 +747,6 @@ impl<'a> Generator<'a> {
             #(#extra_safes)*
 
             #(#builder_impls)*
-            #(#wrapper_structs)*
             #(#standalone_funcs)*
             #extra_safe
         };

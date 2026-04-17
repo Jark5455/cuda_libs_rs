@@ -5764,59 +5764,6 @@ impl crate::sys::DynamicBindings {
         self
     }
 }
-pub struct CudaExecutionContext(pub(crate) crate::sys::cudaExecutionContext_t);
-impl CudaExecutionContext {
-    #[doc = "Get context resources\nGet the `type` resources available to context represented by `ctx.`\nNote: The API is not supported on 32-bit platforms.\n\n# Arguments\n\n* `ctx` - - Execution context to get resource for (required parameter, see note below)\n* `resource` - - Output pointer to a cudaDevResource structure\n* `type` - - Type of resource to retrieve\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported,\n::cudaErrorNotPermitted,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaDeviceGetDevResource,`]\n::cudaDevSmResourceSplit,\n::cudaDevResourceGenerateDesc,\n::cudaGreenCtxCreate"]
-    pub unsafe fn cudaExecutionCtxGetDevResource(
-        &self,
-        type_: cudaDevResourceType,
-    ) -> Result<cudaDevResource, crate::sys::cudaError> {
-        let mut out_1: std::mem::MaybeUninit<cudaDevResource> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cudaExecutionCtxGetDevResource(self.0, out_1.as_mut_ptr() as *mut _, type_) };
-        if status as usize == crate::sys::cudaError::cudaSuccess as usize {
-            unsafe { Ok(out_1.assume_init() as cudaDevResource) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    #[doc = "Returns the unique Id associated with the execution context supplied\nReturns in `ctxId` the unique Id which is associated with a given context.\nThe Id is unique for the life of the program for this instance of CUDA.\nThe execution context should not be NULL.\n\n# Arguments\n\n* `ctx` - - Context for which to obtain the Id (required parameter, see note below)\n* `ctxId` - - Pointer to store the Id of the context\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaGreenCtxCreate,`]\n::cudaExecutionCtxDestroy,\n::cudaExecutionCtxGetDevice,\n::cuCtxGetId"]
-    pub unsafe fn cudaExecutionCtxGetId(&self) -> Result<u64, crate::sys::cudaError> {
-        let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_ulonglong> = std::mem::MaybeUninit::uninit();
-        let status = unsafe { crate::sys::cudaExecutionCtxGetId(self.0, out_1.as_mut_ptr() as *mut _) };
-        if status as usize == crate::sys::cudaError::cudaSuccess as usize {
-            unsafe { Ok(out_1.assume_init() as u64) }
-        } else {
-            Err(unsafe { std::mem::transmute(status) })
-        }
-    }
-    #[doc = "Block for the specified execution context's tasks to complete\nBlocks until the specified execution context has completed all preceding requested tasks.\nIf the specified execution context is the device (primary) context obtained via ::cudaDeviceGetExecutionCtx,\ngreen contexts that have been created on the device will also be synchronized.\nThe API returns an error if one of the preceding tasks failed.\n\n# Arguments\n\n* `ctx` - - Execution context to synchronize (required parameter, see note below)\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorDeviceUninitialized,\n::cudaErrorInvalidValue\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaGreenCtxCreate,`]\n::cudaExecutionCtxDestroy,\n::cudaDeviceSynchronize,\n::cuCtxSynchronize_v2"]
-    pub unsafe fn cudaExecutionCtxSynchronize(&self) -> Result<(), crate::sys::cudaError> {
-        let status = unsafe { crate::sys::cudaExecutionCtxSynchronize(self.0) };
-        if status == crate::sys::cudaError::cudaSuccess {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    #[doc = "Records an event for the specified execution context\nCaptures in `event` all the activities of the execution context `ctx`\nat the time of this call. `event` and `ctx` must be from the same\nCUDA device, otherwise ::cudaErrorInvalidHandle will be returned.\nCalls such as ::cudaEventQuery() or ::cudaExecutionCtxWaitEvent() will then examine\nor wait for completion of the work that was captured.\nUses of `ctx` after this call do not modify `event.`\nIf the execution context passed to `ctx` is the device (primary) context obtained via\n::cudaDeviceGetExecutionCtx(), `event` will capture all the activities of the green\ncontexts created on the device as well.\n> **Note** The API will return ::cudaErrorStreamCaptureUnsupported if the\nspecified execution context `ctx` has a stream in the capture mode. In such a case,\nthe call will invalidate all the conflicting captures.\n\n# Arguments\n\n* `ctx` - - Execution context to record event for (required parameter, see note below)\n* `event` - - Event to record\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidHandle,\n::cudaErrorStreamCaptureUnsupported\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaEventRecord,`]\n::cudaExecutionCtxWaitEvent,\n::cuCtxRecordEvent,\n::cuGreenCtxRecordEvent"]
-    pub unsafe fn cudaExecutionCtxRecordEvent(&self, event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
-        let status = unsafe { crate::sys::cudaExecutionCtxRecordEvent(self.0, event) };
-        if status == crate::sys::cudaError::cudaSuccess {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-    #[doc = "Make an execution context wait on an event\nMakes all future work submitted to execution context `ctx` wait for all work\ncaptured in `event.` The synchronization will be performed on the device\nand will not block the calling CPU thread. See ::cudaExecutionCtxRecordEvent()\nfor details on what is captured by an event.\nIf the execution context passed to `ctx` is the device (primary) context obtained via\n::cudaDeviceGetExecutionCtx(), all green contexts created on the device will wait for\n`event` as well.\n> **Note** `event` may be from a different execution context or device than `ctx.`\n> **Note** The API will return ::cudaErrorStreamCaptureUnsupported and\ninvalidate the capture if the specified event `event` is part of an ongoing\ncapture sequence or if the specified execution context `ctx` has a stream in the capture mode.\n\n# Arguments\n\n* `ctx` -    - Execution context to wait for (required parameter, see note below)\n* `event` -  - Event to wait on\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidHandle,\n::cudaErrorStreamCaptureUnsupported\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaExecutionCtxRecordEvent,`]\n::cudaStreamWaitEvent,\n::cuCtxWaitEvent,\n::cuGreenCtxWaitEvent"]
-    pub unsafe fn cudaExecutionCtxWaitEvent(&self, event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
-        let status = unsafe { crate::sys::cudaExecutionCtxWaitEvent(self.0, event) };
-        if status == crate::sys::cudaError::cudaSuccess {
-            Ok(())
-        } else {
-            Err(status)
-        }
-    }
-}
 #[doc = "Destroy all allocations and reset all state on the current device\nin the current process.\nExplicitly destroys and cleans up all resources associated with the current\ndevice in the current process. It is the caller's responsibility to ensure\nthat the resources are not accessed or passed in subsequent API calls and\ndoing so will result in undefined behavior. These resources include CUDA types\n::cudaStream_t, ::cudaEvent_t, ::cudaArray_t, ::cudaMipmappedArray_t, ::cudaPitchedPtr,\n::cudaTextureObject_t, ::cudaSurfaceObject_t, ::textureReference, ::surfaceReference,\n::cudaExternalMemory_t, ::cudaExternalSemaphore_t and ::cudaGraphicsResource_t.\nThese resources also include memory allocations by ::cudaMalloc, ::cudaMallocHost,\n::cudaMallocManaged and ::cudaMallocPitch.\nAny subsequent API call to this device will reinitialize the device.\nNote that this function will reset the device immediately.  It is the caller's\nresponsibility to ensure that the device is not being accessed by any\nother host threads from the process when this function is called.\n> **Note** ::cudaDeviceReset() will not destroy memory allocations by ::cudaMallocAsync() and\n::cudaMallocFromPoolAsync(). These memory allocations need to be destroyed explicitly.\n> **Note** If a non-primary ::CUcontext is current to the thread, ::cudaDeviceReset()\nwill destroy only the internal CUDA RT state for that ::CUcontext.\n\n# Returns\n\n::cudaSuccess\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaDeviceSynchronize`]"]
 pub unsafe fn cudaDeviceReset() -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDeviceReset() };
@@ -6269,6 +6216,37 @@ pub unsafe fn cudaGetDeviceFlags() -> Result<u32, crate::sys::cudaError> {
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Create an asynchronous stream\nCreates a new asynchronous stream on the context that is current to the calling host thread.\nIf no context is current to the calling host thread, then the primary context for a device\nis selected, made current to the calling thread, and initialized before creating a stream on it.\n\n# Arguments\n\n* `pStream` - - Pointer to new stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n::cudaErrorExternalDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaStreamCreateWithPriority,`]\n::cudaStreamCreateWithFlags,\n::cudaStreamGetPriority,\n::cudaStreamGetFlags,\n::cudaStreamGetDevice,\n::cudaStreamGetDevResource,\n::cudaStreamQuery,\n::cudaStreamSynchronize,\n::cudaStreamWaitEvent,\n::cudaStreamAddCallback,\n::cudaSetDevice,\n::cudaStreamDestroy,\n::cuStreamCreate"]
+pub unsafe fn cudaStreamCreate() -> Result<cudaStream_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaStreamCreate(out_0.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaStream_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Create an asynchronous stream\nCreates a new asynchronous stream on the context that is current to the calling host thread.\nIf no context is current to the calling host thread, then the primary context for a device\nis selected, made current to the calling thread, and initialized before creating a stream on it.\nThe `flags` argument determines the behaviors of the stream.  Valid values for `flags` are\n- ::cudaStreamDefault: Default stream creation flag.\n- ::cudaStreamNonBlocking: Specifies that work running in the created\nstream may run concurrently with work in stream 0 (the NULL stream), and that\nthe created stream should perform no implicit synchronization with stream 0.\n\n# Arguments\n\n* `pStream` - - Pointer to new stream identifier\n* `flags` -   - Parameters for stream creation\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n::cudaErrorExternalDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaStreamCreate,`]\n::cudaStreamCreateWithPriority,\n::cudaStreamGetFlags,\n::cudaStreamGetDevice,\n::cudaStreamGetDevResource,\n::cudaStreamQuery,\n::cudaStreamSynchronize,\n::cudaStreamWaitEvent,\n::cudaStreamAddCallback,\n::cudaSetDevice,\n::cudaStreamDestroy,\n::cuStreamCreate"]
+pub unsafe fn cudaStreamCreateWithFlags(flags: u32) -> Result<cudaStream_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaStreamCreateWithFlags(out_0.as_mut_ptr() as *mut _, flags as _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaStream_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Create an asynchronous stream with the specified priority\nCreates a stream with the specified priority and returns a handle in `pStream.`\nThe stream is created on the context that is current to the calling host thread.\nIf no context is current to the calling host thread, then the primary context for a device\nis selected, made current to the calling thread, and initialized before creating a stream on it.\nThis affects the scheduling priority of work in the stream. Priorities provide a\nhint to preferentially run work with higher priority when possible, but do\nnot preempt already-running work or provide any other functional guarantee on\nexecution order.\n`priority` follows a convention where lower numbers represent higher priorities.\n'0' represents default priority. The range of meaningful numerical priorities can\nbe queried using ::cudaDeviceGetStreamPriorityRange. If the specified priority is\noutside the numerical range returned by ::cudaDeviceGetStreamPriorityRange,\nit will automatically be clamped to the lowest or the highest number in the range.\n\n# Arguments\n\n* `pStream` -  - Pointer to new stream identifier\n* `flags` -    - Flags for stream creation. See ::cudaStreamCreateWithFlags for a list of valid flags that can be passed\n* `priority` - - Priority of the stream. Lower numbers represent higher priorities.\nSee ::cudaDeviceGetStreamPriorityRange for more information about\nthe meaningful stream priorities that can be passed.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n::cudaErrorExternalDevice\n\\notefnerr \\note_init_rt \\note_callback > **Note** Stream priorities are supported only on GPUs\nwith compute capability 3.5 or higher.\n> **Note** In the current implementation, only compute kernels launched in\npriority streams are affected by the stream's priority. Stream priorities have\nno effect on host-to-device and device-to-host memory operations.\n\n# See also\n\n> [`::cudaStreamCreate,`]\n::cudaStreamCreateWithFlags,\n::cudaDeviceGetStreamPriorityRange,\n::cudaStreamGetPriority,\n::cudaStreamQuery,\n::cudaStreamWaitEvent,\n::cudaStreamAddCallback,\n::cudaStreamSynchronize,\n::cudaSetDevice,\n::cudaStreamDestroy,\n::cuStreamCreateWithPriority"]
+pub unsafe fn cudaStreamCreateWithPriority(flags: u32, priority: i32) -> Result<cudaStream_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
+    let status =
+        unsafe { crate::sys::cudaStreamCreateWithPriority(out_0.as_mut_ptr() as *mut _, flags as _, priority as _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaStream_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
 #[doc = "Query the priority of a stream\nQuery the priority of a stream. The priority is returned in in `priority.`\nNote that if the stream was created with a priority outside the meaningful\nnumerical range returned by ::cudaDeviceGetStreamPriorityRange,\nthis function returns the clamped priority.\nSee ::cudaStreamCreateWithPriority for details about priority clamping.\n\n# Arguments\n\n* `hStream` -    - Handle to the stream to be queried\n* `priority` -   - Pointer to a signed integer in which the stream's priority is returned\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaStreamCreateWithPriority,`]\n::cudaDeviceGetStreamPriorityRange,\n::cudaStreamGetFlags,\n::cudaStreamGetDevice,\n::cudaStreamGetDevResource,\n::cuStreamGetPriority"]
 pub unsafe fn cudaStreamGetPriority(hStream: cudaStream_t) -> Result<i32, crate::sys::cudaError> {
     let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
@@ -6347,6 +6325,15 @@ pub unsafe fn cudaStreamSetAttribute<T: types::CudaAsPtr>(
     value: T,
 ) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaStreamSetAttribute(hStream, attr, value.as_const_ptr() as *const _) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+#[doc = "Destroys and cleans up an asynchronous stream\nDestroys and cleans up the asynchronous stream specified by `stream.`\nIn case the device is still doing work in the stream `stream`\nwhen ::cudaStreamDestroy() is called, the function will return immediately\nand the resources associated with `stream` will be released automatically\nonce the device has completed all work in `stream.`\n\n# Arguments\n\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle\n::cudaErrorExternalDevice\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaStreamCreate,`]\n::cudaStreamCreateWithFlags,\n::cudaStreamQuery,\n::cudaStreamWaitEvent,\n::cudaStreamSynchronize,\n::cudaStreamAddCallback,\n::cuStreamDestroy"]
+pub unsafe fn cudaStreamDestroy(stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaStreamDestroy(stream) };
     if status == crate::sys::cudaError::cudaSuccess {
         Ok(())
     } else {
@@ -6554,6 +6541,26 @@ pub unsafe fn cudaStreamUpdateCaptureDependencies<T: types::CudaAsPtr, U: types:
         Err(status)
     }
 }
+#[doc = "Creates an event object\nCreates an event object for the current device using ::cudaEventDefault.\n\n# Arguments\n\n* `event` - - Newly created event\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorLaunchFailure,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`\\ref`] ::cudaEventCreate(cudaEvent_t*, unsigned int) \"cudaEventCreate (C++ API)\",\n::cudaEventCreateWithFlags, ::cudaEventRecord, ::cudaEventQuery,\n::cudaEventSynchronize, ::cudaEventDestroy, ::cudaEventElapsedTime,\n::cudaStreamWaitEvent,\n::cuEventCreate"]
+pub unsafe fn cudaEventCreate() -> Result<cudaEvent_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaEvent_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaEventCreate(out_0.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaEvent_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Creates an event object with the specified flags\nCreates an event object for the current device with the specified flags. Valid\nflags include:\n- ::cudaEventDefault: Default event creation flag.\n- ::cudaEventBlockingSync: Specifies that event should use blocking\nsynchronization. A host thread that uses ::cudaEventSynchronize() to wait\non an event created with this flag will block until the event actually\ncompletes.\n- ::cudaEventDisableTiming: Specifies that the created event does not need\nto record timing data.  Events created with this flag specified and\nthe ::cudaEventBlockingSync flag not specified will provide the best\nperformance when used with ::cudaStreamWaitEvent() and ::cudaEventQuery().\n- ::cudaEventInterprocess: Specifies that the created event may be used as an\ninterprocess event by ::cudaIpcGetEventHandle(). ::cudaEventInterprocess must\nbe specified along with ::cudaEventDisableTiming.\n\n# Arguments\n\n* `event` - - Newly created event\n* `flags` - - Flags for new event\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorLaunchFailure,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`\\ref`] ::cudaEventCreate(cudaEvent_t*) \"cudaEventCreate (C API)\",\n::cudaEventSynchronize, ::cudaEventDestroy, ::cudaEventElapsedTime,\n::cudaStreamWaitEvent,\n::cuEventCreate"]
+pub unsafe fn cudaEventCreateWithFlags(flags: u32) -> Result<cudaEvent_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaEvent_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaEventCreateWithFlags(out_0.as_mut_ptr() as *mut _, flags as _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaEvent_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
 #[doc = "Records an event\nCaptures in `event` the contents of `stream` at the time of this call.\n`event` and `stream` must be on the same CUDA context.\nCalls such as ::cudaEventQuery() or ::cudaStreamWaitEvent() will then\nexamine or wait for completion of the work that was captured. Uses of\n`stream` after this call do not modify `event.` See note on default\nstream behavior for what is captured in the default case.\n::cudaEventRecord() can be called multiple times on the same event and\nwill overwrite the previously captured state. Other APIs such as\n::cudaStreamWaitEvent() use the most recently captured state at the time\nof the API call, and are not affected by later calls to\n::cudaEventRecord(). Before the first call to ::cudaEventRecord(), an\nevent represents an empty set of work, so for example ::cudaEventQuery()\nwould return ::cudaSuccess.\n\n# Arguments\n\n* `event` -  - Event to record\n* `stream` - - Stream in which to record event\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorLaunchFailure\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback \\note_null_event # See also\n\n> [`\\ref`] ::cudaEventCreate(cudaEvent_t*) \"cudaEventCreate (C API)\",\n::cudaEventCreateWithFlags, ::cudaEventQuery,\n::cudaEventSynchronize, ::cudaEventDestroy, ::cudaEventElapsedTime,\n::cudaStreamWaitEvent,\n::cudaEventRecordWithFlags,\n::cuEventRecord"]
 pub unsafe fn cudaEventRecord(event: cudaEvent_t, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaEventRecord(event, stream) };
@@ -6587,6 +6594,15 @@ pub unsafe fn cudaEventQuery(event: cudaEvent_t) -> Result<(), crate::sys::cudaE
 #[doc = "Waits for an event to complete\nWaits until the completion of all work currently captured in `event.`\nSee ::cudaEventRecord() for details on what is captured by an event.\nWaiting for an event that was created with the ::cudaEventBlockingSync\nflag will cause the calling CPU thread to block until the event has\nbeen completed by the device.  If the ::cudaEventBlockingSync flag has\nnot been set, then the CPU thread will busy-wait until the event has\nbeen completed by the device.\n\n# Arguments\n\n* `event` - - Event to wait for\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorLaunchFailure\n\\notefnerr \\note_init_rt \\note_callback \\note_null_event # See also\n\n> [`\\ref`] ::cudaEventCreate(cudaEvent_t*) \"cudaEventCreate (C API)\",\n::cudaEventCreateWithFlags, ::cudaEventRecord,\n::cudaEventQuery, ::cudaEventDestroy, ::cudaEventElapsedTime,\n::cuEventSynchronize"]
 pub unsafe fn cudaEventSynchronize(event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaEventSynchronize(event) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+#[doc = "Destroys an event object\nDestroys the event specified by `event.`\nAn event may be destroyed before it is complete (i.e., while\n::cudaEventQuery() would return ::cudaErrorNotReady). In this case, the\ncall does not block on completion of the event, and any associated\nresources will automatically be released asynchronously at completion.\n\n# Arguments\n\n* `event` - - Event to destroy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorLaunchFailure\n\\notefnerr \\note_init_rt \\note_callback \\note_destroy_ub \\note_null_event # See also\n\n> [`\\ref`] ::cudaEventCreate(cudaEvent_t*) \"cudaEventCreate (C API)\",\n::cudaEventCreateWithFlags, ::cudaEventQuery,\n::cudaEventSynchronize, ::cudaEventRecord, ::cudaEventElapsedTime,\n::cuEventDestroy"]
+pub unsafe fn cudaEventDestroy(event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaEventDestroy(event) };
     if status == crate::sys::cudaError::cudaSuccess {
         Ok(())
     } else {
@@ -6652,6 +6668,15 @@ pub unsafe fn cudaExternalMemoryGetMappedMipmappedArray(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Destroys an external memory object.\nDestroys the specified external memory object. Any existing buffers\nand CUDA mipmapped arrays mapped onto this object must no longer be\nused and must be explicitly freed using ::cudaFree and\n::cudaFreeMipmappedArray respectively.\n\n# Arguments\n\n* `extMem` - - External memory object to be destroyed\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle\n\\notefnerr \\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaImportExternalMemory,`]\n::cudaExternalMemoryGetMappedBuffer,\n::cudaExternalMemoryGetMappedMipmappedArray"]
+pub unsafe fn cudaDestroyExternalMemory(extMem: cudaExternalMemory_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaDestroyExternalMemory(extMem) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
 #[doc = "Imports an external semaphore\nImports an externally allocated synchronization object and returns\na handle to that in `extSem_out.`\nThe properties of the handle being imported must be described in\n`semHandleDesc.` The ::cudaExternalSemaphoreHandleDesc is defined\nas follows:\n\\code typedef struct cudaExternalSemaphoreHandleDesc_st {\ncudaExternalSemaphoreHandleType type;\nunion {\nint fd;\nstruct {\nvoid *handle;\nconst void *name;\n} win32;\nconst void* NvSciSyncObj;\n} handle;\nunsigned int flags;\n} cudaExternalSemaphoreHandleDesc;\n\\endcode where ::cudaExternalSemaphoreHandleDesc::type specifies the type of\nhandle being imported. ::cudaExternalSemaphoreHandleType is defined\nas:\n\\code typedef enum cudaExternalSemaphoreHandleType_enum {\ncudaExternalSemaphoreHandleTypeOpaqueFd                = 1,\ncudaExternalSemaphoreHandleTypeOpaqueWin32             = 2,\ncudaExternalSemaphoreHandleTypeOpaqueWin32Kmt          = 3,\ncudaExternalSemaphoreHandleTypeD3D12Fence              = 4,\ncudaExternalSemaphoreHandleTypeD3D11Fence              = 5,\ncudaExternalSemaphoreHandleTypeNvSciSync               = 6,\ncudaExternalSemaphoreHandleTypeKeyedMutex              = 7,\ncudaExternalSemaphoreHandleTypeKeyedMutexKmt           = 8,\ncudaExternalSemaphoreHandleTypeTimelineSemaphoreFd     = 9,\ncudaExternalSemaphoreHandleTypeTimelineSemaphoreWin32  = 10\n} cudaExternalSemaphoreHandleType;\n\\endcode If ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeOpaqueFd, then\n::cudaExternalSemaphoreHandleDesc::handle::fd must be a valid file\ndescriptor referencing a synchronization object. Ownership of the\nfile descriptor is transferred to the CUDA driver when the handle\nis imported successfully. Performing any operations on the file\ndescriptor after it is imported results in undefined behavior.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeOpaqueWin32, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nreferences a synchronization object. Ownership of this handle is\nnot transferred to CUDA after the import operation, so the\napplication must release the handle using the appropriate system\ncall. If ::cudaExternalSemaphoreHandleDesc::handle::win32::name is\nnot NULL, then it must name a valid synchronization object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeOpaqueWin32Kmt, then\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle must be\nnon-NULL and ::cudaExternalSemaphoreHandleDesc::handle::win32::name\nmust be NULL. The handle specified must be a globally shared KMT\nhandle. This handle does not hold a reference to the underlying\nobject, and thus will be invalid when all references to the\nsynchronization object are destroyed.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeD3D12Fence, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nis returned by ID3D12Device::CreateSharedHandle when referring to a\nID3D12Fence object. This handle holds a reference to the underlying\nobject. If ::cudaExternalSemaphoreHandleDesc::handle::win32::name\nis not NULL, then it must name a valid synchronization object that\nrefers to a valid ID3D12Fence object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeD3D11Fence, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nis returned by ID3D11Fence::CreateSharedHandle. If\n::cudaExternalSemaphoreHandleDesc::handle::win32::name\nis not NULL, then it must name a valid synchronization object that\nrefers to a valid ID3D11Fence object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeNvSciSync, then\n::cudaExternalSemaphoreHandleDesc::handle::nvSciSyncObj\nrepresents a valid NvSciSyncObj.\n::cudaExternalSemaphoreHandleTypeKeyedMutex, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it represent a valid shared NT handle that\nis returned by IDXGIResource1::CreateSharedHandle when referring to\na IDXGIKeyedMutex object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeKeyedMutexKmt, then\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle must be\nnon-NULL and ::cudaExternalSemaphoreHandleDesc::handle::win32::name\nmust be NULL. The handle specified must represent a valid KMT\nhandle that is returned by IDXGIResource::GetSharedHandle when\nreferring to a IDXGIKeyedMutex object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreFd, then\n::cudaExternalSemaphoreHandleDesc::handle::fd must be a valid file\ndescriptor referencing a synchronization object. Ownership of the\nfile descriptor is transferred to the CUDA driver when the handle\nis imported successfully. Performing any operations on the file\ndescriptor after it is imported results in undefined behavior.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreWin32, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nreferences a synchronization object. Ownership of this handle is\nnot transferred to CUDA after the import operation, so the\napplication must release the handle using the appropriate system\ncall. If ::cudaExternalSemaphoreHandleDesc::handle::win32::name is\nnot NULL, then it must name a valid synchronization object.\n\n# Arguments\n\n* `extSem_out` -    - Returned handle to an external semaphore\n* `semHandleDesc` - - Semaphore import handle descriptor\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorOperatingSystem\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaDestroyExternalSemaphore,`]\n::cudaSignalExternalSemaphoresAsync,\n::cudaWaitExternalSemaphoresAsync"]
 pub unsafe fn cudaImportExternalSemaphore<T: types::CudaAsPtr>(
     mut extSem_out: T,
@@ -6700,6 +6725,15 @@ pub unsafe fn cudaWaitExternalSemaphoresAsync<T: types::CudaAsPtr, U: types::Cud
             stream,
         )
     };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+#[doc = "Destroys an external semaphore\nDestroys an external semaphore object and releases any references\nto the underlying resource. Any outstanding signals or waits must\nhave completed before the semaphore is destroyed.\n\n# Arguments\n\n* `extSem` - - External semaphore to be destroyed\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle\n\\notefnerr \\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaImportExternalSemaphore,`]\n::cudaSignalExternalSemaphoresAsync,\n::cudaWaitExternalSemaphoresAsync"]
+pub unsafe fn cudaDestroyExternalSemaphore(extSem: cudaExternalSemaphore_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaDestroyExternalSemaphore(extSem) };
     if status == crate::sys::cudaError::cudaSuccess {
         Ok(())
     } else {
@@ -8308,6 +8342,25 @@ pub unsafe fn cudaMemPoolGetAccess(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Creates a memory pool\nCreates a CUDA memory pool and returns the handle in `pool.`  The `poolProps` determines\nthe properties of the pool such as the backing device and IPC capabilities.\nTo create a memory pool for host memory not targeting a specific NUMA node, applications must set\nset ::cudaMemPoolProps::cudaMemLocation::type to ::cudaMemLocationTypeHost.\n::cudaMemPoolProps::cudaMemLocation::id is ignored for such pools.\nPools created with the type ::cudaMemLocationTypeHost are not IPC capable and\n::cudaMemPoolProps::handleTypes must be 0, any other values will result in\n::cudaErrorInvalidValue.\nTo create a memory pool targeting a specific host NUMA node, applications must\nset ::cudaMemPoolProps::cudaMemLocation::type to ::cudaMemLocationTypeHostNuma and\n::cudaMemPoolProps::cudaMemLocation::id must specify the NUMA ID of the host memory node.\nSpecifying ::cudaMemLocationTypeHostNumaCurrent as the\n::cudaMemPoolProps::cudaMemLocation::type will result in ::cudaErrorInvalidValue.\nBy default, the pool's memory will be accessible from the device it is allocated on.\nIn the case of pools created with ::cudaMemLocationTypeHostNuma or\n::cudaMemLocationTypeHost, their default accessibility will be from the host\nCPU.\nApplications can control the maximum size of the pool by specifying a non-zero value for ::cudaMemPoolProps::maxSize.\nIf set to 0, the maximum size of the pool will default to a system dependent value.\nApplications that intend to use ::CU_MEM_HANDLE_TYPE_FABRIC based memory sharing must ensure:\n(1) `nvidia-caps-imex-channels` character device is created by the driver and is listed under /proc/devices\n(2) have at least one IMEX channel file accessible by the user launching the application.\nWhen exporter and importer CUDA processes have been granted access to the same IMEX channel, they can securely\nshare memory.\nThe IMEX channel security model works on a per user basis. Which means all processes under a user can share\nmemory if the user has access to a valid IMEX channel. When multi-user isolation is desired, a separate IMEX\nchannel is required for each user.\nThese channel files exist in /dev/nvidia-caps-imex-channels/channel* and can be created using standard OS\nnative calls like mknod on Linux. For example: To create channel0 with the major number from /proc/devices\nusers can execute the following command: `mknod /dev/nvidia-caps-imex-channels/channel0 c <major number> 0`\nTo create a managed memory pool, applications must set ::cudaMemPoolProps:cudaMemAllocationType to ::cudaMemAllocationTypeManaged.\n::cudaMemPoolProps::cudaMemAllocationHandleType must also be set to ::cudaMemHandleTypeNone since IPC is not supported.\nFor managed memory pools, ::cudaMemPoolProps::cudaMemLocation will be treated as the preferred location for all allocations created from the pool.\nAn application can also set ::cudaMemLocationTypeNone to indicate no preferred location.\n::cudaMemPoolProps::maxSize must be set to zero for managed memory pools.\n::cudaMemPoolProps::usage should be zero as decompress for managed memory is not supported.\nFor managed memory pools, all devices on the system must have non-zero ::concurrentManagedAccess. If not, this call returns ::cudaErrorNotSupported\n> **Note** Specifying ::cudaMemHandleTypeNone creates a memory pool that will not support IPC.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported\n\n# See also\n\n> [`::cuMemPoolCreate,`] ::cudaDeviceSetMemPool, ::cudaMallocFromPoolAsync, ::cudaMemPoolExportToShareableHandle, ::cudaDeviceGetDefaultMemPool, ::cudaDeviceGetMemPool\n"]
+pub unsafe fn cudaMemPoolCreate(poolProps: *const cudaMemPoolProps) -> Result<cudaMemPool_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaMemPool_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaMemPoolCreate(out_0.as_mut_ptr() as *mut _, poolProps) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaMemPool_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Destroys the specified memory pool\nIf any pointers obtained from this pool haven't been freed or\nthe pool has free operations that haven't completed\nwhen ::cudaMemPoolDestroy is invoked, the function will return immediately and the\nresources associated with the pool will be released automatically\nonce there are no more outstanding allocations.\nDestroying the current mempool of a device sets the default mempool of\nthat device as the current mempool for that device.\n> **Note** A device's default memory pool cannot be destroyed.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\n# See also\n\n> [`cuMemPoolDestroy,`] ::cudaFreeAsync, ::cudaDeviceSetMemPool, ::cudaDeviceGetDefaultMemPool, ::cudaDeviceGetMemPool, ::cudaMemPoolCreate"]
+pub unsafe fn cudaMemPoolDestroy(memPool: cudaMemPool_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaMemPoolDestroy(memPool) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
 #[doc = "Returns the default memory pool for a given location and allocation type\nThe memory location can be of one of ::cudaMemLocationTypeDevice, ::cudaMemLocationTypeHost or\n::cudaMemLocationTypeHostNuma. The allocation type can be one of ::cudaMemAllocationTypePinned or\n::cudaMemAllocationTypeManaged. When the allocation type is ::cudaMemAllocationTypeManaged,\nthe location type can also be ::cudaMemLocationTypeNone to indicate no preferred location\nfor the managed memory pool. In all other cases, the call return ::cudaErrorInvalidValue\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported,\n\n# See also\n\n> [`::cuMemAllocAsync,`] ::cuMemPoolTrimTo, ::cuMemPoolGetAttribute, ::cuMemPoolSetAttribute, cuMemPoolSetAccess, ::cuMemGetMemPool, ::cuMemPoolCreate"]
 pub unsafe fn cudaMemGetDefaultMemPool(
     type_: cudaMemAllocationType,
@@ -8597,6 +8650,34 @@ pub unsafe fn cudaGetChannelDesc(array: cudaArray_const_t) -> Result<cudaChannel
         Err(unsafe { std::mem::transmute(status) })
     }
 }
+#[doc = "Returns a channel descriptor using the specified format\nReturns a channel descriptor with format `f` and number of bits of each\ncomponent `x,` `y,` `z,` and `w.`  The ::cudaChannelFormatDesc is\ndefined as:\n\\code struct cudaChannelFormatDesc {\nint x, y, z, w;\nenum cudaChannelFormatKind f;\n};\n\\endcode where ::cudaChannelFormatKind is one of ::cudaChannelFormatKindSigned,\n::cudaChannelFormatKindUnsigned, or ::cudaChannelFormatKindFloat.\n\n# Arguments\n\n* `x` - - X component\n* `y` - - Y component\n* `z` - - Z component\n* `w` - - W component\n* `f` - - Channel format\n\n# Returns\n\nChannel descriptor with format `f`\n\n# See also\n\n> [`\\ref`] ::cudaCreateChannelDesc(void) \"cudaCreateChannelDesc (C++ API)\",\n::cudaGetChannelDesc, ::cudaCreateTextureObject, ::cudaCreateSurfaceObject"]
+pub unsafe fn cudaCreateChannelDesc(x: i32, y: i32, z: i32, w: i32, f: cudaChannelFormatKind) -> cudaChannelFormatDesc {
+    unsafe { crate::sys::cudaCreateChannelDesc(x as _, y as _, z as _, w as _, f) }
+}
+#[doc = "Creates a texture object\nCreates a texture object and returns it in `pTexObject.` `pResDesc` describes\nthe data to texture from. `pTexDesc` describes how the data should be sampled.\n`pResViewDesc` is an optional argument that specifies an alternate format for\nthe data described by `pResDesc,` and also describes the subresource region\nto restrict access to when texturing. `pResViewDesc` can only be specified if\nthe type of resource is a CUDA array or a CUDA mipmapped array not in a block\ncompressed format.\nTexture objects are only supported on devices of compute capability 3.0 or higher.\nAdditionally, a texture object is an opaque value, and, as such, should only be\naccessed through CUDA API calls.\nThe ::cudaResourceDesc structure is defined as:\n\\code struct cudaResourceDesc {\nenum cudaResourceType resType;\nunion {\nstruct {\ncudaArray_t array;\n} array;\nstruct {\ncudaMipmappedArray_t mipmap;\n} mipmap;\nstruct {\nvoid *devPtr;\nstruct cudaChannelFormatDesc desc;\nsize_t sizeInBytes;\n} linear;\nstruct {\nvoid *devPtr;\nstruct cudaChannelFormatDesc desc;\nsize_t width;\nsize_t height;\nsize_t pitchInBytes;\n} pitch2D;\n} res;\n};\n\\endcode where:\n- ::cudaResourceDesc::resType specifies the type of resource to texture from.\nCUresourceType is defined as:\n\\code enum cudaResourceType {\ncudaResourceTypeArray          = 0x00,\ncudaResourceTypeMipmappedArray = 0x01,\ncudaResourceTypeLinear         = 0x02,\ncudaResourceTypePitch2D        = 0x03\n};\n\\endcode # If ::cudaResourceDesc::resType is set to ::cudaResourceTypeArray, ::cudaResourceDesc::res::array::array\nmust be set to a valid CUDA array handle.\n# If ::cudaResourceDesc::resType is set to ::cudaResourceTypeMipmappedArray, ::cudaResourceDesc::res::mipmap::mipmap\nmust be set to a valid CUDA mipmapped array handle and ::cudaTextureDesc::normalizedCoords must be set to true.\n# If ::cudaResourceDesc::resType is set to ::cudaResourceTypeLinear, ::cudaResourceDesc::res::linear::devPtr\nmust be set to a valid device pointer, that is aligned to ::cudaDeviceProp::textureAlignment.\n::cudaResourceDesc::res::linear::desc describes the format and the number of components per array element. ::cudaResourceDesc::res::linear::sizeInBytes\nspecifies the size of the array in bytes. The total number of elements in the linear address range cannot exceed\n::cudaDeviceGetTexture1DLinearMaxWidth(). The number of elements is computed as (sizeInBytes / sizeof(desc)).\n# If ::cudaResourceDesc::resType is set to ::cudaResourceTypePitch2D, ::cudaResourceDesc::res::pitch2D::devPtr\nmust be set to a valid device pointer, that is aligned to ::cudaDeviceProp::textureAlignment.\n::cudaResourceDesc::res::pitch2D::desc describes the format and the number of components per array element. ::cudaResourceDesc::res::pitch2D::width\nand ::cudaResourceDesc::res::pitch2D::height specify the width and height of the array in elements, and cannot exceed\n::cudaDeviceProp::maxTexture2DLinear[0] and ::cudaDeviceProp::maxTexture2DLinear[1] respectively.\n::cudaResourceDesc::res::pitch2D::pitchInBytes specifies the pitch between two rows in bytes and has to be aligned to\n::cudaDeviceProp::texturePitchAlignment. Pitch cannot exceed ::cudaDeviceProp::maxTexture2DLinear[2].\nThe ::cudaTextureDesc struct is defined as\n\\code struct cudaTextureDesc {\nenum cudaTextureAddressMode addressMode[3];\nenum cudaTextureFilterMode  filterMode;\nenum cudaTextureReadMode    readMode;\nint                         sRGB;\nfloat                       borderColor[4];\nint                         normalizedCoords;\nunsigned int                maxAnisotropy;\nenum cudaTextureFilterMode  mipmapFilterMode;\nfloat                       mipmapLevelBias;\nfloat                       minMipmapLevelClamp;\nfloat                       maxMipmapLevelClamp;\nint                         disableTrilinearOptimization;\nint                         seamlessCubemap;\n};\n\\endcode where\n- ::cudaTextureDesc::addressMode specifies the addressing mode for each dimension of the texture data. ::cudaTextureAddressMode is defined as:\n\\code enum cudaTextureAddressMode {\ncudaAddressModeWrap   = 0,\ncudaAddressModeClamp  = 1,\ncudaAddressModeMirror = 2,\ncudaAddressModeBorder = 3\n};\n\\endcode This is ignored if ::cudaResourceDesc::resType is ::cudaResourceTypeLinear. Also, if ::cudaTextureDesc::normalizedCoords\nis set to zero, ::cudaAddressModeWrap and ::cudaAddressModeMirror won't be supported and will be switched to ::cudaAddressModeClamp.\n- ::cudaTextureDesc::filterMode specifies the filtering mode to be used when fetching from the texture. ::cudaTextureFilterMode is defined as:\n\\code enum cudaTextureFilterMode {\ncudaFilterModePoint  = 0,\ncudaFilterModeLinear = 1\n};\n\\endcode This is ignored if ::cudaResourceDesc::resType is ::cudaResourceTypeLinear.\n- ::cudaTextureDesc::readMode specifies whether integer data should be converted to floating point or not. ::cudaTextureReadMode is defined as:\n\\code enum cudaTextureReadMode {\ncudaReadModeElementType     = 0,\ncudaReadModeNormalizedFloat = 1\n};\n\\endcode Note that this applies only to 8-bit and 16-bit integer formats. 32-bit integer format would not be promoted, regardless of\nwhether or not this ::cudaTextureDesc::readMode is set ::cudaReadModeNormalizedFloat is specified.\n- ::cudaTextureDesc::sRGB specifies whether sRGB to linear conversion should be performed during texture fetch.\n- ::cudaTextureDesc::borderColor specifies the float values of color. where:\n::cudaTextureDesc::borderColor[0] contains value of 'R',\n::cudaTextureDesc::borderColor[1] contains value of 'G',\n::cudaTextureDesc::borderColor[2] contains value of 'B',\n::cudaTextureDesc::borderColor[3] contains value of 'A'\nNote that application using integer border color values will need to <reinterpret_cast> these values to float.\nThe values are set only when the addressing mode specified by ::cudaTextureDesc::addressMode is cudaAddressModeBorder.\n- ::cudaTextureDesc::normalizedCoords specifies whether the texture coordinates will be normalized or not.\n- ::cudaTextureDesc::maxAnisotropy specifies the maximum anistropy ratio to be used when doing anisotropic filtering. This value will be\nclamped to the range [1,16].\n- ::cudaTextureDesc::mipmapFilterMode specifies the filter mode when the calculated mipmap level lies between two defined mipmap levels.\n- ::cudaTextureDesc::mipmapLevelBias specifies the offset to be applied to the calculated mipmap level.\n- ::cudaTextureDesc::minMipmapLevelClamp specifies the lower end of the mipmap level range to clamp access to.\n- ::cudaTextureDesc::maxMipmapLevelClamp specifies the upper end of the mipmap level range to clamp access to.\n- ::cudaTextureDesc::disableTrilinearOptimization specifies whether the trilinear filtering optimizations will be disabled.\n- ::cudaTextureDesc::seamlessCubemap specifies whether seamless cube map filtering is enabled. This flag can only be specified if the\nunderlying resource is a CUDA array or a CUDA mipmapped array that was created with the flag ::cudaArrayCubemap.\nWhen seamless cube map filtering is enabled, texture address modes specified by ::cudaTextureDesc::addressMode are ignored.\nInstead, if the ::cudaTextureDesc::filterMode is set to ::cudaFilterModePoint the address mode ::cudaAddressModeClamp will be applied for all dimensions.\nIf the ::cudaTextureDesc::filterMode is set to ::cudaFilterModeLinear seamless cube map filtering will be performed when sampling along the cube face borders.\nThe ::cudaResourceViewDesc struct is defined as\n\\code struct cudaResourceViewDesc {\nenum cudaResourceViewFormat format;\nsize_t                      width;\nsize_t                      height;\nsize_t                      depth;\nunsigned int                firstMipmapLevel;\nunsigned int                lastMipmapLevel;\nunsigned int                firstLayer;\nunsigned int                lastLayer;\n};\n\\endcode where:\n- ::cudaResourceViewDesc::format specifies how the data contained in the CUDA array or CUDA mipmapped array should\nbe interpreted. Note that this can incur a change in size of the texture data. If the resource view format is a block\ncompressed format, then the underlying CUDA array or CUDA mipmapped array has to have a 32-bit unsigned integer format\nwith 2 or 4 channels, depending on the block compressed format. For ex., BC1 and BC4 require the underlying CUDA array to have\na 32-bit unsigned int with 2 channels. The other BC formats require the underlying resource to have the same 32-bit unsigned int\nformat but with 4 channels.\n- ::cudaResourceViewDesc::width specifies the new width of the texture data. If the resource view format is a block\ncompressed format, this value has to be 4 times the original width of the resource. For non block compressed formats,\nthis value has to be equal to that of the original resource.\n- ::cudaResourceViewDesc::height specifies the new height of the texture data. If the resource view format is a block\ncompressed format, this value has to be 4 times the original height of the resource. For non block compressed formats,\nthis value has to be equal to that of the original resource.\n- ::cudaResourceViewDesc::depth specifies the new depth of the texture data. This value has to be equal to that of the\noriginal resource.\n- ::cudaResourceViewDesc::firstMipmapLevel specifies the most detailed mipmap level. This will be the new mipmap level zero.\nFor non-mipmapped resources, this value has to be zero.::cudaTextureDesc::minMipmapLevelClamp and ::cudaTextureDesc::maxMipmapLevelClamp\nwill be relative to this value. For ex., if the firstMipmapLevel is set to 2, and a minMipmapLevelClamp of 1.2 is specified,\nthen the actual minimum mipmap level clamp will be 3.2.\n- ::cudaResourceViewDesc::lastMipmapLevel specifies the least detailed mipmap level. For non-mipmapped resources, this value\nhas to be zero.\n- ::cudaResourceViewDesc::firstLayer specifies the first layer index for layered textures. This will be the new layer zero.\nFor non-layered resources, this value has to be zero.\n- ::cudaResourceViewDesc::lastLayer specifies the last layer index for layered textures. For non-layered resources,\nthis value has to be zero.\n\n# Arguments\n\n* `pTexObject` -   - Texture object to create\n* `pResDesc` -     - Resource descriptor\n* `pTexDesc` -     - Texture descriptor\n* `pResViewDesc` - - Resource view descriptor\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_init_rt \\note_callback # See also\n\n> [`::cudaDestroyTextureObject,`]\n::cuTexObjectCreate"]
+pub unsafe fn cudaCreateTextureObject(
+    pResDesc: *const cudaResourceDesc,
+    pTexDesc: *const cudaTextureDesc,
+    pResViewDesc: *const cudaResourceViewDesc,
+) -> Result<cudaTextureObject_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaTextureObject_t> = std::mem::MaybeUninit::uninit();
+    let status =
+        unsafe { crate::sys::cudaCreateTextureObject(out_0.as_mut_ptr() as *mut _, pResDesc, pTexDesc, pResViewDesc) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaTextureObject_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Destroys a texture object\nDestroys the texture object specified by `texObject.`\n\n# Arguments\n\n* `texObject` - - Texture object to destroy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaCreateTextureObject,`]\n::cuTexObjectDestroy"]
+pub unsafe fn cudaDestroyTextureObject(texObject: cudaTextureObject_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaDestroyTextureObject(texObject) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
 #[doc = "Returns a texture object's resource descriptor\nReturns the resource descriptor for the texture object specified by `texObject.`\n\n# Arguments\n\n* `pResDesc` -  - Resource descriptor\n* `texObject` - - Texture object\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_init_rt \\note_callback # See also\n\n> [`::cudaCreateTextureObject,`]\n::cuTexObjectGetResourceDesc"]
 pub unsafe fn cudaGetTextureObjectResourceDesc(
     texObject: cudaTextureObject_t,
@@ -8631,6 +8712,27 @@ pub unsafe fn cudaGetTextureObjectResourceViewDesc(
         unsafe { Ok(out_0.assume_init() as cudaResourceViewDesc) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Creates a surface object\nCreates a surface object and returns it in `pSurfObject.` `pResDesc` describes\nthe data to perform surface load/stores on. ::cudaResourceDesc::resType must be\n::cudaResourceTypeArray and  ::cudaResourceDesc::res::array::array\nmust be set to a valid CUDA array handle.\nSurface objects are only supported on devices of compute capability 3.0 or higher.\nAdditionally, a surface object is an opaque value, and, as such, should only be\naccessed through CUDA API calls.\n\n# Arguments\n\n* `pSurfObject` - - Surface object to create\n* `pResDesc` -    - Resource descriptor\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidChannelDescriptor,\n::cudaErrorInvalidResourceHandle\n\\note_init_rt \\note_callback # See also\n\n> [`::cudaDestroySurfaceObject,`]\n::cuSurfObjectCreate"]
+pub unsafe fn cudaCreateSurfaceObject(
+    pResDesc: *const cudaResourceDesc,
+) -> Result<cudaSurfaceObject_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaSurfaceObject_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaCreateSurfaceObject(out_0.as_mut_ptr() as *mut _, pResDesc) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaSurfaceObject_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Destroys a surface object\nDestroys the surface object specified by `surfObject.`\n\n# Arguments\n\n* `surfObject` - - Surface object to destroy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaCreateSurfaceObject,`]\n::cuSurfObjectDestroy"]
+pub unsafe fn cudaDestroySurfaceObject(surfObject: cudaSurfaceObject_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaDestroySurfaceObject(surfObject) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
     }
 }
 #[doc = "Returns a surface object's resource descriptor\nReturns the resource descriptor for the surface object specified by `surfObject.`\n\n# Arguments\n\n* `pResDesc` -   - Resource descriptor\n* `surfObject` - - Surface object\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_init_rt \\note_callback # See also\n\n> [`::cudaCreateSurfaceObject,`]\n::cuSurfObjectGetResourceDesc"]
@@ -8738,6 +8840,16 @@ pub unsafe fn cudaLogsDumpToMemory<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
         Ok(())
     } else {
         Err(status)
+    }
+}
+#[doc = "Creates a graph\nCreates an empty graph, which is returned via `pGraph.`\n\n# Arguments\n\n* `pGraph` - - Returns newly created graph\n* `flags` -   - Graph creation flags, must be 0\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddChildGraphNode,`]\n::cudaGraphAddEmptyNode,\n::cudaGraphAddKernelNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemcpyNode,\n::cudaGraphAddMemsetNode,\n::cudaGraphInstantiate,\n::cudaGraphDestroy,\n::cudaGraphGetNodes,\n::cudaGraphGetRootNodes,\n::cudaGraphGetEdges,\n::cudaGraphClone"]
+pub unsafe fn cudaGraphCreate(flags: u32) -> Result<cudaGraph_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaGraph_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaGraphCreate(out_0.as_mut_ptr() as *mut _, flags as _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaGraph_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
 #[doc = "Creates a kernel execution node and adds it to a graph\nCreates a new kernel execution node and adds it to `graph` with `numDependencies`\ndependencies specified via `pDependencies` and arguments specified in `pNodeParams.`\nIt is possible for `numDependencies` to be 0, in which case the node will be placed\nat the root of the graph. `pDependencies` may not have any duplicate entries.\nA handle to the new node will be returned in `pGraphNode.`\nThe cudaKernelNodeParams structure is defined as:\n\\code struct cudaKernelNodeParams\n{\nvoid* func;\ndim3 gridDim;\ndim3 blockDim;\nunsigned int sharedMemBytes;\nvoid **kernelParams;\nvoid **extra;\n};\n\\endcode When the graph is launched, the node will invoke kernel `func` on a (`gridDim.x` x\n`gridDim.y` x `gridDim.z)` grid of blocks. Each block contains\n(`blockDim.x` x `blockDim.y` x `blockDim.z)` threads.\n`sharedMem` sets the amount of dynamic shared memory that will be\navailable to each thread block.\nKernel parameters to `func` can be specified in one of two ways:\n1) Kernel parameters can be specified via `kernelParams.` If the kernel has N\nparameters, then `kernelParams` needs to be an array of N pointers. Each pointer,\nfrom `kernelParams`[0] to `kernelParams`[N-1], points to the region of memory from which the actual\nparameter will be copied. The number of kernel parameters and their offsets and sizes do not need\nto be specified as that information is retrieved directly from the kernel's image.\n2) Kernel parameters can also be packaged by the application into a single buffer that is passed in\nvia `extra.` This places the burden on the application of knowing each kernel\nparameter's size and alignment/padding within the buffer. The `extra` parameter exists\nto allow this function to take additional less commonly used arguments. `extra` specifies\na list of names of extra settings and their corresponding values. Each extra setting name is\nimmediately followed by the corresponding value. The list must be terminated with either NULL or\nCU_LAUNCH_PARAM_END.\n- ::CU_LAUNCH_PARAM_END, which indicates the end of the `extra`\narray;\n- ::CU_LAUNCH_PARAM_BUFFER_POINTER, which specifies that the next\nvalue in `extra` will be a pointer to a buffer\ncontaining all the kernel parameters for launching kernel\n`func;`\n- ::CU_LAUNCH_PARAM_BUFFER_SIZE, which specifies that the next\nvalue in `extra` will be a pointer to a size_t\ncontaining the size of the buffer specified with\n::CU_LAUNCH_PARAM_BUFFER_POINTER;\nThe error ::cudaErrorInvalidValue will be returned if kernel parameters are specified with both\n`kernelParams` and `extra` (i.e. both `kernelParams` and\n`extra` are non-NULL).\nThe `kernelParams` or `extra` array, as well as the argument values it points to,\nare copied during this call.\n> **Note** Kernels launched using graphs must not use texture and surface references. Reading or\nwriting through any texture or surface reference is undefined behavior.\nThis restriction does not apply to texture and surface objects.\n\n# Arguments\n\n* `pGraphNode` -     - Returns newly created node\n* `graph` -          - Graph to which to add the node\n* `pDependencies` -    - Dependencies of the node\n* `numDependencies` - - Number of dependencies\n* `pNodeParams` -      - Parameters for the GPU execution node\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDeviceFunction\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaLaunchKernel,\n::cudaGraphKernelNodeGetParams,\n::cudaGraphKernelNodeSetParams,\n::cudaGraphCreate,\n::cudaGraphDestroyNode,\n::cudaGraphAddChildGraphNode,\n::cudaGraphAddEmptyNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemcpyNode,\n::cudaGraphAddMemsetNode"]
@@ -9707,6 +9819,15 @@ pub unsafe fn cudaGraphRemoveDependencies<T: types::CudaAsPtr, U: types::CudaAsP
         Err(status)
     }
 }
+#[doc = "Remove a node from the graph\nRemoves `node` from its graph. This operation also severs any dependencies of other nodes\non `node` and vice versa.\nDependencies cannot be removed from graphs which contain allocation or free nodes.\nAny attempt to do so will return an error.\n\n# Arguments\n\n* `node` -  - Node to remove\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaGraphAddChildGraphNode,`]\n::cudaGraphAddEmptyNode,\n::cudaGraphAddKernelNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemcpyNode,\n::cudaGraphAddMemsetNode"]
+pub unsafe fn cudaGraphDestroyNode(node: cudaGraphNode_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaGraphDestroyNode(node) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
 #[doc = "Creates an executable graph from a graph\nInstantiates `graph` as an executable graph. The graph is validated for any\nstructural constraints or intra-node constraints which were not previously\nvalidated. If instantiation is successful, a handle to the instantiated graph\nis returned in `pGraphExec.`\nThe `flags` parameter controls the behavior of instantiation and subsequent\ngraph launches.  Valid flags are:\n- ::cudaGraphInstantiateFlagAutoFreeOnLaunch, which configures a\ngraph containing memory allocation nodes to automatically free any\nunfreed memory allocations before the graph is relaunched.\n- ::cudaGraphInstantiateFlagDeviceLaunch, which configures the graph for launch\nfrom the device. If this flag is passed, the executable graph handle returned can be\nused to launch the graph from both the host and device. This flag cannot be used in\nconjunction with ::cudaGraphInstantiateFlagAutoFreeOnLaunch.\n- ::cudaGraphInstantiateFlagUseNodePriority, which causes the graph\nto use the priorities from the per-node attributes rather than the priority\nof the launch stream during execution. Note that priorities are only available\non kernel nodes, and are copied from stream priority during stream capture.\nIf `graph` contains any allocation or free nodes, there can be at most one\nexecutable graph in existence for that graph at a time. An attempt to\ninstantiate a second executable graph before destroying the first with\n::cudaGraphExecDestroy will result in an error.\nThe same also applies if `graph` contains any device-updatable kernel nodes.\nGraphs instantiated for launch on the device have additional restrictions which do not\napply to host graphs:\n- The graph's nodes must reside on a single device.\n- The graph can only contain kernel nodes, memcpy nodes, memset nodes, and child graph nodes.\n- The graph cannot be empty and must contain at least one kernel, memcpy, or memset node.\nOperation-specific restrictions are outlined below.\n- Kernel nodes:\n- Use of CUDA Dynamic Parallelism is not permitted.\n- Cooperative launches are permitted as long as MPS is not in use.\n- Memcpy nodes:\n- Only copies involving device memory and/or pinned device-mapped host memory are permitted.\n- Copies involving CUDA arrays are not permitted.\n- Both operands must be accessible from the current device, and the current device must\nmatch the device of other nodes in the graph.\nIf `graph` is not instantiated for launch on the device but contains kernels which\ncall device-side cudaGraphLaunch() from multiple devices, this will result in an error.\n\n# Arguments\n\n* `pGraphExec` - - Returns instantiated graph\n* `graph` -      - Graph to instantiate\n* `flags` -      - Flags to control instantiation.  See ::CUgraphInstantiate_flags.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphInstantiateWithFlags,`]\n::cudaGraphCreate,\n::cudaGraphUpload,\n::cudaGraphLaunch,\n::cudaGraphExecDestroy"]
 pub unsafe fn cudaGraphInstantiate<T: types::CudaAsPtr>(
     mut pGraphExec: T,
@@ -10023,6 +10144,24 @@ pub unsafe fn cudaGraphLaunch(graphExec: cudaGraphExec_t, stream: cudaStream_t) 
         Err(status)
     }
 }
+#[doc = "Destroys an executable graph\nDestroys the executable graph specified by `graphExec.`\n\n# Arguments\n\n* `graphExec` - - Executable graph to destroy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaGraphInstantiate,`]\n::cudaGraphUpload,\n::cudaGraphLaunch"]
+pub unsafe fn cudaGraphExecDestroy(graphExec: cudaGraphExec_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaGraphExecDestroy(graphExec) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+#[doc = "Destroys a graph\nDestroys the graph specified by `graph,` as well as all of its nodes.\n\n# Arguments\n\n* `graph` - - Graph to destroy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback \\note_destroy_ub # See also\n\n> [`::cudaGraphCreate`]"]
+pub unsafe fn cudaGraphDestroy(graph: cudaGraph_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaGraphDestroy(graph) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
 #[doc = "Write a DOT file describing graph structure\nUsing the provided `graph,` write to `path` a DOT formatted description of the graph.\nBy default this includes the graph topology, node types, node id, kernel names and memcpy direction.\n`flags` can be specified to write more detailed information about each node type such as\nparameter values, kernel attributes, node and function handles.\n\n# Arguments\n\n* `graph` - - The graph to create a DOT file from\n* `path` -  - The path to write the DOT file to\n* `flags` - - Flags from cudaGraphDebugDotFlags for specifying which additional node information to write\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorOperatingSystem"]
 pub unsafe fn cudaGraphDebugDotPrint<T: types::CudaAsPtr>(
     graph: cudaGraph_t,
@@ -10034,6 +10173,29 @@ pub unsafe fn cudaGraphDebugDotPrint<T: types::CudaAsPtr>(
         Ok(())
     } else {
         Err(status)
+    }
+}
+#[doc = "Create a user object\nCreate a user object with the specified destructor callback and initial reference count. The\ninitial references are owned by the caller.\nDestructor callbacks cannot make CUDA API calls and should avoid blocking behavior, as they\nare executed by a shared internal thread. Another thread may be signaled to perform such\nactions, if it does not block forward progress of tasks scheduled through CUDA.\nSee CUDA User Objects in the CUDA C++ Programming Guide for more information on user objects.\n\n# Arguments\n\n* `object_out` -      - Location to return the user object handle\n* `ptr` -             - The pointer to pass to the destroy function\n* `destroy` -         - Callback to free the user object when it is no longer in use\n* `initialRefcount` - - The initial refcount to create the object with, typically 1. The\ninitial references are owned by the calling thread.\n* `flags` -           - Currently it is required to pass ::cudaUserObjectNoDestructorSync,\nwhich is the only defined flag. This indicates that the destroy\ncallback cannot be waited on by any CUDA API. Users requiring\nsynchronization of the callback should signal its completion\nmanually.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\n# See also\n\n> [`::cudaUserObjectRetain,`]\n::cudaUserObjectRelease,\n::cudaGraphRetainUserObject,\n::cudaGraphReleaseUserObject,\n::cudaGraphCreate"]
+pub unsafe fn cudaUserObjectCreate(
+    ptr: *mut ::std::os::raw::c_void,
+    destroy: cudaHostFn_t,
+    initialRefcount: u32,
+    flags: u32,
+) -> Result<cudaUserObject_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaUserObject_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe {
+        crate::sys::cudaUserObjectCreate(
+            out_0.as_mut_ptr() as *mut _,
+            ptr,
+            destroy,
+            initialRefcount as _,
+            flags as _,
+        )
+    };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaUserObject_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
 #[doc = "Retain a reference to a user object\nRetains new references to a user object. The new references are owned by the caller.\nSee CUDA User Objects in the CUDA C++ Programming Guide for more information on user objects.\n\n# Arguments\n\n* `object` - - The object to retain\n* `count` -  - The number of references to retain, typically 1. Must be nonzero\nand not larger than INT_MAX.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\n# See also\n\n> [`::cudaUserObjectCreate,`]\n::cudaUserObjectRelease,\n::cudaGraphRetainUserObject,\n::cudaGraphReleaseUserObject,\n::cudaGraphCreate"]
@@ -10139,6 +10301,50 @@ pub unsafe fn cudaGraphExecNodeSetParams<T: types::CudaAsPtr>(
         Ok(())
     } else {
         Err(status)
+    }
+}
+#[doc = "Create a conditional handle\nCreates a conditional handle associated with `hGraph.`\nThe conditional handle must be associated with a conditional node in this graph or one of its children.\nHandles not associated with a conditional node may cause graph instantiation to fail.\n\n# Arguments\n\n* `pHandle_out` -        - Pointer used to return the handle to the caller.\n* `graph` -              - Graph which will contain the conditional node using this handle.\n* `defaultLaunchValue` - - Optional initial value for the conditional variable.\nApplied at the beginning of each graph execution if cudaGraphCondAssignDefault is set in `flags.`\n* `flags` -              - Currently must be cudaGraphCondAssignDefault or 0.\n\n# Returns\n\n::CUDA_SUCCESS,\n::CUDA_ERROR_INVALID_VALUE,\n::CUDA_ERROR_NOT_SUPPORTED\n\\note_graph_thread_safety \\notefnerr # See also\n\n> [`::cuGraphAddNode,`]"]
+pub unsafe fn cudaGraphConditionalHandleCreate(
+    graph: cudaGraph_t,
+    defaultLaunchValue: u32,
+    flags: u32,
+) -> Result<cudaGraphConditionalHandle, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaGraphConditionalHandle> = std::mem::MaybeUninit::uninit();
+    let status = unsafe {
+        crate::sys::cudaGraphConditionalHandleCreate(
+            out_0.as_mut_ptr() as *mut _,
+            graph,
+            defaultLaunchValue as _,
+            flags as _,
+        )
+    };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaGraphConditionalHandle) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Create a conditional handle\nCreates a conditional handle associated with `hGraph.`\nThe conditional handle must be associated with a conditional node in this graph or one of its children.\nHandles not associated with a conditional node may cause graph instantiation to fail.\n\n# Arguments\n\n* `pHandle_out` -        - Pointer used to return the handle to the caller.\n* `graph` -              - Graph which will contain the conditional node using this handle.\n* `ctx` -                - Execution context for the handle and associated conditional node. If NULL, current context will be used.\n* `defaultLaunchValue` - - Optional initial value for the conditional variable.\nApplied at the beginning of each graph execution if cudaGraphCondAssignDefault is set in `flags.`\n* `flags` -              - Currently must be cudaGraphCondAssignDefault or 0.\n\n# Returns\n\n::CUDA_SUCCESS,\n::CUDA_ERROR_INVALID_VALUE,\n::CUDA_ERROR_NOT_SUPPORTED\n\\note_graph_thread_safety \\notefnerr # See also\n\n> [`::cuGraphAddNode,`]"]
+pub unsafe fn cudaGraphConditionalHandleCreate_v2(
+    graph: cudaGraph_t,
+    ctx: cudaExecutionContext_t,
+    defaultLaunchValue: u32,
+    flags: u32,
+) -> Result<cudaGraphConditionalHandle, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaGraphConditionalHandle> = std::mem::MaybeUninit::uninit();
+    let status = unsafe {
+        crate::sys::cudaGraphConditionalHandleCreate_v2(
+            out_0.as_mut_ptr() as *mut _,
+            graph,
+            ctx,
+            defaultLaunchValue as _,
+            flags as _,
+        )
+    };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaGraphConditionalHandle) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
     }
 }
 pub unsafe fn cudaGetDriverEntryPoint(
@@ -10448,6 +10654,42 @@ pub unsafe fn cudaDevResourceGenerateDesc<T: types::CudaAsPtr, U: types::CudaAsP
         Err(status)
     }
 }
+#[doc = "Creates a green context with a specified set of resources.\nThis API creates a green context with the resources specified in the descriptor `desc` and\nreturns it in the handle represented by `phCtx.`\nThis API retains the device’s primary context for the lifetime of the green context.\nThe primary context will be released when the green context is destroyed. To avoid the\noverhead of repeated initialization and teardown, it is recommended to explicitly\ninitialize the device's primary context ahead of time using ::cudaInitDevice. This\nensures that the primary context remains initialized throughout the program’s lifetime,\nminimizing overhead during green context creation and destruction.\nThe API does not create a default stream for the green context. Developers are expected\nto create streams explicitly using ::cudaExecutionCtxStreamCreate to submit work\nto the green context.\nNote: The API is not supported on 32-bit platforms.\n\n# Arguments\n\n* `phCtx` - - Pointer for the output handle to the green context\n* `desc` - - Descriptor generated via ::cudaDevResourceGenerateDesc which contains the set of resources to be used\n* `device` - - Device on which to create the green context.\n* `flags` - - Green context creation flags. Must be 0, currently reserved for future use.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice,\n::cudaErrorNotPermitted,\n::cudaErrorNotSupported,\n::cudaErrorOutOfMemory,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\note_callback # See also\n\n> [`::cudaDeviceGetDevResource,`]\n::cudaDevSmResourceSplit,\n::cudaDevResourceGenerateDesc,\n::cudaExecutionCtxGetDevResource,\n::cudaExecutionCtxDestroy,\n::cudaInitDevice,\n::cudaExecutionCtxStreamCreate"]
+pub unsafe fn cudaGreenCtxCreate(
+    desc: cudaDevResourceDesc_t,
+    device: i32,
+    flags: u32,
+) -> Result<cudaExecutionContext_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaExecutionContext_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaGreenCtxCreate(out_0.as_mut_ptr() as *mut _, desc, device as _, flags as _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaExecutionContext_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Destroy a execution context\nDestroys the specified execution context `ctx.` It is the responsibility of the caller\nto ensure that no API call issues using `ctx` while ::cudaExecutionCtxDestroy() is executing or\nsubsequently.\nIf `ctx` is a green context, any resources provisioned for it (that were initially available via the resource descriptor)\nare released as well.\nThe API does not destroy streams created via ::cudaExecutionCtxStreamCreate. Users are expected to\ndestroy these streams explicitly using ::cudaStreamDestroy to avoid resource leaks. Once the\nexecution context is destroyed, any subsequent API calls involving these streams will return\n::cudaErrorStreamDetached with the exception of the following APIs:\n- ::cudaStreamDestroy. Note this is only supported on CUDA drivers 13.1 and above.\nAdditionally, the API will invalidate all active captures on these streams.\nPassing in a `ctx` that was not explicitly created via CUDA Runtime APIs is not allowed and will\nresult in undefined behavior.\n\n# Arguments\n\n* `ctx` - - Execution context to destroy (required parameter, see note below)\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaGreenCtxCreate`]"]
+pub unsafe fn cudaExecutionCtxDestroy(ctx: cudaExecutionContext_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaExecutionCtxDestroy(ctx) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+#[doc = "Get context resources\nGet the `type` resources available to context represented by `ctx.`\nNote: The API is not supported on 32-bit platforms.\n\n# Arguments\n\n* `ctx` - - Execution context to get resource for (required parameter, see note below)\n* `resource` - - Output pointer to a cudaDevResource structure\n* `type` - - Type of resource to retrieve\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported,\n::cudaErrorNotPermitted,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaDeviceGetDevResource,`]\n::cudaDevSmResourceSplit,\n::cudaDevResourceGenerateDesc,\n::cudaGreenCtxCreate"]
+pub unsafe fn cudaExecutionCtxGetDevResource(
+    ctx: cudaExecutionContext_t,
+    type_: cudaDevResourceType,
+) -> Result<cudaDevResource, crate::sys::cudaError> {
+    let mut out_1: std::mem::MaybeUninit<cudaDevResource> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaExecutionCtxGetDevResource(ctx, out_1.as_mut_ptr() as *mut _, type_) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_1.assume_init() as cudaDevResource) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
 #[doc = "Returns the device handle for the execution context\nReturns in `*device` the handle of the specified execution context's device.\nThe execution context should not be NULL.\n\n# Arguments\n\n* `device` - - Returned device handle for the specified execution context\n* `ctx` - - Execution context for which to obtain the device (required parameter, see note below)\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaGreenCtxCreate,`]\n::cudaExecutionCtxDestroy,\n::cuCtxGetDevice"]
 pub unsafe fn cudaExecutionCtxGetDevice(ctx: cudaExecutionContext_t) -> Result<i32, crate::sys::cudaError> {
     let mut out_0: std::mem::MaybeUninit<::std::os::raw::c_int> = std::mem::MaybeUninit::uninit();
@@ -10456,6 +10698,41 @@ pub unsafe fn cudaExecutionCtxGetDevice(ctx: cudaExecutionContext_t) -> Result<i
         unsafe { Ok(out_0.assume_init() as i32) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Returns the unique Id associated with the execution context supplied\nReturns in `ctxId` the unique Id which is associated with a given context.\nThe Id is unique for the life of the program for this instance of CUDA.\nThe execution context should not be NULL.\n\n# Arguments\n\n* `ctx` - - Context for which to obtain the Id (required parameter, see note below)\n* `ctxId` - - Pointer to store the Id of the context\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaGreenCtxCreate,`]\n::cudaExecutionCtxDestroy,\n::cudaExecutionCtxGetDevice,\n::cuCtxGetId"]
+pub unsafe fn cudaExecutionCtxGetId(ctx: cudaExecutionContext_t) -> Result<u64, crate::sys::cudaError> {
+    let mut out_1: std::mem::MaybeUninit<::std::os::raw::c_ulonglong> = std::mem::MaybeUninit::uninit();
+    let status = unsafe { crate::sys::cudaExecutionCtxGetId(ctx, out_1.as_mut_ptr() as *mut _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_1.assume_init() as u64) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Creates a stream and initializes it for the given execution context.\nThe API creates a CUDA stream with the specified `flags` and `priority,`\ninitializing it with resources as defined at the time of creating the specified `ctx.`\nAdditionally, the API also enables work submitted to to the stream to be tracked under `ctx.`\nThe supported values for `flags` are:\n- ::cudaStreamDefault: Default stream creation flag. This would be ::cudaStreamNonBlocking for\nstreams created on a green context.\n- ::cudaStreamNonBlocking: Specifies that work running in the created stream may run concurrently\nwith work in stream 0 (the NULL stream), and that the created stream should perform no implicit\nsynchronization with stream 0\nSpecifying `priority` affects the scheduling priority of work in the stream. Priorities provide a\nhint to preferentially run work with higher priority when possible, but do not preempt\nalready-running work or provide any other functional guarantee on execution order.\n`priority` follows a convention where lower numbers represent higher priorities.\n'0' represents default priority. The range of meaningful numerical priorities can\nbe queried using ::cudaDeviceGetStreamPriorityRange. If the specified priority is\noutside the numerical range returned by ::cudaDeviceGetStreamPriorityRange,\nit will automatically be clamped to the lowest or the highest number in the range.\n\n# Arguments\n\n* `phStream` - - Returned stream handle\n* `ctx` -      - Execution context to initialize the stream with (required parameter, see note below)\n* `flags` -    - Flags for stream creation\n* `priority` - - Stream priority\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted,\n::cudaErrorOutOfMemory,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param > **Note** In the current implementation, only compute kernels launched in\npriority streams are affected by the stream's priority. Stream priorities have\nno effect on host-to-device and device-to-host memory operations.\n\n# See also\n\n> [`::cudaStreamDestroy,`]\n::cudaGreenCtxCreate,\n::cudaDeviceGetStreamPriorityRange,\n::cudaStreamGetFlags,\n::cudaStreamGetPriority,\n::cudaStreamGetDevice,\n::cudaStreamGetDevResource,\n::cudaLaunchKernel,\n::cudaEventRecord,\n::cudaStreamWaitEvent,\n::cudaStreamQuery,\n::cudaStreamSynchronize,\n::cudaStreamAddCallback"]
+pub unsafe fn cudaExecutionCtxStreamCreate(
+    ctx: cudaExecutionContext_t,
+    flags: u32,
+    priority: i32,
+) -> Result<cudaStream_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaStream_t> = std::mem::MaybeUninit::uninit();
+    let status = unsafe {
+        crate::sys::cudaExecutionCtxStreamCreate(out_0.as_mut_ptr() as *mut _, ctx, flags as _, priority as _)
+    };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaStream_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Block for the specified execution context's tasks to complete\nBlocks until the specified execution context has completed all preceding requested tasks.\nIf the specified execution context is the device (primary) context obtained via ::cudaDeviceGetExecutionCtx,\ngreen contexts that have been created on the device will also be synchronized.\nThe API returns an error if one of the preceding tasks failed.\n\n# Arguments\n\n* `ctx` - - Execution context to synchronize (required parameter, see note below)\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorDeviceUninitialized,\n::cudaErrorInvalidValue\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaGreenCtxCreate,`]\n::cudaExecutionCtxDestroy,\n::cudaDeviceSynchronize,\n::cuCtxSynchronize_v2"]
+pub unsafe fn cudaExecutionCtxSynchronize(ctx: cudaExecutionContext_t) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaExecutionCtxSynchronize(ctx) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
     }
 }
 #[doc = "Get stream resources\nGet the `type` resources available to the `hStream` and store them in `resource.`\nNote: The API will return ::cudaErrorInvalidResourceType is `type` is\n`cudaDevResourceTypeWorkqueueConfig` or `cudaDevResourceTypeWorkqueue.`\n\n# Arguments\n\n* `hStream` - - Stream to get resource for\n* `resource` - - Output pointer to a cudaDevResource structure\n* `type` - - Type of resource to retrieve\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorDeviceUninitialized,\n::cudaErrorInvalidResourceType,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidHandle,\n::cudaErrorNotPermitted,\n::cudaErrorCallRequiresNewerDriver,\n\\notefnerr \\note_callback # See also\n\n> [`::cudaGreenCtxCreate,`]\n::cudaExecutionCtxStreamCreate,\n::cudaStreamCreate,\n::cudaDevSmResourceSplit,\n::cudaDevResourceGenerateDesc,\n::cuStreamGetDevResource"]
@@ -10469,6 +10746,30 @@ pub unsafe fn cudaStreamGetDevResource(
         unsafe { Ok(out_1.assume_init() as cudaDevResource) }
     } else {
         Err(unsafe { std::mem::transmute(status) })
+    }
+}
+#[doc = "Records an event for the specified execution context\nCaptures in `event` all the activities of the execution context `ctx`\nat the time of this call. `event` and `ctx` must be from the same\nCUDA device, otherwise ::cudaErrorInvalidHandle will be returned.\nCalls such as ::cudaEventQuery() or ::cudaExecutionCtxWaitEvent() will then examine\nor wait for completion of the work that was captured.\nUses of `ctx` after this call do not modify `event.`\nIf the execution context passed to `ctx` is the device (primary) context obtained via\n::cudaDeviceGetExecutionCtx(), `event` will capture all the activities of the green\ncontexts created on the device as well.\n> **Note** The API will return ::cudaErrorStreamCaptureUnsupported if the\nspecified execution context `ctx` has a stream in the capture mode. In such a case,\nthe call will invalidate all the conflicting captures.\n\n# Arguments\n\n* `ctx` - - Execution context to record event for (required parameter, see note below)\n* `event` - - Event to record\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidHandle,\n::cudaErrorStreamCaptureUnsupported\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaEventRecord,`]\n::cudaExecutionCtxWaitEvent,\n::cuCtxRecordEvent,\n::cuGreenCtxRecordEvent"]
+pub unsafe fn cudaExecutionCtxRecordEvent(
+    ctx: cudaExecutionContext_t,
+    event: cudaEvent_t,
+) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaExecutionCtxRecordEvent(ctx, event) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
+    }
+}
+#[doc = "Make an execution context wait on an event\nMakes all future work submitted to execution context `ctx` wait for all work\ncaptured in `event.` The synchronization will be performed on the device\nand will not block the calling CPU thread. See ::cudaExecutionCtxRecordEvent()\nfor details on what is captured by an event.\nIf the execution context passed to `ctx` is the device (primary) context obtained via\n::cudaDeviceGetExecutionCtx(), all green contexts created on the device will wait for\n`event` as well.\n> **Note** `event` may be from a different execution context or device than `ctx.`\n> **Note** The API will return ::cudaErrorStreamCaptureUnsupported and\ninvalidate the capture if the specified event `event` is part of an ongoing\ncapture sequence or if the specified execution context `ctx` has a stream in the capture mode.\n\n# Arguments\n\n* `ctx` -    - Execution context to wait for (required parameter, see note below)\n* `event` -  - Event to wait on\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidHandle,\n::cudaErrorStreamCaptureUnsupported\n\\notefnerr \\note_callback \\note_cudaExecutionContext_t_required_param # See also\n\n> [`::cudaExecutionCtxRecordEvent,`]\n::cudaStreamWaitEvent,\n::cuCtxWaitEvent,\n::cuGreenCtxWaitEvent"]
+pub unsafe fn cudaExecutionCtxWaitEvent(
+    ctx: cudaExecutionContext_t,
+    event: cudaEvent_t,
+) -> Result<(), crate::sys::cudaError> {
+    let status = unsafe { crate::sys::cudaExecutionCtxWaitEvent(ctx, event) };
+    if status == crate::sys::cudaError::cudaSuccess {
+        Ok(())
+    } else {
+        Err(status)
     }
 }
 #[doc = "Returns the execution context for a device\nReturns in `ctx` the execution context for the specified device. This is the device's primary context.\nThe returned context can then be passed to APIs that take in a cudaExecutionContext_t enabling explicit\ncontext-based programming without relying on thread-local state.\nPassing the returned execution context to ::cudaExecutionCtxDestroy() is not allowed and will result in undefined behavior.\n\n# Arguments\n\n* `ctx` - - Returns the device execution context\n* `device` - - Device to get the execution context for\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice\n\n# See also\n\n> [`cudaExecutionCtxGetDevice,`]\ncudaExecutionCtxGetId"]
@@ -10524,38 +10825,3 @@ pub unsafe fn cudaGetKernel(
 }
 #[allow(non_upper_case_globals)]
 pub use crate::sys::cudaError as CudaStatusEnum;
-impl CudaExecutionContext {
-    pub fn cudaGreenCtxCreate(
-        desc: crate::sys::cudaDevResourceDesc_t,
-        device: i32,
-        flags: u32,
-    ) -> Result<Self, crate::sys::cudaError> {
-        unsafe {
-            let mut handle = std::ptr::null_mut();
-            let status = crate::sys::cudaGreenCtxCreate(&mut handle, desc, device as _, flags as _);
-            if status == crate::sys::cudaError::cudaSuccess {
-                Ok(Self(handle))
-            } else {
-                Err(status)
-            }
-        }
-    }
-    pub fn cudaDeviceGetExecutionCtx(device: i32) -> Result<Self, crate::sys::cudaError> {
-        unsafe {
-            let mut handle = std::ptr::null_mut();
-            let status = crate::sys::cudaDeviceGetExecutionCtx(&mut handle, device as _);
-            if status == crate::sys::cudaError::cudaSuccess {
-                Ok(Self(handle))
-            } else {
-                Err(status)
-            }
-        }
-    }
-}
-impl Drop for CudaExecutionContext {
-    fn drop(&mut self) {
-        unsafe {
-            let _ = crate::sys::cudaExecutionCtxDestroy(self.0);
-        }
-    }
-}

@@ -15,3 +15,4 @@ cuda_libs = { path = "..", features = [
     "cusolver",
     "cusparse",
 ] }
+num-complex = "0.4.6"

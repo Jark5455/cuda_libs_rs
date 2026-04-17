@@ -1,9 +1,14 @@
 use cuda_libs::cublas::sys::cublasOperation_t;
-use cuda_libs::cublas_lt::sys::cublasLtMatmulHeuristicResult_t;
-use cuda_libs::cudart::sys::cudaStreamCaptureStatus::cudaStreamCaptureStatusNone;
-use cuda_libs::cudart::sys::{cudaStream_t, cudaStreamCreateWithFlags, cudaStreamNonBlocking, cudaStreamDestroy};
+use cuda_libs::cublas_lt::sys::cublasComputeType_t::CUBLAS_COMPUTE_32F;
+use cuda_libs::cublas_lt::sys::cublasLtMatmulDesc_t;
+use cuda_libs::cublas_lt::sys::cublasLtMatmulDescAttributes_t::CUBLASLT_MATMUL_DESC_TRANSA;
+use cuda_libs::cudart::sys::cudaDataType::CUDA_R_32F;
 use cuda_libs::cudart::sys::cudaMemcpyKind::{cudaMemcpyDeviceToHost, cudaMemcpyHostToDevice};
+use cuda_libs::cudart::sys::cudaStreamNonBlocking;
 use cuda_libs::prelude::*;
+use num_complex::Complex32;
+use cuda_libs::cufft::sys::{CUFFT_FORWARD, CUFFT_INVERSE};
+use cuda_libs::cufft::sys::cufftType::CUFFT_C2C;
 
 #[cuda_libs::cuda_load]
 fn main() {
@@ -11,6 +16,7 @@ fn main() {
     println!("Cuda device count: {}", device_count);
 
     cublas_dgemm_example();
+    cufft_1dc2c_example();
 }
 
 fn cublas_dgemm_example() {
@@ -44,13 +50,11 @@ fn cublas_dgemm_example() {
     println!("{} {}", B[1], B[3]);
     print!("=====\n");
 
-    /* step 1: create cublas handle, bind a stream */
-    let cublasH = CublasHandle::new().unwrap();
-    let mut stream = cudaStream_t::default();
-
     unsafe {
-        cudaStreamCreateWithFlags(&mut stream, cudaStreamNonBlocking);
-        cublasH.cublasSetStream_v2(stream).unwrap();
+        let cublasH = cublasCreate_v2().unwrap();
+        let mut stream = cudaStreamCreateWithFlags(cudaStreamNonBlocking).unwrap();
+
+        cublasSetStream_v2(cublasH, stream).unwrap();
 
         let d_A = cudaMalloc::<f64>(size_of::<f64>() * A.len()).unwrap();
         let d_B = cudaMalloc::<f64>(size_of::<f64>() * B.len()).unwrap();
@@ -59,9 +63,10 @@ fn cublas_dgemm_example() {
         cudaMemcpyAsync(d_A, A.as_ptr(), size_of::<f64>() * A.len(), cudaMemcpyHostToDevice, stream).unwrap();
         cudaMemcpyAsync(d_B, B.as_ptr(), size_of::<f64>() * B.len(), cudaMemcpyHostToDevice, stream).unwrap();
 
-        cublasH.cublasDgemm_v2(transa, transb, m, n, k, &alpha as *const f64, d_A, lda, d_B, ldb, &beta as *const f64, d_C, ldc).unwrap();
+        cublasDgemm_v2(cublasH, transa, transb, m, n, k, &alpha as *const f64, d_A, lda, d_B, ldb, &beta as *const f64, d_C, ldc).unwrap();
 
         cudaMemcpyAsync(C.as_mut_ptr(), d_C, size_of::<f64>() * C.len(), cudaMemcpyDeviceToHost, stream).unwrap();
+
         cudaStreamSynchronize(stream).unwrap();
 
         print!("C\n");
@@ -74,12 +79,65 @@ fn cublas_dgemm_example() {
          *       34.0 46.0
          */
 
-        cudaFree(d_A);
-        cudaFree(d_B);
-        cudaFree(d_C);
+        cudaFree(d_A).unwrap();
+        cudaFree(d_B).unwrap();
+        cudaFree(d_C).unwrap();
 
-        drop(cublasH);
-        cudaStreamDestroy(stream);
+        cublasDestroy_v2(cublasH).unwrap();
+        cudaStreamDestroy(stream).unwrap();
+        cudaDeviceReset().unwrap();
+    }
+}
+
+fn cufft_1dc2c_example() {
+    use num_complex::Complex32;
+
+    unsafe {
+        let fft_size = 8;
+        let batch_size = 2;
+        let element_count = batch_size * fft_size;
+
+        let mut data = (0..element_count)
+            .map(|i| Complex32::new(i as f32, -i as f32))
+            .collect::<Vec<_>>();
+
+        print!("Input array:\n");
+        for (i, d) in data.iter().enumerate() {
+            print!("{} + {}i\n", d.re, d.im);
+        }
+        print!("=====\n");
+
+        let plan = cufftPlan1d(fft_size, CUFFT_C2C, batch_size).unwrap();
+        let stream = cudaStreamCreateWithFlags(cudaStreamNonBlocking).unwrap();
+        cufftSetStream(plan, stream).unwrap();
+
+        let d_data = cudaMalloc::<Complex32>(size_of::<Complex32>() * data.len()).unwrap();
+        cudaMemcpyAsync(d_data, data.as_ptr(), size_of::<Complex32>() * data.len(), cudaMemcpyHostToDevice, stream).unwrap();
+
+        cufftExecC2C(plan, d_data, d_data, CUFFT_FORWARD).unwrap();
+        let alpha = 1.0 / fft_size as f32;
+
+        // we dont have a scaling kernel so we have to use cublas
+        {
+            let cublas_handle = cublasCreate_v2().unwrap();
+            cublasCsscal_v2(cublas_handle, element_count, &alpha as *const f32, d_data, 1).unwrap();
+            cublasDestroy_v2(cublas_handle).unwrap();
+        }
+
+        cufftExecC2C(plan, d_data, d_data, CUFFT_INVERSE as i32).unwrap();
+
+        cudaMemcpyAsync(data.as_mut_ptr(), d_data, size_of::<Complex32>() * data.len(), cudaMemcpyDeviceToHost, stream).unwrap();
+        cudaStreamSynchronize(stream).unwrap();
+
+        print!("Output array after Forward FFT, Normalization, and Inverse FFT :\n");
+        for (i, d) in data.iter().enumerate() {
+            print!("{} + {}i\n", d.re, d.im);
+        }
+        print!("=====\n");
+
+        cudaFree(d_data).unwrap();
+        cufftDestroy(plan).unwrap();
+        cudaStreamDestroy(stream).unwrap();
         cudaDeviceReset().unwrap();
     }
 }

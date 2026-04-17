@@ -11,49 +11,26 @@ fn main() {
         allowlist_types: "cuda.*",
         allowlist_vars: "cuda.*|CUDA.*",
         blocklist_types: vec![],
-        blocklist_functions: vec!["cuda.*Create", "cuda.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "cudaError",
         success_variant: "cudaSuccess",
-        handles: vec![HandleConfig { wrapper_name: "CudaExecutionContext", handle_type: "cudaExecutionContext_t" }],
-        handle_types_regex: vec!["Context", "Stream_t", "Handle", "Stream", "ctx", "Device", "CUstream_st"],
+        handles: vec![HandleConfig {
+            wrapper_name: "CudaExecutionContext",
+            handle_type: "cudaExecutionContext_t",
+        }],
+        handle_types_regex: vec![
+            "Context",
+            "Stream_t",
+            "Handle",
+            "Stream",
+            "ctx",
+            "Device",
+            "CUstream_st",
+        ],
         extra_imports: vec![],
         extra_safe_code: "
             #[allow(non_upper_case_globals)]
             pub use crate::sys::cudaError as CudaStatusEnum;
-
-            impl CudaExecutionContext {
-                pub fn cudaGreenCtxCreate(desc: crate::sys::cudaDevResourceDesc_t, device: i32, flags: u32) -> Result<Self, crate::sys::cudaError> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cudaGreenCtxCreate(&mut handle, desc, device as _, flags as _);
-                        if status == crate::sys::cudaError::cudaSuccess {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-
-                pub fn cudaDeviceGetExecutionCtx(device: i32) -> Result<Self, crate::sys::cudaError> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cudaDeviceGetExecutionCtx(&mut handle, device as _);
-                        if status == crate::sys::cudaError::cudaSuccess {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-
-            impl Drop for CudaExecutionContext {
-                fn drop(&mut self) {
-                    unsafe {
-                        let _ = crate::sys::cudaExecutionCtxDestroy(self.0);
-                    }
-                }
-            }
         ",
     });
 
@@ -65,7 +42,7 @@ fn main() {
         allowlist_types: "cublasLt.*",
         allowlist_vars: "CUBLASLT.*",
         blocklist_types: vec![".*cuda.*"],
-        blocklist_functions: vec!["cublasLt.*Create", "cublasLt.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "cublasStatus_t",
         success_variant: "CUBLAS_STATUS_SUCCESS",
         handles: vec![HandleConfig {
@@ -74,26 +51,7 @@ fn main() {
         }],
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
-        extra_safe_code: "
-            impl CublasLtHandle {
-                pub fn new() -> Result<Self, crate::sys::cublasStatus_t> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cublasLtCreate(&mut handle);
-                        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CublasLtHandle {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::cublasLtDestroy(self.0); }
-                }
-            }
-        ",
+        extra_safe_code: "",
     });
 
     generate_library(&LibraryConfig {
@@ -104,7 +62,7 @@ fn main() {
         allowlist_types: "cublas.*",
         allowlist_vars: "CUBLAS.*",
         blocklist_types: vec![".*cuda.*"],
-        blocklist_functions: vec!["cublas.*Create", "cublas.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "cublasStatus_t",
         success_variant: "CUBLAS_STATUS_SUCCESS",
         handles: vec![HandleConfig {
@@ -113,26 +71,7 @@ fn main() {
         }],
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
-        extra_safe_code: "
-            impl CublasHandle {
-                pub fn new() -> Result<Self, crate::sys::cublasStatus_t> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cublasCreate_v2(&mut handle);
-                        if status == crate::sys::cublasStatus_t::CUBLAS_STATUS_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CublasHandle {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::cublasDestroy_v2(self.0); }
-                }
-            }
-        ",
+        extra_safe_code: "",
     });
 
     generate_library(&LibraryConfig {
@@ -143,7 +82,7 @@ fn main() {
         allowlist_types: "cusolver.*",
         allowlist_vars: "CUSOLVER.*",
         blocklist_types: vec![".*cuda.*", "CUstream_st"],
-        blocklist_functions: vec!["cusolver.*Create", "cusolver.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "cusolverStatus_t",
         success_variant: "CUSOLVER_STATUS_SUCCESS",
         handles: vec![
@@ -158,45 +97,7 @@ fn main() {
         ],
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
-        extra_safe_code: "
-            impl CusolverDnHandle {
-                pub fn new() -> Result<Self, crate::sys::cusolverStatus_t> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cusolverDnCreate(&mut handle);
-                        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CusolverDnHandle {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::cusolverDnDestroy(self.0); }
-                }
-            }
-
-            impl CusolverSpHandle {
-                pub fn new() -> Result<Self, crate::sys::cusolverStatus_t> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cusolverSpCreate(&mut handle);
-                        if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CusolverSpHandle {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::cusolverSpDestroy(self.0); }
-                }
-            }
-        ",
+        extra_safe_code: "",
     });
 
     generate_library(&LibraryConfig {
@@ -207,7 +108,7 @@ fn main() {
         allowlist_types: "cufft.*",
         allowlist_vars: "CUFFT.*",
         blocklist_types: vec![".*cuda.*"],
-        blocklist_functions: vec!["cufft.*Create", "cufft.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "cufftResult",
         success_variant: "CUFFT_SUCCESS",
         handles: vec![HandleConfig {
@@ -216,26 +117,7 @@ fn main() {
         }],
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
-        extra_safe_code: "
-            impl CufftHandle {
-                pub fn new() -> Result<Self, crate::sys::cufftResult> {
-                    unsafe {
-                        let mut handle: crate::sys::cufftHandle = 0;
-                        let status = crate::sys::cufftCreate(&mut handle);
-                        if status == crate::sys::cufftResult_t::CUFFT_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CufftHandle {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::cufftDestroy(self.0); }
-                }
-            }
-        ",
+        extra_safe_code: "",
     });
 
     generate_library(&LibraryConfig {
@@ -246,7 +128,7 @@ fn main() {
         allowlist_types: "curand.*",
         allowlist_vars: "CURAND.*",
         blocklist_types: vec![".*cuda.*"],
-        blocklist_functions: vec!["curand.*Create", "curand.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "curandStatus_t",
         success_variant: "CURAND_STATUS_SUCCESS",
         handles: vec![HandleConfig {
@@ -263,26 +145,7 @@ fn main() {
             "CUstream_st",
         ],
         extra_imports: vec!["cuda_libs_cudart"],
-        extra_safe_code: "
-            impl CurandGenerator {
-                pub fn new(rng_type: crate::sys::curandRngType_t) -> Result<Self, crate::sys::curandStatus_t> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::curandCreateGenerator(&mut handle, rng_type);
-                        if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CurandGenerator {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::curandDestroyGenerator(self.0); }
-                }
-            }
-        ",
+        extra_safe_code: "",
     });
 
     generate_library(&LibraryConfig {
@@ -293,7 +156,7 @@ fn main() {
         allowlist_types: "cusparse.*",
         allowlist_vars: "CUSPARSE.*",
         blocklist_types: vec![".*cuda.*"],
-        blocklist_functions: vec!["cusparse.*Create", "cusparse.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "cusparseStatus_t",
         success_variant: "CUSPARSE_STATUS_SUCCESS",
         handles: vec![HandleConfig {
@@ -302,26 +165,7 @@ fn main() {
         }],
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
-        extra_safe_code: "
-            impl CusparseHandle {
-                pub fn new() -> Result<Self, crate::sys::cusparseStatus_t> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cusparseCreate(&mut handle);
-                        if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CusparseHandle {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::cusparseDestroy(self.0); }
-                }
-            }
-        ",
+        extra_safe_code: "",
     });
 
     generate_library(&LibraryConfig {
@@ -332,7 +176,7 @@ fn main() {
         allowlist_types: "cudnn.*",
         allowlist_vars: "CUDNN.*",
         blocklist_types: vec![".*cuda.*"],
-        blocklist_functions: vec!["cudnn.*Create", "cudnn.*Destroy"],
+        blocklist_functions: vec![],
         status_type: "cudnnStatus_t",
         success_variant: "CUDNN_STATUS_SUCCESS",
         handles: vec![HandleConfig {
@@ -341,25 +185,6 @@ fn main() {
         }],
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
-        extra_safe_code: "
-            impl CudnnHandle {
-                pub fn new() -> Result<Self, crate::sys::cudnnStatus_t> {
-                    unsafe {
-                        let mut handle = std::ptr::null_mut();
-                        let status = crate::sys::cudnnCreate(&mut handle);
-                        if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS {
-                            Ok(Self(handle))
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            }
-            impl Drop for CudnnHandle {
-                fn drop(&mut self) {
-                    unsafe { crate::sys::cudnnDestroy(self.0); }
-                }
-            }
-        ",
+        extra_safe_code: "",
     });
 }
