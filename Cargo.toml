@@ -6,6 +6,7 @@ edition = "2024"
 [workspace]
 members = [
     "autogen",
+    "cuda_libs_driver",
     "cuda_libs_cudart",
     "cuda_libs_cublas",
     "cuda_libs_cublas_lt",
@@ -14,10 +15,12 @@ members = [
     "cuda_libs_curand",
     "cuda_libs_cusolver",
     "cuda_libs_cusparse",
-    "cuda_libs_macros", "cuda_libs_test",
+    "cuda_libs_macros",
+    "cuda_libs_test",
 ]
 
 [dependencies]
+cuda_libs_driver = { path = "cuda_libs_driver", optional = true }
 cuda_libs_cudart = { path = "cuda_libs_cudart", optional = true }
 cuda_libs_cublas = { path = "cuda_libs_cublas", optional = true }
 cuda_libs_cublas_lt = { path = "cuda_libs_cublas_lt", optional = true }
@@ -30,6 +33,7 @@ cuda_libs_macros = { path = "cuda_libs_macros", optional = true }
 libc = { version = "0.2.153", optional = true }
 
 [features]
+driver = ["dep:cuda_libs_driver"]
 cudart = ["dep:cuda_libs_cudart"]
 cublas = ["dep:cuda_libs_cublas"]
 cublas_lt = ["dep:cuda_libs_cublas_lt"]
@@ -42,6 +46,7 @@ cusparse = ["dep:cuda_libs_cusparse"]
 dynamic-link = []
 runtime-link = [
     "dep:cuda_libs_macros", "dep:libc",
+    "cuda_libs_driver?/runtime-link",
     "cuda_libs_cudart?/runtime-link",
     "cuda_libs_cublas?/runtime-link",
     "cuda_libs_cublas_lt?/runtime-link",
@@ -51,4 +56,6 @@ runtime-link = [
     "cuda_libs_cusolver?/runtime-link",
     "cuda_libs_cusparse?/runtime-link"
 ]
+
+nvptx = ["dep:cuda_libs_macros"]
 

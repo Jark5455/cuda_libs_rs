@@ -432,6 +432,10 @@ pub struct DynamicBindings {
     pub cufftResetPlanProperty: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty) -> cufftResult>,
 }
 #[cfg(feature = "runtime-link")]
+unsafe impl Send for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
+unsafe impl Sync for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
@@ -943,3 +947,19 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
+unsafe impl Send for float2 {}
+unsafe impl Sync for float2 {}
+unsafe impl Send for double2 {}
+unsafe impl Sync for double2 {}
+unsafe impl Send for CUstream_st {}
+unsafe impl Sync for CUstream_st {}
+unsafe impl Send for libraryPropertyType_t {}
+unsafe impl Sync for libraryPropertyType_t {}
+unsafe impl Send for cufftResult_t {}
+unsafe impl Sync for cufftResult_t {}
+unsafe impl Send for cufftType_t {}
+unsafe impl Sync for cufftType_t {}
+unsafe impl Send for cufftCompatibility_t {}
+unsafe impl Sync for cufftCompatibility_t {}
+unsafe impl Send for cufftProperty_t {}
+unsafe impl Sync for cufftProperty_t {}

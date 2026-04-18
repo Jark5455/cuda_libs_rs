@@ -6,6 +6,12 @@ pub use cuda_libs_cudart::types;
 #[cfg(feature = "runtime-link")]
 pub use cuda_libs_macros::cuda_load;
 
+#[cfg(feature = "nvptx")]
+pub use cuda_libs_macros::global;
+
+#[cfg(feature = "driver")]
+pub use cuda_libs_driver as driver;
+
 #[cfg(feature = "cublas")]
 pub use cuda_libs_cublas as cublas;
 #[cfg(feature = "cublas_lt")]
@@ -61,6 +67,18 @@ pub mod prelude {
     pub use cuda_libs_cublas_lt::safe::*;
     #[cfg(feature = "cudart")]
     pub use cuda_libs_cudart::safe::*;
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::sys::cudaError_t;
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::sys::cudaMemcpyKind;
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::sys::cudaMemcpyKind::*;
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::sys::cudaStream_t;
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::sys::cudaStreamNonBlocking;
+    #[cfg(feature = "cudart")]
+    pub use cuda_libs_cudart::types::CudaSlice;
     #[cfg(feature = "cudnn")]
     pub use cuda_libs_cudnn::safe::*;
     #[cfg(feature = "cufft")]
@@ -79,7 +97,8 @@ pub fn runtime_link_load() {
     INIT.call_once(|| {
         let home = std::env::var("CUDA_HOME").expect("CUDA_HOME must be set when using runtime linking");
 
-        let mut names = std::vec::Vec::new();
+        let mut names: std::vec::Vec<&str> = std::vec::Vec::new();
+        // Note: `driver` (libcuda.so) is a system library loaded separately below, not via CUDA_HOME
         #[cfg(feature = "cudart")]
         names.push("cudart");
         #[cfg(feature = "cublas")]
@@ -151,6 +170,21 @@ pub fn runtime_link_load() {
 
             use std::os::windows::ffi::OsStrExt;
 
+            // Load the CUDA driver (nvcuda.dll) from the system directory
+            #[cfg(feature = "driver")]
+            {
+                let dll_name: Vec<u16> = std::ffi::OsStr::new("nvcuda.dll").encode_wide().chain(std::iter::once(0)).collect();
+                unsafe {
+                    let lib = LoadLibraryW(dll_name.as_ptr());
+                    if !lib.is_null() {
+                        unsafe fn fetch_p(handle: *mut core::ffi::c_void, sym: *const u8) -> *mut core::ffi::c_void {
+                            GetProcAddress(handle, sym)
+                        }
+                        crate::driver::sys::load_dynamic_bindings(lib, fetch_p);
+                    }
+                }
+            }
+
             let search_paths = [std::path::Path::new(&home).join("lib").join("x64"), std::path::Path::new(&home).join("bin").join("x64")];
             for path in search_paths {
                 if let Ok(entries) = std::fs::read_dir(&path) {
@@ -183,6 +217,21 @@ pub fn runtime_link_load() {
         {
             use std::os::unix::ffi::OsStrExt;
             let flag = libc::RTLD_LAZY | libc::RTLD_GLOBAL;
+
+            // Load the CUDA driver (libcuda.so) from the system linker path
+            #[cfg(feature = "driver")]
+            {
+                let name_bytes = b"libcuda.so\0";
+                unsafe {
+                    let lib = libc::dlopen(name_bytes.as_ptr() as *const libc::c_char, flag);
+                    if !lib.is_null() {
+                        unsafe fn fetch_p(handle: *mut core::ffi::c_void, sym: *const u8) -> *mut core::ffi::c_void {
+                            unsafe { libc::dlsym(handle, sym as *const _) }
+                        }
+                        crate::driver::sys::load_dynamic_bindings(lib, fetch_p);
+                    }
+                }
+            }
 
             let search_paths = [std::path::Path::new(&home).join("lib64"), std::path::Path::new(&home).join("lib")];
             for path in search_paths {

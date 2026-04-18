@@ -354,6 +354,10 @@ pub struct DynamicBindings {
     pub curandGetScrambleConstants64: Option<unsafe extern "C" fn(constants: *mut *mut ::std::os::raw::c_ulonglong) -> curandStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
+unsafe impl Send for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
+unsafe impl Sync for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
@@ -756,3 +760,27 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
+unsafe impl Send for CUstream_st {}
+unsafe impl Sync for CUstream_st {}
+unsafe impl Send for libraryPropertyType_t {}
+unsafe impl Sync for libraryPropertyType_t {}
+unsafe impl Send for curandStatus {}
+unsafe impl Sync for curandStatus {}
+unsafe impl Send for curandRngType {}
+unsafe impl Sync for curandRngType {}
+unsafe impl Send for curandOrdering {}
+unsafe impl Sync for curandOrdering {}
+unsafe impl Send for curandDirectionVectorSet {}
+unsafe impl Sync for curandDirectionVectorSet {}
+unsafe impl Send for curandGenerator_st {}
+unsafe impl Sync for curandGenerator_st {}
+unsafe impl Send for curandDistributionShift_st {}
+unsafe impl Sync for curandDistributionShift_st {}
+unsafe impl Send for curandDistributionM2Shift_st {}
+unsafe impl Sync for curandDistributionM2Shift_st {}
+unsafe impl Send for curandHistogramM2_st {}
+unsafe impl Sync for curandHistogramM2_st {}
+unsafe impl Send for curandDiscreteDistribution_st {}
+unsafe impl Sync for curandDiscreteDistribution_st {}
+unsafe impl Send for curandMethod {}
+unsafe impl Sync for curandMethod {}

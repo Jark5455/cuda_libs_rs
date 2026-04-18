@@ -7896,6 +7896,10 @@ pub struct DynamicBindings {
     >,
 }
 #[cfg(feature = "runtime-link")]
+unsafe impl Send for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
+unsafe impl Sync for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
@@ -16919,3 +16923,35 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
+unsafe impl Send for float2 {}
+unsafe impl Sync for float2 {}
+unsafe impl Send for double2 {}
+unsafe impl Sync for double2 {}
+unsafe impl Send for CUstream_st {}
+unsafe impl Sync for CUstream_st {}
+unsafe impl Send for libraryPropertyType_t {}
+unsafe impl Sync for libraryPropertyType_t {}
+unsafe impl Send for cublasStatus_t {}
+unsafe impl Sync for cublasStatus_t {}
+unsafe impl Send for cublasFillMode_t {}
+unsafe impl Sync for cublasFillMode_t {}
+unsafe impl Send for cublasDiagType_t {}
+unsafe impl Sync for cublasDiagType_t {}
+unsafe impl Send for cublasSideMode_t {}
+unsafe impl Sync for cublasSideMode_t {}
+unsafe impl Send for cublasOperation_t {}
+unsafe impl Sync for cublasOperation_t {}
+unsafe impl Send for cublasPointerMode_t {}
+unsafe impl Sync for cublasPointerMode_t {}
+unsafe impl Send for cublasAtomicsMode_t {}
+unsafe impl Sync for cublasAtomicsMode_t {}
+unsafe impl Send for cublasGemmAlgo_t {}
+unsafe impl Sync for cublasGemmAlgo_t {}
+unsafe impl Send for cublasMath_t {}
+unsafe impl Sync for cublasMath_t {}
+unsafe impl Send for cublasComputeType_t {}
+unsafe impl Sync for cublasComputeType_t {}
+unsafe impl Send for cublasEmulationStrategy_t {}
+unsafe impl Sync for cublasEmulationStrategy_t {}
+unsafe impl Send for cublasContext {}
+unsafe impl Sync for cublasContext {}

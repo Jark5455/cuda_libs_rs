@@ -25,6 +25,9 @@ pub struct LibraryConfig {
     pub handle_types_regex: Vec<&'static str>,
     pub extra_imports: Vec<&'static str>,
     pub extra_safe_code: &'static str,
+    /// Whether to use `types::CudaAsPtr` generic bounds for pointer arguments in safe wrappers.
+    /// Set to false for libs that don't depend on cuda_libs_cudart (e.g. cuda_libs_driver).
+    pub use_cuda_as_ptr: bool,
 }
 
 #[derive(Debug)]
@@ -99,7 +102,7 @@ impl<'a> Generator<'a> {
             }
         }
 
-        self.write_safe_rs(&out_dir, standalone_funcs, handle_methods, builder_impls);
+        self.write_safe_rs(&out_dir, standalone_funcs, builder_impls);
     }
 
     fn generate_sys_bindings(&self, out_dir: &std::path::Path) -> String {
@@ -206,12 +209,76 @@ impl<'a> Generator<'a> {
             }
         }
 
+        // Collect all struct/enum (ident, generics) for Send+Sync impls
+        let mut send_sync_items: Vec<(syn::Ident, syn::Generics)> = Vec::new();
+        for item in &new_sys_items {
+            match item {
+                syn::Item::Struct(s) => send_sync_items.push((s.ident.clone(), s.generics.clone())),
+                syn::Item::Enum(e) => send_sync_items.push((e.ident.clone(), e.generics.clone())),
+                _ => {}
+            }
+        }
+
+        let send_sync_impls = send_sync_items.iter().map(|(ident, generics)| {
+            // Build impl generics with Send/Sync bounds on each type param
+            let where_clause = &generics.where_clause;
+            // Collect just the idents/lifetimes for the "for Type<...>" part
+            let ty_args: Vec<proc_macro2::TokenStream> = generics
+                .params
+                .iter()
+                .map(|p| match p {
+                    syn::GenericParam::Type(t) => {
+                        let id = &t.ident;
+                        quote!(#id)
+                    }
+                    syn::GenericParam::Lifetime(l) => {
+                        let lt = &l.lifetime;
+                        quote!(#lt)
+                    }
+                    syn::GenericParam::Const(c) => {
+                        let id = &c.ident;
+                        quote!(#id)
+                    }
+                })
+                .collect();
+            // Add Send/Sync bounds to type params in the impl generics
+            let impl_params: Vec<proc_macro2::TokenStream> = generics
+                .params
+                .iter()
+                .map(|p| match p {
+                    syn::GenericParam::Type(t) => {
+                        let id = &t.ident;
+                        let bounds = &t.bounds;
+                        if bounds.is_empty() { quote!(#id: Send + Sync) } else { quote!(#id: #bounds + Send + Sync) }
+                    }
+                    other => quote!(#other),
+                })
+                .collect();
+
+            if ty_args.is_empty() {
+                quote! {
+                    unsafe impl Send for #ident #where_clause {}
+                    unsafe impl Sync for #ident #where_clause {}
+                }
+            } else {
+                quote! {
+                    unsafe impl<#(#impl_params),*> Send for #ident<#(#ty_args),*> #where_clause {}
+                    unsafe impl<#(#impl_params),*> Sync for #ident<#(#ty_args),*> #where_clause {}
+                }
+            }
+        });
+
         if !dynamic_fields.is_empty() {
             let dyn_mod = quote! {
                 #[cfg(feature = "runtime-link")]
                 pub struct DynamicBindings {
                     #(#dynamic_fields),*
                 }
+
+                #[cfg(feature = "runtime-link")]
+                unsafe impl Send for DynamicBindings {}
+                #[cfg(feature = "runtime-link")]
+                unsafe impl Sync for DynamicBindings {}
 
                 #[cfg(feature = "runtime-link")]
                 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
@@ -233,6 +300,10 @@ impl<'a> Generator<'a> {
             let dyn_file: syn::File = syn::parse2(dyn_mod).expect("Failed to parse dynamic wrapper items");
             new_sys_items.extend(dyn_file.items);
         }
+
+        let send_sync_stream = quote! { #(#send_sync_impls)* };
+        let send_sync_file: syn::File = syn::parse2(send_sync_stream).expect("Failed to parse Send+Sync impls");
+        new_sys_items.extend(send_sync_file.items);
 
         let new_ast = syn::File {
             shebang: ast.shebang.clone(),
@@ -281,7 +352,7 @@ impl<'a> Generator<'a> {
         let fn_str = fn_name.to_string();
         let attrs = &func.attrs;
 
-        let is_getter = (fn_str.contains("Get") || fn_str.contains("Create") || fn_str.contains("Plan")) && !fn_str.contains("String") && !fn_str.contains("Name") && !fn_str.contains("Vector") && !fn_str.contains("Matrix");
+        let is_getter = (fn_str.contains("Get") || fn_str.contains("Create") || fn_str.contains("Plan") || fn_str.contains("Load")) && !fn_str.contains("String") && !fn_str.contains("Name") && !fn_str.contains("Vector") && !fn_str.contains("Matrix") && !fn_str.contains("Unload");
 
         if is_getter {
             if let Some(wrapper) = self.generate_getter_wrapper(func) {
@@ -319,7 +390,7 @@ impl<'a> Generator<'a> {
                     if is_handle {
                         safe_inputs.push(quote!(#pat: #ty));
                         call_args.push(quote!(#pat));
-                    } else {
+                    } else if self.config.use_cuda_as_ptr {
                         let generic_ident = if generic_idx < generic_letters.len() {
                             syn::Ident::new(generic_letters[generic_idx], proc_macro2::Span::call_site())
                         } else {
@@ -335,6 +406,10 @@ impl<'a> Generator<'a> {
                             safe_inputs.push(quote!(#pat: #generic_ident));
                             call_args.push(quote!(#pat.as_const_ptr() as *const _));
                         }
+                    } else {
+                        // No CudaAsPtr available — pass raw pointer directly
+                        safe_inputs.push(quote!(#pat: #ty));
+                        call_args.push(quote!(#pat));
                     }
                 } else if transformed {
                     safe_inputs.push(quote!(#pat: #mapped_ty));
@@ -416,7 +491,7 @@ impl<'a> Generator<'a> {
 
                 let mut handled_as_output = false;
                 if let Type::Ptr(ptr_ty) = &**ty {
-                    let is_plan_or_create = fn_str.contains("Create") || fn_str.contains("Plan");
+                    let is_plan_or_create = fn_str.contains("Create") || fn_str.contains("Plan") || fn_str.contains("Load");
                     let is_get = fn_str.contains("Get");
 
                     if ptr_ty.mutability.is_some() && !ty_str.contains("c_void") && !quote!(#pat).to_string().contains("Array") {
@@ -472,7 +547,7 @@ impl<'a> Generator<'a> {
         let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
         let success_variant_ident = syn::Ident::new(self.config.success_variant, proc_macro2::Span::call_site());
 
-        let (ret_expr, ret_ty) = if let ReturnType::Type(_, ty) = &sig.output {
+        let (ret_expr, _ret_ty) = if let ReturnType::Type(_, ty) = &sig.output {
             let (mapped_ret_ty, transformed_ret) = self.map_ffi_type_to_rust(ty);
             if transformed_ret {
                 (quote!((unsafe { crate::sys::#fn_name(#(#call_args),*) }) as #mapped_ret_ty), mapped_ret_ty)
@@ -672,17 +747,18 @@ impl<'a> Generator<'a> {
         None
     }
 
-    fn write_safe_rs(&self, out_dir: &std::path::Path, standalone_funcs: Vec<proc_macro2::TokenStream>, handle_methods: HashMap<String, Vec<proc_macro2::TokenStream>>, builder_impls: Vec<proc_macro2::TokenStream>) {
+    fn write_safe_rs(&self, out_dir: &std::path::Path, standalone_funcs: Vec<proc_macro2::TokenStream>, builder_impls: Vec<proc_macro2::TokenStream>) {
         let mut extra_safes = Vec::new();
-        if self.config.lib_name != "cuda_libs_cudart" {
-            extra_safes.push(quote!(
-                #[allow(unused_imports)]
-                use cuda_libs_cudart::types;
-            ));
-        } else {
+        let depends_on_cudart = self.config.lib_name == "cuda_libs_cudart" || self.config.extra_imports.iter().any(|i| i.contains("cudart"));
+        if self.config.lib_name == "cuda_libs_cudart" {
             extra_safes.push(quote!(
                 #[allow(unused_imports)]
                 use crate::types;
+            ));
+        } else if depends_on_cudart {
+            extra_safes.push(quote!(
+                #[allow(unused_imports)]
+                use cuda_libs_cudart::types;
             ));
         }
         for import in &self.config.extra_imports {

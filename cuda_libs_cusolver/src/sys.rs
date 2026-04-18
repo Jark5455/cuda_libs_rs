@@ -11284,6 +11284,10 @@ pub struct DynamicBindings {
     >,
 }
 #[cfg(feature = "runtime-link")]
+unsafe impl Send for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
+unsafe impl Sync for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
@@ -21846,3 +21850,73 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
+unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}
+unsafe impl<Storage: Send + Sync> Sync for __BindgenBitfieldUnit<Storage> {}
+unsafe impl Send for cusolverDnContext {}
+unsafe impl Sync for cusolverDnContext {}
+unsafe impl Send for syevjInfo {}
+unsafe impl Sync for syevjInfo {}
+unsafe impl Send for gesvdjInfo {}
+unsafe impl Sync for gesvdjInfo {}
+unsafe impl Send for cusolverDnIRSParams {}
+unsafe impl Sync for cusolverDnIRSParams {}
+unsafe impl Send for cusolverDnIRSInfos {}
+unsafe impl Sync for cusolverDnIRSInfos {}
+unsafe impl Send for cusolverDnParams {}
+unsafe impl Sync for cusolverDnParams {}
+unsafe impl Send for cusolverDnFunction_t {}
+unsafe impl Sync for cusolverDnFunction_t {}
+unsafe impl Send for _IO_marker {}
+unsafe impl Sync for _IO_marker {}
+unsafe impl Send for _IO_codecvt {}
+unsafe impl Sync for _IO_codecvt {}
+unsafe impl Send for _IO_wide_data {}
+unsafe impl Sync for _IO_wide_data {}
+unsafe impl Send for _IO_FILE {}
+unsafe impl Sync for _IO_FILE {}
+unsafe impl Send for float2 {}
+unsafe impl Sync for float2 {}
+unsafe impl Send for double2 {}
+unsafe impl Sync for double2 {}
+unsafe impl Send for libraryPropertyType_t {}
+unsafe impl Sync for libraryPropertyType_t {}
+unsafe impl Send for cublasFillMode_t {}
+unsafe impl Sync for cublasFillMode_t {}
+unsafe impl Send for cublasDiagType_t {}
+unsafe impl Sync for cublasDiagType_t {}
+unsafe impl Send for cublasSideMode_t {}
+unsafe impl Sync for cublasSideMode_t {}
+unsafe impl Send for cublasOperation_t {}
+unsafe impl Sync for cublasOperation_t {}
+unsafe impl Send for cusolverStatus_t {}
+unsafe impl Sync for cusolverStatus_t {}
+unsafe impl Send for cusolverEigType_t {}
+unsafe impl Sync for cusolverEigType_t {}
+unsafe impl Send for cusolverEigMode_t {}
+unsafe impl Sync for cusolverEigMode_t {}
+unsafe impl Send for cusolverEigRange_t {}
+unsafe impl Sync for cusolverEigRange_t {}
+unsafe impl Send for cusolverEigComp_t {}
+unsafe impl Sync for cusolverEigComp_t {}
+unsafe impl Send for cusolverNorm_t {}
+unsafe impl Sync for cusolverNorm_t {}
+unsafe impl Send for cusolverIRSRefinement_t {}
+unsafe impl Sync for cusolverIRSRefinement_t {}
+unsafe impl Send for cusolverPrecType_t {}
+unsafe impl Sync for cusolverPrecType_t {}
+unsafe impl Send for cusolverAlgMode_t {}
+unsafe impl Sync for cusolverAlgMode_t {}
+unsafe impl Send for cusolverStorevMode_t {}
+unsafe impl Sync for cusolverStorevMode_t {}
+unsafe impl Send for cusolverDirectMode_t {}
+unsafe impl Sync for cusolverDirectMode_t {}
+unsafe impl Send for cusolverDeterministicMode_t {}
+unsafe impl Sync for cusolverDeterministicMode_t {}
+unsafe impl Send for cusolverMathMode_t {}
+unsafe impl Sync for cusolverMathMode_t {}
+unsafe impl Send for cusparseMatDescr {}
+unsafe impl Sync for cusparseMatDescr {}
+unsafe impl Send for cusolverSpContext {}
+unsafe impl Sync for cusolverSpContext {}
+unsafe impl Send for csrqrInfo {}
+unsafe impl Sync for csrqrInfo {}

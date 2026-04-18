@@ -94,6 +94,7 @@ dependencies = [
  "cuda_libs_curand",
  "cuda_libs_cusolver",
  "cuda_libs_cusparse",
+ "cuda_libs_driver",
  "cuda_libs_macros",
  "libc",
 ]
@@ -150,6 +151,10 @@ version = "0.1.0"
 dependencies = [
  "cuda_libs_cudart",
 ]
+
+[[package]]
+name = "cuda_libs_driver"
+version = "0.1.0"
 
 [[package]]
 name = "cuda_libs_macros"

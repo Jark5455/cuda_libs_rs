@@ -4,6 +4,26 @@ use lib_generator::{HandleConfig, LibraryConfig, generate_library};
 
 fn main() {
     generate_library(&LibraryConfig {
+        lib_name: "cuda_libs_driver",
+        out_dir: "./cuda_libs_driver/src",
+        headers: vec!["/opt/cuda/include/cuda.h"],
+        allowlist_functions: "cu.*|CU.*",
+        // cudaError_enum is the underlying C enum that CUresult aliases; allow it explicitly
+        allowlist_types: "cu.*|CU.*|cudaError_enum",
+        allowlist_vars: "CU.*",
+        // Block all cuda runtime types EXCEPT cudaError_enum (which is the CUresult backing enum)
+        blocklist_types: vec!["^cuda[^E].*", "^cudaE[^r].*", "^cudaEr[^r].*"],
+        blocklist_functions: vec![],
+        status_type: "CUresult",
+        success_variant: "CUDA_SUCCESS",
+        handles: vec![HandleConfig { wrapper_name: "DriverContext", handle_type: "CUctx" }],
+        handle_types_regex: vec!["CUctx"],
+        extra_imports: vec![],
+        extra_safe_code: "",
+        use_cuda_as_ptr: false,
+    });
+
+    generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cudart",
         out_dir: "./cuda_libs_cudart/src",
         headers: vec!["/opt/cuda/include/cuda_runtime.h"],
@@ -24,6 +44,7 @@ fn main() {
             #[allow(non_upper_case_globals)]
             pub use crate::sys::cudaError as CudaStatusEnum;
         ",
+        use_cuda_as_ptr: true,
     });
 
     generate_library(&LibraryConfig {
@@ -44,6 +65,7 @@ fn main() {
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
+        use_cuda_as_ptr: true,
     });
 
     generate_library(&LibraryConfig {
@@ -64,6 +86,7 @@ fn main() {
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
+        use_cuda_as_ptr: true,
     });
 
     generate_library(&LibraryConfig {
@@ -90,6 +113,7 @@ fn main() {
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
+        use_cuda_as_ptr: true,
     });
 
     generate_library(&LibraryConfig {
@@ -110,6 +134,7 @@ fn main() {
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
+        use_cuda_as_ptr: true,
     });
 
     generate_library(&LibraryConfig {
@@ -130,6 +155,7 @@ fn main() {
         handle_types_regex: vec!["Generator", "Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
+        use_cuda_as_ptr: true,
     });
 
     generate_library(&LibraryConfig {
@@ -150,6 +176,7 @@ fn main() {
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
+        use_cuda_as_ptr: true,
     });
 
     generate_library(&LibraryConfig {
@@ -170,5 +197,6 @@ fn main() {
         handle_types_regex: vec!["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"],
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
+        use_cuda_as_ptr: true,
     });
 }

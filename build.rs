@@ -61,6 +61,10 @@ fn main() {
     #[cfg(target_os = "windows")]
     let suffix = "";
 
+    if env::var("CARGO_FEATURE_DRIVER").is_ok() {
+        // The CUDA driver library has no static variant; always link dynamically by name
+        println!("cargo:rustc-link-lib=dylib=cuda");
+    }
     if env::var("CARGO_FEATURE_CUDART").is_ok() {
         println!("cargo:rustc-link-lib={}=cudart{}", kind, suffix);
     }

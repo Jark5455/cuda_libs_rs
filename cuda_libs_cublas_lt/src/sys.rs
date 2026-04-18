@@ -2004,6 +2004,10 @@ pub struct DynamicBindings {
     pub cublasLtLoggerForceDisable: Option<unsafe extern "C" fn() -> cublasStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
+unsafe impl Send for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
+unsafe impl Sync for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
@@ -2827,3 +2831,77 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
+unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}
+unsafe impl<Storage: Send + Sync> Sync for __BindgenBitfieldUnit<Storage> {}
+unsafe impl Send for CUstream_st {}
+unsafe impl Sync for CUstream_st {}
+unsafe impl Send for libraryPropertyType_t {}
+unsafe impl Sync for libraryPropertyType_t {}
+unsafe impl Send for cublasStatus_t {}
+unsafe impl Sync for cublasStatus_t {}
+unsafe impl Send for cublasComputeType_t {}
+unsafe impl Sync for cublasComputeType_t {}
+unsafe impl Send for _IO_marker {}
+unsafe impl Sync for _IO_marker {}
+unsafe impl Send for _IO_codecvt {}
+unsafe impl Sync for _IO_codecvt {}
+unsafe impl Send for _IO_wide_data {}
+unsafe impl Sync for _IO_wide_data {}
+unsafe impl Send for _IO_FILE {}
+unsafe impl Sync for _IO_FILE {}
+unsafe impl Send for cublasLtContext {}
+unsafe impl Sync for cublasLtContext {}
+unsafe impl Send for cublasLtMatrixLayoutOpaque_t {}
+unsafe impl Sync for cublasLtMatrixLayoutOpaque_t {}
+unsafe impl Send for cublasLtMatmulAlgo_t {}
+unsafe impl Sync for cublasLtMatmulAlgo_t {}
+unsafe impl Send for cublasLtMatmulDescOpaque_t {}
+unsafe impl Sync for cublasLtMatmulDescOpaque_t {}
+unsafe impl Send for cublasLtMatrixTransformDescOpaque_t {}
+unsafe impl Sync for cublasLtMatrixTransformDescOpaque_t {}
+unsafe impl Send for cublasLtMatmulPreferenceOpaque_t {}
+unsafe impl Sync for cublasLtMatmulPreferenceOpaque_t {}
+unsafe impl Send for cublasLtEmulationDescOpaque_t {}
+unsafe impl Sync for cublasLtEmulationDescOpaque_t {}
+unsafe impl Send for cublasLtMatmulTile_t {}
+unsafe impl Sync for cublasLtMatmulTile_t {}
+unsafe impl Send for cublasLtMatmulStages_t {}
+unsafe impl Sync for cublasLtMatmulStages_t {}
+unsafe impl Send for cublasLtClusterShape_t {}
+unsafe impl Sync for cublasLtClusterShape_t {}
+unsafe impl Send for cublasLtMatmulInnerShape_t {}
+unsafe impl Sync for cublasLtMatmulInnerShape_t {}
+unsafe impl Send for cublasLtMatmulMatrixScale_t {}
+unsafe impl Sync for cublasLtMatmulMatrixScale_t {}
+unsafe impl Send for cublasLtPointerMode_t {}
+unsafe impl Sync for cublasLtPointerMode_t {}
+unsafe impl Send for cublasLtPointerModeMask_t {}
+unsafe impl Sync for cublasLtPointerModeMask_t {}
+unsafe impl Send for cublasLtOrder_t {}
+unsafe impl Sync for cublasLtOrder_t {}
+unsafe impl Send for cublasLtBatchMode_t {}
+unsafe impl Sync for cublasLtBatchMode_t {}
+unsafe impl Send for cublasLtIntegerWidth_t {}
+unsafe impl Sync for cublasLtIntegerWidth_t {}
+unsafe impl Send for cublasLtMatrixLayoutAttribute_t {}
+unsafe impl Sync for cublasLtMatrixLayoutAttribute_t {}
+unsafe impl Send for cublasLtMatmulDescAttributes_t {}
+unsafe impl Sync for cublasLtMatmulDescAttributes_t {}
+unsafe impl Send for cublasLtMatrixTransformDescAttributes_t {}
+unsafe impl Sync for cublasLtMatrixTransformDescAttributes_t {}
+unsafe impl Send for cublasLtEmulationDescAttributes_t {}
+unsafe impl Sync for cublasLtEmulationDescAttributes_t {}
+unsafe impl Send for cublasLtReductionScheme_t {}
+unsafe impl Sync for cublasLtReductionScheme_t {}
+unsafe impl Send for cublasLtEpilogue_t {}
+unsafe impl Sync for cublasLtEpilogue_t {}
+unsafe impl Send for cublasLtMatmulSearch_t {}
+unsafe impl Sync for cublasLtMatmulSearch_t {}
+unsafe impl Send for cublasLtMatmulPreferenceAttributes_t {}
+unsafe impl Sync for cublasLtMatmulPreferenceAttributes_t {}
+unsafe impl Send for cublasLtMatmulHeuristicResult_t {}
+unsafe impl Sync for cublasLtMatmulHeuristicResult_t {}
+unsafe impl Send for cublasLtMatmulAlgoCapAttributes_t {}
+unsafe impl Sync for cublasLtMatmulAlgoCapAttributes_t {}
+unsafe impl Send for cublasLtMatmulAlgoConfigAttributes_t {}
+unsafe impl Sync for cublasLtMatmulAlgoConfigAttributes_t {}

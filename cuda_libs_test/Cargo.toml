@@ -6,6 +6,8 @@ edition = "2024"
 [dependencies]
 cuda_libs = { path = "..", features = [
     "runtime-link",
+    "driver",
+    "nvptx",
     "cudart",
     "cublas",
     "cublas_lt",

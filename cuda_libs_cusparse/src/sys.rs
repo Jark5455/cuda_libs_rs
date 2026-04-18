@@ -10998,6 +10998,10 @@ pub struct DynamicBindings {
     pub cusparseSpMMOp_destroyPlan: Option<unsafe extern "C" fn(plan: cusparseSpMMOpPlan_t) -> cusparseStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
+unsafe impl Send for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
+unsafe impl Sync for DynamicBindings {}
+#[cfg(feature = "runtime-link")]
 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 #[cfg(feature = "runtime-link")]
 #[inline(always)]
@@ -21294,3 +21298,113 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
+unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}
+unsafe impl<Storage: Send + Sync> Sync for __BindgenBitfieldUnit<Storage> {}
+unsafe impl Send for float2 {}
+unsafe impl Sync for float2 {}
+unsafe impl Send for double2 {}
+unsafe impl Sync for double2 {}
+unsafe impl Send for CUstream_st {}
+unsafe impl Sync for CUstream_st {}
+unsafe impl Send for libraryPropertyType_t {}
+unsafe impl Sync for libraryPropertyType_t {}
+unsafe impl Send for _IO_marker {}
+unsafe impl Sync for _IO_marker {}
+unsafe impl Send for _IO_codecvt {}
+unsafe impl Sync for _IO_codecvt {}
+unsafe impl Send for _IO_wide_data {}
+unsafe impl Sync for _IO_wide_data {}
+unsafe impl Send for _IO_FILE {}
+unsafe impl Sync for _IO_FILE {}
+unsafe impl Send for cusparseContext {}
+unsafe impl Sync for cusparseContext {}
+unsafe impl Send for cusparseMatDescr {}
+unsafe impl Sync for cusparseMatDescr {}
+unsafe impl Send for bsrsv2Info {}
+unsafe impl Sync for bsrsv2Info {}
+unsafe impl Send for bsrsm2Info {}
+unsafe impl Sync for bsrsm2Info {}
+unsafe impl Send for csric02Info {}
+unsafe impl Sync for csric02Info {}
+unsafe impl Send for bsric02Info {}
+unsafe impl Sync for bsric02Info {}
+unsafe impl Send for csrilu02Info {}
+unsafe impl Sync for csrilu02Info {}
+unsafe impl Send for bsrilu02Info {}
+unsafe impl Sync for bsrilu02Info {}
+unsafe impl Send for csru2csrInfo {}
+unsafe impl Sync for csru2csrInfo {}
+unsafe impl Send for cusparseColorInfo {}
+unsafe impl Sync for cusparseColorInfo {}
+unsafe impl Send for pruneInfo {}
+unsafe impl Sync for pruneInfo {}
+unsafe impl Send for cusparseStatus_t {}
+unsafe impl Sync for cusparseStatus_t {}
+unsafe impl Send for cusparsePointerMode_t {}
+unsafe impl Sync for cusparsePointerMode_t {}
+unsafe impl Send for cusparseAction_t {}
+unsafe impl Sync for cusparseAction_t {}
+unsafe impl Send for cusparseMatrixType_t {}
+unsafe impl Sync for cusparseMatrixType_t {}
+unsafe impl Send for cusparseFillMode_t {}
+unsafe impl Sync for cusparseFillMode_t {}
+unsafe impl Send for cusparseDiagType_t {}
+unsafe impl Sync for cusparseDiagType_t {}
+unsafe impl Send for cusparseIndexBase_t {}
+unsafe impl Sync for cusparseIndexBase_t {}
+unsafe impl Send for cusparseOperation_t {}
+unsafe impl Sync for cusparseOperation_t {}
+unsafe impl Send for cusparseDirection_t {}
+unsafe impl Sync for cusparseDirection_t {}
+unsafe impl Send for cusparseSolvePolicy_t {}
+unsafe impl Sync for cusparseSolvePolicy_t {}
+unsafe impl Send for cusparseColorAlg_t {}
+unsafe impl Sync for cusparseColorAlg_t {}
+unsafe impl Send for cusparseCsr2CscAlg_t {}
+unsafe impl Sync for cusparseCsr2CscAlg_t {}
+unsafe impl Send for cusparseFormat_t {}
+unsafe impl Sync for cusparseFormat_t {}
+unsafe impl Send for cusparseOrder_t {}
+unsafe impl Sync for cusparseOrder_t {}
+unsafe impl Send for cusparseIndexType_t {}
+unsafe impl Sync for cusparseIndexType_t {}
+unsafe impl Send for cusparseSpVecDescr {}
+unsafe impl Sync for cusparseSpVecDescr {}
+unsafe impl Send for cusparseDnVecDescr {}
+unsafe impl Sync for cusparseDnVecDescr {}
+unsafe impl Send for cusparseSpMatDescr {}
+unsafe impl Sync for cusparseSpMatDescr {}
+unsafe impl Send for cusparseDnMatDescr {}
+unsafe impl Sync for cusparseDnMatDescr {}
+unsafe impl Send for cusparseSpMatAttribute_t {}
+unsafe impl Sync for cusparseSpMatAttribute_t {}
+unsafe impl Send for cusparseSparseToDenseAlg_t {}
+unsafe impl Sync for cusparseSparseToDenseAlg_t {}
+unsafe impl Send for cusparseDenseToSparseAlg_t {}
+unsafe impl Sync for cusparseDenseToSparseAlg_t {}
+unsafe impl Send for cusparseSpMVAlg_t {}
+unsafe impl Sync for cusparseSpMVAlg_t {}
+unsafe impl Send for cusparseSpSVAlg_t {}
+unsafe impl Sync for cusparseSpSVAlg_t {}
+unsafe impl Send for cusparseSpSVUpdate_t {}
+unsafe impl Sync for cusparseSpSVUpdate_t {}
+unsafe impl Send for cusparseSpSVDescr {}
+unsafe impl Sync for cusparseSpSVDescr {}
+unsafe impl Send for cusparseSpSMAlg_t {}
+unsafe impl Sync for cusparseSpSMAlg_t {}
+unsafe impl Send for cusparseSpSMUpdate_t {}
+unsafe impl Sync for cusparseSpSMUpdate_t {}
+unsafe impl Send for cusparseSpSMDescr {}
+unsafe impl Sync for cusparseSpSMDescr {}
+unsafe impl Send for cusparseSpMMAlg_t {}
+unsafe impl Sync for cusparseSpMMAlg_t {}
+unsafe impl Send for cusparseSpGEMMAlg_t {}
+unsafe impl Sync for cusparseSpGEMMAlg_t {}
+unsafe impl Send for cusparseSpGEMMDescr {}
+unsafe impl Sync for cusparseSpGEMMDescr {}
+unsafe impl Send for cusparseSDDMMAlg_t {}
+unsafe impl Sync for cusparseSDDMMAlg_t {}
+unsafe impl Send for cusparseSpMMOpPlan {}
+unsafe impl Sync for cusparseSpMMOpPlan {}
+unsafe impl Send for cusparseSpMMOpAlg_t {}
+unsafe impl Sync for cusparseSpMMOpAlg_t {}

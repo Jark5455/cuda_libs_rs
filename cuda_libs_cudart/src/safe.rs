@@ -5427,54 +5427,40 @@ pub unsafe fn cudaGetDriverEntryPointByVersion(symbol: *const ::std::os::raw::c_
     }
 }
 #[doc = "Load a library with specified code and options\nTakes a pointer `code` and loads the corresponding library `library` based on\nthe application defined library loading mode:\n- If module loading is set to EAGER, via the environment variables described in \"Module loading\",\n`library` is loaded eagerly into all contexts at the time of the call and future contexts\nat the time of creation until the library is unloaded with ::cudaLibraryUnload().\n- If the environment variables are set to LAZY, `library`\nis not immediately loaded onto all existent contexts and will only be\nloaded when a function is needed for that context, such as a kernel launch.\nThese environment variables are described in the CUDA programming guide under the\n\"CUDA environment variables\" section.\nThe `code` may be a _cubin_ or _fatbin_ as output by **nvcc,**\nor a NULL-terminated _PTX,_ either as output by **nvcc**\nor hand-written, or _Tile_ IR data.\nA fatbin should also contain relocatable code when doing separate compilation.\nPlease also see the documentation for nvrtc (https://docs.nvidia.com/cuda/nvrtc/index.html),\nnvjitlink (https://docs.nvidia.com/cuda/nvjitlink/index.html), and nvfatbin\n(https://docs.nvidia.com/cuda/nvfatbin/index.html) for more information on generating\nloadable code at runtime.\nOptions are passed as an array via `jitOptions` and any corresponding parameters are passed in\n`jitOptionsValues.` The number of total JIT options is supplied via `numJitOptions.`\nAny outputs will be returned via `jitOptionsValues.`\nLibrary load options are passed as an array via `libraryOptions` and any corresponding parameters are passed in\n`libraryOptionValues.` The number of total library load options is supplied via `numLibraryOptions.`\n\n# Arguments\n\n* `library` -             - Returned library\n* `code` -                - Code to load\n* `jitOptions` -          - Options for JIT\n* `jitOptionsValues` -    - Option values for JIT\n* `numJitOptions` -       - Number of options\n* `libraryOptions` -      - Options for loading\n* `libraryOptionValues` - - Option values for loading\n* `numLibraryOptions` -   - Number of options for loading\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation,\n::cudaErrorInitializationError,\n::cudaErrorCudartUnloading,\n::cudaErrorInvalidPtx,\n::cudaErrorUnsupportedPtxVersion,\n::cudaErrorNoKernelImageForDevice,\n::cudaErrorSharedObjectSymbolNotFound,\n::cudaErrorSharedObjectInitFailed,\n::cudaErrorJitCompilerNotFound\n\n# See also\n\n> [`::cudaLibraryLoadFromFile,`]\n::cudaLibraryUnload,\n::cuLibraryLoadData"]
-pub unsafe fn cudaLibraryLoadData<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
-    mut library: T,
-    code: U,
-    mut jitOptions: V,
-    mut jitOptionsValues: W,
+pub unsafe fn cudaLibraryLoadData(
+    code: *const ::std::os::raw::c_void,
+    jitOptions: *mut cudaJitOption,
+    jitOptionsValues: *mut *mut ::std::os::raw::c_void,
     numJitOptions: u32,
-    mut libraryOptions: X,
-    mut libraryOptionValues: Y,
+    libraryOptions: *mut cudaLibraryOption,
+    libraryOptionValues: *mut *mut ::std::os::raw::c_void,
     numLibraryOptions: u32,
-) -> Result<(), crate::sys::cudaError> {
-    let status = unsafe {
-        crate::sys::cudaLibraryLoadData(
-            library.as_mut_ptr() as *mut _,
-            code.as_const_ptr() as *const _,
-            jitOptions.as_mut_ptr() as *mut _,
-            jitOptionsValues.as_mut_ptr() as *mut _,
-            numJitOptions as _,
-            libraryOptions.as_mut_ptr() as *mut _,
-            libraryOptionValues.as_mut_ptr() as *mut _,
-            numLibraryOptions as _,
-        )
-    };
-    if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
+) -> Result<cudaLibrary_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaLibrary_t> = std::mem::MaybeUninit::zeroed();
+    let status = unsafe { crate::sys::cudaLibraryLoadData(out_0.as_mut_ptr() as *mut _, code, jitOptions, jitOptionsValues, numJitOptions as _, libraryOptions, libraryOptionValues, numLibraryOptions as _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaLibrary_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
 }
 #[doc = "Load a library with specified file and options\nTakes a pointer `code` and loads the corresponding library `library` based on\nthe application defined library loading mode:\n- If module loading is set to EAGER, via the environment variables described in \"Module loading\",\n`library` is loaded eagerly into all contexts at the time of the call and future contexts\nat the time of creation until the library is unloaded with ::cudaLibraryUnload().\n- If the environment variables are set to LAZY, `library`\nis not immediately loaded onto all existent contexts and will only be\nloaded when a function is needed for that context, such as a kernel launch.\nThese environment variables are described in the CUDA programming guide under the\n\"CUDA environment variables\" section.\nThe file should be a _cubin_ file as output by **nvcc,** or a _PTX_ file either\nas output by **nvcc** or handwritten, or a _fatbin_ file as output by **nvcc**\nor hand-written, or _Tile_ IR file.\nA fatbin should also contain relocatable code when doing separate compilation.\nPlease also see the documentation for nvrtc (https://docs.nvidia.com/cuda/nvrtc/index.html),\nnvjitlink (https://docs.nvidia.com/cuda/nvjitlink/index.html), and nvfatbin\n(https://docs.nvidia.com/cuda/nvfatbin/index.html) for more information on generating\nloadable code at runtime.\nOptions are passed as an array via `jitOptions` and any corresponding parameters are\npassed in `jitOptionsValues.` The number of total options is supplied via `numJitOptions.`\nAny outputs will be returned via `jitOptionsValues.`\nLibrary load options are passed as an array via `libraryOptions` and any corresponding parameters are passed in\n`libraryOptionValues.` The number of total library load options is supplied via `numLibraryOptions.`\n\n# Arguments\n\n* `library` -             - Returned library\n* `fileName` -            - File to load from\n* `jitOptions` -          - Options for JIT\n* `jitOptionsValues` -    - Option values for JIT\n* `numJitOptions` -       - Number of options\n* `libraryOptions` -      - Options for loading\n* `libraryOptionValues` - - Option values for loading\n* `numLibraryOptions` -   - Number of options for loading\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation,\n::cudaErrorInitializationError,\n::cudaErrorCudartUnloading,\n::cudaErrorInvalidPtx,\n::cudaErrorUnsupportedPtxVersion,\n::cudaErrorNoKernelImageForDevice,\n::cudaErrorSharedObjectSymbolNotFound,\n::cudaErrorSharedObjectInitFailed,\n::cudaErrorJitCompilerNotFound\n\n# See also\n\n> [`::cudaLibraryLoadData,`]\n::cudaLibraryUnload,\n::cuLibraryLoadFromFile"]
-pub unsafe fn cudaLibraryLoadFromFile<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
-    mut library: T,
-    fileName: U,
-    mut jitOptions: V,
-    mut jitOptionsValues: W,
+pub unsafe fn cudaLibraryLoadFromFile(
+    fileName: *const ::std::os::raw::c_char,
+    jitOptions: *mut cudaJitOption,
+    jitOptionsValues: *mut *mut ::std::os::raw::c_void,
     numJitOptions: u32,
-    mut libraryOptions: X,
-    mut libraryOptionValues: Y,
+    libraryOptions: *mut cudaLibraryOption,
+    libraryOptionValues: *mut *mut ::std::os::raw::c_void,
     numLibraryOptions: u32,
-) -> Result<(), crate::sys::cudaError> {
-    let status = unsafe {
-        crate::sys::cudaLibraryLoadFromFile(
-            library.as_mut_ptr() as *mut _,
-            fileName.as_const_ptr() as *const _,
-            jitOptions.as_mut_ptr() as *mut _,
-            jitOptionsValues.as_mut_ptr() as *mut _,
-            numJitOptions as _,
-            libraryOptions.as_mut_ptr() as *mut _,
-            libraryOptionValues.as_mut_ptr() as *mut _,
-            numLibraryOptions as _,
-        )
-    };
-    if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
+) -> Result<cudaLibrary_t, crate::sys::cudaError> {
+    let mut out_0: std::mem::MaybeUninit<cudaLibrary_t> = std::mem::MaybeUninit::zeroed();
+    let status = unsafe { crate::sys::cudaLibraryLoadFromFile(out_0.as_mut_ptr() as *mut _, fileName, jitOptions, jitOptionsValues, numJitOptions as _, libraryOptions, libraryOptionValues, numLibraryOptions as _) };
+    if status as usize == crate::sys::cudaError::cudaSuccess as usize {
+        unsafe { Ok(out_0.assume_init() as cudaLibrary_t) }
+    } else {
+        Err(unsafe { std::mem::transmute(status) })
+    }
 }
 #[doc = "Unloads a library\nUnloads the library specified with `library`\n\n# Arguments\n\n* `library` - - Library to unload\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidValue\n\n# See also\n\n> [`::cudaLibraryLoadData,`]\n::cudaLibraryLoadFromFile,\n::cuLibraryUnload"]
 pub unsafe fn cudaLibraryUnload(library: cudaLibrary_t) -> Result<(), crate::sys::cudaError> {
