@@ -11026,3 +11026,9 @@ unsafe impl Send for cudaEmulationMantissaControl_t {}
 unsafe impl Sync for cudaEmulationMantissaControl_t {}
 unsafe impl Send for cudaEmulationSpecialValuesSupport_t {}
 unsafe impl Sync for cudaEmulationSpecialValuesSupport_t {}
+impl std::fmt::Display for cudaError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl std::error::Error for cudaError {}

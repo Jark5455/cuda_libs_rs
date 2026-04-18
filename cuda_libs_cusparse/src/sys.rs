@@ -21408,3 +21408,9 @@ unsafe impl Send for cusparseSpMMOpPlan {}
 unsafe impl Sync for cusparseSpMMOpPlan {}
 unsafe impl Send for cusparseSpMMOpAlg_t {}
 unsafe impl Sync for cusparseSpMMOpAlg_t {}
+impl std::fmt::Display for cusparseStatus_t {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl std::error::Error for cusparseStatus_t {}

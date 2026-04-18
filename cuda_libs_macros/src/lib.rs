@@ -12,7 +12,6 @@ struct SharedStaticExtractor {
 }
 
 impl SharedStaticExtractor {
-
     fn eval_const_expr(expr: &syn::Expr) -> Option<usize> {
         match expr {
             syn::Expr::Lit(lit) => {

@@ -228,7 +228,6 @@ fn cuda_reduce_add_example() {
 }
 
 fn cuda_matrix_transpose_2d_example() {
-
     #[rustfmt::skip]
     #[cuda_libs::global]
     pub unsafe fn transpose_2d(input: &[f32], output: &mut [f32], rows: u32, cols: u32) {
@@ -281,11 +280,11 @@ fn cuda_matrix_transpose_2d_example() {
         let d_out = cudaMalloc::<f32>(size_of::<f32>() * output.len()).unwrap();
 
         cudaMemcpy(&mut d_in, input.as_ptr(), size_of::<f32>() * input.len(), cudaMemcpyHostToDevice).unwrap();
-        
+
         let grid_x = COLS.div_ceil(16) as u32;
         let grid_y = ROWS.div_ceil(16) as u32;
 
-        let d_in_slice  = d_in.as_cuda_slice(ROWS * COLS);
+        let d_in_slice = d_in.as_cuda_slice(ROWS * COLS);
         let d_out_slice = d_out.as_cuda_slice(COLS * ROWS);
 
         transpose_2d! { <<< (grid_x, grid_y), (16u32, 16u32) >>> (d_in_slice, d_out_slice, ROWS as u32, COLS as u32) }
@@ -310,7 +309,7 @@ fn cuda_matrix_transpose_2d_example() {
     'outer: for r in 0..ROWS {
         for c in 0..COLS {
             let expected = input[r * COLS + c];
-            let got      = output[c * ROWS + r];
+            let got = output[c * ROWS + r];
             if (expected - got).abs() > 1e-5 {
                 println!("Transpose MISMATCH at ({r},{c}): expected {expected}, got {got}");
                 ok = false;
@@ -318,7 +317,7 @@ fn cuda_matrix_transpose_2d_example() {
             }
         }
     }
-    
+
     if ok {
         println!("2D matrix transpose ({ROWS}x{COLS}): CORRECT ✓");
     }

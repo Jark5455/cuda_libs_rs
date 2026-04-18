@@ -209,12 +209,20 @@ impl<'a> Generator<'a> {
             }
         }
 
-        // Collect all struct/enum (ident, generics) for Send+Sync impls
+        // Collect all struct/enum (ident, generics) for Send+Sync, and only the configured
+        // status enum for Display/Error.
         let mut send_sync_items: Vec<(syn::Ident, syn::Generics)> = Vec::new();
+        let mut error_items: Vec<(syn::Ident, syn::Generics)> = Vec::new();
+        let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
         for item in &new_sys_items {
             match item {
                 syn::Item::Struct(s) => send_sync_items.push((s.ident.clone(), s.generics.clone())),
-                syn::Item::Enum(e) => send_sync_items.push((e.ident.clone(), e.generics.clone())),
+                syn::Item::Enum(e) => {
+                    send_sync_items.push((e.ident.clone(), e.generics.clone()));
+                    if e.ident == status_type_ident {
+                        error_items.push((e.ident.clone(), e.generics.clone()));
+                    }
+                }
                 _ => {}
             }
         }
@@ -304,6 +312,63 @@ impl<'a> Generator<'a> {
         let send_sync_stream = quote! { #(#send_sync_impls)* };
         let send_sync_file: syn::File = syn::parse2(send_sync_stream).expect("Failed to parse Send+Sync impls");
         new_sys_items.extend(send_sync_file.items);
+
+        let error_impls = error_items.iter().map(|(ident, generics)| {
+            let where_clause = &generics.where_clause;
+            let ty_args: Vec<proc_macro2::TokenStream> = generics
+                .params
+                .iter()
+                .map(|p| match p {
+                    syn::GenericParam::Type(t) => {
+                        let id = &t.ident;
+                        quote!(#id)
+                    }
+                    syn::GenericParam::Lifetime(l) => {
+                        let lt = &l.lifetime;
+                        quote!(#lt)
+                    }
+                    syn::GenericParam::Const(c) => {
+                        let id = &c.ident;
+                        quote!(#id)
+                    }
+                })
+                .collect();
+            let impl_params: Vec<proc_macro2::TokenStream> = generics
+                .params
+                .iter()
+                .map(|p| match p {
+                    syn::GenericParam::Type(t) => {
+                        let id = &t.ident;
+                        let bounds = &t.bounds;
+                        if bounds.is_empty() { quote!(#id) } else { quote!(#id: #bounds) }
+                    }
+                    other => quote!(#other),
+                })
+                .collect();
+
+            if ty_args.is_empty() {
+                quote! {
+                    impl std::fmt::Display for #ident #where_clause {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, "{:?}", self)
+                        }
+                    }
+                    impl std::error::Error for #ident #where_clause {}
+                }
+            } else {
+                quote! {
+                    impl<#(#impl_params),*> std::fmt::Display for #ident<#(#ty_args),*> #where_clause {
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                            write!(f, "{:?}", self)
+                        }
+                    }
+                    impl<#(#impl_params),*> std::error::Error for #ident<#(#ty_args),*> #where_clause {}
+                }
+            }
+        });
+        let error_stream = quote! { #(#error_impls)* };
+        let error_file: syn::File = syn::parse2(error_stream).expect("Failed to parse error impls");
+        new_sys_items.extend(error_file.items);
 
         let new_ast = syn::File {
             shebang: ast.shebang.clone(),

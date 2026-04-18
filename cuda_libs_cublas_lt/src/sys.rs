@@ -2905,3 +2905,9 @@ unsafe impl Send for cublasLtMatmulAlgoCapAttributes_t {}
 unsafe impl Sync for cublasLtMatmulAlgoCapAttributes_t {}
 unsafe impl Send for cublasLtMatmulAlgoConfigAttributes_t {}
 unsafe impl Sync for cublasLtMatmulAlgoConfigAttributes_t {}
+impl std::fmt::Display for cublasStatus_t {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl std::error::Error for cublasStatus_t {}

@@ -9489,3 +9489,9 @@ unsafe impl Send for cudnnFusedOpsVariantParamLabel_t {}
 unsafe impl Sync for cudnnFusedOpsVariantParamLabel_t {}
 unsafe impl Send for cudnnConvolutionBwdFilterAlgoPerfStruct {}
 unsafe impl Sync for cudnnConvolutionBwdFilterAlgoPerfStruct {}
+impl std::fmt::Display for cudnnStatus_t {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl std::error::Error for cudnnStatus_t {}

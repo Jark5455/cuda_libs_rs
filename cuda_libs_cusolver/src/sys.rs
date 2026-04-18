@@ -21920,3 +21920,9 @@ unsafe impl Send for cusolverSpContext {}
 unsafe impl Sync for cusolverSpContext {}
 unsafe impl Send for csrqrInfo {}
 unsafe impl Sync for csrqrInfo {}
+impl std::fmt::Display for cusolverStatus_t {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl std::error::Error for cusolverStatus_t {}

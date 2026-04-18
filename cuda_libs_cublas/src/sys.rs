@@ -16955,3 +16955,9 @@ unsafe impl Send for cublasEmulationStrategy_t {}
 unsafe impl Sync for cublasEmulationStrategy_t {}
 unsafe impl Send for cublasContext {}
 unsafe impl Sync for cublasContext {}
+impl std::fmt::Display for cublasStatus_t {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+impl std::error::Error for cublasStatus_t {}
