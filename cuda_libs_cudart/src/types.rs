@@ -1,11 +1,11 @@
 #![allow(non_camel_case_types)]
 
 #[repr(transparent)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct cuDeviceAllocation<T>(pub *mut T);
 
 impl<T> cuDeviceAllocation<T> {
-    pub fn as_cuda_slice(self, len: usize) -> CudaSlice<T> {
+    pub fn as_cuda_slice<'a>(&'a self, len: usize) -> CudaSlice<'a, T> {
         CudaSlice::new(self, len)
     }
 }
@@ -51,32 +51,44 @@ impl<T> CudaAsPtr for &cuDeviceAllocation<T> {
     }
 }
 
+#[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct CudaSlice<T> {
-    pub alloc: cuDeviceAllocation<T>,
-    pub len: usize,
-}
+pub struct CudaSlice<'a, T>(*mut [T], std::marker::PhantomData<&'a mut T>);
 
-impl<T> CudaSlice<T> {
-    pub fn new(alloc: cuDeviceAllocation<T>, len: usize) -> Self {
-        Self { alloc, len }
+impl<'a, T> CudaSlice<'a, T> {
+    pub fn new(alloc: &'a cuDeviceAllocation<T>, len: usize) -> Self {
+        Self(core::ptr::slice_from_raw_parts_mut(alloc.0, len), std::marker::PhantomData)
     }
 
-    pub unsafe fn as_slice(&self) -> &[T] {
-        unsafe { std::slice::from_raw_parts(self.alloc.0, self.len) }
+    pub fn len(&self) -> usize {
+        unsafe { (&*self.0).len() }
     }
 
-    pub unsafe fn as_mut_slice(&mut self) -> &mut [T] {
-        unsafe { std::slice::from_raw_parts_mut(self.alloc.0, self.len) }
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
     }
 }
 
-impl<T> CudaAsPtr for CudaSlice<T> {
+impl<'a, T> std::ops::Deref for CudaSlice<'a, T> {
+    type Target = [T];
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*self.0 }
+    }
+}
+
+impl<'a, T> std::ops::DerefMut for CudaSlice<'a, T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        unsafe { &mut *self.0 }
+    }
+}
+
+impl<T> CudaAsPtr for CudaSlice<'_, T> {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
-        self.alloc.0 as *const _
+        unsafe { (*self.0).as_ptr() as *const _ }
     }
+
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
-        self.alloc.0 as *mut _
+        unsafe { (*self.0).as_mut_ptr() as *mut _ }
     }
 }
 

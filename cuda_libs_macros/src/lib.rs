@@ -7,23 +7,42 @@ use std::{env, fs};
 use syn::visit_mut::{self, VisitMut};
 use syn::{ItemFn, parse_macro_input};
 
-// A visitor that extracts shared statics and replaces them with pointer lookups
 struct SharedStaticExtractor {
     global_asm_declarations: Vec<String>,
 }
 
 impl SharedStaticExtractor {
+
+    fn eval_const_expr(expr: &syn::Expr) -> Option<usize> {
+        match expr {
+            syn::Expr::Lit(lit) => {
+                if let syn::Lit::Int(ref int) = lit.lit {
+                    int.base10_parse().ok()
+                } else {
+                    None
+                }
+            }
+            syn::Expr::Binary(bin) => {
+                let lhs = Self::eval_const_expr(&bin.left)?;
+                let rhs = Self::eval_const_expr(&bin.right)?;
+                match bin.op {
+                    syn::BinOp::Mul(_) => Some(lhs * rhs),
+                    syn::BinOp::Add(_) => Some(lhs + rhs),
+                    syn::BinOp::Sub(_) => Some(lhs - rhs),
+                    _ => None,
+                }
+            }
+            syn::Expr::Paren(p) => Self::eval_const_expr(&p.expr),
+            _ => None,
+        }
+    }
+
     fn get_type_info(ty: &syn::Type) -> Option<(usize, usize)> {
         match ty {
             syn::Type::Array(array) => {
                 let (elem_size, _) = Self::get_type_info(&array.elem)?;
-                if let syn::Expr::Lit(ref lit) = array.len {
-                    if let syn::Lit::Int(ref int) = lit.lit {
-                        let len: usize = int.base10_parse().ok()?;
-                        return Some((elem_size * len, len));
-                    }
-                }
-                None
+                let len = Self::eval_const_expr(&array.len)?;
+                Some((elem_size * len, len))
             }
             syn::Type::Path(path) => {
                 let segment = path.path.segments.last()?;
@@ -61,11 +80,9 @@ impl VisitMut for SharedStaticExtractor {
 
                     let elem_ty = if let syn::Type::Array(array) = ty { &*array.elem } else { ty };
 
-                    // Generate global_asm! declaration
                     let decl = format!(".visible .shared .align 16 .b8 {}[{}];", internal_name, size);
                     self.global_asm_declarations.push(decl);
 
-                    // Replace with a slice initialization to the element type
                     let replacement: syn::Stmt = syn::parse_quote! {
                         let #original_name = unsafe {
                             let ptr: *mut #elem_ty;
@@ -84,7 +101,6 @@ impl VisitMut for SharedStaticExtractor {
                 }
             }
             if !extracted {
-                // Continue visiting nested blocks
                 visit_mut::visit_stmt_mut(self, &mut stmt);
                 new_stmts.push(stmt);
             }
@@ -120,17 +136,17 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let original_name = host_fn.sig.ident.clone();
 
     let mut device_fn = host_fn.clone();
+    device_fn.sig.abi = Some(syn::parse_quote!(extern "ptx-kernel"));
 
     // Hoist shared statics
     let mut extractor = SharedStaticExtractor { global_asm_declarations: Vec::new() };
     visit_mut::visit_item_fn_mut(&mut extractor, &mut device_fn);
 
     device_fn.vis = syn::Visibility::Public(syn::parse_quote!(pub));
-    device_fn.sig.abi = Some(syn::parse_quote!(extern "ptx-kernel"));
     device_fn.attrs.push(syn::parse_quote!(#[no_mangle]));
 
     let gasm_decls = &extractor.global_asm_declarations;
-    let fn_source = quote!(#device_fn).to_string();
+    let fn_source = quote!(#device_fn).to_string().replace("\"ptx-kernel\"fn", "\"ptx-kernel\" fn");
 
     let hidden_name = format_ident!("__{}", original_name);
     host_fn.sig.ident = hidden_name.clone();
@@ -216,29 +232,28 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let ptx_file = cache_dir.join("target").join("nvptx64-nvidia-cuda").join("release").join(format!("{}_ptx.ptx", original_name));
     let ptx_data = format!("{}\0", fs::read_to_string(&ptx_file).expect("Failed to read generated PTX file from cache"));
 
-    let ptx_const_name = format_ident!("__PTX_{}", original_name.to_string().to_uppercase());
     let macro_name = original_name.clone();
     let module_name_str = original_name.to_string();
 
-    let expanded = quote! {
-        #[doc(hidden)]
-        pub const #ptx_const_name: &str = #ptx_data;
+    // Count arguments to generate specialized tuple access
+    let arg_count = host_fn.sig.inputs.len();
+    let tuple_indices = (0..arg_count).map(|i| syn::Index::from(i));
 
+    let expanded = quote! {
         #[allow(non_local_definitions)]
         #[macro_export]
         macro_rules! #macro_name {
-            // 1. Entry Point
             ( <<< $($tail:tt)* ) => {
                 #macro_name!(@munch_config () ; $($tail)*)
             };
 
-            // 2. Muncher: Grab tokens until >>>
             (@munch_config ($($config:tt)*) ; >>> ($($arg:expr),*)) => {{
-                let ptx_ptr = #ptx_const_name.as_ptr() as *const ::core::ffi::c_char;
+                const PTX: &str = #ptx_data;
+                let ptx_ptr = PTX.as_ptr() as *const ::core::ffi::c_char;
                 let func = ::cuda_libs::driver::types::DEFAULT_DEVICE.try_get_function(
                     #module_name_str,
                     ptx_ptr
-                ).expect("failed to load ptx module, something went really really wrong");
+                ).expect("failed to load ptx module");
                 #macro_name!(@internal_config func, $($config)* ; $($arg),*)
             }};
 
@@ -246,30 +261,50 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
                 #macro_name!(@munch_config ($($head)* $next) ; $($tail)*)
             };
 
-            // 3. Dispatcher
-            (@internal_config $f:expr, $grid:expr, $block:expr, $shared:expr, $stream:expr ; $($arg:expr),*) => {
-                #macro_name!(@internal_launch $f, $grid, $block, $shared, $stream ; $($arg),*)
+            (@internal_config $f:expr, $grid:tt, $block:tt, $shared:expr, $stream:expr ; $($arg:expr),*) => {
+                #macro_name!(@resolve_grid $f, $grid, $block, $shared, $stream ; $($arg),*)
             };
-            (@internal_config $f:expr, $grid:expr, $block:expr, $shared:expr ; $($arg:expr),*) => {
-                #macro_name!(@internal_launch $f, $grid, $block, $shared, ::core::ptr::null_mut() ; $($arg),*)
+            (@internal_config $f:expr, $grid:tt, $block:tt, $shared:expr ; $($arg:expr),*) => {
+                #macro_name!(@resolve_grid $f, $grid, $block, $shared, ::core::ptr::null_mut() ; $($arg),*)
             };
-            (@internal_config $f:expr, $grid:expr, $block:expr ; $($arg:expr),*) => {
-                #macro_name!(@internal_launch $f, $grid, $block, 0, ::core::ptr::null_mut() ; $($arg),*)
+            (@internal_config $f:expr, $grid:tt, $block:tt ; $($arg:expr),*) => {
+                #macro_name!(@resolve_grid $f, $grid, $block, 0u32, ::core::ptr::null_mut() ; $($arg),*)
             };
 
-            // 4. Launcher: The "No-Iterator" Pointer Packing
-            (@internal_launch $f:expr, $grid:expr, $block:expr, $shared:expr, $stream:expr ; $($arg:expr),*) => {{
-                // Build simple array of pointers
+            (@resolve_grid $f:expr, ($gx:expr, $gy:expr, $gz:expr), $block:tt, $shared:expr, $stream:expr ; $($arg:expr),*) => {
+                #macro_name!(@resolve_block $f, $gx, $gy, $gz, $block, $shared, $stream ; $($arg),*)
+            };
+            (@resolve_grid $f:expr, ($gx:expr, $gy:expr), $block:tt, $shared:expr, $stream:expr ; $($arg:expr),*) => {
+                #macro_name!(@resolve_block $f, $gx, $gy, 1u32, $block, $shared, $stream ; $($arg),*)
+            };
+            (@resolve_grid $f:expr, $grid:tt, $block:tt, $shared:expr, $stream:expr ; $($arg:expr),*) => {
+                #macro_name!(@resolve_block $f, $grid, 1u32, 1u32, $block, $shared, $stream ; $($arg),*)
+            };
+
+            (@resolve_block $f:expr, $gx:expr, $gy:expr, $gz:expr, ($bx:expr, $by:expr, $bz:expr), $shared:expr, $stream:expr ; $($arg:expr),*) => {
+                #macro_name!(@internal_launch $f, $gx, $gy, $gz, $bx, $by, $bz, $shared, $stream ; $($arg),*)
+            };
+            (@resolve_block $f:expr, $gx:expr, $gy:expr, $gz:expr, ($bx:expr, $by:expr), $shared:expr, $stream:expr ; $($arg:expr),*) => {
+                #macro_name!(@internal_launch $f, $gx, $gy, $gz, $bx, $by, 1u32, $shared, $stream ; $($arg),*)
+            };
+            (@resolve_block $f:expr, $gx:expr, $gy:expr, $gz:expr, $block:tt, $shared:expr, $stream:expr ; $($arg:expr),*) => {
+                #macro_name!(@internal_launch $f, $gx, $gy, $gz, $block, 1u32, 1u32, $shared, $stream ; $($arg),*)
+            };
+
+            (@internal_launch $f:expr,
+             $gx:expr, $gy:expr, $gz:expr,
+             $bx:expr, $by:expr, $bz:expr,
+             $shared:expr, $stream:expr ; $($arg:expr),*) => {{
+                let args = ( $($arg,)* );
                 let mut kernel_params = [
-                    $( (&$arg as *const _ as *mut ::core::ffi::c_void) ),*
+                    #( (&args.#tuple_indices as *const _ as *mut ::core::ffi::c_void) ),*
                 ];
-
                 #[allow(unused_unsafe)]
                 unsafe {
                     ::cuda_libs::driver::safe::cuLaunchKernel(
                         $f,
-                        $grid as u32, 1, 1,
-                        $block as u32, 1, 1,
+                        $gx as u32, $gy as u32, $gz as u32,
+                        $bx as u32, $by as u32, $bz as u32,
                         $shared as u32,
                         $stream,
                         kernel_params.as_mut_ptr(),
