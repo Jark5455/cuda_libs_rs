@@ -7351,7 +7351,7 @@ pub unsafe fn cusparseLoggerSetCallback(callback: cusparseLoggerCallback_t) -> R
     let status = unsafe { crate::sys::cusparseLoggerSetCallback(callback) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseLoggerSetFile<T: types::CudaAsPtr>(mut file: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseLoggerSetFile<T: types::CudaAsMutPtr>(mut file: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseLoggerSetFile(file.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -7529,7 +7529,7 @@ pub unsafe fn cusparseDestroyPruneInfo(info: pruneInfo_t) -> Result<(), crate::s
     let status = unsafe { crate::sys::cusparseDestroyPruneInfo(info) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
     m: i32,
@@ -7565,11 +7565,11 @@ pub unsafe fn cusparseSgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgemvi_bufferSize<T: types::CudaAsPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSgemvi_bufferSize<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSgemvi_bufferSize(handle, transA, m as _, n as _, nnz as _, pBufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
     m: i32,
@@ -7605,11 +7605,11 @@ pub unsafe fn cusparseDgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgemvi_bufferSize<T: types::CudaAsPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDgemvi_bufferSize<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDgemvi_bufferSize(handle, transA, m as _, n as _, nnz as _, pBufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
     m: i32,
@@ -7645,11 +7645,11 @@ pub unsafe fn cusparseCgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgemvi_bufferSize<T: types::CudaAsPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCgemvi_bufferSize<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCgemvi_bufferSize(handle, transA, m as _, n as _, nnz as _, pBufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     transA: cusparseOperation_t,
     m: i32,
@@ -7685,11 +7685,11 @@ pub unsafe fn cusparseZgemvi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgemvi_bufferSize<T: types::CudaAsPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseZgemvi_bufferSize<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, transA: cusparseOperation_t, m: i32, n: i32, nnz: i32, mut pBufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseZgemvi_bufferSize(handle, transA, m as _, n as _, nnz as _, pBufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -7727,7 +7727,7 @@ pub unsafe fn cusparseSbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -7765,7 +7765,7 @@ pub unsafe fn cusparseDbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -7803,7 +7803,7 @@ pub unsafe fn cusparseCbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -7841,7 +7841,7 @@ pub unsafe fn cusparseZbsrmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -7885,7 +7885,7 @@ pub unsafe fn cusparseSbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -7929,7 +7929,7 @@ pub unsafe fn cusparseDbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -7973,7 +7973,7 @@ pub unsafe fn cusparseCbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8017,11 +8017,11 @@ pub unsafe fn cusparseZbsrxmv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXbsrsv2_zeroPivot<T: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsrsv2Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXbsrsv2_zeroPivot<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsrsv2Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXbsrsv2_zeroPivot(handle, info, position.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsv2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8053,7 +8053,7 @@ pub unsafe fn cusparseSbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsv2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8085,7 +8085,7 @@ pub unsafe fn cusparseDbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsv2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8117,7 +8117,7 @@ pub unsafe fn cusparseCbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsv2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8149,7 +8149,7 @@ pub unsafe fn cusparseZbsrsv2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsv2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8181,7 +8181,7 @@ pub unsafe fn cusparseSbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsv2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8213,7 +8213,7 @@ pub unsafe fn cusparseDbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsv2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8245,7 +8245,7 @@ pub unsafe fn cusparseCbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsv2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8277,7 +8277,7 @@ pub unsafe fn cusparseZbsrsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8311,7 +8311,7 @@ pub unsafe fn cusparseSbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8345,7 +8345,7 @@ pub unsafe fn cusparseDbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8379,7 +8379,7 @@ pub unsafe fn cusparseCbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8413,7 +8413,7 @@ pub unsafe fn cusparseZbsrsv2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8453,7 +8453,7 @@ pub unsafe fn cusparseSbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8493,7 +8493,7 @@ pub unsafe fn cusparseDbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8533,7 +8533,7 @@ pub unsafe fn cusparseCbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8573,7 +8573,7 @@ pub unsafe fn cusparseZbsrsv2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8619,7 +8619,7 @@ pub unsafe fn cusparseSbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8665,7 +8665,7 @@ pub unsafe fn cusparseDbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8711,7 +8711,7 @@ pub unsafe fn cusparseCbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8757,11 +8757,11 @@ pub unsafe fn cusparseZbsrmm<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXbsrsm2_zeroPivot<T: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsrsm2Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXbsrsm2_zeroPivot<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsrsm2Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXbsrsm2_zeroPivot(handle, info, position.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsm2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8797,7 +8797,7 @@ pub unsafe fn cusparseSbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsm2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8833,7 +8833,7 @@ pub unsafe fn cusparseDbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsm2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8869,7 +8869,7 @@ pub unsafe fn cusparseCbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsm2_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8905,7 +8905,7 @@ pub unsafe fn cusparseZbsrsm2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsm2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8941,7 +8941,7 @@ pub unsafe fn cusparseSbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsm2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -8977,7 +8977,7 @@ pub unsafe fn cusparseDbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsm2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9013,7 +9013,7 @@ pub unsafe fn cusparseCbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsm2_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9049,7 +9049,7 @@ pub unsafe fn cusparseZbsrsm2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9087,7 +9087,7 @@ pub unsafe fn cusparseSbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9125,7 +9125,7 @@ pub unsafe fn cusparseDbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9163,7 +9163,7 @@ pub unsafe fn cusparseCbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9201,7 +9201,7 @@ pub unsafe fn cusparseZbsrsm2_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9249,7 +9249,7 @@ pub unsafe fn cusparseSbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9297,7 +9297,7 @@ pub unsafe fn cusparseDbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9345,7 +9345,7 @@ pub unsafe fn cusparseCbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     transA: cusparseOperation_t,
@@ -9393,27 +9393,27 @@ pub unsafe fn cusparseZbsrsm2_solve<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseScsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseScsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDcsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDcsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCcsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCcsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseZcsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseZcsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsrilu02_zeroPivot<T: types::CudaAsPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcsrilu02_zeroPivot<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: csrilu02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcsrilu02_zeroPivot(handle, info, position.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9439,7 +9439,7 @@ pub unsafe fn cusparseScsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9465,7 +9465,7 @@ pub unsafe fn cusparseDcsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9491,7 +9491,7 @@ pub unsafe fn cusparseCcsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9517,7 +9517,7 @@ pub unsafe fn cusparseZcsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9543,7 +9543,7 @@ pub unsafe fn cusparseScsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9569,7 +9569,7 @@ pub unsafe fn cusparseDcsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9595,7 +9595,7 @@ pub unsafe fn cusparseCcsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9621,7 +9621,7 @@ pub unsafe fn cusparseZcsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9649,7 +9649,7 @@ pub unsafe fn cusparseScsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9677,7 +9677,7 @@ pub unsafe fn cusparseDcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9705,7 +9705,7 @@ pub unsafe fn cusparseCcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9733,7 +9733,7 @@ pub unsafe fn cusparseZcsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9761,7 +9761,7 @@ pub unsafe fn cusparseScsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9789,7 +9789,7 @@ pub unsafe fn cusparseDcsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9817,7 +9817,7 @@ pub unsafe fn cusparseCcsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -9845,27 +9845,27 @@ pub unsafe fn cusparseZcsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSbsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSbsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDbsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDbsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCbsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCbsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrilu02_numericBoost<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseZbsrilu02_numericBoost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: i32, mut tol: T, mut boost_val: U) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseZbsrilu02_numericBoost(handle, info, enable_boost as _, tol.as_mut_ptr() as *mut _, boost_val.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXbsrilu02_zeroPivot<T: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXbsrilu02_zeroPivot<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsrilu02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXbsrilu02_zeroPivot(handle, info, position.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -9895,7 +9895,7 @@ pub unsafe fn cusparseSbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -9925,7 +9925,7 @@ pub unsafe fn cusparseDbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -9955,7 +9955,7 @@ pub unsafe fn cusparseCbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrilu02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -9985,7 +9985,7 @@ pub unsafe fn cusparseZbsrilu02_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10015,7 +10015,7 @@ pub unsafe fn cusparseSbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10045,7 +10045,7 @@ pub unsafe fn cusparseDbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10075,7 +10075,7 @@ pub unsafe fn cusparseCbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrilu02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10105,7 +10105,7 @@ pub unsafe fn cusparseZbsrilu02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrilu02_analysis<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10137,7 +10137,7 @@ pub unsafe fn cusparseSbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrilu02_analysis<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10169,7 +10169,7 @@ pub unsafe fn cusparseDbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrilu02_analysis<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10201,7 +10201,7 @@ pub unsafe fn cusparseCbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrilu02_analysis<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10233,7 +10233,7 @@ pub unsafe fn cusparseZbsrilu02_analysis<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10265,7 +10265,7 @@ pub unsafe fn cusparseSbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10297,7 +10297,7 @@ pub unsafe fn cusparseDbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10329,7 +10329,7 @@ pub unsafe fn cusparseCbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsrilu02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10361,11 +10361,11 @@ pub unsafe fn cusparseZbsrilu02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsric02_zeroPivot<T: types::CudaAsPtr>(handle: cusparseHandle_t, info: csric02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcsric02_zeroPivot<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: csric02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcsric02_zeroPivot(handle, info, position.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10391,7 +10391,7 @@ pub unsafe fn cusparseScsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10417,7 +10417,7 @@ pub unsafe fn cusparseDcsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10443,7 +10443,7 @@ pub unsafe fn cusparseCcsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10469,7 +10469,7 @@ pub unsafe fn cusparseZcsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10495,7 +10495,7 @@ pub unsafe fn cusparseScsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10521,7 +10521,7 @@ pub unsafe fn cusparseDcsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10547,7 +10547,7 @@ pub unsafe fn cusparseCcsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10573,7 +10573,7 @@ pub unsafe fn cusparseZcsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10601,7 +10601,7 @@ pub unsafe fn cusparseScsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10629,7 +10629,7 @@ pub unsafe fn cusparseDcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10657,7 +10657,7 @@ pub unsafe fn cusparseCcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10685,7 +10685,7 @@ pub unsafe fn cusparseZcsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10713,7 +10713,7 @@ pub unsafe fn cusparseScsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10741,7 +10741,7 @@ pub unsafe fn cusparseDcsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10769,7 +10769,7 @@ pub unsafe fn cusparseCcsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -10797,11 +10797,11 @@ pub unsafe fn cusparseZcsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXbsric02_zeroPivot<T: types::CudaAsPtr>(handle: cusparseHandle_t, info: bsric02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXbsric02_zeroPivot<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, info: bsric02Info_t, mut position: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXbsric02_zeroPivot(handle, info, position.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10831,7 +10831,7 @@ pub unsafe fn cusparseSbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10861,7 +10861,7 @@ pub unsafe fn cusparseDbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10891,7 +10891,7 @@ pub unsafe fn cusparseCbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsric02_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10921,7 +10921,7 @@ pub unsafe fn cusparseZbsric02_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10951,7 +10951,7 @@ pub unsafe fn cusparseSbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -10981,7 +10981,7 @@ pub unsafe fn cusparseDbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11011,7 +11011,7 @@ pub unsafe fn cusparseCbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsric02_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11041,7 +11041,7 @@ pub unsafe fn cusparseZbsric02_bufferSizeExt<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11073,7 +11073,7 @@ pub unsafe fn cusparseSbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11105,7 +11105,7 @@ pub unsafe fn cusparseDbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11137,7 +11137,7 @@ pub unsafe fn cusparseCbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11169,7 +11169,7 @@ pub unsafe fn cusparseZbsric02_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11201,7 +11201,7 @@ pub unsafe fn cusparseSbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11233,7 +11233,7 @@ pub unsafe fn cusparseDbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11265,7 +11265,7 @@ pub unsafe fn cusparseCbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsric02<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -11297,7 +11297,7 @@ pub unsafe fn cusparseZbsric02<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseSgtsv2_bufferSizeExt(
             handle,
@@ -11313,7 +11313,7 @@ pub unsafe fn cusparseSgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseDgtsv2_bufferSizeExt(
             handle,
@@ -11329,7 +11329,7 @@ pub unsafe fn cusparseDgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseCgtsv2_bufferSizeExt(
             handle,
@@ -11345,7 +11345,7 @@ pub unsafe fn cusparseCgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseZgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, B: W, ldb: i32, mut bufferSizeInBytes: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseZgtsv2_bufferSizeExt(
             handle,
@@ -11361,7 +11361,7 @@ pub unsafe fn cusparseZgtsv2_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseSgtsv2(
             handle,
@@ -11377,7 +11377,7 @@ pub unsafe fn cusparseSgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseDgtsv2(
             handle,
@@ -11393,7 +11393,7 @@ pub unsafe fn cusparseDgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseCgtsv2(
             handle,
@@ -11409,7 +11409,7 @@ pub unsafe fn cusparseCgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseZgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseZgtsv2(
             handle,
@@ -11425,7 +11425,7 @@ pub unsafe fn cusparseZgtsv2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -11451,7 +11451,7 @@ pub unsafe fn cusparseSgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -11477,7 +11477,7 @@ pub unsafe fn cusparseDgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseCgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -11503,7 +11503,7 @@ pub unsafe fn cusparseCgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseZgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -11529,7 +11529,7 @@ pub unsafe fn cusparseZgtsv2_nopivot_bufferSizeExt<T: types::CudaAsPtr, U: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseSgtsv2_nopivot(
             handle,
@@ -11545,7 +11545,7 @@ pub unsafe fn cusparseSgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseDgtsv2_nopivot(
             handle,
@@ -11561,7 +11561,7 @@ pub unsafe fn cusparseDgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseCgtsv2_nopivot(
             handle,
@@ -11577,7 +11577,7 @@ pub unsafe fn cusparseCgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseZgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, dl: T, d: U, du: V, mut B: W, ldb: i32, mut pBuffer: X) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe {
         crate::sys::cusparseZgtsv2_nopivot(
             handle,
@@ -11593,7 +11593,7 @@ pub unsafe fn cusparseZgtsv2_nopivot<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11619,7 +11619,7 @@ pub unsafe fn cusparseSgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: t
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11645,7 +11645,7 @@ pub unsafe fn cusparseDgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: t
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseCgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11671,7 +11671,7 @@ pub unsafe fn cusparseCgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: t
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseZgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11697,7 +11697,7 @@ pub unsafe fn cusparseZgtsv2StridedBatch_bufferSizeExt<T: types::CudaAsPtr, U: t
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11723,7 +11723,7 @@ pub unsafe fn cusparseSgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11749,7 +11749,7 @@ pub unsafe fn cusparseDgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseCgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11775,7 +11775,7 @@ pub unsafe fn cusparseCgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseZgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     dl: T,
@@ -11801,7 +11801,7 @@ pub unsafe fn cusparseZgtsv2StridedBatch<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11827,7 +11827,7 @@ pub unsafe fn cusparseSgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11853,7 +11853,7 @@ pub unsafe fn cusparseDgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseCgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11879,7 +11879,7 @@ pub unsafe fn cusparseCgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseZgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11905,7 +11905,7 @@ pub unsafe fn cusparseZgtsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSgtsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11919,7 +11919,7 @@ pub unsafe fn cusparseSgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaA
     let status = unsafe { crate::sys::cusparseSgtsvInterleavedBatch(handle, algo as _, m as _, dl.as_mut_ptr() as *mut _, d.as_mut_ptr() as *mut _, du.as_mut_ptr() as *mut _, x.as_mut_ptr() as *mut _, batchCount as _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDgtsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11933,7 +11933,7 @@ pub unsafe fn cusparseDgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaA
     let status = unsafe { crate::sys::cusparseDgtsvInterleavedBatch(handle, algo as _, m as _, dl.as_mut_ptr() as *mut _, d.as_mut_ptr() as *mut _, du.as_mut_ptr() as *mut _, x.as_mut_ptr() as *mut _, batchCount as _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseCgtsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11947,7 +11947,7 @@ pub unsafe fn cusparseCgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaA
     let status = unsafe { crate::sys::cusparseCgtsvInterleavedBatch(handle, algo as _, m as _, dl.as_mut_ptr() as *mut _, d.as_mut_ptr() as *mut _, du.as_mut_ptr() as *mut _, x.as_mut_ptr() as *mut _, batchCount as _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseZgtsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11961,7 +11961,7 @@ pub unsafe fn cusparseZgtsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaA
     let status = unsafe { crate::sys::cusparseZgtsvInterleavedBatch(handle, algo as _, m as _, dl.as_mut_ptr() as *mut _, d.as_mut_ptr() as *mut _, du.as_mut_ptr() as *mut _, x.as_mut_ptr() as *mut _, batchCount as _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -11991,7 +11991,7 @@ pub unsafe fn cusparseSgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -12021,7 +12021,7 @@ pub unsafe fn cusparseDgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -12051,7 +12051,7 @@ pub unsafe fn cusparseCgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -12081,7 +12081,7 @@ pub unsafe fn cusparseZgpsvInterleavedBatch_bufferSizeExt<T: types::CudaAsPtr, U
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgpsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSgpsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -12111,7 +12111,7 @@ pub unsafe fn cusparseSgpsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgpsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDgpsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -12141,7 +12141,7 @@ pub unsafe fn cusparseDgpsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgpsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCgpsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -12171,7 +12171,7 @@ pub unsafe fn cusparseCgpsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgpsvInterleavedBatch<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZgpsvInterleavedBatch<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     algo: i32,
     m: i32,
@@ -12213,7 +12213,7 @@ pub unsafe fn cusparseScsrgeam2_bufferSizeExt<
     B: types::CudaAsPtr,
     C: types::CudaAsPtr,
     D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
+    E: types::CudaAsMutPtr,
 >(
     handle: cusparseHandle_t,
     m: i32,
@@ -12274,7 +12274,7 @@ pub unsafe fn cusparseDcsrgeam2_bufferSizeExt<
     B: types::CudaAsPtr,
     C: types::CudaAsPtr,
     D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
+    E: types::CudaAsMutPtr,
 >(
     handle: cusparseHandle_t,
     m: i32,
@@ -12335,7 +12335,7 @@ pub unsafe fn cusparseCcsrgeam2_bufferSizeExt<
     B: types::CudaAsPtr,
     C: types::CudaAsPtr,
     D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
+    E: types::CudaAsMutPtr,
 >(
     handle: cusparseHandle_t,
     m: i32,
@@ -12396,7 +12396,7 @@ pub unsafe fn cusparseZcsrgeam2_bufferSizeExt<
     B: types::CudaAsPtr,
     C: types::CudaAsPtr,
     D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
+    E: types::CudaAsMutPtr,
 >(
     handle: cusparseHandle_t,
     m: i32,
@@ -12445,7 +12445,7 @@ pub unsafe fn cusparseZcsrgeam2_bufferSizeExt<
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsrgeam2Nnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseXcsrgeam2Nnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12483,7 +12483,7 @@ pub unsafe fn cusparseXcsrgeam2Nnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr, C: types::CudaAsPtr, D: types::CudaAsPtr, E: types::CudaAsPtr>(
+pub unsafe fn cusparseScsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr, D: types::CudaAsMutPtr, E: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12531,7 +12531,7 @@ pub unsafe fn cusparseScsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr, C: types::CudaAsPtr, D: types::CudaAsPtr, E: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr, D: types::CudaAsMutPtr, E: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12579,7 +12579,7 @@ pub unsafe fn cusparseDcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr, C: types::CudaAsPtr, D: types::CudaAsPtr, E: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr, D: types::CudaAsMutPtr, E: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12627,7 +12627,7 @@ pub unsafe fn cusparseCcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr, C: types::CudaAsPtr, D: types::CudaAsPtr, E: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr, D: types::CudaAsMutPtr, E: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12675,7 +12675,7 @@ pub unsafe fn cusparseZcsrgeam2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseScsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -12707,7 +12707,7 @@ pub unsafe fn cusparseScsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -12739,7 +12739,7 @@ pub unsafe fn cusparseDcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -12771,7 +12771,7 @@ pub unsafe fn cusparseCcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     nnz: i32,
@@ -12803,23 +12803,63 @@ pub unsafe fn cusparseZcsrcolor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSnnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusparseHandle_t, dirA: cusparseDirection_t, m: i32, n: i32, descrA: cusparseMatDescr_t, A: T, lda: i32, mut nnzPerRowCol: U, mut nnzTotalDevHostPtr: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSnnz<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    dirA: cusparseDirection_t,
+    m: i32,
+    n: i32,
+    descrA: cusparseMatDescr_t,
+    A: T,
+    lda: i32,
+    mut nnzPerRowCol: U,
+    mut nnzTotalDevHostPtr: V,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSnnz(handle, dirA, m as _, n as _, descrA, A.as_const_ptr() as *const _, lda as _, nnzPerRowCol.as_mut_ptr() as *mut _, nnzTotalDevHostPtr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDnnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusparseHandle_t, dirA: cusparseDirection_t, m: i32, n: i32, descrA: cusparseMatDescr_t, A: T, lda: i32, mut nnzPerRowCol: U, mut nnzTotalDevHostPtr: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDnnz<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    dirA: cusparseDirection_t,
+    m: i32,
+    n: i32,
+    descrA: cusparseMatDescr_t,
+    A: T,
+    lda: i32,
+    mut nnzPerRowCol: U,
+    mut nnzTotalDevHostPtr: V,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDnnz(handle, dirA, m as _, n as _, descrA, A.as_const_ptr() as *const _, lda as _, nnzPerRowCol.as_mut_ptr() as *mut _, nnzTotalDevHostPtr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCnnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusparseHandle_t, dirA: cusparseDirection_t, m: i32, n: i32, descrA: cusparseMatDescr_t, A: T, lda: i32, mut nnzPerRowCol: U, mut nnzTotalDevHostPtr: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCnnz<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    dirA: cusparseDirection_t,
+    m: i32,
+    n: i32,
+    descrA: cusparseMatDescr_t,
+    A: T,
+    lda: i32,
+    mut nnzPerRowCol: U,
+    mut nnzTotalDevHostPtr: V,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCnnz(handle, dirA, m as _, n as _, descrA, A.as_const_ptr() as *const _, lda as _, nnzPerRowCol.as_mut_ptr() as *mut _, nnzTotalDevHostPtr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZnnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusparseHandle_t, dirA: cusparseDirection_t, m: i32, n: i32, descrA: cusparseMatDescr_t, A: T, lda: i32, mut nnzPerRowCol: U, mut nnzTotalDevHostPtr: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseZnnz<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    dirA: cusparseDirection_t,
+    m: i32,
+    n: i32,
+    descrA: cusparseMatDescr_t,
+    A: T,
+    lda: i32,
+    mut nnzPerRowCol: U,
+    mut nnzTotalDevHostPtr: V,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseZnnz(handle, dirA, m as _, n as _, descrA, A.as_const_ptr() as *const _, lda as _, nnzPerRowCol.as_mut_ptr() as *mut _, nnzTotalDevHostPtr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     descr: cusparseMatDescr_t,
@@ -12832,7 +12872,7 @@ pub unsafe fn cusparseSnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     let status = unsafe { crate::sys::cusparseSnnz_compress(handle, m as _, descr, csrSortedValA.as_const_ptr() as *const _, csrSortedRowPtrA.as_const_ptr() as *const _, nnzPerRow.as_mut_ptr() as *mut _, nnzC.as_mut_ptr() as *mut _, tol) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     descr: cusparseMatDescr_t,
@@ -12845,7 +12885,7 @@ pub unsafe fn cusparseDnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     let status = unsafe { crate::sys::cusparseDnnz_compress(handle, m as _, descr, csrSortedValA.as_const_ptr() as *const _, csrSortedRowPtrA.as_const_ptr() as *const _, nnzPerRow.as_mut_ptr() as *mut _, nnzC.as_mut_ptr() as *mut _, tol) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     descr: cusparseMatDescr_t,
@@ -12858,7 +12898,7 @@ pub unsafe fn cusparseCnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     let status = unsafe { crate::sys::cusparseCnnz_compress(handle, m as _, descr, csrSortedValA.as_const_ptr() as *const _, csrSortedRowPtrA.as_const_ptr() as *const _, nnzPerRow.as_mut_ptr() as *mut _, nnzC.as_mut_ptr() as *mut _, tol) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     descr: cusparseMatDescr_t,
@@ -12871,7 +12911,7 @@ pub unsafe fn cusparseZnnz_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     let status = unsafe { crate::sys::cusparseZnnz_compress(handle, m as _, descr, csrSortedValA.as_const_ptr() as *const _, csrSortedRowPtrA.as_const_ptr() as *const _, nnzPerRow.as_mut_ptr() as *mut _, nnzC.as_mut_ptr() as *mut _, tol) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseScsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12905,7 +12945,7 @@ pub unsafe fn cusparseScsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12939,7 +12979,7 @@ pub unsafe fn cusparseDcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -12973,7 +13013,7 @@ pub unsafe fn cusparseCcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -13007,15 +13047,15 @@ pub unsafe fn cusparseZcsr2csr_compress<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcoo2csr<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, cooRowInd: T, nnz: i32, m: i32, mut csrSortedRowPtr: U, idxBase: cusparseIndexBase_t) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcoo2csr<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, cooRowInd: T, nnz: i32, m: i32, mut csrSortedRowPtr: U, idxBase: cusparseIndexBase_t) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcoo2csr(handle, cooRowInd.as_const_ptr() as *const _, nnz as _, m as _, csrSortedRowPtr.as_mut_ptr() as *mut _, idxBase) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsr2coo<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, csrSortedRowPtr: T, nnz: i32, m: i32, mut cooRowInd: U, idxBase: cusparseIndexBase_t) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcsr2coo<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cusparseHandle_t, csrSortedRowPtr: T, nnz: i32, m: i32, mut cooRowInd: U, idxBase: cusparseIndexBase_t) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcsr2coo(handle, csrSortedRowPtr.as_const_ptr() as *const _, nnz as _, m as _, cooRowInd.as_mut_ptr() as *mut _, idxBase) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsr2bsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseXcsr2bsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13045,7 +13085,7 @@ pub unsafe fn cusparseXcsr2bsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: t
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseScsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13079,7 +13119,7 @@ pub unsafe fn cusparseScsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13113,7 +13153,7 @@ pub unsafe fn cusparseDcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13147,7 +13187,7 @@ pub unsafe fn cusparseCcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13181,7 +13221,7 @@ pub unsafe fn cusparseZcsr2bsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseSbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13215,7 +13255,7 @@ pub unsafe fn cusparseSbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseDbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13249,7 +13289,7 @@ pub unsafe fn cusparseDbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseCbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13283,7 +13323,7 @@ pub unsafe fn cusparseCbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseZbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13317,7 +13357,7 @@ pub unsafe fn cusparseZbsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13345,7 +13385,7 @@ pub unsafe fn cusparseSgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13373,7 +13413,7 @@ pub unsafe fn cusparseDgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13401,7 +13441,7 @@ pub unsafe fn cusparseCgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13429,7 +13469,7 @@ pub unsafe fn cusparseZgebsr2gebsc_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13457,7 +13497,7 @@ pub unsafe fn cusparseSgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13485,7 +13525,7 @@ pub unsafe fn cusparseDgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13513,7 +13553,7 @@ pub unsafe fn cusparseCgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13541,7 +13581,7 @@ pub unsafe fn cusparseZgebsr2gebsc_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13579,7 +13619,7 @@ pub unsafe fn cusparseSgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13617,7 +13657,7 @@ pub unsafe fn cusparseDgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13655,7 +13695,7 @@ pub unsafe fn cusparseCgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mb: i32,
     nb: i32,
@@ -13693,7 +13733,7 @@ pub unsafe fn cusparseZgebsr2gebsc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseXgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13725,7 +13765,7 @@ pub unsafe fn cusparseXgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseSgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13761,7 +13801,7 @@ pub unsafe fn cusparseSgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseDgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13797,7 +13837,7 @@ pub unsafe fn cusparseDgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseCgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13833,7 +13873,7 @@ pub unsafe fn cusparseCgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseZgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -13869,7 +13909,7 @@ pub unsafe fn cusparseZgebsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13899,7 +13939,7 @@ pub unsafe fn cusparseScsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13929,7 +13969,7 @@ pub unsafe fn cusparseDcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13959,7 +13999,7 @@ pub unsafe fn cusparseCcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -13989,7 +14029,7 @@ pub unsafe fn cusparseZcsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14019,7 +14059,7 @@ pub unsafe fn cusparseScsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cu
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14049,7 +14089,7 @@ pub unsafe fn cusparseDcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cu
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14079,7 +14119,7 @@ pub unsafe fn cusparseCcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cu
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14109,7 +14149,7 @@ pub unsafe fn cusparseZcsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cu
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsr2gebsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseXcsr2gebsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14143,7 +14183,7 @@ pub unsafe fn cusparseXcsr2gebsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseScsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14181,7 +14221,7 @@ pub unsafe fn cusparseScsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14219,7 +14259,7 @@ pub unsafe fn cusparseDcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14257,7 +14297,7 @@ pub unsafe fn cusparseCcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     m: i32,
@@ -14295,7 +14335,7 @@ pub unsafe fn cusparseZcsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14331,7 +14371,7 @@ pub unsafe fn cusparseSgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14367,7 +14407,7 @@ pub unsafe fn cusparseDgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14403,7 +14443,7 @@ pub unsafe fn cusparseCgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14439,7 +14479,7 @@ pub unsafe fn cusparseZgebsr2gebsr_bufferSize<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14475,7 +14515,7 @@ pub unsafe fn cusparseSgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14511,7 +14551,7 @@ pub unsafe fn cusparseDgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14547,7 +14587,7 @@ pub unsafe fn cusparseCgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14583,7 +14623,7 @@ pub unsafe fn cusparseZgebsr2gebsr_bufferSizeExt<T: types::CudaAsPtr, U: types::
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXgebsr2gebsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseXgebsr2gebsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14623,7 +14663,7 @@ pub unsafe fn cusparseXgebsr2gebsrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14667,7 +14707,7 @@ pub unsafe fn cusparseSgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14711,7 +14751,7 @@ pub unsafe fn cusparseDgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14755,7 +14795,7 @@ pub unsafe fn cusparseCgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseZgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     dirA: cusparseDirection_t,
     mb: i32,
@@ -14799,39 +14839,59 @@ pub unsafe fn cusparseZgebsr2gebsr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCreateIdentityPermutation<T: types::CudaAsPtr>(handle: cusparseHandle_t, n: i32, mut p: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCreateIdentityPermutation<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, n: i32, mut p: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCreateIdentityPermutation(handle, n as _, p.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcoosort_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, cooRowsA: T, cooColsA: U, mut pBufferSizeInBytes: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcoosort_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, cooRowsA: T, cooColsA: U, mut pBufferSizeInBytes: V) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcoosort_bufferSizeExt(handle, m as _, n as _, nnz as _, cooRowsA.as_const_ptr() as *const _, cooColsA.as_const_ptr() as *const _, pBufferSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcoosortByRow<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, mut cooRowsA: T, mut cooColsA: U, mut P: V, mut pBuffer: W) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcoosortByRow<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, mut cooRowsA: T, mut cooColsA: U, mut P: V, mut pBuffer: W) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcoosortByRow(handle, m as _, n as _, nnz as _, cooRowsA.as_mut_ptr() as *mut _, cooColsA.as_mut_ptr() as *mut _, P.as_mut_ptr() as *mut _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcoosortByColumn<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, mut cooRowsA: T, mut cooColsA: U, mut P: V, mut pBuffer: W) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcoosortByColumn<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, mut cooRowsA: T, mut cooColsA: U, mut P: V, mut pBuffer: W) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcoosortByColumn(handle, m as _, n as _, nnz as _, cooRowsA.as_mut_ptr() as *mut _, cooColsA.as_mut_ptr() as *mut _, P.as_mut_ptr() as *mut _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsrsort_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, csrRowPtrA: T, csrColIndA: U, mut pBufferSizeInBytes: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcsrsort_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, csrRowPtrA: T, csrColIndA: U, mut pBufferSizeInBytes: V) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcsrsort_bufferSizeExt(handle, m as _, n as _, nnz as _, csrRowPtrA.as_const_ptr() as *const _, csrColIndA.as_const_ptr() as *const _, pBufferSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcsrsort<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, mut csrColIndA: U, mut P: V, mut pBuffer: W) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcsrsort<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    m: i32,
+    n: i32,
+    nnz: i32,
+    descrA: cusparseMatDescr_t,
+    csrRowPtrA: T,
+    mut csrColIndA: U,
+    mut P: V,
+    mut pBuffer: W,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcsrsort(handle, m as _, n as _, nnz as _, descrA, csrRowPtrA.as_const_ptr() as *const _, csrColIndA.as_mut_ptr() as *mut _, P.as_mut_ptr() as *mut _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcscsort_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, cscColPtrA: T, cscRowIndA: U, mut pBufferSizeInBytes: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcscsort_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, cscColPtrA: T, cscRowIndA: U, mut pBufferSizeInBytes: V) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcscsort_bufferSizeExt(handle, m as _, n as _, nnz as _, cscColPtrA.as_const_ptr() as *const _, cscRowIndA.as_const_ptr() as *const _, pBufferSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseXcscsort<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusparseHandle_t, m: i32, n: i32, nnz: i32, descrA: cusparseMatDescr_t, cscColPtrA: T, mut cscRowIndA: U, mut P: V, mut pBuffer: W) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseXcscsort<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    m: i32,
+    n: i32,
+    nnz: i32,
+    descrA: cusparseMatDescr_t,
+    cscColPtrA: T,
+    mut cscRowIndA: U,
+    mut P: V,
+    mut pBuffer: W,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseXcscsort(handle, m as _, n as _, nnz as _, descrA, cscColPtrA.as_const_ptr() as *const _, cscRowIndA.as_mut_ptr() as *mut _, P.as_mut_ptr() as *mut _, pBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsru2csr_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -14857,7 +14917,7 @@ pub unsafe fn cusparseScsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsru2csr_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -14883,7 +14943,7 @@ pub unsafe fn cusparseDcsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsru2csr_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -14909,7 +14969,7 @@ pub unsafe fn cusparseCcsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsru2csr_bufferSizeExt<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -14935,7 +14995,7 @@ pub unsafe fn cusparseZcsru2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsru2csr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -14963,7 +15023,7 @@ pub unsafe fn cusparseScsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsru2csr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -14991,7 +15051,7 @@ pub unsafe fn cusparseDcsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsru2csr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15019,7 +15079,7 @@ pub unsafe fn cusparseCcsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsru2csr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15047,7 +15107,7 @@ pub unsafe fn cusparseZcsru2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseScsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseScsr2csru<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15075,7 +15135,7 @@ pub unsafe fn cusparseScsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDcsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDcsr2csru<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15103,7 +15163,7 @@ pub unsafe fn cusparseDcsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCcsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseCcsr2csru<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15131,7 +15191,7 @@ pub unsafe fn cusparseCcsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseZcsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseZcsr2csru<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15159,7 +15219,7 @@ pub unsafe fn cusparseZcsr2csru<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneDense2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneDense2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15189,7 +15249,7 @@ pub unsafe fn cusparseSpruneDense2csr_bufferSizeExt<T: types::CudaAsPtr, U: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneDense2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneDense2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15219,7 +15279,7 @@ pub unsafe fn cusparseDpruneDense2csr_bufferSizeExt<T: types::CudaAsPtr, U: type
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneDense2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneDense2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15247,7 +15307,7 @@ pub unsafe fn cusparseSpruneDense2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneDense2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneDense2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15275,7 +15335,7 @@ pub unsafe fn cusparseDpruneDense2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneDense2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneDense2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15305,7 +15365,7 @@ pub unsafe fn cusparseSpruneDense2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneDense2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneDense2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15335,7 +15395,7 @@ pub unsafe fn cusparseDpruneDense2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneCsr2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneCsr2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15371,7 +15431,7 @@ pub unsafe fn cusparseSpruneCsr2csr_bufferSizeExt<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneCsr2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneCsr2csr_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15407,7 +15467,7 @@ pub unsafe fn cusparseDpruneCsr2csr_bufferSizeExt<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneCsr2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneCsr2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15441,7 +15501,7 @@ pub unsafe fn cusparseSpruneCsr2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneCsr2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneCsr2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15475,7 +15535,7 @@ pub unsafe fn cusparseDpruneCsr2csrNnz<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneCsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneCsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15511,7 +15571,7 @@ pub unsafe fn cusparseSpruneCsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneCsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneCsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15547,7 +15607,7 @@ pub unsafe fn cusparseDpruneCsr2csr<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneDense2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneDense2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15579,7 +15639,7 @@ pub unsafe fn cusparseSpruneDense2csrByPercentage_bufferSizeExt<T: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneDense2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneDense2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15611,7 +15671,7 @@ pub unsafe fn cusparseDpruneDense2csrByPercentage_bufferSizeExt<T: types::CudaAs
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneDense2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneDense2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15641,7 +15701,7 @@ pub unsafe fn cusparseSpruneDense2csrNnzByPercentage<T: types::CudaAsPtr, U: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneDense2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneDense2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15671,7 +15731,7 @@ pub unsafe fn cusparseDpruneDense2csrNnzByPercentage<T: types::CudaAsPtr, U: typ
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneDense2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneDense2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15703,7 +15763,7 @@ pub unsafe fn cusparseSpruneDense2csrByPercentage<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneDense2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneDense2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15735,7 +15795,7 @@ pub unsafe fn cusparseDpruneDense2csrByPercentage<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneCsr2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneCsr2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15773,7 +15833,7 @@ pub unsafe fn cusparseSpruneCsr2csrByPercentage_bufferSizeExt<T: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneCsr2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneCsr2csrByPercentage_bufferSizeExt<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15811,7 +15871,7 @@ pub unsafe fn cusparseDpruneCsr2csrByPercentage_bufferSizeExt<T: types::CudaAsPt
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneCsr2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneCsr2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15847,7 +15907,7 @@ pub unsafe fn cusparseSpruneCsr2csrNnzByPercentage<T: types::CudaAsPtr, U: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneCsr2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneCsr2csrNnzByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15883,7 +15943,7 @@ pub unsafe fn cusparseDpruneCsr2csrNnzByPercentage<T: types::CudaAsPtr, U: types
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpruneCsr2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseSpruneCsr2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15921,7 +15981,7 @@ pub unsafe fn cusparseSpruneCsr2csrByPercentage<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDpruneCsr2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseDpruneCsr2csrByPercentage<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15959,7 +16019,7 @@ pub unsafe fn cusparseDpruneCsr2csrByPercentage<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCsr2cscEx2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCsr2cscEx2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -15997,7 +16057,7 @@ pub unsafe fn cusparseCsr2cscEx2<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCsr2cscEx2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusparseCsr2cscEx2_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     m: i32,
     n: i32,
@@ -16092,15 +16152,15 @@ pub unsafe fn cusparseSpVecGetIndexBase(spVecDescr: cusparseConstSpVecDescr_t) -
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusparseSpVecGetValues<T: types::CudaAsPtr>(spVecDescr: cusparseSpVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpVecGetValues<T: types::CudaAsMutPtr>(spVecDescr: cusparseSpVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpVecGetValues(spVecDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseConstSpVecGetValues<T: types::CudaAsPtr>(spVecDescr: cusparseConstSpVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseConstSpVecGetValues<T: types::CudaAsMutPtr>(spVecDescr: cusparseConstSpVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseConstSpVecGetValues(spVecDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpVecSetValues<T: types::CudaAsPtr>(spVecDescr: cusparseSpVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpVecSetValues<T: types::CudaAsMutPtr>(spVecDescr: cusparseSpVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpVecSetValues(spVecDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16146,15 +16206,15 @@ pub unsafe fn cusparseConstDnVecGet(dnVecDescr: cusparseConstDnVecDescr_t, value
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusparseDnVecGetValues<T: types::CudaAsPtr>(dnVecDescr: cusparseDnVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDnVecGetValues<T: types::CudaAsMutPtr>(dnVecDescr: cusparseDnVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDnVecGetValues(dnVecDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseConstDnVecGetValues<T: types::CudaAsPtr>(dnVecDescr: cusparseConstDnVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseConstDnVecGetValues<T: types::CudaAsMutPtr>(dnVecDescr: cusparseConstDnVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseConstDnVecGetValues(dnVecDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDnVecSetValues<T: types::CudaAsPtr>(dnVecDescr: cusparseDnVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDnVecSetValues<T: types::CudaAsMutPtr>(dnVecDescr: cusparseDnVecDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDnVecSetValues(dnVecDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16180,15 +16240,15 @@ pub unsafe fn cusparseSpMatGetIndexBase(spMatDescr: cusparseConstSpMatDescr_t) -
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusparseSpMatGetValues<T: types::CudaAsPtr>(spMatDescr: cusparseSpMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpMatGetValues<T: types::CudaAsMutPtr>(spMatDescr: cusparseSpMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpMatGetValues(spMatDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseConstSpMatGetValues<T: types::CudaAsPtr>(spMatDescr: cusparseConstSpMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseConstSpMatGetValues<T: types::CudaAsMutPtr>(spMatDescr: cusparseConstSpMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseConstSpMatGetValues(spMatDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMatSetValues<T: types::CudaAsPtr>(spMatDescr: cusparseSpMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpMatSetValues<T: types::CudaAsMutPtr>(spMatDescr: cusparseSpMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpMatSetValues(spMatDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16224,11 +16284,11 @@ pub unsafe fn cusparseBsrSetStridedBatch(spMatDescr: cusparseSpMatDescr_t, batch
     let status = unsafe { crate::sys::cusparseBsrSetStridedBatch(spMatDescr, batchCount as _, offsetsBatchStride, columnsBatchStride, ValuesBatchStride) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMatGetAttribute<T: types::CudaAsPtr>(spMatDescr: cusparseConstSpMatDescr_t, attribute: cusparseSpMatAttribute_t, mut data: T, dataSize: usize) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpMatGetAttribute<T: types::CudaAsMutPtr>(spMatDescr: cusparseConstSpMatDescr_t, attribute: cusparseSpMatAttribute_t, mut data: T, dataSize: usize) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpMatGetAttribute(spMatDescr, attribute, data.as_mut_ptr() as *mut _, dataSize) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMatSetAttribute<T: types::CudaAsPtr>(spMatDescr: cusparseSpMatDescr_t, attribute: cusparseSpMatAttribute_t, mut data: T, dataSize: usize) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpMatSetAttribute<T: types::CudaAsMutPtr>(spMatDescr: cusparseSpMatDescr_t, attribute: cusparseSpMatAttribute_t, mut data: T, dataSize: usize) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpMatSetAttribute(spMatDescr, attribute, data.as_mut_ptr() as *mut _, dataSize) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16488,11 +16548,11 @@ pub unsafe fn cusparseConstCscGet(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusparseCsrSetPointers<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(spMatDescr: cusparseSpMatDescr_t, mut csrRowOffsets: T, mut csrColInd: U, mut csrValues: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCsrSetPointers<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(spMatDescr: cusparseSpMatDescr_t, mut csrRowOffsets: T, mut csrColInd: U, mut csrValues: V) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCsrSetPointers(spMatDescr, csrRowOffsets.as_mut_ptr() as *mut _, csrColInd.as_mut_ptr() as *mut _, csrValues.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseCscSetPointers<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(spMatDescr: cusparseSpMatDescr_t, mut cscColOffsets: T, mut cscRowInd: U, mut cscValues: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCscSetPointers<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(spMatDescr: cusparseSpMatDescr_t, mut cscColOffsets: T, mut cscRowInd: U, mut cscValues: V) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCscSetPointers(spMatDescr, cscColOffsets.as_mut_ptr() as *mut _, cscRowInd.as_mut_ptr() as *mut _, cscValues.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16662,7 +16722,7 @@ pub unsafe fn cusparseConstCooGet(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusparseCooSetPointers<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(spMatDescr: cusparseSpMatDescr_t, mut cooRows: T, mut cooColumns: U, mut cooValues: V) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseCooSetPointers<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(spMatDescr: cusparseSpMatDescr_t, mut cooRows: T, mut cooColumns: U, mut cooValues: V) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseCooSetPointers(spMatDescr, cooRows.as_mut_ptr() as *mut _, cooColumns.as_mut_ptr() as *mut _, cooValues.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16872,15 +16932,15 @@ pub unsafe fn cusparseConstDnMatGet(dnMatDescr: cusparseConstDnMatDescr_t, value
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusparseDnMatGetValues<T: types::CudaAsPtr>(dnMatDescr: cusparseDnMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDnMatGetValues<T: types::CudaAsMutPtr>(dnMatDescr: cusparseDnMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDnMatGetValues(dnMatDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseConstDnMatGetValues<T: types::CudaAsPtr>(dnMatDescr: cusparseConstDnMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseConstDnMatGetValues<T: types::CudaAsMutPtr>(dnMatDescr: cusparseConstDnMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseConstDnMatGetValues(dnMatDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDnMatSetValues<T: types::CudaAsPtr>(dnMatDescr: cusparseDnMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDnMatSetValues<T: types::CudaAsMutPtr>(dnMatDescr: cusparseDnMatDescr_t, mut values: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDnMatSetValues(dnMatDescr, values.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16914,35 +16974,51 @@ pub unsafe fn cusparseRot<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusp
     let status = unsafe { crate::sys::cusparseRot(handle, c_coeff.as_const_ptr() as *const _, s_coeff.as_const_ptr() as *const _, vecX, vecY) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpVV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: T, computeType: cudaDataType, mut bufferSize: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpVV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    opX: cusparseOperation_t,
+    vecX: cusparseConstSpVecDescr_t,
+    vecY: cusparseConstDnVecDescr_t,
+    result: T,
+    computeType: cudaDataType,
+    mut bufferSize: U,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpVV_bufferSize(handle, opX, vecX, vecY, result.as_const_ptr() as *const _, computeType, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpVV<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, mut result: T, computeType: cudaDataType, mut externalBuffer: U) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpVV<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
+    handle: cusparseHandle_t,
+    opX: cusparseOperation_t,
+    vecX: cusparseConstSpVecDescr_t,
+    vecY: cusparseConstDnVecDescr_t,
+    mut result: T,
+    computeType: cudaDataType,
+    mut externalBuffer: U,
+) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpVV(handle, opX, vecX, vecY, result.as_mut_ptr() as *mut _, computeType, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSparseToDense_bufferSize<T: types::CudaAsPtr>(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, mut bufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSparseToDense_bufferSize<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, mut bufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSparseToDense_bufferSize(handle, matA, matB, alg, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSparseToDense<T: types::CudaAsPtr>(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSparseToDense<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSparseToDense(handle, matA, matB, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDenseToSparse_bufferSize<T: types::CudaAsPtr>(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, mut bufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDenseToSparse_bufferSize<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, mut bufferSize: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDenseToSparse_bufferSize(handle, matA, matB, alg, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDenseToSparse_analysis<T: types::CudaAsPtr>(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDenseToSparse_analysis<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDenseToSparse_analysis(handle, matA, matB, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseDenseToSparse_convert<T: types::CudaAsPtr>(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseDenseToSparse_convert<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseDenseToSparse_convert(handle, matA, matB, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMV<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSpMV<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     alpha: T,
@@ -16957,7 +17033,7 @@ pub unsafe fn cusparseSpMV<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::C
     let status = unsafe { crate::sys::cusparseSpMV(handle, opA, alpha.as_const_ptr() as *const _, matA, vecX, beta.as_const_ptr() as *const _, vecY, computeType, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSpMV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     alpha: T,
@@ -16972,7 +17048,7 @@ pub unsafe fn cusparseSpMV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     let status = unsafe { crate::sys::cusparseSpMV_bufferSize(handle, opA, alpha.as_const_ptr() as *const _, matA, vecX, beta.as_const_ptr() as *const _, vecY, computeType, alg, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMV_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSpMV_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     alpha: T,
@@ -16987,7 +17063,7 @@ pub unsafe fn cusparseSpMV_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     let status = unsafe { crate::sys::cusparseSpMV_preprocess(handle, opA, alpha.as_const_ptr() as *const _, matA, vecX, beta.as_const_ptr() as *const _, vecY, computeType, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSV_createDescr<T: types::CudaAsPtr>(mut descr: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpSV_createDescr<T: types::CudaAsMutPtr>(mut descr: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpSV_createDescr(descr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -16995,7 +17071,7 @@ pub unsafe fn cusparseSpSV_destroyDescr(descr: cusparseSpSVDescr_t) -> Result<()
     let status = unsafe { crate::sys::cusparseSpSV_destroyDescr(descr) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cusparseSpSV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     alpha: T,
@@ -17010,7 +17086,7 @@ pub unsafe fn cusparseSpSV_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(
     let status = unsafe { crate::sys::cusparseSpSV_bufferSize(handle, opA, alpha.as_const_ptr() as *const _, matA, vecX, vecY, computeType, alg, spsvDescr, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSV_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cusparseSpSV_analysis<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     alpha: T,
@@ -17039,11 +17115,11 @@ pub unsafe fn cusparseSpSV_solve<T: types::CudaAsPtr>(
     let status = unsafe { crate::sys::cusparseSpSV_solve(handle, opA, alpha.as_const_ptr() as *const _, matA, vecX, vecY, computeType, alg, spsvDescr) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSV_updateMatrix<T: types::CudaAsPtr>(handle: cusparseHandle_t, spsvDescr: cusparseSpSVDescr_t, mut newValues: T, updatePart: cusparseSpSVUpdate_t) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpSV_updateMatrix<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, spsvDescr: cusparseSpSVDescr_t, mut newValues: T, updatePart: cusparseSpSVUpdate_t) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpSV_updateMatrix(handle, spsvDescr, newValues.as_mut_ptr() as *mut _, updatePart) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSM_createDescr<T: types::CudaAsPtr>(mut descr: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpSM_createDescr<T: types::CudaAsMutPtr>(mut descr: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpSM_createDescr(descr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -17051,7 +17127,7 @@ pub unsafe fn cusparseSpSM_destroyDescr(descr: cusparseSpSMDescr_t) -> Result<()
     let status = unsafe { crate::sys::cusparseSpSM_destroyDescr(descr) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cusparseSpSM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17067,7 +17143,7 @@ pub unsafe fn cusparseSpSM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(
     let status = unsafe { crate::sys::cusparseSpSM_bufferSize(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, matC, computeType, alg, spsmDescr, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSM_analysis<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cusparseSpSM_analysis<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17098,11 +17174,11 @@ pub unsafe fn cusparseSpSM_solve<T: types::CudaAsPtr>(
     let status = unsafe { crate::sys::cusparseSpSM_solve(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, matC, computeType, alg, spsmDescr) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpSM_updateMatrix<T: types::CudaAsPtr>(handle: cusparseHandle_t, spsmDescr: cusparseSpSMDescr_t, mut newValues: T, updatePart: cusparseSpSMUpdate_t) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpSM_updateMatrix<T: types::CudaAsMutPtr>(handle: cusparseHandle_t, spsmDescr: cusparseSpSMDescr_t, mut newValues: T, updatePart: cusparseSpSMUpdate_t) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpSM_updateMatrix(handle, spsmDescr, newValues.as_mut_ptr() as *mut _, updatePart) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSpMM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17118,7 +17194,7 @@ pub unsafe fn cusparseSpMM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     let status = unsafe { crate::sys::cusparseSpMM_bufferSize(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMM_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSpMM_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17134,7 +17210,7 @@ pub unsafe fn cusparseSpMM_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     let status = unsafe { crate::sys::cusparseSpMM_preprocess(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMM<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSpMM<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17150,7 +17226,7 @@ pub unsafe fn cusparseSpMM<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::C
     let status = unsafe { crate::sys::cusparseSpMM(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMM_createDescr<T: types::CudaAsPtr>(mut descr: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpGEMM_createDescr<T: types::CudaAsMutPtr>(mut descr: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpGEMM_createDescr(descr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -17158,7 +17234,7 @@ pub unsafe fn cusparseSpGEMM_destroyDescr(descr: cusparseSpGEMMDescr_t) -> Resul
     let status = unsafe { crate::sys::cusparseSpGEMM_destroyDescr(descr) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMM_workEstimation<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMM_workEstimation<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17192,11 +17268,11 @@ pub unsafe fn cusparseSpGEMM_workEstimation<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMM_getNumProducts<T: types::CudaAsPtr>(spgemmDescr: cusparseSpGEMMDescr_t, mut num_prods: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpGEMM_getNumProducts<T: types::CudaAsMutPtr>(spgemmDescr: cusparseSpGEMMDescr_t, mut num_prods: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpGEMM_getNumProducts(spgemmDescr, num_prods.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMM_estimateMemory<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMM_estimateMemory<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17234,7 +17310,7 @@ pub unsafe fn cusparseSpGEMM_estimateMemory<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMM_compute<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMM_compute<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17284,7 +17360,7 @@ pub unsafe fn cusparseSpGEMM_copy<T: types::CudaAsPtr, U: types::CudaAsPtr>(
     let status = unsafe { crate::sys::cusparseSpGEMM_copy(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, spgemmDescr) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMMreuse_workEstimation<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMMreuse_workEstimation<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17299,7 +17375,7 @@ pub unsafe fn cusparseSpGEMMreuse_workEstimation<T: types::CudaAsPtr, U: types::
     let status = unsafe { crate::sys::cusparseSpGEMMreuse_workEstimation(handle, opA, opB, matA, matB, matC, alg, spgemmDescr, bufferSize1.as_mut_ptr() as *mut _, externalBuffer1.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMMreuse_nnz<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMMreuse_nnz<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17335,7 +17411,7 @@ pub unsafe fn cusparseSpGEMMreuse_nnz<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpGEMMreuse_copy<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cusparseSpGEMMreuse_copy<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17366,7 +17442,7 @@ pub unsafe fn cusparseSpGEMMreuse_compute<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusparseSpGEMMreuse_compute(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, spgemmDescr) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSDDMM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSDDMM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17382,7 +17458,7 @@ pub unsafe fn cusparseSDDMM_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr,
     let status = unsafe { crate::sys::cusparseSDDMM_bufferSize(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, bufferSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSDDMM_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSDDMM_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17398,7 +17474,7 @@ pub unsafe fn cusparseSDDMM_preprocess<T: types::CudaAsPtr, U: types::CudaAsPtr,
     let status = unsafe { crate::sys::cusparseSDDMM_preprocess(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSDDMM<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusparseSDDMM<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     opA: cusparseOperation_t,
     opB: cusparseOperation_t,
@@ -17414,7 +17490,7 @@ pub unsafe fn cusparseSDDMM<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::
     let status = unsafe { crate::sys::cusparseSDDMM(handle, opA, opB, alpha.as_const_ptr() as *const _, matA, matB, beta.as_const_ptr() as *const _, matC, computeType, alg, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMMOp_createPlan<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusparseSpMMOp_createPlan<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusparseHandle_t,
     mut plan: T,
     opA: cusparseOperation_t,
@@ -17454,7 +17530,7 @@ pub unsafe fn cusparseSpMMOp_createPlan<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusparseSpMMOp<T: types::CudaAsPtr>(plan: cusparseSpMMOpPlan_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
+pub unsafe fn cusparseSpMMOp<T: types::CudaAsMutPtr>(plan: cusparseSpMMOpPlan_t, mut externalBuffer: T) -> Result<(), crate::sys::cusparseStatus_t> {
     let status = unsafe { crate::sys::cusparseSpMMOp(plan, externalBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusparseStatus_t::CUSPARSE_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }

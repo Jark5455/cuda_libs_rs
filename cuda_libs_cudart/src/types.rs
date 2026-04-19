@@ -12,6 +12,9 @@ impl<T> cuDeviceAllocation<T> {
 
 pub trait CudaAsPtr {
     fn as_const_ptr(&self) -> *const std::ffi::c_void;
+}
+
+pub trait CudaAsMutPtr: CudaAsPtr {
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void;
 }
 
@@ -19,6 +22,9 @@ impl<T> CudaAsPtr for *mut T {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         *self as *const _
     }
+}
+
+impl<T> CudaAsMutPtr for *mut T {
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
         *self as *mut _
     }
@@ -28,15 +34,15 @@ impl<T> CudaAsPtr for *const T {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         *self as *const _
     }
-    fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
-        panic!("Cannot mutate a const pointer.")
-    }
 }
 
 impl<T> CudaAsPtr for cuDeviceAllocation<T> {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         self.0 as *const _
     }
+}
+
+impl<T> CudaAsMutPtr for cuDeviceAllocation<T> {
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
         self.0 as *mut _
     }
@@ -46,6 +52,9 @@ impl<T> CudaAsPtr for &cuDeviceAllocation<T> {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         self.0 as *const _
     }
+}
+
+impl<T> CudaAsMutPtr for &cuDeviceAllocation<T> {
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
         self.0 as *mut _
     }
@@ -86,7 +95,9 @@ impl<T> CudaAsPtr for CudaSlice<'_, T> {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         unsafe { (*self.0).as_ptr() as *const _ }
     }
+}
 
+impl<T> CudaAsMutPtr for CudaSlice<'_, T> {
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
         unsafe { (*self.0).as_mut_ptr() as *mut _ }
     }
@@ -96,6 +107,9 @@ impl<T> CudaAsPtr for &mut cuDeviceAllocation<T> {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         self.0 as *const _
     }
+}
+
+impl<T> CudaAsMutPtr for &mut cuDeviceAllocation<T> {
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
         self.0 as *mut _
     }
@@ -105,15 +119,15 @@ impl<T> CudaAsPtr for &[T] {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         <[T]>::as_ptr(self) as *const _
     }
-    fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
-        panic!("Cannot mutate via shared slice.")
-    }
 }
 
 impl<T> CudaAsPtr for &mut [T] {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         <[T]>::as_ptr(self) as *const _
     }
+}
+
+impl<T> CudaAsMutPtr for &mut [T] {
     fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
         <[T]>::as_mut_ptr(self) as *mut _
     }

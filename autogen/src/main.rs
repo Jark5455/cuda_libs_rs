@@ -21,6 +21,7 @@ fn main() {
         extra_imports: vec![],
         extra_safe_code: "",
         use_cuda_as_ptr: false,
+        const_overrides: std::collections::HashMap::new(),
     });
 
     generate_library(&LibraryConfig {
@@ -45,6 +46,7 @@ fn main() {
             pub use crate::sys::cudaError as CudaStatusEnum;
         ",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::new(),
     });
 
     generate_library(&LibraryConfig {
@@ -66,6 +68,7 @@ fn main() {
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::new(),
     });
 
     generate_library(&LibraryConfig {
@@ -87,6 +90,7 @@ fn main() {
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::new(),
     });
 
     generate_library(&LibraryConfig {
@@ -133,6 +137,7 @@ fn main() {
         extra_imports: vec!["cuda_libs_cudart", "cuda_libs_cublas", "cuda_libs_cusparse"],
         extra_safe_code: "",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::from([("cusolverDnDSgesv", vec![3, 6]), ("cusolverDnSSgesv", vec![3, 6]), ("cusolverDnDDgesv", vec![3, 6]), ("cusolverDnCCgesv", vec![3, 6]), ("cusolverDnZZgesv", vec![3, 6])]),
     });
 
     generate_library(&LibraryConfig {
@@ -154,6 +159,7 @@ fn main() {
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::new(),
     });
 
     generate_library(&LibraryConfig {
@@ -175,6 +181,7 @@ fn main() {
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::new(),
     });
 
     generate_library(&LibraryConfig {
@@ -196,6 +203,7 @@ fn main() {
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::new(),
     });
 
     generate_library(&LibraryConfig {
@@ -217,5 +225,6 @@ fn main() {
         extra_imports: vec!["cuda_libs_cudart"],
         extra_safe_code: "",
         use_cuda_as_ptr: true,
+        const_overrides: std::collections::HashMap::new(),
     });
 }

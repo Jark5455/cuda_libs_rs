@@ -2545,10 +2545,10 @@ pub unsafe fn cudnnGetCudartVersion() -> usize {
 pub unsafe fn cudnnGetErrorString(status: cudnnStatus_t) -> *const ::std::os::raw::c_char {
     unsafe { crate::sys::cudnnGetErrorString(status) }
 }
-pub unsafe fn cudnnGetLastErrorString<T: types::CudaAsPtr>(mut message: T, max_size: usize) {
+pub unsafe fn cudnnGetLastErrorString<T: types::CudaAsMutPtr>(mut message: T, max_size: usize) {
     unsafe { crate::sys::cudnnGetLastErrorString(message.as_mut_ptr() as *mut _, max_size) }
 }
-pub unsafe fn cudnnQueryRuntimeError<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, mut rstatus: T, mode: cudnnErrQueryMode_t, mut tag: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnQueryRuntimeError<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, mut rstatus: T, mode: cudnnErrQueryMode_t, mut tag: U) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnQueryRuntimeError(handle, rstatus.as_mut_ptr() as *mut _, mode, tag.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2587,7 +2587,7 @@ pub unsafe fn cudnnGetStream(handle: cudnnHandle_t) -> Result<cudaStream_t, crat
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetCallback<T: types::CudaAsPtr>(mask: u32, mut udata: T, fptr: cudnnCallback_t) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetCallback<T: types::CudaAsMutPtr>(mask: u32, mut udata: T, fptr: cudnnCallback_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetCallback(mask as _, udata.as_mut_ptr() as *mut _, fptr) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2605,7 +2605,7 @@ pub unsafe fn cudnnGraphVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> 
     let status = unsafe { crate::sys::cudnnGraphVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnBackendCreateDescriptor<T: types::CudaAsPtr>(descriptorType: cudnnBackendDescriptorType_t, mut descriptor: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnBackendCreateDescriptor<T: types::CudaAsMutPtr>(descriptorType: cudnnBackendDescriptorType_t, mut descriptor: T) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendCreateDescriptor(descriptorType, descriptor.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2739,7 +2739,7 @@ pub unsafe fn cudnnDestroyTensorDescriptor(tensorDesc: cudnnTensorDescriptor_t) 
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Create a destination descriptor for cudnnTransformTensor"]
-pub unsafe fn cudnnInitTransformDest<T: types::CudaAsPtr>(transformDesc: cudnnTensorTransformDescriptor_t, srcDesc: cudnnTensorDescriptor_t, destDesc: cudnnTensorDescriptor_t, mut destSizeInBytes: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnInitTransformDest<T: types::CudaAsMutPtr>(transformDesc: cudnnTensorTransformDescriptor_t, srcDesc: cudnnTensorDescriptor_t, destDesc: cudnnTensorDescriptor_t, mut destSizeInBytes: T) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnInitTransformDest(transformDesc, srcDesc, destDesc, destSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2785,11 +2785,11 @@ pub unsafe fn cudnnDestroyTensorTransformDescriptor(transformDesc: cudnnTensorTr
     let status = unsafe { crate::sys::cudnnDestroyTensorTransformDescriptor(transformDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnTransformTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cudnnHandle_t, alpha: T, xDesc: cudnnTensorDescriptor_t, x: U, beta: V, yDesc: cudnnTensorDescriptor_t, mut y: W) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnTransformTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T, xDesc: cudnnTensorDescriptor_t, x: U, beta: V, yDesc: cudnnTensorDescriptor_t, mut y: W) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnTransformTensor(handle, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnTransformTensorEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnTransformTensorEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     transDesc: cudnnTensorTransformDescriptor_t,
     alpha: T,
@@ -2802,7 +2802,7 @@ pub unsafe fn cudnnTransformTensorEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     let status = unsafe { crate::sys::cudnnTransformTensorEx(handle, transDesc, alpha.as_const_ptr() as *const _, srcDesc, srcData.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, destDesc, destData.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnAddTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cudnnHandle_t, alpha: T, aDesc: cudnnTensorDescriptor_t, A: U, beta: V, cDesc: cudnnTensorDescriptor_t, mut C: W) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnAddTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T, aDesc: cudnnTensorDescriptor_t, A: U, beta: V, cDesc: cudnnTensorDescriptor_t, mut C: W) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnAddTensor(handle, alpha.as_const_ptr() as *const _, aDesc, A.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, cDesc, C.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2834,7 +2834,7 @@ pub unsafe fn cudnnDestroyOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescript
     let status = unsafe { crate::sys::cudnnDestroyOpTensorDescriptor(opTensorDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnOpTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnOpTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     opTensorDesc: cudnnOpTensorDescriptor_t,
     alpha1: T,
@@ -2927,7 +2927,7 @@ pub unsafe fn cudnnGetReductionWorkspaceSize(handle: cudnnHandle_t, reduceTensor
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnReduceTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnReduceTensor<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     reduceTensorDesc: cudnnReduceTensorDescriptor_t,
     mut indices: T,
@@ -2959,11 +2959,11 @@ pub unsafe fn cudnnReduceTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetTensor<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T, valuePtr: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetTensor<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T, valuePtr: U) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetTensor(handle, yDesc, y.as_mut_ptr() as *mut _, valuePtr.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnScaleTensor<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T, alpha: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnScaleTensor<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T, alpha: U) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnScaleTensor(handle, yDesc, y.as_mut_ptr() as *mut _, alpha.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -3038,7 +3038,7 @@ pub unsafe fn cudnnGetFilterSizeInBytes(filterDesc: cudnnFilterDescriptor_t) -> 
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnTransformFilter<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnTransformFilter<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     transDesc: cudnnTensorTransformDescriptor_t,
     alpha: T,
@@ -3055,7 +3055,7 @@ pub unsafe fn cudnnDestroyFilterDescriptor(filterDesc: cudnnFilterDescriptor_t) 
     let status = unsafe { crate::sys::cudnnDestroyFilterDescriptor(filterDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSoftmaxForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnSoftmaxForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnSoftmaxAlgorithm_t,
     mode: cudnnSoftmaxMode_t,
@@ -3202,7 +3202,7 @@ pub unsafe fn cudnnDestroyPoolingDescriptor(poolingDesc: cudnnPoolingDescriptor_
     let status = unsafe { crate::sys::cudnnDestroyPoolingDescriptor(poolingDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnPoolingForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnPoolingForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     poolingDesc: cudnnPoolingDescriptor_t,
     alpha: T,
@@ -3256,7 +3256,7 @@ pub unsafe fn cudnnDestroyActivationDescriptor(activationDesc: cudnnActivationDe
     let status = unsafe { crate::sys::cudnnDestroyActivationDescriptor(activationDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnActivationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnActivationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     activationDesc: cudnnActivationDescriptor_t,
     alpha: T,
@@ -3298,7 +3298,7 @@ pub unsafe fn cudnnDestroyLRNDescriptor(lrnDesc: cudnnLRNDescriptor_t) -> Result
     let status = unsafe { crate::sys::cudnnDestroyLRNDescriptor(lrnDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnLRNCrossChannelForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnLRNCrossChannelForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     lrnMode: cudnnLRNMode_t,
@@ -3312,7 +3312,7 @@ pub unsafe fn cudnnLRNCrossChannelForward<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cudnnLRNCrossChannelForward(handle, normDesc, lrnMode, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnDivisiveNormalizationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cudnnDivisiveNormalizationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     mode: cudnnDivNormMode_t,
@@ -3348,7 +3348,7 @@ pub unsafe fn cudnnDeriveBNTensorDescriptor(derivedBnDesc: cudnnTensorDescriptor
     let status = unsafe { crate::sys::cudnnDeriveBNTensorDescriptor(derivedBnDesc, xDesc, mode) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnBatchNormalizationForwardInference<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cudnnBatchNormalizationForwardInference<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
     alpha: T,
@@ -3388,7 +3388,7 @@ pub unsafe fn cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc: cudnnTen
     let status = unsafe { crate::sys::cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc, derivedNormMeanVarDesc, xDesc, mode, groupCnt as _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnNormalizationForwardInference<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cudnnNormalizationForwardInference<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
     normOps: cudnnNormOps_t,
@@ -3455,11 +3455,11 @@ pub unsafe fn cudnnDestroySpatialTransformerDescriptor(stDesc: cudnnSpatialTrans
     let status = unsafe { crate::sys::cudnnDestroySpatialTransformerDescriptor(stDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfGridGeneratorForward<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, theta: T, mut grid: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSpatialTfGridGeneratorForward<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, theta: T, mut grid: U) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSpatialTfGridGeneratorForward(handle, stDesc, theta.as_const_ptr() as *const _, grid.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfSamplerForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cudnnSpatialTfSamplerForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     stDesc: cudnnSpatialTransformerDescriptor_t,
     alpha: T,
@@ -3516,11 +3516,11 @@ pub unsafe fn cudnnDropoutGetReserveSpaceSize(xdesc: cudnnTensorDescriptor_t) ->
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetDropoutDescriptor<T: types::CudaAsPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetDropoutDescriptor<T: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed as _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnRestoreDropoutDescriptor<T: types::CudaAsPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnRestoreDropoutDescriptor<T: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnRestoreDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed as _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -3534,7 +3534,7 @@ pub unsafe fn cudnnGetDropoutDescriptor(dropoutDesc: cudnnDropoutDescriptor_t, h
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnDropoutForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cudnnDropoutForward<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     dropoutDesc: cudnnDropoutDescriptor_t,
     xdesc: cudnnTensorDescriptor_t,
@@ -3551,7 +3551,7 @@ pub unsafe fn cudnnOpsVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnOpsVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSoftmaxBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cudnnSoftmaxBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnSoftmaxAlgorithm_t,
     mode: cudnnSoftmaxMode_t,
@@ -3581,7 +3581,7 @@ pub unsafe fn cudnnSoftmaxBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnPoolingBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnPoolingBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     poolingDesc: cudnnPoolingDescriptor_t,
     alpha: T,
@@ -3613,7 +3613,7 @@ pub unsafe fn cudnnPoolingBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnActivationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnActivationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     activationDesc: cudnnActivationDescriptor_t,
     alpha: T,
@@ -3645,7 +3645,7 @@ pub unsafe fn cudnnActivationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnLRNCrossChannelBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnLRNCrossChannelBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     lrnMode: cudnnLRNMode_t,
@@ -3679,7 +3679,7 @@ pub unsafe fn cudnnLRNCrossChannelBackward<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnDivisiveNormalizationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cudnnDivisiveNormalizationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsPtr, A: types::CudaAsMutPtr, B: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     mode: cudnnDivNormMode_t,
@@ -3762,7 +3762,7 @@ pub unsafe fn cudnnGetBatchNormalizationTrainingExReserveSpaceSize(handle: cudnn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnBatchNormalizationForwardTraining<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr, C: types::CudaAsPtr>(
+pub unsafe fn cudnnBatchNormalizationForwardTraining<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
     alpha: T,
@@ -3809,15 +3809,15 @@ pub unsafe fn cudnnBatchNormalizationForwardTrainingEx<
     U: types::CudaAsPtr,
     V: types::CudaAsPtr,
     W: types::CudaAsPtr,
-    X: types::CudaAsPtr,
+    X: types::CudaAsMutPtr,
     Y: types::CudaAsPtr,
     Z: types::CudaAsPtr,
-    A: types::CudaAsPtr,
-    B: types::CudaAsPtr,
-    C: types::CudaAsPtr,
-    D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
-    F: types::CudaAsPtr,
+    A: types::CudaAsMutPtr,
+    B: types::CudaAsMutPtr,
+    C: types::CudaAsMutPtr,
+    D: types::CudaAsMutPtr,
+    E: types::CudaAsMutPtr,
+    F: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
@@ -3883,10 +3883,10 @@ pub unsafe fn cudnnBatchNormalizationBackward<
     W: types::CudaAsPtr,
     X: types::CudaAsPtr,
     Y: types::CudaAsPtr,
-    Z: types::CudaAsPtr,
+    Z: types::CudaAsMutPtr,
     A: types::CudaAsPtr,
-    B: types::CudaAsPtr,
-    C: types::CudaAsPtr,
+    B: types::CudaAsMutPtr,
+    C: types::CudaAsMutPtr,
     D: types::CudaAsPtr,
     E: types::CudaAsPtr,
 >(
@@ -3943,16 +3943,16 @@ pub unsafe fn cudnnBatchNormalizationBackwardEx<
     X: types::CudaAsPtr,
     Y: types::CudaAsPtr,
     Z: types::CudaAsPtr,
-    A: types::CudaAsPtr,
-    B: types::CudaAsPtr,
+    A: types::CudaAsMutPtr,
+    B: types::CudaAsMutPtr,
     C: types::CudaAsPtr,
     D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
-    F: types::CudaAsPtr,
+    E: types::CudaAsMutPtr,
+    F: types::CudaAsMutPtr,
     T13: types::CudaAsPtr,
     T14: types::CudaAsPtr,
-    T15: types::CudaAsPtr,
-    T16: types::CudaAsPtr,
+    T15: types::CudaAsMutPtr,
+    T16: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
@@ -4080,14 +4080,14 @@ pub unsafe fn cudnnNormalizationForwardTraining<
     V: types::CudaAsPtr,
     W: types::CudaAsPtr,
     X: types::CudaAsPtr,
-    Y: types::CudaAsPtr,
-    Z: types::CudaAsPtr,
-    A: types::CudaAsPtr,
-    B: types::CudaAsPtr,
+    Y: types::CudaAsMutPtr,
+    Z: types::CudaAsMutPtr,
+    A: types::CudaAsMutPtr,
+    B: types::CudaAsMutPtr,
     C: types::CudaAsPtr,
-    D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
-    F: types::CudaAsPtr,
+    D: types::CudaAsMutPtr,
+    E: types::CudaAsMutPtr,
+    F: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
@@ -4160,16 +4160,16 @@ pub unsafe fn cudnnNormalizationBackward<
     X: types::CudaAsPtr,
     Y: types::CudaAsPtr,
     Z: types::CudaAsPtr,
-    A: types::CudaAsPtr,
-    B: types::CudaAsPtr,
+    A: types::CudaAsMutPtr,
+    B: types::CudaAsMutPtr,
     C: types::CudaAsPtr,
     D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
-    F: types::CudaAsPtr,
+    E: types::CudaAsMutPtr,
+    F: types::CudaAsMutPtr,
     T13: types::CudaAsPtr,
     T14: types::CudaAsPtr,
-    T15: types::CudaAsPtr,
-    T16: types::CudaAsPtr,
+    T15: types::CudaAsMutPtr,
+    T16: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
@@ -4244,11 +4244,11 @@ pub unsafe fn cudnnNormalizationBackward<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfGridGeneratorBackward<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, dgrid: T, mut dtheta: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSpatialTfGridGeneratorBackward<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, dgrid: T, mut dtheta: U) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSpatialTfGridGeneratorBackward(handle, stDesc, dgrid.as_const_ptr() as *const _, dtheta.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfSamplerBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cudnnSpatialTfSamplerBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     stDesc: cudnnSpatialTransformerDescriptor_t,
     alpha: T,
@@ -4284,7 +4284,7 @@ pub unsafe fn cudnnSpatialTfSamplerBackward<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnDropoutBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cudnnDropoutBackward<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     dropoutDesc: cudnnDropoutDescriptor_t,
     dydesc: cudnnTensorDescriptor_t,
@@ -4461,7 +4461,7 @@ pub unsafe fn cudnnGetRNNWeightSpaceSize(handle: cudnnHandle_t, rnnDesc: cudnnRN
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetRNNWeightParams<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cudnnGetRNNWeightParams<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
     pseudoLayer: i32,
@@ -4489,7 +4489,7 @@ pub unsafe fn cudnnDestroyRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_
     let status = unsafe { crate::sys::cudnnDestroyRNNDataDescriptor(rnnDataDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetRNNDataDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cudnnSetRNNDataDescriptor<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
     rnnDataDesc: cudnnRNNDataDescriptor_t,
     dataType: cudnnDataType_t,
     layout: cudnnRNNDataLayout_t,
@@ -4527,7 +4527,7 @@ pub unsafe fn cudnnGetRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_t, a
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnRNNForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr, C: types::CudaAsPtr>(
+pub unsafe fn cudnnRNNForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
     fwdMode: cudnnForwardMode_t,
@@ -4588,7 +4588,7 @@ pub unsafe fn cudnnDestroySeqDataDescriptor(seqDataDesc: cudnnSeqDataDescriptor_
     let status = unsafe { crate::sys::cudnnDestroySeqDataDescriptor(seqDataDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetSeqDataDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnSetSeqDataDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     seqDataDesc: cudnnSeqDataDescriptor_t,
     dataType: cudnnDataType_t,
     nbDims: i32,
@@ -4788,7 +4788,7 @@ pub unsafe fn cudnnGetMultiHeadAttnBuffers(handle: cudnnHandle_t, attnDesc: cudn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetMultiHeadAttnWeights<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cudnnGetMultiHeadAttnWeights<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
     wKind: cudnnMultiHeadAttnWeightKind_t,
@@ -4800,7 +4800,20 @@ pub unsafe fn cudnnGetMultiHeadAttnWeights<T: types::CudaAsPtr, U: types::CudaAs
     let status = unsafe { crate::sys::cudnnGetMultiHeadAttnWeights(handle, attnDesc, wKind, weightSizeInBytes, weights.as_const_ptr() as *const _, wDesc, wAddr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnMultiHeadAttnForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr, C: types::CudaAsPtr, D: types::CudaAsPtr, E: types::CudaAsPtr>(
+pub unsafe fn cudnnMultiHeadAttnForward<
+    T: types::CudaAsPtr,
+    U: types::CudaAsPtr,
+    V: types::CudaAsPtr,
+    W: types::CudaAsPtr,
+    X: types::CudaAsPtr,
+    Y: types::CudaAsPtr,
+    Z: types::CudaAsPtr,
+    A: types::CudaAsPtr,
+    B: types::CudaAsMutPtr,
+    C: types::CudaAsPtr,
+    D: types::CudaAsMutPtr,
+    E: types::CudaAsMutPtr,
+>(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
     currIdx: i32,
@@ -4860,16 +4873,16 @@ pub unsafe fn cudnnRNNBackwardData_v8<
     T: types::CudaAsPtr,
     U: types::CudaAsPtr,
     V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
+    W: types::CudaAsMutPtr,
     X: types::CudaAsPtr,
     Y: types::CudaAsPtr,
-    Z: types::CudaAsPtr,
+    Z: types::CudaAsMutPtr,
     A: types::CudaAsPtr,
     B: types::CudaAsPtr,
-    C: types::CudaAsPtr,
+    C: types::CudaAsMutPtr,
     D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
-    F: types::CudaAsPtr,
+    E: types::CudaAsMutPtr,
+    F: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
@@ -4922,7 +4935,7 @@ pub unsafe fn cudnnRNNBackwardData_v8<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnRNNBackwardWeights_v8<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cudnnRNNBackwardWeights_v8<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
     addGrad: cudnnWgradMode_t,
@@ -4968,15 +4981,15 @@ pub unsafe fn cudnnMultiHeadAttnBackwardData<
     V: types::CudaAsPtr,
     W: types::CudaAsPtr,
     X: types::CudaAsPtr,
-    Y: types::CudaAsPtr,
+    Y: types::CudaAsMutPtr,
     Z: types::CudaAsPtr,
-    A: types::CudaAsPtr,
+    A: types::CudaAsMutPtr,
     B: types::CudaAsPtr,
-    C: types::CudaAsPtr,
+    C: types::CudaAsMutPtr,
     D: types::CudaAsPtr,
     E: types::CudaAsPtr,
-    F: types::CudaAsPtr,
-    T13: types::CudaAsPtr,
+    F: types::CudaAsMutPtr,
+    T13: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
@@ -5031,7 +5044,7 @@ pub unsafe fn cudnnMultiHeadAttnBackwardData<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnMultiHeadAttnBackwardWeights<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cudnnMultiHeadAttnBackwardWeights<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
     addGrad: cudnnWgradMode_t,
@@ -5148,7 +5161,7 @@ pub unsafe fn cudnnDestroyCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_
     let status = unsafe { crate::sys::cudnnDestroyCTCLossDescriptor(ctcLossDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnCTCLoss<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cudnnCTCLoss<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     probsDesc: cudnnTensorDescriptor_t,
     probs: T,
@@ -5182,7 +5195,7 @@ pub unsafe fn cudnnCTCLoss<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::C
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnCTCLoss_v8<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cudnnCTCLoss_v8<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnCTCLossAlgo_t,
     ctcLossDesc: cudnnCTCLossDescriptor_t,
@@ -5431,7 +5444,7 @@ pub unsafe fn cudnnGetConvolutionForwardAlgorithm_v7(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnFindConvolutionForwardAlgorithm<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cudnnFindConvolutionForwardAlgorithm<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     wDesc: cudnnFilterDescriptor_t,
@@ -5444,7 +5457,7 @@ pub unsafe fn cudnnFindConvolutionForwardAlgorithm<T: types::CudaAsPtr, U: types
     let status = unsafe { crate::sys::cudnnFindConvolutionForwardAlgorithm(handle, xDesc, wDesc, convDesc, yDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     x: T,
@@ -5478,11 +5491,11 @@ pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T: types::CudaAsPtr, U: typ
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnIm2Col<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, x: T, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, mut colBuffer: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnIm2Col<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, x: T, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, mut colBuffer: U) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnIm2Col(handle, xDesc, x.as_const_ptr() as *const _, wDesc, convDesc, colBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnReorderFilterAndBias<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cudnnReorderFilterAndBias<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     filterDesc: cudnnFilterDescriptor_t,
     reorderType: cudnnReorderType_t,
@@ -5515,7 +5528,7 @@ pub unsafe fn cudnnGetConvolutionForwardWorkspaceSize(handle: cudnnHandle_t, xDe
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnConvolutionForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnConvolutionForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha: T,
     xDesc: cudnnTensorDescriptor_t,
@@ -5549,7 +5562,7 @@ pub unsafe fn cudnnConvolutionForward<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnConvolutionBiasActivationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cudnnConvolutionBiasActivationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha1: T,
     xDesc: cudnnTensorDescriptor_t,
@@ -5602,7 +5615,7 @@ pub unsafe fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(handle: cudnnHand
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithm<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithm<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     wDesc: cudnnFilterDescriptor_t,
     dyDesc: cudnnTensorDescriptor_t,
@@ -5615,7 +5628,7 @@ pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithm<T: types::CudaAsPtr, U: 
     let status = unsafe { crate::sys::cudnnFindConvolutionBackwardDataAlgorithm(handle, wDesc, dyDesc, convDesc, dxDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     wDesc: cudnnFilterDescriptor_t,
     w: T,
@@ -5682,7 +5695,7 @@ pub unsafe fn cudnnGetConvolutionBackwardDataWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnConvolutionBackwardData<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnConvolutionBackwardData<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha: T,
     wDesc: cudnnFilterDescriptor_t,
@@ -5765,7 +5778,7 @@ pub unsafe fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(handle: cudnnHa
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithm<T: types::CudaAsPtr, U: types::CudaAsPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithm<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     dyDesc: cudnnTensorDescriptor_t,
@@ -5778,7 +5791,7 @@ pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithm<T: types::CudaAsPtr, U
     let status = unsafe { crate::sys::cudnnFindConvolutionBackwardFilterAlgorithm(handle, xDesc, dyDesc, convDesc, dwDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     x: T,
@@ -5845,7 +5858,7 @@ pub unsafe fn cudnnGetConvolutionBackwardFilterWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnConvolutionBackwardFilter<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cudnnConvolutionBackwardFilter<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     alpha: T,
     xDesc: cudnnTensorDescriptor_t,
@@ -5879,7 +5892,7 @@ pub unsafe fn cudnnConvolutionBackwardFilter<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnConvolutionBackwardBias<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cudnnHandle_t, alpha: T, dyDesc: cudnnTensorDescriptor_t, dy: U, beta: V, dbDesc: cudnnTensorDescriptor_t, mut db: W) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnConvolutionBackwardBias<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T, dyDesc: cudnnTensorDescriptor_t, dy: U, beta: V, dbDesc: cudnnTensorDescriptor_t, mut db: W) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnConvolutionBackwardBias(handle, alpha.as_const_ptr() as *const _, dyDesc, dy.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, dbDesc, db.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -5922,11 +5935,11 @@ pub unsafe fn cudnnDestroyFusedOpsVariantParamPack(varPack: cudnnFusedOpsVariant
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsVariantParamPack(varPack) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetFusedOpsVariantParamPackAttribute<T: types::CudaAsPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetFusedOpsVariantParamPackAttribute<T: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetFusedOpsVariantParamPackAttribute(varPack, paramLabel, ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetFusedOpsVariantParamPackAttribute<T: types::CudaAsPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnGetFusedOpsVariantParamPackAttribute<T: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnGetFusedOpsVariantParamPackAttribute(varPack, paramLabel, ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -5943,7 +5956,7 @@ pub unsafe fn cudnnDestroyFusedOpsPlan(plan: cudnnFusedOpsPlan_t) -> Result<(), 
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsPlan(plan) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnMakeFusedOpsPlan<T: types::CudaAsPtr>(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, constPack: cudnnFusedOpsConstParamPack_t, mut workspaceSizeInBytes: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnMakeFusedOpsPlan<T: types::CudaAsMutPtr>(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, constPack: cudnnFusedOpsConstParamPack_t, mut workspaceSizeInBytes: T) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnMakeFusedOpsPlan(handle, plan, constPack, workspaceSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }

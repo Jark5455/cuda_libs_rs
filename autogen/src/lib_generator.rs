@@ -25,8 +25,7 @@ pub struct LibraryConfig {
     pub handle_types_regex: Vec<&'static str>,
     pub extra_imports: Vec<&'static str>,
     pub extra_safe_code: &'static str,
-    /// Whether to use `types::CudaAsPtr` generic bounds for pointer arguments in safe wrappers.
-    /// Set to false for libs that don't depend on cuda_libs_cudart (e.g. cuda_libs_driver).
+    pub const_overrides: std::collections::HashMap<&'static str, Vec<usize>>,
     pub use_cuda_as_ptr: bool,
 }
 
@@ -484,14 +483,22 @@ impl<'a> Generator<'a> {
                             syn::Ident::new(&format!("T{}", generic_idx), proc_macro2::Span::call_site())
                         };
                         generic_idx += 1;
-                        safe_inputs_generics.push(quote!(#generic_ident: types::CudaAsPtr));
 
-                        if ptr_ty.mutability.is_some() {
+                        let overrides = self.config.const_overrides.get(fn_str.as_str());
+                        let is_const_override = overrides.map(|idx| idx.contains(&_i)).unwrap_or(false);
+
+                        if ptr_ty.mutability.is_some() && !is_const_override {
+                            safe_inputs_generics.push(quote!(#generic_ident: types::CudaAsMutPtr));
                             safe_inputs.push(quote!(mut #pat: #generic_ident));
                             call_args.push(quote!(#pat.as_mut_ptr() as *mut _));
                         } else {
+                            safe_inputs_generics.push(quote!(#generic_ident: types::CudaAsPtr));
                             safe_inputs.push(quote!(#pat: #generic_ident));
-                            call_args.push(quote!(#pat.as_const_ptr() as *const _));
+                            if ptr_ty.mutability.is_some() {
+                                call_args.push(quote!(#pat.as_const_ptr() as *mut _));
+                            } else {
+                                call_args.push(quote!(#pat.as_const_ptr() as *const _));
+                            }
                         }
                     } else {
                         // No CudaAsPtr available — pass raw pointer directly

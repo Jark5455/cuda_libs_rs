@@ -292,19 +292,19 @@ pub unsafe fn cufftPlanMany(rank: i32, n: *mut ::std::os::raw::c_int, inembed: *
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cufftMakePlan1d<T: types::CudaAsPtr>(plan: cufftHandle, nx: i32, type_: cufftType, batch: i32, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftMakePlan1d<T: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, type_: cufftType, batch: i32, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftMakePlan1d(plan, nx as _, type_, batch as _, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlan2d<T: types::CudaAsPtr>(plan: cufftHandle, nx: i32, ny: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftMakePlan2d<T: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, ny: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftMakePlan2d(plan, nx as _, ny as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlan3d<T: types::CudaAsPtr>(plan: cufftHandle, nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftMakePlan3d<T: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftMakePlan3d(plan, nx as _, ny as _, nz as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlanMany<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cufftMakePlanMany<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     plan: cufftHandle,
     rank: i32,
     mut n: T,
@@ -336,7 +336,7 @@ pub unsafe fn cufftMakePlanMany<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlanMany64<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cufftMakePlanMany64<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     plan: cufftHandle,
     rank: i32,
     mut n: T,
@@ -395,19 +395,19 @@ pub unsafe fn cufftGetSizeMany64(plan: cufftHandle, rank: i32, istride: i64, idi
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cufftEstimate1d<T: types::CudaAsPtr>(nx: i32, type_: cufftType, batch: i32, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftEstimate1d<T: types::CudaAsMutPtr>(nx: i32, type_: cufftType, batch: i32, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftEstimate1d(nx as _, type_, batch as _, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftEstimate2d<T: types::CudaAsPtr>(nx: i32, ny: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftEstimate2d<T: types::CudaAsMutPtr>(nx: i32, ny: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftEstimate2d(nx as _, ny as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftEstimate3d<T: types::CudaAsPtr>(nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftEstimate3d<T: types::CudaAsMutPtr>(nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftEstimate3d(nx as _, ny as _, nz as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftEstimateMany<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cufftEstimateMany<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     rank: i32,
     mut n: T,
     mut inembed: U,
@@ -509,7 +509,7 @@ pub unsafe fn cufftGetSize(handle: cufftHandle) -> Result<usize, crate::sys::cuf
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cufftSetWorkArea<T: types::CudaAsPtr>(plan: cufftHandle, mut workArea: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftSetWorkArea<T: types::CudaAsMutPtr>(plan: cufftHandle, mut workArea: T) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftSetWorkArea(plan, workArea.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -517,27 +517,27 @@ pub unsafe fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: i32) -> Re
     let status = unsafe { crate::sys::cufftSetAutoAllocation(plan, autoAllocate as _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecC2C<T: types::CudaAsPtr, U: types::CudaAsPtr>(plan: cufftHandle, mut idata: T, mut odata: U, direction: i32) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecC2C<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U, direction: i32) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecC2C(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _, direction as _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecR2C<T: types::CudaAsPtr, U: types::CudaAsPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecR2C<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecR2C(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecC2R<T: types::CudaAsPtr, U: types::CudaAsPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecC2R<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecC2R(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecZ2Z<T: types::CudaAsPtr, U: types::CudaAsPtr>(plan: cufftHandle, mut idata: T, mut odata: U, direction: i32) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecZ2Z<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U, direction: i32) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecZ2Z(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _, direction as _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecD2Z<T: types::CudaAsPtr, U: types::CudaAsPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecD2Z<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecD2Z(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecZ2D<T: types::CudaAsPtr, U: types::CudaAsPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecZ2D<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecZ2D(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }

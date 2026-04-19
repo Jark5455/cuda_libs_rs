@@ -7698,7 +7698,7 @@ pub unsafe fn cusolverDnIRSInfosRequestResidual(infos: cusolverDnIRSInfos_t) -> 
     let status = unsafe { crate::sys::cusolverDnIRSInfosRequestResidual(infos) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnIRSInfosGetResidualHistory<T: types::CudaAsPtr>(infos: cusolverDnIRSInfos_t, mut residual_history: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnIRSInfosGetResidualHistory<T: types::CudaAsMutPtr>(infos: cusolverDnIRSInfos_t, mut residual_history: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnIRSInfosGetResidualHistory(infos, residual_history.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -7711,14 +7711,14 @@ pub unsafe fn cusolverDnIRSInfosGetMaxIters(infos: cusolverDnIRSInfos_t) -> Resu
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusolverDnZZgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZZgesv<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
-    mut dA: T,
+    dA: T,
     ldda: cusolver_int_t,
     mut dipiv: U,
-    mut dB: V,
+    dB: V,
     lddb: cusolver_int_t,
     mut dX: W,
     lddx: cusolver_int_t,
@@ -7732,10 +7732,10 @@ pub unsafe fn cusolverDnZZgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
             handle,
             n,
             nrhs,
-            dA.as_mut_ptr() as *mut _,
+            dA.as_const_ptr() as *mut _,
             ldda,
             dipiv.as_mut_ptr() as *mut _,
-            dB.as_mut_ptr() as *mut _,
+            dB.as_const_ptr() as *mut _,
             lddb,
             dX.as_mut_ptr() as *mut _,
             lddx,
@@ -7747,7 +7747,7 @@ pub unsafe fn cusolverDnZZgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZCgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZCgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -7783,7 +7783,7 @@ pub unsafe fn cusolverDnZCgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZKgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZKgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -7819,7 +7819,7 @@ pub unsafe fn cusolverDnZKgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZEgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZEgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -7855,7 +7855,7 @@ pub unsafe fn cusolverDnZEgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZYgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZYgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -7891,14 +7891,14 @@ pub unsafe fn cusolverDnZYgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCCgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCCgesv<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
-    mut dA: T,
+    dA: T,
     ldda: cusolver_int_t,
     mut dipiv: U,
-    mut dB: V,
+    dB: V,
     lddb: cusolver_int_t,
     mut dX: W,
     lddx: cusolver_int_t,
@@ -7912,10 +7912,10 @@ pub unsafe fn cusolverDnCCgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
             handle,
             n,
             nrhs,
-            dA.as_mut_ptr() as *mut _,
+            dA.as_const_ptr() as *mut _,
             ldda,
             dipiv.as_mut_ptr() as *mut _,
-            dB.as_mut_ptr() as *mut _,
+            dB.as_const_ptr() as *mut _,
             lddb,
             dX.as_mut_ptr() as *mut _,
             lddx,
@@ -7927,7 +7927,7 @@ pub unsafe fn cusolverDnCCgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCEgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCEgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -7963,7 +7963,7 @@ pub unsafe fn cusolverDnCEgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCKgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCKgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -7999,7 +7999,7 @@ pub unsafe fn cusolverDnCKgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCYgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCYgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8035,14 +8035,14 @@ pub unsafe fn cusolverDnCYgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDDgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDDgesv<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
-    mut dA: T,
+    dA: T,
     ldda: cusolver_int_t,
     mut dipiv: U,
-    mut dB: V,
+    dB: V,
     lddb: cusolver_int_t,
     mut dX: W,
     lddx: cusolver_int_t,
@@ -8056,10 +8056,10 @@ pub unsafe fn cusolverDnDDgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
             handle,
             n,
             nrhs,
-            dA.as_mut_ptr() as *mut _,
+            dA.as_const_ptr() as *mut _,
             ldda,
             dipiv.as_mut_ptr() as *mut _,
-            dB.as_mut_ptr() as *mut _,
+            dB.as_const_ptr() as *mut _,
             lddb,
             dX.as_mut_ptr() as *mut _,
             lddx,
@@ -8071,14 +8071,14 @@ pub unsafe fn cusolverDnDDgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDSgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDSgesv<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
-    mut dA: T,
+    dA: T,
     ldda: cusolver_int_t,
     mut dipiv: U,
-    mut dB: V,
+    dB: V,
     lddb: cusolver_int_t,
     mut dX: W,
     lddx: cusolver_int_t,
@@ -8092,10 +8092,10 @@ pub unsafe fn cusolverDnDSgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
             handle,
             n,
             nrhs,
-            dA.as_mut_ptr() as *mut _,
+            dA.as_const_ptr() as *mut _,
             ldda,
             dipiv.as_mut_ptr() as *mut _,
-            dB.as_mut_ptr() as *mut _,
+            dB.as_const_ptr() as *mut _,
             lddb,
             dX.as_mut_ptr() as *mut _,
             lddx,
@@ -8107,7 +8107,7 @@ pub unsafe fn cusolverDnDSgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDHgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDHgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8143,7 +8143,7 @@ pub unsafe fn cusolverDnDHgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDBgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDBgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8179,7 +8179,7 @@ pub unsafe fn cusolverDnDBgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDXgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDXgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8215,14 +8215,14 @@ pub unsafe fn cusolverDnDXgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSSgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSSgesv<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
-    mut dA: T,
+    dA: T,
     ldda: cusolver_int_t,
     mut dipiv: U,
-    mut dB: V,
+    dB: V,
     lddb: cusolver_int_t,
     mut dX: W,
     lddx: cusolver_int_t,
@@ -8236,10 +8236,10 @@ pub unsafe fn cusolverDnSSgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
             handle,
             n,
             nrhs,
-            dA.as_mut_ptr() as *mut _,
+            dA.as_const_ptr() as *mut _,
             ldda,
             dipiv.as_mut_ptr() as *mut _,
-            dB.as_mut_ptr() as *mut _,
+            dB.as_const_ptr() as *mut _,
             lddb,
             dX.as_mut_ptr() as *mut _,
             lddx,
@@ -8251,7 +8251,7 @@ pub unsafe fn cusolverDnSSgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSHgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSHgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8287,7 +8287,7 @@ pub unsafe fn cusolverDnSHgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSBgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSBgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8323,7 +8323,7 @@ pub unsafe fn cusolverDnSBgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSXgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSXgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8359,7 +8359,7 @@ pub unsafe fn cusolverDnSXgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZZgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZZgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8391,7 +8391,7 @@ pub unsafe fn cusolverDnZZgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZCgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZCgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8423,7 +8423,7 @@ pub unsafe fn cusolverDnZCgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZKgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZKgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8455,7 +8455,7 @@ pub unsafe fn cusolverDnZKgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZEgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZEgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8487,7 +8487,7 @@ pub unsafe fn cusolverDnZEgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZYgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZYgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8519,7 +8519,7 @@ pub unsafe fn cusolverDnZYgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCCgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCCgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8551,7 +8551,7 @@ pub unsafe fn cusolverDnCCgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCKgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCKgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8583,7 +8583,7 @@ pub unsafe fn cusolverDnCKgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCEgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCEgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8615,7 +8615,7 @@ pub unsafe fn cusolverDnCEgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCYgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCYgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8647,7 +8647,7 @@ pub unsafe fn cusolverDnCYgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDDgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDDgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8679,7 +8679,7 @@ pub unsafe fn cusolverDnDDgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDSgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDSgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8711,7 +8711,7 @@ pub unsafe fn cusolverDnDSgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDHgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDHgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8743,7 +8743,7 @@ pub unsafe fn cusolverDnDHgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDBgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDBgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8775,7 +8775,7 @@ pub unsafe fn cusolverDnDBgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDXgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDXgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8807,7 +8807,7 @@ pub unsafe fn cusolverDnDXgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSSgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSSgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8839,7 +8839,7 @@ pub unsafe fn cusolverDnSSgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSHgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSHgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8871,7 +8871,7 @@ pub unsafe fn cusolverDnSHgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSBgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSBgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8903,7 +8903,7 @@ pub unsafe fn cusolverDnSBgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSXgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSXgesv_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     n: cusolver_int_t,
     nrhs: cusolver_int_t,
@@ -8935,7 +8935,7 @@ pub unsafe fn cusolverDnSXgesv_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZZgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZZgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -8971,7 +8971,7 @@ pub unsafe fn cusolverDnZZgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZCgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZCgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9007,7 +9007,7 @@ pub unsafe fn cusolverDnZCgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZKgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZKgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9043,7 +9043,7 @@ pub unsafe fn cusolverDnZKgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZEgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZEgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9079,7 +9079,7 @@ pub unsafe fn cusolverDnZEgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZYgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZYgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9115,7 +9115,7 @@ pub unsafe fn cusolverDnZYgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCCgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCCgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9151,7 +9151,7 @@ pub unsafe fn cusolverDnCCgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCKgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCKgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9187,7 +9187,7 @@ pub unsafe fn cusolverDnCKgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCEgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCEgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9223,7 +9223,7 @@ pub unsafe fn cusolverDnCEgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCYgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCYgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9259,7 +9259,7 @@ pub unsafe fn cusolverDnCYgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDDgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDDgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9295,7 +9295,7 @@ pub unsafe fn cusolverDnDDgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDSgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDSgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9331,7 +9331,7 @@ pub unsafe fn cusolverDnDSgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDHgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDHgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9367,7 +9367,7 @@ pub unsafe fn cusolverDnDHgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDBgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDBgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9403,7 +9403,7 @@ pub unsafe fn cusolverDnDBgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDXgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDXgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9439,7 +9439,7 @@ pub unsafe fn cusolverDnDXgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSSgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSSgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9475,7 +9475,7 @@ pub unsafe fn cusolverDnSSgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSHgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSHgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9511,7 +9511,7 @@ pub unsafe fn cusolverDnSHgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSBgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSBgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9547,7 +9547,7 @@ pub unsafe fn cusolverDnSBgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSXgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSXgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9583,7 +9583,7 @@ pub unsafe fn cusolverDnSXgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZZgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZZgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9615,7 +9615,7 @@ pub unsafe fn cusolverDnZZgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZCgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZCgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9647,7 +9647,7 @@ pub unsafe fn cusolverDnZCgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZKgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZKgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9679,7 +9679,7 @@ pub unsafe fn cusolverDnZKgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZEgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZEgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9711,7 +9711,7 @@ pub unsafe fn cusolverDnZEgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZYgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZYgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9743,7 +9743,7 @@ pub unsafe fn cusolverDnZYgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCCgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCCgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9775,7 +9775,7 @@ pub unsafe fn cusolverDnCCgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCKgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCKgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9807,7 +9807,7 @@ pub unsafe fn cusolverDnCKgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCEgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCEgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9839,7 +9839,7 @@ pub unsafe fn cusolverDnCEgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCYgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCYgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9871,7 +9871,7 @@ pub unsafe fn cusolverDnCYgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDDgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDDgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9903,7 +9903,7 @@ pub unsafe fn cusolverDnDDgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDSgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDSgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9935,7 +9935,7 @@ pub unsafe fn cusolverDnDSgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDHgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDHgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9967,7 +9967,7 @@ pub unsafe fn cusolverDnDHgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDBgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDBgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -9999,7 +9999,7 @@ pub unsafe fn cusolverDnDBgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDXgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDXgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -10031,7 +10031,7 @@ pub unsafe fn cusolverDnDXgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSSgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSSgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -10063,7 +10063,7 @@ pub unsafe fn cusolverDnSSgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSHgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSHgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -10095,7 +10095,7 @@ pub unsafe fn cusolverDnSHgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSBgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSBgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -10127,7 +10127,7 @@ pub unsafe fn cusolverDnSBgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSXgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSXgels_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: cusolver_int_t,
     n: cusolver_int_t,
@@ -10159,7 +10159,7 @@ pub unsafe fn cusolverDnSXgels_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnIRSXgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnIRSXgesv<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     gesv_irs_params: cusolverDnIRSParams_t,
     gesv_irs_infos: cusolverDnIRSInfos_t,
@@ -10197,11 +10197,11 @@ pub unsafe fn cusolverDnIRSXgesv<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnIRSXgesv_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, n: cusolver_int_t, nrhs: cusolver_int_t, mut lwork_bytes: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnIRSXgesv_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, n: cusolver_int_t, nrhs: cusolver_int_t, mut lwork_bytes: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnIRSXgesv_bufferSize(handle, params, n, nrhs, lwork_bytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnIRSXgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnIRSXgels<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     gels_irs_params: cusolverDnIRSParams_t,
     gels_irs_infos: cusolverDnIRSInfos_t,
@@ -10241,123 +10241,123 @@ pub unsafe fn cusolverDnIRSXgels<T: types::CudaAsPtr, U: types::CudaAsPtr, V: ty
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnIRSXgels_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, m: cusolver_int_t, n: cusolver_int_t, nrhs: cusolver_int_t, mut lwork_bytes: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnIRSXgels_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, m: cusolver_int_t, n: cusolver_int_t, nrhs: cusolver_int_t, mut lwork_bytes: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnIRSXgels_bufferSize(handle, params, m, n, nrhs, lwork_bytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSpotrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSpotrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSpotrf_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDpotrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDpotrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDpotrf_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCpotrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCpotrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCpotrf_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZpotrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZpotrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZpotrf_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSpotrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSpotrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSpotrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDpotrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDpotrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDpotrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCpotrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCpotrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCpotrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZpotrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZpotrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut Workspace: U, Lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZpotrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSpotrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSpotrs<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSpotrs(handle, uplo, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDpotrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDpotrs<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDpotrs(handle, uplo, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCpotrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCpotrs<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCpotrs(handle, uplo, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZpotrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZpotrs<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, A: T, lda: i32, mut B: U, ldb: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZpotrs(handle, uplo, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSpotrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSpotrfBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSpotrfBatched(handle, uplo, n as _, Aarray.as_mut_ptr() as *mut _, lda as _, infoArray.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDpotrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDpotrfBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDpotrfBatched(handle, uplo, n as _, Aarray.as_mut_ptr() as *mut _, lda as _, infoArray.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCpotrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCpotrfBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCpotrfBatched(handle, uplo, n as _, Aarray.as_mut_ptr() as *mut _, lda as _, infoArray.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZpotrfBatched<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZpotrfBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut Aarray: T, lda: i32, mut infoArray: U, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZpotrfBatched(handle, uplo, n as _, Aarray.as_mut_ptr() as *mut _, lda as _, infoArray.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSpotrsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSpotrsBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSpotrsBatched(handle, uplo, n as _, nrhs as _, A.as_mut_ptr() as *mut _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, d_info.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDpotrsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDpotrsBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDpotrsBatched(handle, uplo, n as _, nrhs as _, A.as_mut_ptr() as *mut _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, d_info.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCpotrsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCpotrsBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCpotrsBatched(handle, uplo, n as _, nrhs as _, A.as_mut_ptr() as *mut _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, d_info.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZpotrsBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZpotrsBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, nrhs: i32, mut A: T, lda: i32, mut B: U, ldb: i32, mut d_info: V, batchSize: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZpotrsBatched(handle, uplo, n as _, nrhs as _, A.as_mut_ptr() as *mut _, lda as _, B.as_mut_ptr() as *mut _, ldb as _, d_info.as_mut_ptr() as *mut _, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSpotri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSpotri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSpotri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDpotri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDpotri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDpotri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCpotri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCpotri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCpotri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZpotri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZpotri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZpotri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSpotri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSpotri<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSpotri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDpotri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDpotri<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDpotri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCpotri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCpotri<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCpotri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZpotri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZpotri<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZpotri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXtrtri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXtrtri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     diag: cublasDiagType_t,
@@ -10371,7 +10371,7 @@ pub unsafe fn cusolverDnXtrtri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusolverDnXtrtri_bufferSize(handle, uplo, diag, n, dataTypeA, A.as_mut_ptr() as *mut _, lda, workspaceInBytesOnDevice.as_mut_ptr() as *mut _, workspaceInBytesOnHost.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXtrtri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXtrtri<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     diag: cublasDiagType_t,
@@ -10403,167 +10403,211 @@ pub unsafe fn cusolverDnXtrtri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSlauum_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSlauum_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSlauum_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDlauum_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDlauum_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDlauum_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnClauum_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnClauum_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnClauum_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZlauum_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZlauum_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZlauum_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSlauum<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSlauum<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSlauum(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDlauum<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDlauum<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDlauum(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnClauum<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnClauum<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnClauum(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZlauum<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZlauum<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut work: U, lwork: i32, mut devInfo: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZlauum(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, work.as_mut_ptr() as *mut _, lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgetrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSgetrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSgetrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgetrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDgetrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDgetrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgetrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCgetrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCgetrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgetrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZgetrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZgetrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgetrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSgetrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSgetrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, devIpiv.as_mut_ptr() as *mut _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgetrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDgetrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDgetrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, devIpiv.as_mut_ptr() as *mut _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgetrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCgetrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCgetrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, devIpiv.as_mut_ptr() as *mut _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgetrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZgetrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut Workspace: U, mut devIpiv: V, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZgetrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, Workspace.as_mut_ptr() as *mut _, devIpiv.as_mut_ptr() as *mut _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSlaswp<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSlaswp<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSlaswp(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, k1 as _, k2 as _, devIpiv.as_const_ptr() as *const _, incx as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDlaswp<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDlaswp<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDlaswp(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, k1 as _, k2 as _, devIpiv.as_const_ptr() as *const _, incx as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnClaswp<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnClaswp<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnClaswp(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, k1 as _, k2 as _, devIpiv.as_const_ptr() as *const _, incx as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZlaswp<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZlaswp<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, k1: i32, k2: i32, devIpiv: U, incx: i32) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZlaswp(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, k1 as _, k2 as _, devIpiv.as_const_ptr() as *const _, incx as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, trans: cublasOperation_t, n: i32, nrhs: i32, A: T, lda: i32, devIpiv: U, mut B: V, ldb: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    A: T,
+    lda: i32,
+    devIpiv: U,
+    mut B: V,
+    ldb: i32,
+    mut devInfo: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSgetrs(handle, trans, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, devIpiv.as_const_ptr() as *const _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, trans: cublasOperation_t, n: i32, nrhs: i32, A: T, lda: i32, devIpiv: U, mut B: V, ldb: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    A: T,
+    lda: i32,
+    devIpiv: U,
+    mut B: V,
+    ldb: i32,
+    mut devInfo: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDgetrs(handle, trans, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, devIpiv.as_const_ptr() as *const _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, trans: cublasOperation_t, n: i32, nrhs: i32, A: T, lda: i32, devIpiv: U, mut B: V, ldb: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    A: T,
+    lda: i32,
+    devIpiv: U,
+    mut B: V,
+    ldb: i32,
+    mut devInfo: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCgetrs(handle, trans, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, devIpiv.as_const_ptr() as *const _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, trans: cublasOperation_t, n: i32, nrhs: i32, A: T, lda: i32, devIpiv: U, mut B: V, ldb: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    trans: cublasOperation_t,
+    n: i32,
+    nrhs: i32,
+    A: T,
+    lda: i32,
+    devIpiv: U,
+    mut B: V,
+    ldb: i32,
+    mut devInfo: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZgetrs(handle, trans, n as _, nrhs as _, A.as_const_ptr() as *const _, lda as _, devIpiv.as_const_ptr() as *const _, B.as_mut_ptr() as *mut _, ldb as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgeqrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSgeqrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSgeqrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgeqrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDgeqrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDgeqrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgeqrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCgeqrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCgeqrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgeqrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZgeqrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZgeqrf_bufferSize(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgeqrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSgeqrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSgeqrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, TAU.as_mut_ptr() as *mut _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgeqrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDgeqrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDgeqrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, TAU.as_mut_ptr() as *mut _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgeqrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCgeqrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCgeqrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, TAU.as_mut_ptr() as *mut _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgeqrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZgeqrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut A: T, lda: i32, mut TAU: U, mut Workspace: V, Lwork: i32, mut devInfo: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZgeqrf(handle, m as _, n as _, A.as_mut_ptr() as *mut _, lda as _, TAU.as_mut_ptr() as *mut _, Workspace.as_mut_ptr() as *mut _, Lwork as _, devInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSorgqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSorgqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSorgqr_bufferSize(handle, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDorgqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDorgqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDorgqr_bufferSize(handle, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCungqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCungqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCungqr_bufferSize(handle, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZungqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZungqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZungqr_bufferSize(handle, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSorgqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSorgqr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSorgqr(handle, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDorgqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDorgqr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDorgqr(handle, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCungqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCungqr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCungqr(handle, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZungqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZungqr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, k: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZungqr(handle, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSormqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSormqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10595,7 +10639,7 @@ pub unsafe fn cusolverDnSormqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDormqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDormqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10627,7 +10671,7 @@ pub unsafe fn cusolverDnDormqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCunmqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCunmqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10659,7 +10703,7 @@ pub unsafe fn cusolverDnCunmqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZunmqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZunmqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10691,7 +10735,7 @@ pub unsafe fn cusolverDnZunmqr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSormqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSormqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10727,7 +10771,7 @@ pub unsafe fn cusolverDnSormqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDormqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDormqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10763,7 +10807,7 @@ pub unsafe fn cusolverDnDormqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCunmqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCunmqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10799,7 +10843,7 @@ pub unsafe fn cusolverDnCunmqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZunmqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZunmqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     trans: cublasOperation_t,
@@ -10835,39 +10879,79 @@ pub unsafe fn cusolverDnZunmqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsytrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSsytrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSsytrf_bufferSize(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsytrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDsytrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDsytrf_bufferSize(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCsytrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCsytrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCsytrf_bufferSize(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZsytrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZsytrf_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, n: i32, mut A: T, lda: i32, mut lwork: U) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZsytrf_bufferSize(handle, n as _, A.as_mut_ptr() as *mut _, lda as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsytrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSsytrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    mut A: T,
+    lda: i32,
+    mut ipiv: U,
+    mut work: V,
+    lwork: i32,
+    mut info: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSsytrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsytrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDsytrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    mut A: T,
+    lda: i32,
+    mut ipiv: U,
+    mut work: V,
+    lwork: i32,
+    mut info: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDsytrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCsytrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCsytrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    mut A: T,
+    lda: i32,
+    mut ipiv: U,
+    mut work: V,
+    lwork: i32,
+    mut info: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCsytrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZsytrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, mut ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZsytrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+    handle: cusolverDnHandle_t,
+    uplo: cublasFillMode_t,
+    n: i32,
+    mut A: T,
+    lda: i32,
+    mut ipiv: U,
+    mut work: V,
+    lwork: i32,
+    mut info: W,
+) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZsytrf(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsytrs_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsytrs_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i64,
@@ -10901,7 +10985,7 @@ pub unsafe fn cusolverDnXsytrs_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsytrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsytrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i64,
@@ -10941,55 +11025,55 @@ pub unsafe fn cusolverDnXsytrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsytri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSsytri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSsytri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsytri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDsytri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDsytri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCsytri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCsytri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCsytri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZsytri_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZsytri_bufferSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZsytri_bufferSize(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsytri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSsytri<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSsytri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsytri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDsytri<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDsytri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCsytri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCsytri<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCsytri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZsytri<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZsytri<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, ipiv: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZsytri(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, ipiv.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgebrd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSgebrd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSgebrd_bufferSize(handle, m as _, n as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgebrd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDgebrd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDgebrd_bufferSize(handle, m as _, n as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgebrd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCgebrd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCgebrd_bufferSize(handle, m as _, n as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgebrd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZgebrd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut Lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZgebrd_bufferSize(handle, m as _, n as _, Lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgebrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: i32,
     n: i32,
@@ -11021,7 +11105,7 @@ pub unsafe fn cusolverDnSgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgebrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: i32,
     n: i32,
@@ -11053,7 +11137,7 @@ pub unsafe fn cusolverDnDgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgebrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: i32,
     n: i32,
@@ -11085,7 +11169,7 @@ pub unsafe fn cusolverDnCgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgebrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     m: i32,
     n: i32,
@@ -11117,23 +11201,23 @@ pub unsafe fn cusolverDnZgebrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSorgbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSorgbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSorgbr_bufferSize(handle, side, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDorgbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDorgbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDorgbr_bufferSize(handle, side, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCungbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCungbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCungbr_bufferSize(handle, side, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZungbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZungbr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: i32, n: i32, k: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZungbr_bufferSize(handle, side, m as _, n as _, k as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSorgbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSorgbr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     m: i32,
@@ -11149,7 +11233,7 @@ pub unsafe fn cusolverDnSorgbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnSorgbr(handle, side, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDorgbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDorgbr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     m: i32,
@@ -11165,7 +11249,7 @@ pub unsafe fn cusolverDnDorgbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnDorgbr(handle, side, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCungbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCungbr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     m: i32,
@@ -11181,7 +11265,7 @@ pub unsafe fn cusolverDnCungbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnCungbr(handle, side, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZungbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZungbr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     m: i32,
@@ -11197,7 +11281,7 @@ pub unsafe fn cusolverDnZungbr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnZungbr(handle, side, m as _, n as _, k as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsytrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsytrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11223,7 +11307,7 @@ pub unsafe fn cusolverDnSsytrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsytrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsytrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11249,7 +11333,7 @@ pub unsafe fn cusolverDnDsytrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChetrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChetrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11275,7 +11359,7 @@ pub unsafe fn cusolverDnChetrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhetrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhetrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11301,7 +11385,7 @@ pub unsafe fn cusolverDnZhetrd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsytrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsytrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11331,7 +11415,7 @@ pub unsafe fn cusolverDnSsytrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsytrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsytrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11361,7 +11445,7 @@ pub unsafe fn cusolverDnDsytrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChetrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChetrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11391,7 +11475,7 @@ pub unsafe fn cusolverDnChetrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhetrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhetrd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     uplo: cublasFillMode_t,
     n: i32,
@@ -11421,39 +11505,39 @@ pub unsafe fn cusolverDnZhetrd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSorgtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSorgtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSorgtr_bufferSize(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDorgtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDorgtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDorgtr_bufferSize(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCungtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCungtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCungtr_bufferSize(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZungtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZungtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, tau: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZungtr_bufferSize(handle, uplo, n as _, A.as_const_ptr() as *const _, lda as _, tau.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSorgtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSorgtr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSorgtr(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDorgtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDorgtr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDorgtr(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCungtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCungtr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCungtr(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZungtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZungtr<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: i32, mut A: T, lda: i32, tau: U, mut work: V, lwork: i32, mut info: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZungtr(handle, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, tau.as_const_ptr() as *const _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSormtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSormtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11485,7 +11569,7 @@ pub unsafe fn cusolverDnSormtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDormtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDormtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11517,7 +11601,7 @@ pub unsafe fn cusolverDnDormtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCunmtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCunmtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11549,7 +11633,7 @@ pub unsafe fn cusolverDnCunmtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZunmtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZunmtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11581,7 +11665,7 @@ pub unsafe fn cusolverDnZunmtr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSormtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSormtr<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11617,7 +11701,7 @@ pub unsafe fn cusolverDnSormtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDormtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDormtr<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11653,7 +11737,7 @@ pub unsafe fn cusolverDnDormtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCunmtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCunmtr<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11689,7 +11773,7 @@ pub unsafe fn cusolverDnCunmtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZunmtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZunmtr<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     side: cublasSideMode_t,
     uplo: cublasFillMode_t,
@@ -11725,23 +11809,23 @@ pub unsafe fn cusolverDnZunmtr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgesvd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSgesvd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSgesvd_bufferSize(handle, m as _, n as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDgesvd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDgesvd_bufferSize(handle, m as _, n as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCgesvd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCgesvd_bufferSize(handle, m as _, n as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvd_bufferSize<T: types::CudaAsPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZgesvd_bufferSize<T: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, m: i32, n: i32, mut lwork: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZgesvd_bufferSize(handle, m as _, n as _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgesvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobu: ::std::os::raw::c_schar,
     jobvt: ::std::os::raw::c_schar,
@@ -11781,7 +11865,7 @@ pub unsafe fn cusolverDnSgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgesvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobu: ::std::os::raw::c_schar,
     jobvt: ::std::os::raw::c_schar,
@@ -11821,7 +11905,7 @@ pub unsafe fn cusolverDnDgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgesvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobu: ::std::os::raw::c_schar,
     jobvt: ::std::os::raw::c_schar,
@@ -11861,7 +11945,7 @@ pub unsafe fn cusolverDnCgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgesvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobu: ::std::os::raw::c_schar,
     jobvt: ::std::os::raw::c_schar,
@@ -11901,23 +11985,23 @@ pub unsafe fn cusolverDnZgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsyevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSsyevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSsyevd_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDsyevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDsyevd_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCheevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCheevd_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZheevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZheevd_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsyevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsyevd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -11932,7 +12016,7 @@ pub unsafe fn cusolverDnSsyevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnSsyevd(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsyevd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -11947,7 +12031,7 @@ pub unsafe fn cusolverDnDsyevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnDsyevd(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCheevd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -11962,7 +12046,7 @@ pub unsafe fn cusolverDnCheevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnCheevd(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZheevd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -11977,7 +12061,7 @@ pub unsafe fn cusolverDnZheevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnZheevd(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12013,7 +12097,7 @@ pub unsafe fn cusolverDnSsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12049,7 +12133,7 @@ pub unsafe fn cusolverDnDsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCheevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12085,7 +12169,7 @@ pub unsafe fn cusolverDnCheevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZheevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12121,7 +12205,7 @@ pub unsafe fn cusolverDnZheevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsyevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsyevdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12161,7 +12245,7 @@ pub unsafe fn cusolverDnSsyevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsyevdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12201,7 +12285,7 @@ pub unsafe fn cusolverDnDsyevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCheevdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12241,7 +12325,7 @@ pub unsafe fn cusolverDnCheevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZheevdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     range: cusolverEigRange_t,
@@ -12281,7 +12365,7 @@ pub unsafe fn cusolverDnZheevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12323,7 +12407,7 @@ pub unsafe fn cusolverDnSsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12365,7 +12449,7 @@ pub unsafe fn cusolverDnDsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChegvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChegvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12407,7 +12491,7 @@ pub unsafe fn cusolverDnChegvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhegvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhegvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12449,7 +12533,7 @@ pub unsafe fn cusolverDnZhegvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsygvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsygvdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12495,7 +12579,7 @@ pub unsafe fn cusolverDnSsygvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsygvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsygvdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12541,7 +12625,7 @@ pub unsafe fn cusolverDnDsygvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChegvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChegvdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12587,7 +12671,7 @@ pub unsafe fn cusolverDnChegvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhegvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhegvdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12633,7 +12717,7 @@ pub unsafe fn cusolverDnZhegvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12649,7 +12733,7 @@ pub unsafe fn cusolverDnSsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusolverDnSsygvd_bufferSize(handle, itype, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12665,7 +12749,7 @@ pub unsafe fn cusolverDnDsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusolverDnDsygvd_bufferSize(handle, itype, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChegvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChegvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12681,7 +12765,7 @@ pub unsafe fn cusolverDnChegvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusolverDnChegvd_bufferSize(handle, itype, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhegvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhegvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12697,7 +12781,7 @@ pub unsafe fn cusolverDnZhegvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusolverDnZhegvd_bufferSize(handle, itype, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, B.as_const_ptr() as *const _, ldb as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsygvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsygvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12731,7 +12815,7 @@ pub unsafe fn cusolverDnSsygvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsygvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsygvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12765,7 +12849,7 @@ pub unsafe fn cusolverDnDsygvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChegvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChegvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12799,7 +12883,7 @@ pub unsafe fn cusolverDnChegvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhegvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhegvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -12833,7 +12917,7 @@ pub unsafe fn cusolverDnZhegvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     itype: cusolverEigType_t,
@@ -12875,7 +12959,7 @@ pub unsafe fn cusolverDnXsygvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsygvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsygvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     itype: cusolverEigType_t,
@@ -12923,7 +13007,7 @@ pub unsafe fn cusolverDnXsygvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     itype: cusolverEigType_t,
@@ -12975,7 +13059,7 @@ pub unsafe fn cusolverDnXsygvdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsygvdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsygvdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr, B: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     itype: cusolverEigType_t,
@@ -13078,7 +13162,7 @@ pub unsafe fn cusolverDnXsyevjGetSweeps(handle: cusolverDnHandle_t, info: syevjI
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusolverDnSsyevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsyevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13093,7 +13177,7 @@ pub unsafe fn cusolverDnSsyevjBatched_bufferSize<T: types::CudaAsPtr, U: types::
     let status = unsafe { crate::sys::cusolverDnSsyevjBatched_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsyevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13108,7 +13192,7 @@ pub unsafe fn cusolverDnDsyevjBatched_bufferSize<T: types::CudaAsPtr, U: types::
     let status = unsafe { crate::sys::cusolverDnDsyevjBatched_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCheevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13123,7 +13207,7 @@ pub unsafe fn cusolverDnCheevjBatched_bufferSize<T: types::CudaAsPtr, U: types::
     let status = unsafe { crate::sys::cusolverDnCheevjBatched_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZheevjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13138,7 +13222,7 @@ pub unsafe fn cusolverDnZheevjBatched_bufferSize<T: types::CudaAsPtr, U: types::
     let status = unsafe { crate::sys::cusolverDnZheevjBatched_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params, batchSize as _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsyevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsyevjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13170,7 +13254,7 @@ pub unsafe fn cusolverDnSsyevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsyevjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13202,7 +13286,7 @@ pub unsafe fn cusolverDnDsyevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCheevjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13234,7 +13318,7 @@ pub unsafe fn cusolverDnCheevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZheevjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13266,23 +13350,23 @@ pub unsafe fn cusolverDnZheevjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsyevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnSsyevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnSsyevj_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnDsyevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnDsyevj_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnCheevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnCheevj_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnZheevj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: i32, A: T, lda: i32, W: U, mut lwork: V, params: syevjInfo_t) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnZheevj_bufferSize(handle, jobz, uplo, n as _, A.as_const_ptr() as *const _, lda as _, W.as_const_ptr() as *const _, lwork.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsyevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsyevj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13298,7 +13382,7 @@ pub unsafe fn cusolverDnSsyevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnSsyevj(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsyevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsyevj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13314,7 +13398,7 @@ pub unsafe fn cusolverDnDsyevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnDsyevj(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCheevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCheevj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13330,7 +13414,7 @@ pub unsafe fn cusolverDnCheevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnCheevj(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZheevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZheevj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     uplo: cublasFillMode_t,
@@ -13346,7 +13430,7 @@ pub unsafe fn cusolverDnZheevj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnZheevj(handle, jobz, uplo, n as _, A.as_mut_ptr() as *mut _, lda as _, W.as_mut_ptr() as *mut _, work.as_mut_ptr() as *mut _, lwork as _, info.as_mut_ptr() as *mut _, params) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsygvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsygvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13378,7 +13462,7 @@ pub unsafe fn cusolverDnSsygvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsygvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsygvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13410,7 +13494,7 @@ pub unsafe fn cusolverDnDsygvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChegvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChegvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13442,7 +13526,7 @@ pub unsafe fn cusolverDnChegvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhegvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhegvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13474,7 +13558,7 @@ pub unsafe fn cusolverDnZhegvj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSsygvj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSsygvj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13510,7 +13594,7 @@ pub unsafe fn cusolverDnSsygvj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDsygvj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDsygvj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13546,7 +13630,7 @@ pub unsafe fn cusolverDnDsygvj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnChegvj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnChegvj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13582,7 +13666,7 @@ pub unsafe fn cusolverDnChegvj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZhegvj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZhegvj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     itype: cusolverEigType_t,
     jobz: cusolverEigMode_t,
@@ -13661,7 +13745,7 @@ pub unsafe fn cusolverDnXgesvdjGetSweeps(handle: cusolverDnHandle_t, info: gesvd
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusolverDnSgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13697,7 +13781,7 @@ pub unsafe fn cusolverDnSgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13733,7 +13817,7 @@ pub unsafe fn cusolverDnDgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13769,7 +13853,7 @@ pub unsafe fn cusolverDnCgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13805,7 +13889,7 @@ pub unsafe fn cusolverDnZgesvdjBatched_bufferSize<T: types::CudaAsPtr, U: types:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgesvdjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13845,7 +13929,7 @@ pub unsafe fn cusolverDnSgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgesvdjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13885,7 +13969,7 @@ pub unsafe fn cusolverDnDgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgesvdjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13925,7 +14009,7 @@ pub unsafe fn cusolverDnCgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgesvdjBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     m: i32,
@@ -13965,7 +14049,7 @@ pub unsafe fn cusolverDnZgesvdjBatched<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14001,7 +14085,7 @@ pub unsafe fn cusolverDnSgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14037,7 +14121,7 @@ pub unsafe fn cusolverDnDgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14073,7 +14157,7 @@ pub unsafe fn cusolverDnCgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14109,7 +14193,7 @@ pub unsafe fn cusolverDnZgesvdj_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgesvdj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14149,7 +14233,7 @@ pub unsafe fn cusolverDnSgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgesvdj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14189,7 +14273,7 @@ pub unsafe fn cusolverDnDgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgesvdj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14229,7 +14313,7 @@ pub unsafe fn cusolverDnCgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgesvdj<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     econ: i32,
@@ -14269,7 +14353,7 @@ pub unsafe fn cusolverDnZgesvdj<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14313,7 +14397,7 @@ pub unsafe fn cusolverDnSgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14357,7 +14441,7 @@ pub unsafe fn cusolverDnDgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14401,7 +14485,7 @@ pub unsafe fn cusolverDnCgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14445,7 +14529,7 @@ pub unsafe fn cusolverDnZgesvdaStridedBatched_bufferSize<T: types::CudaAsPtr, U:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnSgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnSgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14495,7 +14579,7 @@ pub unsafe fn cusolverDnSgesvdaStridedBatched<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnDgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnDgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14545,7 +14629,7 @@ pub unsafe fn cusolverDnDgesvdaStridedBatched<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnCgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnCgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14595,7 +14679,7 @@ pub unsafe fn cusolverDnCgesvdaStridedBatched<T: types::CudaAsPtr, U: types::Cud
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnZgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnZgesvdaStridedBatched<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     jobz: cusolverEigMode_t,
     rank: i32,
@@ -14662,7 +14746,7 @@ pub unsafe fn cusolverDnSetAdvOptions(params: cusolverDnParams_t, function: cuso
     let status = unsafe { crate::sys::cusolverDnSetAdvOptions(params, function, algo) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXpotrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXpotrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     uplo: cublasFillMode_t,
@@ -14677,7 +14761,7 @@ pub unsafe fn cusolverDnXpotrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusolverDnXpotrf_bufferSize(handle, params, uplo, n, dataTypeA, A.as_const_ptr() as *const _, lda, computeType, workspaceInBytesOnDevice.as_mut_ptr() as *mut _, workspaceInBytesOnHost.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXpotrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXpotrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     uplo: cublasFillMode_t,
@@ -14711,7 +14795,7 @@ pub unsafe fn cusolverDnXpotrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXpotrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXpotrs<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     uplo: cublasFillMode_t,
@@ -14728,7 +14812,7 @@ pub unsafe fn cusolverDnXpotrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnXpotrs(handle, params, uplo, n, nrhs, dataTypeA, A.as_const_ptr() as *const _, lda, dataTypeB, B.as_mut_ptr() as *mut _, ldb, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgeqrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgeqrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     m: i64,
@@ -14760,7 +14844,7 @@ pub unsafe fn cusolverDnXgeqrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgeqrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgeqrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     m: i64,
@@ -14798,7 +14882,7 @@ pub unsafe fn cusolverDnXgeqrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgetrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgetrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     m: i64,
@@ -14813,7 +14897,7 @@ pub unsafe fn cusolverDnXgetrf_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     let status = unsafe { crate::sys::cusolverDnXgetrf_bufferSize(handle, params, m, n, dataTypeA, A.as_const_ptr() as *const _, lda, computeType, workspaceInBytesOnDevice.as_mut_ptr() as *mut _, workspaceInBytesOnHost.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgetrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgetrf<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     m: i64,
@@ -14849,7 +14933,7 @@ pub unsafe fn cusolverDnXgetrf<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     trans: cublasOperation_t,
@@ -14867,7 +14951,7 @@ pub unsafe fn cusolverDnXgetrs<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     let status = unsafe { crate::sys::cusolverDnXgetrs(handle, params, trans, n, nrhs, dataTypeA, A.as_const_ptr() as *const _, lda, ipiv.as_const_ptr() as *const _, dataTypeB, B.as_mut_ptr() as *mut _, ldb, info.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsyevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsyevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -14901,7 +14985,7 @@ pub unsafe fn cusolverDnXsyevd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsyevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsyevd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -14941,7 +15025,7 @@ pub unsafe fn cusolverDnXsyevd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXstedc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXstedc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     compz: cusolverEigComp_t,
@@ -14975,7 +15059,7 @@ pub unsafe fn cusolverDnXstedc_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXstedc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXstedc<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     compz: cusolverEigComp_t,
@@ -15015,7 +15099,7 @@ pub unsafe fn cusolverDnXstedc<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsyevBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsyevBatched_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -15051,7 +15135,7 @@ pub unsafe fn cusolverDnXsyevBatched_bufferSize<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsyevBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsyevBatched<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -15093,7 +15177,7 @@ pub unsafe fn cusolverDnXsyevBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -15139,7 +15223,7 @@ pub unsafe fn cusolverDnXsyevdx_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXsyevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXsyevdx<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -15191,7 +15275,7 @@ pub unsafe fn cusolverDnXsyevdx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgeev_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgeev_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobvl: cusolverEigMode_t,
@@ -15237,7 +15321,7 @@ pub unsafe fn cusolverDnXgeev_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPt
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgeev<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgeev<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobvl: cusolverEigMode_t,
@@ -15289,7 +15373,7 @@ pub unsafe fn cusolverDnXgeev<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgesvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgesvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobu: ::std::os::raw::c_schar,
@@ -15337,7 +15421,7 @@ pub unsafe fn cusolverDnXgesvd_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgesvd<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobu: ::std::os::raw::c_schar,
@@ -15391,7 +15475,7 @@ pub unsafe fn cusolverDnXgesvd<T: types::CudaAsPtr, U: types::CudaAsPtr, V: type
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgesvdp_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgesvdp_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -15439,7 +15523,7 @@ pub unsafe fn cusolverDnXgesvdp_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgesvdp<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgesvdp<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobz: cusolverEigMode_t,
@@ -15495,7 +15579,7 @@ pub unsafe fn cusolverDnXgesvdp<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgesvdr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgesvdr_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobu: ::std::os::raw::c_schar,
@@ -15549,7 +15633,7 @@ pub unsafe fn cusolverDnXgesvdr_bufferSize<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXgesvdr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXgesvdr<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     jobu: ::std::os::raw::c_schar,
@@ -15609,7 +15693,7 @@ pub unsafe fn cusolverDnXgesvdr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: typ
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXlarft_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXlarft_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     direct: cusolverDirectMode_t,
@@ -15651,7 +15735,7 @@ pub unsafe fn cusolverDnXlarft_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXlarft<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXlarft<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     direct: cusolverDirectMode_t,
@@ -15701,7 +15785,7 @@ pub unsafe fn cusolverDnLoggerSetCallback(callback: cusolverDnLoggerCallback_t) 
     let status = unsafe { crate::sys::cusolverDnLoggerSetCallback(callback) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnLoggerSetFile<T: types::CudaAsPtr>(mut file: T) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverDnLoggerSetFile<T: types::CudaAsMutPtr>(mut file: T) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverDnLoggerSetFile(file.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -15721,7 +15805,7 @@ pub unsafe fn cusolverDnLoggerForceDisable() -> Result<(), crate::sys::cusolverS
     let status = unsafe { crate::sys::cusolverDnLoggerForceDisable() };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXpolar_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXpolar_bufferSize<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     uplo: cublasFillMode_t,
@@ -15757,7 +15841,7 @@ pub unsafe fn cusolverDnXpolar_bufferSize<T: types::CudaAsPtr, U: types::CudaAsP
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverDnXpolar<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverDnXpolar<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverDnHandle_t,
     params: cusolverDnParams_t,
     uplo: cublasFillMode_t,
@@ -15831,7 +15915,7 @@ pub unsafe fn cusolverSpGetStream(handle: cusolverSpHandle_t) -> Result<cudaStre
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cusolverSpXcsrissymHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverSpXcsrissymHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnzA: i32,
@@ -15844,7 +15928,7 @@ pub unsafe fn cusolverSpXcsrissymHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     let status = unsafe { crate::sys::cusolverSpXcsrissymHost(handle, m as _, nnzA as _, descrA, csrRowPtrA.as_const_ptr() as *const _, csrEndPtrA.as_const_ptr() as *const _, csrColIndA.as_const_ptr() as *const _, issym.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnzA: i32,
@@ -15876,7 +15960,7 @@ pub unsafe fn cusolverSpScsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnzA: i32,
@@ -15908,7 +15992,7 @@ pub unsafe fn cusolverSpDcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnzA: i32,
@@ -15940,7 +16024,7 @@ pub unsafe fn cusolverSpCcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnzA: i32,
@@ -15972,7 +16056,7 @@ pub unsafe fn cusolverSpZcsrlsvluHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16004,7 +16088,7 @@ pub unsafe fn cusolverSpScsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: t
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16036,7 +16120,7 @@ pub unsafe fn cusolverSpDcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: t
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16068,7 +16152,7 @@ pub unsafe fn cusolverSpCcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: t
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16100,7 +16184,7 @@ pub unsafe fn cusolverSpZcsrlsvqr<T: types::CudaAsPtr, U: types::CudaAsPtr, V: t
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16132,7 +16216,7 @@ pub unsafe fn cusolverSpScsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16164,7 +16248,7 @@ pub unsafe fn cusolverSpDcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16196,7 +16280,7 @@ pub unsafe fn cusolverSpCcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16228,7 +16312,7 @@ pub unsafe fn cusolverSpZcsrlsvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16260,7 +16344,7 @@ pub unsafe fn cusolverSpScsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16292,7 +16376,7 @@ pub unsafe fn cusolverSpDcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16324,7 +16408,7 @@ pub unsafe fn cusolverSpCcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16356,7 +16440,7 @@ pub unsafe fn cusolverSpZcsrlsvcholHost<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16388,7 +16472,7 @@ pub unsafe fn cusolverSpScsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16420,7 +16504,7 @@ pub unsafe fn cusolverSpDcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16452,7 +16536,7 @@ pub unsafe fn cusolverSpCcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16484,7 +16568,7 @@ pub unsafe fn cusolverSpZcsrlsvchol<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -16520,7 +16604,7 @@ pub unsafe fn cusolverSpScsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -16556,7 +16640,7 @@ pub unsafe fn cusolverSpDcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -16592,7 +16676,7 @@ pub unsafe fn cusolverSpCcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -16628,7 +16712,7 @@ pub unsafe fn cusolverSpZcsrlsqvqrHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16662,7 +16746,7 @@ pub unsafe fn cusolverSpScsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16696,7 +16780,7 @@ pub unsafe fn cusolverSpDcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16730,7 +16814,7 @@ pub unsafe fn cusolverSpCcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16764,7 +16848,7 @@ pub unsafe fn cusolverSpZcsreigvsiHost<T: types::CudaAsPtr, U: types::CudaAsPtr,
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16798,7 +16882,7 @@ pub unsafe fn cusolverSpScsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16832,7 +16916,7 @@ pub unsafe fn cusolverSpDcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16866,7 +16950,7 @@ pub unsafe fn cusolverSpCcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16900,7 +16984,7 @@ pub unsafe fn cusolverSpZcsreigvsi<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16928,7 +17012,7 @@ pub unsafe fn cusolverSpScsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16956,7 +17040,7 @@ pub unsafe fn cusolverSpDcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -16984,7 +17068,7 @@ pub unsafe fn cusolverSpCcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     nnz: i32,
@@ -17012,23 +17096,23 @@ pub unsafe fn cusolverSpZcsreigsHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpXcsrsymrcmHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, mut p: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverSpXcsrsymrcmHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, mut p: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverSpXcsrsymrcmHost(handle, n as _, nnzA as _, descrA, csrRowPtrA.as_const_ptr() as *const _, csrColIndA.as_const_ptr() as *const _, p.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpXcsrsymmdqHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, mut p: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverSpXcsrsymmdqHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, mut p: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverSpXcsrsymmdqHost(handle, n as _, nnzA as _, descrA, csrRowPtrA.as_const_ptr() as *const _, csrColIndA.as_const_ptr() as *const _, p.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpXcsrsymamdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, mut p: V) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverSpXcsrsymamdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, mut p: V) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverSpXcsrsymamdHost(handle, n as _, nnzA as _, descrA, csrRowPtrA.as_const_ptr() as *const _, csrColIndA.as_const_ptr() as *const _, p.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpXcsrmetisndHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, options: V, mut p: W) -> Result<(), crate::sys::cusolverStatus_t> {
+pub unsafe fn cusolverSpXcsrmetisndHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(handle: cusolverSpHandle_t, n: i32, nnzA: i32, descrA: cusparseMatDescr_t, csrRowPtrA: T, csrColIndA: U, options: V, mut p: W) -> Result<(), crate::sys::cusolverStatus_t> {
     let status = unsafe { crate::sys::cusolverSpXcsrmetisndHost(handle, n as _, nnzA as _, descrA, csrRowPtrA.as_const_ptr() as *const _, csrColIndA.as_const_ptr() as *const _, options.as_const_ptr() as *const _, p.as_mut_ptr() as *mut _) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnz: i32,
@@ -17054,7 +17138,7 @@ pub unsafe fn cusolverSpScsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnz: i32,
@@ -17080,7 +17164,7 @@ pub unsafe fn cusolverSpDcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnz: i32,
@@ -17106,7 +17190,7 @@ pub unsafe fn cusolverSpCcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     n: i32,
     nnz: i32,
@@ -17132,7 +17216,7 @@ pub unsafe fn cusolverSpZcsrzfdHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V:
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpXcsrperm_bufferSizeHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpXcsrperm_bufferSizeHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17160,7 +17244,7 @@ pub unsafe fn cusolverSpXcsrperm_bufferSizeHost<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpXcsrpermHost<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpXcsrpermHost<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17207,7 +17291,7 @@ pub unsafe fn cusolverSpXcsrqrAnalysisBatched<T: types::CudaAsPtr, U: types::Cud
     let status = unsafe { crate::sys::cusolverSpXcsrqrAnalysisBatched(handle, m as _, n as _, nnzA as _, descrA, csrRowPtrA.as_const_ptr() as *const _, csrColIndA.as_const_ptr() as *const _, info) };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17239,7 +17323,7 @@ pub unsafe fn cusolverSpScsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17271,7 +17355,7 @@ pub unsafe fn cusolverSpDcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17303,7 +17387,7 @@ pub unsafe fn cusolverSpCcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17335,7 +17419,7 @@ pub unsafe fn cusolverSpZcsrqrBufferInfoBatched<T: types::CudaAsPtr, U: types::C
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpScsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpScsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17369,7 +17453,7 @@ pub unsafe fn cusolverSpScsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpDcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpDcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17403,7 +17487,7 @@ pub unsafe fn cusolverSpDcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpCcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpCcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
@@ -17437,7 +17521,7 @@ pub unsafe fn cusolverSpCcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr
     };
     if status == crate::sys::cusolverStatus_t::CUSOLVER_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cusolverSpZcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr>(
+pub unsafe fn cusolverSpZcsrqrsvBatched<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
     handle: cusolverSpHandle_t,
     m: i32,
     n: i32,
