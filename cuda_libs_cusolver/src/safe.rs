@@ -5,7 +5,7 @@ pub use crate::sys::{
     __BindgenBitfieldUnit, __off_t, __off64_t, __uint64_t, _IO_FILE, _IO_codecvt, _IO_lock_t, _IO_marker, _IO_wide_data, CUSOLVER_VER_BUILD, CUSOLVER_VER_MAJOR, CUSOLVER_VER_MINOR, CUSOLVER_VER_PATCH, CUSOLVER_VERSION, DynamicBindings, FILE, csrqrInfo, csrqrInfo_t, cuComplex, cuDoubleComplex,
     cuFloatComplex, cublasDiagType_t, cublasFillMode_t, cublasOperation_t, cublasSideMode_t, cusolver_int_t, cusolverAlgMode_t, cusolverDeterministicMode_t, cusolverDirectMode_t, cusolverDnContext, cusolverDnFunction_t, cusolverDnHandle_t, cusolverDnIRSInfos, cusolverDnIRSInfos_t,
     cusolverDnIRSParams, cusolverDnIRSParams_t, cusolverDnLoggerCallback_t, cusolverDnParams, cusolverDnParams_t, cusolverEigComp_t, cusolverEigMode_t, cusolverEigRange_t, cusolverEigType_t, cusolverIRSRefinement_t, cusolverMathMode_t, cusolverNorm_t, cusolverPrecType_t, cusolverSpContext,
-    cusolverSpHandle_t, cusolverStorevMode_t, cusparseMatDescr, cusparseMatDescr_t, double2, float2, gesvdjInfo, gesvdjInfo_t, libraryPropertyType_t, syevjInfo, syevjInfo_t,
+    cusolverSpHandle_t, cusolverStatus_t, cusolverStorevMode_t, cusparseMatDescr, cusparseMatDescr_t, double2, float2, gesvdjInfo, gesvdjInfo_t, libraryPropertyType_t, syevjInfo, syevjInfo_t,
 };
 use cuda_libs_cudart;
 #[allow(unused_imports)]

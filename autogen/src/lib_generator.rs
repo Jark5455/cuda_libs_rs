@@ -854,7 +854,7 @@ impl<'a> Generator<'a> {
             quote! {}
         };
 
-        let reexport_idents: Vec<syn::Ident> = reexport_types.into_iter().filter(|id| id != &status_type_ident).collect();
+        let reexport_idents: Vec<syn::Ident> = reexport_types;
 
         let safe_module = quote! {
             pub use crate::sys::#status_type_ident as CudaTargetStatus;

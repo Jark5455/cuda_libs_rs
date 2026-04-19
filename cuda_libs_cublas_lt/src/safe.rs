@@ -9,7 +9,7 @@ pub use crate::sys::{
     cublasLtContext, cublasLtEmulationDesc_t, cublasLtEmulationDescAttributes_t, cublasLtEmulationDescOpaque_t, cublasLtEpilogue_t, cublasLtHandle_t, cublasLtIntegerWidth_t, cublasLtLoggerCallback_t, cublasLtMatmulAlgo_t, cublasLtMatmulAlgoCapAttributes_t, cublasLtMatmulAlgoConfigAttributes_t,
     cublasLtMatmulDesc_t, cublasLtMatmulDescAttributes_t, cublasLtMatmulDescOpaque_t, cublasLtMatmulHeuristicResult_t, cublasLtMatmulInnerShape_t, cublasLtMatmulMatrixScale_t, cublasLtMatmulPreference_t, cublasLtMatmulPreferenceAttributes_t, cublasLtMatmulPreferenceOpaque_t, cublasLtMatmulSearch_t,
     cublasLtMatmulStages_t, cublasLtMatmulTile_t, cublasLtMatrixLayout_t, cublasLtMatrixLayoutAttribute_t, cublasLtMatrixLayoutOpaque_t, cublasLtMatrixTransformDesc_t, cublasLtMatrixTransformDescAttributes_t, cublasLtMatrixTransformDescOpaque_t, cublasLtNumericalImplFlags_t, cublasLtOrder_t,
-    cublasLtPointerMode_t, cublasLtPointerModeMask_t, cublasLtReductionScheme_t, libraryPropertyType_t,
+    cublasLtPointerMode_t, cublasLtPointerModeMask_t, cublasLtReductionScheme_t, cublasStatus_t, libraryPropertyType_t,
 };
 use cuda_libs_cudart;
 #[allow(unused_imports)]

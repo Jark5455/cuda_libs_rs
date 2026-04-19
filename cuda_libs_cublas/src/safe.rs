@@ -3,7 +3,7 @@ pub use crate::sys::cublasStatus_t as CudaTargetStatus;
 use crate::sys::*;
 pub use crate::sys::{
     CUBLAS_VER_BUILD, CUBLAS_VER_MAJOR, CUBLAS_VER_MINOR, CUBLAS_VER_PATCH, CUBLAS_VERSION, CUstream_st, DynamicBindings, cuComplex, cuDoubleComplex, cuFloatComplex, cublasAtomicsMode_t, cublasComputeType_t, cublasContext, cublasDiagType_t, cublasEmulationStrategy_t, cublasFillMode_t,
-    cublasGemmAlgo_t, cublasHandle_t, cublasLogCallback, cublasMath_t, cublasOperation_t, cublasPointerMode_t, cublasSideMode_t, double2, float2, libraryPropertyType_t,
+    cublasGemmAlgo_t, cublasHandle_t, cublasLogCallback, cublasMath_t, cublasOperation_t, cublasPointerMode_t, cublasSideMode_t, cublasStatus_t, double2, float2, libraryPropertyType_t,
 };
 use cuda_libs_cudart;
 #[allow(unused_imports)]

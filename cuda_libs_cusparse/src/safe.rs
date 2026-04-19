@@ -7,7 +7,7 @@ pub use crate::sys::{
     cusparseConstDnMatDescr_t, cusparseConstDnVecDescr_t, cusparseConstSpMatDescr_t, cusparseConstSpVecDescr_t, cusparseContext, cusparseCsr2CscAlg_t, cusparseDenseToSparseAlg_t, cusparseDiagType_t, cusparseDirection_t, cusparseDnMatDescr, cusparseDnMatDescr_t, cusparseDnVecDescr,
     cusparseDnVecDescr_t, cusparseFillMode_t, cusparseFormat_t, cusparseHandle_t, cusparseIndexBase_t, cusparseIndexType_t, cusparseLoggerCallback_t, cusparseMatDescr, cusparseMatDescr_t, cusparseMatrixType_t, cusparseOperation_t, cusparseOrder_t, cusparsePointerMode_t, cusparseSDDMMAlg_t,
     cusparseSolvePolicy_t, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr, cusparseSpGEMMDescr_t, cusparseSpMMAlg_t, cusparseSpMMOpAlg_t, cusparseSpMMOpPlan, cusparseSpMMOpPlan_t, cusparseSpMVAlg_t, cusparseSpMatAttribute_t, cusparseSpMatDescr, cusparseSpMatDescr_t, cusparseSpSMAlg_t, cusparseSpSMDescr,
-    cusparseSpSMDescr_t, cusparseSpSMUpdate_t, cusparseSpSVAlg_t, cusparseSpSVDescr, cusparseSpSVDescr_t, cusparseSpSVUpdate_t, cusparseSpVecDescr, cusparseSpVecDescr_t, cusparseSparseToDenseAlg_t, double2, float2, libraryPropertyType_t, pruneInfo, pruneInfo_t,
+    cusparseSpSMDescr_t, cusparseSpSMUpdate_t, cusparseSpSVAlg_t, cusparseSpSVDescr, cusparseSpSVDescr_t, cusparseSpSVUpdate_t, cusparseSpVecDescr, cusparseSpVecDescr_t, cusparseSparseToDenseAlg_t, cusparseStatus_t, double2, float2, libraryPropertyType_t, pruneInfo, pruneInfo_t,
 };
 use cuda_libs_cudart;
 #[allow(unused_imports)]

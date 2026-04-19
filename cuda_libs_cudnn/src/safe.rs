@@ -14,7 +14,7 @@ pub use crate::sys::{
     cudnnMultiHeadAttnWeightKind_t, cudnnNanPropagation_t, cudnnNormAlgo_t, cudnnNormMode_t, cudnnNormOps_t, cudnnOpTensorDescriptor_t, cudnnOpTensorOp_t, cudnnOpTensorStruct, cudnnPaddingMode_t, cudnnPointwiseMode_t, cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnPoolingStruct, cudnnRNNAlgo_t,
     cudnnRNNBiasMode_t, cudnnRNNClipMode_t, cudnnRNNDataDescriptor_t, cudnnRNNDataLayout_t, cudnnRNNDataStruct, cudnnRNNDescriptor_t, cudnnRNNInputMode_t, cudnnRNNMode_t, cudnnRNNStruct, cudnnReduceTensorDescriptor_t, cudnnReduceTensorIndices_t, cudnnReduceTensorOp_t, cudnnReduceTensorStruct,
     cudnnReorderType_t, cudnnResampleMode_t, cudnnRngDistribution_t, cudnnRuntimeTag_t, cudnnSamplerType_t, cudnnSeqDataAxis_t, cudnnSeqDataDescriptor_t, cudnnSeqDataStruct, cudnnSeverity_t, cudnnSignalMode_t, cudnnSoftmaxAlgorithm_t, cudnnSoftmaxMode_t, cudnnSpatialTransformerDescriptor_t,
-    cudnnSpatialTransformerStruct, cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnTensorStruct, cudnnTensorTransformDescriptor_t, cudnnTensorTransformStruct, cudnnWgradMode_t, libraryPropertyType_t,
+    cudnnSpatialTransformerStruct, cudnnStatus_t, cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnTensorStruct, cudnnTensorTransformDescriptor_t, cudnnTensorTransformStruct, cudnnWgradMode_t, libraryPropertyType_t,
 };
 use cuda_libs_cudart;
 #[allow(unused_imports)]
