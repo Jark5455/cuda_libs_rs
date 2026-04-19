@@ -1,3 +1,4 @@
+#![allow(unsafe_op_in_unsafe_fn)]
 use cuda_libs_cudart::sys::*;
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -1863,131 +1864,92 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cublasLtCreate: Option<unsafe extern "C" fn(lightHandle: *mut cublasLtHandle_t) -> cublasStatus_t>,
-    pub cublasLtDestroy: Option<unsafe extern "C" fn(lightHandle: cublasLtHandle_t) -> cublasStatus_t>,
-    pub cublasLtGetStatusName: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cublasLtGetStatusString: Option<unsafe extern "C" fn(status: cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cublasLtCreate: Option<unsafe extern "C" fn(*mut cublasLtHandle_t) -> cublasStatus_t>,
+    pub cublasLtDestroy: Option<unsafe extern "C" fn(cublasLtHandle_t) -> cublasStatus_t>,
+    pub cublasLtGetStatusName: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cublasLtGetStatusString: Option<unsafe extern "C" fn(cublasStatus_t) -> *const ::std::os::raw::c_char>,
     pub cublasLtGetVersion: Option<unsafe extern "C" fn() -> usize>,
     pub cublasLtGetCudartVersion: Option<unsafe extern "C" fn() -> usize>,
-    pub cublasLtGetProperty: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasLtHeuristicsCacheGetCapacity: Option<unsafe extern "C" fn(capacity: *mut usize) -> cublasStatus_t>,
-    pub cublasLtHeuristicsCacheSetCapacity: Option<unsafe extern "C" fn(capacity: usize) -> cublasStatus_t>,
-    pub cublasLtDisableCpuInstructionsSetMask: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_uint) -> ::std::os::raw::c_uint>,
+    pub cublasLtGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasLtHeuristicsCacheGetCapacity: Option<unsafe extern "C" fn(*mut usize) -> cublasStatus_t>,
+    pub cublasLtHeuristicsCacheSetCapacity: Option<unsafe extern "C" fn(usize) -> cublasStatus_t>,
+    pub cublasLtDisableCpuInstructionsSetMask: Option<unsafe extern "C" fn(::std::os::raw::c_uint) -> ::std::os::raw::c_uint>,
     pub cublasLtMatmul: Option<
         unsafe extern "C" fn(
-            lightHandle: cublasLtHandle_t,
-            computeDesc: cublasLtMatmulDesc_t,
-            alpha: *const ::std::os::raw::c_void,
-            A: *const ::std::os::raw::c_void,
-            Adesc: cublasLtMatrixLayout_t,
-            B: *const ::std::os::raw::c_void,
-            Bdesc: cublasLtMatrixLayout_t,
-            beta: *const ::std::os::raw::c_void,
-            C: *const ::std::os::raw::c_void,
-            Cdesc: cublasLtMatrixLayout_t,
-            D: *mut ::std::os::raw::c_void,
-            Ddesc: cublasLtMatrixLayout_t,
-            algo: *const cublasLtMatmulAlgo_t,
-            workspace: *mut ::std::os::raw::c_void,
-            workspaceSizeInBytes: usize,
-            stream: cudaStream_t,
+            cublasLtHandle_t,
+            cublasLtMatmulDesc_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cublasLtMatrixLayout_t,
+            *const ::std::os::raw::c_void,
+            cublasLtMatrixLayout_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cublasLtMatrixLayout_t,
+            *mut ::std::os::raw::c_void,
+            cublasLtMatrixLayout_t,
+            *const cublasLtMatmulAlgo_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            cudaStream_t,
         ) -> cublasStatus_t,
     >,
     pub cublasLtMatrixTransform: Option<
         unsafe extern "C" fn(
-            lightHandle: cublasLtHandle_t,
-            transformDesc: cublasLtMatrixTransformDesc_t,
-            alpha: *const ::std::os::raw::c_void,
-            A: *const ::std::os::raw::c_void,
-            Adesc: cublasLtMatrixLayout_t,
-            beta: *const ::std::os::raw::c_void,
-            B: *const ::std::os::raw::c_void,
-            Bdesc: cublasLtMatrixLayout_t,
-            C: *mut ::std::os::raw::c_void,
-            Cdesc: cublasLtMatrixLayout_t,
-            stream: cudaStream_t,
+            cublasLtHandle_t,
+            cublasLtMatrixTransformDesc_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cublasLtMatrixLayout_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cublasLtMatrixLayout_t,
+            *mut ::std::os::raw::c_void,
+            cublasLtMatrixLayout_t,
+            cudaStream_t,
         ) -> cublasStatus_t,
     >,
-    pub cublasLtMatrixLayoutInit_internal: Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t, size: usize, type_: cudaDataType, rows: u64, cols: u64, ld: i64) -> cublasStatus_t>,
-    pub cublasLtGroupedMatrixLayoutInit_internal:
-        Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t, size: usize, type_: cudaDataType, groupCount: ::std::os::raw::c_int, rows_array: *const ::std::os::raw::c_void, cols_array: *const ::std::os::raw::c_void, ld_array: *const ::std::os::raw::c_void) -> cublasStatus_t>,
-    pub cublasLtMatrixLayoutCreate: Option<unsafe extern "C" fn(matLayout: *mut cublasLtMatrixLayout_t, type_: cudaDataType, rows: u64, cols: u64, ld: i64) -> cublasStatus_t>,
-    pub cublasLtGroupedMatrixLayoutCreate:
-        Option<unsafe extern "C" fn(matLayout: *mut cublasLtMatrixLayout_t, type_: cudaDataType, groupCount: ::std::os::raw::c_int, rows_array: *const ::std::os::raw::c_void, cols_array: *const ::std::os::raw::c_void, ld_array: *const ::std::os::raw::c_void) -> cublasStatus_t>,
-    pub cublasLtMatrixLayoutDestroy: Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t) -> cublasStatus_t>,
-    pub cublasLtMatrixLayoutSetAttribute: Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t, attr: cublasLtMatrixLayoutAttribute_t, buf: *const ::std::os::raw::c_void, sizeInBytes: usize) -> cublasStatus_t>,
-    pub cublasLtMatrixLayoutGetAttribute: Option<unsafe extern "C" fn(matLayout: cublasLtMatrixLayout_t, attr: cublasLtMatrixLayoutAttribute_t, buf: *mut ::std::os::raw::c_void, sizeInBytes: usize, sizeWritten: *mut usize) -> cublasStatus_t>,
-    pub cublasLtMatmulDescInit_internal: Option<unsafe extern "C" fn(matmulDesc: cublasLtMatmulDesc_t, size: usize, computeType: cublasComputeType_t, scaleType: cudaDataType_t) -> cublasStatus_t>,
-    pub cublasLtMatmulDescCreate: Option<unsafe extern "C" fn(matmulDesc: *mut cublasLtMatmulDesc_t, computeType: cublasComputeType_t, scaleType: cudaDataType_t) -> cublasStatus_t>,
-    pub cublasLtMatmulDescDestroy: Option<unsafe extern "C" fn(matmulDesc: cublasLtMatmulDesc_t) -> cublasStatus_t>,
-    pub cublasLtMatmulDescSetAttribute: Option<unsafe extern "C" fn(matmulDesc: cublasLtMatmulDesc_t, attr: cublasLtMatmulDescAttributes_t, buf: *const ::std::os::raw::c_void, sizeInBytes: usize) -> cublasStatus_t>,
-    pub cublasLtMatmulDescGetAttribute: Option<unsafe extern "C" fn(matmulDesc: cublasLtMatmulDesc_t, attr: cublasLtMatmulDescAttributes_t, buf: *mut ::std::os::raw::c_void, sizeInBytes: usize, sizeWritten: *mut usize) -> cublasStatus_t>,
-    pub cublasLtMatrixTransformDescInit_internal: Option<unsafe extern "C" fn(transformDesc: cublasLtMatrixTransformDesc_t, size: usize, scaleType: cudaDataType) -> cublasStatus_t>,
-    pub cublasLtMatrixTransformDescCreate: Option<unsafe extern "C" fn(transformDesc: *mut cublasLtMatrixTransformDesc_t, scaleType: cudaDataType) -> cublasStatus_t>,
-    pub cublasLtMatrixTransformDescDestroy: Option<unsafe extern "C" fn(transformDesc: cublasLtMatrixTransformDesc_t) -> cublasStatus_t>,
-    pub cublasLtMatrixTransformDescSetAttribute: Option<unsafe extern "C" fn(transformDesc: cublasLtMatrixTransformDesc_t, attr: cublasLtMatrixTransformDescAttributes_t, buf: *const ::std::os::raw::c_void, sizeInBytes: usize) -> cublasStatus_t>,
-    pub cublasLtMatrixTransformDescGetAttribute: Option<unsafe extern "C" fn(transformDesc: cublasLtMatrixTransformDesc_t, attr: cublasLtMatrixTransformDescAttributes_t, buf: *mut ::std::os::raw::c_void, sizeInBytes: usize, sizeWritten: *mut usize) -> cublasStatus_t>,
-    pub cublasLtEmulationDescInit_internal: Option<unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t, size: usize) -> cublasStatus_t>,
-    pub cublasLtEmulationDescCreate: Option<unsafe extern "C" fn(emulationDesc: *mut cublasLtEmulationDesc_t) -> cublasStatus_t>,
-    pub cublasLtEmulationDescDestroy: Option<unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t) -> cublasStatus_t>,
-    pub cublasLtEmulationDescSetAttribute: Option<unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t, attr: cublasLtEmulationDescAttributes_t, buf: *const ::std::os::raw::c_void, sizeInBytes: usize) -> cublasStatus_t>,
-    pub cublasLtEmulationDescGetAttribute: Option<unsafe extern "C" fn(emulationDesc: cublasLtEmulationDesc_t, attr: cublasLtEmulationDescAttributes_t, buf: *mut ::std::os::raw::c_void, sizeInBytes: usize, sizeWritten: *mut usize) -> cublasStatus_t>,
-    pub cublasLtMatmulPreferenceInit_internal: Option<unsafe extern "C" fn(pref: cublasLtMatmulPreference_t, size: usize) -> cublasStatus_t>,
-    pub cublasLtMatmulPreferenceCreate: Option<unsafe extern "C" fn(pref: *mut cublasLtMatmulPreference_t) -> cublasStatus_t>,
-    pub cublasLtMatmulPreferenceDestroy: Option<unsafe extern "C" fn(pref: cublasLtMatmulPreference_t) -> cublasStatus_t>,
-    pub cublasLtMatmulPreferenceSetAttribute: Option<unsafe extern "C" fn(pref: cublasLtMatmulPreference_t, attr: cublasLtMatmulPreferenceAttributes_t, buf: *const ::std::os::raw::c_void, sizeInBytes: usize) -> cublasStatus_t>,
-    pub cublasLtMatmulPreferenceGetAttribute: Option<unsafe extern "C" fn(pref: cublasLtMatmulPreference_t, attr: cublasLtMatmulPreferenceAttributes_t, buf: *mut ::std::os::raw::c_void, sizeInBytes: usize, sizeWritten: *mut usize) -> cublasStatus_t>,
+    pub cublasLtMatrixLayoutInit_internal: Option<unsafe extern "C" fn(cublasLtMatrixLayout_t, usize, cudaDataType, u64, u64, i64) -> cublasStatus_t>,
+    pub cublasLtGroupedMatrixLayoutInit_internal: Option<unsafe extern "C" fn(cublasLtMatrixLayout_t, usize, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cublasStatus_t>,
+    pub cublasLtMatrixLayoutCreate: Option<unsafe extern "C" fn(*mut cublasLtMatrixLayout_t, cudaDataType, u64, u64, i64) -> cublasStatus_t>,
+    pub cublasLtGroupedMatrixLayoutCreate: Option<unsafe extern "C" fn(*mut cublasLtMatrixLayout_t, cudaDataType, ::std::os::raw::c_int, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cublasStatus_t>,
+    pub cublasLtMatrixLayoutDestroy: Option<unsafe extern "C" fn(cublasLtMatrixLayout_t) -> cublasStatus_t>,
+    pub cublasLtMatrixLayoutSetAttribute: Option<unsafe extern "C" fn(cublasLtMatrixLayout_t, cublasLtMatrixLayoutAttribute_t, *const ::std::os::raw::c_void, usize) -> cublasStatus_t>,
+    pub cublasLtMatrixLayoutGetAttribute: Option<unsafe extern "C" fn(cublasLtMatrixLayout_t, cublasLtMatrixLayoutAttribute_t, *mut ::std::os::raw::c_void, usize, *mut usize) -> cublasStatus_t>,
+    pub cublasLtMatmulDescInit_internal: Option<unsafe extern "C" fn(cublasLtMatmulDesc_t, usize, cublasComputeType_t, cudaDataType_t) -> cublasStatus_t>,
+    pub cublasLtMatmulDescCreate: Option<unsafe extern "C" fn(*mut cublasLtMatmulDesc_t, cublasComputeType_t, cudaDataType_t) -> cublasStatus_t>,
+    pub cublasLtMatmulDescDestroy: Option<unsafe extern "C" fn(cublasLtMatmulDesc_t) -> cublasStatus_t>,
+    pub cublasLtMatmulDescSetAttribute: Option<unsafe extern "C" fn(cublasLtMatmulDesc_t, cublasLtMatmulDescAttributes_t, *const ::std::os::raw::c_void, usize) -> cublasStatus_t>,
+    pub cublasLtMatmulDescGetAttribute: Option<unsafe extern "C" fn(cublasLtMatmulDesc_t, cublasLtMatmulDescAttributes_t, *mut ::std::os::raw::c_void, usize, *mut usize) -> cublasStatus_t>,
+    pub cublasLtMatrixTransformDescInit_internal: Option<unsafe extern "C" fn(cublasLtMatrixTransformDesc_t, usize, cudaDataType) -> cublasStatus_t>,
+    pub cublasLtMatrixTransformDescCreate: Option<unsafe extern "C" fn(*mut cublasLtMatrixTransformDesc_t, cudaDataType) -> cublasStatus_t>,
+    pub cublasLtMatrixTransformDescDestroy: Option<unsafe extern "C" fn(cublasLtMatrixTransformDesc_t) -> cublasStatus_t>,
+    pub cublasLtMatrixTransformDescSetAttribute: Option<unsafe extern "C" fn(cublasLtMatrixTransformDesc_t, cublasLtMatrixTransformDescAttributes_t, *const ::std::os::raw::c_void, usize) -> cublasStatus_t>,
+    pub cublasLtMatrixTransformDescGetAttribute: Option<unsafe extern "C" fn(cublasLtMatrixTransformDesc_t, cublasLtMatrixTransformDescAttributes_t, *mut ::std::os::raw::c_void, usize, *mut usize) -> cublasStatus_t>,
+    pub cublasLtEmulationDescInit_internal: Option<unsafe extern "C" fn(cublasLtEmulationDesc_t, usize) -> cublasStatus_t>,
+    pub cublasLtEmulationDescCreate: Option<unsafe extern "C" fn(*mut cublasLtEmulationDesc_t) -> cublasStatus_t>,
+    pub cublasLtEmulationDescDestroy: Option<unsafe extern "C" fn(cublasLtEmulationDesc_t) -> cublasStatus_t>,
+    pub cublasLtEmulationDescSetAttribute: Option<unsafe extern "C" fn(cublasLtEmulationDesc_t, cublasLtEmulationDescAttributes_t, *const ::std::os::raw::c_void, usize) -> cublasStatus_t>,
+    pub cublasLtEmulationDescGetAttribute: Option<unsafe extern "C" fn(cublasLtEmulationDesc_t, cublasLtEmulationDescAttributes_t, *mut ::std::os::raw::c_void, usize, *mut usize) -> cublasStatus_t>,
+    pub cublasLtMatmulPreferenceInit_internal: Option<unsafe extern "C" fn(cublasLtMatmulPreference_t, usize) -> cublasStatus_t>,
+    pub cublasLtMatmulPreferenceCreate: Option<unsafe extern "C" fn(*mut cublasLtMatmulPreference_t) -> cublasStatus_t>,
+    pub cublasLtMatmulPreferenceDestroy: Option<unsafe extern "C" fn(cublasLtMatmulPreference_t) -> cublasStatus_t>,
+    pub cublasLtMatmulPreferenceSetAttribute: Option<unsafe extern "C" fn(cublasLtMatmulPreference_t, cublasLtMatmulPreferenceAttributes_t, *const ::std::os::raw::c_void, usize) -> cublasStatus_t>,
+    pub cublasLtMatmulPreferenceGetAttribute: Option<unsafe extern "C" fn(cublasLtMatmulPreference_t, cublasLtMatmulPreferenceAttributes_t, *mut ::std::os::raw::c_void, usize, *mut usize) -> cublasStatus_t>,
     pub cublasLtMatmulAlgoGetHeuristic: Option<
-        unsafe extern "C" fn(
-            lightHandle: cublasLtHandle_t,
-            operationDesc: cublasLtMatmulDesc_t,
-            Adesc: cublasLtMatrixLayout_t,
-            Bdesc: cublasLtMatrixLayout_t,
-            Cdesc: cublasLtMatrixLayout_t,
-            Ddesc: cublasLtMatrixLayout_t,
-            preference: cublasLtMatmulPreference_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            heuristicResultsArray: *mut cublasLtMatmulHeuristicResult_t,
-            returnAlgoCount: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
+        unsafe extern "C" fn(cublasLtHandle_t, cublasLtMatmulDesc_t, cublasLtMatrixLayout_t, cublasLtMatrixLayout_t, cublasLtMatrixLayout_t, cublasLtMatrixLayout_t, cublasLtMatmulPreference_t, ::std::os::raw::c_int, *mut cublasLtMatmulHeuristicResult_t, *mut ::std::os::raw::c_int) -> cublasStatus_t,
     >,
-    pub cublasLtMatmulAlgoGetIds: Option<
-        unsafe extern "C" fn(
-            lightHandle: cublasLtHandle_t,
-            computeType: cublasComputeType_t,
-            scaleType: cudaDataType_t,
-            Atype: cudaDataType_t,
-            Btype: cudaDataType_t,
-            Ctype: cudaDataType_t,
-            Dtype: cudaDataType_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            algoIdsArray: *mut ::std::os::raw::c_int,
-            returnAlgoCount: *mut ::std::os::raw::c_int,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasLtMatmulAlgoInit: Option<
-        unsafe extern "C" fn(lightHandle: cublasLtHandle_t, computeType: cublasComputeType_t, scaleType: cudaDataType_t, Atype: cudaDataType_t, Btype: cudaDataType_t, Ctype: cudaDataType_t, Dtype: cudaDataType_t, algoId: ::std::os::raw::c_int, algo: *mut cublasLtMatmulAlgo_t) -> cublasStatus_t,
-    >,
-    pub cublasLtMatmulAlgoCheck: Option<
-        unsafe extern "C" fn(
-            lightHandle: cublasLtHandle_t,
-            operationDesc: cublasLtMatmulDesc_t,
-            Adesc: cublasLtMatrixLayout_t,
-            Bdesc: cublasLtMatrixLayout_t,
-            Cdesc: cublasLtMatrixLayout_t,
-            Ddesc: cublasLtMatrixLayout_t,
-            algo: *const cublasLtMatmulAlgo_t,
-            result: *mut cublasLtMatmulHeuristicResult_t,
-        ) -> cublasStatus_t,
-    >,
-    pub cublasLtMatmulAlgoCapGetAttribute: Option<unsafe extern "C" fn(algo: *const cublasLtMatmulAlgo_t, attr: cublasLtMatmulAlgoCapAttributes_t, buf: *mut ::std::os::raw::c_void, sizeInBytes: usize, sizeWritten: *mut usize) -> cublasStatus_t>,
-    pub cublasLtMatmulAlgoConfigSetAttribute: Option<unsafe extern "C" fn(algo: *mut cublasLtMatmulAlgo_t, attr: cublasLtMatmulAlgoConfigAttributes_t, buf: *const ::std::os::raw::c_void, sizeInBytes: usize) -> cublasStatus_t>,
-    pub cublasLtMatmulAlgoConfigGetAttribute: Option<unsafe extern "C" fn(algo: *const cublasLtMatmulAlgo_t, attr: cublasLtMatmulAlgoConfigAttributes_t, buf: *mut ::std::os::raw::c_void, sizeInBytes: usize, sizeWritten: *mut usize) -> cublasStatus_t>,
-    pub cublasLtLoggerSetCallback: Option<unsafe extern "C" fn(callback: cublasLtLoggerCallback_t) -> cublasStatus_t>,
-    pub cublasLtLoggerSetFile: Option<unsafe extern "C" fn(file: *mut FILE) -> cublasStatus_t>,
-    pub cublasLtLoggerOpenFile: Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cublasStatus_t>,
-    pub cublasLtLoggerSetLevel: Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cublasStatus_t>,
-    pub cublasLtLoggerSetMask: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasLtMatmulAlgoGetIds: Option<unsafe extern "C" fn(cublasLtHandle_t, cublasComputeType_t, cudaDataType_t, cudaDataType_t, cudaDataType_t, cudaDataType_t, cudaDataType_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasLtMatmulAlgoInit: Option<unsafe extern "C" fn(cublasLtHandle_t, cublasComputeType_t, cudaDataType_t, cudaDataType_t, cudaDataType_t, cudaDataType_t, cudaDataType_t, ::std::os::raw::c_int, *mut cublasLtMatmulAlgo_t) -> cublasStatus_t>,
+    pub cublasLtMatmulAlgoCheck: Option<unsafe extern "C" fn(cublasLtHandle_t, cublasLtMatmulDesc_t, cublasLtMatrixLayout_t, cublasLtMatrixLayout_t, cublasLtMatrixLayout_t, cublasLtMatrixLayout_t, *const cublasLtMatmulAlgo_t, *mut cublasLtMatmulHeuristicResult_t) -> cublasStatus_t>,
+    pub cublasLtMatmulAlgoCapGetAttribute: Option<unsafe extern "C" fn(*const cublasLtMatmulAlgo_t, cublasLtMatmulAlgoCapAttributes_t, *mut ::std::os::raw::c_void, usize, *mut usize) -> cublasStatus_t>,
+    pub cublasLtMatmulAlgoConfigSetAttribute: Option<unsafe extern "C" fn(*mut cublasLtMatmulAlgo_t, cublasLtMatmulAlgoConfigAttributes_t, *const ::std::os::raw::c_void, usize) -> cublasStatus_t>,
+    pub cublasLtMatmulAlgoConfigGetAttribute: Option<unsafe extern "C" fn(*const cublasLtMatmulAlgo_t, cublasLtMatmulAlgoConfigAttributes_t, *mut ::std::os::raw::c_void, usize, *mut usize) -> cublasStatus_t>,
+    pub cublasLtLoggerSetCallback: Option<unsafe extern "C" fn(cublasLtLoggerCallback_t) -> cublasStatus_t>,
+    pub cublasLtLoggerSetFile: Option<unsafe extern "C" fn(*mut FILE) -> cublasStatus_t>,
+    pub cublasLtLoggerOpenFile: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char) -> cublasStatus_t>,
+    pub cublasLtLoggerSetLevel: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cublasStatus_t>,
+    pub cublasLtLoggerSetMask: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cublasStatus_t>,
     pub cublasLtLoggerForceDisable: Option<unsafe extern "C" fn() -> cublasStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
@@ -2604,218 +2566,216 @@ pub unsafe extern "C" fn cublasLtLoggerForceDisable() -> cublasStatus_t {
 }
 #[cfg(feature = "runtime-link")]
 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-    let bindings = unsafe {
-        Box::new(DynamicBindings {
-            cublasLtCreate: {
-                let p = get_proc_addr(lib, b"cublasLtCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtDestroy: {
-                let p = get_proc_addr(lib, b"cublasLtDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtGetStatusName: {
-                let p = get_proc_addr(lib, b"cublasLtGetStatusName\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtGetStatusString: {
-                let p = get_proc_addr(lib, b"cublasLtGetStatusString\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtGetVersion: {
-                let p = get_proc_addr(lib, b"cublasLtGetVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtGetCudartVersion: {
-                let p = get_proc_addr(lib, b"cublasLtGetCudartVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtGetProperty: {
-                let p = get_proc_addr(lib, b"cublasLtGetProperty\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtHeuristicsCacheGetCapacity: {
-                let p = get_proc_addr(lib, b"cublasLtHeuristicsCacheGetCapacity\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtHeuristicsCacheSetCapacity: {
-                let p = get_proc_addr(lib, b"cublasLtHeuristicsCacheSetCapacity\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtDisableCpuInstructionsSetMask: {
-                let p = get_proc_addr(lib, b"cublasLtDisableCpuInstructionsSetMask\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmul: {
-                let p = get_proc_addr(lib, b"cublasLtMatmul\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixTransform: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixTransform\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixLayoutInit_internal: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixLayoutInit_internal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtGroupedMatrixLayoutInit_internal: {
-                let p = get_proc_addr(lib, b"cublasLtGroupedMatrixLayoutInit_internal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixLayoutCreate: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixLayoutCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtGroupedMatrixLayoutCreate: {
-                let p = get_proc_addr(lib, b"cublasLtGroupedMatrixLayoutCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixLayoutDestroy: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixLayoutDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixLayoutSetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixLayoutSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixLayoutGetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixLayoutGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulDescInit_internal: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulDescInit_internal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulDescCreate: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulDescCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulDescDestroy: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulDescDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulDescSetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulDescSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulDescGetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulDescGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixTransformDescInit_internal: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescInit_internal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixTransformDescCreate: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixTransformDescDestroy: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixTransformDescSetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatrixTransformDescGetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtEmulationDescInit_internal: {
-                let p = get_proc_addr(lib, b"cublasLtEmulationDescInit_internal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtEmulationDescCreate: {
-                let p = get_proc_addr(lib, b"cublasLtEmulationDescCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtEmulationDescDestroy: {
-                let p = get_proc_addr(lib, b"cublasLtEmulationDescDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtEmulationDescSetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtEmulationDescSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtEmulationDescGetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtEmulationDescGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulPreferenceInit_internal: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceInit_internal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulPreferenceCreate: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulPreferenceDestroy: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulPreferenceSetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulPreferenceGetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulAlgoGetHeuristic: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulAlgoGetHeuristic\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulAlgoGetIds: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulAlgoGetIds\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulAlgoInit: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulAlgoInit\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulAlgoCheck: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulAlgoCheck\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulAlgoCapGetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulAlgoCapGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulAlgoConfigSetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulAlgoConfigSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtMatmulAlgoConfigGetAttribute: {
-                let p = get_proc_addr(lib, b"cublasLtMatmulAlgoConfigGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtLoggerSetCallback: {
-                let p = get_proc_addr(lib, b"cublasLtLoggerSetCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtLoggerSetFile: {
-                let p = get_proc_addr(lib, b"cublasLtLoggerSetFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtLoggerOpenFile: {
-                let p = get_proc_addr(lib, b"cublasLtLoggerOpenFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtLoggerSetLevel: {
-                let p = get_proc_addr(lib, b"cublasLtLoggerSetLevel\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtLoggerSetMask: {
-                let p = get_proc_addr(lib, b"cublasLtLoggerSetMask\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cublasLtLoggerForceDisable: {
-                let p = get_proc_addr(lib, b"cublasLtLoggerForceDisable\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-        })
-    };
+    let bindings = Box::new(DynamicBindings {
+        cublasLtCreate: {
+            let p = get_proc_addr(lib, b"cublasLtCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtDestroy: {
+            let p = get_proc_addr(lib, b"cublasLtDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtGetStatusName: {
+            let p = get_proc_addr(lib, b"cublasLtGetStatusName\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtGetStatusString: {
+            let p = get_proc_addr(lib, b"cublasLtGetStatusString\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtGetVersion: {
+            let p = get_proc_addr(lib, b"cublasLtGetVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtGetCudartVersion: {
+            let p = get_proc_addr(lib, b"cublasLtGetCudartVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtGetProperty: {
+            let p = get_proc_addr(lib, b"cublasLtGetProperty\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtHeuristicsCacheGetCapacity: {
+            let p = get_proc_addr(lib, b"cublasLtHeuristicsCacheGetCapacity\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtHeuristicsCacheSetCapacity: {
+            let p = get_proc_addr(lib, b"cublasLtHeuristicsCacheSetCapacity\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtDisableCpuInstructionsSetMask: {
+            let p = get_proc_addr(lib, b"cublasLtDisableCpuInstructionsSetMask\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmul: {
+            let p = get_proc_addr(lib, b"cublasLtMatmul\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixTransform: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixTransform\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixLayoutInit_internal: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixLayoutInit_internal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtGroupedMatrixLayoutInit_internal: {
+            let p = get_proc_addr(lib, b"cublasLtGroupedMatrixLayoutInit_internal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixLayoutCreate: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixLayoutCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtGroupedMatrixLayoutCreate: {
+            let p = get_proc_addr(lib, b"cublasLtGroupedMatrixLayoutCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixLayoutDestroy: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixLayoutDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixLayoutSetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixLayoutSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixLayoutGetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixLayoutGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulDescInit_internal: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulDescInit_internal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulDescCreate: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulDescCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulDescDestroy: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulDescDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulDescSetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulDescSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulDescGetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulDescGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixTransformDescInit_internal: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescInit_internal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixTransformDescCreate: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixTransformDescDestroy: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixTransformDescSetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatrixTransformDescGetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatrixTransformDescGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtEmulationDescInit_internal: {
+            let p = get_proc_addr(lib, b"cublasLtEmulationDescInit_internal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtEmulationDescCreate: {
+            let p = get_proc_addr(lib, b"cublasLtEmulationDescCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtEmulationDescDestroy: {
+            let p = get_proc_addr(lib, b"cublasLtEmulationDescDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtEmulationDescSetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtEmulationDescSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtEmulationDescGetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtEmulationDescGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulPreferenceInit_internal: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceInit_internal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulPreferenceCreate: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulPreferenceDestroy: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulPreferenceSetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulPreferenceGetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulPreferenceGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulAlgoGetHeuristic: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulAlgoGetHeuristic\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulAlgoGetIds: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulAlgoGetIds\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulAlgoInit: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulAlgoInit\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulAlgoCheck: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulAlgoCheck\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulAlgoCapGetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulAlgoCapGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulAlgoConfigSetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulAlgoConfigSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtMatmulAlgoConfigGetAttribute: {
+            let p = get_proc_addr(lib, b"cublasLtMatmulAlgoConfigGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtLoggerSetCallback: {
+            let p = get_proc_addr(lib, b"cublasLtLoggerSetCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtLoggerSetFile: {
+            let p = get_proc_addr(lib, b"cublasLtLoggerSetFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtLoggerOpenFile: {
+            let p = get_proc_addr(lib, b"cublasLtLoggerOpenFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtLoggerSetLevel: {
+            let p = get_proc_addr(lib, b"cublasLtLoggerSetLevel\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtLoggerSetMask: {
+            let p = get_proc_addr(lib, b"cublasLtLoggerSetMask\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cublasLtLoggerForceDisable: {
+            let p = get_proc_addr(lib, b"cublasLtLoggerForceDisable\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+    });
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
 unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}

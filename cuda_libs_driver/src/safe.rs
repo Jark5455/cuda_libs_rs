@@ -1,56 +1,498 @@
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(dead_code)]
+#![allow(unused_mut)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unsafe_op_in_unsafe_fn)]
+pub use crate::sys::CU_ARRAY_SPARSE_PROPERTIES_SINGLE_MIPTAIL;
+pub use crate::sys::CU_COMPUTE_ACCELERATED_TARGET_BASE;
+pub use crate::sys::CU_COMPUTE_FAMILY_TARGET_BASE;
+pub use crate::sys::CU_DEV_SM_RESOURCE_GROUP_PARAMS;
+pub use crate::sys::CU_DEV_SM_RESOURCE_GROUP_PARAMS_st;
+pub use crate::sys::CU_GRAPH_COND_ASSIGN_DEFAULT;
+pub use crate::sys::CU_GRAPH_KERNEL_NODE_PORT_DEFAULT;
+pub use crate::sys::CU_GRAPH_KERNEL_NODE_PORT_LAUNCH_ORDER;
+pub use crate::sys::CU_GRAPH_KERNEL_NODE_PORT_PROGRAMMATIC;
+pub use crate::sys::CU_IPC_HANDLE_SIZE;
+pub use crate::sys::CU_LAUNCH_KERNEL_REQUIRED_BLOCK_DIM;
+pub use crate::sys::CU_LAUNCH_PARAM_BUFFER_POINTER_AS_INT;
+pub use crate::sys::CU_LAUNCH_PARAM_BUFFER_SIZE_AS_INT;
+pub use crate::sys::CU_LAUNCH_PARAM_END_AS_INT;
+pub use crate::sys::CU_MEM_CREATE_USAGE_HW_DECOMPRESS;
+pub use crate::sys::CU_MEM_CREATE_USAGE_TILE_POOL;
+pub use crate::sys::CU_MEM_POOL_CREATE_USAGE_HW_DECOMPRESS;
+pub use crate::sys::CU_MEMHOSTALLOC_DEVICEMAP;
+pub use crate::sys::CU_MEMHOSTALLOC_PORTABLE;
+pub use crate::sys::CU_MEMHOSTALLOC_WRITECOMBINED;
+pub use crate::sys::CU_MEMHOSTREGISTER_DEVICEMAP;
+pub use crate::sys::CU_MEMHOSTREGISTER_IOMEMORY;
+pub use crate::sys::CU_MEMHOSTREGISTER_PORTABLE;
+pub use crate::sys::CU_MEMHOSTREGISTER_READ_ONLY;
+pub use crate::sys::CU_PARAM_TR_DEFAULT;
+pub use crate::sys::CU_TENSOR_MAP_NUM_QWORDS;
+pub use crate::sys::CU_TRSA_OVERRIDE_FORMAT;
+pub use crate::sys::CU_TRSF_DISABLE_TRILINEAR_OPTIMIZATION;
+pub use crate::sys::CU_TRSF_NORMALIZED_COORDINATES;
+pub use crate::sys::CU_TRSF_READ_AS_INTEGER;
+pub use crate::sys::CU_TRSF_SEAMLESS_CUBEMAP;
+pub use crate::sys::CU_TRSF_SRGB;
+pub use crate::sys::CUCoredumpGenerationFlags;
+pub use crate::sys::CUDA_ARRAY_DESCRIPTOR;
+pub use crate::sys::CUDA_ARRAY_DESCRIPTOR_st;
+pub use crate::sys::CUDA_ARRAY_DESCRIPTOR_v2;
+pub use crate::sys::CUDA_ARRAY_MEMORY_REQUIREMENTS;
+pub use crate::sys::CUDA_ARRAY_MEMORY_REQUIREMENTS_st;
+pub use crate::sys::CUDA_ARRAY_MEMORY_REQUIREMENTS_v1;
+pub use crate::sys::CUDA_ARRAY_SPARSE_PROPERTIES;
+pub use crate::sys::CUDA_ARRAY_SPARSE_PROPERTIES_st;
+pub use crate::sys::CUDA_ARRAY_SPARSE_PROPERTIES_st__bindgen_ty_1;
+pub use crate::sys::CUDA_ARRAY_SPARSE_PROPERTIES_v1;
+pub use crate::sys::CUDA_ARRAY3D_2DARRAY;
+pub use crate::sys::CUDA_ARRAY3D_COLOR_ATTACHMENT;
+pub use crate::sys::CUDA_ARRAY3D_CUBEMAP;
+pub use crate::sys::CUDA_ARRAY3D_DEFERRED_MAPPING;
+pub use crate::sys::CUDA_ARRAY3D_DEPTH_TEXTURE;
+pub use crate::sys::CUDA_ARRAY3D_DESCRIPTOR;
+pub use crate::sys::CUDA_ARRAY3D_DESCRIPTOR_st;
+pub use crate::sys::CUDA_ARRAY3D_DESCRIPTOR_v2;
+pub use crate::sys::CUDA_ARRAY3D_LAYERED;
+pub use crate::sys::CUDA_ARRAY3D_SPARSE;
+pub use crate::sys::CUDA_ARRAY3D_SURFACE_LDST;
+pub use crate::sys::CUDA_ARRAY3D_TEXTURE_GATHER;
+pub use crate::sys::CUDA_ARRAY3D_VIDEO_ENCODE_DECODE;
+pub use crate::sys::CUDA_BATCH_MEM_OP_NODE_PARAMS;
+pub use crate::sys::CUDA_BATCH_MEM_OP_NODE_PARAMS_v1;
+pub use crate::sys::CUDA_BATCH_MEM_OP_NODE_PARAMS_v1_st;
+pub use crate::sys::CUDA_BATCH_MEM_OP_NODE_PARAMS_v2;
+pub use crate::sys::CUDA_BATCH_MEM_OP_NODE_PARAMS_v2_st;
+pub use crate::sys::CUDA_CHILD_GRAPH_NODE_PARAMS;
+pub use crate::sys::CUDA_CHILD_GRAPH_NODE_PARAMS_st;
+pub use crate::sys::CUDA_CONDITIONAL_NODE_PARAMS;
+pub use crate::sys::CUDA_COOPERATIVE_LAUNCH_MULTI_DEVICE_NO_POST_LAUNCH_SYNC;
+pub use crate::sys::CUDA_COOPERATIVE_LAUNCH_MULTI_DEVICE_NO_PRE_LAUNCH_SYNC;
+pub use crate::sys::CUDA_EVENT_RECORD_NODE_PARAMS;
+pub use crate::sys::CUDA_EVENT_RECORD_NODE_PARAMS_st;
+pub use crate::sys::CUDA_EVENT_WAIT_NODE_PARAMS;
+pub use crate::sys::CUDA_EVENT_WAIT_NODE_PARAMS_st;
+pub use crate::sys::CUDA_EXT_SEM_SIGNAL_NODE_PARAMS;
+pub use crate::sys::CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st;
+pub use crate::sys::CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_v1;
+pub use crate::sys::CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_v2;
+pub use crate::sys::CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_v2_st;
+pub use crate::sys::CUDA_EXT_SEM_WAIT_NODE_PARAMS;
+pub use crate::sys::CUDA_EXT_SEM_WAIT_NODE_PARAMS_st;
+pub use crate::sys::CUDA_EXT_SEM_WAIT_NODE_PARAMS_v1;
+pub use crate::sys::CUDA_EXT_SEM_WAIT_NODE_PARAMS_v2;
+pub use crate::sys::CUDA_EXT_SEM_WAIT_NODE_PARAMS_v2_st;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_BUFFER_DESC;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_BUFFER_DESC_st;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_BUFFER_DESC_v1;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_DEDICATED;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_HANDLE_DESC;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_HANDLE_DESC_v1;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_st;
+pub use crate::sys::CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_v1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_v1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st__bindgen_ty_1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st__bindgen_ty_1__bindgen_ty_3;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_SIGNAL_SKIP_NVSCIBUF_MEMSYNC;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st__bindgen_ty_1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st__bindgen_ty_1__bindgen_ty_3;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1;
+pub use crate::sys::CUDA_EXTERNAL_SEMAPHORE_WAIT_SKIP_NVSCIBUF_MEMSYNC;
+pub use crate::sys::CUDA_GRAPH_INSTANTIATE_PARAMS;
+pub use crate::sys::CUDA_GRAPH_INSTANTIATE_PARAMS_st;
+pub use crate::sys::CUDA_HOST_NODE_PARAMS;
+pub use crate::sys::CUDA_HOST_NODE_PARAMS_st;
+pub use crate::sys::CUDA_HOST_NODE_PARAMS_v1;
+pub use crate::sys::CUDA_HOST_NODE_PARAMS_v2;
+pub use crate::sys::CUDA_HOST_NODE_PARAMS_v2_st;
+pub use crate::sys::CUDA_KERNEL_NODE_PARAMS;
+pub use crate::sys::CUDA_KERNEL_NODE_PARAMS_st;
+pub use crate::sys::CUDA_KERNEL_NODE_PARAMS_v1;
+pub use crate::sys::CUDA_KERNEL_NODE_PARAMS_v2;
+pub use crate::sys::CUDA_KERNEL_NODE_PARAMS_v2_st;
+pub use crate::sys::CUDA_KERNEL_NODE_PARAMS_v3;
+pub use crate::sys::CUDA_KERNEL_NODE_PARAMS_v3_st;
+pub use crate::sys::CUDA_LAUNCH_PARAMS;
+pub use crate::sys::CUDA_LAUNCH_PARAMS_st;
+pub use crate::sys::CUDA_LAUNCH_PARAMS_v1;
+pub use crate::sys::CUDA_MEM_ALLOC_NODE_PARAMS;
+pub use crate::sys::CUDA_MEM_ALLOC_NODE_PARAMS_v1;
+pub use crate::sys::CUDA_MEM_ALLOC_NODE_PARAMS_v1_st;
+pub use crate::sys::CUDA_MEM_ALLOC_NODE_PARAMS_v2;
+pub use crate::sys::CUDA_MEM_ALLOC_NODE_PARAMS_v2_st;
+pub use crate::sys::CUDA_MEM_FREE_NODE_PARAMS;
+pub use crate::sys::CUDA_MEM_FREE_NODE_PARAMS_st;
+pub use crate::sys::CUDA_MEMCPY_NODE_PARAMS;
+pub use crate::sys::CUDA_MEMCPY_NODE_PARAMS_st;
+pub use crate::sys::CUDA_MEMCPY2D;
+pub use crate::sys::CUDA_MEMCPY2D_st;
+pub use crate::sys::CUDA_MEMCPY2D_v2;
+pub use crate::sys::CUDA_MEMCPY3D;
+pub use crate::sys::CUDA_MEMCPY3D_BATCH_OP;
+pub use crate::sys::CUDA_MEMCPY3D_BATCH_OP_st;
+pub use crate::sys::CUDA_MEMCPY3D_BATCH_OP_v1;
+pub use crate::sys::CUDA_MEMCPY3D_PEER;
+pub use crate::sys::CUDA_MEMCPY3D_PEER_st;
+pub use crate::sys::CUDA_MEMCPY3D_PEER_v1;
+pub use crate::sys::CUDA_MEMCPY3D_st;
+pub use crate::sys::CUDA_MEMCPY3D_v2;
+pub use crate::sys::CUDA_MEMSET_NODE_PARAMS;
+pub use crate::sys::CUDA_MEMSET_NODE_PARAMS_st;
+pub use crate::sys::CUDA_MEMSET_NODE_PARAMS_v1;
+pub use crate::sys::CUDA_MEMSET_NODE_PARAMS_v2;
+pub use crate::sys::CUDA_MEMSET_NODE_PARAMS_v2_st;
+pub use crate::sys::CUDA_NVSCISYNC_ATTR_SIGNAL;
+pub use crate::sys::CUDA_NVSCISYNC_ATTR_WAIT;
+pub use crate::sys::CUDA_POINTER_ATTRIBUTE_ACCESS_FLAGS_enum;
+pub use crate::sys::CUDA_POINTER_ATTRIBUTE_P2P_TOKENS;
+pub use crate::sys::CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_st;
+pub use crate::sys::CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_v1;
+pub use crate::sys::CUDA_RESOURCE_DESC;
+pub use crate::sys::CUDA_RESOURCE_DESC_st;
+pub use crate::sys::CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_2;
+pub use crate::sys::CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_3;
+pub use crate::sys::CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_4;
+pub use crate::sys::CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_5;
+pub use crate::sys::CUDA_RESOURCE_DESC_v1;
+pub use crate::sys::CUDA_RESOURCE_VIEW_DESC;
+pub use crate::sys::CUDA_RESOURCE_VIEW_DESC_st;
+pub use crate::sys::CUDA_RESOURCE_VIEW_DESC_v1;
+pub use crate::sys::CUDA_TEXTURE_DESC;
+pub use crate::sys::CUDA_TEXTURE_DESC_st;
+pub use crate::sys::CUDA_TEXTURE_DESC_v1;
+pub use crate::sys::CUDA_VERSION;
+pub use crate::sys::CUGPUDirectRDMAWritesOrdering_enum;
+pub use crate::sys::CUaccessPolicyWindow;
+pub use crate::sys::CUaccessPolicyWindow_st;
+pub use crate::sys::CUaccessPolicyWindow_v1;
+pub use crate::sys::CUaccessProperty_enum;
+pub use crate::sys::CUaddress_mode_enum;
+pub use crate::sys::CUarray;
+pub use crate::sys::CUarray_cubemap_face_enum;
+pub use crate::sys::CUarray_format_enum;
+pub use crate::sys::CUarray_st;
+pub use crate::sys::CUarrayMapInfo;
+pub use crate::sys::CUarrayMapInfo_st;
+pub use crate::sys::CUarrayMapInfo_st__bindgen_ty_2__bindgen_ty_1;
+pub use crate::sys::CUarrayMapInfo_st__bindgen_ty_2__bindgen_ty_2;
+pub use crate::sys::CUarrayMapInfo_v1;
+pub use crate::sys::CUarraySparseSubresourceType_enum;
+pub use crate::sys::CUasyncCallback;
+pub use crate::sys::CUasyncCallbackEntry_st;
+pub use crate::sys::CUasyncCallbackHandle;
+pub use crate::sys::CUasyncNotificationInfo;
+pub use crate::sys::CUasyncNotificationInfo_st;
+pub use crate::sys::CUasyncNotificationInfo_st__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::CUasyncNotificationType_enum;
+pub use crate::sys::CUatomicOperation_enum;
+pub use crate::sys::CUatomicOperationCapability_enum;
+pub use crate::sys::CUcheckpointCheckpointArgs;
+pub use crate::sys::CUcheckpointCheckpointArgs_st;
+pub use crate::sys::CUcheckpointGpuPair;
+pub use crate::sys::CUcheckpointGpuPair_st;
+pub use crate::sys::CUcheckpointLockArgs;
+pub use crate::sys::CUcheckpointLockArgs_st;
+pub use crate::sys::CUcheckpointRestoreArgs;
+pub use crate::sys::CUcheckpointRestoreArgs_st;
+pub use crate::sys::CUcheckpointUnlockArgs;
+pub use crate::sys::CUcheckpointUnlockArgs_st;
+pub use crate::sys::CUcigDataType_enum;
+pub use crate::sys::CUclusterSchedulingPolicy_enum;
+pub use crate::sys::CUcomputemode_enum;
+pub use crate::sys::CUcontext;
+pub use crate::sys::CUcoredumpCallbackEntry_st;
+pub use crate::sys::CUcoredumpCallbackHandle;
+pub use crate::sys::CUcoredumpSettings_enum;
+pub use crate::sys::CUcoredumpStatusCallback;
+pub use crate::sys::CUctx_flags_enum;
+pub use crate::sys::CUctx_st;
+pub use crate::sys::CUctxCigParam;
+pub use crate::sys::CUctxCigParam_st;
+pub use crate::sys::CUctxCreateParams;
+pub use crate::sys::CUctxCreateParams_st;
+pub use crate::sys::CUdevResource;
+pub use crate::sys::CUdevResource_st;
+pub use crate::sys::CUdevResource_v1;
+pub use crate::sys::CUdevResourceDesc;
+pub use crate::sys::CUdevResourceDesc_st;
+pub use crate::sys::CUdevResourceType;
+pub use crate::sys::CUdevSmResource;
+pub use crate::sys::CUdevSmResource_st;
+pub use crate::sys::CUdevSmResourceGroup_flags;
+pub use crate::sys::CUdevSmResourceSplitByCount_flags;
+pub use crate::sys::CUdevWorkqueueConfigResource;
+pub use crate::sys::CUdevWorkqueueConfigResource_st;
+pub use crate::sys::CUdevWorkqueueConfigScope;
+pub use crate::sys::CUdevWorkqueueResource;
+pub use crate::sys::CUdevWorkqueueResource_st;
+pub use crate::sys::CUdevice;
+pub use crate::sys::CUdevice_P2PAttribute_enum;
+pub use crate::sys::CUdevice_attribute_enum;
+pub use crate::sys::CUdevice_v1;
+pub use crate::sys::CUdeviceNumaConfig_enum;
+pub use crate::sys::CUdeviceptr;
+pub use crate::sys::CUdeviceptr_v2;
+pub use crate::sys::CUdevprop;
+pub use crate::sys::CUdevprop_st;
+pub use crate::sys::CUdevprop_v1;
+pub use crate::sys::CUdriverProcAddress_flags_enum;
+pub use crate::sys::CUdriverProcAddressQueryResult_enum;
+pub use crate::sys::CUevent;
+pub use crate::sys::CUevent_flags_enum;
+pub use crate::sys::CUevent_record_flags_enum;
+pub use crate::sys::CUevent_sched_flags_enum;
+pub use crate::sys::CUevent_st;
+pub use crate::sys::CUevent_wait_flags_enum;
+pub use crate::sys::CUexecAffinityParam;
+pub use crate::sys::CUexecAffinityParam_st;
+pub use crate::sys::CUexecAffinityParam_v1;
+pub use crate::sys::CUexecAffinitySmCount;
+pub use crate::sys::CUexecAffinitySmCount_st;
+pub use crate::sys::CUexecAffinitySmCount_v1;
+pub use crate::sys::CUexecAffinityType_enum;
+pub use crate::sys::CUextMemory_st;
+pub use crate::sys::CUextSemaphore_st;
+pub use crate::sys::CUextent3D;
+pub use crate::sys::CUextent3D_st;
+pub use crate::sys::CUextent3D_v1;
+pub use crate::sys::CUexternalMemory;
+pub use crate::sys::CUexternalMemoryHandleType_enum;
+pub use crate::sys::CUexternalSemaphore;
+pub use crate::sys::CUexternalSemaphoreHandleType_enum;
+pub use crate::sys::CUfilter_mode_enum;
+pub use crate::sys::CUflushGPUDirectRDMAWritesOptions_enum;
+pub use crate::sys::CUflushGPUDirectRDMAWritesScope_enum;
+pub use crate::sys::CUflushGPUDirectRDMAWritesTarget_enum;
+pub use crate::sys::CUfunc_cache_enum;
+pub use crate::sys::CUfunc_st;
+pub use crate::sys::CUfunction;
+pub use crate::sys::CUfunction_attribute_enum;
+pub use crate::sys::CUfunctionLoadingState_enum;
+pub use crate::sys::CUgraph;
+pub use crate::sys::CUgraph_st;
+pub use crate::sys::CUgraphChildGraphNodeOwnership_enum;
+pub use crate::sys::CUgraphConditionalHandle;
+pub use crate::sys::CUgraphConditionalNodeType_enum;
+pub use crate::sys::CUgraphDebugDot_flags_enum;
+pub use crate::sys::CUgraphDependencyType_enum;
+pub use crate::sys::CUgraphDeviceNode;
+pub use crate::sys::CUgraphDeviceUpdatableNode_st;
+pub use crate::sys::CUgraphEdgeData;
+pub use crate::sys::CUgraphEdgeData_st;
+pub use crate::sys::CUgraphExec;
+pub use crate::sys::CUgraphExec_st;
+pub use crate::sys::CUgraphExecUpdateResult_enum;
+pub use crate::sys::CUgraphExecUpdateResultInfo;
+pub use crate::sys::CUgraphExecUpdateResultInfo_st;
+pub use crate::sys::CUgraphExecUpdateResultInfo_v1;
+pub use crate::sys::CUgraphInstantiate_flags_enum;
+pub use crate::sys::CUgraphInstantiateResult_enum;
+pub use crate::sys::CUgraphMem_attribute_enum;
+pub use crate::sys::CUgraphNode;
+pub use crate::sys::CUgraphNode_st;
+pub use crate::sys::CUgraphNodeParams;
+pub use crate::sys::CUgraphNodeParams_st;
+pub use crate::sys::CUgraphNodeType_enum;
+pub use crate::sys::CUgraphicsMapResourceFlags_enum;
+pub use crate::sys::CUgraphicsRegisterFlags_enum;
+pub use crate::sys::CUgraphicsResource;
+pub use crate::sys::CUgraphicsResource_st;
+pub use crate::sys::CUgreenCtx;
+pub use crate::sys::CUgreenCtx_st;
+pub use crate::sys::CUgreenCtxCreate_flags;
+pub use crate::sys::CUhostFn;
+pub use crate::sys::CUhostTaskSyncMode_enum;
+pub use crate::sys::CUipcEventHandle;
+pub use crate::sys::CUipcEventHandle_st;
+pub use crate::sys::CUipcEventHandle_v1;
+pub use crate::sys::CUipcMem_flags_enum;
+pub use crate::sys::CUipcMemHandle;
+pub use crate::sys::CUipcMemHandle_st;
+pub use crate::sys::CUipcMemHandle_v1;
+pub use crate::sys::CUjit_cacheMode_enum;
+pub use crate::sys::CUjit_fallback_enum;
+pub use crate::sys::CUjit_option_enum;
+pub use crate::sys::CUjit_target_enum;
+pub use crate::sys::CUjitInputType_enum;
+pub use crate::sys::CUkern_st;
+pub use crate::sys::CUkernel;
+pub use crate::sys::CUkernelNodeAttrValue;
+pub use crate::sys::CUkernelNodeAttrValue_v1;
+pub use crate::sys::CUlaunchAttribute;
+pub use crate::sys::CUlaunchAttribute_st;
+pub use crate::sys::CUlaunchAttributeID_enum;
+pub use crate::sys::CUlaunchAttributePortableClusterMode_enum;
+pub use crate::sys::CUlaunchAttributeValue;
+pub use crate::sys::CUlaunchAttributeValue_union__bindgen_ty_1;
+pub use crate::sys::CUlaunchAttributeValue_union__bindgen_ty_2;
+pub use crate::sys::CUlaunchAttributeValue_union__bindgen_ty_3;
+pub use crate::sys::CUlaunchAttributeValue_union__bindgen_ty_4;
+pub use crate::sys::CUlaunchAttributeValue_union__bindgen_ty_5;
+pub use crate::sys::CUlaunchConfig;
+pub use crate::sys::CUlaunchConfig_st;
+pub use crate::sys::CUlaunchMemSyncDomain_enum;
+pub use crate::sys::CUlaunchMemSyncDomainMap;
+pub use crate::sys::CUlaunchMemSyncDomainMap_st;
+pub use crate::sys::CUlib_st;
+pub use crate::sys::CUlibrary;
+pub use crate::sys::CUlibraryHostUniversalFunctionAndDataTable;
+pub use crate::sys::CUlibraryHostUniversalFunctionAndDataTable_st;
+pub use crate::sys::CUlibraryOption_enum;
+pub use crate::sys::CUlimit_enum;
+pub use crate::sys::CUlinkState;
+pub use crate::sys::CUlinkState_st;
+pub use crate::sys::CUlogIterator;
+pub use crate::sys::CUlogLevel_enum;
+pub use crate::sys::CUlogsCallback;
+pub use crate::sys::CUlogsCallbackEntry_st;
+pub use crate::sys::CUlogsCallbackHandle;
+pub use crate::sys::CUmem_advise_enum;
+pub use crate::sys::CUmem_range_attribute_enum;
+pub use crate::sys::CUmemAccess_flags_enum;
+pub use crate::sys::CUmemAccessDesc;
+pub use crate::sys::CUmemAccessDesc_st;
+pub use crate::sys::CUmemAccessDesc_v1;
+pub use crate::sys::CUmemAllocationCompType_enum;
+pub use crate::sys::CUmemAllocationGranularity_flags_enum;
+pub use crate::sys::CUmemAllocationHandleType_enum;
+pub use crate::sys::CUmemAllocationProp;
+pub use crate::sys::CUmemAllocationProp_st;
+pub use crate::sys::CUmemAllocationProp_st__bindgen_ty_1;
+pub use crate::sys::CUmemAllocationProp_v1;
+pub use crate::sys::CUmemAllocationType_enum;
+pub use crate::sys::CUmemAttach_flags_enum;
+pub use crate::sys::CUmemDecompressAlgorithm_enum;
+pub use crate::sys::CUmemDecompressParams;
+pub use crate::sys::CUmemDecompressParams_st;
+pub use crate::sys::CUmemFabricHandle;
+pub use crate::sys::CUmemFabricHandle_st;
+pub use crate::sys::CUmemFabricHandle_v1;
+pub use crate::sys::CUmemGenericAllocationHandle;
+pub use crate::sys::CUmemGenericAllocationHandle_v1;
+pub use crate::sys::CUmemHandleType_enum;
+pub use crate::sys::CUmemLocation;
+pub use crate::sys::CUmemLocation_st;
+pub use crate::sys::CUmemLocation_v1;
+pub use crate::sys::CUmemLocationType_enum;
+pub use crate::sys::CUmemOperationType_enum;
+pub use crate::sys::CUmemPool_attribute_enum;
+pub use crate::sys::CUmemPoolHandle_st;
+pub use crate::sys::CUmemPoolProps;
+pub use crate::sys::CUmemPoolProps_st;
+pub use crate::sys::CUmemPoolProps_v1;
+pub use crate::sys::CUmemPoolPtrExportData;
+pub use crate::sys::CUmemPoolPtrExportData_st;
+pub use crate::sys::CUmemPoolPtrExportData_v1;
+pub use crate::sys::CUmemRangeFlags_enum;
+pub use crate::sys::CUmemRangeHandleType_enum;
+pub use crate::sys::CUmemcpy3DOperand;
+pub use crate::sys::CUmemcpy3DOperand_st;
+pub use crate::sys::CUmemcpy3DOperand_st__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::CUmemcpy3DOperand_st__bindgen_ty_1__bindgen_ty_2;
+pub use crate::sys::CUmemcpy3DOperand_v1;
+pub use crate::sys::CUmemcpy3DOperandType_enum;
+pub use crate::sys::CUmemcpyAttributes;
+pub use crate::sys::CUmemcpyAttributes_st;
+pub use crate::sys::CUmemcpyAttributes_v1;
+pub use crate::sys::CUmemcpyFlags_enum;
+pub use crate::sys::CUmemcpySrcAccessOrder_enum;
+pub use crate::sys::CUmemoryPool;
+pub use crate::sys::CUmemorytype_enum;
+pub use crate::sys::CUmipmappedArray;
+pub use crate::sys::CUmipmappedArray_st;
+pub use crate::sys::CUmod_st;
+pub use crate::sys::CUmodule;
+pub use crate::sys::CUmoduleLoadingMode_enum;
+pub use crate::sys::CUmulticastGranularity_flags_enum;
+pub use crate::sys::CUmulticastObjectProp;
+pub use crate::sys::CUmulticastObjectProp_st;
+pub use crate::sys::CUmulticastObjectProp_v1;
+pub use crate::sys::CUoccupancy_flags_enum;
+pub use crate::sys::CUoccupancyB2DSize;
+pub use crate::sys::CUoffset3D;
+pub use crate::sys::CUoffset3D_st;
+pub use crate::sys::CUoffset3D_v1;
+pub use crate::sys::CUpointer_attribute_enum;
+pub use crate::sys::CUprocessState_enum;
+pub use crate::sys::CUresourceViewFormat_enum;
+pub use crate::sys::CUresourcetype_enum;
 pub use crate::sys::CUresult as CudaTargetStatus;
+pub use crate::sys::CUshared_carveout_enum;
+pub use crate::sys::CUsharedMemoryMode_enum;
+pub use crate::sys::CUsharedconfig_enum;
+pub use crate::sys::CUstream;
+pub use crate::sys::CUstream_flags_enum;
+pub use crate::sys::CUstream_st;
+pub use crate::sys::CUstreamAtomicReductionDataType_enum;
+pub use crate::sys::CUstreamAtomicReductionOpType_enum;
+pub use crate::sys::CUstreamAttrValue;
+pub use crate::sys::CUstreamAttrValue_v1;
+pub use crate::sys::CUstreamBatchMemOpParams;
+pub use crate::sys::CUstreamBatchMemOpParams_union_CUstreamMemOpAtomicReductionParams_st;
+pub use crate::sys::CUstreamBatchMemOpParams_union_CUstreamMemOpFlushRemoteWritesParams_st;
+pub use crate::sys::CUstreamBatchMemOpParams_union_CUstreamMemOpMemoryBarrierParams_st;
+pub use crate::sys::CUstreamBatchMemOpParams_union_CUstreamMemOpWaitValueParams_st;
+pub use crate::sys::CUstreamBatchMemOpParams_union_CUstreamMemOpWriteValueParams_st;
+pub use crate::sys::CUstreamBatchMemOpParams_v1;
+pub use crate::sys::CUstreamBatchMemOpType_enum;
+pub use crate::sys::CUstreamCallback;
+pub use crate::sys::CUstreamCaptureMode_enum;
+pub use crate::sys::CUstreamCaptureStatus_enum;
+pub use crate::sys::CUstreamCigCaptureParams;
+pub use crate::sys::CUstreamCigCaptureParams_st;
+pub use crate::sys::CUstreamCigDataType_enum;
+pub use crate::sys::CUstreamCigParam;
+pub use crate::sys::CUstreamCigParam_st;
+pub use crate::sys::CUstreamMemoryBarrier_flags_enum;
+pub use crate::sys::CUstreamUpdateCaptureDependencies_flags_enum;
+pub use crate::sys::CUstreamWaitValue_flags_enum;
+pub use crate::sys::CUstreamWriteValue_flags_enum;
+pub use crate::sys::CUsurfObject;
+pub use crate::sys::CUsurfObject_v1;
+pub use crate::sys::CUsurfref;
+pub use crate::sys::CUsurfref_st;
+pub use crate::sys::CUsynchronizationPolicy_enum;
+pub use crate::sys::CUtensorMap;
+pub use crate::sys::CUtensorMap_st;
+pub use crate::sys::CUtensorMapDataType_enum;
+pub use crate::sys::CUtensorMapFloatOOBfill_enum;
+pub use crate::sys::CUtensorMapIm2ColWideMode_enum;
+pub use crate::sys::CUtensorMapInterleave_enum;
+pub use crate::sys::CUtensorMapL2promotion_enum;
+pub use crate::sys::CUtensorMapSwizzle_enum;
+pub use crate::sys::CUtexObject;
+pub use crate::sys::CUtexObject_v1;
+pub use crate::sys::CUtexref;
+pub use crate::sys::CUtexref_st;
+pub use crate::sys::CUuserObject;
+pub use crate::sys::CUuserObject_flags_enum;
+pub use crate::sys::CUuserObject_st;
+pub use crate::sys::CUuserObjectRetain_flags_enum;
+pub use crate::sys::CUuuid;
+pub use crate::sys::CUuuid_st;
+pub use crate::sys::cudaError_enum;
+pub use crate::sys::cuuint32_t;
+pub use crate::sys::cuuint64_t;
 #[allow(unused_imports)]
 use crate::sys::*;
-pub use crate::sys::{
-    CU_ARRAY_SPARSE_PROPERTIES_SINGLE_MIPTAIL, CU_COMPUTE_ACCELERATED_TARGET_BASE, CU_COMPUTE_FAMILY_TARGET_BASE, CU_DEV_SM_RESOURCE_GROUP_PARAMS, CU_DEV_SM_RESOURCE_GROUP_PARAMS_st, CU_GRAPH_COND_ASSIGN_DEFAULT, CU_GRAPH_KERNEL_NODE_PORT_DEFAULT, CU_GRAPH_KERNEL_NODE_PORT_LAUNCH_ORDER,
-    CU_GRAPH_KERNEL_NODE_PORT_PROGRAMMATIC, CU_IPC_HANDLE_SIZE, CU_LAUNCH_KERNEL_REQUIRED_BLOCK_DIM, CU_LAUNCH_PARAM_BUFFER_POINTER_AS_INT, CU_LAUNCH_PARAM_BUFFER_SIZE_AS_INT, CU_LAUNCH_PARAM_END_AS_INT, CU_MEM_CREATE_USAGE_HW_DECOMPRESS, CU_MEM_CREATE_USAGE_TILE_POOL,
-    CU_MEM_POOL_CREATE_USAGE_HW_DECOMPRESS, CU_MEMHOSTALLOC_DEVICEMAP, CU_MEMHOSTALLOC_PORTABLE, CU_MEMHOSTALLOC_WRITECOMBINED, CU_MEMHOSTREGISTER_DEVICEMAP, CU_MEMHOSTREGISTER_IOMEMORY, CU_MEMHOSTREGISTER_PORTABLE, CU_MEMHOSTREGISTER_READ_ONLY, CU_PARAM_TR_DEFAULT, CU_TENSOR_MAP_NUM_QWORDS,
-    CU_TRSA_OVERRIDE_FORMAT, CU_TRSF_DISABLE_TRILINEAR_OPTIMIZATION, CU_TRSF_NORMALIZED_COORDINATES, CU_TRSF_READ_AS_INTEGER, CU_TRSF_SEAMLESS_CUBEMAP, CU_TRSF_SRGB, CUCoredumpGenerationFlags, CUDA_ARRAY_DESCRIPTOR, CUDA_ARRAY_DESCRIPTOR_st, CUDA_ARRAY_DESCRIPTOR_v2, CUDA_ARRAY_MEMORY_REQUIREMENTS,
-    CUDA_ARRAY_MEMORY_REQUIREMENTS_st, CUDA_ARRAY_MEMORY_REQUIREMENTS_v1, CUDA_ARRAY_SPARSE_PROPERTIES, CUDA_ARRAY_SPARSE_PROPERTIES_st, CUDA_ARRAY_SPARSE_PROPERTIES_st__bindgen_ty_1, CUDA_ARRAY_SPARSE_PROPERTIES_v1, CUDA_ARRAY3D_2DARRAY, CUDA_ARRAY3D_COLOR_ATTACHMENT, CUDA_ARRAY3D_CUBEMAP,
-    CUDA_ARRAY3D_DEFERRED_MAPPING, CUDA_ARRAY3D_DEPTH_TEXTURE, CUDA_ARRAY3D_DESCRIPTOR, CUDA_ARRAY3D_DESCRIPTOR_st, CUDA_ARRAY3D_DESCRIPTOR_v2, CUDA_ARRAY3D_LAYERED, CUDA_ARRAY3D_SPARSE, CUDA_ARRAY3D_SURFACE_LDST, CUDA_ARRAY3D_TEXTURE_GATHER, CUDA_ARRAY3D_VIDEO_ENCODE_DECODE,
-    CUDA_BATCH_MEM_OP_NODE_PARAMS, CUDA_BATCH_MEM_OP_NODE_PARAMS_v1, CUDA_BATCH_MEM_OP_NODE_PARAMS_v1_st, CUDA_BATCH_MEM_OP_NODE_PARAMS_v2, CUDA_BATCH_MEM_OP_NODE_PARAMS_v2_st, CUDA_CHILD_GRAPH_NODE_PARAMS, CUDA_CHILD_GRAPH_NODE_PARAMS_st, CUDA_CONDITIONAL_NODE_PARAMS,
-    CUDA_COOPERATIVE_LAUNCH_MULTI_DEVICE_NO_POST_LAUNCH_SYNC, CUDA_COOPERATIVE_LAUNCH_MULTI_DEVICE_NO_PRE_LAUNCH_SYNC, CUDA_EVENT_RECORD_NODE_PARAMS, CUDA_EVENT_RECORD_NODE_PARAMS_st, CUDA_EVENT_WAIT_NODE_PARAMS, CUDA_EVENT_WAIT_NODE_PARAMS_st, CUDA_EXT_SEM_SIGNAL_NODE_PARAMS,
-    CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st, CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_v1, CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_v2, CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_v2_st, CUDA_EXT_SEM_WAIT_NODE_PARAMS, CUDA_EXT_SEM_WAIT_NODE_PARAMS_st, CUDA_EXT_SEM_WAIT_NODE_PARAMS_v1, CUDA_EXT_SEM_WAIT_NODE_PARAMS_v2,
-    CUDA_EXT_SEM_WAIT_NODE_PARAMS_v2_st, CUDA_EXTERNAL_MEMORY_BUFFER_DESC, CUDA_EXTERNAL_MEMORY_BUFFER_DESC_st, CUDA_EXTERNAL_MEMORY_BUFFER_DESC_v1, CUDA_EXTERNAL_MEMORY_DEDICATED, CUDA_EXTERNAL_MEMORY_HANDLE_DESC, CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st,
-    CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st__bindgen_ty_1__bindgen_ty_1, CUDA_EXTERNAL_MEMORY_HANDLE_DESC_v1, CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC, CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_st, CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC_v1, CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC,
-    CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st, CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st__bindgen_ty_1__bindgen_ty_1, CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_v1, CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS, CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st, CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st__bindgen_ty_1,
-    CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st__bindgen_ty_1__bindgen_ty_1, CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_st__bindgen_ty_1__bindgen_ty_3, CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS_v1, CUDA_EXTERNAL_SEMAPHORE_SIGNAL_SKIP_NVSCIBUF_MEMSYNC, CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS,
-    CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st, CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st__bindgen_ty_1, CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st__bindgen_ty_1__bindgen_ty_1, CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_st__bindgen_ty_1__bindgen_ty_3, CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS_v1,
-    CUDA_EXTERNAL_SEMAPHORE_WAIT_SKIP_NVSCIBUF_MEMSYNC, CUDA_GRAPH_INSTANTIATE_PARAMS, CUDA_GRAPH_INSTANTIATE_PARAMS_st, CUDA_HOST_NODE_PARAMS, CUDA_HOST_NODE_PARAMS_st, CUDA_HOST_NODE_PARAMS_v1, CUDA_HOST_NODE_PARAMS_v2, CUDA_HOST_NODE_PARAMS_v2_st, CUDA_KERNEL_NODE_PARAMS,
-    CUDA_KERNEL_NODE_PARAMS_st, CUDA_KERNEL_NODE_PARAMS_v1, CUDA_KERNEL_NODE_PARAMS_v2, CUDA_KERNEL_NODE_PARAMS_v2_st, CUDA_KERNEL_NODE_PARAMS_v3, CUDA_KERNEL_NODE_PARAMS_v3_st, CUDA_LAUNCH_PARAMS, CUDA_LAUNCH_PARAMS_st, CUDA_LAUNCH_PARAMS_v1, CUDA_MEM_ALLOC_NODE_PARAMS,
-    CUDA_MEM_ALLOC_NODE_PARAMS_v1, CUDA_MEM_ALLOC_NODE_PARAMS_v1_st, CUDA_MEM_ALLOC_NODE_PARAMS_v2, CUDA_MEM_ALLOC_NODE_PARAMS_v2_st, CUDA_MEM_FREE_NODE_PARAMS, CUDA_MEM_FREE_NODE_PARAMS_st, CUDA_MEMCPY_NODE_PARAMS, CUDA_MEMCPY_NODE_PARAMS_st, CUDA_MEMCPY2D, CUDA_MEMCPY2D_st, CUDA_MEMCPY2D_v2,
-    CUDA_MEMCPY3D, CUDA_MEMCPY3D_BATCH_OP, CUDA_MEMCPY3D_BATCH_OP_st, CUDA_MEMCPY3D_BATCH_OP_v1, CUDA_MEMCPY3D_PEER, CUDA_MEMCPY3D_PEER_st, CUDA_MEMCPY3D_PEER_v1, CUDA_MEMCPY3D_st, CUDA_MEMCPY3D_v2, CUDA_MEMSET_NODE_PARAMS, CUDA_MEMSET_NODE_PARAMS_st, CUDA_MEMSET_NODE_PARAMS_v1,
-    CUDA_MEMSET_NODE_PARAMS_v2, CUDA_MEMSET_NODE_PARAMS_v2_st, CUDA_NVSCISYNC_ATTR_SIGNAL, CUDA_NVSCISYNC_ATTR_WAIT, CUDA_POINTER_ATTRIBUTE_ACCESS_FLAGS_enum, CUDA_POINTER_ATTRIBUTE_P2P_TOKENS, CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_st, CUDA_POINTER_ATTRIBUTE_P2P_TOKENS_v1, CUDA_RESOURCE_DESC,
-    CUDA_RESOURCE_DESC_st, CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_1, CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_2, CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_3, CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_4, CUDA_RESOURCE_DESC_st__bindgen_ty_1__bindgen_ty_5,
-    CUDA_RESOURCE_DESC_v1, CUDA_RESOURCE_VIEW_DESC, CUDA_RESOURCE_VIEW_DESC_st, CUDA_RESOURCE_VIEW_DESC_v1, CUDA_TEXTURE_DESC, CUDA_TEXTURE_DESC_st, CUDA_TEXTURE_DESC_v1, CUDA_VERSION, CUGPUDirectRDMAWritesOrdering_enum, CUaccessPolicyWindow, CUaccessPolicyWindow_st, CUaccessPolicyWindow_v1,
-    CUaccessProperty_enum, CUaddress_mode_enum, CUarray, CUarray_cubemap_face_enum, CUarray_format_enum, CUarray_st, CUarrayMapInfo, CUarrayMapInfo_st, CUarrayMapInfo_st__bindgen_ty_2__bindgen_ty_1, CUarrayMapInfo_st__bindgen_ty_2__bindgen_ty_2, CUarrayMapInfo_v1, CUarraySparseSubresourceType_enum,
-    CUasyncCallback, CUasyncCallbackEntry_st, CUasyncCallbackHandle, CUasyncNotificationInfo, CUasyncNotificationInfo_st, CUasyncNotificationInfo_st__bindgen_ty_1__bindgen_ty_1, CUasyncNotificationType_enum, CUatomicOperation_enum, CUatomicOperationCapability_enum, CUcheckpointCheckpointArgs,
-    CUcheckpointCheckpointArgs_st, CUcheckpointGpuPair, CUcheckpointGpuPair_st, CUcheckpointLockArgs, CUcheckpointLockArgs_st, CUcheckpointRestoreArgs, CUcheckpointRestoreArgs_st, CUcheckpointUnlockArgs, CUcheckpointUnlockArgs_st, CUcigDataType_enum, CUclusterSchedulingPolicy_enum,
-    CUcomputemode_enum, CUcontext, CUcoredumpCallbackEntry_st, CUcoredumpCallbackHandle, CUcoredumpSettings_enum, CUcoredumpStatusCallback, CUctx_flags_enum, CUctx_st, CUctxCigParam, CUctxCigParam_st, CUctxCreateParams, CUctxCreateParams_st, CUdevResource, CUdevResource_st, CUdevResource_v1,
-    CUdevResourceDesc, CUdevResourceDesc_st, CUdevResourceType, CUdevSmResource, CUdevSmResource_st, CUdevSmResourceGroup_flags, CUdevSmResourceSplitByCount_flags, CUdevWorkqueueConfigResource, CUdevWorkqueueConfigResource_st, CUdevWorkqueueConfigScope, CUdevWorkqueueResource,
-    CUdevWorkqueueResource_st, CUdevice, CUdevice_P2PAttribute_enum, CUdevice_attribute_enum, CUdevice_v1, CUdeviceNumaConfig_enum, CUdeviceptr, CUdeviceptr_v2, CUdevprop, CUdevprop_st, CUdevprop_v1, CUdriverProcAddress_flags_enum, CUdriverProcAddressQueryResult_enum, CUevent, CUevent_flags_enum,
-    CUevent_record_flags_enum, CUevent_sched_flags_enum, CUevent_st, CUevent_wait_flags_enum, CUexecAffinityParam, CUexecAffinityParam_st, CUexecAffinityParam_v1, CUexecAffinitySmCount, CUexecAffinitySmCount_st, CUexecAffinitySmCount_v1, CUexecAffinityType_enum, CUextMemory_st, CUextSemaphore_st,
-    CUextent3D, CUextent3D_st, CUextent3D_v1, CUexternalMemory, CUexternalMemoryHandleType_enum, CUexternalSemaphore, CUexternalSemaphoreHandleType_enum, CUfilter_mode_enum, CUflushGPUDirectRDMAWritesOptions_enum, CUflushGPUDirectRDMAWritesScope_enum, CUflushGPUDirectRDMAWritesTarget_enum,
-    CUfunc_cache_enum, CUfunc_st, CUfunction, CUfunction_attribute_enum, CUfunctionLoadingState_enum, CUgraph, CUgraph_st, CUgraphChildGraphNodeOwnership_enum, CUgraphConditionalHandle, CUgraphConditionalNodeType_enum, CUgraphDebugDot_flags_enum, CUgraphDependencyType_enum, CUgraphDeviceNode,
-    CUgraphDeviceUpdatableNode_st, CUgraphEdgeData, CUgraphEdgeData_st, CUgraphExec, CUgraphExec_st, CUgraphExecUpdateResult_enum, CUgraphExecUpdateResultInfo, CUgraphExecUpdateResultInfo_st, CUgraphExecUpdateResultInfo_v1, CUgraphInstantiate_flags_enum, CUgraphInstantiateResult_enum,
-    CUgraphMem_attribute_enum, CUgraphNode, CUgraphNode_st, CUgraphNodeParams, CUgraphNodeParams_st, CUgraphNodeType_enum, CUgraphicsMapResourceFlags_enum, CUgraphicsRegisterFlags_enum, CUgraphicsResource, CUgraphicsResource_st, CUgreenCtx, CUgreenCtx_st, CUgreenCtxCreate_flags, CUhostFn,
-    CUhostTaskSyncMode_enum, CUipcEventHandle, CUipcEventHandle_st, CUipcEventHandle_v1, CUipcMem_flags_enum, CUipcMemHandle, CUipcMemHandle_st, CUipcMemHandle_v1, CUjit_cacheMode_enum, CUjit_fallback_enum, CUjit_option_enum, CUjit_target_enum, CUjitInputType_enum, CUkern_st, CUkernel,
-    CUkernelNodeAttrValue, CUkernelNodeAttrValue_v1, CUlaunchAttribute, CUlaunchAttribute_st, CUlaunchAttributeID_enum, CUlaunchAttributePortableClusterMode_enum, CUlaunchAttributeValue, CUlaunchAttributeValue_union__bindgen_ty_1, CUlaunchAttributeValue_union__bindgen_ty_2,
-    CUlaunchAttributeValue_union__bindgen_ty_3, CUlaunchAttributeValue_union__bindgen_ty_4, CUlaunchAttributeValue_union__bindgen_ty_5, CUlaunchConfig, CUlaunchConfig_st, CUlaunchMemSyncDomain_enum, CUlaunchMemSyncDomainMap, CUlaunchMemSyncDomainMap_st, CUlib_st, CUlibrary,
-    CUlibraryHostUniversalFunctionAndDataTable, CUlibraryHostUniversalFunctionAndDataTable_st, CUlibraryOption_enum, CUlimit_enum, CUlinkState, CUlinkState_st, CUlogIterator, CUlogLevel_enum, CUlogsCallback, CUlogsCallbackEntry_st, CUlogsCallbackHandle, CUmem_advise_enum,
-    CUmem_range_attribute_enum, CUmemAccess_flags_enum, CUmemAccessDesc, CUmemAccessDesc_st, CUmemAccessDesc_v1, CUmemAllocationCompType_enum, CUmemAllocationGranularity_flags_enum, CUmemAllocationHandleType_enum, CUmemAllocationProp, CUmemAllocationProp_st, CUmemAllocationProp_st__bindgen_ty_1,
-    CUmemAllocationProp_v1, CUmemAllocationType_enum, CUmemAttach_flags_enum, CUmemDecompressAlgorithm_enum, CUmemDecompressParams, CUmemDecompressParams_st, CUmemFabricHandle, CUmemFabricHandle_st, CUmemFabricHandle_v1, CUmemGenericAllocationHandle, CUmemGenericAllocationHandle_v1,
-    CUmemHandleType_enum, CUmemLocation, CUmemLocation_st, CUmemLocation_v1, CUmemLocationType_enum, CUmemOperationType_enum, CUmemPool_attribute_enum, CUmemPoolHandle_st, CUmemPoolProps, CUmemPoolProps_st, CUmemPoolProps_v1, CUmemPoolPtrExportData, CUmemPoolPtrExportData_st,
-    CUmemPoolPtrExportData_v1, CUmemRangeFlags_enum, CUmemRangeHandleType_enum, CUmemcpy3DOperand, CUmemcpy3DOperand_st, CUmemcpy3DOperand_st__bindgen_ty_1__bindgen_ty_1, CUmemcpy3DOperand_st__bindgen_ty_1__bindgen_ty_2, CUmemcpy3DOperand_v1, CUmemcpy3DOperandType_enum, CUmemcpyAttributes,
-    CUmemcpyAttributes_st, CUmemcpyAttributes_v1, CUmemcpyFlags_enum, CUmemcpySrcAccessOrder_enum, CUmemoryPool, CUmemorytype_enum, CUmipmappedArray, CUmipmappedArray_st, CUmod_st, CUmodule, CUmoduleLoadingMode_enum, CUmulticastGranularity_flags_enum, CUmulticastObjectProp,
-    CUmulticastObjectProp_st, CUmulticastObjectProp_v1, CUoccupancy_flags_enum, CUoccupancyB2DSize, CUoffset3D, CUoffset3D_st, CUoffset3D_v1, CUpointer_attribute_enum, CUprocessState_enum, CUresourceViewFormat_enum, CUresourcetype_enum, CUshared_carveout_enum, CUsharedMemoryMode_enum,
-    CUsharedconfig_enum, CUstream, CUstream_flags_enum, CUstream_st, CUstreamAtomicReductionDataType_enum, CUstreamAtomicReductionOpType_enum, CUstreamAttrValue, CUstreamAttrValue_v1, CUstreamBatchMemOpParams, CUstreamBatchMemOpParams_union_CUstreamMemOpAtomicReductionParams_st,
-    CUstreamBatchMemOpParams_union_CUstreamMemOpFlushRemoteWritesParams_st, CUstreamBatchMemOpParams_union_CUstreamMemOpMemoryBarrierParams_st, CUstreamBatchMemOpParams_union_CUstreamMemOpWaitValueParams_st, CUstreamBatchMemOpParams_union_CUstreamMemOpWriteValueParams_st,
-    CUstreamBatchMemOpParams_v1, CUstreamBatchMemOpType_enum, CUstreamCallback, CUstreamCaptureMode_enum, CUstreamCaptureStatus_enum, CUstreamCigCaptureParams, CUstreamCigCaptureParams_st, CUstreamCigDataType_enum, CUstreamCigParam, CUstreamCigParam_st, CUstreamMemoryBarrier_flags_enum,
-    CUstreamUpdateCaptureDependencies_flags_enum, CUstreamWaitValue_flags_enum, CUstreamWriteValue_flags_enum, CUsurfObject, CUsurfObject_v1, CUsurfref, CUsurfref_st, CUsynchronizationPolicy_enum, CUtensorMap, CUtensorMap_st, CUtensorMapDataType_enum, CUtensorMapFloatOOBfill_enum,
-    CUtensorMapIm2ColWideMode_enum, CUtensorMapInterleave_enum, CUtensorMapL2promotion_enum, CUtensorMapSwizzle_enum, CUtexObject, CUtexObject_v1, CUtexref, CUtexref_st, CUuserObject, CUuserObject_flags_enum, CUuserObject_st, CUuserObjectRetain_flags_enum, CUuuid, CUuuid_st, cudaError_enum,
-    cuuint32_t, cuuint64_t,
-};
 #[cfg(feature = "runtime-link")]
 impl crate::sys::CUuuid_st {
     pub fn bytes(mut self, val: [::std::os::raw::c_char; 16usize]) -> Self {
@@ -2303,151 +2745,151 @@ impl crate::sys::CUdevResource_st {
 }
 #[cfg(feature = "runtime-link")]
 impl crate::sys::DynamicBindings {
-    pub fn cuGetErrorString(mut self, val: Option<unsafe extern "C" fn(error: CUresult, pStr: *mut *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuGetErrorString(mut self, val: Option<unsafe extern "C" fn(CUresult, *mut *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuGetErrorString = val;
         self
     }
-    pub fn cuGetErrorName(mut self, val: Option<unsafe extern "C" fn(error: CUresult, pStr: *mut *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuGetErrorName(mut self, val: Option<unsafe extern "C" fn(CUresult, *mut *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuGetErrorName = val;
         self
     }
-    pub fn cuInit(mut self, val: Option<unsafe extern "C" fn(Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuInit(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuInit = val;
         self
     }
-    pub fn cuDriverGetVersion(mut self, val: Option<unsafe extern "C" fn(driverVersion: *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuDriverGetVersion(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuDriverGetVersion = val;
         self
     }
-    pub fn cuDeviceGet(mut self, val: Option<unsafe extern "C" fn(device: *mut CUdevice, ordinal: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuDeviceGet(mut self, val: Option<unsafe extern "C" fn(*mut CUdevice, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuDeviceGet = val;
         self
     }
-    pub fn cuDeviceGetCount(mut self, val: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuDeviceGetCount(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuDeviceGetCount = val;
         self
     }
-    pub fn cuDeviceGetName(mut self, val: Option<unsafe extern "C" fn(name: *mut ::std::os::raw::c_char, len: ::std::os::raw::c_int, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetName(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, ::std::os::raw::c_int, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetName = val;
         self
     }
-    pub fn cuDeviceGetUuid_v2(mut self, val: Option<unsafe extern "C" fn(uuid: *mut CUuuid, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetUuid_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUuuid, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetUuid_v2 = val;
         self
     }
-    pub fn cuDeviceGetLuid(mut self, val: Option<unsafe extern "C" fn(luid: *mut ::std::os::raw::c_char, deviceNodeMask: *mut ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetLuid(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, *mut ::std::os::raw::c_uint, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetLuid = val;
         self
     }
-    pub fn cuDeviceTotalMem_v2(mut self, val: Option<unsafe extern "C" fn(bytes: *mut usize, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceTotalMem_v2(mut self, val: Option<unsafe extern "C" fn(*mut usize, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceTotalMem_v2 = val;
         self
     }
-    pub fn cuDeviceGetTexture1DLinearMaxWidth(mut self, val: Option<unsafe extern "C" fn(maxWidthInElements: *mut usize, format: CUarray_format, numChannels: ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetTexture1DLinearMaxWidth(mut self, val: Option<unsafe extern "C" fn(*mut usize, CUarray_format, ::std::os::raw::c_uint, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetTexture1DLinearMaxWidth = val;
         self
     }
-    pub fn cuDeviceGetAttribute(mut self, val: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, attrib: CUdevice_attribute, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUdevice_attribute, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetAttribute = val;
         self
     }
-    pub fn cuDeviceGetHostAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(capabilities: *mut ::std::os::raw::c_uint, operations: *const CUatomicOperation, count: ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetHostAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *const CUatomicOperation, ::std::os::raw::c_uint, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetHostAtomicCapabilities = val;
         self
     }
-    pub fn cuDeviceGetNvSciSyncAttributes(mut self, val: Option<unsafe extern "C" fn(nvSciSyncAttrList: *mut ::std::os::raw::c_void, dev: CUdevice, flags: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuDeviceGetNvSciSyncAttributes(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdevice, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuDeviceGetNvSciSyncAttributes = val;
         self
     }
-    pub fn cuDeviceSetMemPool(mut self, val: Option<unsafe extern "C" fn(dev: CUdevice, pool: CUmemoryPool) -> CUresult>) -> Self {
+    pub fn cuDeviceSetMemPool(mut self, val: Option<unsafe extern "C" fn(CUdevice, CUmemoryPool) -> CUresult>) -> Self {
         self.cuDeviceSetMemPool = val;
         self
     }
-    pub fn cuDeviceGetMemPool(mut self, val: Option<unsafe extern "C" fn(pool: *mut CUmemoryPool, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetMemPool(mut self, val: Option<unsafe extern "C" fn(*mut CUmemoryPool, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetMemPool = val;
         self
     }
-    pub fn cuDeviceGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(pool_out: *mut CUmemoryPool, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(*mut CUmemoryPool, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetDefaultMemPool = val;
         self
     }
-    pub fn cuDeviceGetExecAffinitySupport(mut self, val: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, type_: CUexecAffinityType, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetExecAffinitySupport(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUexecAffinityType, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetExecAffinitySupport = val;
         self
     }
-    pub fn cuFlushGPUDirectRDMAWrites(mut self, val: Option<unsafe extern "C" fn(target: CUflushGPUDirectRDMAWritesTarget, scope: CUflushGPUDirectRDMAWritesScope) -> CUresult>) -> Self {
+    pub fn cuFlushGPUDirectRDMAWrites(mut self, val: Option<unsafe extern "C" fn(CUflushGPUDirectRDMAWritesTarget, CUflushGPUDirectRDMAWritesScope) -> CUresult>) -> Self {
         self.cuFlushGPUDirectRDMAWrites = val;
         self
     }
-    pub fn cuDeviceGetProperties(mut self, val: Option<unsafe extern "C" fn(prop: *mut CUdevprop, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetProperties(mut self, val: Option<unsafe extern "C" fn(*mut CUdevprop, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetProperties = val;
         self
     }
-    pub fn cuDeviceComputeCapability(mut self, val: Option<unsafe extern "C" fn(major: *mut ::std::os::raw::c_int, minor: *mut ::std::os::raw::c_int, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceComputeCapability(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceComputeCapability = val;
         self
     }
-    pub fn cuDevicePrimaryCtxRetain(mut self, val: Option<unsafe extern "C" fn(pctx: *mut CUcontext, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDevicePrimaryCtxRetain(mut self, val: Option<unsafe extern "C" fn(*mut CUcontext, CUdevice) -> CUresult>) -> Self {
         self.cuDevicePrimaryCtxRetain = val;
         self
     }
-    pub fn cuDevicePrimaryCtxRelease_v2(mut self, val: Option<unsafe extern "C" fn(dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDevicePrimaryCtxRelease_v2(mut self, val: Option<unsafe extern "C" fn(CUdevice) -> CUresult>) -> Self {
         self.cuDevicePrimaryCtxRelease_v2 = val;
         self
     }
-    pub fn cuDevicePrimaryCtxSetFlags_v2(mut self, val: Option<unsafe extern "C" fn(dev: CUdevice, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuDevicePrimaryCtxSetFlags_v2(mut self, val: Option<unsafe extern "C" fn(CUdevice, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuDevicePrimaryCtxSetFlags_v2 = val;
         self
     }
-    pub fn cuDevicePrimaryCtxGetState(mut self, val: Option<unsafe extern "C" fn(dev: CUdevice, flags: *mut ::std::os::raw::c_uint, active: *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuDevicePrimaryCtxGetState(mut self, val: Option<unsafe extern "C" fn(CUdevice, *mut ::std::os::raw::c_uint, *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuDevicePrimaryCtxGetState = val;
         self
     }
-    pub fn cuDevicePrimaryCtxReset_v2(mut self, val: Option<unsafe extern "C" fn(dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDevicePrimaryCtxReset_v2(mut self, val: Option<unsafe extern "C" fn(CUdevice) -> CUresult>) -> Self {
         self.cuDevicePrimaryCtxReset_v2 = val;
         self
     }
-    pub fn cuCtxCreate_v4(mut self, val: Option<unsafe extern "C" fn(pctx: *mut CUcontext, ctxCreateParams: *mut CUctxCreateParams, flags: ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuCtxCreate_v4(mut self, val: Option<unsafe extern "C" fn(*mut CUcontext, *mut CUctxCreateParams, ::std::os::raw::c_uint, CUdevice) -> CUresult>) -> Self {
         self.cuCtxCreate_v4 = val;
         self
     }
-    pub fn cuCtxDestroy_v2(mut self, val: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxDestroy_v2(mut self, val: Option<unsafe extern "C" fn(CUcontext) -> CUresult>) -> Self {
         self.cuCtxDestroy_v2 = val;
         self
     }
-    pub fn cuCtxPushCurrent_v2(mut self, val: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxPushCurrent_v2(mut self, val: Option<unsafe extern "C" fn(CUcontext) -> CUresult>) -> Self {
         self.cuCtxPushCurrent_v2 = val;
         self
     }
-    pub fn cuCtxPopCurrent_v2(mut self, val: Option<unsafe extern "C" fn(pctx: *mut CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxPopCurrent_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUcontext) -> CUresult>) -> Self {
         self.cuCtxPopCurrent_v2 = val;
         self
     }
-    pub fn cuCtxSetCurrent(mut self, val: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxSetCurrent(mut self, val: Option<unsafe extern "C" fn(CUcontext) -> CUresult>) -> Self {
         self.cuCtxSetCurrent = val;
         self
     }
-    pub fn cuCtxGetCurrent(mut self, val: Option<unsafe extern "C" fn(pctx: *mut CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxGetCurrent(mut self, val: Option<unsafe extern "C" fn(*mut CUcontext) -> CUresult>) -> Self {
         self.cuCtxGetCurrent = val;
         self
     }
-    pub fn cuCtxGetDevice(mut self, val: Option<unsafe extern "C" fn(device: *mut CUdevice) -> CUresult>) -> Self {
+    pub fn cuCtxGetDevice(mut self, val: Option<unsafe extern "C" fn(*mut CUdevice) -> CUresult>) -> Self {
         self.cuCtxGetDevice = val;
         self
     }
-    pub fn cuCtxGetDevice_v2(mut self, val: Option<unsafe extern "C" fn(device: *mut CUdevice, ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxGetDevice_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdevice, CUcontext) -> CUresult>) -> Self {
         self.cuCtxGetDevice_v2 = val;
         self
     }
-    pub fn cuCtxGetFlags(mut self, val: Option<unsafe extern "C" fn(flags: *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuCtxGetFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuCtxGetFlags = val;
         self
     }
-    pub fn cuCtxSetFlags(mut self, val: Option<unsafe extern "C" fn(flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuCtxSetFlags(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuCtxSetFlags = val;
         self
     }
-    pub fn cuCtxGetId(mut self, val: Option<unsafe extern "C" fn(ctx: CUcontext, ctxId: *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuCtxGetId(mut self, val: Option<unsafe extern "C" fn(CUcontext, *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuCtxGetId = val;
         self
     }
@@ -2455,31 +2897,31 @@ impl crate::sys::DynamicBindings {
         self.cuCtxSynchronize = val;
         self
     }
-    pub fn cuCtxSynchronize_v2(mut self, val: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxSynchronize_v2(mut self, val: Option<unsafe extern "C" fn(CUcontext) -> CUresult>) -> Self {
         self.cuCtxSynchronize_v2 = val;
         self
     }
-    pub fn cuCtxSetLimit(mut self, val: Option<unsafe extern "C" fn(limit: CUlimit, value: usize) -> CUresult>) -> Self {
+    pub fn cuCtxSetLimit(mut self, val: Option<unsafe extern "C" fn(CUlimit, usize) -> CUresult>) -> Self {
         self.cuCtxSetLimit = val;
         self
     }
-    pub fn cuCtxGetLimit(mut self, val: Option<unsafe extern "C" fn(pvalue: *mut usize, limit: CUlimit) -> CUresult>) -> Self {
+    pub fn cuCtxGetLimit(mut self, val: Option<unsafe extern "C" fn(*mut usize, CUlimit) -> CUresult>) -> Self {
         self.cuCtxGetLimit = val;
         self
     }
-    pub fn cuCtxGetCacheConfig(mut self, val: Option<unsafe extern "C" fn(pconfig: *mut CUfunc_cache) -> CUresult>) -> Self {
+    pub fn cuCtxGetCacheConfig(mut self, val: Option<unsafe extern "C" fn(*mut CUfunc_cache) -> CUresult>) -> Self {
         self.cuCtxGetCacheConfig = val;
         self
     }
-    pub fn cuCtxSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(config: CUfunc_cache) -> CUresult>) -> Self {
+    pub fn cuCtxSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(CUfunc_cache) -> CUresult>) -> Self {
         self.cuCtxSetCacheConfig = val;
         self
     }
-    pub fn cuCtxGetApiVersion(mut self, val: Option<unsafe extern "C" fn(ctx: CUcontext, version: *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuCtxGetApiVersion(mut self, val: Option<unsafe extern "C" fn(CUcontext, *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuCtxGetApiVersion = val;
         self
     }
-    pub fn cuCtxGetStreamPriorityRange(mut self, val: Option<unsafe extern "C" fn(leastPriority: *mut ::std::os::raw::c_int, greatestPriority: *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuCtxGetStreamPriorityRange(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuCtxGetStreamPriorityRange = val;
         self
     }
@@ -2487,935 +2929,898 @@ impl crate::sys::DynamicBindings {
         self.cuCtxResetPersistingL2Cache = val;
         self
     }
-    pub fn cuCtxGetExecAffinity(mut self, val: Option<unsafe extern "C" fn(pExecAffinity: *mut CUexecAffinityParam, type_: CUexecAffinityType) -> CUresult>) -> Self {
+    pub fn cuCtxGetExecAffinity(mut self, val: Option<unsafe extern "C" fn(*mut CUexecAffinityParam, CUexecAffinityType) -> CUresult>) -> Self {
         self.cuCtxGetExecAffinity = val;
         self
     }
-    pub fn cuCtxRecordEvent(mut self, val: Option<unsafe extern "C" fn(hCtx: CUcontext, hEvent: CUevent) -> CUresult>) -> Self {
+    pub fn cuCtxRecordEvent(mut self, val: Option<unsafe extern "C" fn(CUcontext, CUevent) -> CUresult>) -> Self {
         self.cuCtxRecordEvent = val;
         self
     }
-    pub fn cuCtxWaitEvent(mut self, val: Option<unsafe extern "C" fn(hCtx: CUcontext, hEvent: CUevent) -> CUresult>) -> Self {
+    pub fn cuCtxWaitEvent(mut self, val: Option<unsafe extern "C" fn(CUcontext, CUevent) -> CUresult>) -> Self {
         self.cuCtxWaitEvent = val;
         self
     }
-    pub fn cuCtxAttach(mut self, val: Option<unsafe extern "C" fn(pctx: *mut CUcontext, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuCtxAttach(mut self, val: Option<unsafe extern "C" fn(*mut CUcontext, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuCtxAttach = val;
         self
     }
-    pub fn cuCtxDetach(mut self, val: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxDetach(mut self, val: Option<unsafe extern "C" fn(CUcontext) -> CUresult>) -> Self {
         self.cuCtxDetach = val;
         self
     }
-    pub fn cuCtxGetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(pConfig: *mut CUsharedconfig) -> CUresult>) -> Self {
+    pub fn cuCtxGetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(*mut CUsharedconfig) -> CUresult>) -> Self {
         self.cuCtxGetSharedMemConfig = val;
         self
     }
-    pub fn cuCtxSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(config: CUsharedconfig) -> CUresult>) -> Self {
+    pub fn cuCtxSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(CUsharedconfig) -> CUresult>) -> Self {
         self.cuCtxSetSharedMemConfig = val;
         self
     }
-    pub fn cuModuleLoad(mut self, val: Option<unsafe extern "C" fn(module: *mut CUmodule, fname: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuModuleLoad(mut self, val: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuModuleLoad = val;
         self
     }
-    pub fn cuModuleLoadData(mut self, val: Option<unsafe extern "C" fn(module: *mut CUmodule, image: *const ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuModuleLoadData(mut self, val: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuModuleLoadData = val;
         self
     }
-    pub fn cuModuleLoadDataEx(mut self, val: Option<unsafe extern "C" fn(module: *mut CUmodule, image: *const ::std::os::raw::c_void, numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuModuleLoadDataEx(mut self, val: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuModuleLoadDataEx = val;
         self
     }
-    pub fn cuModuleLoadFatBinary(mut self, val: Option<unsafe extern "C" fn(module: *mut CUmodule, fatCubin: *const ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuModuleLoadFatBinary(mut self, val: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuModuleLoadFatBinary = val;
         self
     }
-    pub fn cuModuleUnload(mut self, val: Option<unsafe extern "C" fn(hmod: CUmodule) -> CUresult>) -> Self {
+    pub fn cuModuleUnload(mut self, val: Option<unsafe extern "C" fn(CUmodule) -> CUresult>) -> Self {
         self.cuModuleUnload = val;
         self
     }
-    pub fn cuModuleGetLoadingMode(mut self, val: Option<unsafe extern "C" fn(mode: *mut CUmoduleLoadingMode) -> CUresult>) -> Self {
+    pub fn cuModuleGetLoadingMode(mut self, val: Option<unsafe extern "C" fn(*mut CUmoduleLoadingMode) -> CUresult>) -> Self {
         self.cuModuleGetLoadingMode = val;
         self
     }
-    pub fn cuModuleGetFunction(mut self, val: Option<unsafe extern "C" fn(hfunc: *mut CUfunction, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuModuleGetFunction(mut self, val: Option<unsafe extern "C" fn(*mut CUfunction, CUmodule, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuModuleGetFunction = val;
         self
     }
-    pub fn cuModuleGetFunctionCount(mut self, val: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_uint, mod_: CUmodule) -> CUresult>) -> Self {
+    pub fn cuModuleGetFunctionCount(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, CUmodule) -> CUresult>) -> Self {
         self.cuModuleGetFunctionCount = val;
         self
     }
-    pub fn cuModuleEnumerateFunctions(mut self, val: Option<unsafe extern "C" fn(functions: *mut CUfunction, numFunctions: ::std::os::raw::c_uint, mod_: CUmodule) -> CUresult>) -> Self {
+    pub fn cuModuleEnumerateFunctions(mut self, val: Option<unsafe extern "C" fn(*mut CUfunction, ::std::os::raw::c_uint, CUmodule) -> CUresult>) -> Self {
         self.cuModuleEnumerateFunctions = val;
         self
     }
-    pub fn cuModuleGetGlobal_v2(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytes: *mut usize, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuModuleGetGlobal_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUmodule, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuModuleGetGlobal_v2 = val;
         self
     }
-    pub fn cuLinkCreate_v2(mut self, val: Option<unsafe extern "C" fn(numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void, stateOut: *mut CUlinkState) -> CUresult>) -> Self {
+    pub fn cuLinkCreate_v2(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void, *mut CUlinkState) -> CUresult>) -> Self {
         self.cuLinkCreate_v2 = val;
         self
     }
-    pub fn cuLinkAddData_v2(
-        mut self,
-        val: Option<unsafe extern "C" fn(state: CUlinkState, type_: CUjitInputType, data: *mut ::std::os::raw::c_void, size: usize, name: *const ::std::os::raw::c_char, numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void) -> CUresult>,
-    ) -> Self {
+    pub fn cuLinkAddData_v2(mut self, val: Option<unsafe extern "C" fn(CUlinkState, CUjitInputType, *mut ::std::os::raw::c_void, usize, *const ::std::os::raw::c_char, ::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuLinkAddData_v2 = val;
         self
     }
-    pub fn cuLinkAddFile_v2(mut self, val: Option<unsafe extern "C" fn(state: CUlinkState, type_: CUjitInputType, path: *const ::std::os::raw::c_char, numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuLinkAddFile_v2(mut self, val: Option<unsafe extern "C" fn(CUlinkState, CUjitInputType, *const ::std::os::raw::c_char, ::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuLinkAddFile_v2 = val;
         self
     }
-    pub fn cuLinkComplete(mut self, val: Option<unsafe extern "C" fn(state: CUlinkState, cubinOut: *mut *mut ::std::os::raw::c_void, sizeOut: *mut usize) -> CUresult>) -> Self {
+    pub fn cuLinkComplete(mut self, val: Option<unsafe extern "C" fn(CUlinkState, *mut *mut ::std::os::raw::c_void, *mut usize) -> CUresult>) -> Self {
         self.cuLinkComplete = val;
         self
     }
-    pub fn cuLinkDestroy(mut self, val: Option<unsafe extern "C" fn(state: CUlinkState) -> CUresult>) -> Self {
+    pub fn cuLinkDestroy(mut self, val: Option<unsafe extern "C" fn(CUlinkState) -> CUresult>) -> Self {
         self.cuLinkDestroy = val;
         self
     }
-    pub fn cuModuleGetTexRef(mut self, val: Option<unsafe extern "C" fn(pTexRef: *mut CUtexref, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuModuleGetTexRef(mut self, val: Option<unsafe extern "C" fn(*mut CUtexref, CUmodule, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuModuleGetTexRef = val;
         self
     }
-    pub fn cuModuleGetSurfRef(mut self, val: Option<unsafe extern "C" fn(pSurfRef: *mut CUsurfref, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuModuleGetSurfRef(mut self, val: Option<unsafe extern "C" fn(*mut CUsurfref, CUmodule, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuModuleGetSurfRef = val;
         self
     }
-    pub fn cuLibraryLoadData(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                library: *mut CUlibrary,
-                code: *const ::std::os::raw::c_void,
-                jitOptions: *mut CUjit_option,
-                jitOptionsValues: *mut *mut ::std::os::raw::c_void,
-                numJitOptions: ::std::os::raw::c_uint,
-                libraryOptions: *mut CUlibraryOption,
-                libraryOptionValues: *mut *mut ::std::os::raw::c_void,
-                numLibraryOptions: ::std::os::raw::c_uint,
-            ) -> CUresult,
-        >,
-    ) -> Self {
+    pub fn cuLibraryLoadData(mut self, val: Option<unsafe extern "C" fn(*mut CUlibrary, *const ::std::os::raw::c_void, *mut CUjit_option, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut CUlibraryOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuLibraryLoadData = val;
         self
     }
     pub fn cuLibraryLoadFromFile(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                library: *mut CUlibrary,
-                fileName: *const ::std::os::raw::c_char,
-                jitOptions: *mut CUjit_option,
-                jitOptionsValues: *mut *mut ::std::os::raw::c_void,
-                numJitOptions: ::std::os::raw::c_uint,
-                libraryOptions: *mut CUlibraryOption,
-                libraryOptionValues: *mut *mut ::std::os::raw::c_void,
-                numLibraryOptions: ::std::os::raw::c_uint,
-            ) -> CUresult,
-        >,
+        val: Option<unsafe extern "C" fn(*mut CUlibrary, *const ::std::os::raw::c_char, *mut CUjit_option, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut CUlibraryOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>,
     ) -> Self {
         self.cuLibraryLoadFromFile = val;
         self
     }
-    pub fn cuLibraryUnload(mut self, val: Option<unsafe extern "C" fn(library: CUlibrary) -> CUresult>) -> Self {
+    pub fn cuLibraryUnload(mut self, val: Option<unsafe extern "C" fn(CUlibrary) -> CUresult>) -> Self {
         self.cuLibraryUnload = val;
         self
     }
-    pub fn cuLibraryGetKernel(mut self, val: Option<unsafe extern "C" fn(pKernel: *mut CUkernel, library: CUlibrary, name: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuLibraryGetKernel(mut self, val: Option<unsafe extern "C" fn(*mut CUkernel, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuLibraryGetKernel = val;
         self
     }
-    pub fn cuLibraryGetKernelCount(mut self, val: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_uint, lib: CUlibrary) -> CUresult>) -> Self {
+    pub fn cuLibraryGetKernelCount(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, CUlibrary) -> CUresult>) -> Self {
         self.cuLibraryGetKernelCount = val;
         self
     }
-    pub fn cuLibraryEnumerateKernels(mut self, val: Option<unsafe extern "C" fn(kernels: *mut CUkernel, numKernels: ::std::os::raw::c_uint, lib: CUlibrary) -> CUresult>) -> Self {
+    pub fn cuLibraryEnumerateKernels(mut self, val: Option<unsafe extern "C" fn(*mut CUkernel, ::std::os::raw::c_uint, CUlibrary) -> CUresult>) -> Self {
         self.cuLibraryEnumerateKernels = val;
         self
     }
-    pub fn cuLibraryGetModule(mut self, val: Option<unsafe extern "C" fn(pMod: *mut CUmodule, library: CUlibrary) -> CUresult>) -> Self {
+    pub fn cuLibraryGetModule(mut self, val: Option<unsafe extern "C" fn(*mut CUmodule, CUlibrary) -> CUresult>) -> Self {
         self.cuLibraryGetModule = val;
         self
     }
-    pub fn cuKernelGetFunction(mut self, val: Option<unsafe extern "C" fn(pFunc: *mut CUfunction, kernel: CUkernel) -> CUresult>) -> Self {
+    pub fn cuKernelGetFunction(mut self, val: Option<unsafe extern "C" fn(*mut CUfunction, CUkernel) -> CUresult>) -> Self {
         self.cuKernelGetFunction = val;
         self
     }
-    pub fn cuKernelGetLibrary(mut self, val: Option<unsafe extern "C" fn(pLib: *mut CUlibrary, kernel: CUkernel) -> CUresult>) -> Self {
+    pub fn cuKernelGetLibrary(mut self, val: Option<unsafe extern "C" fn(*mut CUlibrary, CUkernel) -> CUresult>) -> Self {
         self.cuKernelGetLibrary = val;
         self
     }
-    pub fn cuLibraryGetGlobal(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytes: *mut usize, library: CUlibrary, name: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuLibraryGetGlobal(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuLibraryGetGlobal = val;
         self
     }
-    pub fn cuLibraryGetManaged(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytes: *mut usize, library: CUlibrary, name: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuLibraryGetManaged(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuLibraryGetManaged = val;
         self
     }
-    pub fn cuLibraryGetUnifiedFunction(mut self, val: Option<unsafe extern "C" fn(fptr: *mut *mut ::std::os::raw::c_void, library: CUlibrary, symbol: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuLibraryGetUnifiedFunction(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuLibraryGetUnifiedFunction = val;
         self
     }
-    pub fn cuKernelGetAttribute(mut self, val: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, attrib: CUfunction_attribute, kernel: CUkernel, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuKernelGetAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction_attribute, CUkernel, CUdevice) -> CUresult>) -> Self {
         self.cuKernelGetAttribute = val;
         self
     }
-    pub fn cuKernelSetAttribute(mut self, val: Option<unsafe extern "C" fn(attrib: CUfunction_attribute, val: ::std::os::raw::c_int, kernel: CUkernel, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuKernelSetAttribute(mut self, val: Option<unsafe extern "C" fn(CUfunction_attribute, ::std::os::raw::c_int, CUkernel, CUdevice) -> CUresult>) -> Self {
         self.cuKernelSetAttribute = val;
         self
     }
-    pub fn cuKernelSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(kernel: CUkernel, config: CUfunc_cache, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuKernelSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(CUkernel, CUfunc_cache, CUdevice) -> CUresult>) -> Self {
         self.cuKernelSetCacheConfig = val;
         self
     }
-    pub fn cuKernelGetName(mut self, val: Option<unsafe extern "C" fn(name: *mut *const ::std::os::raw::c_char, hfunc: CUkernel) -> CUresult>) -> Self {
+    pub fn cuKernelGetName(mut self, val: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_char, CUkernel) -> CUresult>) -> Self {
         self.cuKernelGetName = val;
         self
     }
-    pub fn cuKernelGetParamInfo(mut self, val: Option<unsafe extern "C" fn(kernel: CUkernel, paramIndex: usize, paramOffset: *mut usize, paramSize: *mut usize) -> CUresult>) -> Self {
+    pub fn cuKernelGetParamInfo(mut self, val: Option<unsafe extern "C" fn(CUkernel, usize, *mut usize, *mut usize) -> CUresult>) -> Self {
         self.cuKernelGetParamInfo = val;
         self
     }
-    pub fn cuKernelGetParamCount(mut self, val: Option<unsafe extern "C" fn(kernel: CUkernel, paramCount: *mut usize) -> CUresult>) -> Self {
+    pub fn cuKernelGetParamCount(mut self, val: Option<unsafe extern "C" fn(CUkernel, *mut usize) -> CUresult>) -> Self {
         self.cuKernelGetParamCount = val;
         self
     }
-    pub fn cuMemGetInfo_v2(mut self, val: Option<unsafe extern "C" fn(free: *mut usize, total: *mut usize) -> CUresult>) -> Self {
+    pub fn cuMemGetInfo_v2(mut self, val: Option<unsafe extern "C" fn(*mut usize, *mut usize) -> CUresult>) -> Self {
         self.cuMemGetInfo_v2 = val;
         self
     }
-    pub fn cuMemAlloc_v2(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize) -> CUresult>) -> Self {
+    pub fn cuMemAlloc_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemAlloc_v2 = val;
         self
     }
-    pub fn cuMemAllocPitch_v2(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, pPitch: *mut usize, WidthInBytes: usize, Height: usize, ElementSizeBytes: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuMemAllocPitch_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuMemAllocPitch_v2 = val;
         self
     }
-    pub fn cuMemFree_v2(mut self, val: Option<unsafe extern "C" fn(dptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuMemFree_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr) -> CUresult>) -> Self {
         self.cuMemFree_v2 = val;
         self
     }
-    pub fn cuMemGetAddressRange_v2(mut self, val: Option<unsafe extern "C" fn(pbase: *mut CUdeviceptr, psize: *mut usize, dptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuMemGetAddressRange_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUdeviceptr) -> CUresult>) -> Self {
         self.cuMemGetAddressRange_v2 = val;
         self
     }
-    pub fn cuMemAllocHost_v2(mut self, val: Option<unsafe extern "C" fn(pp: *mut *mut ::std::os::raw::c_void, bytesize: usize) -> CUresult>) -> Self {
+    pub fn cuMemAllocHost_v2(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize) -> CUresult>) -> Self {
         self.cuMemAllocHost_v2 = val;
         self
     }
-    pub fn cuMemFreeHost(mut self, val: Option<unsafe extern "C" fn(p: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuMemFreeHost(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuMemFreeHost = val;
         self
     }
-    pub fn cuMemHostAlloc(mut self, val: Option<unsafe extern "C" fn(pp: *mut *mut ::std::os::raw::c_void, bytesize: usize, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuMemHostAlloc(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuMemHostAlloc = val;
         self
     }
-    pub fn cuMemHostGetDevicePointer_v2(mut self, val: Option<unsafe extern "C" fn(pdptr: *mut CUdeviceptr, p: *mut ::std::os::raw::c_void, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuMemHostGetDevicePointer_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuMemHostGetDevicePointer_v2 = val;
         self
     }
-    pub fn cuMemHostGetFlags(mut self, val: Option<unsafe extern "C" fn(pFlags: *mut ::std::os::raw::c_uint, p: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuMemHostGetFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuMemHostGetFlags = val;
         self
     }
-    pub fn cuMemAllocManaged(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuMemAllocManaged(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuMemAllocManaged = val;
         self
     }
-    pub fn cuDeviceRegisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(device: CUdevice, callbackFunc: CUasyncCallback, userData: *mut ::std::os::raw::c_void, callback: *mut CUasyncCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuDeviceRegisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(CUdevice, CUasyncCallback, *mut ::std::os::raw::c_void, *mut CUasyncCallbackHandle) -> CUresult>) -> Self {
         self.cuDeviceRegisterAsyncNotification = val;
         self
     }
-    pub fn cuDeviceUnregisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(device: CUdevice, callback: CUasyncCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuDeviceUnregisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(CUdevice, CUasyncCallbackHandle) -> CUresult>) -> Self {
         self.cuDeviceUnregisterAsyncNotification = val;
         self
     }
-    pub fn cuDeviceGetByPCIBusId(mut self, val: Option<unsafe extern "C" fn(dev: *mut CUdevice, pciBusId: *const ::std::os::raw::c_char) -> CUresult>) -> Self {
+    pub fn cuDeviceGetByPCIBusId(mut self, val: Option<unsafe extern "C" fn(*mut CUdevice, *const ::std::os::raw::c_char) -> CUresult>) -> Self {
         self.cuDeviceGetByPCIBusId = val;
         self
     }
-    pub fn cuDeviceGetPCIBusId(mut self, val: Option<unsafe extern "C" fn(pciBusId: *mut ::std::os::raw::c_char, len: ::std::os::raw::c_int, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetPCIBusId(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, ::std::os::raw::c_int, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetPCIBusId = val;
         self
     }
-    pub fn cuIpcGetEventHandle(mut self, val: Option<unsafe extern "C" fn(pHandle: *mut CUipcEventHandle, event: CUevent) -> CUresult>) -> Self {
+    pub fn cuIpcGetEventHandle(mut self, val: Option<unsafe extern "C" fn(*mut CUipcEventHandle, CUevent) -> CUresult>) -> Self {
         self.cuIpcGetEventHandle = val;
         self
     }
-    pub fn cuIpcOpenEventHandle(mut self, val: Option<unsafe extern "C" fn(phEvent: *mut CUevent, handle: CUipcEventHandle) -> CUresult>) -> Self {
+    pub fn cuIpcOpenEventHandle(mut self, val: Option<unsafe extern "C" fn(*mut CUevent, CUipcEventHandle) -> CUresult>) -> Self {
         self.cuIpcOpenEventHandle = val;
         self
     }
-    pub fn cuIpcGetMemHandle(mut self, val: Option<unsafe extern "C" fn(pHandle: *mut CUipcMemHandle, dptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuIpcGetMemHandle(mut self, val: Option<unsafe extern "C" fn(*mut CUipcMemHandle, CUdeviceptr) -> CUresult>) -> Self {
         self.cuIpcGetMemHandle = val;
         self
     }
-    pub fn cuIpcOpenMemHandle_v2(mut self, val: Option<unsafe extern "C" fn(pdptr: *mut CUdeviceptr, handle: CUipcMemHandle, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuIpcOpenMemHandle_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUipcMemHandle, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuIpcOpenMemHandle_v2 = val;
         self
     }
-    pub fn cuIpcCloseMemHandle(mut self, val: Option<unsafe extern "C" fn(dptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuIpcCloseMemHandle(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr) -> CUresult>) -> Self {
         self.cuIpcCloseMemHandle = val;
         self
     }
-    pub fn cuMemHostRegister_v2(mut self, val: Option<unsafe extern "C" fn(p: *mut ::std::os::raw::c_void, bytesize: usize, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuMemHostRegister_v2(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuMemHostRegister_v2 = val;
         self
     }
-    pub fn cuMemHostUnregister(mut self, val: Option<unsafe extern "C" fn(p: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuMemHostUnregister(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuMemHostUnregister = val;
         self
     }
-    pub fn cuMemcpy(mut self, val: Option<unsafe extern "C" fn(dst: CUdeviceptr, src: CUdeviceptr, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpy(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemcpy = val;
         self
     }
-    pub fn cuMemcpyPeer(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstContext: CUcontext, srcDevice: CUdeviceptr, srcContext: CUcontext, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyPeer(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUcontext, CUdeviceptr, CUcontext, usize) -> CUresult>) -> Self {
         self.cuMemcpyPeer = val;
         self
     }
-    pub fn cuMemcpyHtoD_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcHost: *const ::std::os::raw::c_void, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyHtoD_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, *const ::std::os::raw::c_void, usize) -> CUresult>) -> Self {
         self.cuMemcpyHtoD_v2 = val;
         self
     }
-    pub fn cuMemcpyDtoH_v2(mut self, val: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcDevice: CUdeviceptr, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyDtoH_v2(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemcpyDtoH_v2 = val;
         self
     }
-    pub fn cuMemcpyDtoD_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcDevice: CUdeviceptr, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyDtoD_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemcpyDtoD_v2 = val;
         self
     }
-    pub fn cuMemcpyDtoA_v2(mut self, val: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcDevice: CUdeviceptr, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyDtoA_v2(mut self, val: Option<unsafe extern "C" fn(CUarray, usize, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemcpyDtoA_v2 = val;
         self
     }
-    pub fn cuMemcpyAtoD_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcArray: CUarray, srcOffset: usize, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyAtoD_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUarray, usize, usize) -> CUresult>) -> Self {
         self.cuMemcpyAtoD_v2 = val;
         self
     }
-    pub fn cuMemcpyHtoA_v2(mut self, val: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcHost: *const ::std::os::raw::c_void, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyHtoA_v2(mut self, val: Option<unsafe extern "C" fn(CUarray, usize, *const ::std::os::raw::c_void, usize) -> CUresult>) -> Self {
         self.cuMemcpyHtoA_v2 = val;
         self
     }
-    pub fn cuMemcpyAtoH_v2(mut self, val: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcArray: CUarray, srcOffset: usize, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyAtoH_v2(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUarray, usize, usize) -> CUresult>) -> Self {
         self.cuMemcpyAtoH_v2 = val;
         self
     }
-    pub fn cuMemcpyAtoA_v2(mut self, val: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcArray: CUarray, srcOffset: usize, ByteCount: usize) -> CUresult>) -> Self {
+    pub fn cuMemcpyAtoA_v2(mut self, val: Option<unsafe extern "C" fn(CUarray, usize, CUarray, usize, usize) -> CUresult>) -> Self {
         self.cuMemcpyAtoA_v2 = val;
         self
     }
-    pub fn cuMemcpy2D_v2(mut self, val: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY2D) -> CUresult>) -> Self {
+    pub fn cuMemcpy2D_v2(mut self, val: Option<unsafe extern "C" fn(*const CUDA_MEMCPY2D) -> CUresult>) -> Self {
         self.cuMemcpy2D_v2 = val;
         self
     }
-    pub fn cuMemcpy2DUnaligned_v2(mut self, val: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY2D) -> CUresult>) -> Self {
+    pub fn cuMemcpy2DUnaligned_v2(mut self, val: Option<unsafe extern "C" fn(*const CUDA_MEMCPY2D) -> CUresult>) -> Self {
         self.cuMemcpy2DUnaligned_v2 = val;
         self
     }
-    pub fn cuMemcpy3D_v2(mut self, val: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D) -> CUresult>) -> Self {
+    pub fn cuMemcpy3D_v2(mut self, val: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D) -> CUresult>) -> Self {
         self.cuMemcpy3D_v2 = val;
         self
     }
-    pub fn cuMemcpy3DPeer(mut self, val: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D_PEER) -> CUresult>) -> Self {
+    pub fn cuMemcpy3DPeer(mut self, val: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D_PEER) -> CUresult>) -> Self {
         self.cuMemcpy3DPeer = val;
         self
     }
-    pub fn cuMemcpyAsync(mut self, val: Option<unsafe extern "C" fn(dst: CUdeviceptr, src: CUdeviceptr, ByteCount: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyAsync(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyAsync = val;
         self
     }
-    pub fn cuMemcpyPeerAsync(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstContext: CUcontext, srcDevice: CUdeviceptr, srcContext: CUcontext, ByteCount: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyPeerAsync(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUcontext, CUdeviceptr, CUcontext, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyPeerAsync = val;
         self
     }
-    pub fn cuMemcpyHtoDAsync_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcHost: *const ::std::os::raw::c_void, ByteCount: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyHtoDAsync_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, *const ::std::os::raw::c_void, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyHtoDAsync_v2 = val;
         self
     }
-    pub fn cuMemcpyDtoHAsync_v2(mut self, val: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcDevice: CUdeviceptr, ByteCount: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyDtoHAsync_v2(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdeviceptr, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyDtoHAsync_v2 = val;
         self
     }
-    pub fn cuMemcpyDtoDAsync_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcDevice: CUdeviceptr, ByteCount: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyDtoDAsync_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyDtoDAsync_v2 = val;
         self
     }
-    pub fn cuMemcpyHtoAAsync_v2(mut self, val: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcHost: *const ::std::os::raw::c_void, ByteCount: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyHtoAAsync_v2(mut self, val: Option<unsafe extern "C" fn(CUarray, usize, *const ::std::os::raw::c_void, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyHtoAAsync_v2 = val;
         self
     }
-    pub fn cuMemcpyAtoHAsync_v2(mut self, val: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcArray: CUarray, srcOffset: usize, ByteCount: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyAtoHAsync_v2(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUarray, usize, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyAtoHAsync_v2 = val;
         self
     }
-    pub fn cuMemcpy2DAsync_v2(mut self, val: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY2D, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpy2DAsync_v2(mut self, val: Option<unsafe extern "C" fn(*const CUDA_MEMCPY2D, CUstream) -> CUresult>) -> Self {
         self.cuMemcpy2DAsync_v2 = val;
         self
     }
-    pub fn cuMemcpy3DAsync_v2(mut self, val: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpy3DAsync_v2(mut self, val: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D, CUstream) -> CUresult>) -> Self {
         self.cuMemcpy3DAsync_v2 = val;
         self
     }
-    pub fn cuMemcpy3DPeerAsync(mut self, val: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D_PEER, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpy3DPeerAsync(mut self, val: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D_PEER, CUstream) -> CUresult>) -> Self {
         self.cuMemcpy3DPeerAsync = val;
         self
     }
-    pub fn cuMemcpyBatchAsync_v2(mut self, val: Option<unsafe extern "C" fn(dsts: *mut CUdeviceptr, srcs: *mut CUdeviceptr, sizes: *mut usize, count: usize, attrs: *mut CUmemcpyAttributes, attrsIdxs: *mut usize, numAttrs: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyBatchAsync_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut CUdeviceptr, *mut usize, usize, *mut CUmemcpyAttributes, *mut usize, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyBatchAsync_v2 = val;
         self
     }
-    pub fn cuMemcpy3DBatchAsync_v2(mut self, val: Option<unsafe extern "C" fn(numOps: usize, opList: *mut CUDA_MEMCPY3D_BATCH_OP, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpy3DBatchAsync_v2(mut self, val: Option<unsafe extern "C" fn(usize, *mut CUDA_MEMCPY3D_BATCH_OP, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>) -> Self {
         self.cuMemcpy3DBatchAsync_v2 = val;
         self
     }
-    pub fn cuMemcpyWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(dst: CUdeviceptr, src: CUdeviceptr, size: usize, attr: *mut CUmemcpyAttributes, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpyWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize, *mut CUmemcpyAttributes, CUstream) -> CUresult>) -> Self {
         self.cuMemcpyWithAttributesAsync = val;
         self
     }
-    pub fn cuMemcpy3DWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(op: *mut CUDA_MEMCPY3D_BATCH_OP, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemcpy3DWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_MEMCPY3D_BATCH_OP, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>) -> Self {
         self.cuMemcpy3DWithAttributesAsync = val;
         self
     }
-    pub fn cuMemsetD8_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, uc: ::std::os::raw::c_uchar, N: usize) -> CUresult>) -> Self {
+    pub fn cuMemsetD8_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uchar, usize) -> CUresult>) -> Self {
         self.cuMemsetD8_v2 = val;
         self
     }
-    pub fn cuMemsetD16_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, us: ::std::os::raw::c_ushort, N: usize) -> CUresult>) -> Self {
+    pub fn cuMemsetD16_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_ushort, usize) -> CUresult>) -> Self {
         self.cuMemsetD16_v2 = val;
         self
     }
-    pub fn cuMemsetD32_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, ui: ::std::os::raw::c_uint, N: usize) -> CUresult>) -> Self {
+    pub fn cuMemsetD32_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uint, usize) -> CUresult>) -> Self {
         self.cuMemsetD32_v2 = val;
         self
     }
-    pub fn cuMemsetD2D8_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, uc: ::std::os::raw::c_uchar, Width: usize, Height: usize) -> CUresult>) -> Self {
+    pub fn cuMemsetD2D8_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uchar, usize, usize) -> CUresult>) -> Self {
         self.cuMemsetD2D8_v2 = val;
         self
     }
-    pub fn cuMemsetD2D16_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, us: ::std::os::raw::c_ushort, Width: usize, Height: usize) -> CUresult>) -> Self {
+    pub fn cuMemsetD2D16_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_ushort, usize, usize) -> CUresult>) -> Self {
         self.cuMemsetD2D16_v2 = val;
         self
     }
-    pub fn cuMemsetD2D32_v2(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, ui: ::std::os::raw::c_uint, Width: usize, Height: usize) -> CUresult>) -> Self {
+    pub fn cuMemsetD2D32_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uint, usize, usize) -> CUresult>) -> Self {
         self.cuMemsetD2D32_v2 = val;
         self
     }
-    pub fn cuMemsetD8Async(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, uc: ::std::os::raw::c_uchar, N: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemsetD8Async(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uchar, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemsetD8Async = val;
         self
     }
-    pub fn cuMemsetD16Async(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, us: ::std::os::raw::c_ushort, N: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemsetD16Async(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_ushort, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemsetD16Async = val;
         self
     }
-    pub fn cuMemsetD32Async(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, ui: ::std::os::raw::c_uint, N: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemsetD32Async(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uint, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemsetD32Async = val;
         self
     }
-    pub fn cuMemsetD2D8Async(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, uc: ::std::os::raw::c_uchar, Width: usize, Height: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemsetD2D8Async(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uchar, usize, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemsetD2D8Async = val;
         self
     }
-    pub fn cuMemsetD2D16Async(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, us: ::std::os::raw::c_ushort, Width: usize, Height: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemsetD2D16Async(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_ushort, usize, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemsetD2D16Async = val;
         self
     }
-    pub fn cuMemsetD2D32Async(mut self, val: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, ui: ::std::os::raw::c_uint, Width: usize, Height: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemsetD2D32Async(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uint, usize, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemsetD2D32Async = val;
         self
     }
-    pub fn cuArrayCreate_v2(mut self, val: Option<unsafe extern "C" fn(pHandle: *mut CUarray, pAllocateArray: *const CUDA_ARRAY_DESCRIPTOR) -> CUresult>) -> Self {
+    pub fn cuArrayCreate_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUarray, *const CUDA_ARRAY_DESCRIPTOR) -> CUresult>) -> Self {
         self.cuArrayCreate_v2 = val;
         self
     }
-    pub fn cuArrayGetDescriptor_v2(mut self, val: Option<unsafe extern "C" fn(pArrayDescriptor: *mut CUDA_ARRAY_DESCRIPTOR, hArray: CUarray) -> CUresult>) -> Self {
+    pub fn cuArrayGetDescriptor_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_DESCRIPTOR, CUarray) -> CUresult>) -> Self {
         self.cuArrayGetDescriptor_v2 = val;
         self
     }
-    pub fn cuArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(sparseProperties: *mut CUDA_ARRAY_SPARSE_PROPERTIES, array: CUarray) -> CUresult>) -> Self {
+    pub fn cuArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_SPARSE_PROPERTIES, CUarray) -> CUresult>) -> Self {
         self.cuArrayGetSparseProperties = val;
         self
     }
-    pub fn cuMipmappedArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(sparseProperties: *mut CUDA_ARRAY_SPARSE_PROPERTIES, mipmap: CUmipmappedArray) -> CUresult>) -> Self {
+    pub fn cuMipmappedArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_SPARSE_PROPERTIES, CUmipmappedArray) -> CUresult>) -> Self {
         self.cuMipmappedArrayGetSparseProperties = val;
         self
     }
-    pub fn cuArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(memoryRequirements: *mut CUDA_ARRAY_MEMORY_REQUIREMENTS, array: CUarray, device: CUdevice) -> CUresult>) -> Self {
+    pub fn cuArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_MEMORY_REQUIREMENTS, CUarray, CUdevice) -> CUresult>) -> Self {
         self.cuArrayGetMemoryRequirements = val;
         self
     }
-    pub fn cuMipmappedArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(memoryRequirements: *mut CUDA_ARRAY_MEMORY_REQUIREMENTS, mipmap: CUmipmappedArray, device: CUdevice) -> CUresult>) -> Self {
+    pub fn cuMipmappedArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_MEMORY_REQUIREMENTS, CUmipmappedArray, CUdevice) -> CUresult>) -> Self {
         self.cuMipmappedArrayGetMemoryRequirements = val;
         self
     }
-    pub fn cuArrayGetPlane(mut self, val: Option<unsafe extern "C" fn(pPlaneArray: *mut CUarray, hArray: CUarray, planeIdx: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuArrayGetPlane(mut self, val: Option<unsafe extern "C" fn(*mut CUarray, CUarray, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuArrayGetPlane = val;
         self
     }
-    pub fn cuArrayDestroy(mut self, val: Option<unsafe extern "C" fn(hArray: CUarray) -> CUresult>) -> Self {
+    pub fn cuArrayDestroy(mut self, val: Option<unsafe extern "C" fn(CUarray) -> CUresult>) -> Self {
         self.cuArrayDestroy = val;
         self
     }
-    pub fn cuArray3DCreate_v2(mut self, val: Option<unsafe extern "C" fn(pHandle: *mut CUarray, pAllocateArray: *const CUDA_ARRAY3D_DESCRIPTOR) -> CUresult>) -> Self {
+    pub fn cuArray3DCreate_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUarray, *const CUDA_ARRAY3D_DESCRIPTOR) -> CUresult>) -> Self {
         self.cuArray3DCreate_v2 = val;
         self
     }
-    pub fn cuArray3DGetDescriptor_v2(mut self, val: Option<unsafe extern "C" fn(pArrayDescriptor: *mut CUDA_ARRAY3D_DESCRIPTOR, hArray: CUarray) -> CUresult>) -> Self {
+    pub fn cuArray3DGetDescriptor_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_ARRAY3D_DESCRIPTOR, CUarray) -> CUresult>) -> Self {
         self.cuArray3DGetDescriptor_v2 = val;
         self
     }
-    pub fn cuMipmappedArrayCreate(mut self, val: Option<unsafe extern "C" fn(pHandle: *mut CUmipmappedArray, pMipmappedArrayDesc: *const CUDA_ARRAY3D_DESCRIPTOR, numMipmapLevels: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuMipmappedArrayCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUmipmappedArray, *const CUDA_ARRAY3D_DESCRIPTOR, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuMipmappedArrayCreate = val;
         self
     }
-    pub fn cuMipmappedArrayGetLevel(mut self, val: Option<unsafe extern "C" fn(pLevelArray: *mut CUarray, hMipmappedArray: CUmipmappedArray, level: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuMipmappedArrayGetLevel(mut self, val: Option<unsafe extern "C" fn(*mut CUarray, CUmipmappedArray, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuMipmappedArrayGetLevel = val;
         self
     }
-    pub fn cuMipmappedArrayDestroy(mut self, val: Option<unsafe extern "C" fn(hMipmappedArray: CUmipmappedArray) -> CUresult>) -> Self {
+    pub fn cuMipmappedArrayDestroy(mut self, val: Option<unsafe extern "C" fn(CUmipmappedArray) -> CUresult>) -> Self {
         self.cuMipmappedArrayDestroy = val;
         self
     }
-    pub fn cuMemGetHandleForAddressRange(mut self, val: Option<unsafe extern "C" fn(handle: *mut ::std::os::raw::c_void, dptr: CUdeviceptr, size: usize, handleType: CUmemRangeHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMemGetHandleForAddressRange(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdeviceptr, usize, CUmemRangeHandleType, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMemGetHandleForAddressRange = val;
         self
     }
-    pub fn cuMemBatchDecompressAsync(mut self, val: Option<unsafe extern "C" fn(paramsArray: *mut CUmemDecompressParams, count: usize, flags: ::std::os::raw::c_uint, errorIndex: *mut usize, stream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemBatchDecompressAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUmemDecompressParams, usize, ::std::os::raw::c_uint, *mut usize, CUstream) -> CUresult>) -> Self {
         self.cuMemBatchDecompressAsync = val;
         self
     }
-    pub fn cuMemAddressReserve(mut self, val: Option<unsafe extern "C" fn(ptr: *mut CUdeviceptr, size: usize, alignment: usize, addr: CUdeviceptr, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMemAddressReserve(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, usize, CUdeviceptr, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMemAddressReserve = val;
         self
     }
-    pub fn cuMemAddressFree(mut self, val: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize) -> CUresult>) -> Self {
+    pub fn cuMemAddressFree(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemAddressFree = val;
         self
     }
-    pub fn cuMemCreate(mut self, val: Option<unsafe extern "C" fn(handle: *mut CUmemGenericAllocationHandle, size: usize, prop: *const CUmemAllocationProp, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMemCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, usize, *const CUmemAllocationProp, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMemCreate = val;
         self
     }
-    pub fn cuMemRelease(mut self, val: Option<unsafe extern "C" fn(handle: CUmemGenericAllocationHandle) -> CUresult>) -> Self {
+    pub fn cuMemRelease(mut self, val: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle) -> CUresult>) -> Self {
         self.cuMemRelease = val;
         self
     }
-    pub fn cuMemMap(mut self, val: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize, offset: usize, handle: CUmemGenericAllocationHandle, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMemMap(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, usize, CUmemGenericAllocationHandle, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMemMap = val;
         self
     }
-    pub fn cuMemMapArrayAsync(mut self, val: Option<unsafe extern "C" fn(mapInfoList: *mut CUarrayMapInfo, count: ::std::os::raw::c_uint, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemMapArrayAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUarrayMapInfo, ::std::os::raw::c_uint, CUstream) -> CUresult>) -> Self {
         self.cuMemMapArrayAsync = val;
         self
     }
-    pub fn cuMemUnmap(mut self, val: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize) -> CUresult>) -> Self {
+    pub fn cuMemUnmap(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemUnmap = val;
         self
     }
-    pub fn cuMemSetAccess(mut self, val: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize, desc: *const CUmemAccessDesc, count: usize) -> CUresult>) -> Self {
+    pub fn cuMemSetAccess(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, *const CUmemAccessDesc, usize) -> CUresult>) -> Self {
         self.cuMemSetAccess = val;
         self
     }
-    pub fn cuMemGetAccess(mut self, val: Option<unsafe extern "C" fn(flags: *mut ::std::os::raw::c_ulonglong, location: *const CUmemLocation, ptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuMemGetAccess(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_ulonglong, *const CUmemLocation, CUdeviceptr) -> CUresult>) -> Self {
         self.cuMemGetAccess = val;
         self
     }
-    pub fn cuMemExportToShareableHandle(mut self, val: Option<unsafe extern "C" fn(shareableHandle: *mut ::std::os::raw::c_void, handle: CUmemGenericAllocationHandle, handleType: CUmemAllocationHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMemExportToShareableHandle(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUmemGenericAllocationHandle, CUmemAllocationHandleType, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMemExportToShareableHandle = val;
         self
     }
-    pub fn cuMemImportFromShareableHandle(mut self, val: Option<unsafe extern "C" fn(handle: *mut CUmemGenericAllocationHandle, osHandle: *mut ::std::os::raw::c_void, shHandleType: CUmemAllocationHandleType) -> CUresult>) -> Self {
+    pub fn cuMemImportFromShareableHandle(mut self, val: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, *mut ::std::os::raw::c_void, CUmemAllocationHandleType) -> CUresult>) -> Self {
         self.cuMemImportFromShareableHandle = val;
         self
     }
-    pub fn cuMemGetAllocationGranularity(mut self, val: Option<unsafe extern "C" fn(granularity: *mut usize, prop: *const CUmemAllocationProp, option: CUmemAllocationGranularity_flags) -> CUresult>) -> Self {
+    pub fn cuMemGetAllocationGranularity(mut self, val: Option<unsafe extern "C" fn(*mut usize, *const CUmemAllocationProp, CUmemAllocationGranularity_flags) -> CUresult>) -> Self {
         self.cuMemGetAllocationGranularity = val;
         self
     }
-    pub fn cuMemGetAllocationPropertiesFromHandle(mut self, val: Option<unsafe extern "C" fn(prop: *mut CUmemAllocationProp, handle: CUmemGenericAllocationHandle) -> CUresult>) -> Self {
+    pub fn cuMemGetAllocationPropertiesFromHandle(mut self, val: Option<unsafe extern "C" fn(*mut CUmemAllocationProp, CUmemGenericAllocationHandle) -> CUresult>) -> Self {
         self.cuMemGetAllocationPropertiesFromHandle = val;
         self
     }
-    pub fn cuMemRetainAllocationHandle(mut self, val: Option<unsafe extern "C" fn(handle: *mut CUmemGenericAllocationHandle, addr: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuMemRetainAllocationHandle(mut self, val: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuMemRetainAllocationHandle = val;
         self
     }
-    pub fn cuMemFreeAsync(mut self, val: Option<unsafe extern "C" fn(dptr: CUdeviceptr, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemFreeAsync(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, CUstream) -> CUresult>) -> Self {
         self.cuMemFreeAsync = val;
         self
     }
-    pub fn cuMemAllocAsync(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemAllocAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, CUstream) -> CUresult>) -> Self {
         self.cuMemAllocAsync = val;
         self
     }
-    pub fn cuMemPoolTrimTo(mut self, val: Option<unsafe extern "C" fn(pool: CUmemoryPool, minBytesToKeep: usize) -> CUresult>) -> Self {
+    pub fn cuMemPoolTrimTo(mut self, val: Option<unsafe extern "C" fn(CUmemoryPool, usize) -> CUresult>) -> Self {
         self.cuMemPoolTrimTo = val;
         self
     }
-    pub fn cuMemPoolSetAttribute(mut self, val: Option<unsafe extern "C" fn(pool: CUmemoryPool, attr: CUmemPool_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuMemPoolSetAttribute(mut self, val: Option<unsafe extern "C" fn(CUmemoryPool, CUmemPool_attribute, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuMemPoolSetAttribute = val;
         self
     }
-    pub fn cuMemPoolGetAttribute(mut self, val: Option<unsafe extern "C" fn(pool: CUmemoryPool, attr: CUmemPool_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuMemPoolGetAttribute(mut self, val: Option<unsafe extern "C" fn(CUmemoryPool, CUmemPool_attribute, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuMemPoolGetAttribute = val;
         self
     }
-    pub fn cuMemPoolSetAccess(mut self, val: Option<unsafe extern "C" fn(pool: CUmemoryPool, map: *const CUmemAccessDesc, count: usize) -> CUresult>) -> Self {
+    pub fn cuMemPoolSetAccess(mut self, val: Option<unsafe extern "C" fn(CUmemoryPool, *const CUmemAccessDesc, usize) -> CUresult>) -> Self {
         self.cuMemPoolSetAccess = val;
         self
     }
-    pub fn cuMemPoolGetAccess(mut self, val: Option<unsafe extern "C" fn(flags: *mut CUmemAccess_flags, memPool: CUmemoryPool, location: *mut CUmemLocation) -> CUresult>) -> Self {
+    pub fn cuMemPoolGetAccess(mut self, val: Option<unsafe extern "C" fn(*mut CUmemAccess_flags, CUmemoryPool, *mut CUmemLocation) -> CUresult>) -> Self {
         self.cuMemPoolGetAccess = val;
         self
     }
-    pub fn cuMemPoolCreate(mut self, val: Option<unsafe extern "C" fn(pool: *mut CUmemoryPool, poolProps: *const CUmemPoolProps) -> CUresult>) -> Self {
+    pub fn cuMemPoolCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUmemoryPool, *const CUmemPoolProps) -> CUresult>) -> Self {
         self.cuMemPoolCreate = val;
         self
     }
-    pub fn cuMemPoolDestroy(mut self, val: Option<unsafe extern "C" fn(pool: CUmemoryPool) -> CUresult>) -> Self {
+    pub fn cuMemPoolDestroy(mut self, val: Option<unsafe extern "C" fn(CUmemoryPool) -> CUresult>) -> Self {
         self.cuMemPoolDestroy = val;
         self
     }
-    pub fn cuMemGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(pool_out: *mut CUmemoryPool, location: *mut CUmemLocation, type_: CUmemAllocationType) -> CUresult>) -> Self {
+    pub fn cuMemGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(*mut CUmemoryPool, *mut CUmemLocation, CUmemAllocationType) -> CUresult>) -> Self {
         self.cuMemGetDefaultMemPool = val;
         self
     }
-    pub fn cuMemGetMemPool(mut self, val: Option<unsafe extern "C" fn(pool: *mut CUmemoryPool, location: *mut CUmemLocation, type_: CUmemAllocationType) -> CUresult>) -> Self {
+    pub fn cuMemGetMemPool(mut self, val: Option<unsafe extern "C" fn(*mut CUmemoryPool, *mut CUmemLocation, CUmemAllocationType) -> CUresult>) -> Self {
         self.cuMemGetMemPool = val;
         self
     }
-    pub fn cuMemSetMemPool(mut self, val: Option<unsafe extern "C" fn(location: *mut CUmemLocation, type_: CUmemAllocationType, pool: CUmemoryPool) -> CUresult>) -> Self {
+    pub fn cuMemSetMemPool(mut self, val: Option<unsafe extern "C" fn(*mut CUmemLocation, CUmemAllocationType, CUmemoryPool) -> CUresult>) -> Self {
         self.cuMemSetMemPool = val;
         self
     }
-    pub fn cuMemAllocFromPoolAsync(mut self, val: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize, pool: CUmemoryPool, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemAllocFromPoolAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, CUmemoryPool, CUstream) -> CUresult>) -> Self {
         self.cuMemAllocFromPoolAsync = val;
         self
     }
-    pub fn cuMemPoolExportToShareableHandle(mut self, val: Option<unsafe extern "C" fn(handle_out: *mut ::std::os::raw::c_void, pool: CUmemoryPool, handleType: CUmemAllocationHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMemPoolExportToShareableHandle(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUmemoryPool, CUmemAllocationHandleType, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMemPoolExportToShareableHandle = val;
         self
     }
-    pub fn cuMemPoolImportFromShareableHandle(mut self, val: Option<unsafe extern "C" fn(pool_out: *mut CUmemoryPool, handle: *mut ::std::os::raw::c_void, handleType: CUmemAllocationHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMemPoolImportFromShareableHandle(mut self, val: Option<unsafe extern "C" fn(*mut CUmemoryPool, *mut ::std::os::raw::c_void, CUmemAllocationHandleType, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMemPoolImportFromShareableHandle = val;
         self
     }
-    pub fn cuMemPoolExportPointer(mut self, val: Option<unsafe extern "C" fn(shareData_out: *mut CUmemPoolPtrExportData, ptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuMemPoolExportPointer(mut self, val: Option<unsafe extern "C" fn(*mut CUmemPoolPtrExportData, CUdeviceptr) -> CUresult>) -> Self {
         self.cuMemPoolExportPointer = val;
         self
     }
-    pub fn cuMemPoolImportPointer(mut self, val: Option<unsafe extern "C" fn(ptr_out: *mut CUdeviceptr, pool: CUmemoryPool, shareData: *mut CUmemPoolPtrExportData) -> CUresult>) -> Self {
+    pub fn cuMemPoolImportPointer(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUmemoryPool, *mut CUmemPoolPtrExportData) -> CUresult>) -> Self {
         self.cuMemPoolImportPointer = val;
         self
     }
-    pub fn cuMulticastCreate(mut self, val: Option<unsafe extern "C" fn(mcHandle: *mut CUmemGenericAllocationHandle, prop: *const CUmulticastObjectProp) -> CUresult>) -> Self {
+    pub fn cuMulticastCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, *const CUmulticastObjectProp) -> CUresult>) -> Self {
         self.cuMulticastCreate = val;
         self
     }
-    pub fn cuMulticastAddDevice(mut self, val: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuMulticastAddDevice(mut self, val: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice) -> CUresult>) -> Self {
         self.cuMulticastAddDevice = val;
         self
     }
-    pub fn cuMulticastBindMem(mut self, val: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, mcOffset: usize, memHandle: CUmemGenericAllocationHandle, memOffset: usize, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMulticastBindMem(mut self, val: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, usize, CUmemGenericAllocationHandle, usize, usize, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMulticastBindMem = val;
         self
     }
-    pub fn cuMulticastBindMem_v2(mut self, val: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice, mcOffset: usize, memHandle: CUmemGenericAllocationHandle, memOffset: usize, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMulticastBindMem_v2(mut self, val: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice, usize, CUmemGenericAllocationHandle, usize, usize, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMulticastBindMem_v2 = val;
         self
     }
-    pub fn cuMulticastBindAddr(mut self, val: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, mcOffset: usize, memptr: CUdeviceptr, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMulticastBindAddr(mut self, val: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, usize, CUdeviceptr, usize, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMulticastBindAddr = val;
         self
     }
-    pub fn cuMulticastBindAddr_v2(mut self, val: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice, mcOffset: usize, memptr: CUdeviceptr, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuMulticastBindAddr_v2(mut self, val: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice, usize, CUdeviceptr, usize, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuMulticastBindAddr_v2 = val;
         self
     }
-    pub fn cuMulticastUnbind(mut self, val: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice, mcOffset: usize, size: usize) -> CUresult>) -> Self {
+    pub fn cuMulticastUnbind(mut self, val: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice, usize, usize) -> CUresult>) -> Self {
         self.cuMulticastUnbind = val;
         self
     }
-    pub fn cuMulticastGetGranularity(mut self, val: Option<unsafe extern "C" fn(granularity: *mut usize, prop: *const CUmulticastObjectProp, option: CUmulticastGranularity_flags) -> CUresult>) -> Self {
+    pub fn cuMulticastGetGranularity(mut self, val: Option<unsafe extern "C" fn(*mut usize, *const CUmulticastObjectProp, CUmulticastGranularity_flags) -> CUresult>) -> Self {
         self.cuMulticastGetGranularity = val;
         self
     }
-    pub fn cuPointerGetAttribute(mut self, val: Option<unsafe extern "C" fn(data: *mut ::std::os::raw::c_void, attribute: CUpointer_attribute, ptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuPointerGetAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUpointer_attribute, CUdeviceptr) -> CUresult>) -> Self {
         self.cuPointerGetAttribute = val;
         self
     }
-    pub fn cuMemPrefetchAsync_v2(mut self, val: Option<unsafe extern "C" fn(devPtr: CUdeviceptr, count: usize, location: CUmemLocation, flags: ::std::os::raw::c_uint, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemPrefetchAsync_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, CUmemLocation, ::std::os::raw::c_uint, CUstream) -> CUresult>) -> Self {
         self.cuMemPrefetchAsync_v2 = val;
         self
     }
-    pub fn cuMemAdvise_v2(mut self, val: Option<unsafe extern "C" fn(devPtr: CUdeviceptr, count: usize, advice: CUmem_advise, location: CUmemLocation) -> CUresult>) -> Self {
+    pub fn cuMemAdvise_v2(mut self, val: Option<unsafe extern "C" fn(CUdeviceptr, usize, CUmem_advise, CUmemLocation) -> CUresult>) -> Self {
         self.cuMemAdvise_v2 = val;
         self
     }
-    pub fn cuMemPrefetchBatchAsync(
-        mut self,
-        val: Option<unsafe extern "C" fn(dptrs: *mut CUdeviceptr, sizes: *mut usize, count: usize, prefetchLocs: *mut CUmemLocation, prefetchLocIdxs: *mut usize, numPrefetchLocs: usize, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>,
-    ) -> Self {
+    pub fn cuMemPrefetchBatchAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, *mut CUmemLocation, *mut usize, usize, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>) -> Self {
         self.cuMemPrefetchBatchAsync = val;
         self
     }
-    pub fn cuMemDiscardBatchAsync(mut self, val: Option<unsafe extern "C" fn(dptrs: *mut CUdeviceptr, sizes: *mut usize, count: usize, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuMemDiscardBatchAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>) -> Self {
         self.cuMemDiscardBatchAsync = val;
         self
     }
-    pub fn cuMemDiscardAndPrefetchBatchAsync(
-        mut self,
-        val: Option<unsafe extern "C" fn(dptrs: *mut CUdeviceptr, sizes: *mut usize, count: usize, prefetchLocs: *mut CUmemLocation, prefetchLocIdxs: *mut usize, numPrefetchLocs: usize, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>,
-    ) -> Self {
+    pub fn cuMemDiscardAndPrefetchBatchAsync(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, *mut CUmemLocation, *mut usize, usize, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>) -> Self {
         self.cuMemDiscardAndPrefetchBatchAsync = val;
         self
     }
-    pub fn cuMemRangeGetAttribute(mut self, val: Option<unsafe extern "C" fn(data: *mut ::std::os::raw::c_void, dataSize: usize, attribute: CUmem_range_attribute, devPtr: CUdeviceptr, count: usize) -> CUresult>) -> Self {
+    pub fn cuMemRangeGetAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, CUmem_range_attribute, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemRangeGetAttribute = val;
         self
     }
-    pub fn cuMemRangeGetAttributes(mut self, val: Option<unsafe extern "C" fn(data: *mut *mut ::std::os::raw::c_void, dataSizes: *mut usize, attributes: *mut CUmem_range_attribute, numAttributes: usize, devPtr: CUdeviceptr, count: usize) -> CUresult>) -> Self {
+    pub fn cuMemRangeGetAttributes(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, *mut CUmem_range_attribute, usize, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuMemRangeGetAttributes = val;
         self
     }
-    pub fn cuPointerSetAttribute(mut self, val: Option<unsafe extern "C" fn(value: *const ::std::os::raw::c_void, attribute: CUpointer_attribute, ptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuPointerSetAttribute(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, CUpointer_attribute, CUdeviceptr) -> CUresult>) -> Self {
         self.cuPointerSetAttribute = val;
         self
     }
-    pub fn cuPointerGetAttributes(mut self, val: Option<unsafe extern "C" fn(numAttributes: ::std::os::raw::c_uint, attributes: *mut CUpointer_attribute, data: *mut *mut ::std::os::raw::c_void, ptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuPointerGetAttributes(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUpointer_attribute, *mut *mut ::std::os::raw::c_void, CUdeviceptr) -> CUresult>) -> Self {
         self.cuPointerGetAttributes = val;
         self
     }
-    pub fn cuStreamCreate(mut self, val: Option<unsafe extern "C" fn(phStream: *mut CUstream, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUstream, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamCreate = val;
         self
     }
-    pub fn cuStreamCreateWithPriority(mut self, val: Option<unsafe extern "C" fn(phStream: *mut CUstream, flags: ::std::os::raw::c_uint, priority: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuStreamCreateWithPriority(mut self, val: Option<unsafe extern "C" fn(*mut CUstream, ::std::os::raw::c_uint, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuStreamCreateWithPriority = val;
         self
     }
-    pub fn cuStreamBeginCaptureToCig(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, streamCigCaptureParams: *mut CUstreamCigCaptureParams) -> CUresult>) -> Self {
+    pub fn cuStreamBeginCaptureToCig(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUstreamCigCaptureParams) -> CUresult>) -> Self {
         self.cuStreamBeginCaptureToCig = val;
         self
     }
-    pub fn cuStreamEndCaptureToCig(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuStreamEndCaptureToCig(mut self, val: Option<unsafe extern "C" fn(CUstream) -> CUresult>) -> Self {
         self.cuStreamEndCaptureToCig = val;
         self
     }
-    pub fn cuStreamGetPriority(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, priority: *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuStreamGetPriority(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuStreamGetPriority = val;
         self
     }
-    pub fn cuStreamGetDevice(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, device: *mut CUdevice) -> CUresult>) -> Self {
+    pub fn cuStreamGetDevice(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUdevice) -> CUresult>) -> Self {
         self.cuStreamGetDevice = val;
         self
     }
-    pub fn cuStreamGetFlags(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, flags: *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamGetFlags(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamGetFlags = val;
         self
     }
-    pub fn cuStreamGetId(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, streamId: *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuStreamGetId(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuStreamGetId = val;
         self
     }
-    pub fn cuStreamGetCtx(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, pctx: *mut CUcontext) -> CUresult>) -> Self {
+    pub fn cuStreamGetCtx(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUcontext) -> CUresult>) -> Self {
         self.cuStreamGetCtx = val;
         self
     }
-    pub fn cuStreamGetCtx_v2(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, pCtx: *mut CUcontext, pGreenCtx: *mut CUgreenCtx) -> CUresult>) -> Self {
+    pub fn cuStreamGetCtx_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUcontext, *mut CUgreenCtx) -> CUresult>) -> Self {
         self.cuStreamGetCtx_v2 = val;
         self
     }
-    pub fn cuStreamWaitEvent(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, hEvent: CUevent, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamWaitEvent(mut self, val: Option<unsafe extern "C" fn(CUstream, CUevent, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamWaitEvent = val;
         self
     }
-    pub fn cuStreamAddCallback(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, callback: CUstreamCallback, userData: *mut ::std::os::raw::c_void, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamAddCallback(mut self, val: Option<unsafe extern "C" fn(CUstream, CUstreamCallback, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamAddCallback = val;
         self
     }
-    pub fn cuStreamBeginCapture_v2(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, mode: CUstreamCaptureMode) -> CUresult>) -> Self {
+    pub fn cuStreamBeginCapture_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, CUstreamCaptureMode) -> CUresult>) -> Self {
         self.cuStreamBeginCapture_v2 = val;
         self
     }
-    pub fn cuStreamBeginCaptureToGraph(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, hGraph: CUgraph, dependencies: *const CUgraphNode, dependencyData: *const CUgraphEdgeData, numDependencies: usize, mode: CUstreamCaptureMode) -> CUresult>) -> Self {
+    pub fn cuStreamBeginCaptureToGraph(mut self, val: Option<unsafe extern "C" fn(CUstream, CUgraph, *const CUgraphNode, *const CUgraphEdgeData, usize, CUstreamCaptureMode) -> CUresult>) -> Self {
         self.cuStreamBeginCaptureToGraph = val;
         self
     }
-    pub fn cuThreadExchangeStreamCaptureMode(mut self, val: Option<unsafe extern "C" fn(mode: *mut CUstreamCaptureMode) -> CUresult>) -> Self {
+    pub fn cuThreadExchangeStreamCaptureMode(mut self, val: Option<unsafe extern "C" fn(*mut CUstreamCaptureMode) -> CUresult>) -> Self {
         self.cuThreadExchangeStreamCaptureMode = val;
         self
     }
-    pub fn cuStreamEndCapture(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, phGraph: *mut CUgraph) -> CUresult>) -> Self {
+    pub fn cuStreamEndCapture(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUgraph) -> CUresult>) -> Self {
         self.cuStreamEndCapture = val;
         self
     }
-    pub fn cuStreamIsCapturing(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, captureStatus: *mut CUstreamCaptureStatus) -> CUresult>) -> Self {
+    pub fn cuStreamIsCapturing(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUstreamCaptureStatus) -> CUresult>) -> Self {
         self.cuStreamIsCapturing = val;
         self
     }
-    pub fn cuStreamGetCaptureInfo_v3(
-        mut self,
-        val: Option<unsafe extern "C" fn(hStream: CUstream, captureStatus_out: *mut CUstreamCaptureStatus, id_out: *mut cuuint64_t, graph_out: *mut CUgraph, dependencies_out: *mut *const CUgraphNode, edgeData_out: *mut *const CUgraphEdgeData, numDependencies_out: *mut usize) -> CUresult>,
-    ) -> Self {
+    pub fn cuStreamGetCaptureInfo_v3(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUstreamCaptureStatus, *mut cuuint64_t, *mut CUgraph, *mut *const CUgraphNode, *mut *const CUgraphEdgeData, *mut usize) -> CUresult>) -> Self {
         self.cuStreamGetCaptureInfo_v3 = val;
         self
     }
-    pub fn cuStreamUpdateCaptureDependencies_v2(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, dependencies: *mut CUgraphNode, dependencyData: *const CUgraphEdgeData, numDependencies: usize, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamUpdateCaptureDependencies_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUgraphNode, *const CUgraphEdgeData, usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamUpdateCaptureDependencies_v2 = val;
         self
     }
-    pub fn cuStreamAttachMemAsync(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, dptr: CUdeviceptr, length: usize, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamAttachMemAsync(mut self, val: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamAttachMemAsync = val;
         self
     }
-    pub fn cuStreamQuery(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuStreamQuery(mut self, val: Option<unsafe extern "C" fn(CUstream) -> CUresult>) -> Self {
         self.cuStreamQuery = val;
         self
     }
-    pub fn cuStreamSynchronize(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuStreamSynchronize(mut self, val: Option<unsafe extern "C" fn(CUstream) -> CUresult>) -> Self {
         self.cuStreamSynchronize = val;
         self
     }
-    pub fn cuStreamDestroy_v2(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuStreamDestroy_v2(mut self, val: Option<unsafe extern "C" fn(CUstream) -> CUresult>) -> Self {
         self.cuStreamDestroy_v2 = val;
         self
     }
-    pub fn cuStreamCopyAttributes(mut self, val: Option<unsafe extern "C" fn(dst: CUstream, src: CUstream) -> CUresult>) -> Self {
+    pub fn cuStreamCopyAttributes(mut self, val: Option<unsafe extern "C" fn(CUstream, CUstream) -> CUresult>) -> Self {
         self.cuStreamCopyAttributes = val;
         self
     }
-    pub fn cuStreamGetAttribute(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, attr: CUstreamAttrID, value_out: *mut CUstreamAttrValue) -> CUresult>) -> Self {
+    pub fn cuStreamGetAttribute(mut self, val: Option<unsafe extern "C" fn(CUstream, CUstreamAttrID, *mut CUstreamAttrValue) -> CUresult>) -> Self {
         self.cuStreamGetAttribute = val;
         self
     }
-    pub fn cuStreamSetAttribute(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, attr: CUstreamAttrID, value: *const CUstreamAttrValue) -> CUresult>) -> Self {
+    pub fn cuStreamSetAttribute(mut self, val: Option<unsafe extern "C" fn(CUstream, CUstreamAttrID, *const CUstreamAttrValue) -> CUresult>) -> Self {
         self.cuStreamSetAttribute = val;
         self
     }
-    pub fn cuEventCreate(mut self, val: Option<unsafe extern "C" fn(phEvent: *mut CUevent, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuEventCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUevent, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuEventCreate = val;
         self
     }
-    pub fn cuEventRecord(mut self, val: Option<unsafe extern "C" fn(hEvent: CUevent, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuEventRecord(mut self, val: Option<unsafe extern "C" fn(CUevent, CUstream) -> CUresult>) -> Self {
         self.cuEventRecord = val;
         self
     }
-    pub fn cuEventRecordWithFlags(mut self, val: Option<unsafe extern "C" fn(hEvent: CUevent, hStream: CUstream, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuEventRecordWithFlags(mut self, val: Option<unsafe extern "C" fn(CUevent, CUstream, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuEventRecordWithFlags = val;
         self
     }
-    pub fn cuEventQuery(mut self, val: Option<unsafe extern "C" fn(hEvent: CUevent) -> CUresult>) -> Self {
+    pub fn cuEventQuery(mut self, val: Option<unsafe extern "C" fn(CUevent) -> CUresult>) -> Self {
         self.cuEventQuery = val;
         self
     }
-    pub fn cuEventSynchronize(mut self, val: Option<unsafe extern "C" fn(hEvent: CUevent) -> CUresult>) -> Self {
+    pub fn cuEventSynchronize(mut self, val: Option<unsafe extern "C" fn(CUevent) -> CUresult>) -> Self {
         self.cuEventSynchronize = val;
         self
     }
-    pub fn cuEventDestroy_v2(mut self, val: Option<unsafe extern "C" fn(hEvent: CUevent) -> CUresult>) -> Self {
+    pub fn cuEventDestroy_v2(mut self, val: Option<unsafe extern "C" fn(CUevent) -> CUresult>) -> Self {
         self.cuEventDestroy_v2 = val;
         self
     }
-    pub fn cuEventElapsedTime_v2(mut self, val: Option<unsafe extern "C" fn(pMilliseconds: *mut f32, hStart: CUevent, hEnd: CUevent) -> CUresult>) -> Self {
+    pub fn cuEventElapsedTime_v2(mut self, val: Option<unsafe extern "C" fn(*mut f32, CUevent, CUevent) -> CUresult>) -> Self {
         self.cuEventElapsedTime_v2 = val;
         self
     }
-    pub fn cuImportExternalMemory(mut self, val: Option<unsafe extern "C" fn(extMem_out: *mut CUexternalMemory, memHandleDesc: *const CUDA_EXTERNAL_MEMORY_HANDLE_DESC) -> CUresult>) -> Self {
+    pub fn cuImportExternalMemory(mut self, val: Option<unsafe extern "C" fn(*mut CUexternalMemory, *const CUDA_EXTERNAL_MEMORY_HANDLE_DESC) -> CUresult>) -> Self {
         self.cuImportExternalMemory = val;
         self
     }
-    pub fn cuExternalMemoryGetMappedBuffer(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut CUdeviceptr, extMem: CUexternalMemory, bufferDesc: *const CUDA_EXTERNAL_MEMORY_BUFFER_DESC) -> CUresult>) -> Self {
+    pub fn cuExternalMemoryGetMappedBuffer(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUexternalMemory, *const CUDA_EXTERNAL_MEMORY_BUFFER_DESC) -> CUresult>) -> Self {
         self.cuExternalMemoryGetMappedBuffer = val;
         self
     }
-    pub fn cuExternalMemoryGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(mipmap: *mut CUmipmappedArray, extMem: CUexternalMemory, mipmapDesc: *const CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC) -> CUresult>) -> Self {
+    pub fn cuExternalMemoryGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(*mut CUmipmappedArray, CUexternalMemory, *const CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC) -> CUresult>) -> Self {
         self.cuExternalMemoryGetMappedMipmappedArray = val;
         self
     }
-    pub fn cuDestroyExternalMemory(mut self, val: Option<unsafe extern "C" fn(extMem: CUexternalMemory) -> CUresult>) -> Self {
+    pub fn cuDestroyExternalMemory(mut self, val: Option<unsafe extern "C" fn(CUexternalMemory) -> CUresult>) -> Self {
         self.cuDestroyExternalMemory = val;
         self
     }
-    pub fn cuImportExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(extSem_out: *mut CUexternalSemaphore, semHandleDesc: *const CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC) -> CUresult>) -> Self {
+    pub fn cuImportExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(*mut CUexternalSemaphore, *const CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC) -> CUresult>) -> Self {
         self.cuImportExternalSemaphore = val;
         self
     }
-    pub fn cuSignalExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(extSemArray: *const CUexternalSemaphore, paramsArray: *const CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS, numExtSems: ::std::os::raw::c_uint, stream: CUstream) -> CUresult>) -> Self {
+    pub fn cuSignalExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(*const CUexternalSemaphore, *const CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS, ::std::os::raw::c_uint, CUstream) -> CUresult>) -> Self {
         self.cuSignalExternalSemaphoresAsync = val;
         self
     }
-    pub fn cuWaitExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(extSemArray: *const CUexternalSemaphore, paramsArray: *const CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS, numExtSems: ::std::os::raw::c_uint, stream: CUstream) -> CUresult>) -> Self {
+    pub fn cuWaitExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(*const CUexternalSemaphore, *const CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS, ::std::os::raw::c_uint, CUstream) -> CUresult>) -> Self {
         self.cuWaitExternalSemaphoresAsync = val;
         self
     }
-    pub fn cuDestroyExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(extSem: CUexternalSemaphore) -> CUresult>) -> Self {
+    pub fn cuDestroyExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(CUexternalSemaphore) -> CUresult>) -> Self {
         self.cuDestroyExternalSemaphore = val;
         self
     }
-    pub fn cuStreamWaitValue32_v2(mut self, val: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint32_t, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamWaitValue32_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint32_t, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamWaitValue32_v2 = val;
         self
     }
-    pub fn cuStreamWaitValue64_v2(mut self, val: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint64_t, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamWaitValue64_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint64_t, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamWaitValue64_v2 = val;
         self
     }
-    pub fn cuStreamWriteValue32_v2(mut self, val: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint32_t, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamWriteValue32_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint32_t, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamWriteValue32_v2 = val;
         self
     }
-    pub fn cuStreamWriteValue64_v2(mut self, val: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint64_t, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamWriteValue64_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint64_t, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamWriteValue64_v2 = val;
         self
     }
-    pub fn cuStreamBatchMemOp_v2(mut self, val: Option<unsafe extern "C" fn(stream: CUstream, count: ::std::os::raw::c_uint, paramArray: *mut CUstreamBatchMemOpParams, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuStreamBatchMemOp_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, ::std::os::raw::c_uint, *mut CUstreamBatchMemOpParams, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuStreamBatchMemOp_v2 = val;
         self
     }
-    pub fn cuFuncGetAttribute(mut self, val: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, attrib: CUfunction_attribute, hfunc: CUfunction) -> CUresult>) -> Self {
+    pub fn cuFuncGetAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction_attribute, CUfunction) -> CUresult>) -> Self {
         self.cuFuncGetAttribute = val;
         self
     }
-    pub fn cuFuncSetAttribute(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, attrib: CUfunction_attribute, value: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuFuncSetAttribute(mut self, val: Option<unsafe extern "C" fn(CUfunction, CUfunction_attribute, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuFuncSetAttribute = val;
         self
     }
-    pub fn cuFuncSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, config: CUfunc_cache) -> CUresult>) -> Self {
+    pub fn cuFuncSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(CUfunction, CUfunc_cache) -> CUresult>) -> Self {
         self.cuFuncSetCacheConfig = val;
         self
     }
-    pub fn cuFuncGetModule(mut self, val: Option<unsafe extern "C" fn(hmod: *mut CUmodule, hfunc: CUfunction) -> CUresult>) -> Self {
+    pub fn cuFuncGetModule(mut self, val: Option<unsafe extern "C" fn(*mut CUmodule, CUfunction) -> CUresult>) -> Self {
         self.cuFuncGetModule = val;
         self
     }
-    pub fn cuFuncGetName(mut self, val: Option<unsafe extern "C" fn(name: *mut *const ::std::os::raw::c_char, hfunc: CUfunction) -> CUresult>) -> Self {
+    pub fn cuFuncGetName(mut self, val: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_char, CUfunction) -> CUresult>) -> Self {
         self.cuFuncGetName = val;
         self
     }
-    pub fn cuFuncGetParamInfo(mut self, val: Option<unsafe extern "C" fn(func: CUfunction, paramIndex: usize, paramOffset: *mut usize, paramSize: *mut usize) -> CUresult>) -> Self {
+    pub fn cuFuncGetParamInfo(mut self, val: Option<unsafe extern "C" fn(CUfunction, usize, *mut usize, *mut usize) -> CUresult>) -> Self {
         self.cuFuncGetParamInfo = val;
         self
     }
-    pub fn cuFuncGetParamCount(mut self, val: Option<unsafe extern "C" fn(func: CUfunction, paramCount: *mut usize) -> CUresult>) -> Self {
+    pub fn cuFuncGetParamCount(mut self, val: Option<unsafe extern "C" fn(CUfunction, *mut usize) -> CUresult>) -> Self {
         self.cuFuncGetParamCount = val;
         self
     }
-    pub fn cuFuncIsLoaded(mut self, val: Option<unsafe extern "C" fn(state: *mut CUfunctionLoadingState, function: CUfunction) -> CUresult>) -> Self {
+    pub fn cuFuncIsLoaded(mut self, val: Option<unsafe extern "C" fn(*mut CUfunctionLoadingState, CUfunction) -> CUresult>) -> Self {
         self.cuFuncIsLoaded = val;
         self
     }
-    pub fn cuFuncLoad(mut self, val: Option<unsafe extern "C" fn(function: CUfunction) -> CUresult>) -> Self {
+    pub fn cuFuncLoad(mut self, val: Option<unsafe extern "C" fn(CUfunction) -> CUresult>) -> Self {
         self.cuFuncLoad = val;
         self
     }
@@ -3423,654 +3828,622 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                f: CUfunction,
-                gridDimX: ::std::os::raw::c_uint,
-                gridDimY: ::std::os::raw::c_uint,
-                gridDimZ: ::std::os::raw::c_uint,
-                blockDimX: ::std::os::raw::c_uint,
-                blockDimY: ::std::os::raw::c_uint,
-                blockDimZ: ::std::os::raw::c_uint,
-                sharedMemBytes: ::std::os::raw::c_uint,
-                hStream: CUstream,
-                kernelParams: *mut *mut ::std::os::raw::c_void,
-                extra: *mut *mut ::std::os::raw::c_void,
+                CUfunction,
+                ::std::os::raw::c_uint,
+                ::std::os::raw::c_uint,
+                ::std::os::raw::c_uint,
+                ::std::os::raw::c_uint,
+                ::std::os::raw::c_uint,
+                ::std::os::raw::c_uint,
+                ::std::os::raw::c_uint,
+                CUstream,
+                *mut *mut ::std::os::raw::c_void,
+                *mut *mut ::std::os::raw::c_void,
             ) -> CUresult,
         >,
     ) -> Self {
         self.cuLaunchKernel = val;
         self
     }
-    pub fn cuLaunchKernelEx(mut self, val: Option<unsafe extern "C" fn(config: *const CUlaunchConfig, f: CUfunction, kernelParams: *mut *mut ::std::os::raw::c_void, extra: *mut *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuLaunchKernelEx(mut self, val: Option<unsafe extern "C" fn(*const CUlaunchConfig, CUfunction, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuLaunchKernelEx = val;
         self
     }
     pub fn cuLaunchCooperativeKernel(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                f: CUfunction,
-                gridDimX: ::std::os::raw::c_uint,
-                gridDimY: ::std::os::raw::c_uint,
-                gridDimZ: ::std::os::raw::c_uint,
-                blockDimX: ::std::os::raw::c_uint,
-                blockDimY: ::std::os::raw::c_uint,
-                blockDimZ: ::std::os::raw::c_uint,
-                sharedMemBytes: ::std::os::raw::c_uint,
-                hStream: CUstream,
-                kernelParams: *mut *mut ::std::os::raw::c_void,
-            ) -> CUresult,
-        >,
+        val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, CUstream, *mut *mut ::std::os::raw::c_void) -> CUresult>,
     ) -> Self {
         self.cuLaunchCooperativeKernel = val;
         self
     }
-    pub fn cuLaunchCooperativeKernelMultiDevice(mut self, val: Option<unsafe extern "C" fn(launchParamsList: *mut CUDA_LAUNCH_PARAMS, numDevices: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuLaunchCooperativeKernelMultiDevice(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_LAUNCH_PARAMS, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuLaunchCooperativeKernelMultiDevice = val;
         self
     }
-    pub fn cuLaunchHostFunc(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, fn_: CUhostFn, userData: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuLaunchHostFunc(mut self, val: Option<unsafe extern "C" fn(CUstream, CUhostFn, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuLaunchHostFunc = val;
         self
     }
-    pub fn cuLaunchHostFunc_v2(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, fn_: CUhostFn, userData: *mut ::std::os::raw::c_void, syncMode: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuLaunchHostFunc_v2(mut self, val: Option<unsafe extern "C" fn(CUstream, CUhostFn, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuLaunchHostFunc_v2 = val;
         self
     }
-    pub fn cuFuncSetBlockShape(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, x: ::std::os::raw::c_int, y: ::std::os::raw::c_int, z: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuFuncSetBlockShape(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuFuncSetBlockShape = val;
         self
     }
-    pub fn cuFuncSetSharedSize(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, bytes: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuFuncSetSharedSize(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuFuncSetSharedSize = val;
         self
     }
-    pub fn cuParamSetSize(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, numbytes: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuParamSetSize(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuParamSetSize = val;
         self
     }
-    pub fn cuParamSeti(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, offset: ::std::os::raw::c_int, value: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuParamSeti(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuParamSeti = val;
         self
     }
-    pub fn cuParamSetf(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, offset: ::std::os::raw::c_int, value: f32) -> CUresult>) -> Self {
+    pub fn cuParamSetf(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, f32) -> CUresult>) -> Self {
         self.cuParamSetf = val;
         self
     }
-    pub fn cuParamSetv(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, offset: ::std::os::raw::c_int, ptr: *mut ::std::os::raw::c_void, numbytes: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuParamSetv(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuParamSetv = val;
         self
     }
-    pub fn cuLaunch(mut self, val: Option<unsafe extern "C" fn(f: CUfunction) -> CUresult>) -> Self {
+    pub fn cuLaunch(mut self, val: Option<unsafe extern "C" fn(CUfunction) -> CUresult>) -> Self {
         self.cuLaunch = val;
         self
     }
-    pub fn cuLaunchGrid(mut self, val: Option<unsafe extern "C" fn(f: CUfunction, grid_width: ::std::os::raw::c_int, grid_height: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuLaunchGrid(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuLaunchGrid = val;
         self
     }
-    pub fn cuLaunchGridAsync(mut self, val: Option<unsafe extern "C" fn(f: CUfunction, grid_width: ::std::os::raw::c_int, grid_height: ::std::os::raw::c_int, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuLaunchGridAsync(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int, CUstream) -> CUresult>) -> Self {
         self.cuLaunchGridAsync = val;
         self
     }
-    pub fn cuParamSetTexRef(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, texunit: ::std::os::raw::c_int, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuParamSetTexRef(mut self, val: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, CUtexref) -> CUresult>) -> Self {
         self.cuParamSetTexRef = val;
         self
     }
-    pub fn cuFuncSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(hfunc: CUfunction, config: CUsharedconfig) -> CUresult>) -> Self {
+    pub fn cuFuncSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(CUfunction, CUsharedconfig) -> CUresult>) -> Self {
         self.cuFuncSetSharedMemConfig = val;
         self
     }
-    pub fn cuGraphCreate(mut self, val: Option<unsafe extern "C" fn(phGraph: *mut CUgraph, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUgraph, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphCreate = val;
         self
     }
-    pub fn cuGraphAddKernelNode_v2(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphAddKernelNode_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphAddKernelNode_v2 = val;
         self
     }
-    pub fn cuGraphKernelNodeGetParams_v2(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphKernelNodeGetParams_v2(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphKernelNodeGetParams_v2 = val;
         self
     }
-    pub fn cuGraphKernelNodeSetParams_v2(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphKernelNodeSetParams_v2(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphKernelNodeSetParams_v2 = val;
         self
     }
-    pub fn cuGraphAddMemcpyNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, copyParams: *const CUDA_MEMCPY3D, ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuGraphAddMemcpyNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_MEMCPY3D, CUcontext) -> CUresult>) -> Self {
         self.cuGraphAddMemcpyNode = val;
         self
     }
-    pub fn cuGraphMemcpyNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_MEMCPY3D) -> CUresult>) -> Self {
+    pub fn cuGraphMemcpyNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_MEMCPY3D) -> CUresult>) -> Self {
         self.cuGraphMemcpyNodeGetParams = val;
         self
     }
-    pub fn cuGraphMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_MEMCPY3D) -> CUresult>) -> Self {
+    pub fn cuGraphMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_MEMCPY3D) -> CUresult>) -> Self {
         self.cuGraphMemcpyNodeSetParams = val;
         self
     }
-    pub fn cuGraphAddMemsetNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, memsetParams: *const CUDA_MEMSET_NODE_PARAMS, ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuGraphAddMemsetNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_MEMSET_NODE_PARAMS, CUcontext) -> CUresult>) -> Self {
         self.cuGraphAddMemsetNode = val;
         self
     }
-    pub fn cuGraphMemsetNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_MEMSET_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphMemsetNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_MEMSET_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphMemsetNodeGetParams = val;
         self
     }
-    pub fn cuGraphMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_MEMSET_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_MEMSET_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphMemsetNodeSetParams = val;
         self
     }
-    pub fn cuGraphAddHostNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphAddHostNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphAddHostNode = val;
         self
     }
-    pub fn cuGraphHostNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphHostNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphHostNodeGetParams = val;
         self
     }
-    pub fn cuGraphHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphHostNodeSetParams = val;
         self
     }
-    pub fn cuGraphAddChildGraphNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, childGraph: CUgraph) -> CUresult>) -> Self {
+    pub fn cuGraphAddChildGraphNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUgraph) -> CUresult>) -> Self {
         self.cuGraphAddChildGraphNode = val;
         self
     }
-    pub fn cuGraphChildGraphNodeGetGraph(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, phGraph: *mut CUgraph) -> CUresult>) -> Self {
+    pub fn cuGraphChildGraphNodeGetGraph(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraph) -> CUresult>) -> Self {
         self.cuGraphChildGraphNodeGetGraph = val;
         self
     }
-    pub fn cuGraphAddEmptyNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize) -> CUresult>) -> Self {
+    pub fn cuGraphAddEmptyNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize) -> CUresult>) -> Self {
         self.cuGraphAddEmptyNode = val;
         self
     }
-    pub fn cuGraphAddEventRecordNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, event: CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphAddEventRecordNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUevent) -> CUresult>) -> Self {
         self.cuGraphAddEventRecordNode = val;
         self
     }
-    pub fn cuGraphEventRecordNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, event_out: *mut CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphEventRecordNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUevent) -> CUresult>) -> Self {
         self.cuGraphEventRecordNodeGetEvent = val;
         self
     }
-    pub fn cuGraphEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, event: CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, CUevent) -> CUresult>) -> Self {
         self.cuGraphEventRecordNodeSetEvent = val;
         self
     }
-    pub fn cuGraphAddEventWaitNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, event: CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphAddEventWaitNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUevent) -> CUresult>) -> Self {
         self.cuGraphAddEventWaitNode = val;
         self
     }
-    pub fn cuGraphEventWaitNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, event_out: *mut CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphEventWaitNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUevent) -> CUresult>) -> Self {
         self.cuGraphEventWaitNodeGetEvent = val;
         self
     }
-    pub fn cuGraphEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, event: CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, CUevent) -> CUresult>) -> Self {
         self.cuGraphEventWaitNodeSetEvent = val;
         self
     }
-    pub fn cuGraphAddExternalSemaphoresSignalNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphAddExternalSemaphoresSignalNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphAddExternalSemaphoresSignalNode = val;
         self
     }
-    pub fn cuGraphExternalSemaphoresSignalNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, params_out: *mut CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExternalSemaphoresSignalNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExternalSemaphoresSignalNodeGetParams = val;
         self
     }
-    pub fn cuGraphExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExternalSemaphoresSignalNodeSetParams = val;
         self
     }
-    pub fn cuGraphAddExternalSemaphoresWaitNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphAddExternalSemaphoresWaitNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphAddExternalSemaphoresWaitNode = val;
         self
     }
-    pub fn cuGraphExternalSemaphoresWaitNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, params_out: *mut CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExternalSemaphoresWaitNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExternalSemaphoresWaitNodeGetParams = val;
         self
     }
-    pub fn cuGraphExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExternalSemaphoresWaitNodeSetParams = val;
         self
     }
-    pub fn cuGraphAddBatchMemOpNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphAddBatchMemOpNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphAddBatchMemOpNode = val;
         self
     }
-    pub fn cuGraphBatchMemOpNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams_out: *mut CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphBatchMemOpNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphBatchMemOpNodeGetParams = val;
         self
     }
-    pub fn cuGraphBatchMemOpNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphBatchMemOpNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphBatchMemOpNodeSetParams = val;
         self
     }
-    pub fn cuGraphExecBatchMemOpNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExecBatchMemOpNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExecBatchMemOpNodeSetParams = val;
         self
     }
-    pub fn cuGraphAddMemAllocNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphAddMemAllocNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphAddMemAllocNode = val;
         self
     }
-    pub fn cuGraphMemAllocNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, params_out: *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphMemAllocNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphMemAllocNodeGetParams = val;
         self
     }
-    pub fn cuGraphAddMemFreeNode(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, dptr: CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuGraphAddMemFreeNode(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUdeviceptr) -> CUresult>) -> Self {
         self.cuGraphAddMemFreeNode = val;
         self
     }
-    pub fn cuGraphMemFreeNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, dptr_out: *mut CUdeviceptr) -> CUresult>) -> Self {
+    pub fn cuGraphMemFreeNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUdeviceptr) -> CUresult>) -> Self {
         self.cuGraphMemFreeNodeGetParams = val;
         self
     }
-    pub fn cuDeviceGraphMemTrim(mut self, val: Option<unsafe extern "C" fn(device: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGraphMemTrim(mut self, val: Option<unsafe extern "C" fn(CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGraphMemTrim = val;
         self
     }
-    pub fn cuDeviceGetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(device: CUdevice, attr: CUgraphMem_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuDeviceGetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(CUdevice, CUgraphMem_attribute, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuDeviceGetGraphMemAttribute = val;
         self
     }
-    pub fn cuDeviceSetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(device: CUdevice, attr: CUgraphMem_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuDeviceSetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(CUdevice, CUgraphMem_attribute, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuDeviceSetGraphMemAttribute = val;
         self
     }
-    pub fn cuGraphClone(mut self, val: Option<unsafe extern "C" fn(phGraphClone: *mut CUgraph, originalGraph: CUgraph) -> CUresult>) -> Self {
+    pub fn cuGraphClone(mut self, val: Option<unsafe extern "C" fn(*mut CUgraph, CUgraph) -> CUresult>) -> Self {
         self.cuGraphClone = val;
         self
     }
-    pub fn cuGraphNodeFindInClone(mut self, val: Option<unsafe extern "C" fn(phNode: *mut CUgraphNode, hOriginalNode: CUgraphNode, hClonedGraph: CUgraph) -> CUresult>) -> Self {
+    pub fn cuGraphNodeFindInClone(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraphNode, CUgraph) -> CUresult>) -> Self {
         self.cuGraphNodeFindInClone = val;
         self
     }
-    pub fn cuGraphNodeGetType(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, type_: *mut CUgraphNodeType) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetType(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNodeType) -> CUresult>) -> Self {
         self.cuGraphNodeGetType = val;
         self
     }
-    pub fn cuGraphNodeGetContainingGraph(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, phGraph: *mut CUgraph) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetContainingGraph(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraph) -> CUresult>) -> Self {
         self.cuGraphNodeGetContainingGraph = val;
         self
     }
-    pub fn cuGraphNodeGetLocalId(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeId: *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetLocalId(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphNodeGetLocalId = val;
         self
     }
-    pub fn cuGraphNodeGetToolsId(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, toolsNodeId: *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetToolsId(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuGraphNodeGetToolsId = val;
         self
     }
-    pub fn cuGraphGetId(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph, graphId: *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphGetId(mut self, val: Option<unsafe extern "C" fn(CUgraph, *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphGetId = val;
         self
     }
-    pub fn cuGraphExecGetId(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, graphId: *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphExecGetId(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphExecGetId = val;
         self
     }
-    pub fn cuGraphGetNodes(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph, nodes: *mut CUgraphNode, numNodes: *mut usize) -> CUresult>) -> Self {
+    pub fn cuGraphGetNodes(mut self, val: Option<unsafe extern "C" fn(CUgraph, *mut CUgraphNode, *mut usize) -> CUresult>) -> Self {
         self.cuGraphGetNodes = val;
         self
     }
-    pub fn cuGraphGetRootNodes(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph, rootNodes: *mut CUgraphNode, numRootNodes: *mut usize) -> CUresult>) -> Self {
+    pub fn cuGraphGetRootNodes(mut self, val: Option<unsafe extern "C" fn(CUgraph, *mut CUgraphNode, *mut usize) -> CUresult>) -> Self {
         self.cuGraphGetRootNodes = val;
         self
     }
-    pub fn cuGraphGetEdges_v2(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph, from: *mut CUgraphNode, to: *mut CUgraphNode, edgeData: *mut CUgraphEdgeData, numEdges: *mut usize) -> CUresult>) -> Self {
+    pub fn cuGraphGetEdges_v2(mut self, val: Option<unsafe extern "C" fn(CUgraph, *mut CUgraphNode, *mut CUgraphNode, *mut CUgraphEdgeData, *mut usize) -> CUresult>) -> Self {
         self.cuGraphGetEdges_v2 = val;
         self
     }
-    pub fn cuGraphNodeGetDependencies_v2(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, dependencies: *mut CUgraphNode, edgeData: *mut CUgraphEdgeData, numDependencies: *mut usize) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetDependencies_v2(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNode, *mut CUgraphEdgeData, *mut usize) -> CUresult>) -> Self {
         self.cuGraphNodeGetDependencies_v2 = val;
         self
     }
-    pub fn cuGraphNodeGetDependentNodes_v2(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, dependentNodes: *mut CUgraphNode, edgeData: *mut CUgraphEdgeData, numDependentNodes: *mut usize) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetDependentNodes_v2(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNode, *mut CUgraphEdgeData, *mut usize) -> CUresult>) -> Self {
         self.cuGraphNodeGetDependentNodes_v2 = val;
         self
     }
-    pub fn cuGraphAddDependencies_v2(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph, from: *const CUgraphNode, to: *const CUgraphNode, edgeData: *const CUgraphEdgeData, numDependencies: usize) -> CUresult>) -> Self {
+    pub fn cuGraphAddDependencies_v2(mut self, val: Option<unsafe extern "C" fn(CUgraph, *const CUgraphNode, *const CUgraphNode, *const CUgraphEdgeData, usize) -> CUresult>) -> Self {
         self.cuGraphAddDependencies_v2 = val;
         self
     }
-    pub fn cuGraphRemoveDependencies_v2(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph, from: *const CUgraphNode, to: *const CUgraphNode, edgeData: *const CUgraphEdgeData, numDependencies: usize) -> CUresult>) -> Self {
+    pub fn cuGraphRemoveDependencies_v2(mut self, val: Option<unsafe extern "C" fn(CUgraph, *const CUgraphNode, *const CUgraphNode, *const CUgraphEdgeData, usize) -> CUresult>) -> Self {
         self.cuGraphRemoveDependencies_v2 = val;
         self
     }
-    pub fn cuGraphDestroyNode(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode) -> CUresult>) -> Self {
+    pub fn cuGraphDestroyNode(mut self, val: Option<unsafe extern "C" fn(CUgraphNode) -> CUresult>) -> Self {
         self.cuGraphDestroyNode = val;
         self
     }
-    pub fn cuGraphInstantiateWithFlags(mut self, val: Option<unsafe extern "C" fn(phGraphExec: *mut CUgraphExec, hGraph: CUgraph, flags: ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuGraphInstantiateWithFlags(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphExec, CUgraph, ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuGraphInstantiateWithFlags = val;
         self
     }
-    pub fn cuGraphInstantiateWithParams(mut self, val: Option<unsafe extern "C" fn(phGraphExec: *mut CUgraphExec, hGraph: CUgraph, instantiateParams: *mut CUDA_GRAPH_INSTANTIATE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphInstantiateWithParams(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphExec, CUgraph, *mut CUDA_GRAPH_INSTANTIATE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphInstantiateWithParams = val;
         self
     }
-    pub fn cuGraphExecGetFlags(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, flags: *mut cuuint64_t) -> CUresult>) -> Self {
+    pub fn cuGraphExecGetFlags(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, *mut cuuint64_t) -> CUresult>) -> Self {
         self.cuGraphExecGetFlags = val;
         self
     }
-    pub fn cuGraphExecKernelNodeSetParams_v2(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExecKernelNodeSetParams_v2(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExecKernelNodeSetParams_v2 = val;
         self
     }
-    pub fn cuGraphExecMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, copyParams: *const CUDA_MEMCPY3D, ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuGraphExecMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_MEMCPY3D, CUcontext) -> CUresult>) -> Self {
         self.cuGraphExecMemcpyNodeSetParams = val;
         self
     }
-    pub fn cuGraphExecMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, memsetParams: *const CUDA_MEMSET_NODE_PARAMS, ctx: CUcontext) -> CUresult>) -> Self {
+    pub fn cuGraphExecMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_MEMSET_NODE_PARAMS, CUcontext) -> CUresult>) -> Self {
         self.cuGraphExecMemsetNodeSetParams = val;
         self
     }
-    pub fn cuGraphExecHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExecHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_HOST_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExecHostNodeSetParams = val;
         self
     }
-    pub fn cuGraphExecChildGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, childGraph: CUgraph) -> CUresult>) -> Self {
+    pub fn cuGraphExecChildGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, CUgraph) -> CUresult>) -> Self {
         self.cuGraphExecChildGraphNodeSetParams = val;
         self
     }
-    pub fn cuGraphExecEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, event: CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphExecEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, CUevent) -> CUresult>) -> Self {
         self.cuGraphExecEventRecordNodeSetEvent = val;
         self
     }
-    pub fn cuGraphExecEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, event: CUevent) -> CUresult>) -> Self {
+    pub fn cuGraphExecEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, CUevent) -> CUresult>) -> Self {
         self.cuGraphExecEventWaitNodeSetEvent = val;
         self
     }
-    pub fn cuGraphExecExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExecExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExecExternalSemaphoresSignalNodeSetParams = val;
         self
     }
-    pub fn cuGraphExecExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
+    pub fn cuGraphExecExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>) -> Self {
         self.cuGraphExecExternalSemaphoresWaitNodeSetParams = val;
         self
     }
-    pub fn cuGraphNodeSetEnabled(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, isEnabled: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphNodeSetEnabled(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphNodeSetEnabled = val;
         self
     }
-    pub fn cuGraphNodeGetEnabled(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, isEnabled: *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetEnabled(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *mut ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphNodeGetEnabled = val;
         self
     }
-    pub fn cuGraphUpload(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuGraphUpload(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUstream) -> CUresult>) -> Self {
         self.cuGraphUpload = val;
         self
     }
-    pub fn cuGraphLaunch(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuGraphLaunch(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUstream) -> CUresult>) -> Self {
         self.cuGraphLaunch = val;
         self
     }
-    pub fn cuGraphExecDestroy(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec) -> CUresult>) -> Self {
+    pub fn cuGraphExecDestroy(mut self, val: Option<unsafe extern "C" fn(CUgraphExec) -> CUresult>) -> Self {
         self.cuGraphExecDestroy = val;
         self
     }
-    pub fn cuGraphDestroy(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph) -> CUresult>) -> Self {
+    pub fn cuGraphDestroy(mut self, val: Option<unsafe extern "C" fn(CUgraph) -> CUresult>) -> Self {
         self.cuGraphDestroy = val;
         self
     }
-    pub fn cuGraphExecUpdate_v2(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hGraph: CUgraph, resultInfo: *mut CUgraphExecUpdateResultInfo) -> CUresult>) -> Self {
+    pub fn cuGraphExecUpdate_v2(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraph, *mut CUgraphExecUpdateResultInfo) -> CUresult>) -> Self {
         self.cuGraphExecUpdate_v2 = val;
         self
     }
-    pub fn cuGraphKernelNodeCopyAttributes(mut self, val: Option<unsafe extern "C" fn(dst: CUgraphNode, src: CUgraphNode) -> CUresult>) -> Self {
+    pub fn cuGraphKernelNodeCopyAttributes(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, CUgraphNode) -> CUresult>) -> Self {
         self.cuGraphKernelNodeCopyAttributes = val;
         self
     }
-    pub fn cuGraphKernelNodeGetAttribute(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, attr: CUkernelNodeAttrID, value_out: *mut CUkernelNodeAttrValue) -> CUresult>) -> Self {
+    pub fn cuGraphKernelNodeGetAttribute(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, CUkernelNodeAttrID, *mut CUkernelNodeAttrValue) -> CUresult>) -> Self {
         self.cuGraphKernelNodeGetAttribute = val;
         self
     }
-    pub fn cuGraphKernelNodeSetAttribute(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, attr: CUkernelNodeAttrID, value: *const CUkernelNodeAttrValue) -> CUresult>) -> Self {
+    pub fn cuGraphKernelNodeSetAttribute(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, CUkernelNodeAttrID, *const CUkernelNodeAttrValue) -> CUresult>) -> Self {
         self.cuGraphKernelNodeSetAttribute = val;
         self
     }
-    pub fn cuGraphDebugDotPrint(mut self, val: Option<unsafe extern "C" fn(hGraph: CUgraph, path: *const ::std::os::raw::c_char, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphDebugDotPrint(mut self, val: Option<unsafe extern "C" fn(CUgraph, *const ::std::os::raw::c_char, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphDebugDotPrint = val;
         self
     }
-    pub fn cuUserObjectCreate(mut self, val: Option<unsafe extern "C" fn(object_out: *mut CUuserObject, ptr: *mut ::std::os::raw::c_void, destroy: CUhostFn, initialRefcount: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuUserObjectCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUuserObject, *mut ::std::os::raw::c_void, CUhostFn, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuUserObjectCreate = val;
         self
     }
-    pub fn cuUserObjectRetain(mut self, val: Option<unsafe extern "C" fn(object: CUuserObject, count: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuUserObjectRetain(mut self, val: Option<unsafe extern "C" fn(CUuserObject, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuUserObjectRetain = val;
         self
     }
-    pub fn cuUserObjectRelease(mut self, val: Option<unsafe extern "C" fn(object: CUuserObject, count: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuUserObjectRelease(mut self, val: Option<unsafe extern "C" fn(CUuserObject, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuUserObjectRelease = val;
         self
     }
-    pub fn cuGraphRetainUserObject(mut self, val: Option<unsafe extern "C" fn(graph: CUgraph, object: CUuserObject, count: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphRetainUserObject(mut self, val: Option<unsafe extern "C" fn(CUgraph, CUuserObject, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphRetainUserObject = val;
         self
     }
-    pub fn cuGraphReleaseUserObject(mut self, val: Option<unsafe extern "C" fn(graph: CUgraph, object: CUuserObject, count: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphReleaseUserObject(mut self, val: Option<unsafe extern "C" fn(CUgraph, CUuserObject, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphReleaseUserObject = val;
         self
     }
-    pub fn cuGraphAddNode_v2(mut self, val: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, dependencyData: *const CUgraphEdgeData, numDependencies: usize, nodeParams: *mut CUgraphNodeParams) -> CUresult>) -> Self {
+    pub fn cuGraphAddNode_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, *const CUgraphEdgeData, usize, *mut CUgraphNodeParams) -> CUresult>) -> Self {
         self.cuGraphAddNode_v2 = val;
         self
     }
-    pub fn cuGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUgraphNodeParams) -> CUresult>) -> Self {
+    pub fn cuGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNodeParams) -> CUresult>) -> Self {
         self.cuGraphNodeSetParams = val;
         self
     }
-    pub fn cuGraphNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUgraphNodeParams) -> CUresult>) -> Self {
+    pub fn cuGraphNodeGetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNodeParams) -> CUresult>) -> Self {
         self.cuGraphNodeGetParams = val;
         self
     }
-    pub fn cuGraphExecNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *mut CUgraphNodeParams) -> CUresult>) -> Self {
+    pub fn cuGraphExecNodeSetParams(mut self, val: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *mut CUgraphNodeParams) -> CUresult>) -> Self {
         self.cuGraphExecNodeSetParams = val;
         self
     }
-    pub fn cuGraphConditionalHandleCreate(mut self, val: Option<unsafe extern "C" fn(pHandle_out: *mut CUgraphConditionalHandle, hGraph: CUgraph, ctx: CUcontext, defaultLaunchValue: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphConditionalHandleCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUgraphConditionalHandle, CUgraph, CUcontext, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphConditionalHandleCreate = val;
         self
     }
-    pub fn cuOccupancyMaxActiveBlocksPerMultiprocessor(mut self, val: Option<unsafe extern "C" fn(numBlocks: *mut ::std::os::raw::c_int, func: CUfunction, blockSize: ::std::os::raw::c_int, dynamicSMemSize: usize) -> CUresult>) -> Self {
+    pub fn cuOccupancyMaxActiveBlocksPerMultiprocessor(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, ::std::os::raw::c_int, usize) -> CUresult>) -> Self {
         self.cuOccupancyMaxActiveBlocksPerMultiprocessor = val;
         self
     }
-    pub fn cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(mut self, val: Option<unsafe extern "C" fn(numBlocks: *mut ::std::os::raw::c_int, func: CUfunction, blockSize: ::std::os::raw::c_int, dynamicSMemSize: usize, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, ::std::os::raw::c_int, usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags = val;
         self
     }
-    pub fn cuOccupancyMaxPotentialBlockSize(
-        mut self,
-        val: Option<unsafe extern "C" fn(minGridSize: *mut ::std::os::raw::c_int, blockSize: *mut ::std::os::raw::c_int, func: CUfunction, blockSizeToDynamicSMemSize: CUoccupancyB2DSize, dynamicSMemSize: usize, blockSizeLimit: ::std::os::raw::c_int) -> CUresult>,
-    ) -> Self {
+    pub fn cuOccupancyMaxPotentialBlockSize(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, CUfunction, CUoccupancyB2DSize, usize, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuOccupancyMaxPotentialBlockSize = val;
         self
     }
-    pub fn cuOccupancyMaxPotentialBlockSizeWithFlags(
-        mut self,
-        val: Option<unsafe extern "C" fn(minGridSize: *mut ::std::os::raw::c_int, blockSize: *mut ::std::os::raw::c_int, func: CUfunction, blockSizeToDynamicSMemSize: CUoccupancyB2DSize, dynamicSMemSize: usize, blockSizeLimit: ::std::os::raw::c_int, flags: ::std::os::raw::c_uint) -> CUresult>,
-    ) -> Self {
+    pub fn cuOccupancyMaxPotentialBlockSizeWithFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, CUfunction, CUoccupancyB2DSize, usize, ::std::os::raw::c_int, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuOccupancyMaxPotentialBlockSizeWithFlags = val;
         self
     }
-    pub fn cuOccupancyAvailableDynamicSMemPerBlock(mut self, val: Option<unsafe extern "C" fn(dynamicSmemSize: *mut usize, func: CUfunction, numBlocks: ::std::os::raw::c_int, blockSize: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuOccupancyAvailableDynamicSMemPerBlock(mut self, val: Option<unsafe extern "C" fn(*mut usize, CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuOccupancyAvailableDynamicSMemPerBlock = val;
         self
     }
-    pub fn cuOccupancyMaxPotentialClusterSize(mut self, val: Option<unsafe extern "C" fn(clusterSize: *mut ::std::os::raw::c_int, func: CUfunction, config: *const CUlaunchConfig) -> CUresult>) -> Self {
+    pub fn cuOccupancyMaxPotentialClusterSize(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, *const CUlaunchConfig) -> CUresult>) -> Self {
         self.cuOccupancyMaxPotentialClusterSize = val;
         self
     }
-    pub fn cuOccupancyMaxActiveClusters(mut self, val: Option<unsafe extern "C" fn(numClusters: *mut ::std::os::raw::c_int, func: CUfunction, config: *const CUlaunchConfig) -> CUresult>) -> Self {
+    pub fn cuOccupancyMaxActiveClusters(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, *const CUlaunchConfig) -> CUresult>) -> Self {
         self.cuOccupancyMaxActiveClusters = val;
         self
     }
-    pub fn cuTexRefSetArray(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, hArray: CUarray, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuTexRefSetArray(mut self, val: Option<unsafe extern "C" fn(CUtexref, CUarray, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuTexRefSetArray = val;
         self
     }
-    pub fn cuTexRefSetMipmappedArray(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, hMipmappedArray: CUmipmappedArray, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuTexRefSetMipmappedArray(mut self, val: Option<unsafe extern "C" fn(CUtexref, CUmipmappedArray, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuTexRefSetMipmappedArray = val;
         self
     }
-    pub fn cuTexRefSetAddress_v2(mut self, val: Option<unsafe extern "C" fn(ByteOffset: *mut usize, hTexRef: CUtexref, dptr: CUdeviceptr, bytes: usize) -> CUresult>) -> Self {
+    pub fn cuTexRefSetAddress_v2(mut self, val: Option<unsafe extern "C" fn(*mut usize, CUtexref, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuTexRefSetAddress_v2 = val;
         self
     }
-    pub fn cuTexRefSetAddress2D_v3(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, desc: *const CUDA_ARRAY_DESCRIPTOR, dptr: CUdeviceptr, Pitch: usize) -> CUresult>) -> Self {
+    pub fn cuTexRefSetAddress2D_v3(mut self, val: Option<unsafe extern "C" fn(CUtexref, *const CUDA_ARRAY_DESCRIPTOR, CUdeviceptr, usize) -> CUresult>) -> Self {
         self.cuTexRefSetAddress2D_v3 = val;
         self
     }
-    pub fn cuTexRefSetFormat(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, fmt: CUarray_format, NumPackedComponents: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuTexRefSetFormat(mut self, val: Option<unsafe extern "C" fn(CUtexref, CUarray_format, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuTexRefSetFormat = val;
         self
     }
-    pub fn cuTexRefSetAddressMode(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, dim: ::std::os::raw::c_int, am: CUaddress_mode) -> CUresult>) -> Self {
+    pub fn cuTexRefSetAddressMode(mut self, val: Option<unsafe extern "C" fn(CUtexref, ::std::os::raw::c_int, CUaddress_mode) -> CUresult>) -> Self {
         self.cuTexRefSetAddressMode = val;
         self
     }
-    pub fn cuTexRefSetFilterMode(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, fm: CUfilter_mode) -> CUresult>) -> Self {
+    pub fn cuTexRefSetFilterMode(mut self, val: Option<unsafe extern "C" fn(CUtexref, CUfilter_mode) -> CUresult>) -> Self {
         self.cuTexRefSetFilterMode = val;
         self
     }
-    pub fn cuTexRefSetMipmapFilterMode(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, fm: CUfilter_mode) -> CUresult>) -> Self {
+    pub fn cuTexRefSetMipmapFilterMode(mut self, val: Option<unsafe extern "C" fn(CUtexref, CUfilter_mode) -> CUresult>) -> Self {
         self.cuTexRefSetMipmapFilterMode = val;
         self
     }
-    pub fn cuTexRefSetMipmapLevelBias(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, bias: f32) -> CUresult>) -> Self {
+    pub fn cuTexRefSetMipmapLevelBias(mut self, val: Option<unsafe extern "C" fn(CUtexref, f32) -> CUresult>) -> Self {
         self.cuTexRefSetMipmapLevelBias = val;
         self
     }
-    pub fn cuTexRefSetMipmapLevelClamp(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, minMipmapLevelClamp: f32, maxMipmapLevelClamp: f32) -> CUresult>) -> Self {
+    pub fn cuTexRefSetMipmapLevelClamp(mut self, val: Option<unsafe extern "C" fn(CUtexref, f32, f32) -> CUresult>) -> Self {
         self.cuTexRefSetMipmapLevelClamp = val;
         self
     }
-    pub fn cuTexRefSetMaxAnisotropy(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, maxAniso: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuTexRefSetMaxAnisotropy(mut self, val: Option<unsafe extern "C" fn(CUtexref, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuTexRefSetMaxAnisotropy = val;
         self
     }
-    pub fn cuTexRefSetBorderColor(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, pBorderColor: *mut f32) -> CUresult>) -> Self {
+    pub fn cuTexRefSetBorderColor(mut self, val: Option<unsafe extern "C" fn(CUtexref, *mut f32) -> CUresult>) -> Self {
         self.cuTexRefSetBorderColor = val;
         self
     }
-    pub fn cuTexRefSetFlags(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuTexRefSetFlags(mut self, val: Option<unsafe extern "C" fn(CUtexref, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuTexRefSetFlags = val;
         self
     }
-    pub fn cuTexRefGetAddress_v2(mut self, val: Option<unsafe extern "C" fn(pdptr: *mut CUdeviceptr, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetAddress_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetAddress_v2 = val;
         self
     }
-    pub fn cuTexRefGetArray(mut self, val: Option<unsafe extern "C" fn(phArray: *mut CUarray, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetArray(mut self, val: Option<unsafe extern "C" fn(*mut CUarray, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetArray = val;
         self
     }
-    pub fn cuTexRefGetMipmappedArray(mut self, val: Option<unsafe extern "C" fn(phMipmappedArray: *mut CUmipmappedArray, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetMipmappedArray(mut self, val: Option<unsafe extern "C" fn(*mut CUmipmappedArray, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetMipmappedArray = val;
         self
     }
-    pub fn cuTexRefGetAddressMode(mut self, val: Option<unsafe extern "C" fn(pam: *mut CUaddress_mode, hTexRef: CUtexref, dim: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuTexRefGetAddressMode(mut self, val: Option<unsafe extern "C" fn(*mut CUaddress_mode, CUtexref, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuTexRefGetAddressMode = val;
         self
     }
-    pub fn cuTexRefGetFilterMode(mut self, val: Option<unsafe extern "C" fn(pfm: *mut CUfilter_mode, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetFilterMode(mut self, val: Option<unsafe extern "C" fn(*mut CUfilter_mode, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetFilterMode = val;
         self
     }
-    pub fn cuTexRefGetFormat(mut self, val: Option<unsafe extern "C" fn(pFormat: *mut CUarray_format, pNumChannels: *mut ::std::os::raw::c_int, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetFormat(mut self, val: Option<unsafe extern "C" fn(*mut CUarray_format, *mut ::std::os::raw::c_int, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetFormat = val;
         self
     }
-    pub fn cuTexRefGetMipmapFilterMode(mut self, val: Option<unsafe extern "C" fn(pfm: *mut CUfilter_mode, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetMipmapFilterMode(mut self, val: Option<unsafe extern "C" fn(*mut CUfilter_mode, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetMipmapFilterMode = val;
         self
     }
-    pub fn cuTexRefGetMipmapLevelBias(mut self, val: Option<unsafe extern "C" fn(pbias: *mut f32, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetMipmapLevelBias(mut self, val: Option<unsafe extern "C" fn(*mut f32, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetMipmapLevelBias = val;
         self
     }
-    pub fn cuTexRefGetMipmapLevelClamp(mut self, val: Option<unsafe extern "C" fn(pminMipmapLevelClamp: *mut f32, pmaxMipmapLevelClamp: *mut f32, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetMipmapLevelClamp(mut self, val: Option<unsafe extern "C" fn(*mut f32, *mut f32, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetMipmapLevelClamp = val;
         self
     }
-    pub fn cuTexRefGetMaxAnisotropy(mut self, val: Option<unsafe extern "C" fn(pmaxAniso: *mut ::std::os::raw::c_int, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetMaxAnisotropy(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetMaxAnisotropy = val;
         self
     }
-    pub fn cuTexRefGetBorderColor(mut self, val: Option<unsafe extern "C" fn(pBorderColor: *mut f32, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetBorderColor(mut self, val: Option<unsafe extern "C" fn(*mut f32, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetBorderColor = val;
         self
     }
-    pub fn cuTexRefGetFlags(mut self, val: Option<unsafe extern "C" fn(pFlags: *mut ::std::os::raw::c_uint, hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefGetFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, CUtexref) -> CUresult>) -> Self {
         self.cuTexRefGetFlags = val;
         self
     }
-    pub fn cuTexRefCreate(mut self, val: Option<unsafe extern "C" fn(pTexRef: *mut CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUtexref) -> CUresult>) -> Self {
         self.cuTexRefCreate = val;
         self
     }
-    pub fn cuTexRefDestroy(mut self, val: Option<unsafe extern "C" fn(hTexRef: CUtexref) -> CUresult>) -> Self {
+    pub fn cuTexRefDestroy(mut self, val: Option<unsafe extern "C" fn(CUtexref) -> CUresult>) -> Self {
         self.cuTexRefDestroy = val;
         self
     }
-    pub fn cuSurfRefSetArray(mut self, val: Option<unsafe extern "C" fn(hSurfRef: CUsurfref, hArray: CUarray, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuSurfRefSetArray(mut self, val: Option<unsafe extern "C" fn(CUsurfref, CUarray, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuSurfRefSetArray = val;
         self
     }
-    pub fn cuSurfRefGetArray(mut self, val: Option<unsafe extern "C" fn(phArray: *mut CUarray, hSurfRef: CUsurfref) -> CUresult>) -> Self {
+    pub fn cuSurfRefGetArray(mut self, val: Option<unsafe extern "C" fn(*mut CUarray, CUsurfref) -> CUresult>) -> Self {
         self.cuSurfRefGetArray = val;
         self
     }
-    pub fn cuTexObjectCreate(mut self, val: Option<unsafe extern "C" fn(pTexObject: *mut CUtexObject, pResDesc: *const CUDA_RESOURCE_DESC, pTexDesc: *const CUDA_TEXTURE_DESC, pResViewDesc: *const CUDA_RESOURCE_VIEW_DESC) -> CUresult>) -> Self {
+    pub fn cuTexObjectCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUtexObject, *const CUDA_RESOURCE_DESC, *const CUDA_TEXTURE_DESC, *const CUDA_RESOURCE_VIEW_DESC) -> CUresult>) -> Self {
         self.cuTexObjectCreate = val;
         self
     }
-    pub fn cuTexObjectDestroy(mut self, val: Option<unsafe extern "C" fn(texObject: CUtexObject) -> CUresult>) -> Self {
+    pub fn cuTexObjectDestroy(mut self, val: Option<unsafe extern "C" fn(CUtexObject) -> CUresult>) -> Self {
         self.cuTexObjectDestroy = val;
         self
     }
-    pub fn cuTexObjectGetResourceDesc(mut self, val: Option<unsafe extern "C" fn(pResDesc: *mut CUDA_RESOURCE_DESC, texObject: CUtexObject) -> CUresult>) -> Self {
+    pub fn cuTexObjectGetResourceDesc(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_RESOURCE_DESC, CUtexObject) -> CUresult>) -> Self {
         self.cuTexObjectGetResourceDesc = val;
         self
     }
-    pub fn cuTexObjectGetTextureDesc(mut self, val: Option<unsafe extern "C" fn(pTexDesc: *mut CUDA_TEXTURE_DESC, texObject: CUtexObject) -> CUresult>) -> Self {
+    pub fn cuTexObjectGetTextureDesc(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_TEXTURE_DESC, CUtexObject) -> CUresult>) -> Self {
         self.cuTexObjectGetTextureDesc = val;
         self
     }
-    pub fn cuTexObjectGetResourceViewDesc(mut self, val: Option<unsafe extern "C" fn(pResViewDesc: *mut CUDA_RESOURCE_VIEW_DESC, texObject: CUtexObject) -> CUresult>) -> Self {
+    pub fn cuTexObjectGetResourceViewDesc(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_RESOURCE_VIEW_DESC, CUtexObject) -> CUresult>) -> Self {
         self.cuTexObjectGetResourceViewDesc = val;
         self
     }
-    pub fn cuSurfObjectCreate(mut self, val: Option<unsafe extern "C" fn(pSurfObject: *mut CUsurfObject, pResDesc: *const CUDA_RESOURCE_DESC) -> CUresult>) -> Self {
+    pub fn cuSurfObjectCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUsurfObject, *const CUDA_RESOURCE_DESC) -> CUresult>) -> Self {
         self.cuSurfObjectCreate = val;
         self
     }
-    pub fn cuSurfObjectDestroy(mut self, val: Option<unsafe extern "C" fn(surfObject: CUsurfObject) -> CUresult>) -> Self {
+    pub fn cuSurfObjectDestroy(mut self, val: Option<unsafe extern "C" fn(CUsurfObject) -> CUresult>) -> Self {
         self.cuSurfObjectDestroy = val;
         self
     }
-    pub fn cuSurfObjectGetResourceDesc(mut self, val: Option<unsafe extern "C" fn(pResDesc: *mut CUDA_RESOURCE_DESC, surfObject: CUsurfObject) -> CUresult>) -> Self {
+    pub fn cuSurfObjectGetResourceDesc(mut self, val: Option<unsafe extern "C" fn(*mut CUDA_RESOURCE_DESC, CUsurfObject) -> CUresult>) -> Self {
         self.cuSurfObjectGetResourceDesc = val;
         self
     }
     pub fn cuTensorMapEncodeTiled(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                tensorMap: *mut CUtensorMap,
-                tensorDataType: CUtensorMapDataType,
-                tensorRank: cuuint32_t,
-                globalAddress: *mut ::std::os::raw::c_void,
-                globalDim: *const cuuint64_t,
-                globalStrides: *const cuuint64_t,
-                boxDim: *const cuuint32_t,
-                elementStrides: *const cuuint32_t,
-                interleave: CUtensorMapInterleave,
-                swizzle: CUtensorMapSwizzle,
-                l2Promotion: CUtensorMapL2promotion,
-                oobFill: CUtensorMapFloatOOBfill,
-            ) -> CUresult,
+            unsafe extern "C" fn(*mut CUtensorMap, CUtensorMapDataType, cuuint32_t, *mut ::std::os::raw::c_void, *const cuuint64_t, *const cuuint64_t, *const cuuint32_t, *const cuuint32_t, CUtensorMapInterleave, CUtensorMapSwizzle, CUtensorMapL2promotion, CUtensorMapFloatOOBfill) -> CUresult,
         >,
     ) -> Self {
         self.cuTensorMapEncodeTiled = val;
@@ -4080,21 +4453,21 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                tensorMap: *mut CUtensorMap,
-                tensorDataType: CUtensorMapDataType,
-                tensorRank: cuuint32_t,
-                globalAddress: *mut ::std::os::raw::c_void,
-                globalDim: *const cuuint64_t,
-                globalStrides: *const cuuint64_t,
-                pixelBoxLowerCorner: *const ::std::os::raw::c_int,
-                pixelBoxUpperCorner: *const ::std::os::raw::c_int,
-                channelsPerPixel: cuuint32_t,
-                pixelsPerColumn: cuuint32_t,
-                elementStrides: *const cuuint32_t,
-                interleave: CUtensorMapInterleave,
-                swizzle: CUtensorMapSwizzle,
-                l2Promotion: CUtensorMapL2promotion,
-                oobFill: CUtensorMapFloatOOBfill,
+                *mut CUtensorMap,
+                CUtensorMapDataType,
+                cuuint32_t,
+                *mut ::std::os::raw::c_void,
+                *const cuuint64_t,
+                *const cuuint64_t,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                cuuint32_t,
+                cuuint32_t,
+                *const cuuint32_t,
+                CUtensorMapInterleave,
+                CUtensorMapSwizzle,
+                CUtensorMapL2promotion,
+                CUtensorMapFloatOOBfill,
             ) -> CUresult,
         >,
     ) -> Self {
@@ -4105,224 +4478,221 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                tensorMap: *mut CUtensorMap,
-                tensorDataType: CUtensorMapDataType,
-                tensorRank: cuuint32_t,
-                globalAddress: *mut ::std::os::raw::c_void,
-                globalDim: *const cuuint64_t,
-                globalStrides: *const cuuint64_t,
-                pixelBoxLowerCornerWidth: ::std::os::raw::c_int,
-                pixelBoxUpperCornerWidth: ::std::os::raw::c_int,
-                channelsPerPixel: cuuint32_t,
-                pixelsPerColumn: cuuint32_t,
-                elementStrides: *const cuuint32_t,
-                interleave: CUtensorMapInterleave,
-                mode: CUtensorMapIm2ColWideMode,
-                swizzle: CUtensorMapSwizzle,
-                l2Promotion: CUtensorMapL2promotion,
-                oobFill: CUtensorMapFloatOOBfill,
+                *mut CUtensorMap,
+                CUtensorMapDataType,
+                cuuint32_t,
+                *mut ::std::os::raw::c_void,
+                *const cuuint64_t,
+                *const cuuint64_t,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                cuuint32_t,
+                cuuint32_t,
+                *const cuuint32_t,
+                CUtensorMapInterleave,
+                CUtensorMapIm2ColWideMode,
+                CUtensorMapSwizzle,
+                CUtensorMapL2promotion,
+                CUtensorMapFloatOOBfill,
             ) -> CUresult,
         >,
     ) -> Self {
         self.cuTensorMapEncodeIm2colWide = val;
         self
     }
-    pub fn cuTensorMapReplaceAddress(mut self, val: Option<unsafe extern "C" fn(tensorMap: *mut CUtensorMap, globalAddress: *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
+    pub fn cuTensorMapReplaceAddress(mut self, val: Option<unsafe extern "C" fn(*mut CUtensorMap, *mut ::std::os::raw::c_void) -> CUresult>) -> Self {
         self.cuTensorMapReplaceAddress = val;
         self
     }
-    pub fn cuDeviceCanAccessPeer(mut self, val: Option<unsafe extern "C" fn(canAccessPeer: *mut ::std::os::raw::c_int, dev: CUdevice, peerDev: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceCanAccessPeer(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUdevice, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceCanAccessPeer = val;
         self
     }
-    pub fn cuCtxEnablePeerAccess(mut self, val: Option<unsafe extern "C" fn(peerContext: CUcontext, Flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuCtxEnablePeerAccess(mut self, val: Option<unsafe extern "C" fn(CUcontext, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuCtxEnablePeerAccess = val;
         self
     }
-    pub fn cuCtxDisablePeerAccess(mut self, val: Option<unsafe extern "C" fn(peerContext: CUcontext) -> CUresult>) -> Self {
+    pub fn cuCtxDisablePeerAccess(mut self, val: Option<unsafe extern "C" fn(CUcontext) -> CUresult>) -> Self {
         self.cuCtxDisablePeerAccess = val;
         self
     }
-    pub fn cuDeviceGetP2PAttribute(mut self, val: Option<unsafe extern "C" fn(value: *mut ::std::os::raw::c_int, attrib: CUdevice_P2PAttribute, srcDevice: CUdevice, dstDevice: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetP2PAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUdevice_P2PAttribute, CUdevice, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetP2PAttribute = val;
         self
     }
-    pub fn cuDeviceGetP2PAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(capabilities: *mut ::std::os::raw::c_uint, operations: *const CUatomicOperation, count: ::std::os::raw::c_uint, srcDevice: CUdevice, dstDevice: CUdevice) -> CUresult>) -> Self {
+    pub fn cuDeviceGetP2PAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *const CUatomicOperation, ::std::os::raw::c_uint, CUdevice, CUdevice) -> CUresult>) -> Self {
         self.cuDeviceGetP2PAtomicCapabilities = val;
         self
     }
-    pub fn cuGraphicsUnregisterResource(mut self, val: Option<unsafe extern "C" fn(resource: CUgraphicsResource) -> CUresult>) -> Self {
+    pub fn cuGraphicsUnregisterResource(mut self, val: Option<unsafe extern "C" fn(CUgraphicsResource) -> CUresult>) -> Self {
         self.cuGraphicsUnregisterResource = val;
         self
     }
-    pub fn cuGraphicsSubResourceGetMappedArray(mut self, val: Option<unsafe extern "C" fn(pArray: *mut CUarray, resource: CUgraphicsResource, arrayIndex: ::std::os::raw::c_uint, mipLevel: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphicsSubResourceGetMappedArray(mut self, val: Option<unsafe extern "C" fn(*mut CUarray, CUgraphicsResource, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphicsSubResourceGetMappedArray = val;
         self
     }
-    pub fn cuGraphicsResourceGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(pMipmappedArray: *mut CUmipmappedArray, resource: CUgraphicsResource) -> CUresult>) -> Self {
+    pub fn cuGraphicsResourceGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(*mut CUmipmappedArray, CUgraphicsResource) -> CUresult>) -> Self {
         self.cuGraphicsResourceGetMappedMipmappedArray = val;
         self
     }
-    pub fn cuGraphicsResourceGetMappedPointer_v2(mut self, val: Option<unsafe extern "C" fn(pDevPtr: *mut CUdeviceptr, pSize: *mut usize, resource: CUgraphicsResource) -> CUresult>) -> Self {
+    pub fn cuGraphicsResourceGetMappedPointer_v2(mut self, val: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUgraphicsResource) -> CUresult>) -> Self {
         self.cuGraphicsResourceGetMappedPointer_v2 = val;
         self
     }
-    pub fn cuGraphicsResourceSetMapFlags_v2(mut self, val: Option<unsafe extern "C" fn(resource: CUgraphicsResource, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGraphicsResourceSetMapFlags_v2(mut self, val: Option<unsafe extern "C" fn(CUgraphicsResource, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGraphicsResourceSetMapFlags_v2 = val;
         self
     }
-    pub fn cuGraphicsMapResources(mut self, val: Option<unsafe extern "C" fn(count: ::std::os::raw::c_uint, resources: *mut CUgraphicsResource, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuGraphicsMapResources(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUgraphicsResource, CUstream) -> CUresult>) -> Self {
         self.cuGraphicsMapResources = val;
         self
     }
-    pub fn cuGraphicsUnmapResources(mut self, val: Option<unsafe extern "C" fn(count: ::std::os::raw::c_uint, resources: *mut CUgraphicsResource, hStream: CUstream) -> CUresult>) -> Self {
+    pub fn cuGraphicsUnmapResources(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUgraphicsResource, CUstream) -> CUresult>) -> Self {
         self.cuGraphicsUnmapResources = val;
         self
     }
-    pub fn cuGetProcAddress_v2(mut self, val: Option<unsafe extern "C" fn(symbol: *const ::std::os::raw::c_char, pfn: *mut *mut ::std::os::raw::c_void, cudaVersion: ::std::os::raw::c_int, flags: cuuint64_t, symbolStatus: *mut CUdriverProcAddressQueryResult) -> CUresult>) -> Self {
+    pub fn cuGetProcAddress_v2(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cuuint64_t, *mut CUdriverProcAddressQueryResult) -> CUresult>) -> Self {
         self.cuGetProcAddress_v2 = val;
         self
     }
-    pub fn cuCoredumpGetAttribute(mut self, val: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>) -> Self {
+    pub fn cuCoredumpGetAttribute(mut self, val: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>) -> Self {
         self.cuCoredumpGetAttribute = val;
         self
     }
-    pub fn cuCoredumpGetAttributeGlobal(mut self, val: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>) -> Self {
+    pub fn cuCoredumpGetAttributeGlobal(mut self, val: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>) -> Self {
         self.cuCoredumpGetAttributeGlobal = val;
         self
     }
-    pub fn cuCoredumpSetAttribute(mut self, val: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>) -> Self {
+    pub fn cuCoredumpSetAttribute(mut self, val: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>) -> Self {
         self.cuCoredumpSetAttribute = val;
         self
     }
-    pub fn cuCoredumpSetAttributeGlobal(mut self, val: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>) -> Self {
+    pub fn cuCoredumpSetAttributeGlobal(mut self, val: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>) -> Self {
         self.cuCoredumpSetAttributeGlobal = val;
         self
     }
-    pub fn cuCoredumpRegisterStartCallback(mut self, val: Option<unsafe extern "C" fn(callback: CUcoredumpStatusCallback, userData: *mut ::std::os::raw::c_void, callbackOut: *mut CUcoredumpCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuCoredumpRegisterStartCallback(mut self, val: Option<unsafe extern "C" fn(CUcoredumpStatusCallback, *mut ::std::os::raw::c_void, *mut CUcoredumpCallbackHandle) -> CUresult>) -> Self {
         self.cuCoredumpRegisterStartCallback = val;
         self
     }
-    pub fn cuCoredumpRegisterCompleteCallback(mut self, val: Option<unsafe extern "C" fn(callback: CUcoredumpStatusCallback, userData: *mut ::std::os::raw::c_void, callbackOut: *mut CUcoredumpCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuCoredumpRegisterCompleteCallback(mut self, val: Option<unsafe extern "C" fn(CUcoredumpStatusCallback, *mut ::std::os::raw::c_void, *mut CUcoredumpCallbackHandle) -> CUresult>) -> Self {
         self.cuCoredumpRegisterCompleteCallback = val;
         self
     }
-    pub fn cuCoredumpDeregisterStartCallback(mut self, val: Option<unsafe extern "C" fn(callback: CUcoredumpCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuCoredumpDeregisterStartCallback(mut self, val: Option<unsafe extern "C" fn(CUcoredumpCallbackHandle) -> CUresult>) -> Self {
         self.cuCoredumpDeregisterStartCallback = val;
         self
     }
-    pub fn cuCoredumpDeregisterCompleteCallback(mut self, val: Option<unsafe extern "C" fn(callback: CUcoredumpCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuCoredumpDeregisterCompleteCallback(mut self, val: Option<unsafe extern "C" fn(CUcoredumpCallbackHandle) -> CUresult>) -> Self {
         self.cuCoredumpDeregisterCompleteCallback = val;
         self
     }
-    pub fn cuGetExportTable(mut self, val: Option<unsafe extern "C" fn(ppExportTable: *mut *const ::std::os::raw::c_void, pExportTableId: *const CUuuid) -> CUresult>) -> Self {
+    pub fn cuGetExportTable(mut self, val: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_void, *const CUuuid) -> CUresult>) -> Self {
         self.cuGetExportTable = val;
         self
     }
-    pub fn cuGreenCtxCreate(mut self, val: Option<unsafe extern "C" fn(phCtx: *mut CUgreenCtx, desc: CUdevResourceDesc, dev: CUdevice, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuGreenCtxCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUgreenCtx, CUdevResourceDesc, CUdevice, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuGreenCtxCreate = val;
         self
     }
-    pub fn cuGreenCtxDestroy(mut self, val: Option<unsafe extern "C" fn(hCtx: CUgreenCtx) -> CUresult>) -> Self {
+    pub fn cuGreenCtxDestroy(mut self, val: Option<unsafe extern "C" fn(CUgreenCtx) -> CUresult>) -> Self {
         self.cuGreenCtxDestroy = val;
         self
     }
-    pub fn cuCtxFromGreenCtx(mut self, val: Option<unsafe extern "C" fn(pContext: *mut CUcontext, hCtx: CUgreenCtx) -> CUresult>) -> Self {
+    pub fn cuCtxFromGreenCtx(mut self, val: Option<unsafe extern "C" fn(*mut CUcontext, CUgreenCtx) -> CUresult>) -> Self {
         self.cuCtxFromGreenCtx = val;
         self
     }
-    pub fn cuDeviceGetDevResource(mut self, val: Option<unsafe extern "C" fn(device: CUdevice, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>) -> Self {
+    pub fn cuDeviceGetDevResource(mut self, val: Option<unsafe extern "C" fn(CUdevice, *mut CUdevResource, CUdevResourceType) -> CUresult>) -> Self {
         self.cuDeviceGetDevResource = val;
         self
     }
-    pub fn cuCtxGetDevResource(mut self, val: Option<unsafe extern "C" fn(hCtx: CUcontext, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>) -> Self {
+    pub fn cuCtxGetDevResource(mut self, val: Option<unsafe extern "C" fn(CUcontext, *mut CUdevResource, CUdevResourceType) -> CUresult>) -> Self {
         self.cuCtxGetDevResource = val;
         self
     }
-    pub fn cuGreenCtxGetDevResource(mut self, val: Option<unsafe extern "C" fn(hCtx: CUgreenCtx, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>) -> Self {
+    pub fn cuGreenCtxGetDevResource(mut self, val: Option<unsafe extern "C" fn(CUgreenCtx, *mut CUdevResource, CUdevResourceType) -> CUresult>) -> Self {
         self.cuGreenCtxGetDevResource = val;
         self
     }
-    pub fn cuDevSmResourceSplitByCount(mut self, val: Option<unsafe extern "C" fn(result: *mut CUdevResource, nbGroups: *mut ::std::os::raw::c_uint, input: *const CUdevResource, remainder: *mut CUdevResource, flags: ::std::os::raw::c_uint, minCount: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuDevSmResourceSplitByCount(mut self, val: Option<unsafe extern "C" fn(*mut CUdevResource, *mut ::std::os::raw::c_uint, *const CUdevResource, *mut CUdevResource, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuDevSmResourceSplitByCount = val;
         self
     }
-    pub fn cuDevSmResourceSplit(
-        mut self,
-        val: Option<unsafe extern "C" fn(result: *mut CUdevResource, nbGroups: ::std::os::raw::c_uint, input: *const CUdevResource, remainder: *mut CUdevResource, flags: ::std::os::raw::c_uint, groupParams: *mut CU_DEV_SM_RESOURCE_GROUP_PARAMS) -> CUresult>,
-    ) -> Self {
+    pub fn cuDevSmResourceSplit(mut self, val: Option<unsafe extern "C" fn(*mut CUdevResource, ::std::os::raw::c_uint, *const CUdevResource, *mut CUdevResource, ::std::os::raw::c_uint, *mut CU_DEV_SM_RESOURCE_GROUP_PARAMS) -> CUresult>) -> Self {
         self.cuDevSmResourceSplit = val;
         self
     }
-    pub fn cuDevResourceGenerateDesc(mut self, val: Option<unsafe extern "C" fn(phDesc: *mut CUdevResourceDesc, resources: *mut CUdevResource, nbResources: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuDevResourceGenerateDesc(mut self, val: Option<unsafe extern "C" fn(*mut CUdevResourceDesc, *mut CUdevResource, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuDevResourceGenerateDesc = val;
         self
     }
-    pub fn cuGreenCtxRecordEvent(mut self, val: Option<unsafe extern "C" fn(hCtx: CUgreenCtx, hEvent: CUevent) -> CUresult>) -> Self {
+    pub fn cuGreenCtxRecordEvent(mut self, val: Option<unsafe extern "C" fn(CUgreenCtx, CUevent) -> CUresult>) -> Self {
         self.cuGreenCtxRecordEvent = val;
         self
     }
-    pub fn cuGreenCtxWaitEvent(mut self, val: Option<unsafe extern "C" fn(hCtx: CUgreenCtx, hEvent: CUevent) -> CUresult>) -> Self {
+    pub fn cuGreenCtxWaitEvent(mut self, val: Option<unsafe extern "C" fn(CUgreenCtx, CUevent) -> CUresult>) -> Self {
         self.cuGreenCtxWaitEvent = val;
         self
     }
-    pub fn cuStreamGetGreenCtx(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, phCtx: *mut CUgreenCtx) -> CUresult>) -> Self {
+    pub fn cuStreamGetGreenCtx(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUgreenCtx) -> CUresult>) -> Self {
         self.cuStreamGetGreenCtx = val;
         self
     }
-    pub fn cuGreenCtxStreamCreate(mut self, val: Option<unsafe extern "C" fn(phStream: *mut CUstream, greenCtx: CUgreenCtx, flags: ::std::os::raw::c_uint, priority: ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuGreenCtxStreamCreate(mut self, val: Option<unsafe extern "C" fn(*mut CUstream, CUgreenCtx, ::std::os::raw::c_uint, ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuGreenCtxStreamCreate = val;
         self
     }
-    pub fn cuGreenCtxGetId(mut self, val: Option<unsafe extern "C" fn(greenCtx: CUgreenCtx, greenCtxId: *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
+    pub fn cuGreenCtxGetId(mut self, val: Option<unsafe extern "C" fn(CUgreenCtx, *mut ::std::os::raw::c_ulonglong) -> CUresult>) -> Self {
         self.cuGreenCtxGetId = val;
         self
     }
-    pub fn cuStreamGetDevResource(mut self, val: Option<unsafe extern "C" fn(hStream: CUstream, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>) -> Self {
+    pub fn cuStreamGetDevResource(mut self, val: Option<unsafe extern "C" fn(CUstream, *mut CUdevResource, CUdevResourceType) -> CUresult>) -> Self {
         self.cuStreamGetDevResource = val;
         self
     }
-    pub fn cuLogsRegisterCallback(mut self, val: Option<unsafe extern "C" fn(callbackFunc: CUlogsCallback, userData: *mut ::std::os::raw::c_void, callback_out: *mut CUlogsCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuLogsRegisterCallback(mut self, val: Option<unsafe extern "C" fn(CUlogsCallback, *mut ::std::os::raw::c_void, *mut CUlogsCallbackHandle) -> CUresult>) -> Self {
         self.cuLogsRegisterCallback = val;
         self
     }
-    pub fn cuLogsUnregisterCallback(mut self, val: Option<unsafe extern "C" fn(callback: CUlogsCallbackHandle) -> CUresult>) -> Self {
+    pub fn cuLogsUnregisterCallback(mut self, val: Option<unsafe extern "C" fn(CUlogsCallbackHandle) -> CUresult>) -> Self {
         self.cuLogsUnregisterCallback = val;
         self
     }
-    pub fn cuLogsCurrent(mut self, val: Option<unsafe extern "C" fn(iterator_out: *mut CUlogIterator, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuLogsCurrent(mut self, val: Option<unsafe extern "C" fn(*mut CUlogIterator, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuLogsCurrent = val;
         self
     }
-    pub fn cuLogsDumpToFile(mut self, val: Option<unsafe extern "C" fn(iterator: *mut CUlogIterator, pathToFile: *const ::std::os::raw::c_char, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuLogsDumpToFile(mut self, val: Option<unsafe extern "C" fn(*mut CUlogIterator, *const ::std::os::raw::c_char, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuLogsDumpToFile = val;
         self
     }
-    pub fn cuLogsDumpToMemory(mut self, val: Option<unsafe extern "C" fn(iterator: *mut CUlogIterator, buffer: *mut ::std::os::raw::c_char, size: *mut usize, flags: ::std::os::raw::c_uint) -> CUresult>) -> Self {
+    pub fn cuLogsDumpToMemory(mut self, val: Option<unsafe extern "C" fn(*mut CUlogIterator, *mut ::std::os::raw::c_char, *mut usize, ::std::os::raw::c_uint) -> CUresult>) -> Self {
         self.cuLogsDumpToMemory = val;
         self
     }
-    pub fn cuCheckpointProcessGetRestoreThreadId(mut self, val: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, tid: *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
+    pub fn cuCheckpointProcessGetRestoreThreadId(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> CUresult>) -> Self {
         self.cuCheckpointProcessGetRestoreThreadId = val;
         self
     }
-    pub fn cuCheckpointProcessGetState(mut self, val: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, state: *mut CUprocessState) -> CUresult>) -> Self {
+    pub fn cuCheckpointProcessGetState(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUprocessState) -> CUresult>) -> Self {
         self.cuCheckpointProcessGetState = val;
         self
     }
-    pub fn cuCheckpointProcessLock(mut self, val: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointLockArgs) -> CUresult>) -> Self {
+    pub fn cuCheckpointProcessLock(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointLockArgs) -> CUresult>) -> Self {
         self.cuCheckpointProcessLock = val;
         self
     }
-    pub fn cuCheckpointProcessCheckpoint(mut self, val: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointCheckpointArgs) -> CUresult>) -> Self {
+    pub fn cuCheckpointProcessCheckpoint(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointCheckpointArgs) -> CUresult>) -> Self {
         self.cuCheckpointProcessCheckpoint = val;
         self
     }
-    pub fn cuCheckpointProcessRestore(mut self, val: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointRestoreArgs) -> CUresult>) -> Self {
+    pub fn cuCheckpointProcessRestore(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointRestoreArgs) -> CUresult>) -> Self {
         self.cuCheckpointProcessRestore = val;
         self
     }
-    pub fn cuCheckpointProcessUnlock(mut self, val: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointUnlockArgs) -> CUresult>) -> Self {
+    pub fn cuCheckpointProcessUnlock(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointUnlockArgs) -> CUresult>) -> Self {
         self.cuCheckpointProcessUnlock = val;
         self
     }

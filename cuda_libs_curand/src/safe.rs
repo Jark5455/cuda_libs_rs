@@ -1,11 +1,42 @@
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(dead_code)]
+#![allow(unused_mut)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unsafe_op_in_unsafe_fn)]
+pub use crate::sys::CURAND_VER_BUILD;
+pub use crate::sys::CURAND_VER_MAJOR;
+pub use crate::sys::CURAND_VER_MINOR;
+pub use crate::sys::CURAND_VER_PATCH;
+pub use crate::sys::CURAND_VERSION;
+pub use crate::sys::curandDirectionVectorSet;
+pub use crate::sys::curandDirectionVectors32_t;
+pub use crate::sys::curandDirectionVectors64_t;
+pub use crate::sys::curandDiscreteDistribution_st;
+pub use crate::sys::curandDiscreteDistribution_t;
+pub use crate::sys::curandDistribution_st;
+pub use crate::sys::curandDistribution_t;
+pub use crate::sys::curandDistributionM2Shift_st;
+pub use crate::sys::curandDistributionM2Shift_t;
+pub use crate::sys::curandDistributionShift_st;
+pub use crate::sys::curandDistributionShift_t;
+pub use crate::sys::curandGenerator_st;
+pub use crate::sys::curandGenerator_t;
+pub use crate::sys::curandHistogramM2_st;
+pub use crate::sys::curandHistogramM2_t;
+pub use crate::sys::curandHistogramM2K_st;
+pub use crate::sys::curandHistogramM2K_t;
+pub use crate::sys::curandHistogramM2V_st;
+pub use crate::sys::curandHistogramM2V_t;
+pub use crate::sys::curandMethod;
+pub use crate::sys::curandOrdering;
+pub use crate::sys::curandRngType;
+pub use crate::sys::curandStatus;
 pub use crate::sys::curandStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
-pub use crate::sys::{
-    CURAND_VER_BUILD, CURAND_VER_MAJOR, CURAND_VER_MINOR, CURAND_VER_PATCH, CURAND_VERSION, curandDirectionVectorSet, curandDirectionVectors32_t, curandDirectionVectors64_t, curandDiscreteDistribution_st, curandDiscreteDistribution_t, curandDistribution_st, curandDistribution_t,
-    curandDistributionM2Shift_st, curandDistributionM2Shift_t, curandDistributionShift_st, curandDistributionShift_t, curandGenerator_st, curandGenerator_t, curandHistogramM2_st, curandHistogramM2_t, curandHistogramM2K_st, curandHistogramM2K_t, curandHistogramM2V_st, curandHistogramM2V_t,
-    curandMethod, curandOrdering, curandRngType, curandStatus,
-};
 use cuda_libs_cudart;
 #[allow(unused_imports)]
 use cuda_libs_cudart::sys::*;
@@ -13,119 +44,119 @@ use cuda_libs_cudart::sys::*;
 use cuda_libs_cudart::types;
 #[cfg(feature = "runtime-link")]
 impl crate::sys::DynamicBindings {
-    pub fn curandCreateGenerator(mut self, val: Option<unsafe extern "C" fn(generator: *mut curandGenerator_t, rng_type: curandRngType_t) -> curandStatus_t>) -> Self {
+    pub fn curandCreateGenerator(mut self, val: Option<unsafe extern "C" fn(*mut curandGenerator_t, curandRngType_t) -> curandStatus_t>) -> Self {
         self.curandCreateGenerator = val;
         self
     }
-    pub fn curandCreateGeneratorHost(mut self, val: Option<unsafe extern "C" fn(generator: *mut curandGenerator_t, rng_type: curandRngType_t) -> curandStatus_t>) -> Self {
+    pub fn curandCreateGeneratorHost(mut self, val: Option<unsafe extern "C" fn(*mut curandGenerator_t, curandRngType_t) -> curandStatus_t>) -> Self {
         self.curandCreateGeneratorHost = val;
         self
     }
-    pub fn curandDestroyGenerator(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t) -> curandStatus_t>) -> Self {
+    pub fn curandDestroyGenerator(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t) -> curandStatus_t>) -> Self {
         self.curandDestroyGenerator = val;
         self
     }
-    pub fn curandGetVersion(mut self, val: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> curandStatus_t>) -> Self {
+    pub fn curandGetVersion(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> curandStatus_t>) -> Self {
         self.curandGetVersion = val;
         self
     }
-    pub fn curandGetProperty(mut self, val: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> curandStatus_t>) -> Self {
+    pub fn curandGetProperty(mut self, val: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> curandStatus_t>) -> Self {
         self.curandGetProperty = val;
         self
     }
-    pub fn curandSetStream(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, stream: cudaStream_t) -> curandStatus_t>) -> Self {
+    pub fn curandSetStream(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, cudaStream_t) -> curandStatus_t>) -> Self {
         self.curandSetStream = val;
         self
     }
-    pub fn curandSetPseudoRandomGeneratorSeed(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, seed: ::std::os::raw::c_ulonglong) -> curandStatus_t>) -> Self {
+    pub fn curandSetPseudoRandomGeneratorSeed(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, ::std::os::raw::c_ulonglong) -> curandStatus_t>) -> Self {
         self.curandSetPseudoRandomGeneratorSeed = val;
         self
     }
-    pub fn curandSetGeneratorOffset(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, offset: ::std::os::raw::c_ulonglong) -> curandStatus_t>) -> Self {
+    pub fn curandSetGeneratorOffset(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, ::std::os::raw::c_ulonglong) -> curandStatus_t>) -> Self {
         self.curandSetGeneratorOffset = val;
         self
     }
-    pub fn curandSetGeneratorOrdering(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, order: curandOrdering_t) -> curandStatus_t>) -> Self {
+    pub fn curandSetGeneratorOrdering(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, curandOrdering_t) -> curandStatus_t>) -> Self {
         self.curandSetGeneratorOrdering = val;
         self
     }
-    pub fn curandSetQuasiRandomGeneratorDimensions(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, num_dimensions: ::std::os::raw::c_uint) -> curandStatus_t>) -> Self {
+    pub fn curandSetQuasiRandomGeneratorDimensions(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, ::std::os::raw::c_uint) -> curandStatus_t>) -> Self {
         self.curandSetQuasiRandomGeneratorDimensions = val;
         self
     }
-    pub fn curandGenerate(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, num: usize) -> curandStatus_t>) -> Self {
+    pub fn curandGenerate(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize) -> curandStatus_t>) -> Self {
         self.curandGenerate = val;
         self
     }
-    pub fn curandGenerateLongLong(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_ulonglong, num: usize) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateLongLong(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_ulonglong, usize) -> curandStatus_t>) -> Self {
         self.curandGenerateLongLong = val;
         self
     }
-    pub fn curandGenerateUniform(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f32, num: usize) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateUniform(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut f32, usize) -> curandStatus_t>) -> Self {
         self.curandGenerateUniform = val;
         self
     }
-    pub fn curandGenerateUniformDouble(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f64, num: usize) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateUniformDouble(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut f64, usize) -> curandStatus_t>) -> Self {
         self.curandGenerateUniformDouble = val;
         self
     }
-    pub fn curandGenerateNormal(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f32, n: usize, mean: f32, stddev: f32) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateNormal(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut f32, usize, f32, f32) -> curandStatus_t>) -> Self {
         self.curandGenerateNormal = val;
         self
     }
-    pub fn curandGenerateNormalDouble(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f64, n: usize, mean: f64, stddev: f64) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateNormalDouble(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut f64, usize, f64, f64) -> curandStatus_t>) -> Self {
         self.curandGenerateNormalDouble = val;
         self
     }
-    pub fn curandGenerateLogNormal(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f32, n: usize, mean: f32, stddev: f32) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateLogNormal(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut f32, usize, f32, f32) -> curandStatus_t>) -> Self {
         self.curandGenerateLogNormal = val;
         self
     }
-    pub fn curandGenerateLogNormalDouble(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f64, n: usize, mean: f64, stddev: f64) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateLogNormalDouble(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut f64, usize, f64, f64) -> curandStatus_t>) -> Self {
         self.curandGenerateLogNormalDouble = val;
         self
     }
-    pub fn curandCreatePoissonDistribution(mut self, val: Option<unsafe extern "C" fn(lambda: f64, discrete_distribution: *mut curandDiscreteDistribution_t) -> curandStatus_t>) -> Self {
+    pub fn curandCreatePoissonDistribution(mut self, val: Option<unsafe extern "C" fn(f64, *mut curandDiscreteDistribution_t) -> curandStatus_t>) -> Self {
         self.curandCreatePoissonDistribution = val;
         self
     }
-    pub fn curandDestroyDistribution(mut self, val: Option<unsafe extern "C" fn(discrete_distribution: curandDiscreteDistribution_t) -> curandStatus_t>) -> Self {
+    pub fn curandDestroyDistribution(mut self, val: Option<unsafe extern "C" fn(curandDiscreteDistribution_t) -> curandStatus_t>) -> Self {
         self.curandDestroyDistribution = val;
         self
     }
-    pub fn curandGeneratePoisson(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, n: usize, lambda: f64) -> curandStatus_t>) -> Self {
+    pub fn curandGeneratePoisson(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, f64) -> curandStatus_t>) -> Self {
         self.curandGeneratePoisson = val;
         self
     }
-    pub fn curandGeneratePoissonMethod(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, n: usize, lambda: f64, method: curandMethod_t) -> curandStatus_t>) -> Self {
+    pub fn curandGeneratePoissonMethod(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, f64, curandMethod_t) -> curandStatus_t>) -> Self {
         self.curandGeneratePoissonMethod = val;
         self
     }
-    pub fn curandGenerateBinomial(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, num: usize, n: ::std::os::raw::c_uint, p: f64) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateBinomial(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, ::std::os::raw::c_uint, f64) -> curandStatus_t>) -> Self {
         self.curandGenerateBinomial = val;
         self
     }
-    pub fn curandGenerateBinomialMethod(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, num: usize, n: ::std::os::raw::c_uint, p: f64, method: curandMethod_t) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateBinomialMethod(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, ::std::os::raw::c_uint, f64, curandMethod_t) -> curandStatus_t>) -> Self {
         self.curandGenerateBinomialMethod = val;
         self
     }
-    pub fn curandGenerateSeeds(mut self, val: Option<unsafe extern "C" fn(generator: curandGenerator_t) -> curandStatus_t>) -> Self {
+    pub fn curandGenerateSeeds(mut self, val: Option<unsafe extern "C" fn(curandGenerator_t) -> curandStatus_t>) -> Self {
         self.curandGenerateSeeds = val;
         self
     }
-    pub fn curandGetDirectionVectors32(mut self, val: Option<unsafe extern "C" fn(vectors: *mut *mut curandDirectionVectors32_t, set: curandDirectionVectorSet_t) -> curandStatus_t>) -> Self {
+    pub fn curandGetDirectionVectors32(mut self, val: Option<unsafe extern "C" fn(*mut *mut curandDirectionVectors32_t, curandDirectionVectorSet_t) -> curandStatus_t>) -> Self {
         self.curandGetDirectionVectors32 = val;
         self
     }
-    pub fn curandGetScrambleConstants32(mut self, val: Option<unsafe extern "C" fn(constants: *mut *mut ::std::os::raw::c_uint) -> curandStatus_t>) -> Self {
+    pub fn curandGetScrambleConstants32(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_uint) -> curandStatus_t>) -> Self {
         self.curandGetScrambleConstants32 = val;
         self
     }
-    pub fn curandGetDirectionVectors64(mut self, val: Option<unsafe extern "C" fn(vectors: *mut *mut curandDirectionVectors64_t, set: curandDirectionVectorSet_t) -> curandStatus_t>) -> Self {
+    pub fn curandGetDirectionVectors64(mut self, val: Option<unsafe extern "C" fn(*mut *mut curandDirectionVectors64_t, curandDirectionVectorSet_t) -> curandStatus_t>) -> Self {
         self.curandGetDirectionVectors64 = val;
         self
     }
-    pub fn curandGetScrambleConstants64(mut self, val: Option<unsafe extern "C" fn(constants: *mut *mut ::std::os::raw::c_ulonglong) -> curandStatus_t>) -> Self {
+    pub fn curandGetScrambleConstants64(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_ulonglong) -> curandStatus_t>) -> Self {
         self.curandGetScrambleConstants64 = val;
         self
     }
@@ -201,47 +232,47 @@ pub unsafe fn curandSetQuasiRandomGeneratorDimensions(generator: curandGenerator
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate 32-bit pseudo or quasirandom numbers.\nUse `generator` to generate `num` 32-bit results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 32-bit values with every bit random.\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `num` - - Number of random 32-bit values to generate\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_TYPE_ERROR if the generator is a 64 bit quasirandom generator.\n(use ::curandGenerateLongLong() with 64 bit quasirandom generators)\n- CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerate<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, num: usize) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerate<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, num: usize) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerate(generator, outputPtr.as_mut_ptr() as *mut _, num) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate 64-bit quasirandom numbers.\nUse `generator` to generate `num` 64-bit results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 64-bit values with every bit random.\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `num` - - Number of random 64-bit values to generate\n\n# Returns\n\n- CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_TYPE_ERROR if the generator is not a 64 bit quasirandom generator\\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerateLongLong<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, num: usize) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateLongLong<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, num: usize) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateLongLong(generator, outputPtr.as_mut_ptr() as *mut _, num) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate uniformly distributed floats.\nUse `generator` to generate `num` float results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 32-bit floating point values between `0.0f` and `1.0f,`\nexcluding `0.0f` and including `1.0f.`\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `num` - - Number of floats to generate\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension \\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerateUniform<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, num: usize) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateUniform<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, num: usize) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateUniform(generator, outputPtr.as_mut_ptr() as *mut _, num) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate uniformly distributed doubles.\nUse `generator` to generate `num` double results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 64-bit double precision floating point values between\n`0.0` and `1.0,` excluding `0.0` and including `1.0.`\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `num` - - Number of doubles to generate\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension \\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU does not support double precision \\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerateUniformDouble<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, num: usize) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateUniformDouble<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, num: usize) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateUniformDouble(generator, outputPtr.as_mut_ptr() as *mut _, num) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate normally distributed doubles.\nUse `generator` to generate `n` float results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 32-bit floating point values with mean `mean` and standard\ndeviation `stddev.`\nNormally distributed results are generated from pseudorandom generators\nwith a Box-Muller transform, and so require `n` to be even.\nQuasirandom generators use an inverse cumulative distribution\nfunction to preserve dimensionality.\nThere may be slight numerical differences between results generated\non the GPU with generators created with ::curandCreateGenerator()\nand results calculated on the CPU with generators created with\n::curandCreateGeneratorHost().  These differences arise because of\ndifferences in results for transcendental functions.  In addition,\nfuture versions of CURAND may use newer versions of the CUDA math\nlibrary, so different versions of CURAND may give slightly different\nnumerical values.\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `n` - - Number of floats to generate\n* `mean` - - Mean of normal distribution\n* `stddev` - - Standard deviation of normal distribution\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension, or is not a multiple\nof two for pseudorandom generators \\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerateNormal<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, n: usize, mean: f32, stddev: f32) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateNormal<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, n: usize, mean: f32, stddev: f32) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateNormal(generator, outputPtr.as_mut_ptr() as *mut _, n, mean, stddev) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate normally distributed doubles.\nUse `generator` to generate `n` double results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 64-bit floating point values with mean `mean` and standard\ndeviation `stddev.`\nNormally distributed results are generated from pseudorandom generators\nwith a Box-Muller transform, and so require `n` to be even.\nQuasirandom generators use an inverse cumulative distribution\nfunction to preserve dimensionality.\nThere may be slight numerical differences between results generated\non the GPU with generators created with ::curandCreateGenerator()\nand results calculated on the CPU with generators created with\n::curandCreateGeneratorHost().  These differences arise because of\ndifferences in results for transcendental functions.  In addition,\nfuture versions of CURAND may use newer versions of the CUDA math\nlibrary, so different versions of CURAND may give slightly different\nnumerical values.\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `n` - - Number of doubles to generate\n* `mean` - - Mean of normal distribution\n* `stddev` - - Standard deviation of normal distribution\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension, or is not a multiple\nof two for pseudorandom generators \\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU does not support double precision \\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerateNormalDouble<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, n: usize, mean: f64, stddev: f64) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateNormalDouble<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, n: usize, mean: f64, stddev: f64) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateNormalDouble(generator, outputPtr.as_mut_ptr() as *mut _, n, mean, stddev) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate log-normally distributed floats.\nUse `generator` to generate `n` float results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 32-bit floating point values with log-normal distribution based on\nan associated normal distribution with mean `mean` and standard deviation `stddev.`\nNormally distributed results are generated from pseudorandom generators\nwith a Box-Muller transform, and so require `n` to be even.\nQuasirandom generators use an inverse cumulative distribution\nfunction to preserve dimensionality.\nThe normally distributed results are transformed into log-normal distribution.\nThere may be slight numerical differences between results generated\non the GPU with generators created with ::curandCreateGenerator()\nand results calculated on the CPU with generators created with\n::curandCreateGeneratorHost().  These differences arise because of\ndifferences in results for transcendental functions.  In addition,\nfuture versions of CURAND may use newer versions of the CUDA math\nlibrary, so different versions of CURAND may give slightly different\nnumerical values.\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `n` - - Number of floats to generate\n* `mean` - - Mean of associated normal distribution\n* `stddev` - - Standard deviation of associated normal distribution\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension, or is not a multiple\nof two for pseudorandom generators \\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerateLogNormal<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, n: usize, mean: f32, stddev: f32) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateLogNormal<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, n: usize, mean: f32, stddev: f32) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateLogNormal(generator, outputPtr.as_mut_ptr() as *mut _, n, mean, stddev) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate log-normally distributed doubles.\nUse `generator` to generate `n` double results into the device memory at\n`outputPtr.`  The device memory must have been previously allocated and be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 64-bit floating point values with log-normal distribution based on\nan associated normal distribution with mean `mean` and standard deviation `stddev.`\nNormally distributed results are generated from pseudorandom generators\nwith a Box-Muller transform, and so require `n` to be even.\nQuasirandom generators use an inverse cumulative distribution\nfunction to preserve dimensionality.\nThe normally distributed results are transformed into log-normal distribution.\nThere may be slight numerical differences between results generated\non the GPU with generators created with ::curandCreateGenerator()\nand results calculated on the CPU with generators created with\n::curandCreateGeneratorHost().  These differences arise because of\ndifferences in results for transcendental functions.  In addition,\nfuture versions of CURAND may use newer versions of the CUDA math\nlibrary, so different versions of CURAND may give slightly different\nnumerical values.\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `n` - - Number of doubles to generate\n* `mean` - - Mean of normal distribution\n* `stddev` - - Standard deviation of normal distribution\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension, or is not a multiple\nof two for pseudorandom generators \\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU does not support double precision \\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGenerateLogNormalDouble<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, n: usize, mean: f64, stddev: f64) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateLogNormalDouble<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, n: usize, mean: f64, stddev: f64) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateLogNormalDouble(generator, outputPtr.as_mut_ptr() as *mut _, n, mean, stddev) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Construct the histogram array for a Poisson distribution.\nConstruct the histogram array for the Poisson distribution with lambda `lambda.`\nFor lambda greater than 2000, an approximation with a normal distribution is used.\n\n# Arguments\n\n* `lambda` - - lambda for the Poisson distribution\n* `discrete_distribution` - - pointer to the histogram in device memory\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU does not support double precision \\n - CURAND_STATUS_INITIALIZATION_FAILED if there was a problem setting up the GPU \\n - CURAND_STATUS_NOT_INITIALIZED if the distribution pointer was null \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_OUT_OF_RANGE if lambda is non-positive or greater than 400,000 \\n - CURAND_STATUS_SUCCESS if the histogram was generated successfully \\n "]
-pub unsafe fn curandCreatePoissonDistribution<T: types::CudaAsMutPtr>(lambda: f64, mut discrete_distribution: T) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandCreatePoissonDistribution<T0: types::CudaAsMutPtr>(lambda: f64, mut discrete_distribution: T0) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandCreatePoissonDistribution(lambda, discrete_distribution.as_mut_ptr() as *mut _) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -251,19 +282,19 @@ pub unsafe fn curandDestroyDistribution(discrete_distribution: curandDiscreteDis
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate Poisson-distributed unsigned ints.\nUse `generator` to generate `n` unsigned int results into device memory at\n`outputPtr.`  The device memory must have been previously allocated and must be\nlarge enough to hold all the results.  Launches are done with the stream\nset using ::curandSetStream(), or the null stream if no stream has been set.\nResults are 32-bit unsigned int point values with Poisson distribution, with lambda `lambda.`\n\n# Arguments\n\n* `generator` - - Generator to use\n* `outputPtr` - - Pointer to device memory to store CUDA-generated results, or\nPointer to host memory to store CPU-generated results\n* `n` - - Number of unsigned ints to generate\n* `lambda` - - lambda for the Poisson distribution\n\n# Returns\n\n- CURAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \\n - CURAND_STATUS_NOT_INITIALIZED if the generator was never created \\n - CURAND_STATUS_PREEXISTING_FAILURE if there was an existing error from\na previous kernel launch \\n - CURAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \\n - CURAND_STATUS_LENGTH_NOT_MULTIPLE if the number of output samples is\nnot a multiple of the quasirandom dimension\\n - CURAND_STATUS_DOUBLE_PRECISION_REQUIRED if the GPU or sm does not support double precision \\n - CURAND_STATUS_OUT_OF_RANGE if lambda is non-positive or greater than 400,000 \\n - CURAND_STATUS_SUCCESS if the results were generated successfully \\n "]
-pub unsafe fn curandGeneratePoisson<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, n: usize, lambda: f64) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGeneratePoisson<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, n: usize, lambda: f64) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGeneratePoisson(generator, outputPtr.as_mut_ptr() as *mut _, n, lambda) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn curandGeneratePoissonMethod<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, n: usize, lambda: f64, method: curandMethod_t) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGeneratePoissonMethod<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, n: usize, lambda: f64, method: curandMethod_t) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGeneratePoissonMethod(generator, outputPtr.as_mut_ptr() as *mut _, n, lambda, method) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn curandGenerateBinomial<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, num: usize, n: u32, p: f64) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateBinomial<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, num: usize, n: u32, p: f64) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateBinomial(generator, outputPtr.as_mut_ptr() as *mut _, num, n as _, p) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn curandGenerateBinomialMethod<T: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T, num: usize, n: u32, p: f64, method: curandMethod_t) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGenerateBinomialMethod<T0: types::CudaAsMutPtr>(generator: curandGenerator_t, mut outputPtr: T0, num: usize, n: u32, p: f64, method: curandMethod_t) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGenerateBinomialMethod(generator, outputPtr.as_mut_ptr() as *mut _, num, n as _, p, method) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -273,7 +304,7 @@ pub unsafe fn curandGenerateSeeds(generator: curandGenerator_t) -> Result<(), cr
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Get direction vectors for 32-bit quasirandom number generation.\nGet a pointer to an array of direction vectors that can be used\nfor quasirandom number generation.  The resulting pointer will\nreference an array of direction vectors in host memory.\nThe array contains vectors for many dimensions.  Each dimension\nhas 32 vectors.  Each individual vector is an unsigned int.\nLegal values for `set` are:\n- CURAND_DIRECTION_VECTORS_32_JOEKUO6 (20,000 dimensions)\n- CURAND_SCRAMBLED_DIRECTION_VECTORS_32_JOEKUO6 (20,000 dimensions)\n\n# Arguments\n\n* `vectors` - - Address of pointer in which to return direction vectors\n* `set` - - Which set of direction vectors to use\n\n# Returns\n\n- CURAND_STATUS_OUT_OF_RANGE if the choice of set is invalid \\n - CURAND_STATUS_SUCCESS if the pointer was set successfully \\n "]
-pub unsafe fn curandGetDirectionVectors32<T: types::CudaAsMutPtr>(mut vectors: T, set: curandDirectionVectorSet_t) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGetDirectionVectors32<T0: types::CudaAsMutPtr>(mut vectors: T0, set: curandDirectionVectorSet_t) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGetDirectionVectors32(vectors.as_mut_ptr() as *mut _, set) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -288,7 +319,7 @@ pub unsafe fn curandGetScrambleConstants32() -> Result<*mut ::std::os::raw::c_ui
     }
 }
 #[doc = "Get direction vectors for 64-bit quasirandom number generation.\nGet a pointer to an array of direction vectors that can be used\nfor quasirandom number generation.  The resulting pointer will\nreference an array of direction vectors in host memory.\nThe array contains vectors for many dimensions.  Each dimension\nhas 64 vectors.  Each individual vector is an unsigned long long.\nLegal values for `set` are:\n- CURAND_DIRECTION_VECTORS_64_JOEKUO6 (20,000 dimensions)\n- CURAND_SCRAMBLED_DIRECTION_VECTORS_64_JOEKUO6 (20,000 dimensions)\n\n# Arguments\n\n* `vectors` - - Address of pointer in which to return direction vectors\n* `set` - - Which set of direction vectors to use\n\n# Returns\n\n- CURAND_STATUS_OUT_OF_RANGE if the choice of set is invalid \\n - CURAND_STATUS_SUCCESS if the pointer was set successfully \\n "]
-pub unsafe fn curandGetDirectionVectors64<T: types::CudaAsMutPtr>(mut vectors: T, set: curandDirectionVectorSet_t) -> Result<(), crate::sys::curandStatus_t> {
+pub unsafe fn curandGetDirectionVectors64<T0: types::CudaAsMutPtr>(mut vectors: T0, set: curandDirectionVectorSet_t) -> Result<(), crate::sys::curandStatus_t> {
     let status = unsafe { crate::sys::curandGetDirectionVectors64(vectors.as_mut_ptr() as *mut _, set) };
     if status == crate::sys::curandStatus_t::CURAND_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }

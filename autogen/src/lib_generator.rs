@@ -183,26 +183,28 @@ impl<'a> Generator<'a> {
                         let fn_name_str = fn_name.to_string();
                         let fn_name_nul = syn::LitByteStr::new(format!("{}\0", fn_name_str).as_bytes(), proc_macro2::Span::call_site());
 
-                        let mut arg_types = Vec::new();
+                        let mut arg_types_only = Vec::new();
+                        let mut arg_defs = Vec::new();
                         let mut arg_names = Vec::new();
                         for param in &sig.inputs {
                             if let syn::FnArg::Typed(pat_type) = param {
                                 let pat = &pat_type.pat;
                                 let ty = &pat_type.ty;
-                                arg_types.push(quote!(#pat: #ty));
+                                arg_types_only.push(quote!(#ty));
+                                arg_defs.push(quote!(#pat: #ty));
                                 arg_names.push(quote!(#pat));
                             }
                         }
                         let output = &sig.output;
 
                         dynamic_fields.push(quote! {
-                            pub #fn_name: Option<unsafe extern "C" fn(#(#arg_types),*) #output>
+                            pub #fn_name: Option<unsafe extern "C" fn(#(#arg_types_only),*) #output>
                         });
 
                         dynamic_wrappers.push(quote! {
                             #[cfg(feature = "runtime-link")]
                             #[inline(always)]
-                            pub unsafe extern "C" fn #fn_name(#(#arg_types),*) #output {
+                            pub unsafe extern "C" fn #fn_name(#(#arg_defs),*) #output {
                                 match DYNAMIC_BINDINGS.get().expect("CUDA library not loaded. Did you forget to call #[cuda_load]?").#fn_name {
                                     Some(____func) => unsafe { ____func(#(#arg_names),*) },
                                     None => panic!("CUDA symbol '{}' not found in the loaded library. This typically happens when using a CUDA version older than the one the bindings were generated for.", #fn_name_str),
@@ -246,9 +248,7 @@ impl<'a> Generator<'a> {
         }
 
         let send_sync_impls = send_sync_items.iter().map(|(ident, generics)| {
-            // Build impl generics with Send/Sync bounds on each type param
             let where_clause = &generics.where_clause;
-            // Collect just the idents/lifetimes for the "for Type<...>" part
             let ty_args: Vec<proc_macro2::TokenStream> = generics
                 .params
                 .iter()
@@ -267,7 +267,7 @@ impl<'a> Generator<'a> {
                     }
                 })
                 .collect();
-            // Add Send/Sync bounds to type params in the impl generics
+
             let impl_params: Vec<proc_macro2::TokenStream> = generics
                 .params
                 .iter()
@@ -300,12 +300,10 @@ impl<'a> Generator<'a> {
                 pub struct DynamicBindings {
                     #(#dynamic_fields),*
                 }
-
                 #[cfg(feature = "runtime-link")]
                 unsafe impl Send for DynamicBindings {}
                 #[cfg(feature = "runtime-link")]
                 unsafe impl Sync for DynamicBindings {}
-
                 #[cfg(feature = "runtime-link")]
                 pub static DYNAMIC_BINDINGS: std::sync::OnceLock<Box<DynamicBindings>> = std::sync::OnceLock::new();
 
@@ -313,13 +311,7 @@ impl<'a> Generator<'a> {
 
                 #[cfg(feature = "runtime-link")]
                 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-                    let bindings = unsafe {
-                        Box::new(
-                            DynamicBindings {
-                                #(#dynamic_loaders),*
-                            }
-                        )
-                    };
+                    let bindings = Box::new(DynamicBindings { #(#dynamic_loaders),* });
                     DYNAMIC_BINDINGS.set(bindings).ok();
                 }
             };
@@ -327,9 +319,7 @@ impl<'a> Generator<'a> {
             new_sys_items.extend(dyn_file.items);
         }
 
-        let send_sync_stream = quote! { #(#send_sync_impls)* };
-        let send_sync_file: syn::File = syn::parse2(send_sync_stream).expect("Failed to parse Send+Sync impls");
-        new_sys_items.extend(send_sync_file.items);
+        new_sys_items.extend(syn::parse2::<syn::File>(quote!(#(#send_sync_impls)*)).expect("Failed to parse Send+Sync impls").items);
 
         let error_impls = error_items.iter().map(|(ident, generics)| {
             let where_clause = &generics.where_clause;
@@ -357,8 +347,7 @@ impl<'a> Generator<'a> {
                 .map(|p| match p {
                     syn::GenericParam::Type(t) => {
                         let id = &t.ident;
-                        let bounds = &t.bounds;
-                        if bounds.is_empty() { quote!(#id) } else { quote!(#id: #bounds) }
+                        quote!(#id)
                     }
                     other => quote!(#other),
                 })
@@ -366,42 +355,41 @@ impl<'a> Generator<'a> {
 
             if ty_args.is_empty() {
                 quote! {
-                    impl std::fmt::Display for #ident #where_clause {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            write!(f, "{:?}", self)
-                        }
-                    }
+                    impl std::fmt::Display for #ident #where_clause { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "{:?}", self) } }
                     impl std::error::Error for #ident #where_clause {}
                 }
             } else {
                 quote! {
-                    impl<#(#impl_params),*> std::fmt::Display for #ident<#(#ty_args),*> #where_clause {
-                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                            write!(f, "{:?}", self)
-                        }
-                    }
+                    impl<#(#impl_params),*> std::fmt::Display for #ident<#(#ty_args),*> #where_clause { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "{:?}", self) } }
                     impl<#(#impl_params),*> std::error::Error for #ident<#(#ty_args),*> #where_clause {}
                 }
             }
         });
-        let error_stream = quote! { #(#error_impls)* };
-        let error_file: syn::File = syn::parse2(error_stream).expect("Failed to parse error impls");
-        new_sys_items.extend(error_file.items);
+        new_sys_items.extend(syn::parse2::<syn::File>(quote!(#(#error_impls)*)).expect("Failed to parse error impls").items);
 
         let new_ast = syn::File {
             shebang: ast.shebang.clone(),
             attrs: ast.attrs.clone(),
             items: new_sys_items,
         };
-        let mut code = quote!(#new_ast).to_string();
-        let prefixes = vec!["cuda", "cublas", "cusolver", "cusparse", "curand", "cufft", "cudnn"];
+        let mut code = format!("#![allow(unsafe_op_in_unsafe_fn)]\n{}", quote!(#new_ast).to_string());
         for import in &self.config.extra_imports {
-            for prefix in prefixes.iter() {
-                if import.contains(prefix) {
-                    let re = regex::Regex::new(&format!(r"pub use self :: ({}[a-zA-Z0-9_]*)", prefix)).unwrap();
-                    let replacement = format!("pub use {} :: sys :: $1", import);
-                    code = re.replace_all(&code, replacement.as_str()).to_string();
-                }
+            let prefix = if import.contains("cudart") {
+                "cuda|libraryPropertyType|float2|double2|dim3|cuComplex|cuDoubleComplex|cuFloatComplex"
+            } else if import.contains("cublas") {
+                "cublas"
+            } else if import.contains("cusparse") {
+                "cusparse"
+            } else if import.contains("cusolver") {
+                "cusolver"
+            } else {
+                ""
+            };
+
+            if !prefix.is_empty() {
+                let prefix_pattern = format!(r"pub use self :: (({})[a-zA-Z0-9_]*)", prefix);
+                let re = Regex::new(&prefix_pattern).unwrap();
+                code = re.replace_all(&code, format!("pub use {} :: sys :: $1", import).as_str()).to_string();
             }
         }
 
@@ -410,21 +398,26 @@ impl<'a> Generator<'a> {
 
     fn map_ffi_type_to_rust(&self, ty: &syn::Type) -> (syn::Type, bool) {
         let ty_str = quote!(#ty).to_string().replace(" ", "");
-        let new_ty_str = match ty_str.as_str() {
-            "::std::os::raw::c_int" | "std::os::raw::c_int" => Some("i32"),
-            "::std::os::raw::c_uint" | "std::os::raw::c_uint" => Some("u32"),
-            "::std::os::raw::c_long" | "std::os::raw::c_long" => Some("i64"),
-            "::std::os::raw::c_ulong" | "std::os::raw::c_ulong" => Some("u64"),
-            "::std::os::raw::c_longlong" | "std::os::raw::c_longlong" => Some("i64"),
-            "::std::os::raw::c_ulonglong" | "std::os::raw::c_ulonglong" => Some("u64"),
-            "::std::os::raw::c_char" | "std::os::raw::c_char" => Some("i8"),
-            "::std::os::raw::c_uchar" | "std::os::raw::c_uchar" => Some("u8"),
-            "::std::os::raw::c_short" | "std::os::raw::c_short" => Some("i16"),
-            "::std::os::raw::c_ushort" | "std::os::raw::c_ushort" => Some("u16"),
+        let clean_ty = ty_str.trim_start_matches("::").trim_start_matches("std::os::raw::");
+
+        let new_ty_str = match clean_ty {
+            "c_int" => Some("i32"),
+            "c_uint" => Some("u32"),
+            "c_long" | "c_longlong" => Some("i64"),
+            "c_ulong" | "c_ulonglong" => Some("u64"),
+            "c_char" => Some("i8"),
+            "c_uchar" => Some("u8"),
+            "c_short" => Some("i16"),
+            "c_ushort" => Some("u16"),
             _ => None,
         };
 
         if let Some(new_ty) = new_ty_str { (syn::parse_str(new_ty).unwrap(), true) } else { (ty.clone(), false) }
+    }
+
+    fn is_handle_type(&self, ty_str: &str) -> bool {
+        let handle_keywords = ["Context", "Stream_t", "Stream", "ctx", "Device", "CUstream_st"];
+        handle_keywords.iter().any(|&k| ty_str.contains(k)) || self.config.handle_types_regex.iter().any(|&r| ty_str.contains(r))
     }
 
     fn should_skip_function(&self, func: &syn::ForeignItemFn) -> bool {
@@ -438,7 +431,7 @@ impl<'a> Generator<'a> {
         let fn_str = fn_name.to_string();
         let attrs = &func.attrs;
 
-        let is_getter = (fn_str.contains("Get") || fn_str.contains("Create") || fn_str.contains("Plan") || fn_str.contains("Load")) && !fn_str.contains("String") && !fn_str.contains("Name") && !fn_str.contains("Vector") && !fn_str.contains("Matrix") && !fn_str.contains("Unload");
+        let is_getter = (fn_str.contains("Get") || fn_str.contains("Create") || fn_str.contains("Plan") || fn_str.contains("Load")) && !["String", "Name", "Vector", "Matrix", "Unload"].iter().any(|&s| fn_str.contains(s));
 
         if is_getter {
             if let Some(wrapper) = self.generate_getter_wrapper(func) {
@@ -450,42 +443,23 @@ impl<'a> Generator<'a> {
         let mut safe_inputs_generics = Vec::new();
         let mut call_args = Vec::new();
         let mut generic_idx = 0;
-        let generic_letters = ["T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"];
 
-        for (_i, input) in sig.inputs.iter().enumerate() {
+        for (i, input) in sig.inputs.iter().enumerate() {
             if let syn::FnArg::Typed(pat_type) = input {
                 let pat = &pat_type.pat;
                 let ty = &pat_type.ty;
                 let (mapped_ty, transformed) = self.map_ffi_type_to_rust(ty);
-                let _ty_str = quote!(#ty).to_string().replace(" ", "");
 
-                // Handle pointer arguments
                 if let Type::Ptr(ptr_ty) = &**ty {
-                    let inner_ty = &ptr_ty.elem;
-                    let inner_ty_str = quote!(#inner_ty).to_string().replace(" ", "");
-
-                    let mut is_handle = inner_ty_str.contains("Context") || inner_ty_str.contains("Stream_t") || inner_ty_str.contains("Stream") || inner_ty_str.contains("ctx") || inner_ty_str.contains("Device") || inner_ty_str.contains("CUstream_st");
-
-                    for handle_check in &self.config.handle_types_regex {
-                        if inner_ty_str.contains(handle_check) {
-                            is_handle = true;
-                            break;
-                        }
-                    }
-
-                    if is_handle {
+                    let inner_ty_str = quote!(#ptr_ty.elem).to_string().replace(" ", "");
+                    if self.is_handle_type(&inner_ty_str) {
                         safe_inputs.push(quote!(#pat: #ty));
                         call_args.push(quote!(#pat));
                     } else if self.config.use_cuda_as_ptr {
-                        let generic_ident = if generic_idx < generic_letters.len() {
-                            syn::Ident::new(generic_letters[generic_idx], proc_macro2::Span::call_site())
-                        } else {
-                            syn::Ident::new(&format!("T{}", generic_idx), proc_macro2::Span::call_site())
-                        };
+                        let generic_ident = syn::Ident::new(&format!("T{}", generic_idx), proc_macro2::Span::call_site());
                         generic_idx += 1;
 
-                        let overrides = self.config.const_overrides.get(fn_str.as_str());
-                        let is_const_override = overrides.map(|idx| idx.contains(&_i)).unwrap_or(false);
+                        let is_const_override = self.config.const_overrides.get(fn_str.as_str()).map(|idx| idx.contains(&i)).unwrap_or(false);
 
                         if ptr_ty.mutability.is_some() && !is_const_override {
                             safe_inputs_generics.push(quote!(#generic_ident: types::CudaAsMutPtr));
@@ -494,48 +468,34 @@ impl<'a> Generator<'a> {
                         } else {
                             safe_inputs_generics.push(quote!(#generic_ident: types::CudaAsPtr));
                             safe_inputs.push(quote!(#pat: #generic_ident));
-                            if ptr_ty.mutability.is_some() {
-                                call_args.push(quote!(#pat.as_const_ptr() as *mut _));
-                            } else {
-                                call_args.push(quote!(#pat.as_const_ptr() as *const _));
-                            }
+                            call_args.push(if ptr_ty.mutability.is_some() { quote!(#pat.as_const_ptr() as *mut _) } else { quote!(#pat.as_const_ptr() as *const _) });
                         }
                     } else {
-                        // No CudaAsPtr available — pass raw pointer directly
                         safe_inputs.push(quote!(#pat: #ty));
                         call_args.push(quote!(#pat));
                     }
-                } else if transformed {
-                    safe_inputs.push(quote!(#pat: #mapped_ty));
-                    call_args.push(quote!(#pat as _));
                 } else {
-                    safe_inputs.push(quote!(#pat: #ty));
-                    call_args.push(quote!(#pat));
+                    safe_inputs.push(if transformed { quote!(#pat: #mapped_ty) } else { quote!(#pat: #ty) });
+                    call_args.push(if transformed { quote!(#pat as _) } else { quote!(#pat) });
                 }
             }
         }
 
         let ret_ty_str = if let ReturnType::Type(_, ty) = &sig.output { quote!(#ty).to_string().replace(" ", "") } else { String::new() };
-        let status_type = self.config.status_type;
-        let has_status_ret = ret_ty_str == status_type || ret_ty_str == format!("{}_t", status_type);
+        let has_status_ret = ret_ty_str == self.config.status_type || ret_ty_str == format!("{}_t", self.config.status_type);
 
         let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
         let success_variant_ident = syn::Ident::new(self.config.success_variant, proc_macro2::Span::call_site());
-
         let generics_block = if safe_inputs_generics.is_empty() { quote!() } else { quote!(<#(#safe_inputs_generics),*>) };
 
-        let safe_fn = if has_status_ret {
-            quote! {
-                #(#attrs)*
-                pub unsafe fn #fn_name #generics_block (#(#safe_inputs),*) -> Result<(), crate::sys::#status_type_ident> {
+        let (safe_body, safe_ret_ty) = if has_status_ret {
+            (
+                quote! {
                     let status = unsafe { crate::sys::#fn_name(#(#call_args),*) };
-                    if status == crate::sys::#status_type_ident::#success_variant_ident {
-                        Ok(())
-                    } else {
-                        Err(status)
-                    }
-                }
-            }
+                    if status == crate::sys::#status_type_ident::#success_variant_ident { Ok(()) } else { Err(status) }
+                },
+                syn::parse_quote!(Result<(), crate::sys::#status_type_ident>),
+            )
         } else if let ReturnType::Type(_, ty) = &sig.output {
             let (mapped_ret_ty, transformed_ret) = self.map_ffi_type_to_rust(ty);
             let ret_expr = if transformed_ret {
@@ -543,19 +503,15 @@ impl<'a> Generator<'a> {
             } else {
                 quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) })
             };
-
-            quote! {
-                #(#attrs)*
-                pub unsafe fn #fn_name #generics_block (#(#safe_inputs),*) -> #mapped_ret_ty {
-                    #ret_expr
-                }
-            }
+            (quote!(#ret_expr), mapped_ret_ty)
         } else {
-            quote! {
-                #(#attrs)*
-                pub unsafe fn #fn_name #generics_block (#(#safe_inputs),*) {
-                    unsafe { crate::sys::#fn_name(#(#call_args),*) }
-                }
+            (quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) }), syn::parse_quote!(()))
+        };
+
+        let safe_fn = quote! {
+            #(#attrs)*
+            pub unsafe fn #fn_name #generics_block (#(#safe_inputs),*) -> #safe_ret_ty {
+                #safe_body
             }
         };
 
@@ -565,6 +521,7 @@ impl<'a> Generator<'a> {
     fn generate_getter_wrapper(&self, func: &syn::ForeignItemFn) -> Option<proc_macro2::TokenStream> {
         let sig = &func.sig;
         let fn_name = &sig.ident;
+        let fn_str = fn_name.to_string();
         let attrs = &func.attrs;
 
         let mut out_vars = Vec::new();
@@ -572,82 +529,59 @@ impl<'a> Generator<'a> {
         let mut out_dcls = Vec::new();
         let mut safe_inputs = Vec::new();
         let mut call_args = Vec::new();
-        let mut has_output = false;
-
-        let fn_str = fn_name.to_string();
 
         for (i, input) in sig.inputs.iter().enumerate() {
             if let syn::FnArg::Typed(pat_type) = input {
                 let pat = &pat_type.pat;
                 let ty = &pat_type.ty;
                 let (mapped_ty, transformed) = self.map_ffi_type_to_rust(ty);
-                let ty_str = quote!(#ty).to_string().replace(" ", "");
 
                 let mut handled_as_output = false;
                 if let Type::Ptr(ptr_ty) = &**ty {
                     let is_plan_or_create = fn_str.contains("Create") || fn_str.contains("Plan") || fn_str.contains("Load");
                     let is_get = fn_str.contains("Get");
 
-                    if ptr_ty.mutability.is_some() && !ty_str.contains("c_void") && !quote!(#pat).to_string().contains("Array") {
+                    if ptr_ty.mutability.is_some() && !quote!(#ty).to_string().contains("c_void") && !quote!(#pat).to_string().contains("Array") {
                         if is_get || (is_plan_or_create && i == 0) {
                             handled_as_output = true;
-                            has_output = true;
+                            let inner_ty = &ptr_ty.elem;
+                            let (mapped_inner_ty, _) = self.map_ffi_type_to_rust(inner_ty);
+                            let var_name = quote::format_ident!("out_{}", i);
+                            out_dcls.push(quote!(let mut #var_name: std::mem::MaybeUninit<#inner_ty> = std::mem::MaybeUninit::zeroed();));
+                            call_args.push(quote!(#var_name.as_mut_ptr() as *mut _));
+                            out_vars.push(quote!(#var_name.assume_init() as #mapped_inner_ty));
+                            out_types.push(quote!(#mapped_inner_ty));
                         }
-                    }
-
-                    if handled_as_output {
-                        let inner_ty = &ptr_ty.elem;
-                        let (mapped_inner_ty, _) = self.map_ffi_type_to_rust(inner_ty);
-                        let var_name = quote::format_ident!("out_{}", i);
-                        out_dcls.push(quote! {
-                            let mut #var_name: std::mem::MaybeUninit<#inner_ty> = std::mem::MaybeUninit::zeroed();
-                        });
-                        call_args.push(quote! { #var_name.as_mut_ptr() as *mut _ });
-                        out_vars.push(quote! { #var_name.assume_init() as #mapped_inner_ty });
-                        out_types.push(quote! { #mapped_inner_ty });
                     }
                 }
 
                 if !handled_as_output {
-                    if transformed {
-                        safe_inputs.push(quote!(#pat: #mapped_ty));
-                        call_args.push(quote!(#pat as _));
-                    } else {
-                        safe_inputs.push(quote!(#pat: #ty));
-                        call_args.push(quote!(#pat));
-                    }
+                    safe_inputs.push(if transformed { quote!(#pat: #mapped_ty) } else { quote!(#pat: #ty) });
+                    call_args.push(if transformed { quote!(#pat as _) } else { quote!(#pat) });
                 }
             }
         }
 
-        if !has_output {
+        if out_vars.is_empty() {
             return None;
         }
 
-        let return_type = if out_types.len() == 1 {
-            let t = &out_types[0];
-            quote!(#t)
-        } else {
-            quote!((#(#out_types),*))
-        };
-
-        let return_vals = if out_vars.len() == 1 {
-            let v = &out_vars[0];
-            quote!(#v)
-        } else {
-            quote!((#(#out_vars),*))
-        };
+        let return_type = if out_types.len() == 1 { quote!(#(#out_types)*) } else { quote!((#(#out_types),*)) };
+        let return_vals = if out_vars.len() == 1 { quote!(#(#out_vars)*) } else { quote!((#(#out_vars),*)) };
 
         let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
         let success_variant_ident = syn::Ident::new(self.config.success_variant, proc_macro2::Span::call_site());
 
-        let (ret_expr, _ret_ty) = if let ReturnType::Type(_, ty) = &sig.output {
+        let (ret_expr, _) = if let ReturnType::Type(_, ty) = &sig.output {
             let (mapped_ret_ty, transformed_ret) = self.map_ffi_type_to_rust(ty);
-            if transformed_ret {
-                (quote!((unsafe { crate::sys::#fn_name(#(#call_args),*) }) as #mapped_ret_ty), mapped_ret_ty)
-            } else {
-                (quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) }), *ty.clone())
-            }
+            (
+                if transformed_ret {
+                    quote!((unsafe { crate::sys::#fn_name(#(#call_args),*) }) as #mapped_ret_ty)
+                } else {
+                    quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) })
+                },
+                mapped_ret_ty,
+            )
         } else {
             (quote!(unsafe { crate::sys::#fn_name(#(#call_args),*) }), syn::parse_quote!(()))
         };
@@ -675,12 +609,16 @@ impl<'a> Generator<'a> {
         let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
         let success_variant_ident = syn::Ident::new(self.config.success_variant, proc_macro2::Span::call_site());
 
+        let is_cudart = self.config.lib_name == "cuda_libs_cudart";
+        let cudart_path = if is_cudart {
+            quote! { crate }
+        } else {
+            quote! { ::cuda_libs_cudart }
+        };
+
         if fn_str.starts_with("cudaMalloc") {
             let mut m_safe_inputs = Vec::new();
             let mut m_call_args = Vec::new();
-            let is_array = fn_str.contains("Array") || fn_str.contains("Mipmapped");
-            let is_host = fn_str.contains("Host");
-            let is_3d_pitched = fn_str == "cudaMalloc3D";
             let mut output_type = quote!();
 
             for (i, input) in sig.inputs.iter().enumerate() {
@@ -688,60 +626,36 @@ impl<'a> Generator<'a> {
                     let pat = &pat_type.pat;
                     let ty = &pat_type.ty;
                     let (mapped_ty, transformed) = self.map_ffi_type_to_rust(ty);
+
                     if i == 0 {
-                        if let Type::Ptr(ptr_ty) = &**ty {
-                            let inner_ty = &ptr_ty.elem;
-                            output_type = quote!(#inner_ty);
+                        if let syn::Type::Ptr(ptr_ty) = &*pat_type.ty {
+                            let elem = &ptr_ty.elem;
+                            output_type = quote!(#elem);
                         }
                         m_call_args.push(quote!(&mut dev_ptr as *mut _ as *mut _));
-                    } else if transformed {
-                        m_safe_inputs.push(quote!(#pat: #mapped_ty));
-                        m_call_args.push(quote!(#pat as _));
                     } else {
-                        m_safe_inputs.push(quote!(#pat: #ty));
-                        m_call_args.push(quote!(#pat));
+                        m_safe_inputs.push(if transformed { quote!(#pat: #mapped_ty) } else { quote!(#pat: #ty) });
+                        m_call_args.push(if transformed { quote!(#pat as _) } else { quote!(#pat) });
                     }
                 }
             }
 
-            return Some(if is_array || is_3d_pitched {
-                quote! {
-                    #(#attrs)*
-                    pub unsafe fn #fn_name(#(#m_safe_inputs),*) -> Result<#output_type, crate::sys::#status_type_ident> {
-                        let mut dev_ptr: #output_type = unsafe { std::mem::zeroed() };
-                        let status = unsafe { crate::sys::#fn_name(#(#m_call_args),*) };
-                        if status == crate::sys::#status_type_ident::#success_variant_ident {
-                            Ok(dev_ptr)
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            } else if is_host {
-                quote! {
-                    #(#attrs)*
-                    pub unsafe fn #fn_name<T>(#(#m_safe_inputs),*) -> Result<*mut T, crate::sys::#status_type_ident> {
-                        let mut dev_ptr = std::ptr::null_mut();
-                        let status = unsafe { crate::sys::#fn_name(#(#m_call_args),*) };
-                        if status == crate::sys::#status_type_ident::#success_variant_ident {
-                            Ok(dev_ptr as *mut T)
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
+            let (ret_type, ret_val) = if fn_str.contains("Array") || fn_str.contains("Mipmapped") || fn_str == "cudaMalloc3D" {
+                (output_type, quote!(dev_ptr))
+            } else if fn_str.contains("Host") {
+                (quote!(*mut T), quote!(dev_ptr as *mut T))
             } else {
-                quote! {
-                    #(#attrs)*
-                    pub unsafe fn #fn_name<T>(#(#m_safe_inputs),*) -> Result<::cuda_libs_cudart::types::cuDeviceAllocation<T>, crate::sys::#status_type_ident> {
-                        let mut dev_ptr = std::ptr::null_mut();
-                        let status = unsafe { crate::sys::#fn_name(#(#m_call_args),*) };
-                        if status == crate::sys::#status_type_ident::#success_variant_ident {
-                            Ok(::cuda_libs_cudart::types::cuDeviceAllocation(dev_ptr as *mut T))
-                        } else {
-                            Err(status)
-                        }
-                    }
+                (quote!(#cudart_path::types::cuDeviceAllocation<T>), quote!(#cudart_path::types::cuDeviceAllocation(dev_ptr as *mut T)))
+            };
+
+            let generic = if ret_val.to_string().contains("T") { quote!(<T>) } else { quote!() };
+
+            return Some(quote! {
+                #(#attrs)*
+                pub unsafe fn #fn_name #generic (#(#m_safe_inputs),*) -> Result<#ret_type, crate::sys::#status_type_ident> {
+                    let mut dev_ptr = std::mem::zeroed();
+                    let status = unsafe { crate::sys::#fn_name(#(#m_call_args),*) };
+                    if status == crate::sys::#status_type_ident::#success_variant_ident { Ok(#ret_val) } else { Err(status) }
                 }
             });
         }
@@ -757,6 +671,7 @@ impl<'a> Generator<'a> {
                     let pat = &pat_type.pat;
                     let ty = &pat_type.ty;
                     let (mapped_ty, transformed) = self.map_ffi_type_to_rust(ty);
+
                     if i == 0 {
                         if is_array_or_3d {
                             f_safe_inputs.push(quote!(#pat: #ty));
@@ -765,42 +680,23 @@ impl<'a> Generator<'a> {
                             f_safe_inputs.push(quote!(#pat: *mut T));
                             f_call_args.push(quote!(#pat as *mut _));
                         } else {
-                            f_safe_inputs.push(quote!(#pat: ::cuda_libs_cudart::types::cuDeviceAllocation<T>));
+                            f_safe_inputs.push(quote!(#pat: #cudart_path::types::cuDeviceAllocation<T>));
                             f_call_args.push(quote!(#pat.0 as *mut _));
                         }
-                    } else if transformed {
-                        f_safe_inputs.push(quote!(#pat: #mapped_ty));
-                        f_call_args.push(quote!(#pat as _));
                     } else {
-                        f_safe_inputs.push(quote!(#pat: #ty));
-                        f_call_args.push(quote!(#pat));
+                        f_safe_inputs.push(if transformed { quote!(#pat: #mapped_ty) } else { quote!(#pat: #ty) });
+                        f_call_args.push(if transformed { quote!(#pat as _) } else { quote!(#pat) });
                     }
                 }
             }
 
-            return Some(if is_array_or_3d {
-                quote! {
-                    #(#attrs)*
-                    pub unsafe fn #fn_name(#(#f_safe_inputs),*) -> Result<(), crate::sys::#status_type_ident> {
-                        let status = unsafe { crate::sys::#fn_name(#(#f_call_args),*) };
-                        if status == crate::sys::#status_type_ident::#success_variant_ident {
-                            Ok(())
-                        } else {
-                            Err(status)
-                        }
-                    }
-                }
-            } else {
-                quote! {
-                    #(#attrs)*
-                    pub unsafe fn #fn_name<T>(#(#f_safe_inputs),*) -> Result<(), crate::sys::#status_type_ident> {
-                        let status = unsafe { crate::sys::#fn_name(#(#f_call_args),*) };
-                        if status == crate::sys::#status_type_ident::#success_variant_ident {
-                            Ok(())
-                        } else {
-                            Err(status)
-                        }
-                    }
+            let generic = if f_safe_inputs.iter().any(|s| s.to_string().contains("T")) { quote!(<T>) } else { quote!() };
+
+            return Some(quote! {
+                #(#attrs)*
+                pub unsafe fn #fn_name #generic (#(#f_safe_inputs),*) -> Result<(), crate::sys::#status_type_ident> {
+                    let status = unsafe { crate::sys::#fn_name(#(#f_call_args),*) };
+                    if status == crate::sys::#status_type_ident::#success_variant_ident { Ok(()) } else { Err(status) }
                 }
             });
         }
@@ -844,17 +740,22 @@ impl<'a> Generator<'a> {
     fn write_safe_rs(&self, out_dir: &std::path::Path, standalone_funcs: Vec<proc_macro2::TokenStream>, builder_impls: Vec<proc_macro2::TokenStream>, reexport_types: Vec<syn::Ident>) {
         let mut extra_safes = Vec::new();
         let depends_on_cudart = self.config.lib_name == "cuda_libs_cudart" || self.config.extra_imports.iter().any(|i| i.contains("cudart"));
-        if self.config.lib_name == "cuda_libs_cudart" {
-            extra_safes.push(quote!(
-                #[allow(unused_imports)]
+
+        let cudart_import = if self.config.lib_name == "cuda_libs_cudart" {
+            quote!(
                 use crate::types;
-            ));
+            )
         } else if depends_on_cudart {
-            extra_safes.push(quote!(
-                #[allow(unused_imports)]
+            quote!(
                 use cuda_libs_cudart::types;
-            ));
+            )
+        } else {
+            quote!()
+        };
+        if !cudart_import.is_empty() {
+            extra_safes.push(quote!(#[allow(unused_imports)] #cudart_import));
         }
+
         for import in &self.config.extra_imports {
             let import_path: syn::Path = syn::parse_str(import).unwrap();
             extra_safes.push(quote! {
@@ -865,30 +766,37 @@ impl<'a> Generator<'a> {
         }
 
         let status_type_ident = syn::Ident::new(self.config.status_type, proc_macro2::Span::call_site());
-
         let extra_safe = if !self.config.extra_safe_code.is_empty() {
             syn::parse_str::<proc_macro2::TokenStream>(self.config.extra_safe_code).unwrap()
         } else {
             quote! {}
         };
 
-        let reexport_idents: Vec<syn::Ident> = reexport_types;
+        let mut safe_code = String::from(
+            r#"#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(dead_code)]
+#![allow(unused_mut)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unsafe_op_in_unsafe_fn)]
+"#,
+        );
 
         let safe_module = quote! {
             pub use crate::sys::#status_type_ident as CudaTargetStatus;
-            pub use crate::sys::{#(#reexport_idents),*};
+            #( pub use crate::sys::#reexport_types; )*
             #[allow(unused_imports)]
             use crate::sys::*;
             #(#extra_safes)*
-
             #(#builder_impls)*
             #(#standalone_funcs)*
             #extra_safe
         };
+        safe_code.push_str(&safe_module.to_string());
 
-        let safe_path = out_dir.join("safe.rs");
-        std::fs::write(&safe_path, safe_module.to_string()).unwrap();
-
+        std::fs::write(out_dir.join("safe.rs"), safe_code).unwrap();
         std::process::Command::new("cargo").arg("fmt").status().ok();
     }
 }

@@ -1,3 +1,4 @@
+#![allow(unsafe_op_in_unsafe_fn)]
 use cuda_libs_cudart::sys::*;
 pub const CURAND_VER_MAJOR: u32 = 10;
 pub const CURAND_VER_MINOR: u32 = 4;
@@ -310,35 +311,35 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub curandCreateGenerator: Option<unsafe extern "C" fn(generator: *mut curandGenerator_t, rng_type: curandRngType_t) -> curandStatus_t>,
-    pub curandCreateGeneratorHost: Option<unsafe extern "C" fn(generator: *mut curandGenerator_t, rng_type: curandRngType_t) -> curandStatus_t>,
-    pub curandDestroyGenerator: Option<unsafe extern "C" fn(generator: curandGenerator_t) -> curandStatus_t>,
-    pub curandGetVersion: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> curandStatus_t>,
-    pub curandGetProperty: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> curandStatus_t>,
-    pub curandSetStream: Option<unsafe extern "C" fn(generator: curandGenerator_t, stream: cudaStream_t) -> curandStatus_t>,
-    pub curandSetPseudoRandomGeneratorSeed: Option<unsafe extern "C" fn(generator: curandGenerator_t, seed: ::std::os::raw::c_ulonglong) -> curandStatus_t>,
-    pub curandSetGeneratorOffset: Option<unsafe extern "C" fn(generator: curandGenerator_t, offset: ::std::os::raw::c_ulonglong) -> curandStatus_t>,
-    pub curandSetGeneratorOrdering: Option<unsafe extern "C" fn(generator: curandGenerator_t, order: curandOrdering_t) -> curandStatus_t>,
-    pub curandSetQuasiRandomGeneratorDimensions: Option<unsafe extern "C" fn(generator: curandGenerator_t, num_dimensions: ::std::os::raw::c_uint) -> curandStatus_t>,
-    pub curandGenerate: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, num: usize) -> curandStatus_t>,
-    pub curandGenerateLongLong: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_ulonglong, num: usize) -> curandStatus_t>,
-    pub curandGenerateUniform: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f32, num: usize) -> curandStatus_t>,
-    pub curandGenerateUniformDouble: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f64, num: usize) -> curandStatus_t>,
-    pub curandGenerateNormal: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f32, n: usize, mean: f32, stddev: f32) -> curandStatus_t>,
-    pub curandGenerateNormalDouble: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f64, n: usize, mean: f64, stddev: f64) -> curandStatus_t>,
-    pub curandGenerateLogNormal: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f32, n: usize, mean: f32, stddev: f32) -> curandStatus_t>,
-    pub curandGenerateLogNormalDouble: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut f64, n: usize, mean: f64, stddev: f64) -> curandStatus_t>,
-    pub curandCreatePoissonDistribution: Option<unsafe extern "C" fn(lambda: f64, discrete_distribution: *mut curandDiscreteDistribution_t) -> curandStatus_t>,
-    pub curandDestroyDistribution: Option<unsafe extern "C" fn(discrete_distribution: curandDiscreteDistribution_t) -> curandStatus_t>,
-    pub curandGeneratePoisson: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, n: usize, lambda: f64) -> curandStatus_t>,
-    pub curandGeneratePoissonMethod: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, n: usize, lambda: f64, method: curandMethod_t) -> curandStatus_t>,
-    pub curandGenerateBinomial: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, num: usize, n: ::std::os::raw::c_uint, p: f64) -> curandStatus_t>,
-    pub curandGenerateBinomialMethod: Option<unsafe extern "C" fn(generator: curandGenerator_t, outputPtr: *mut ::std::os::raw::c_uint, num: usize, n: ::std::os::raw::c_uint, p: f64, method: curandMethod_t) -> curandStatus_t>,
-    pub curandGenerateSeeds: Option<unsafe extern "C" fn(generator: curandGenerator_t) -> curandStatus_t>,
-    pub curandGetDirectionVectors32: Option<unsafe extern "C" fn(vectors: *mut *mut curandDirectionVectors32_t, set: curandDirectionVectorSet_t) -> curandStatus_t>,
-    pub curandGetScrambleConstants32: Option<unsafe extern "C" fn(constants: *mut *mut ::std::os::raw::c_uint) -> curandStatus_t>,
-    pub curandGetDirectionVectors64: Option<unsafe extern "C" fn(vectors: *mut *mut curandDirectionVectors64_t, set: curandDirectionVectorSet_t) -> curandStatus_t>,
-    pub curandGetScrambleConstants64: Option<unsafe extern "C" fn(constants: *mut *mut ::std::os::raw::c_ulonglong) -> curandStatus_t>,
+    pub curandCreateGenerator: Option<unsafe extern "C" fn(*mut curandGenerator_t, curandRngType_t) -> curandStatus_t>,
+    pub curandCreateGeneratorHost: Option<unsafe extern "C" fn(*mut curandGenerator_t, curandRngType_t) -> curandStatus_t>,
+    pub curandDestroyGenerator: Option<unsafe extern "C" fn(curandGenerator_t) -> curandStatus_t>,
+    pub curandGetVersion: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> curandStatus_t>,
+    pub curandGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> curandStatus_t>,
+    pub curandSetStream: Option<unsafe extern "C" fn(curandGenerator_t, cudaStream_t) -> curandStatus_t>,
+    pub curandSetPseudoRandomGeneratorSeed: Option<unsafe extern "C" fn(curandGenerator_t, ::std::os::raw::c_ulonglong) -> curandStatus_t>,
+    pub curandSetGeneratorOffset: Option<unsafe extern "C" fn(curandGenerator_t, ::std::os::raw::c_ulonglong) -> curandStatus_t>,
+    pub curandSetGeneratorOrdering: Option<unsafe extern "C" fn(curandGenerator_t, curandOrdering_t) -> curandStatus_t>,
+    pub curandSetQuasiRandomGeneratorDimensions: Option<unsafe extern "C" fn(curandGenerator_t, ::std::os::raw::c_uint) -> curandStatus_t>,
+    pub curandGenerate: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize) -> curandStatus_t>,
+    pub curandGenerateLongLong: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_ulonglong, usize) -> curandStatus_t>,
+    pub curandGenerateUniform: Option<unsafe extern "C" fn(curandGenerator_t, *mut f32, usize) -> curandStatus_t>,
+    pub curandGenerateUniformDouble: Option<unsafe extern "C" fn(curandGenerator_t, *mut f64, usize) -> curandStatus_t>,
+    pub curandGenerateNormal: Option<unsafe extern "C" fn(curandGenerator_t, *mut f32, usize, f32, f32) -> curandStatus_t>,
+    pub curandGenerateNormalDouble: Option<unsafe extern "C" fn(curandGenerator_t, *mut f64, usize, f64, f64) -> curandStatus_t>,
+    pub curandGenerateLogNormal: Option<unsafe extern "C" fn(curandGenerator_t, *mut f32, usize, f32, f32) -> curandStatus_t>,
+    pub curandGenerateLogNormalDouble: Option<unsafe extern "C" fn(curandGenerator_t, *mut f64, usize, f64, f64) -> curandStatus_t>,
+    pub curandCreatePoissonDistribution: Option<unsafe extern "C" fn(f64, *mut curandDiscreteDistribution_t) -> curandStatus_t>,
+    pub curandDestroyDistribution: Option<unsafe extern "C" fn(curandDiscreteDistribution_t) -> curandStatus_t>,
+    pub curandGeneratePoisson: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, f64) -> curandStatus_t>,
+    pub curandGeneratePoissonMethod: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, f64, curandMethod_t) -> curandStatus_t>,
+    pub curandGenerateBinomial: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, ::std::os::raw::c_uint, f64) -> curandStatus_t>,
+    pub curandGenerateBinomialMethod: Option<unsafe extern "C" fn(curandGenerator_t, *mut ::std::os::raw::c_uint, usize, ::std::os::raw::c_uint, f64, curandMethod_t) -> curandStatus_t>,
+    pub curandGenerateSeeds: Option<unsafe extern "C" fn(curandGenerator_t) -> curandStatus_t>,
+    pub curandGetDirectionVectors32: Option<unsafe extern "C" fn(*mut *mut curandDirectionVectors32_t, curandDirectionVectorSet_t) -> curandStatus_t>,
+    pub curandGetScrambleConstants32: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_uint) -> curandStatus_t>,
+    pub curandGetDirectionVectors64: Option<unsafe extern "C" fn(*mut *mut curandDirectionVectors64_t, curandDirectionVectorSet_t) -> curandStatus_t>,
+    pub curandGetScrambleConstants64: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_ulonglong) -> curandStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
 unsafe impl Send for DynamicBindings {}
@@ -625,126 +626,124 @@ pub unsafe extern "C" fn curandGetScrambleConstants64(constants: *mut *mut ::std
 }
 #[cfg(feature = "runtime-link")]
 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-    let bindings = unsafe {
-        Box::new(DynamicBindings {
-            curandCreateGenerator: {
-                let p = get_proc_addr(lib, b"curandCreateGenerator\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandCreateGeneratorHost: {
-                let p = get_proc_addr(lib, b"curandCreateGeneratorHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandDestroyGenerator: {
-                let p = get_proc_addr(lib, b"curandDestroyGenerator\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGetVersion: {
-                let p = get_proc_addr(lib, b"curandGetVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGetProperty: {
-                let p = get_proc_addr(lib, b"curandGetProperty\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandSetStream: {
-                let p = get_proc_addr(lib, b"curandSetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandSetPseudoRandomGeneratorSeed: {
-                let p = get_proc_addr(lib, b"curandSetPseudoRandomGeneratorSeed\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandSetGeneratorOffset: {
-                let p = get_proc_addr(lib, b"curandSetGeneratorOffset\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandSetGeneratorOrdering: {
-                let p = get_proc_addr(lib, b"curandSetGeneratorOrdering\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandSetQuasiRandomGeneratorDimensions: {
-                let p = get_proc_addr(lib, b"curandSetQuasiRandomGeneratorDimensions\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerate: {
-                let p = get_proc_addr(lib, b"curandGenerate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateLongLong: {
-                let p = get_proc_addr(lib, b"curandGenerateLongLong\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateUniform: {
-                let p = get_proc_addr(lib, b"curandGenerateUniform\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateUniformDouble: {
-                let p = get_proc_addr(lib, b"curandGenerateUniformDouble\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateNormal: {
-                let p = get_proc_addr(lib, b"curandGenerateNormal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateNormalDouble: {
-                let p = get_proc_addr(lib, b"curandGenerateNormalDouble\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateLogNormal: {
-                let p = get_proc_addr(lib, b"curandGenerateLogNormal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateLogNormalDouble: {
-                let p = get_proc_addr(lib, b"curandGenerateLogNormalDouble\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandCreatePoissonDistribution: {
-                let p = get_proc_addr(lib, b"curandCreatePoissonDistribution\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandDestroyDistribution: {
-                let p = get_proc_addr(lib, b"curandDestroyDistribution\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGeneratePoisson: {
-                let p = get_proc_addr(lib, b"curandGeneratePoisson\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGeneratePoissonMethod: {
-                let p = get_proc_addr(lib, b"curandGeneratePoissonMethod\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateBinomial: {
-                let p = get_proc_addr(lib, b"curandGenerateBinomial\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateBinomialMethod: {
-                let p = get_proc_addr(lib, b"curandGenerateBinomialMethod\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGenerateSeeds: {
-                let p = get_proc_addr(lib, b"curandGenerateSeeds\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGetDirectionVectors32: {
-                let p = get_proc_addr(lib, b"curandGetDirectionVectors32\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGetScrambleConstants32: {
-                let p = get_proc_addr(lib, b"curandGetScrambleConstants32\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGetDirectionVectors64: {
-                let p = get_proc_addr(lib, b"curandGetDirectionVectors64\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            curandGetScrambleConstants64: {
-                let p = get_proc_addr(lib, b"curandGetScrambleConstants64\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-        })
-    };
+    let bindings = Box::new(DynamicBindings {
+        curandCreateGenerator: {
+            let p = get_proc_addr(lib, b"curandCreateGenerator\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandCreateGeneratorHost: {
+            let p = get_proc_addr(lib, b"curandCreateGeneratorHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandDestroyGenerator: {
+            let p = get_proc_addr(lib, b"curandDestroyGenerator\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGetVersion: {
+            let p = get_proc_addr(lib, b"curandGetVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGetProperty: {
+            let p = get_proc_addr(lib, b"curandGetProperty\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandSetStream: {
+            let p = get_proc_addr(lib, b"curandSetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandSetPseudoRandomGeneratorSeed: {
+            let p = get_proc_addr(lib, b"curandSetPseudoRandomGeneratorSeed\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandSetGeneratorOffset: {
+            let p = get_proc_addr(lib, b"curandSetGeneratorOffset\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandSetGeneratorOrdering: {
+            let p = get_proc_addr(lib, b"curandSetGeneratorOrdering\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandSetQuasiRandomGeneratorDimensions: {
+            let p = get_proc_addr(lib, b"curandSetQuasiRandomGeneratorDimensions\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerate: {
+            let p = get_proc_addr(lib, b"curandGenerate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateLongLong: {
+            let p = get_proc_addr(lib, b"curandGenerateLongLong\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateUniform: {
+            let p = get_proc_addr(lib, b"curandGenerateUniform\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateUniformDouble: {
+            let p = get_proc_addr(lib, b"curandGenerateUniformDouble\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateNormal: {
+            let p = get_proc_addr(lib, b"curandGenerateNormal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateNormalDouble: {
+            let p = get_proc_addr(lib, b"curandGenerateNormalDouble\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateLogNormal: {
+            let p = get_proc_addr(lib, b"curandGenerateLogNormal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateLogNormalDouble: {
+            let p = get_proc_addr(lib, b"curandGenerateLogNormalDouble\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandCreatePoissonDistribution: {
+            let p = get_proc_addr(lib, b"curandCreatePoissonDistribution\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandDestroyDistribution: {
+            let p = get_proc_addr(lib, b"curandDestroyDistribution\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGeneratePoisson: {
+            let p = get_proc_addr(lib, b"curandGeneratePoisson\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGeneratePoissonMethod: {
+            let p = get_proc_addr(lib, b"curandGeneratePoissonMethod\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateBinomial: {
+            let p = get_proc_addr(lib, b"curandGenerateBinomial\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateBinomialMethod: {
+            let p = get_proc_addr(lib, b"curandGenerateBinomialMethod\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGenerateSeeds: {
+            let p = get_proc_addr(lib, b"curandGenerateSeeds\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGetDirectionVectors32: {
+            let p = get_proc_addr(lib, b"curandGetDirectionVectors32\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGetScrambleConstants32: {
+            let p = get_proc_addr(lib, b"curandGetScrambleConstants32\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGetDirectionVectors64: {
+            let p = get_proc_addr(lib, b"curandGetDirectionVectors64\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        curandGetScrambleConstants64: {
+            let p = get_proc_addr(lib, b"curandGetScrambleConstants64\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+    });
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
 unsafe impl Send for curandStatus {}

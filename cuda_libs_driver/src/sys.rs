@@ -1,3 +1,4 @@
+#![allow(unsafe_op_in_unsafe_fn)]
 pub const CUDA_VERSION: u32 = 13020;
 pub const CU_IPC_HANDLE_SIZE: u32 = 64;
 pub const CU_COMPUTE_ACCELERATED_TARGET_BASE: u32 = 65536;
@@ -7937,580 +7938,516 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cuGetErrorString: Option<unsafe extern "C" fn(error: CUresult, pStr: *mut *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuGetErrorName: Option<unsafe extern "C" fn(error: CUresult, pStr: *mut *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuInit: Option<unsafe extern "C" fn(Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuDriverGetVersion: Option<unsafe extern "C" fn(driverVersion: *mut ::std::os::raw::c_int) -> CUresult>,
-    pub cuDeviceGet: Option<unsafe extern "C" fn(device: *mut CUdevice, ordinal: ::std::os::raw::c_int) -> CUresult>,
-    pub cuDeviceGetCount: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_int) -> CUresult>,
-    pub cuDeviceGetName: Option<unsafe extern "C" fn(name: *mut ::std::os::raw::c_char, len: ::std::os::raw::c_int, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetUuid_v2: Option<unsafe extern "C" fn(uuid: *mut CUuuid, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetLuid: Option<unsafe extern "C" fn(luid: *mut ::std::os::raw::c_char, deviceNodeMask: *mut ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>,
-    pub cuDeviceTotalMem_v2: Option<unsafe extern "C" fn(bytes: *mut usize, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetTexture1DLinearMaxWidth: Option<unsafe extern "C" fn(maxWidthInElements: *mut usize, format: CUarray_format, numChannels: ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetAttribute: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, attrib: CUdevice_attribute, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetHostAtomicCapabilities: Option<unsafe extern "C" fn(capabilities: *mut ::std::os::raw::c_uint, operations: *const CUatomicOperation, count: ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetNvSciSyncAttributes: Option<unsafe extern "C" fn(nvSciSyncAttrList: *mut ::std::os::raw::c_void, dev: CUdevice, flags: ::std::os::raw::c_int) -> CUresult>,
-    pub cuDeviceSetMemPool: Option<unsafe extern "C" fn(dev: CUdevice, pool: CUmemoryPool) -> CUresult>,
-    pub cuDeviceGetMemPool: Option<unsafe extern "C" fn(pool: *mut CUmemoryPool, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetDefaultMemPool: Option<unsafe extern "C" fn(pool_out: *mut CUmemoryPool, dev: CUdevice) -> CUresult>,
-    pub cuDeviceGetExecAffinitySupport: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, type_: CUexecAffinityType, dev: CUdevice) -> CUresult>,
-    pub cuFlushGPUDirectRDMAWrites: Option<unsafe extern "C" fn(target: CUflushGPUDirectRDMAWritesTarget, scope: CUflushGPUDirectRDMAWritesScope) -> CUresult>,
-    pub cuDeviceGetProperties: Option<unsafe extern "C" fn(prop: *mut CUdevprop, dev: CUdevice) -> CUresult>,
-    pub cuDeviceComputeCapability: Option<unsafe extern "C" fn(major: *mut ::std::os::raw::c_int, minor: *mut ::std::os::raw::c_int, dev: CUdevice) -> CUresult>,
-    pub cuDevicePrimaryCtxRetain: Option<unsafe extern "C" fn(pctx: *mut CUcontext, dev: CUdevice) -> CUresult>,
-    pub cuDevicePrimaryCtxRelease_v2: Option<unsafe extern "C" fn(dev: CUdevice) -> CUresult>,
-    pub cuDevicePrimaryCtxSetFlags_v2: Option<unsafe extern "C" fn(dev: CUdevice, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuDevicePrimaryCtxGetState: Option<unsafe extern "C" fn(dev: CUdevice, flags: *mut ::std::os::raw::c_uint, active: *mut ::std::os::raw::c_int) -> CUresult>,
-    pub cuDevicePrimaryCtxReset_v2: Option<unsafe extern "C" fn(dev: CUdevice) -> CUresult>,
-    pub cuCtxCreate_v4: Option<unsafe extern "C" fn(pctx: *mut CUcontext, ctxCreateParams: *mut CUctxCreateParams, flags: ::std::os::raw::c_uint, dev: CUdevice) -> CUresult>,
-    pub cuCtxDestroy_v2: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>,
-    pub cuCtxPushCurrent_v2: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>,
-    pub cuCtxPopCurrent_v2: Option<unsafe extern "C" fn(pctx: *mut CUcontext) -> CUresult>,
-    pub cuCtxSetCurrent: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>,
-    pub cuCtxGetCurrent: Option<unsafe extern "C" fn(pctx: *mut CUcontext) -> CUresult>,
-    pub cuCtxGetDevice: Option<unsafe extern "C" fn(device: *mut CUdevice) -> CUresult>,
-    pub cuCtxGetDevice_v2: Option<unsafe extern "C" fn(device: *mut CUdevice, ctx: CUcontext) -> CUresult>,
-    pub cuCtxGetFlags: Option<unsafe extern "C" fn(flags: *mut ::std::os::raw::c_uint) -> CUresult>,
-    pub cuCtxSetFlags: Option<unsafe extern "C" fn(flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuCtxGetId: Option<unsafe extern "C" fn(ctx: CUcontext, ctxId: *mut ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuGetErrorString: Option<unsafe extern "C" fn(CUresult, *mut *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuGetErrorName: Option<unsafe extern "C" fn(CUresult, *mut *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuInit: Option<unsafe extern "C" fn(::std::os::raw::c_uint) -> CUresult>,
+    pub cuDriverGetVersion: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> CUresult>,
+    pub cuDeviceGet: Option<unsafe extern "C" fn(*mut CUdevice, ::std::os::raw::c_int) -> CUresult>,
+    pub cuDeviceGetCount: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> CUresult>,
+    pub cuDeviceGetName: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, ::std::os::raw::c_int, CUdevice) -> CUresult>,
+    pub cuDeviceGetUuid_v2: Option<unsafe extern "C" fn(*mut CUuuid, CUdevice) -> CUresult>,
+    pub cuDeviceGetLuid: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, *mut ::std::os::raw::c_uint, CUdevice) -> CUresult>,
+    pub cuDeviceTotalMem_v2: Option<unsafe extern "C" fn(*mut usize, CUdevice) -> CUresult>,
+    pub cuDeviceGetTexture1DLinearMaxWidth: Option<unsafe extern "C" fn(*mut usize, CUarray_format, ::std::os::raw::c_uint, CUdevice) -> CUresult>,
+    pub cuDeviceGetAttribute: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUdevice_attribute, CUdevice) -> CUresult>,
+    pub cuDeviceGetHostAtomicCapabilities: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *const CUatomicOperation, ::std::os::raw::c_uint, CUdevice) -> CUresult>,
+    pub cuDeviceGetNvSciSyncAttributes: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdevice, ::std::os::raw::c_int) -> CUresult>,
+    pub cuDeviceSetMemPool: Option<unsafe extern "C" fn(CUdevice, CUmemoryPool) -> CUresult>,
+    pub cuDeviceGetMemPool: Option<unsafe extern "C" fn(*mut CUmemoryPool, CUdevice) -> CUresult>,
+    pub cuDeviceGetDefaultMemPool: Option<unsafe extern "C" fn(*mut CUmemoryPool, CUdevice) -> CUresult>,
+    pub cuDeviceGetExecAffinitySupport: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUexecAffinityType, CUdevice) -> CUresult>,
+    pub cuFlushGPUDirectRDMAWrites: Option<unsafe extern "C" fn(CUflushGPUDirectRDMAWritesTarget, CUflushGPUDirectRDMAWritesScope) -> CUresult>,
+    pub cuDeviceGetProperties: Option<unsafe extern "C" fn(*mut CUdevprop, CUdevice) -> CUresult>,
+    pub cuDeviceComputeCapability: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, CUdevice) -> CUresult>,
+    pub cuDevicePrimaryCtxRetain: Option<unsafe extern "C" fn(*mut CUcontext, CUdevice) -> CUresult>,
+    pub cuDevicePrimaryCtxRelease_v2: Option<unsafe extern "C" fn(CUdevice) -> CUresult>,
+    pub cuDevicePrimaryCtxSetFlags_v2: Option<unsafe extern "C" fn(CUdevice, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuDevicePrimaryCtxGetState: Option<unsafe extern "C" fn(CUdevice, *mut ::std::os::raw::c_uint, *mut ::std::os::raw::c_int) -> CUresult>,
+    pub cuDevicePrimaryCtxReset_v2: Option<unsafe extern "C" fn(CUdevice) -> CUresult>,
+    pub cuCtxCreate_v4: Option<unsafe extern "C" fn(*mut CUcontext, *mut CUctxCreateParams, ::std::os::raw::c_uint, CUdevice) -> CUresult>,
+    pub cuCtxDestroy_v2: Option<unsafe extern "C" fn(CUcontext) -> CUresult>,
+    pub cuCtxPushCurrent_v2: Option<unsafe extern "C" fn(CUcontext) -> CUresult>,
+    pub cuCtxPopCurrent_v2: Option<unsafe extern "C" fn(*mut CUcontext) -> CUresult>,
+    pub cuCtxSetCurrent: Option<unsafe extern "C" fn(CUcontext) -> CUresult>,
+    pub cuCtxGetCurrent: Option<unsafe extern "C" fn(*mut CUcontext) -> CUresult>,
+    pub cuCtxGetDevice: Option<unsafe extern "C" fn(*mut CUdevice) -> CUresult>,
+    pub cuCtxGetDevice_v2: Option<unsafe extern "C" fn(*mut CUdevice, CUcontext) -> CUresult>,
+    pub cuCtxGetFlags: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint) -> CUresult>,
+    pub cuCtxSetFlags: Option<unsafe extern "C" fn(::std::os::raw::c_uint) -> CUresult>,
+    pub cuCtxGetId: Option<unsafe extern "C" fn(CUcontext, *mut ::std::os::raw::c_ulonglong) -> CUresult>,
     pub cuCtxSynchronize: Option<unsafe extern "C" fn() -> CUresult>,
-    pub cuCtxSynchronize_v2: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>,
-    pub cuCtxSetLimit: Option<unsafe extern "C" fn(limit: CUlimit, value: usize) -> CUresult>,
-    pub cuCtxGetLimit: Option<unsafe extern "C" fn(pvalue: *mut usize, limit: CUlimit) -> CUresult>,
-    pub cuCtxGetCacheConfig: Option<unsafe extern "C" fn(pconfig: *mut CUfunc_cache) -> CUresult>,
-    pub cuCtxSetCacheConfig: Option<unsafe extern "C" fn(config: CUfunc_cache) -> CUresult>,
-    pub cuCtxGetApiVersion: Option<unsafe extern "C" fn(ctx: CUcontext, version: *mut ::std::os::raw::c_uint) -> CUresult>,
-    pub cuCtxGetStreamPriorityRange: Option<unsafe extern "C" fn(leastPriority: *mut ::std::os::raw::c_int, greatestPriority: *mut ::std::os::raw::c_int) -> CUresult>,
+    pub cuCtxSynchronize_v2: Option<unsafe extern "C" fn(CUcontext) -> CUresult>,
+    pub cuCtxSetLimit: Option<unsafe extern "C" fn(CUlimit, usize) -> CUresult>,
+    pub cuCtxGetLimit: Option<unsafe extern "C" fn(*mut usize, CUlimit) -> CUresult>,
+    pub cuCtxGetCacheConfig: Option<unsafe extern "C" fn(*mut CUfunc_cache) -> CUresult>,
+    pub cuCtxSetCacheConfig: Option<unsafe extern "C" fn(CUfunc_cache) -> CUresult>,
+    pub cuCtxGetApiVersion: Option<unsafe extern "C" fn(CUcontext, *mut ::std::os::raw::c_uint) -> CUresult>,
+    pub cuCtxGetStreamPriorityRange: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> CUresult>,
     pub cuCtxResetPersistingL2Cache: Option<unsafe extern "C" fn() -> CUresult>,
-    pub cuCtxGetExecAffinity: Option<unsafe extern "C" fn(pExecAffinity: *mut CUexecAffinityParam, type_: CUexecAffinityType) -> CUresult>,
-    pub cuCtxRecordEvent: Option<unsafe extern "C" fn(hCtx: CUcontext, hEvent: CUevent) -> CUresult>,
-    pub cuCtxWaitEvent: Option<unsafe extern "C" fn(hCtx: CUcontext, hEvent: CUevent) -> CUresult>,
-    pub cuCtxAttach: Option<unsafe extern "C" fn(pctx: *mut CUcontext, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuCtxDetach: Option<unsafe extern "C" fn(ctx: CUcontext) -> CUresult>,
-    pub cuCtxGetSharedMemConfig: Option<unsafe extern "C" fn(pConfig: *mut CUsharedconfig) -> CUresult>,
-    pub cuCtxSetSharedMemConfig: Option<unsafe extern "C" fn(config: CUsharedconfig) -> CUresult>,
-    pub cuModuleLoad: Option<unsafe extern "C" fn(module: *mut CUmodule, fname: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuModuleLoadData: Option<unsafe extern "C" fn(module: *mut CUmodule, image: *const ::std::os::raw::c_void) -> CUresult>,
-    pub cuModuleLoadDataEx: Option<unsafe extern "C" fn(module: *mut CUmodule, image: *const ::std::os::raw::c_void, numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuModuleLoadFatBinary: Option<unsafe extern "C" fn(module: *mut CUmodule, fatCubin: *const ::std::os::raw::c_void) -> CUresult>,
-    pub cuModuleUnload: Option<unsafe extern "C" fn(hmod: CUmodule) -> CUresult>,
-    pub cuModuleGetLoadingMode: Option<unsafe extern "C" fn(mode: *mut CUmoduleLoadingMode) -> CUresult>,
-    pub cuModuleGetFunction: Option<unsafe extern "C" fn(hfunc: *mut CUfunction, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuModuleGetFunctionCount: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_uint, mod_: CUmodule) -> CUresult>,
-    pub cuModuleEnumerateFunctions: Option<unsafe extern "C" fn(functions: *mut CUfunction, numFunctions: ::std::os::raw::c_uint, mod_: CUmodule) -> CUresult>,
-    pub cuModuleGetGlobal_v2: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytes: *mut usize, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuLinkCreate_v2: Option<unsafe extern "C" fn(numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void, stateOut: *mut CUlinkState) -> CUresult>,
-    pub cuLinkAddData_v2:
-        Option<unsafe extern "C" fn(state: CUlinkState, type_: CUjitInputType, data: *mut ::std::os::raw::c_void, size: usize, name: *const ::std::os::raw::c_char, numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuLinkAddFile_v2: Option<unsafe extern "C" fn(state: CUlinkState, type_: CUjitInputType, path: *const ::std::os::raw::c_char, numOptions: ::std::os::raw::c_uint, options: *mut CUjit_option, optionValues: *mut *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuLinkComplete: Option<unsafe extern "C" fn(state: CUlinkState, cubinOut: *mut *mut ::std::os::raw::c_void, sizeOut: *mut usize) -> CUresult>,
-    pub cuLinkDestroy: Option<unsafe extern "C" fn(state: CUlinkState) -> CUresult>,
-    pub cuModuleGetTexRef: Option<unsafe extern "C" fn(pTexRef: *mut CUtexref, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuModuleGetSurfRef: Option<unsafe extern "C" fn(pSurfRef: *mut CUsurfref, hmod: CUmodule, name: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuLibraryLoadData: Option<
-        unsafe extern "C" fn(
-            library: *mut CUlibrary,
-            code: *const ::std::os::raw::c_void,
-            jitOptions: *mut CUjit_option,
-            jitOptionsValues: *mut *mut ::std::os::raw::c_void,
-            numJitOptions: ::std::os::raw::c_uint,
-            libraryOptions: *mut CUlibraryOption,
-            libraryOptionValues: *mut *mut ::std::os::raw::c_void,
-            numLibraryOptions: ::std::os::raw::c_uint,
-        ) -> CUresult,
-    >,
-    pub cuLibraryLoadFromFile: Option<
-        unsafe extern "C" fn(
-            library: *mut CUlibrary,
-            fileName: *const ::std::os::raw::c_char,
-            jitOptions: *mut CUjit_option,
-            jitOptionsValues: *mut *mut ::std::os::raw::c_void,
-            numJitOptions: ::std::os::raw::c_uint,
-            libraryOptions: *mut CUlibraryOption,
-            libraryOptionValues: *mut *mut ::std::os::raw::c_void,
-            numLibraryOptions: ::std::os::raw::c_uint,
-        ) -> CUresult,
-    >,
-    pub cuLibraryUnload: Option<unsafe extern "C" fn(library: CUlibrary) -> CUresult>,
-    pub cuLibraryGetKernel: Option<unsafe extern "C" fn(pKernel: *mut CUkernel, library: CUlibrary, name: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuLibraryGetKernelCount: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_uint, lib: CUlibrary) -> CUresult>,
-    pub cuLibraryEnumerateKernels: Option<unsafe extern "C" fn(kernels: *mut CUkernel, numKernels: ::std::os::raw::c_uint, lib: CUlibrary) -> CUresult>,
-    pub cuLibraryGetModule: Option<unsafe extern "C" fn(pMod: *mut CUmodule, library: CUlibrary) -> CUresult>,
-    pub cuKernelGetFunction: Option<unsafe extern "C" fn(pFunc: *mut CUfunction, kernel: CUkernel) -> CUresult>,
-    pub cuKernelGetLibrary: Option<unsafe extern "C" fn(pLib: *mut CUlibrary, kernel: CUkernel) -> CUresult>,
-    pub cuLibraryGetGlobal: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytes: *mut usize, library: CUlibrary, name: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuLibraryGetManaged: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytes: *mut usize, library: CUlibrary, name: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuLibraryGetUnifiedFunction: Option<unsafe extern "C" fn(fptr: *mut *mut ::std::os::raw::c_void, library: CUlibrary, symbol: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuKernelGetAttribute: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, attrib: CUfunction_attribute, kernel: CUkernel, dev: CUdevice) -> CUresult>,
-    pub cuKernelSetAttribute: Option<unsafe extern "C" fn(attrib: CUfunction_attribute, val: ::std::os::raw::c_int, kernel: CUkernel, dev: CUdevice) -> CUresult>,
-    pub cuKernelSetCacheConfig: Option<unsafe extern "C" fn(kernel: CUkernel, config: CUfunc_cache, dev: CUdevice) -> CUresult>,
-    pub cuKernelGetName: Option<unsafe extern "C" fn(name: *mut *const ::std::os::raw::c_char, hfunc: CUkernel) -> CUresult>,
-    pub cuKernelGetParamInfo: Option<unsafe extern "C" fn(kernel: CUkernel, paramIndex: usize, paramOffset: *mut usize, paramSize: *mut usize) -> CUresult>,
-    pub cuKernelGetParamCount: Option<unsafe extern "C" fn(kernel: CUkernel, paramCount: *mut usize) -> CUresult>,
-    pub cuMemGetInfo_v2: Option<unsafe extern "C" fn(free: *mut usize, total: *mut usize) -> CUresult>,
-    pub cuMemAlloc_v2: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize) -> CUresult>,
-    pub cuMemAllocPitch_v2: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, pPitch: *mut usize, WidthInBytes: usize, Height: usize, ElementSizeBytes: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuMemFree_v2: Option<unsafe extern "C" fn(dptr: CUdeviceptr) -> CUresult>,
-    pub cuMemGetAddressRange_v2: Option<unsafe extern "C" fn(pbase: *mut CUdeviceptr, psize: *mut usize, dptr: CUdeviceptr) -> CUresult>,
-    pub cuMemAllocHost_v2: Option<unsafe extern "C" fn(pp: *mut *mut ::std::os::raw::c_void, bytesize: usize) -> CUresult>,
-    pub cuMemFreeHost: Option<unsafe extern "C" fn(p: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuMemHostAlloc: Option<unsafe extern "C" fn(pp: *mut *mut ::std::os::raw::c_void, bytesize: usize, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuMemHostGetDevicePointer_v2: Option<unsafe extern "C" fn(pdptr: *mut CUdeviceptr, p: *mut ::std::os::raw::c_void, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuMemHostGetFlags: Option<unsafe extern "C" fn(pFlags: *mut ::std::os::raw::c_uint, p: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuMemAllocManaged: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuDeviceRegisterAsyncNotification: Option<unsafe extern "C" fn(device: CUdevice, callbackFunc: CUasyncCallback, userData: *mut ::std::os::raw::c_void, callback: *mut CUasyncCallbackHandle) -> CUresult>,
-    pub cuDeviceUnregisterAsyncNotification: Option<unsafe extern "C" fn(device: CUdevice, callback: CUasyncCallbackHandle) -> CUresult>,
-    pub cuDeviceGetByPCIBusId: Option<unsafe extern "C" fn(dev: *mut CUdevice, pciBusId: *const ::std::os::raw::c_char) -> CUresult>,
-    pub cuDeviceGetPCIBusId: Option<unsafe extern "C" fn(pciBusId: *mut ::std::os::raw::c_char, len: ::std::os::raw::c_int, dev: CUdevice) -> CUresult>,
-    pub cuIpcGetEventHandle: Option<unsafe extern "C" fn(pHandle: *mut CUipcEventHandle, event: CUevent) -> CUresult>,
-    pub cuIpcOpenEventHandle: Option<unsafe extern "C" fn(phEvent: *mut CUevent, handle: CUipcEventHandle) -> CUresult>,
-    pub cuIpcGetMemHandle: Option<unsafe extern "C" fn(pHandle: *mut CUipcMemHandle, dptr: CUdeviceptr) -> CUresult>,
-    pub cuIpcOpenMemHandle_v2: Option<unsafe extern "C" fn(pdptr: *mut CUdeviceptr, handle: CUipcMemHandle, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuIpcCloseMemHandle: Option<unsafe extern "C" fn(dptr: CUdeviceptr) -> CUresult>,
-    pub cuMemHostRegister_v2: Option<unsafe extern "C" fn(p: *mut ::std::os::raw::c_void, bytesize: usize, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuMemHostUnregister: Option<unsafe extern "C" fn(p: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuMemcpy: Option<unsafe extern "C" fn(dst: CUdeviceptr, src: CUdeviceptr, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyPeer: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstContext: CUcontext, srcDevice: CUdeviceptr, srcContext: CUcontext, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyHtoD_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcHost: *const ::std::os::raw::c_void, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyDtoH_v2: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcDevice: CUdeviceptr, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyDtoD_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcDevice: CUdeviceptr, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyDtoA_v2: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcDevice: CUdeviceptr, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyAtoD_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcArray: CUarray, srcOffset: usize, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyHtoA_v2: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcHost: *const ::std::os::raw::c_void, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyAtoH_v2: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcArray: CUarray, srcOffset: usize, ByteCount: usize) -> CUresult>,
-    pub cuMemcpyAtoA_v2: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcArray: CUarray, srcOffset: usize, ByteCount: usize) -> CUresult>,
-    pub cuMemcpy2D_v2: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY2D) -> CUresult>,
-    pub cuMemcpy2DUnaligned_v2: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY2D) -> CUresult>,
-    pub cuMemcpy3D_v2: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D) -> CUresult>,
-    pub cuMemcpy3DPeer: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D_PEER) -> CUresult>,
-    pub cuMemcpyAsync: Option<unsafe extern "C" fn(dst: CUdeviceptr, src: CUdeviceptr, ByteCount: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyPeerAsync: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstContext: CUcontext, srcDevice: CUdeviceptr, srcContext: CUcontext, ByteCount: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyHtoDAsync_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcHost: *const ::std::os::raw::c_void, ByteCount: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyDtoHAsync_v2: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcDevice: CUdeviceptr, ByteCount: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyDtoDAsync_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, srcDevice: CUdeviceptr, ByteCount: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyHtoAAsync_v2: Option<unsafe extern "C" fn(dstArray: CUarray, dstOffset: usize, srcHost: *const ::std::os::raw::c_void, ByteCount: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyAtoHAsync_v2: Option<unsafe extern "C" fn(dstHost: *mut ::std::os::raw::c_void, srcArray: CUarray, srcOffset: usize, ByteCount: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpy2DAsync_v2: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY2D, hStream: CUstream) -> CUresult>,
-    pub cuMemcpy3DAsync_v2: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D, hStream: CUstream) -> CUresult>,
-    pub cuMemcpy3DPeerAsync: Option<unsafe extern "C" fn(pCopy: *const CUDA_MEMCPY3D_PEER, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyBatchAsync_v2: Option<unsafe extern "C" fn(dsts: *mut CUdeviceptr, srcs: *mut CUdeviceptr, sizes: *mut usize, count: usize, attrs: *mut CUmemcpyAttributes, attrsIdxs: *mut usize, numAttrs: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemcpy3DBatchAsync_v2: Option<unsafe extern "C" fn(numOps: usize, opList: *mut CUDA_MEMCPY3D_BATCH_OP, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>,
-    pub cuMemcpyWithAttributesAsync: Option<unsafe extern "C" fn(dst: CUdeviceptr, src: CUdeviceptr, size: usize, attr: *mut CUmemcpyAttributes, hStream: CUstream) -> CUresult>,
-    pub cuMemcpy3DWithAttributesAsync: Option<unsafe extern "C" fn(op: *mut CUDA_MEMCPY3D_BATCH_OP, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>,
-    pub cuMemsetD8_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, uc: ::std::os::raw::c_uchar, N: usize) -> CUresult>,
-    pub cuMemsetD16_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, us: ::std::os::raw::c_ushort, N: usize) -> CUresult>,
-    pub cuMemsetD32_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, ui: ::std::os::raw::c_uint, N: usize) -> CUresult>,
-    pub cuMemsetD2D8_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, uc: ::std::os::raw::c_uchar, Width: usize, Height: usize) -> CUresult>,
-    pub cuMemsetD2D16_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, us: ::std::os::raw::c_ushort, Width: usize, Height: usize) -> CUresult>,
-    pub cuMemsetD2D32_v2: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, ui: ::std::os::raw::c_uint, Width: usize, Height: usize) -> CUresult>,
-    pub cuMemsetD8Async: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, uc: ::std::os::raw::c_uchar, N: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemsetD16Async: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, us: ::std::os::raw::c_ushort, N: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemsetD32Async: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, ui: ::std::os::raw::c_uint, N: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemsetD2D8Async: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, uc: ::std::os::raw::c_uchar, Width: usize, Height: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemsetD2D16Async: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, us: ::std::os::raw::c_ushort, Width: usize, Height: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemsetD2D32Async: Option<unsafe extern "C" fn(dstDevice: CUdeviceptr, dstPitch: usize, ui: ::std::os::raw::c_uint, Width: usize, Height: usize, hStream: CUstream) -> CUresult>,
-    pub cuArrayCreate_v2: Option<unsafe extern "C" fn(pHandle: *mut CUarray, pAllocateArray: *const CUDA_ARRAY_DESCRIPTOR) -> CUresult>,
-    pub cuArrayGetDescriptor_v2: Option<unsafe extern "C" fn(pArrayDescriptor: *mut CUDA_ARRAY_DESCRIPTOR, hArray: CUarray) -> CUresult>,
-    pub cuArrayGetSparseProperties: Option<unsafe extern "C" fn(sparseProperties: *mut CUDA_ARRAY_SPARSE_PROPERTIES, array: CUarray) -> CUresult>,
-    pub cuMipmappedArrayGetSparseProperties: Option<unsafe extern "C" fn(sparseProperties: *mut CUDA_ARRAY_SPARSE_PROPERTIES, mipmap: CUmipmappedArray) -> CUresult>,
-    pub cuArrayGetMemoryRequirements: Option<unsafe extern "C" fn(memoryRequirements: *mut CUDA_ARRAY_MEMORY_REQUIREMENTS, array: CUarray, device: CUdevice) -> CUresult>,
-    pub cuMipmappedArrayGetMemoryRequirements: Option<unsafe extern "C" fn(memoryRequirements: *mut CUDA_ARRAY_MEMORY_REQUIREMENTS, mipmap: CUmipmappedArray, device: CUdevice) -> CUresult>,
-    pub cuArrayGetPlane: Option<unsafe extern "C" fn(pPlaneArray: *mut CUarray, hArray: CUarray, planeIdx: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuArrayDestroy: Option<unsafe extern "C" fn(hArray: CUarray) -> CUresult>,
-    pub cuArray3DCreate_v2: Option<unsafe extern "C" fn(pHandle: *mut CUarray, pAllocateArray: *const CUDA_ARRAY3D_DESCRIPTOR) -> CUresult>,
-    pub cuArray3DGetDescriptor_v2: Option<unsafe extern "C" fn(pArrayDescriptor: *mut CUDA_ARRAY3D_DESCRIPTOR, hArray: CUarray) -> CUresult>,
-    pub cuMipmappedArrayCreate: Option<unsafe extern "C" fn(pHandle: *mut CUmipmappedArray, pMipmappedArrayDesc: *const CUDA_ARRAY3D_DESCRIPTOR, numMipmapLevels: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuMipmappedArrayGetLevel: Option<unsafe extern "C" fn(pLevelArray: *mut CUarray, hMipmappedArray: CUmipmappedArray, level: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuMipmappedArrayDestroy: Option<unsafe extern "C" fn(hMipmappedArray: CUmipmappedArray) -> CUresult>,
-    pub cuMemGetHandleForAddressRange: Option<unsafe extern "C" fn(handle: *mut ::std::os::raw::c_void, dptr: CUdeviceptr, size: usize, handleType: CUmemRangeHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMemBatchDecompressAsync: Option<unsafe extern "C" fn(paramsArray: *mut CUmemDecompressParams, count: usize, flags: ::std::os::raw::c_uint, errorIndex: *mut usize, stream: CUstream) -> CUresult>,
-    pub cuMemAddressReserve: Option<unsafe extern "C" fn(ptr: *mut CUdeviceptr, size: usize, alignment: usize, addr: CUdeviceptr, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMemAddressFree: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize) -> CUresult>,
-    pub cuMemCreate: Option<unsafe extern "C" fn(handle: *mut CUmemGenericAllocationHandle, size: usize, prop: *const CUmemAllocationProp, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMemRelease: Option<unsafe extern "C" fn(handle: CUmemGenericAllocationHandle) -> CUresult>,
-    pub cuMemMap: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize, offset: usize, handle: CUmemGenericAllocationHandle, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMemMapArrayAsync: Option<unsafe extern "C" fn(mapInfoList: *mut CUarrayMapInfo, count: ::std::os::raw::c_uint, hStream: CUstream) -> CUresult>,
-    pub cuMemUnmap: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize) -> CUresult>,
-    pub cuMemSetAccess: Option<unsafe extern "C" fn(ptr: CUdeviceptr, size: usize, desc: *const CUmemAccessDesc, count: usize) -> CUresult>,
-    pub cuMemGetAccess: Option<unsafe extern "C" fn(flags: *mut ::std::os::raw::c_ulonglong, location: *const CUmemLocation, ptr: CUdeviceptr) -> CUresult>,
-    pub cuMemExportToShareableHandle: Option<unsafe extern "C" fn(shareableHandle: *mut ::std::os::raw::c_void, handle: CUmemGenericAllocationHandle, handleType: CUmemAllocationHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMemImportFromShareableHandle: Option<unsafe extern "C" fn(handle: *mut CUmemGenericAllocationHandle, osHandle: *mut ::std::os::raw::c_void, shHandleType: CUmemAllocationHandleType) -> CUresult>,
-    pub cuMemGetAllocationGranularity: Option<unsafe extern "C" fn(granularity: *mut usize, prop: *const CUmemAllocationProp, option: CUmemAllocationGranularity_flags) -> CUresult>,
-    pub cuMemGetAllocationPropertiesFromHandle: Option<unsafe extern "C" fn(prop: *mut CUmemAllocationProp, handle: CUmemGenericAllocationHandle) -> CUresult>,
-    pub cuMemRetainAllocationHandle: Option<unsafe extern "C" fn(handle: *mut CUmemGenericAllocationHandle, addr: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuMemFreeAsync: Option<unsafe extern "C" fn(dptr: CUdeviceptr, hStream: CUstream) -> CUresult>,
-    pub cuMemAllocAsync: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize, hStream: CUstream) -> CUresult>,
-    pub cuMemPoolTrimTo: Option<unsafe extern "C" fn(pool: CUmemoryPool, minBytesToKeep: usize) -> CUresult>,
-    pub cuMemPoolSetAttribute: Option<unsafe extern "C" fn(pool: CUmemoryPool, attr: CUmemPool_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuMemPoolGetAttribute: Option<unsafe extern "C" fn(pool: CUmemoryPool, attr: CUmemPool_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuMemPoolSetAccess: Option<unsafe extern "C" fn(pool: CUmemoryPool, map: *const CUmemAccessDesc, count: usize) -> CUresult>,
-    pub cuMemPoolGetAccess: Option<unsafe extern "C" fn(flags: *mut CUmemAccess_flags, memPool: CUmemoryPool, location: *mut CUmemLocation) -> CUresult>,
-    pub cuMemPoolCreate: Option<unsafe extern "C" fn(pool: *mut CUmemoryPool, poolProps: *const CUmemPoolProps) -> CUresult>,
-    pub cuMemPoolDestroy: Option<unsafe extern "C" fn(pool: CUmemoryPool) -> CUresult>,
-    pub cuMemGetDefaultMemPool: Option<unsafe extern "C" fn(pool_out: *mut CUmemoryPool, location: *mut CUmemLocation, type_: CUmemAllocationType) -> CUresult>,
-    pub cuMemGetMemPool: Option<unsafe extern "C" fn(pool: *mut CUmemoryPool, location: *mut CUmemLocation, type_: CUmemAllocationType) -> CUresult>,
-    pub cuMemSetMemPool: Option<unsafe extern "C" fn(location: *mut CUmemLocation, type_: CUmemAllocationType, pool: CUmemoryPool) -> CUresult>,
-    pub cuMemAllocFromPoolAsync: Option<unsafe extern "C" fn(dptr: *mut CUdeviceptr, bytesize: usize, pool: CUmemoryPool, hStream: CUstream) -> CUresult>,
-    pub cuMemPoolExportToShareableHandle: Option<unsafe extern "C" fn(handle_out: *mut ::std::os::raw::c_void, pool: CUmemoryPool, handleType: CUmemAllocationHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMemPoolImportFromShareableHandle: Option<unsafe extern "C" fn(pool_out: *mut CUmemoryPool, handle: *mut ::std::os::raw::c_void, handleType: CUmemAllocationHandleType, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMemPoolExportPointer: Option<unsafe extern "C" fn(shareData_out: *mut CUmemPoolPtrExportData, ptr: CUdeviceptr) -> CUresult>,
-    pub cuMemPoolImportPointer: Option<unsafe extern "C" fn(ptr_out: *mut CUdeviceptr, pool: CUmemoryPool, shareData: *mut CUmemPoolPtrExportData) -> CUresult>,
-    pub cuMulticastCreate: Option<unsafe extern "C" fn(mcHandle: *mut CUmemGenericAllocationHandle, prop: *const CUmulticastObjectProp) -> CUresult>,
-    pub cuMulticastAddDevice: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice) -> CUresult>,
-    pub cuMulticastBindMem: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, mcOffset: usize, memHandle: CUmemGenericAllocationHandle, memOffset: usize, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMulticastBindMem_v2: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice, mcOffset: usize, memHandle: CUmemGenericAllocationHandle, memOffset: usize, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMulticastBindAddr: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, mcOffset: usize, memptr: CUdeviceptr, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMulticastBindAddr_v2: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice, mcOffset: usize, memptr: CUdeviceptr, size: usize, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuMulticastUnbind: Option<unsafe extern "C" fn(mcHandle: CUmemGenericAllocationHandle, dev: CUdevice, mcOffset: usize, size: usize) -> CUresult>,
-    pub cuMulticastGetGranularity: Option<unsafe extern "C" fn(granularity: *mut usize, prop: *const CUmulticastObjectProp, option: CUmulticastGranularity_flags) -> CUresult>,
-    pub cuPointerGetAttribute: Option<unsafe extern "C" fn(data: *mut ::std::os::raw::c_void, attribute: CUpointer_attribute, ptr: CUdeviceptr) -> CUresult>,
-    pub cuMemPrefetchAsync_v2: Option<unsafe extern "C" fn(devPtr: CUdeviceptr, count: usize, location: CUmemLocation, flags: ::std::os::raw::c_uint, hStream: CUstream) -> CUresult>,
-    pub cuMemAdvise_v2: Option<unsafe extern "C" fn(devPtr: CUdeviceptr, count: usize, advice: CUmem_advise, location: CUmemLocation) -> CUresult>,
-    pub cuMemPrefetchBatchAsync: Option<unsafe extern "C" fn(dptrs: *mut CUdeviceptr, sizes: *mut usize, count: usize, prefetchLocs: *mut CUmemLocation, prefetchLocIdxs: *mut usize, numPrefetchLocs: usize, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>,
-    pub cuMemDiscardBatchAsync: Option<unsafe extern "C" fn(dptrs: *mut CUdeviceptr, sizes: *mut usize, count: usize, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>,
-    pub cuMemDiscardAndPrefetchBatchAsync: Option<unsafe extern "C" fn(dptrs: *mut CUdeviceptr, sizes: *mut usize, count: usize, prefetchLocs: *mut CUmemLocation, prefetchLocIdxs: *mut usize, numPrefetchLocs: usize, flags: ::std::os::raw::c_ulonglong, hStream: CUstream) -> CUresult>,
-    pub cuMemRangeGetAttribute: Option<unsafe extern "C" fn(data: *mut ::std::os::raw::c_void, dataSize: usize, attribute: CUmem_range_attribute, devPtr: CUdeviceptr, count: usize) -> CUresult>,
-    pub cuMemRangeGetAttributes: Option<unsafe extern "C" fn(data: *mut *mut ::std::os::raw::c_void, dataSizes: *mut usize, attributes: *mut CUmem_range_attribute, numAttributes: usize, devPtr: CUdeviceptr, count: usize) -> CUresult>,
-    pub cuPointerSetAttribute: Option<unsafe extern "C" fn(value: *const ::std::os::raw::c_void, attribute: CUpointer_attribute, ptr: CUdeviceptr) -> CUresult>,
-    pub cuPointerGetAttributes: Option<unsafe extern "C" fn(numAttributes: ::std::os::raw::c_uint, attributes: *mut CUpointer_attribute, data: *mut *mut ::std::os::raw::c_void, ptr: CUdeviceptr) -> CUresult>,
-    pub cuStreamCreate: Option<unsafe extern "C" fn(phStream: *mut CUstream, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamCreateWithPriority: Option<unsafe extern "C" fn(phStream: *mut CUstream, flags: ::std::os::raw::c_uint, priority: ::std::os::raw::c_int) -> CUresult>,
-    pub cuStreamBeginCaptureToCig: Option<unsafe extern "C" fn(hStream: CUstream, streamCigCaptureParams: *mut CUstreamCigCaptureParams) -> CUresult>,
-    pub cuStreamEndCaptureToCig: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>,
-    pub cuStreamGetPriority: Option<unsafe extern "C" fn(hStream: CUstream, priority: *mut ::std::os::raw::c_int) -> CUresult>,
-    pub cuStreamGetDevice: Option<unsafe extern "C" fn(hStream: CUstream, device: *mut CUdevice) -> CUresult>,
-    pub cuStreamGetFlags: Option<unsafe extern "C" fn(hStream: CUstream, flags: *mut ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamGetId: Option<unsafe extern "C" fn(hStream: CUstream, streamId: *mut ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuStreamGetCtx: Option<unsafe extern "C" fn(hStream: CUstream, pctx: *mut CUcontext) -> CUresult>,
-    pub cuStreamGetCtx_v2: Option<unsafe extern "C" fn(hStream: CUstream, pCtx: *mut CUcontext, pGreenCtx: *mut CUgreenCtx) -> CUresult>,
-    pub cuStreamWaitEvent: Option<unsafe extern "C" fn(hStream: CUstream, hEvent: CUevent, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamAddCallback: Option<unsafe extern "C" fn(hStream: CUstream, callback: CUstreamCallback, userData: *mut ::std::os::raw::c_void, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamBeginCapture_v2: Option<unsafe extern "C" fn(hStream: CUstream, mode: CUstreamCaptureMode) -> CUresult>,
-    pub cuStreamBeginCaptureToGraph: Option<unsafe extern "C" fn(hStream: CUstream, hGraph: CUgraph, dependencies: *const CUgraphNode, dependencyData: *const CUgraphEdgeData, numDependencies: usize, mode: CUstreamCaptureMode) -> CUresult>,
-    pub cuThreadExchangeStreamCaptureMode: Option<unsafe extern "C" fn(mode: *mut CUstreamCaptureMode) -> CUresult>,
-    pub cuStreamEndCapture: Option<unsafe extern "C" fn(hStream: CUstream, phGraph: *mut CUgraph) -> CUresult>,
-    pub cuStreamIsCapturing: Option<unsafe extern "C" fn(hStream: CUstream, captureStatus: *mut CUstreamCaptureStatus) -> CUresult>,
-    pub cuStreamGetCaptureInfo_v3:
-        Option<unsafe extern "C" fn(hStream: CUstream, captureStatus_out: *mut CUstreamCaptureStatus, id_out: *mut cuuint64_t, graph_out: *mut CUgraph, dependencies_out: *mut *const CUgraphNode, edgeData_out: *mut *const CUgraphEdgeData, numDependencies_out: *mut usize) -> CUresult>,
-    pub cuStreamUpdateCaptureDependencies_v2: Option<unsafe extern "C" fn(hStream: CUstream, dependencies: *mut CUgraphNode, dependencyData: *const CUgraphEdgeData, numDependencies: usize, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamAttachMemAsync: Option<unsafe extern "C" fn(hStream: CUstream, dptr: CUdeviceptr, length: usize, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamQuery: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>,
-    pub cuStreamSynchronize: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>,
-    pub cuStreamDestroy_v2: Option<unsafe extern "C" fn(hStream: CUstream) -> CUresult>,
-    pub cuStreamCopyAttributes: Option<unsafe extern "C" fn(dst: CUstream, src: CUstream) -> CUresult>,
-    pub cuStreamGetAttribute: Option<unsafe extern "C" fn(hStream: CUstream, attr: CUstreamAttrID, value_out: *mut CUstreamAttrValue) -> CUresult>,
-    pub cuStreamSetAttribute: Option<unsafe extern "C" fn(hStream: CUstream, attr: CUstreamAttrID, value: *const CUstreamAttrValue) -> CUresult>,
-    pub cuEventCreate: Option<unsafe extern "C" fn(phEvent: *mut CUevent, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuEventRecord: Option<unsafe extern "C" fn(hEvent: CUevent, hStream: CUstream) -> CUresult>,
-    pub cuEventRecordWithFlags: Option<unsafe extern "C" fn(hEvent: CUevent, hStream: CUstream, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuEventQuery: Option<unsafe extern "C" fn(hEvent: CUevent) -> CUresult>,
-    pub cuEventSynchronize: Option<unsafe extern "C" fn(hEvent: CUevent) -> CUresult>,
-    pub cuEventDestroy_v2: Option<unsafe extern "C" fn(hEvent: CUevent) -> CUresult>,
-    pub cuEventElapsedTime_v2: Option<unsafe extern "C" fn(pMilliseconds: *mut f32, hStart: CUevent, hEnd: CUevent) -> CUresult>,
-    pub cuImportExternalMemory: Option<unsafe extern "C" fn(extMem_out: *mut CUexternalMemory, memHandleDesc: *const CUDA_EXTERNAL_MEMORY_HANDLE_DESC) -> CUresult>,
-    pub cuExternalMemoryGetMappedBuffer: Option<unsafe extern "C" fn(devPtr: *mut CUdeviceptr, extMem: CUexternalMemory, bufferDesc: *const CUDA_EXTERNAL_MEMORY_BUFFER_DESC) -> CUresult>,
-    pub cuExternalMemoryGetMappedMipmappedArray: Option<unsafe extern "C" fn(mipmap: *mut CUmipmappedArray, extMem: CUexternalMemory, mipmapDesc: *const CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC) -> CUresult>,
-    pub cuDestroyExternalMemory: Option<unsafe extern "C" fn(extMem: CUexternalMemory) -> CUresult>,
-    pub cuImportExternalSemaphore: Option<unsafe extern "C" fn(extSem_out: *mut CUexternalSemaphore, semHandleDesc: *const CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC) -> CUresult>,
-    pub cuSignalExternalSemaphoresAsync: Option<unsafe extern "C" fn(extSemArray: *const CUexternalSemaphore, paramsArray: *const CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS, numExtSems: ::std::os::raw::c_uint, stream: CUstream) -> CUresult>,
-    pub cuWaitExternalSemaphoresAsync: Option<unsafe extern "C" fn(extSemArray: *const CUexternalSemaphore, paramsArray: *const CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS, numExtSems: ::std::os::raw::c_uint, stream: CUstream) -> CUresult>,
-    pub cuDestroyExternalSemaphore: Option<unsafe extern "C" fn(extSem: CUexternalSemaphore) -> CUresult>,
-    pub cuStreamWaitValue32_v2: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint32_t, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamWaitValue64_v2: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint64_t, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamWriteValue32_v2: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint32_t, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamWriteValue64_v2: Option<unsafe extern "C" fn(stream: CUstream, addr: CUdeviceptr, value: cuuint64_t, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuStreamBatchMemOp_v2: Option<unsafe extern "C" fn(stream: CUstream, count: ::std::os::raw::c_uint, paramArray: *mut CUstreamBatchMemOpParams, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuFuncGetAttribute: Option<unsafe extern "C" fn(pi: *mut ::std::os::raw::c_int, attrib: CUfunction_attribute, hfunc: CUfunction) -> CUresult>,
-    pub cuFuncSetAttribute: Option<unsafe extern "C" fn(hfunc: CUfunction, attrib: CUfunction_attribute, value: ::std::os::raw::c_int) -> CUresult>,
-    pub cuFuncSetCacheConfig: Option<unsafe extern "C" fn(hfunc: CUfunction, config: CUfunc_cache) -> CUresult>,
-    pub cuFuncGetModule: Option<unsafe extern "C" fn(hmod: *mut CUmodule, hfunc: CUfunction) -> CUresult>,
-    pub cuFuncGetName: Option<unsafe extern "C" fn(name: *mut *const ::std::os::raw::c_char, hfunc: CUfunction) -> CUresult>,
-    pub cuFuncGetParamInfo: Option<unsafe extern "C" fn(func: CUfunction, paramIndex: usize, paramOffset: *mut usize, paramSize: *mut usize) -> CUresult>,
-    pub cuFuncGetParamCount: Option<unsafe extern "C" fn(func: CUfunction, paramCount: *mut usize) -> CUresult>,
-    pub cuFuncIsLoaded: Option<unsafe extern "C" fn(state: *mut CUfunctionLoadingState, function: CUfunction) -> CUresult>,
-    pub cuFuncLoad: Option<unsafe extern "C" fn(function: CUfunction) -> CUresult>,
+    pub cuCtxGetExecAffinity: Option<unsafe extern "C" fn(*mut CUexecAffinityParam, CUexecAffinityType) -> CUresult>,
+    pub cuCtxRecordEvent: Option<unsafe extern "C" fn(CUcontext, CUevent) -> CUresult>,
+    pub cuCtxWaitEvent: Option<unsafe extern "C" fn(CUcontext, CUevent) -> CUresult>,
+    pub cuCtxAttach: Option<unsafe extern "C" fn(*mut CUcontext, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuCtxDetach: Option<unsafe extern "C" fn(CUcontext) -> CUresult>,
+    pub cuCtxGetSharedMemConfig: Option<unsafe extern "C" fn(*mut CUsharedconfig) -> CUresult>,
+    pub cuCtxSetSharedMemConfig: Option<unsafe extern "C" fn(CUsharedconfig) -> CUresult>,
+    pub cuModuleLoad: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuModuleLoadData: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_void) -> CUresult>,
+    pub cuModuleLoadDataEx: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuModuleLoadFatBinary: Option<unsafe extern "C" fn(*mut CUmodule, *const ::std::os::raw::c_void) -> CUresult>,
+    pub cuModuleUnload: Option<unsafe extern "C" fn(CUmodule) -> CUresult>,
+    pub cuModuleGetLoadingMode: Option<unsafe extern "C" fn(*mut CUmoduleLoadingMode) -> CUresult>,
+    pub cuModuleGetFunction: Option<unsafe extern "C" fn(*mut CUfunction, CUmodule, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuModuleGetFunctionCount: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, CUmodule) -> CUresult>,
+    pub cuModuleEnumerateFunctions: Option<unsafe extern "C" fn(*mut CUfunction, ::std::os::raw::c_uint, CUmodule) -> CUresult>,
+    pub cuModuleGetGlobal_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUmodule, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuLinkCreate_v2: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void, *mut CUlinkState) -> CUresult>,
+    pub cuLinkAddData_v2: Option<unsafe extern "C" fn(CUlinkState, CUjitInputType, *mut ::std::os::raw::c_void, usize, *const ::std::os::raw::c_char, ::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuLinkAddFile_v2: Option<unsafe extern "C" fn(CUlinkState, CUjitInputType, *const ::std::os::raw::c_char, ::std::os::raw::c_uint, *mut CUjit_option, *mut *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuLinkComplete: Option<unsafe extern "C" fn(CUlinkState, *mut *mut ::std::os::raw::c_void, *mut usize) -> CUresult>,
+    pub cuLinkDestroy: Option<unsafe extern "C" fn(CUlinkState) -> CUresult>,
+    pub cuModuleGetTexRef: Option<unsafe extern "C" fn(*mut CUtexref, CUmodule, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuModuleGetSurfRef: Option<unsafe extern "C" fn(*mut CUsurfref, CUmodule, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuLibraryLoadData: Option<unsafe extern "C" fn(*mut CUlibrary, *const ::std::os::raw::c_void, *mut CUjit_option, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut CUlibraryOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuLibraryLoadFromFile: Option<unsafe extern "C" fn(*mut CUlibrary, *const ::std::os::raw::c_char, *mut CUjit_option, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut CUlibraryOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuLibraryUnload: Option<unsafe extern "C" fn(CUlibrary) -> CUresult>,
+    pub cuLibraryGetKernel: Option<unsafe extern "C" fn(*mut CUkernel, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuLibraryGetKernelCount: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, CUlibrary) -> CUresult>,
+    pub cuLibraryEnumerateKernels: Option<unsafe extern "C" fn(*mut CUkernel, ::std::os::raw::c_uint, CUlibrary) -> CUresult>,
+    pub cuLibraryGetModule: Option<unsafe extern "C" fn(*mut CUmodule, CUlibrary) -> CUresult>,
+    pub cuKernelGetFunction: Option<unsafe extern "C" fn(*mut CUfunction, CUkernel) -> CUresult>,
+    pub cuKernelGetLibrary: Option<unsafe extern "C" fn(*mut CUlibrary, CUkernel) -> CUresult>,
+    pub cuLibraryGetGlobal: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuLibraryGetManaged: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuLibraryGetUnifiedFunction: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, CUlibrary, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuKernelGetAttribute: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction_attribute, CUkernel, CUdevice) -> CUresult>,
+    pub cuKernelSetAttribute: Option<unsafe extern "C" fn(CUfunction_attribute, ::std::os::raw::c_int, CUkernel, CUdevice) -> CUresult>,
+    pub cuKernelSetCacheConfig: Option<unsafe extern "C" fn(CUkernel, CUfunc_cache, CUdevice) -> CUresult>,
+    pub cuKernelGetName: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_char, CUkernel) -> CUresult>,
+    pub cuKernelGetParamInfo: Option<unsafe extern "C" fn(CUkernel, usize, *mut usize, *mut usize) -> CUresult>,
+    pub cuKernelGetParamCount: Option<unsafe extern "C" fn(CUkernel, *mut usize) -> CUresult>,
+    pub cuMemGetInfo_v2: Option<unsafe extern "C" fn(*mut usize, *mut usize) -> CUresult>,
+    pub cuMemAlloc_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize) -> CUresult>,
+    pub cuMemAllocPitch_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuMemFree_v2: Option<unsafe extern "C" fn(CUdeviceptr) -> CUresult>,
+    pub cuMemGetAddressRange_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUdeviceptr) -> CUresult>,
+    pub cuMemAllocHost_v2: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize) -> CUresult>,
+    pub cuMemFreeHost: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuMemHostAlloc: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuMemHostGetDevicePointer_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuMemHostGetFlags: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuMemAllocManaged: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuDeviceRegisterAsyncNotification: Option<unsafe extern "C" fn(CUdevice, CUasyncCallback, *mut ::std::os::raw::c_void, *mut CUasyncCallbackHandle) -> CUresult>,
+    pub cuDeviceUnregisterAsyncNotification: Option<unsafe extern "C" fn(CUdevice, CUasyncCallbackHandle) -> CUresult>,
+    pub cuDeviceGetByPCIBusId: Option<unsafe extern "C" fn(*mut CUdevice, *const ::std::os::raw::c_char) -> CUresult>,
+    pub cuDeviceGetPCIBusId: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, ::std::os::raw::c_int, CUdevice) -> CUresult>,
+    pub cuIpcGetEventHandle: Option<unsafe extern "C" fn(*mut CUipcEventHandle, CUevent) -> CUresult>,
+    pub cuIpcOpenEventHandle: Option<unsafe extern "C" fn(*mut CUevent, CUipcEventHandle) -> CUresult>,
+    pub cuIpcGetMemHandle: Option<unsafe extern "C" fn(*mut CUipcMemHandle, CUdeviceptr) -> CUresult>,
+    pub cuIpcOpenMemHandle_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUipcMemHandle, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuIpcCloseMemHandle: Option<unsafe extern "C" fn(CUdeviceptr) -> CUresult>,
+    pub cuMemHostRegister_v2: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuMemHostUnregister: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuMemcpy: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize) -> CUresult>,
+    pub cuMemcpyPeer: Option<unsafe extern "C" fn(CUdeviceptr, CUcontext, CUdeviceptr, CUcontext, usize) -> CUresult>,
+    pub cuMemcpyHtoD_v2: Option<unsafe extern "C" fn(CUdeviceptr, *const ::std::os::raw::c_void, usize) -> CUresult>,
+    pub cuMemcpyDtoH_v2: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdeviceptr, usize) -> CUresult>,
+    pub cuMemcpyDtoD_v2: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize) -> CUresult>,
+    pub cuMemcpyDtoA_v2: Option<unsafe extern "C" fn(CUarray, usize, CUdeviceptr, usize) -> CUresult>,
+    pub cuMemcpyAtoD_v2: Option<unsafe extern "C" fn(CUdeviceptr, CUarray, usize, usize) -> CUresult>,
+    pub cuMemcpyHtoA_v2: Option<unsafe extern "C" fn(CUarray, usize, *const ::std::os::raw::c_void, usize) -> CUresult>,
+    pub cuMemcpyAtoH_v2: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUarray, usize, usize) -> CUresult>,
+    pub cuMemcpyAtoA_v2: Option<unsafe extern "C" fn(CUarray, usize, CUarray, usize, usize) -> CUresult>,
+    pub cuMemcpy2D_v2: Option<unsafe extern "C" fn(*const CUDA_MEMCPY2D) -> CUresult>,
+    pub cuMemcpy2DUnaligned_v2: Option<unsafe extern "C" fn(*const CUDA_MEMCPY2D) -> CUresult>,
+    pub cuMemcpy3D_v2: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D) -> CUresult>,
+    pub cuMemcpy3DPeer: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D_PEER) -> CUresult>,
+    pub cuMemcpyAsync: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize, CUstream) -> CUresult>,
+    pub cuMemcpyPeerAsync: Option<unsafe extern "C" fn(CUdeviceptr, CUcontext, CUdeviceptr, CUcontext, usize, CUstream) -> CUresult>,
+    pub cuMemcpyHtoDAsync_v2: Option<unsafe extern "C" fn(CUdeviceptr, *const ::std::os::raw::c_void, usize, CUstream) -> CUresult>,
+    pub cuMemcpyDtoHAsync_v2: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdeviceptr, usize, CUstream) -> CUresult>,
+    pub cuMemcpyDtoDAsync_v2: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize, CUstream) -> CUresult>,
+    pub cuMemcpyHtoAAsync_v2: Option<unsafe extern "C" fn(CUarray, usize, *const ::std::os::raw::c_void, usize, CUstream) -> CUresult>,
+    pub cuMemcpyAtoHAsync_v2: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUarray, usize, usize, CUstream) -> CUresult>,
+    pub cuMemcpy2DAsync_v2: Option<unsafe extern "C" fn(*const CUDA_MEMCPY2D, CUstream) -> CUresult>,
+    pub cuMemcpy3DAsync_v2: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D, CUstream) -> CUresult>,
+    pub cuMemcpy3DPeerAsync: Option<unsafe extern "C" fn(*const CUDA_MEMCPY3D_PEER, CUstream) -> CUresult>,
+    pub cuMemcpyBatchAsync_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut CUdeviceptr, *mut usize, usize, *mut CUmemcpyAttributes, *mut usize, usize, CUstream) -> CUresult>,
+    pub cuMemcpy3DBatchAsync_v2: Option<unsafe extern "C" fn(usize, *mut CUDA_MEMCPY3D_BATCH_OP, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>,
+    pub cuMemcpyWithAttributesAsync: Option<unsafe extern "C" fn(CUdeviceptr, CUdeviceptr, usize, *mut CUmemcpyAttributes, CUstream) -> CUresult>,
+    pub cuMemcpy3DWithAttributesAsync: Option<unsafe extern "C" fn(*mut CUDA_MEMCPY3D_BATCH_OP, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>,
+    pub cuMemsetD8_v2: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uchar, usize) -> CUresult>,
+    pub cuMemsetD16_v2: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_ushort, usize) -> CUresult>,
+    pub cuMemsetD32_v2: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uint, usize) -> CUresult>,
+    pub cuMemsetD2D8_v2: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uchar, usize, usize) -> CUresult>,
+    pub cuMemsetD2D16_v2: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_ushort, usize, usize) -> CUresult>,
+    pub cuMemsetD2D32_v2: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uint, usize, usize) -> CUresult>,
+    pub cuMemsetD8Async: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uchar, usize, CUstream) -> CUresult>,
+    pub cuMemsetD16Async: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_ushort, usize, CUstream) -> CUresult>,
+    pub cuMemsetD32Async: Option<unsafe extern "C" fn(CUdeviceptr, ::std::os::raw::c_uint, usize, CUstream) -> CUresult>,
+    pub cuMemsetD2D8Async: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uchar, usize, usize, CUstream) -> CUresult>,
+    pub cuMemsetD2D16Async: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_ushort, usize, usize, CUstream) -> CUresult>,
+    pub cuMemsetD2D32Async: Option<unsafe extern "C" fn(CUdeviceptr, usize, ::std::os::raw::c_uint, usize, usize, CUstream) -> CUresult>,
+    pub cuArrayCreate_v2: Option<unsafe extern "C" fn(*mut CUarray, *const CUDA_ARRAY_DESCRIPTOR) -> CUresult>,
+    pub cuArrayGetDescriptor_v2: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_DESCRIPTOR, CUarray) -> CUresult>,
+    pub cuArrayGetSparseProperties: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_SPARSE_PROPERTIES, CUarray) -> CUresult>,
+    pub cuMipmappedArrayGetSparseProperties: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_SPARSE_PROPERTIES, CUmipmappedArray) -> CUresult>,
+    pub cuArrayGetMemoryRequirements: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_MEMORY_REQUIREMENTS, CUarray, CUdevice) -> CUresult>,
+    pub cuMipmappedArrayGetMemoryRequirements: Option<unsafe extern "C" fn(*mut CUDA_ARRAY_MEMORY_REQUIREMENTS, CUmipmappedArray, CUdevice) -> CUresult>,
+    pub cuArrayGetPlane: Option<unsafe extern "C" fn(*mut CUarray, CUarray, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuArrayDestroy: Option<unsafe extern "C" fn(CUarray) -> CUresult>,
+    pub cuArray3DCreate_v2: Option<unsafe extern "C" fn(*mut CUarray, *const CUDA_ARRAY3D_DESCRIPTOR) -> CUresult>,
+    pub cuArray3DGetDescriptor_v2: Option<unsafe extern "C" fn(*mut CUDA_ARRAY3D_DESCRIPTOR, CUarray) -> CUresult>,
+    pub cuMipmappedArrayCreate: Option<unsafe extern "C" fn(*mut CUmipmappedArray, *const CUDA_ARRAY3D_DESCRIPTOR, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuMipmappedArrayGetLevel: Option<unsafe extern "C" fn(*mut CUarray, CUmipmappedArray, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuMipmappedArrayDestroy: Option<unsafe extern "C" fn(CUmipmappedArray) -> CUresult>,
+    pub cuMemGetHandleForAddressRange: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUdeviceptr, usize, CUmemRangeHandleType, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMemBatchDecompressAsync: Option<unsafe extern "C" fn(*mut CUmemDecompressParams, usize, ::std::os::raw::c_uint, *mut usize, CUstream) -> CUresult>,
+    pub cuMemAddressReserve: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, usize, CUdeviceptr, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMemAddressFree: Option<unsafe extern "C" fn(CUdeviceptr, usize) -> CUresult>,
+    pub cuMemCreate: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, usize, *const CUmemAllocationProp, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMemRelease: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle) -> CUresult>,
+    pub cuMemMap: Option<unsafe extern "C" fn(CUdeviceptr, usize, usize, CUmemGenericAllocationHandle, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMemMapArrayAsync: Option<unsafe extern "C" fn(*mut CUarrayMapInfo, ::std::os::raw::c_uint, CUstream) -> CUresult>,
+    pub cuMemUnmap: Option<unsafe extern "C" fn(CUdeviceptr, usize) -> CUresult>,
+    pub cuMemSetAccess: Option<unsafe extern "C" fn(CUdeviceptr, usize, *const CUmemAccessDesc, usize) -> CUresult>,
+    pub cuMemGetAccess: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_ulonglong, *const CUmemLocation, CUdeviceptr) -> CUresult>,
+    pub cuMemExportToShareableHandle: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUmemGenericAllocationHandle, CUmemAllocationHandleType, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMemImportFromShareableHandle: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, *mut ::std::os::raw::c_void, CUmemAllocationHandleType) -> CUresult>,
+    pub cuMemGetAllocationGranularity: Option<unsafe extern "C" fn(*mut usize, *const CUmemAllocationProp, CUmemAllocationGranularity_flags) -> CUresult>,
+    pub cuMemGetAllocationPropertiesFromHandle: Option<unsafe extern "C" fn(*mut CUmemAllocationProp, CUmemGenericAllocationHandle) -> CUresult>,
+    pub cuMemRetainAllocationHandle: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuMemFreeAsync: Option<unsafe extern "C" fn(CUdeviceptr, CUstream) -> CUresult>,
+    pub cuMemAllocAsync: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, CUstream) -> CUresult>,
+    pub cuMemPoolTrimTo: Option<unsafe extern "C" fn(CUmemoryPool, usize) -> CUresult>,
+    pub cuMemPoolSetAttribute: Option<unsafe extern "C" fn(CUmemoryPool, CUmemPool_attribute, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuMemPoolGetAttribute: Option<unsafe extern "C" fn(CUmemoryPool, CUmemPool_attribute, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuMemPoolSetAccess: Option<unsafe extern "C" fn(CUmemoryPool, *const CUmemAccessDesc, usize) -> CUresult>,
+    pub cuMemPoolGetAccess: Option<unsafe extern "C" fn(*mut CUmemAccess_flags, CUmemoryPool, *mut CUmemLocation) -> CUresult>,
+    pub cuMemPoolCreate: Option<unsafe extern "C" fn(*mut CUmemoryPool, *const CUmemPoolProps) -> CUresult>,
+    pub cuMemPoolDestroy: Option<unsafe extern "C" fn(CUmemoryPool) -> CUresult>,
+    pub cuMemGetDefaultMemPool: Option<unsafe extern "C" fn(*mut CUmemoryPool, *mut CUmemLocation, CUmemAllocationType) -> CUresult>,
+    pub cuMemGetMemPool: Option<unsafe extern "C" fn(*mut CUmemoryPool, *mut CUmemLocation, CUmemAllocationType) -> CUresult>,
+    pub cuMemSetMemPool: Option<unsafe extern "C" fn(*mut CUmemLocation, CUmemAllocationType, CUmemoryPool) -> CUresult>,
+    pub cuMemAllocFromPoolAsync: Option<unsafe extern "C" fn(*mut CUdeviceptr, usize, CUmemoryPool, CUstream) -> CUresult>,
+    pub cuMemPoolExportToShareableHandle: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUmemoryPool, CUmemAllocationHandleType, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMemPoolImportFromShareableHandle: Option<unsafe extern "C" fn(*mut CUmemoryPool, *mut ::std::os::raw::c_void, CUmemAllocationHandleType, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMemPoolExportPointer: Option<unsafe extern "C" fn(*mut CUmemPoolPtrExportData, CUdeviceptr) -> CUresult>,
+    pub cuMemPoolImportPointer: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUmemoryPool, *mut CUmemPoolPtrExportData) -> CUresult>,
+    pub cuMulticastCreate: Option<unsafe extern "C" fn(*mut CUmemGenericAllocationHandle, *const CUmulticastObjectProp) -> CUresult>,
+    pub cuMulticastAddDevice: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice) -> CUresult>,
+    pub cuMulticastBindMem: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, usize, CUmemGenericAllocationHandle, usize, usize, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMulticastBindMem_v2: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice, usize, CUmemGenericAllocationHandle, usize, usize, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMulticastBindAddr: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, usize, CUdeviceptr, usize, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMulticastBindAddr_v2: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice, usize, CUdeviceptr, usize, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuMulticastUnbind: Option<unsafe extern "C" fn(CUmemGenericAllocationHandle, CUdevice, usize, usize) -> CUresult>,
+    pub cuMulticastGetGranularity: Option<unsafe extern "C" fn(*mut usize, *const CUmulticastObjectProp, CUmulticastGranularity_flags) -> CUresult>,
+    pub cuPointerGetAttribute: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, CUpointer_attribute, CUdeviceptr) -> CUresult>,
+    pub cuMemPrefetchAsync_v2: Option<unsafe extern "C" fn(CUdeviceptr, usize, CUmemLocation, ::std::os::raw::c_uint, CUstream) -> CUresult>,
+    pub cuMemAdvise_v2: Option<unsafe extern "C" fn(CUdeviceptr, usize, CUmem_advise, CUmemLocation) -> CUresult>,
+    pub cuMemPrefetchBatchAsync: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, *mut CUmemLocation, *mut usize, usize, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>,
+    pub cuMemDiscardBatchAsync: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>,
+    pub cuMemDiscardAndPrefetchBatchAsync: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, usize, *mut CUmemLocation, *mut usize, usize, ::std::os::raw::c_ulonglong, CUstream) -> CUresult>,
+    pub cuMemRangeGetAttribute: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, CUmem_range_attribute, CUdeviceptr, usize) -> CUresult>,
+    pub cuMemRangeGetAttributes: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, *mut CUmem_range_attribute, usize, CUdeviceptr, usize) -> CUresult>,
+    pub cuPointerSetAttribute: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, CUpointer_attribute, CUdeviceptr) -> CUresult>,
+    pub cuPointerGetAttributes: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUpointer_attribute, *mut *mut ::std::os::raw::c_void, CUdeviceptr) -> CUresult>,
+    pub cuStreamCreate: Option<unsafe extern "C" fn(*mut CUstream, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamCreateWithPriority: Option<unsafe extern "C" fn(*mut CUstream, ::std::os::raw::c_uint, ::std::os::raw::c_int) -> CUresult>,
+    pub cuStreamBeginCaptureToCig: Option<unsafe extern "C" fn(CUstream, *mut CUstreamCigCaptureParams) -> CUresult>,
+    pub cuStreamEndCaptureToCig: Option<unsafe extern "C" fn(CUstream) -> CUresult>,
+    pub cuStreamGetPriority: Option<unsafe extern "C" fn(CUstream, *mut ::std::os::raw::c_int) -> CUresult>,
+    pub cuStreamGetDevice: Option<unsafe extern "C" fn(CUstream, *mut CUdevice) -> CUresult>,
+    pub cuStreamGetFlags: Option<unsafe extern "C" fn(CUstream, *mut ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamGetId: Option<unsafe extern "C" fn(CUstream, *mut ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuStreamGetCtx: Option<unsafe extern "C" fn(CUstream, *mut CUcontext) -> CUresult>,
+    pub cuStreamGetCtx_v2: Option<unsafe extern "C" fn(CUstream, *mut CUcontext, *mut CUgreenCtx) -> CUresult>,
+    pub cuStreamWaitEvent: Option<unsafe extern "C" fn(CUstream, CUevent, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamAddCallback: Option<unsafe extern "C" fn(CUstream, CUstreamCallback, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamBeginCapture_v2: Option<unsafe extern "C" fn(CUstream, CUstreamCaptureMode) -> CUresult>,
+    pub cuStreamBeginCaptureToGraph: Option<unsafe extern "C" fn(CUstream, CUgraph, *const CUgraphNode, *const CUgraphEdgeData, usize, CUstreamCaptureMode) -> CUresult>,
+    pub cuThreadExchangeStreamCaptureMode: Option<unsafe extern "C" fn(*mut CUstreamCaptureMode) -> CUresult>,
+    pub cuStreamEndCapture: Option<unsafe extern "C" fn(CUstream, *mut CUgraph) -> CUresult>,
+    pub cuStreamIsCapturing: Option<unsafe extern "C" fn(CUstream, *mut CUstreamCaptureStatus) -> CUresult>,
+    pub cuStreamGetCaptureInfo_v3: Option<unsafe extern "C" fn(CUstream, *mut CUstreamCaptureStatus, *mut cuuint64_t, *mut CUgraph, *mut *const CUgraphNode, *mut *const CUgraphEdgeData, *mut usize) -> CUresult>,
+    pub cuStreamUpdateCaptureDependencies_v2: Option<unsafe extern "C" fn(CUstream, *mut CUgraphNode, *const CUgraphEdgeData, usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamAttachMemAsync: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamQuery: Option<unsafe extern "C" fn(CUstream) -> CUresult>,
+    pub cuStreamSynchronize: Option<unsafe extern "C" fn(CUstream) -> CUresult>,
+    pub cuStreamDestroy_v2: Option<unsafe extern "C" fn(CUstream) -> CUresult>,
+    pub cuStreamCopyAttributes: Option<unsafe extern "C" fn(CUstream, CUstream) -> CUresult>,
+    pub cuStreamGetAttribute: Option<unsafe extern "C" fn(CUstream, CUstreamAttrID, *mut CUstreamAttrValue) -> CUresult>,
+    pub cuStreamSetAttribute: Option<unsafe extern "C" fn(CUstream, CUstreamAttrID, *const CUstreamAttrValue) -> CUresult>,
+    pub cuEventCreate: Option<unsafe extern "C" fn(*mut CUevent, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuEventRecord: Option<unsafe extern "C" fn(CUevent, CUstream) -> CUresult>,
+    pub cuEventRecordWithFlags: Option<unsafe extern "C" fn(CUevent, CUstream, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuEventQuery: Option<unsafe extern "C" fn(CUevent) -> CUresult>,
+    pub cuEventSynchronize: Option<unsafe extern "C" fn(CUevent) -> CUresult>,
+    pub cuEventDestroy_v2: Option<unsafe extern "C" fn(CUevent) -> CUresult>,
+    pub cuEventElapsedTime_v2: Option<unsafe extern "C" fn(*mut f32, CUevent, CUevent) -> CUresult>,
+    pub cuImportExternalMemory: Option<unsafe extern "C" fn(*mut CUexternalMemory, *const CUDA_EXTERNAL_MEMORY_HANDLE_DESC) -> CUresult>,
+    pub cuExternalMemoryGetMappedBuffer: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUexternalMemory, *const CUDA_EXTERNAL_MEMORY_BUFFER_DESC) -> CUresult>,
+    pub cuExternalMemoryGetMappedMipmappedArray: Option<unsafe extern "C" fn(*mut CUmipmappedArray, CUexternalMemory, *const CUDA_EXTERNAL_MEMORY_MIPMAPPED_ARRAY_DESC) -> CUresult>,
+    pub cuDestroyExternalMemory: Option<unsafe extern "C" fn(CUexternalMemory) -> CUresult>,
+    pub cuImportExternalSemaphore: Option<unsafe extern "C" fn(*mut CUexternalSemaphore, *const CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC) -> CUresult>,
+    pub cuSignalExternalSemaphoresAsync: Option<unsafe extern "C" fn(*const CUexternalSemaphore, *const CUDA_EXTERNAL_SEMAPHORE_SIGNAL_PARAMS, ::std::os::raw::c_uint, CUstream) -> CUresult>,
+    pub cuWaitExternalSemaphoresAsync: Option<unsafe extern "C" fn(*const CUexternalSemaphore, *const CUDA_EXTERNAL_SEMAPHORE_WAIT_PARAMS, ::std::os::raw::c_uint, CUstream) -> CUresult>,
+    pub cuDestroyExternalSemaphore: Option<unsafe extern "C" fn(CUexternalSemaphore) -> CUresult>,
+    pub cuStreamWaitValue32_v2: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint32_t, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamWaitValue64_v2: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint64_t, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamWriteValue32_v2: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint32_t, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamWriteValue64_v2: Option<unsafe extern "C" fn(CUstream, CUdeviceptr, cuuint64_t, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuStreamBatchMemOp_v2: Option<unsafe extern "C" fn(CUstream, ::std::os::raw::c_uint, *mut CUstreamBatchMemOpParams, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuFuncGetAttribute: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction_attribute, CUfunction) -> CUresult>,
+    pub cuFuncSetAttribute: Option<unsafe extern "C" fn(CUfunction, CUfunction_attribute, ::std::os::raw::c_int) -> CUresult>,
+    pub cuFuncSetCacheConfig: Option<unsafe extern "C" fn(CUfunction, CUfunc_cache) -> CUresult>,
+    pub cuFuncGetModule: Option<unsafe extern "C" fn(*mut CUmodule, CUfunction) -> CUresult>,
+    pub cuFuncGetName: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_char, CUfunction) -> CUresult>,
+    pub cuFuncGetParamInfo: Option<unsafe extern "C" fn(CUfunction, usize, *mut usize, *mut usize) -> CUresult>,
+    pub cuFuncGetParamCount: Option<unsafe extern "C" fn(CUfunction, *mut usize) -> CUresult>,
+    pub cuFuncIsLoaded: Option<unsafe extern "C" fn(*mut CUfunctionLoadingState, CUfunction) -> CUresult>,
+    pub cuFuncLoad: Option<unsafe extern "C" fn(CUfunction) -> CUresult>,
     pub cuLaunchKernel: Option<
-        unsafe extern "C" fn(
-            f: CUfunction,
-            gridDimX: ::std::os::raw::c_uint,
-            gridDimY: ::std::os::raw::c_uint,
-            gridDimZ: ::std::os::raw::c_uint,
-            blockDimX: ::std::os::raw::c_uint,
-            blockDimY: ::std::os::raw::c_uint,
-            blockDimZ: ::std::os::raw::c_uint,
-            sharedMemBytes: ::std::os::raw::c_uint,
-            hStream: CUstream,
-            kernelParams: *mut *mut ::std::os::raw::c_void,
-            extra: *mut *mut ::std::os::raw::c_void,
-        ) -> CUresult,
+        unsafe extern "C" fn(CUfunction, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, CUstream, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void) -> CUresult,
     >,
-    pub cuLaunchKernelEx: Option<unsafe extern "C" fn(config: *const CUlaunchConfig, f: CUfunction, kernelParams: *mut *mut ::std::os::raw::c_void, extra: *mut *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuLaunchCooperativeKernel: Option<
-        unsafe extern "C" fn(
-            f: CUfunction,
-            gridDimX: ::std::os::raw::c_uint,
-            gridDimY: ::std::os::raw::c_uint,
-            gridDimZ: ::std::os::raw::c_uint,
-            blockDimX: ::std::os::raw::c_uint,
-            blockDimY: ::std::os::raw::c_uint,
-            blockDimZ: ::std::os::raw::c_uint,
-            sharedMemBytes: ::std::os::raw::c_uint,
-            hStream: CUstream,
-            kernelParams: *mut *mut ::std::os::raw::c_void,
-        ) -> CUresult,
-    >,
-    pub cuLaunchCooperativeKernelMultiDevice: Option<unsafe extern "C" fn(launchParamsList: *mut CUDA_LAUNCH_PARAMS, numDevices: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuLaunchHostFunc: Option<unsafe extern "C" fn(hStream: CUstream, fn_: CUhostFn, userData: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuLaunchHostFunc_v2: Option<unsafe extern "C" fn(hStream: CUstream, fn_: CUhostFn, userData: *mut ::std::os::raw::c_void, syncMode: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuFuncSetBlockShape: Option<unsafe extern "C" fn(hfunc: CUfunction, x: ::std::os::raw::c_int, y: ::std::os::raw::c_int, z: ::std::os::raw::c_int) -> CUresult>,
-    pub cuFuncSetSharedSize: Option<unsafe extern "C" fn(hfunc: CUfunction, bytes: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuParamSetSize: Option<unsafe extern "C" fn(hfunc: CUfunction, numbytes: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuParamSeti: Option<unsafe extern "C" fn(hfunc: CUfunction, offset: ::std::os::raw::c_int, value: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuParamSetf: Option<unsafe extern "C" fn(hfunc: CUfunction, offset: ::std::os::raw::c_int, value: f32) -> CUresult>,
-    pub cuParamSetv: Option<unsafe extern "C" fn(hfunc: CUfunction, offset: ::std::os::raw::c_int, ptr: *mut ::std::os::raw::c_void, numbytes: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuLaunch: Option<unsafe extern "C" fn(f: CUfunction) -> CUresult>,
-    pub cuLaunchGrid: Option<unsafe extern "C" fn(f: CUfunction, grid_width: ::std::os::raw::c_int, grid_height: ::std::os::raw::c_int) -> CUresult>,
-    pub cuLaunchGridAsync: Option<unsafe extern "C" fn(f: CUfunction, grid_width: ::std::os::raw::c_int, grid_height: ::std::os::raw::c_int, hStream: CUstream) -> CUresult>,
-    pub cuParamSetTexRef: Option<unsafe extern "C" fn(hfunc: CUfunction, texunit: ::std::os::raw::c_int, hTexRef: CUtexref) -> CUresult>,
-    pub cuFuncSetSharedMemConfig: Option<unsafe extern "C" fn(hfunc: CUfunction, config: CUsharedconfig) -> CUresult>,
-    pub cuGraphCreate: Option<unsafe extern "C" fn(phGraph: *mut CUgraph, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphAddKernelNode_v2: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphKernelNodeGetParams_v2: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphKernelNodeSetParams_v2: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphAddMemcpyNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, copyParams: *const CUDA_MEMCPY3D, ctx: CUcontext) -> CUresult>,
-    pub cuGraphMemcpyNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_MEMCPY3D) -> CUresult>,
-    pub cuGraphMemcpyNodeSetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_MEMCPY3D) -> CUresult>,
-    pub cuGraphAddMemsetNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, memsetParams: *const CUDA_MEMSET_NODE_PARAMS, ctx: CUcontext) -> CUresult>,
-    pub cuGraphMemsetNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_MEMSET_NODE_PARAMS) -> CUresult>,
-    pub cuGraphMemsetNodeSetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_MEMSET_NODE_PARAMS) -> CUresult>,
-    pub cuGraphAddHostNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_HOST_NODE_PARAMS) -> CUresult>,
-    pub cuGraphHostNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUDA_HOST_NODE_PARAMS) -> CUresult>,
-    pub cuGraphHostNodeSetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_HOST_NODE_PARAMS) -> CUresult>,
-    pub cuGraphAddChildGraphNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, childGraph: CUgraph) -> CUresult>,
-    pub cuGraphChildGraphNodeGetGraph: Option<unsafe extern "C" fn(hNode: CUgraphNode, phGraph: *mut CUgraph) -> CUresult>,
-    pub cuGraphAddEmptyNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize) -> CUresult>,
-    pub cuGraphAddEventRecordNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, event: CUevent) -> CUresult>,
-    pub cuGraphEventRecordNodeGetEvent: Option<unsafe extern "C" fn(hNode: CUgraphNode, event_out: *mut CUevent) -> CUresult>,
-    pub cuGraphEventRecordNodeSetEvent: Option<unsafe extern "C" fn(hNode: CUgraphNode, event: CUevent) -> CUresult>,
-    pub cuGraphAddEventWaitNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, event: CUevent) -> CUresult>,
-    pub cuGraphEventWaitNodeGetEvent: Option<unsafe extern "C" fn(hNode: CUgraphNode, event_out: *mut CUevent) -> CUresult>,
-    pub cuGraphEventWaitNodeSetEvent: Option<unsafe extern "C" fn(hNode: CUgraphNode, event: CUevent) -> CUresult>,
-    pub cuGraphAddExternalSemaphoresSignalNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExternalSemaphoresSignalNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, params_out: *mut CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExternalSemaphoresSignalNodeSetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphAddExternalSemaphoresWaitNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExternalSemaphoresWaitNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, params_out: *mut CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExternalSemaphoresWaitNodeSetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
-    pub cuGraphAddBatchMemOpNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
-    pub cuGraphBatchMemOpNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams_out: *mut CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
-    pub cuGraphBatchMemOpNodeSetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExecBatchMemOpNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
-    pub cuGraphAddMemAllocNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, nodeParams: *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>,
-    pub cuGraphMemAllocNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, params_out: *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>,
-    pub cuGraphAddMemFreeNode: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, numDependencies: usize, dptr: CUdeviceptr) -> CUresult>,
-    pub cuGraphMemFreeNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, dptr_out: *mut CUdeviceptr) -> CUresult>,
-    pub cuDeviceGraphMemTrim: Option<unsafe extern "C" fn(device: CUdevice) -> CUresult>,
-    pub cuDeviceGetGraphMemAttribute: Option<unsafe extern "C" fn(device: CUdevice, attr: CUgraphMem_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuDeviceSetGraphMemAttribute: Option<unsafe extern "C" fn(device: CUdevice, attr: CUgraphMem_attribute, value: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuGraphClone: Option<unsafe extern "C" fn(phGraphClone: *mut CUgraph, originalGraph: CUgraph) -> CUresult>,
-    pub cuGraphNodeFindInClone: Option<unsafe extern "C" fn(phNode: *mut CUgraphNode, hOriginalNode: CUgraphNode, hClonedGraph: CUgraph) -> CUresult>,
-    pub cuGraphNodeGetType: Option<unsafe extern "C" fn(hNode: CUgraphNode, type_: *mut CUgraphNodeType) -> CUresult>,
-    pub cuGraphNodeGetContainingGraph: Option<unsafe extern "C" fn(hNode: CUgraphNode, phGraph: *mut CUgraph) -> CUresult>,
-    pub cuGraphNodeGetLocalId: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeId: *mut ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphNodeGetToolsId: Option<unsafe extern "C" fn(hNode: CUgraphNode, toolsNodeId: *mut ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuGraphGetId: Option<unsafe extern "C" fn(hGraph: CUgraph, graphId: *mut ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphExecGetId: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, graphId: *mut ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphGetNodes: Option<unsafe extern "C" fn(hGraph: CUgraph, nodes: *mut CUgraphNode, numNodes: *mut usize) -> CUresult>,
-    pub cuGraphGetRootNodes: Option<unsafe extern "C" fn(hGraph: CUgraph, rootNodes: *mut CUgraphNode, numRootNodes: *mut usize) -> CUresult>,
-    pub cuGraphGetEdges_v2: Option<unsafe extern "C" fn(hGraph: CUgraph, from: *mut CUgraphNode, to: *mut CUgraphNode, edgeData: *mut CUgraphEdgeData, numEdges: *mut usize) -> CUresult>,
-    pub cuGraphNodeGetDependencies_v2: Option<unsafe extern "C" fn(hNode: CUgraphNode, dependencies: *mut CUgraphNode, edgeData: *mut CUgraphEdgeData, numDependencies: *mut usize) -> CUresult>,
-    pub cuGraphNodeGetDependentNodes_v2: Option<unsafe extern "C" fn(hNode: CUgraphNode, dependentNodes: *mut CUgraphNode, edgeData: *mut CUgraphEdgeData, numDependentNodes: *mut usize) -> CUresult>,
-    pub cuGraphAddDependencies_v2: Option<unsafe extern "C" fn(hGraph: CUgraph, from: *const CUgraphNode, to: *const CUgraphNode, edgeData: *const CUgraphEdgeData, numDependencies: usize) -> CUresult>,
-    pub cuGraphRemoveDependencies_v2: Option<unsafe extern "C" fn(hGraph: CUgraph, from: *const CUgraphNode, to: *const CUgraphNode, edgeData: *const CUgraphEdgeData, numDependencies: usize) -> CUresult>,
-    pub cuGraphDestroyNode: Option<unsafe extern "C" fn(hNode: CUgraphNode) -> CUresult>,
-    pub cuGraphInstantiateWithFlags: Option<unsafe extern "C" fn(phGraphExec: *mut CUgraphExec, hGraph: CUgraph, flags: ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuGraphInstantiateWithParams: Option<unsafe extern "C" fn(phGraphExec: *mut CUgraphExec, hGraph: CUgraph, instantiateParams: *mut CUDA_GRAPH_INSTANTIATE_PARAMS) -> CUresult>,
-    pub cuGraphExecGetFlags: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, flags: *mut cuuint64_t) -> CUresult>,
-    pub cuGraphExecKernelNodeSetParams_v2: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExecMemcpyNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, copyParams: *const CUDA_MEMCPY3D, ctx: CUcontext) -> CUresult>,
-    pub cuGraphExecMemsetNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, memsetParams: *const CUDA_MEMSET_NODE_PARAMS, ctx: CUcontext) -> CUresult>,
-    pub cuGraphExecHostNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_HOST_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExecChildGraphNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, childGraph: CUgraph) -> CUresult>,
-    pub cuGraphExecEventRecordNodeSetEvent: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, event: CUevent) -> CUresult>,
-    pub cuGraphExecEventWaitNodeSetEvent: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, event: CUevent) -> CUresult>,
-    pub cuGraphExecExternalSemaphoresSignalNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
-    pub cuGraphExecExternalSemaphoresWaitNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
-    pub cuGraphNodeSetEnabled: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, isEnabled: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphNodeGetEnabled: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, isEnabled: *mut ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphUpload: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hStream: CUstream) -> CUresult>,
-    pub cuGraphLaunch: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hStream: CUstream) -> CUresult>,
-    pub cuGraphExecDestroy: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec) -> CUresult>,
-    pub cuGraphDestroy: Option<unsafe extern "C" fn(hGraph: CUgraph) -> CUresult>,
-    pub cuGraphExecUpdate_v2: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hGraph: CUgraph, resultInfo: *mut CUgraphExecUpdateResultInfo) -> CUresult>,
-    pub cuGraphKernelNodeCopyAttributes: Option<unsafe extern "C" fn(dst: CUgraphNode, src: CUgraphNode) -> CUresult>,
-    pub cuGraphKernelNodeGetAttribute: Option<unsafe extern "C" fn(hNode: CUgraphNode, attr: CUkernelNodeAttrID, value_out: *mut CUkernelNodeAttrValue) -> CUresult>,
-    pub cuGraphKernelNodeSetAttribute: Option<unsafe extern "C" fn(hNode: CUgraphNode, attr: CUkernelNodeAttrID, value: *const CUkernelNodeAttrValue) -> CUresult>,
-    pub cuGraphDebugDotPrint: Option<unsafe extern "C" fn(hGraph: CUgraph, path: *const ::std::os::raw::c_char, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuUserObjectCreate: Option<unsafe extern "C" fn(object_out: *mut CUuserObject, ptr: *mut ::std::os::raw::c_void, destroy: CUhostFn, initialRefcount: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuUserObjectRetain: Option<unsafe extern "C" fn(object: CUuserObject, count: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuUserObjectRelease: Option<unsafe extern "C" fn(object: CUuserObject, count: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphRetainUserObject: Option<unsafe extern "C" fn(graph: CUgraph, object: CUuserObject, count: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphReleaseUserObject: Option<unsafe extern "C" fn(graph: CUgraph, object: CUuserObject, count: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphAddNode_v2: Option<unsafe extern "C" fn(phGraphNode: *mut CUgraphNode, hGraph: CUgraph, dependencies: *const CUgraphNode, dependencyData: *const CUgraphEdgeData, numDependencies: usize, nodeParams: *mut CUgraphNodeParams) -> CUresult>,
-    pub cuGraphNodeSetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUgraphNodeParams) -> CUresult>,
-    pub cuGraphNodeGetParams: Option<unsafe extern "C" fn(hNode: CUgraphNode, nodeParams: *mut CUgraphNodeParams) -> CUresult>,
-    pub cuGraphExecNodeSetParams: Option<unsafe extern "C" fn(hGraphExec: CUgraphExec, hNode: CUgraphNode, nodeParams: *mut CUgraphNodeParams) -> CUresult>,
-    pub cuGraphConditionalHandleCreate: Option<unsafe extern "C" fn(pHandle_out: *mut CUgraphConditionalHandle, hGraph: CUgraph, ctx: CUcontext, defaultLaunchValue: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuOccupancyMaxActiveBlocksPerMultiprocessor: Option<unsafe extern "C" fn(numBlocks: *mut ::std::os::raw::c_int, func: CUfunction, blockSize: ::std::os::raw::c_int, dynamicSMemSize: usize) -> CUresult>,
-    pub cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags: Option<unsafe extern "C" fn(numBlocks: *mut ::std::os::raw::c_int, func: CUfunction, blockSize: ::std::os::raw::c_int, dynamicSMemSize: usize, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuOccupancyMaxPotentialBlockSize: Option<unsafe extern "C" fn(minGridSize: *mut ::std::os::raw::c_int, blockSize: *mut ::std::os::raw::c_int, func: CUfunction, blockSizeToDynamicSMemSize: CUoccupancyB2DSize, dynamicSMemSize: usize, blockSizeLimit: ::std::os::raw::c_int) -> CUresult>,
-    pub cuOccupancyMaxPotentialBlockSizeWithFlags:
-        Option<unsafe extern "C" fn(minGridSize: *mut ::std::os::raw::c_int, blockSize: *mut ::std::os::raw::c_int, func: CUfunction, blockSizeToDynamicSMemSize: CUoccupancyB2DSize, dynamicSMemSize: usize, blockSizeLimit: ::std::os::raw::c_int, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuOccupancyAvailableDynamicSMemPerBlock: Option<unsafe extern "C" fn(dynamicSmemSize: *mut usize, func: CUfunction, numBlocks: ::std::os::raw::c_int, blockSize: ::std::os::raw::c_int) -> CUresult>,
-    pub cuOccupancyMaxPotentialClusterSize: Option<unsafe extern "C" fn(clusterSize: *mut ::std::os::raw::c_int, func: CUfunction, config: *const CUlaunchConfig) -> CUresult>,
-    pub cuOccupancyMaxActiveClusters: Option<unsafe extern "C" fn(numClusters: *mut ::std::os::raw::c_int, func: CUfunction, config: *const CUlaunchConfig) -> CUresult>,
-    pub cuTexRefSetArray: Option<unsafe extern "C" fn(hTexRef: CUtexref, hArray: CUarray, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuTexRefSetMipmappedArray: Option<unsafe extern "C" fn(hTexRef: CUtexref, hMipmappedArray: CUmipmappedArray, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuTexRefSetAddress_v2: Option<unsafe extern "C" fn(ByteOffset: *mut usize, hTexRef: CUtexref, dptr: CUdeviceptr, bytes: usize) -> CUresult>,
-    pub cuTexRefSetAddress2D_v3: Option<unsafe extern "C" fn(hTexRef: CUtexref, desc: *const CUDA_ARRAY_DESCRIPTOR, dptr: CUdeviceptr, Pitch: usize) -> CUresult>,
-    pub cuTexRefSetFormat: Option<unsafe extern "C" fn(hTexRef: CUtexref, fmt: CUarray_format, NumPackedComponents: ::std::os::raw::c_int) -> CUresult>,
-    pub cuTexRefSetAddressMode: Option<unsafe extern "C" fn(hTexRef: CUtexref, dim: ::std::os::raw::c_int, am: CUaddress_mode) -> CUresult>,
-    pub cuTexRefSetFilterMode: Option<unsafe extern "C" fn(hTexRef: CUtexref, fm: CUfilter_mode) -> CUresult>,
-    pub cuTexRefSetMipmapFilterMode: Option<unsafe extern "C" fn(hTexRef: CUtexref, fm: CUfilter_mode) -> CUresult>,
-    pub cuTexRefSetMipmapLevelBias: Option<unsafe extern "C" fn(hTexRef: CUtexref, bias: f32) -> CUresult>,
-    pub cuTexRefSetMipmapLevelClamp: Option<unsafe extern "C" fn(hTexRef: CUtexref, minMipmapLevelClamp: f32, maxMipmapLevelClamp: f32) -> CUresult>,
-    pub cuTexRefSetMaxAnisotropy: Option<unsafe extern "C" fn(hTexRef: CUtexref, maxAniso: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuTexRefSetBorderColor: Option<unsafe extern "C" fn(hTexRef: CUtexref, pBorderColor: *mut f32) -> CUresult>,
-    pub cuTexRefSetFlags: Option<unsafe extern "C" fn(hTexRef: CUtexref, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuTexRefGetAddress_v2: Option<unsafe extern "C" fn(pdptr: *mut CUdeviceptr, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetArray: Option<unsafe extern "C" fn(phArray: *mut CUarray, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetMipmappedArray: Option<unsafe extern "C" fn(phMipmappedArray: *mut CUmipmappedArray, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetAddressMode: Option<unsafe extern "C" fn(pam: *mut CUaddress_mode, hTexRef: CUtexref, dim: ::std::os::raw::c_int) -> CUresult>,
-    pub cuTexRefGetFilterMode: Option<unsafe extern "C" fn(pfm: *mut CUfilter_mode, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetFormat: Option<unsafe extern "C" fn(pFormat: *mut CUarray_format, pNumChannels: *mut ::std::os::raw::c_int, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetMipmapFilterMode: Option<unsafe extern "C" fn(pfm: *mut CUfilter_mode, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetMipmapLevelBias: Option<unsafe extern "C" fn(pbias: *mut f32, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetMipmapLevelClamp: Option<unsafe extern "C" fn(pminMipmapLevelClamp: *mut f32, pmaxMipmapLevelClamp: *mut f32, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetMaxAnisotropy: Option<unsafe extern "C" fn(pmaxAniso: *mut ::std::os::raw::c_int, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetBorderColor: Option<unsafe extern "C" fn(pBorderColor: *mut f32, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefGetFlags: Option<unsafe extern "C" fn(pFlags: *mut ::std::os::raw::c_uint, hTexRef: CUtexref) -> CUresult>,
-    pub cuTexRefCreate: Option<unsafe extern "C" fn(pTexRef: *mut CUtexref) -> CUresult>,
-    pub cuTexRefDestroy: Option<unsafe extern "C" fn(hTexRef: CUtexref) -> CUresult>,
-    pub cuSurfRefSetArray: Option<unsafe extern "C" fn(hSurfRef: CUsurfref, hArray: CUarray, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuSurfRefGetArray: Option<unsafe extern "C" fn(phArray: *mut CUarray, hSurfRef: CUsurfref) -> CUresult>,
-    pub cuTexObjectCreate: Option<unsafe extern "C" fn(pTexObject: *mut CUtexObject, pResDesc: *const CUDA_RESOURCE_DESC, pTexDesc: *const CUDA_TEXTURE_DESC, pResViewDesc: *const CUDA_RESOURCE_VIEW_DESC) -> CUresult>,
-    pub cuTexObjectDestroy: Option<unsafe extern "C" fn(texObject: CUtexObject) -> CUresult>,
-    pub cuTexObjectGetResourceDesc: Option<unsafe extern "C" fn(pResDesc: *mut CUDA_RESOURCE_DESC, texObject: CUtexObject) -> CUresult>,
-    pub cuTexObjectGetTextureDesc: Option<unsafe extern "C" fn(pTexDesc: *mut CUDA_TEXTURE_DESC, texObject: CUtexObject) -> CUresult>,
-    pub cuTexObjectGetResourceViewDesc: Option<unsafe extern "C" fn(pResViewDesc: *mut CUDA_RESOURCE_VIEW_DESC, texObject: CUtexObject) -> CUresult>,
-    pub cuSurfObjectCreate: Option<unsafe extern "C" fn(pSurfObject: *mut CUsurfObject, pResDesc: *const CUDA_RESOURCE_DESC) -> CUresult>,
-    pub cuSurfObjectDestroy: Option<unsafe extern "C" fn(surfObject: CUsurfObject) -> CUresult>,
-    pub cuSurfObjectGetResourceDesc: Option<unsafe extern "C" fn(pResDesc: *mut CUDA_RESOURCE_DESC, surfObject: CUsurfObject) -> CUresult>,
-    pub cuTensorMapEncodeTiled: Option<
-        unsafe extern "C" fn(
-            tensorMap: *mut CUtensorMap,
-            tensorDataType: CUtensorMapDataType,
-            tensorRank: cuuint32_t,
-            globalAddress: *mut ::std::os::raw::c_void,
-            globalDim: *const cuuint64_t,
-            globalStrides: *const cuuint64_t,
-            boxDim: *const cuuint32_t,
-            elementStrides: *const cuuint32_t,
-            interleave: CUtensorMapInterleave,
-            swizzle: CUtensorMapSwizzle,
-            l2Promotion: CUtensorMapL2promotion,
-            oobFill: CUtensorMapFloatOOBfill,
-        ) -> CUresult,
-    >,
+    pub cuLaunchKernelEx: Option<unsafe extern "C" fn(*const CUlaunchConfig, CUfunction, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuLaunchCooperativeKernel: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, ::std::os::raw::c_uint, CUstream, *mut *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuLaunchCooperativeKernelMultiDevice: Option<unsafe extern "C" fn(*mut CUDA_LAUNCH_PARAMS, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuLaunchHostFunc: Option<unsafe extern "C" fn(CUstream, CUhostFn, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuLaunchHostFunc_v2: Option<unsafe extern "C" fn(CUstream, CUhostFn, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuFuncSetBlockShape: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> CUresult>,
+    pub cuFuncSetSharedSize: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuParamSetSize: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuParamSeti: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuParamSetf: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, f32) -> CUresult>,
+    pub cuParamSetv: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuLaunch: Option<unsafe extern "C" fn(CUfunction) -> CUresult>,
+    pub cuLaunchGrid: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int) -> CUresult>,
+    pub cuLaunchGridAsync: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int, CUstream) -> CUresult>,
+    pub cuParamSetTexRef: Option<unsafe extern "C" fn(CUfunction, ::std::os::raw::c_int, CUtexref) -> CUresult>,
+    pub cuFuncSetSharedMemConfig: Option<unsafe extern "C" fn(CUfunction, CUsharedconfig) -> CUresult>,
+    pub cuGraphCreate: Option<unsafe extern "C" fn(*mut CUgraph, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphAddKernelNode_v2: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphKernelNodeGetParams_v2: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphKernelNodeSetParams_v2: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphAddMemcpyNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_MEMCPY3D, CUcontext) -> CUresult>,
+    pub cuGraphMemcpyNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_MEMCPY3D) -> CUresult>,
+    pub cuGraphMemcpyNodeSetParams: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_MEMCPY3D) -> CUresult>,
+    pub cuGraphAddMemsetNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_MEMSET_NODE_PARAMS, CUcontext) -> CUresult>,
+    pub cuGraphMemsetNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_MEMSET_NODE_PARAMS) -> CUresult>,
+    pub cuGraphMemsetNodeSetParams: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_MEMSET_NODE_PARAMS) -> CUresult>,
+    pub cuGraphAddHostNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_HOST_NODE_PARAMS) -> CUresult>,
+    pub cuGraphHostNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_HOST_NODE_PARAMS) -> CUresult>,
+    pub cuGraphHostNodeSetParams: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_HOST_NODE_PARAMS) -> CUresult>,
+    pub cuGraphAddChildGraphNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUgraph) -> CUresult>,
+    pub cuGraphChildGraphNodeGetGraph: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraph) -> CUresult>,
+    pub cuGraphAddEmptyNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize) -> CUresult>,
+    pub cuGraphAddEventRecordNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUevent) -> CUresult>,
+    pub cuGraphEventRecordNodeGetEvent: Option<unsafe extern "C" fn(CUgraphNode, *mut CUevent) -> CUresult>,
+    pub cuGraphEventRecordNodeSetEvent: Option<unsafe extern "C" fn(CUgraphNode, CUevent) -> CUresult>,
+    pub cuGraphAddEventWaitNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUevent) -> CUresult>,
+    pub cuGraphEventWaitNodeGetEvent: Option<unsafe extern "C" fn(CUgraphNode, *mut CUevent) -> CUresult>,
+    pub cuGraphEventWaitNodeSetEvent: Option<unsafe extern "C" fn(CUgraphNode, CUevent) -> CUresult>,
+    pub cuGraphAddExternalSemaphoresSignalNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExternalSemaphoresSignalNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExternalSemaphoresSignalNodeSetParams: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphAddExternalSemaphoresWaitNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExternalSemaphoresWaitNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExternalSemaphoresWaitNodeSetParams: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
+    pub cuGraphAddBatchMemOpNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
+    pub cuGraphBatchMemOpNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
+    pub cuGraphBatchMemOpNodeSetParams: Option<unsafe extern "C" fn(CUgraphNode, *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExecBatchMemOpNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_BATCH_MEM_OP_NODE_PARAMS) -> CUresult>,
+    pub cuGraphAddMemAllocNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>,
+    pub cuGraphMemAllocNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUDA_MEM_ALLOC_NODE_PARAMS) -> CUresult>,
+    pub cuGraphAddMemFreeNode: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, usize, CUdeviceptr) -> CUresult>,
+    pub cuGraphMemFreeNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUdeviceptr) -> CUresult>,
+    pub cuDeviceGraphMemTrim: Option<unsafe extern "C" fn(CUdevice) -> CUresult>,
+    pub cuDeviceGetGraphMemAttribute: Option<unsafe extern "C" fn(CUdevice, CUgraphMem_attribute, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuDeviceSetGraphMemAttribute: Option<unsafe extern "C" fn(CUdevice, CUgraphMem_attribute, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuGraphClone: Option<unsafe extern "C" fn(*mut CUgraph, CUgraph) -> CUresult>,
+    pub cuGraphNodeFindInClone: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraphNode, CUgraph) -> CUresult>,
+    pub cuGraphNodeGetType: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNodeType) -> CUresult>,
+    pub cuGraphNodeGetContainingGraph: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraph) -> CUresult>,
+    pub cuGraphNodeGetLocalId: Option<unsafe extern "C" fn(CUgraphNode, *mut ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphNodeGetToolsId: Option<unsafe extern "C" fn(CUgraphNode, *mut ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuGraphGetId: Option<unsafe extern "C" fn(CUgraph, *mut ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphExecGetId: Option<unsafe extern "C" fn(CUgraphExec, *mut ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphGetNodes: Option<unsafe extern "C" fn(CUgraph, *mut CUgraphNode, *mut usize) -> CUresult>,
+    pub cuGraphGetRootNodes: Option<unsafe extern "C" fn(CUgraph, *mut CUgraphNode, *mut usize) -> CUresult>,
+    pub cuGraphGetEdges_v2: Option<unsafe extern "C" fn(CUgraph, *mut CUgraphNode, *mut CUgraphNode, *mut CUgraphEdgeData, *mut usize) -> CUresult>,
+    pub cuGraphNodeGetDependencies_v2: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNode, *mut CUgraphEdgeData, *mut usize) -> CUresult>,
+    pub cuGraphNodeGetDependentNodes_v2: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNode, *mut CUgraphEdgeData, *mut usize) -> CUresult>,
+    pub cuGraphAddDependencies_v2: Option<unsafe extern "C" fn(CUgraph, *const CUgraphNode, *const CUgraphNode, *const CUgraphEdgeData, usize) -> CUresult>,
+    pub cuGraphRemoveDependencies_v2: Option<unsafe extern "C" fn(CUgraph, *const CUgraphNode, *const CUgraphNode, *const CUgraphEdgeData, usize) -> CUresult>,
+    pub cuGraphDestroyNode: Option<unsafe extern "C" fn(CUgraphNode) -> CUresult>,
+    pub cuGraphInstantiateWithFlags: Option<unsafe extern "C" fn(*mut CUgraphExec, CUgraph, ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuGraphInstantiateWithParams: Option<unsafe extern "C" fn(*mut CUgraphExec, CUgraph, *mut CUDA_GRAPH_INSTANTIATE_PARAMS) -> CUresult>,
+    pub cuGraphExecGetFlags: Option<unsafe extern "C" fn(CUgraphExec, *mut cuuint64_t) -> CUresult>,
+    pub cuGraphExecKernelNodeSetParams_v2: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_KERNEL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExecMemcpyNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_MEMCPY3D, CUcontext) -> CUresult>,
+    pub cuGraphExecMemsetNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_MEMSET_NODE_PARAMS, CUcontext) -> CUresult>,
+    pub cuGraphExecHostNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_HOST_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExecChildGraphNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, CUgraph) -> CUresult>,
+    pub cuGraphExecEventRecordNodeSetEvent: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, CUevent) -> CUresult>,
+    pub cuGraphExecEventWaitNodeSetEvent: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, CUevent) -> CUresult>,
+    pub cuGraphExecExternalSemaphoresSignalNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_EXT_SEM_SIGNAL_NODE_PARAMS) -> CUresult>,
+    pub cuGraphExecExternalSemaphoresWaitNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *const CUDA_EXT_SEM_WAIT_NODE_PARAMS) -> CUresult>,
+    pub cuGraphNodeSetEnabled: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphNodeGetEnabled: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *mut ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphUpload: Option<unsafe extern "C" fn(CUgraphExec, CUstream) -> CUresult>,
+    pub cuGraphLaunch: Option<unsafe extern "C" fn(CUgraphExec, CUstream) -> CUresult>,
+    pub cuGraphExecDestroy: Option<unsafe extern "C" fn(CUgraphExec) -> CUresult>,
+    pub cuGraphDestroy: Option<unsafe extern "C" fn(CUgraph) -> CUresult>,
+    pub cuGraphExecUpdate_v2: Option<unsafe extern "C" fn(CUgraphExec, CUgraph, *mut CUgraphExecUpdateResultInfo) -> CUresult>,
+    pub cuGraphKernelNodeCopyAttributes: Option<unsafe extern "C" fn(CUgraphNode, CUgraphNode) -> CUresult>,
+    pub cuGraphKernelNodeGetAttribute: Option<unsafe extern "C" fn(CUgraphNode, CUkernelNodeAttrID, *mut CUkernelNodeAttrValue) -> CUresult>,
+    pub cuGraphKernelNodeSetAttribute: Option<unsafe extern "C" fn(CUgraphNode, CUkernelNodeAttrID, *const CUkernelNodeAttrValue) -> CUresult>,
+    pub cuGraphDebugDotPrint: Option<unsafe extern "C" fn(CUgraph, *const ::std::os::raw::c_char, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuUserObjectCreate: Option<unsafe extern "C" fn(*mut CUuserObject, *mut ::std::os::raw::c_void, CUhostFn, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuUserObjectRetain: Option<unsafe extern "C" fn(CUuserObject, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuUserObjectRelease: Option<unsafe extern "C" fn(CUuserObject, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphRetainUserObject: Option<unsafe extern "C" fn(CUgraph, CUuserObject, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphReleaseUserObject: Option<unsafe extern "C" fn(CUgraph, CUuserObject, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphAddNode_v2: Option<unsafe extern "C" fn(*mut CUgraphNode, CUgraph, *const CUgraphNode, *const CUgraphEdgeData, usize, *mut CUgraphNodeParams) -> CUresult>,
+    pub cuGraphNodeSetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNodeParams) -> CUresult>,
+    pub cuGraphNodeGetParams: Option<unsafe extern "C" fn(CUgraphNode, *mut CUgraphNodeParams) -> CUresult>,
+    pub cuGraphExecNodeSetParams: Option<unsafe extern "C" fn(CUgraphExec, CUgraphNode, *mut CUgraphNodeParams) -> CUresult>,
+    pub cuGraphConditionalHandleCreate: Option<unsafe extern "C" fn(*mut CUgraphConditionalHandle, CUgraph, CUcontext, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuOccupancyMaxActiveBlocksPerMultiprocessor: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, ::std::os::raw::c_int, usize) -> CUresult>,
+    pub cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, ::std::os::raw::c_int, usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuOccupancyMaxPotentialBlockSize: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, CUfunction, CUoccupancyB2DSize, usize, ::std::os::raw::c_int) -> CUresult>,
+    pub cuOccupancyMaxPotentialBlockSizeWithFlags: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, CUfunction, CUoccupancyB2DSize, usize, ::std::os::raw::c_int, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuOccupancyAvailableDynamicSMemPerBlock: Option<unsafe extern "C" fn(*mut usize, CUfunction, ::std::os::raw::c_int, ::std::os::raw::c_int) -> CUresult>,
+    pub cuOccupancyMaxPotentialClusterSize: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, *const CUlaunchConfig) -> CUresult>,
+    pub cuOccupancyMaxActiveClusters: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUfunction, *const CUlaunchConfig) -> CUresult>,
+    pub cuTexRefSetArray: Option<unsafe extern "C" fn(CUtexref, CUarray, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuTexRefSetMipmappedArray: Option<unsafe extern "C" fn(CUtexref, CUmipmappedArray, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuTexRefSetAddress_v2: Option<unsafe extern "C" fn(*mut usize, CUtexref, CUdeviceptr, usize) -> CUresult>,
+    pub cuTexRefSetAddress2D_v3: Option<unsafe extern "C" fn(CUtexref, *const CUDA_ARRAY_DESCRIPTOR, CUdeviceptr, usize) -> CUresult>,
+    pub cuTexRefSetFormat: Option<unsafe extern "C" fn(CUtexref, CUarray_format, ::std::os::raw::c_int) -> CUresult>,
+    pub cuTexRefSetAddressMode: Option<unsafe extern "C" fn(CUtexref, ::std::os::raw::c_int, CUaddress_mode) -> CUresult>,
+    pub cuTexRefSetFilterMode: Option<unsafe extern "C" fn(CUtexref, CUfilter_mode) -> CUresult>,
+    pub cuTexRefSetMipmapFilterMode: Option<unsafe extern "C" fn(CUtexref, CUfilter_mode) -> CUresult>,
+    pub cuTexRefSetMipmapLevelBias: Option<unsafe extern "C" fn(CUtexref, f32) -> CUresult>,
+    pub cuTexRefSetMipmapLevelClamp: Option<unsafe extern "C" fn(CUtexref, f32, f32) -> CUresult>,
+    pub cuTexRefSetMaxAnisotropy: Option<unsafe extern "C" fn(CUtexref, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuTexRefSetBorderColor: Option<unsafe extern "C" fn(CUtexref, *mut f32) -> CUresult>,
+    pub cuTexRefSetFlags: Option<unsafe extern "C" fn(CUtexref, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuTexRefGetAddress_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, CUtexref) -> CUresult>,
+    pub cuTexRefGetArray: Option<unsafe extern "C" fn(*mut CUarray, CUtexref) -> CUresult>,
+    pub cuTexRefGetMipmappedArray: Option<unsafe extern "C" fn(*mut CUmipmappedArray, CUtexref) -> CUresult>,
+    pub cuTexRefGetAddressMode: Option<unsafe extern "C" fn(*mut CUaddress_mode, CUtexref, ::std::os::raw::c_int) -> CUresult>,
+    pub cuTexRefGetFilterMode: Option<unsafe extern "C" fn(*mut CUfilter_mode, CUtexref) -> CUresult>,
+    pub cuTexRefGetFormat: Option<unsafe extern "C" fn(*mut CUarray_format, *mut ::std::os::raw::c_int, CUtexref) -> CUresult>,
+    pub cuTexRefGetMipmapFilterMode: Option<unsafe extern "C" fn(*mut CUfilter_mode, CUtexref) -> CUresult>,
+    pub cuTexRefGetMipmapLevelBias: Option<unsafe extern "C" fn(*mut f32, CUtexref) -> CUresult>,
+    pub cuTexRefGetMipmapLevelClamp: Option<unsafe extern "C" fn(*mut f32, *mut f32, CUtexref) -> CUresult>,
+    pub cuTexRefGetMaxAnisotropy: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUtexref) -> CUresult>,
+    pub cuTexRefGetBorderColor: Option<unsafe extern "C" fn(*mut f32, CUtexref) -> CUresult>,
+    pub cuTexRefGetFlags: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, CUtexref) -> CUresult>,
+    pub cuTexRefCreate: Option<unsafe extern "C" fn(*mut CUtexref) -> CUresult>,
+    pub cuTexRefDestroy: Option<unsafe extern "C" fn(CUtexref) -> CUresult>,
+    pub cuSurfRefSetArray: Option<unsafe extern "C" fn(CUsurfref, CUarray, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuSurfRefGetArray: Option<unsafe extern "C" fn(*mut CUarray, CUsurfref) -> CUresult>,
+    pub cuTexObjectCreate: Option<unsafe extern "C" fn(*mut CUtexObject, *const CUDA_RESOURCE_DESC, *const CUDA_TEXTURE_DESC, *const CUDA_RESOURCE_VIEW_DESC) -> CUresult>,
+    pub cuTexObjectDestroy: Option<unsafe extern "C" fn(CUtexObject) -> CUresult>,
+    pub cuTexObjectGetResourceDesc: Option<unsafe extern "C" fn(*mut CUDA_RESOURCE_DESC, CUtexObject) -> CUresult>,
+    pub cuTexObjectGetTextureDesc: Option<unsafe extern "C" fn(*mut CUDA_TEXTURE_DESC, CUtexObject) -> CUresult>,
+    pub cuTexObjectGetResourceViewDesc: Option<unsafe extern "C" fn(*mut CUDA_RESOURCE_VIEW_DESC, CUtexObject) -> CUresult>,
+    pub cuSurfObjectCreate: Option<unsafe extern "C" fn(*mut CUsurfObject, *const CUDA_RESOURCE_DESC) -> CUresult>,
+    pub cuSurfObjectDestroy: Option<unsafe extern "C" fn(CUsurfObject) -> CUresult>,
+    pub cuSurfObjectGetResourceDesc: Option<unsafe extern "C" fn(*mut CUDA_RESOURCE_DESC, CUsurfObject) -> CUresult>,
+    pub cuTensorMapEncodeTiled:
+        Option<unsafe extern "C" fn(*mut CUtensorMap, CUtensorMapDataType, cuuint32_t, *mut ::std::os::raw::c_void, *const cuuint64_t, *const cuuint64_t, *const cuuint32_t, *const cuuint32_t, CUtensorMapInterleave, CUtensorMapSwizzle, CUtensorMapL2promotion, CUtensorMapFloatOOBfill) -> CUresult>,
     pub cuTensorMapEncodeIm2col: Option<
         unsafe extern "C" fn(
-            tensorMap: *mut CUtensorMap,
-            tensorDataType: CUtensorMapDataType,
-            tensorRank: cuuint32_t,
-            globalAddress: *mut ::std::os::raw::c_void,
-            globalDim: *const cuuint64_t,
-            globalStrides: *const cuuint64_t,
-            pixelBoxLowerCorner: *const ::std::os::raw::c_int,
-            pixelBoxUpperCorner: *const ::std::os::raw::c_int,
-            channelsPerPixel: cuuint32_t,
-            pixelsPerColumn: cuuint32_t,
-            elementStrides: *const cuuint32_t,
-            interleave: CUtensorMapInterleave,
-            swizzle: CUtensorMapSwizzle,
-            l2Promotion: CUtensorMapL2promotion,
-            oobFill: CUtensorMapFloatOOBfill,
+            *mut CUtensorMap,
+            CUtensorMapDataType,
+            cuuint32_t,
+            *mut ::std::os::raw::c_void,
+            *const cuuint64_t,
+            *const cuuint64_t,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cuuint32_t,
+            cuuint32_t,
+            *const cuuint32_t,
+            CUtensorMapInterleave,
+            CUtensorMapSwizzle,
+            CUtensorMapL2promotion,
+            CUtensorMapFloatOOBfill,
         ) -> CUresult,
     >,
     pub cuTensorMapEncodeIm2colWide: Option<
         unsafe extern "C" fn(
-            tensorMap: *mut CUtensorMap,
-            tensorDataType: CUtensorMapDataType,
-            tensorRank: cuuint32_t,
-            globalAddress: *mut ::std::os::raw::c_void,
-            globalDim: *const cuuint64_t,
-            globalStrides: *const cuuint64_t,
-            pixelBoxLowerCornerWidth: ::std::os::raw::c_int,
-            pixelBoxUpperCornerWidth: ::std::os::raw::c_int,
-            channelsPerPixel: cuuint32_t,
-            pixelsPerColumn: cuuint32_t,
-            elementStrides: *const cuuint32_t,
-            interleave: CUtensorMapInterleave,
-            mode: CUtensorMapIm2ColWideMode,
-            swizzle: CUtensorMapSwizzle,
-            l2Promotion: CUtensorMapL2promotion,
-            oobFill: CUtensorMapFloatOOBfill,
+            *mut CUtensorMap,
+            CUtensorMapDataType,
+            cuuint32_t,
+            *mut ::std::os::raw::c_void,
+            *const cuuint64_t,
+            *const cuuint64_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cuuint32_t,
+            cuuint32_t,
+            *const cuuint32_t,
+            CUtensorMapInterleave,
+            CUtensorMapIm2ColWideMode,
+            CUtensorMapSwizzle,
+            CUtensorMapL2promotion,
+            CUtensorMapFloatOOBfill,
         ) -> CUresult,
     >,
-    pub cuTensorMapReplaceAddress: Option<unsafe extern "C" fn(tensorMap: *mut CUtensorMap, globalAddress: *mut ::std::os::raw::c_void) -> CUresult>,
-    pub cuDeviceCanAccessPeer: Option<unsafe extern "C" fn(canAccessPeer: *mut ::std::os::raw::c_int, dev: CUdevice, peerDev: CUdevice) -> CUresult>,
-    pub cuCtxEnablePeerAccess: Option<unsafe extern "C" fn(peerContext: CUcontext, Flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuCtxDisablePeerAccess: Option<unsafe extern "C" fn(peerContext: CUcontext) -> CUresult>,
-    pub cuDeviceGetP2PAttribute: Option<unsafe extern "C" fn(value: *mut ::std::os::raw::c_int, attrib: CUdevice_P2PAttribute, srcDevice: CUdevice, dstDevice: CUdevice) -> CUresult>,
-    pub cuDeviceGetP2PAtomicCapabilities: Option<unsafe extern "C" fn(capabilities: *mut ::std::os::raw::c_uint, operations: *const CUatomicOperation, count: ::std::os::raw::c_uint, srcDevice: CUdevice, dstDevice: CUdevice) -> CUresult>,
-    pub cuGraphicsUnregisterResource: Option<unsafe extern "C" fn(resource: CUgraphicsResource) -> CUresult>,
-    pub cuGraphicsSubResourceGetMappedArray: Option<unsafe extern "C" fn(pArray: *mut CUarray, resource: CUgraphicsResource, arrayIndex: ::std::os::raw::c_uint, mipLevel: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphicsResourceGetMappedMipmappedArray: Option<unsafe extern "C" fn(pMipmappedArray: *mut CUmipmappedArray, resource: CUgraphicsResource) -> CUresult>,
-    pub cuGraphicsResourceGetMappedPointer_v2: Option<unsafe extern "C" fn(pDevPtr: *mut CUdeviceptr, pSize: *mut usize, resource: CUgraphicsResource) -> CUresult>,
-    pub cuGraphicsResourceSetMapFlags_v2: Option<unsafe extern "C" fn(resource: CUgraphicsResource, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGraphicsMapResources: Option<unsafe extern "C" fn(count: ::std::os::raw::c_uint, resources: *mut CUgraphicsResource, hStream: CUstream) -> CUresult>,
-    pub cuGraphicsUnmapResources: Option<unsafe extern "C" fn(count: ::std::os::raw::c_uint, resources: *mut CUgraphicsResource, hStream: CUstream) -> CUresult>,
-    pub cuGetProcAddress_v2: Option<unsafe extern "C" fn(symbol: *const ::std::os::raw::c_char, pfn: *mut *mut ::std::os::raw::c_void, cudaVersion: ::std::os::raw::c_int, flags: cuuint64_t, symbolStatus: *mut CUdriverProcAddressQueryResult) -> CUresult>,
-    pub cuCoredumpGetAttribute: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>,
-    pub cuCoredumpGetAttributeGlobal: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>,
-    pub cuCoredumpSetAttribute: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>,
-    pub cuCoredumpSetAttributeGlobal: Option<unsafe extern "C" fn(attrib: CUcoredumpSettings, value: *mut ::std::os::raw::c_void, size: *mut usize) -> CUresult>,
-    pub cuCoredumpRegisterStartCallback: Option<unsafe extern "C" fn(callback: CUcoredumpStatusCallback, userData: *mut ::std::os::raw::c_void, callbackOut: *mut CUcoredumpCallbackHandle) -> CUresult>,
-    pub cuCoredumpRegisterCompleteCallback: Option<unsafe extern "C" fn(callback: CUcoredumpStatusCallback, userData: *mut ::std::os::raw::c_void, callbackOut: *mut CUcoredumpCallbackHandle) -> CUresult>,
-    pub cuCoredumpDeregisterStartCallback: Option<unsafe extern "C" fn(callback: CUcoredumpCallbackHandle) -> CUresult>,
-    pub cuCoredumpDeregisterCompleteCallback: Option<unsafe extern "C" fn(callback: CUcoredumpCallbackHandle) -> CUresult>,
-    pub cuGetExportTable: Option<unsafe extern "C" fn(ppExportTable: *mut *const ::std::os::raw::c_void, pExportTableId: *const CUuuid) -> CUresult>,
-    pub cuGreenCtxCreate: Option<unsafe extern "C" fn(phCtx: *mut CUgreenCtx, desc: CUdevResourceDesc, dev: CUdevice, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGreenCtxDestroy: Option<unsafe extern "C" fn(hCtx: CUgreenCtx) -> CUresult>,
-    pub cuCtxFromGreenCtx: Option<unsafe extern "C" fn(pContext: *mut CUcontext, hCtx: CUgreenCtx) -> CUresult>,
-    pub cuDeviceGetDevResource: Option<unsafe extern "C" fn(device: CUdevice, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>,
-    pub cuCtxGetDevResource: Option<unsafe extern "C" fn(hCtx: CUcontext, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>,
-    pub cuGreenCtxGetDevResource: Option<unsafe extern "C" fn(hCtx: CUgreenCtx, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>,
-    pub cuDevSmResourceSplitByCount: Option<unsafe extern "C" fn(result: *mut CUdevResource, nbGroups: *mut ::std::os::raw::c_uint, input: *const CUdevResource, remainder: *mut CUdevResource, flags: ::std::os::raw::c_uint, minCount: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuDevSmResourceSplit: Option<unsafe extern "C" fn(result: *mut CUdevResource, nbGroups: ::std::os::raw::c_uint, input: *const CUdevResource, remainder: *mut CUdevResource, flags: ::std::os::raw::c_uint, groupParams: *mut CU_DEV_SM_RESOURCE_GROUP_PARAMS) -> CUresult>,
-    pub cuDevResourceGenerateDesc: Option<unsafe extern "C" fn(phDesc: *mut CUdevResourceDesc, resources: *mut CUdevResource, nbResources: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuGreenCtxRecordEvent: Option<unsafe extern "C" fn(hCtx: CUgreenCtx, hEvent: CUevent) -> CUresult>,
-    pub cuGreenCtxWaitEvent: Option<unsafe extern "C" fn(hCtx: CUgreenCtx, hEvent: CUevent) -> CUresult>,
-    pub cuStreamGetGreenCtx: Option<unsafe extern "C" fn(hStream: CUstream, phCtx: *mut CUgreenCtx) -> CUresult>,
-    pub cuGreenCtxStreamCreate: Option<unsafe extern "C" fn(phStream: *mut CUstream, greenCtx: CUgreenCtx, flags: ::std::os::raw::c_uint, priority: ::std::os::raw::c_int) -> CUresult>,
-    pub cuGreenCtxGetId: Option<unsafe extern "C" fn(greenCtx: CUgreenCtx, greenCtxId: *mut ::std::os::raw::c_ulonglong) -> CUresult>,
-    pub cuStreamGetDevResource: Option<unsafe extern "C" fn(hStream: CUstream, resource: *mut CUdevResource, type_: CUdevResourceType) -> CUresult>,
-    pub cuLogsRegisterCallback: Option<unsafe extern "C" fn(callbackFunc: CUlogsCallback, userData: *mut ::std::os::raw::c_void, callback_out: *mut CUlogsCallbackHandle) -> CUresult>,
-    pub cuLogsUnregisterCallback: Option<unsafe extern "C" fn(callback: CUlogsCallbackHandle) -> CUresult>,
-    pub cuLogsCurrent: Option<unsafe extern "C" fn(iterator_out: *mut CUlogIterator, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuLogsDumpToFile: Option<unsafe extern "C" fn(iterator: *mut CUlogIterator, pathToFile: *const ::std::os::raw::c_char, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuLogsDumpToMemory: Option<unsafe extern "C" fn(iterator: *mut CUlogIterator, buffer: *mut ::std::os::raw::c_char, size: *mut usize, flags: ::std::os::raw::c_uint) -> CUresult>,
-    pub cuCheckpointProcessGetRestoreThreadId: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, tid: *mut ::std::os::raw::c_int) -> CUresult>,
-    pub cuCheckpointProcessGetState: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, state: *mut CUprocessState) -> CUresult>,
-    pub cuCheckpointProcessLock: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointLockArgs) -> CUresult>,
-    pub cuCheckpointProcessCheckpoint: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointCheckpointArgs) -> CUresult>,
-    pub cuCheckpointProcessRestore: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointRestoreArgs) -> CUresult>,
-    pub cuCheckpointProcessUnlock: Option<unsafe extern "C" fn(pid: ::std::os::raw::c_int, args: *mut CUcheckpointUnlockArgs) -> CUresult>,
+    pub cuTensorMapReplaceAddress: Option<unsafe extern "C" fn(*mut CUtensorMap, *mut ::std::os::raw::c_void) -> CUresult>,
+    pub cuDeviceCanAccessPeer: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUdevice, CUdevice) -> CUresult>,
+    pub cuCtxEnablePeerAccess: Option<unsafe extern "C" fn(CUcontext, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuCtxDisablePeerAccess: Option<unsafe extern "C" fn(CUcontext) -> CUresult>,
+    pub cuDeviceGetP2PAttribute: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, CUdevice_P2PAttribute, CUdevice, CUdevice) -> CUresult>,
+    pub cuDeviceGetP2PAtomicCapabilities: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *const CUatomicOperation, ::std::os::raw::c_uint, CUdevice, CUdevice) -> CUresult>,
+    pub cuGraphicsUnregisterResource: Option<unsafe extern "C" fn(CUgraphicsResource) -> CUresult>,
+    pub cuGraphicsSubResourceGetMappedArray: Option<unsafe extern "C" fn(*mut CUarray, CUgraphicsResource, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphicsResourceGetMappedMipmappedArray: Option<unsafe extern "C" fn(*mut CUmipmappedArray, CUgraphicsResource) -> CUresult>,
+    pub cuGraphicsResourceGetMappedPointer_v2: Option<unsafe extern "C" fn(*mut CUdeviceptr, *mut usize, CUgraphicsResource) -> CUresult>,
+    pub cuGraphicsResourceSetMapFlags_v2: Option<unsafe extern "C" fn(CUgraphicsResource, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGraphicsMapResources: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUgraphicsResource, CUstream) -> CUresult>,
+    pub cuGraphicsUnmapResources: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut CUgraphicsResource, CUstream) -> CUresult>,
+    pub cuGetProcAddress_v2: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_int, cuuint64_t, *mut CUdriverProcAddressQueryResult) -> CUresult>,
+    pub cuCoredumpGetAttribute: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>,
+    pub cuCoredumpGetAttributeGlobal: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>,
+    pub cuCoredumpSetAttribute: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>,
+    pub cuCoredumpSetAttributeGlobal: Option<unsafe extern "C" fn(CUcoredumpSettings, *mut ::std::os::raw::c_void, *mut usize) -> CUresult>,
+    pub cuCoredumpRegisterStartCallback: Option<unsafe extern "C" fn(CUcoredumpStatusCallback, *mut ::std::os::raw::c_void, *mut CUcoredumpCallbackHandle) -> CUresult>,
+    pub cuCoredumpRegisterCompleteCallback: Option<unsafe extern "C" fn(CUcoredumpStatusCallback, *mut ::std::os::raw::c_void, *mut CUcoredumpCallbackHandle) -> CUresult>,
+    pub cuCoredumpDeregisterStartCallback: Option<unsafe extern "C" fn(CUcoredumpCallbackHandle) -> CUresult>,
+    pub cuCoredumpDeregisterCompleteCallback: Option<unsafe extern "C" fn(CUcoredumpCallbackHandle) -> CUresult>,
+    pub cuGetExportTable: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_void, *const CUuuid) -> CUresult>,
+    pub cuGreenCtxCreate: Option<unsafe extern "C" fn(*mut CUgreenCtx, CUdevResourceDesc, CUdevice, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGreenCtxDestroy: Option<unsafe extern "C" fn(CUgreenCtx) -> CUresult>,
+    pub cuCtxFromGreenCtx: Option<unsafe extern "C" fn(*mut CUcontext, CUgreenCtx) -> CUresult>,
+    pub cuDeviceGetDevResource: Option<unsafe extern "C" fn(CUdevice, *mut CUdevResource, CUdevResourceType) -> CUresult>,
+    pub cuCtxGetDevResource: Option<unsafe extern "C" fn(CUcontext, *mut CUdevResource, CUdevResourceType) -> CUresult>,
+    pub cuGreenCtxGetDevResource: Option<unsafe extern "C" fn(CUgreenCtx, *mut CUdevResource, CUdevResourceType) -> CUresult>,
+    pub cuDevSmResourceSplitByCount: Option<unsafe extern "C" fn(*mut CUdevResource, *mut ::std::os::raw::c_uint, *const CUdevResource, *mut CUdevResource, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuDevSmResourceSplit: Option<unsafe extern "C" fn(*mut CUdevResource, ::std::os::raw::c_uint, *const CUdevResource, *mut CUdevResource, ::std::os::raw::c_uint, *mut CU_DEV_SM_RESOURCE_GROUP_PARAMS) -> CUresult>,
+    pub cuDevResourceGenerateDesc: Option<unsafe extern "C" fn(*mut CUdevResourceDesc, *mut CUdevResource, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuGreenCtxRecordEvent: Option<unsafe extern "C" fn(CUgreenCtx, CUevent) -> CUresult>,
+    pub cuGreenCtxWaitEvent: Option<unsafe extern "C" fn(CUgreenCtx, CUevent) -> CUresult>,
+    pub cuStreamGetGreenCtx: Option<unsafe extern "C" fn(CUstream, *mut CUgreenCtx) -> CUresult>,
+    pub cuGreenCtxStreamCreate: Option<unsafe extern "C" fn(*mut CUstream, CUgreenCtx, ::std::os::raw::c_uint, ::std::os::raw::c_int) -> CUresult>,
+    pub cuGreenCtxGetId: Option<unsafe extern "C" fn(CUgreenCtx, *mut ::std::os::raw::c_ulonglong) -> CUresult>,
+    pub cuStreamGetDevResource: Option<unsafe extern "C" fn(CUstream, *mut CUdevResource, CUdevResourceType) -> CUresult>,
+    pub cuLogsRegisterCallback: Option<unsafe extern "C" fn(CUlogsCallback, *mut ::std::os::raw::c_void, *mut CUlogsCallbackHandle) -> CUresult>,
+    pub cuLogsUnregisterCallback: Option<unsafe extern "C" fn(CUlogsCallbackHandle) -> CUresult>,
+    pub cuLogsCurrent: Option<unsafe extern "C" fn(*mut CUlogIterator, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuLogsDumpToFile: Option<unsafe extern "C" fn(*mut CUlogIterator, *const ::std::os::raw::c_char, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuLogsDumpToMemory: Option<unsafe extern "C" fn(*mut CUlogIterator, *mut ::std::os::raw::c_char, *mut usize, ::std::os::raw::c_uint) -> CUresult>,
+    pub cuCheckpointProcessGetRestoreThreadId: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> CUresult>,
+    pub cuCheckpointProcessGetState: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUprocessState) -> CUresult>,
+    pub cuCheckpointProcessLock: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointLockArgs) -> CUresult>,
+    pub cuCheckpointProcessCheckpoint: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointCheckpointArgs) -> CUresult>,
+    pub cuCheckpointProcessRestore: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointRestoreArgs) -> CUresult>,
+    pub cuCheckpointProcessUnlock: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut CUcheckpointUnlockArgs) -> CUresult>,
 }
 #[cfg(feature = "runtime-link")]
 unsafe impl Send for DynamicBindings {}
@@ -12820,1890 +12757,1888 @@ pub unsafe extern "C" fn cuCheckpointProcessUnlock(pid: ::std::os::raw::c_int, a
 }
 #[cfg(feature = "runtime-link")]
 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-    let bindings = unsafe {
-        Box::new(DynamicBindings {
-            cuGetErrorString: {
-                let p = get_proc_addr(lib, b"cuGetErrorString\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGetErrorName: {
-                let p = get_proc_addr(lib, b"cuGetErrorName\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuInit: {
-                let p = get_proc_addr(lib, b"cuInit\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDriverGetVersion: {
-                let p = get_proc_addr(lib, b"cuDriverGetVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGet: {
-                let p = get_proc_addr(lib, b"cuDeviceGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetCount: {
-                let p = get_proc_addr(lib, b"cuDeviceGetCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetName: {
-                let p = get_proc_addr(lib, b"cuDeviceGetName\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetUuid_v2: {
-                let p = get_proc_addr(lib, b"cuDeviceGetUuid_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetLuid: {
-                let p = get_proc_addr(lib, b"cuDeviceGetLuid\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceTotalMem_v2: {
-                let p = get_proc_addr(lib, b"cuDeviceTotalMem_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetTexture1DLinearMaxWidth: {
-                let p = get_proc_addr(lib, b"cuDeviceGetTexture1DLinearMaxWidth\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetAttribute: {
-                let p = get_proc_addr(lib, b"cuDeviceGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetHostAtomicCapabilities: {
-                let p = get_proc_addr(lib, b"cuDeviceGetHostAtomicCapabilities\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetNvSciSyncAttributes: {
-                let p = get_proc_addr(lib, b"cuDeviceGetNvSciSyncAttributes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceSetMemPool: {
-                let p = get_proc_addr(lib, b"cuDeviceSetMemPool\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetMemPool: {
-                let p = get_proc_addr(lib, b"cuDeviceGetMemPool\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetDefaultMemPool: {
-                let p = get_proc_addr(lib, b"cuDeviceGetDefaultMemPool\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetExecAffinitySupport: {
-                let p = get_proc_addr(lib, b"cuDeviceGetExecAffinitySupport\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFlushGPUDirectRDMAWrites: {
-                let p = get_proc_addr(lib, b"cuFlushGPUDirectRDMAWrites\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetProperties: {
-                let p = get_proc_addr(lib, b"cuDeviceGetProperties\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceComputeCapability: {
-                let p = get_proc_addr(lib, b"cuDeviceComputeCapability\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevicePrimaryCtxRetain: {
-                let p = get_proc_addr(lib, b"cuDevicePrimaryCtxRetain\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevicePrimaryCtxRelease_v2: {
-                let p = get_proc_addr(lib, b"cuDevicePrimaryCtxRelease_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevicePrimaryCtxSetFlags_v2: {
-                let p = get_proc_addr(lib, b"cuDevicePrimaryCtxSetFlags_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevicePrimaryCtxGetState: {
-                let p = get_proc_addr(lib, b"cuDevicePrimaryCtxGetState\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevicePrimaryCtxReset_v2: {
-                let p = get_proc_addr(lib, b"cuDevicePrimaryCtxReset_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxCreate_v4: {
-                let p = get_proc_addr(lib, b"cuCtxCreate_v4\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxDestroy_v2: {
-                let p = get_proc_addr(lib, b"cuCtxDestroy_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxPushCurrent_v2: {
-                let p = get_proc_addr(lib, b"cuCtxPushCurrent_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxPopCurrent_v2: {
-                let p = get_proc_addr(lib, b"cuCtxPopCurrent_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxSetCurrent: {
-                let p = get_proc_addr(lib, b"cuCtxSetCurrent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetCurrent: {
-                let p = get_proc_addr(lib, b"cuCtxGetCurrent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetDevice: {
-                let p = get_proc_addr(lib, b"cuCtxGetDevice\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetDevice_v2: {
-                let p = get_proc_addr(lib, b"cuCtxGetDevice_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetFlags: {
-                let p = get_proc_addr(lib, b"cuCtxGetFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxSetFlags: {
-                let p = get_proc_addr(lib, b"cuCtxSetFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetId: {
-                let p = get_proc_addr(lib, b"cuCtxGetId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxSynchronize: {
-                let p = get_proc_addr(lib, b"cuCtxSynchronize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxSynchronize_v2: {
-                let p = get_proc_addr(lib, b"cuCtxSynchronize_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxSetLimit: {
-                let p = get_proc_addr(lib, b"cuCtxSetLimit\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetLimit: {
-                let p = get_proc_addr(lib, b"cuCtxGetLimit\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetCacheConfig: {
-                let p = get_proc_addr(lib, b"cuCtxGetCacheConfig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxSetCacheConfig: {
-                let p = get_proc_addr(lib, b"cuCtxSetCacheConfig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetApiVersion: {
-                let p = get_proc_addr(lib, b"cuCtxGetApiVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetStreamPriorityRange: {
-                let p = get_proc_addr(lib, b"cuCtxGetStreamPriorityRange\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxResetPersistingL2Cache: {
-                let p = get_proc_addr(lib, b"cuCtxResetPersistingL2Cache\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetExecAffinity: {
-                let p = get_proc_addr(lib, b"cuCtxGetExecAffinity\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxRecordEvent: {
-                let p = get_proc_addr(lib, b"cuCtxRecordEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxWaitEvent: {
-                let p = get_proc_addr(lib, b"cuCtxWaitEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxAttach: {
-                let p = get_proc_addr(lib, b"cuCtxAttach\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxDetach: {
-                let p = get_proc_addr(lib, b"cuCtxDetach\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetSharedMemConfig: {
-                let p = get_proc_addr(lib, b"cuCtxGetSharedMemConfig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxSetSharedMemConfig: {
-                let p = get_proc_addr(lib, b"cuCtxSetSharedMemConfig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleLoad: {
-                let p = get_proc_addr(lib, b"cuModuleLoad\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleLoadData: {
-                let p = get_proc_addr(lib, b"cuModuleLoadData\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleLoadDataEx: {
-                let p = get_proc_addr(lib, b"cuModuleLoadDataEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleLoadFatBinary: {
-                let p = get_proc_addr(lib, b"cuModuleLoadFatBinary\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleUnload: {
-                let p = get_proc_addr(lib, b"cuModuleUnload\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleGetLoadingMode: {
-                let p = get_proc_addr(lib, b"cuModuleGetLoadingMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleGetFunction: {
-                let p = get_proc_addr(lib, b"cuModuleGetFunction\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleGetFunctionCount: {
-                let p = get_proc_addr(lib, b"cuModuleGetFunctionCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleEnumerateFunctions: {
-                let p = get_proc_addr(lib, b"cuModuleEnumerateFunctions\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleGetGlobal_v2: {
-                let p = get_proc_addr(lib, b"cuModuleGetGlobal_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLinkCreate_v2: {
-                let p = get_proc_addr(lib, b"cuLinkCreate_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLinkAddData_v2: {
-                let p = get_proc_addr(lib, b"cuLinkAddData_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLinkAddFile_v2: {
-                let p = get_proc_addr(lib, b"cuLinkAddFile_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLinkComplete: {
-                let p = get_proc_addr(lib, b"cuLinkComplete\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLinkDestroy: {
-                let p = get_proc_addr(lib, b"cuLinkDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleGetTexRef: {
-                let p = get_proc_addr(lib, b"cuModuleGetTexRef\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuModuleGetSurfRef: {
-                let p = get_proc_addr(lib, b"cuModuleGetSurfRef\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryLoadData: {
-                let p = get_proc_addr(lib, b"cuLibraryLoadData\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryLoadFromFile: {
-                let p = get_proc_addr(lib, b"cuLibraryLoadFromFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryUnload: {
-                let p = get_proc_addr(lib, b"cuLibraryUnload\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryGetKernel: {
-                let p = get_proc_addr(lib, b"cuLibraryGetKernel\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryGetKernelCount: {
-                let p = get_proc_addr(lib, b"cuLibraryGetKernelCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryEnumerateKernels: {
-                let p = get_proc_addr(lib, b"cuLibraryEnumerateKernels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryGetModule: {
-                let p = get_proc_addr(lib, b"cuLibraryGetModule\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelGetFunction: {
-                let p = get_proc_addr(lib, b"cuKernelGetFunction\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelGetLibrary: {
-                let p = get_proc_addr(lib, b"cuKernelGetLibrary\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryGetGlobal: {
-                let p = get_proc_addr(lib, b"cuLibraryGetGlobal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryGetManaged: {
-                let p = get_proc_addr(lib, b"cuLibraryGetManaged\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLibraryGetUnifiedFunction: {
-                let p = get_proc_addr(lib, b"cuLibraryGetUnifiedFunction\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelGetAttribute: {
-                let p = get_proc_addr(lib, b"cuKernelGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelSetAttribute: {
-                let p = get_proc_addr(lib, b"cuKernelSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelSetCacheConfig: {
-                let p = get_proc_addr(lib, b"cuKernelSetCacheConfig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelGetName: {
-                let p = get_proc_addr(lib, b"cuKernelGetName\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelGetParamInfo: {
-                let p = get_proc_addr(lib, b"cuKernelGetParamInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuKernelGetParamCount: {
-                let p = get_proc_addr(lib, b"cuKernelGetParamCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetInfo_v2: {
-                let p = get_proc_addr(lib, b"cuMemGetInfo_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAlloc_v2: {
-                let p = get_proc_addr(lib, b"cuMemAlloc_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAllocPitch_v2: {
-                let p = get_proc_addr(lib, b"cuMemAllocPitch_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemFree_v2: {
-                let p = get_proc_addr(lib, b"cuMemFree_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetAddressRange_v2: {
-                let p = get_proc_addr(lib, b"cuMemGetAddressRange_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAllocHost_v2: {
-                let p = get_proc_addr(lib, b"cuMemAllocHost_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemFreeHost: {
-                let p = get_proc_addr(lib, b"cuMemFreeHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemHostAlloc: {
-                let p = get_proc_addr(lib, b"cuMemHostAlloc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemHostGetDevicePointer_v2: {
-                let p = get_proc_addr(lib, b"cuMemHostGetDevicePointer_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemHostGetFlags: {
-                let p = get_proc_addr(lib, b"cuMemHostGetFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAllocManaged: {
-                let p = get_proc_addr(lib, b"cuMemAllocManaged\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceRegisterAsyncNotification: {
-                let p = get_proc_addr(lib, b"cuDeviceRegisterAsyncNotification\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceUnregisterAsyncNotification: {
-                let p = get_proc_addr(lib, b"cuDeviceUnregisterAsyncNotification\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetByPCIBusId: {
-                let p = get_proc_addr(lib, b"cuDeviceGetByPCIBusId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetPCIBusId: {
-                let p = get_proc_addr(lib, b"cuDeviceGetPCIBusId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuIpcGetEventHandle: {
-                let p = get_proc_addr(lib, b"cuIpcGetEventHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuIpcOpenEventHandle: {
-                let p = get_proc_addr(lib, b"cuIpcOpenEventHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuIpcGetMemHandle: {
-                let p = get_proc_addr(lib, b"cuIpcGetMemHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuIpcOpenMemHandle_v2: {
-                let p = get_proc_addr(lib, b"cuIpcOpenMemHandle_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuIpcCloseMemHandle: {
-                let p = get_proc_addr(lib, b"cuIpcCloseMemHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemHostRegister_v2: {
-                let p = get_proc_addr(lib, b"cuMemHostRegister_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemHostUnregister: {
-                let p = get_proc_addr(lib, b"cuMemHostUnregister\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy: {
-                let p = get_proc_addr(lib, b"cuMemcpy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyPeer: {
-                let p = get_proc_addr(lib, b"cuMemcpyPeer\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyHtoD_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyHtoD_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyDtoH_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyDtoH_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyDtoD_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyDtoD_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyDtoA_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyDtoA_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyAtoD_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyAtoD_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyHtoA_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyHtoA_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyAtoH_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyAtoH_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyAtoA_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyAtoA_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy2D_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpy2D_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy2DUnaligned_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpy2DUnaligned_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy3D_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpy3D_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy3DPeer: {
-                let p = get_proc_addr(lib, b"cuMemcpy3DPeer\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyAsync: {
-                let p = get_proc_addr(lib, b"cuMemcpyAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyPeerAsync: {
-                let p = get_proc_addr(lib, b"cuMemcpyPeerAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyHtoDAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyHtoDAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyDtoHAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyDtoHAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyDtoDAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyDtoDAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyHtoAAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyHtoAAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyAtoHAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyAtoHAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy2DAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpy2DAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy3DAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpy3DAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy3DPeerAsync: {
-                let p = get_proc_addr(lib, b"cuMemcpy3DPeerAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyBatchAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpyBatchAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy3DBatchAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemcpy3DBatchAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpyWithAttributesAsync: {
-                let p = get_proc_addr(lib, b"cuMemcpyWithAttributesAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemcpy3DWithAttributesAsync: {
-                let p = get_proc_addr(lib, b"cuMemcpy3DWithAttributesAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD8_v2: {
-                let p = get_proc_addr(lib, b"cuMemsetD8_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD16_v2: {
-                let p = get_proc_addr(lib, b"cuMemsetD16_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD32_v2: {
-                let p = get_proc_addr(lib, b"cuMemsetD32_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD2D8_v2: {
-                let p = get_proc_addr(lib, b"cuMemsetD2D8_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD2D16_v2: {
-                let p = get_proc_addr(lib, b"cuMemsetD2D16_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD2D32_v2: {
-                let p = get_proc_addr(lib, b"cuMemsetD2D32_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD8Async: {
-                let p = get_proc_addr(lib, b"cuMemsetD8Async\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD16Async: {
-                let p = get_proc_addr(lib, b"cuMemsetD16Async\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD32Async: {
-                let p = get_proc_addr(lib, b"cuMemsetD32Async\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD2D8Async: {
-                let p = get_proc_addr(lib, b"cuMemsetD2D8Async\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD2D16Async: {
-                let p = get_proc_addr(lib, b"cuMemsetD2D16Async\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemsetD2D32Async: {
-                let p = get_proc_addr(lib, b"cuMemsetD2D32Async\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArrayCreate_v2: {
-                let p = get_proc_addr(lib, b"cuArrayCreate_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArrayGetDescriptor_v2: {
-                let p = get_proc_addr(lib, b"cuArrayGetDescriptor_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArrayGetSparseProperties: {
-                let p = get_proc_addr(lib, b"cuArrayGetSparseProperties\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMipmappedArrayGetSparseProperties: {
-                let p = get_proc_addr(lib, b"cuMipmappedArrayGetSparseProperties\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArrayGetMemoryRequirements: {
-                let p = get_proc_addr(lib, b"cuArrayGetMemoryRequirements\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMipmappedArrayGetMemoryRequirements: {
-                let p = get_proc_addr(lib, b"cuMipmappedArrayGetMemoryRequirements\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArrayGetPlane: {
-                let p = get_proc_addr(lib, b"cuArrayGetPlane\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArrayDestroy: {
-                let p = get_proc_addr(lib, b"cuArrayDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArray3DCreate_v2: {
-                let p = get_proc_addr(lib, b"cuArray3DCreate_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuArray3DGetDescriptor_v2: {
-                let p = get_proc_addr(lib, b"cuArray3DGetDescriptor_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMipmappedArrayCreate: {
-                let p = get_proc_addr(lib, b"cuMipmappedArrayCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMipmappedArrayGetLevel: {
-                let p = get_proc_addr(lib, b"cuMipmappedArrayGetLevel\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMipmappedArrayDestroy: {
-                let p = get_proc_addr(lib, b"cuMipmappedArrayDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetHandleForAddressRange: {
-                let p = get_proc_addr(lib, b"cuMemGetHandleForAddressRange\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemBatchDecompressAsync: {
-                let p = get_proc_addr(lib, b"cuMemBatchDecompressAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAddressReserve: {
-                let p = get_proc_addr(lib, b"cuMemAddressReserve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAddressFree: {
-                let p = get_proc_addr(lib, b"cuMemAddressFree\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemCreate: {
-                let p = get_proc_addr(lib, b"cuMemCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemRelease: {
-                let p = get_proc_addr(lib, b"cuMemRelease\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemMap: {
-                let p = get_proc_addr(lib, b"cuMemMap\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemMapArrayAsync: {
-                let p = get_proc_addr(lib, b"cuMemMapArrayAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemUnmap: {
-                let p = get_proc_addr(lib, b"cuMemUnmap\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemSetAccess: {
-                let p = get_proc_addr(lib, b"cuMemSetAccess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetAccess: {
-                let p = get_proc_addr(lib, b"cuMemGetAccess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemExportToShareableHandle: {
-                let p = get_proc_addr(lib, b"cuMemExportToShareableHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemImportFromShareableHandle: {
-                let p = get_proc_addr(lib, b"cuMemImportFromShareableHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetAllocationGranularity: {
-                let p = get_proc_addr(lib, b"cuMemGetAllocationGranularity\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetAllocationPropertiesFromHandle: {
-                let p = get_proc_addr(lib, b"cuMemGetAllocationPropertiesFromHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemRetainAllocationHandle: {
-                let p = get_proc_addr(lib, b"cuMemRetainAllocationHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemFreeAsync: {
-                let p = get_proc_addr(lib, b"cuMemFreeAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAllocAsync: {
-                let p = get_proc_addr(lib, b"cuMemAllocAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolTrimTo: {
-                let p = get_proc_addr(lib, b"cuMemPoolTrimTo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolSetAttribute: {
-                let p = get_proc_addr(lib, b"cuMemPoolSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolGetAttribute: {
-                let p = get_proc_addr(lib, b"cuMemPoolGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolSetAccess: {
-                let p = get_proc_addr(lib, b"cuMemPoolSetAccess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolGetAccess: {
-                let p = get_proc_addr(lib, b"cuMemPoolGetAccess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolCreate: {
-                let p = get_proc_addr(lib, b"cuMemPoolCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolDestroy: {
-                let p = get_proc_addr(lib, b"cuMemPoolDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetDefaultMemPool: {
-                let p = get_proc_addr(lib, b"cuMemGetDefaultMemPool\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemGetMemPool: {
-                let p = get_proc_addr(lib, b"cuMemGetMemPool\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemSetMemPool: {
-                let p = get_proc_addr(lib, b"cuMemSetMemPool\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAllocFromPoolAsync: {
-                let p = get_proc_addr(lib, b"cuMemAllocFromPoolAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolExportToShareableHandle: {
-                let p = get_proc_addr(lib, b"cuMemPoolExportToShareableHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolImportFromShareableHandle: {
-                let p = get_proc_addr(lib, b"cuMemPoolImportFromShareableHandle\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolExportPointer: {
-                let p = get_proc_addr(lib, b"cuMemPoolExportPointer\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPoolImportPointer: {
-                let p = get_proc_addr(lib, b"cuMemPoolImportPointer\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastCreate: {
-                let p = get_proc_addr(lib, b"cuMulticastCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastAddDevice: {
-                let p = get_proc_addr(lib, b"cuMulticastAddDevice\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastBindMem: {
-                let p = get_proc_addr(lib, b"cuMulticastBindMem\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastBindMem_v2: {
-                let p = get_proc_addr(lib, b"cuMulticastBindMem_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastBindAddr: {
-                let p = get_proc_addr(lib, b"cuMulticastBindAddr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastBindAddr_v2: {
-                let p = get_proc_addr(lib, b"cuMulticastBindAddr_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastUnbind: {
-                let p = get_proc_addr(lib, b"cuMulticastUnbind\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMulticastGetGranularity: {
-                let p = get_proc_addr(lib, b"cuMulticastGetGranularity\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuPointerGetAttribute: {
-                let p = get_proc_addr(lib, b"cuPointerGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPrefetchAsync_v2: {
-                let p = get_proc_addr(lib, b"cuMemPrefetchAsync_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemAdvise_v2: {
-                let p = get_proc_addr(lib, b"cuMemAdvise_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemPrefetchBatchAsync: {
-                let p = get_proc_addr(lib, b"cuMemPrefetchBatchAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemDiscardBatchAsync: {
-                let p = get_proc_addr(lib, b"cuMemDiscardBatchAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemDiscardAndPrefetchBatchAsync: {
-                let p = get_proc_addr(lib, b"cuMemDiscardAndPrefetchBatchAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemRangeGetAttribute: {
-                let p = get_proc_addr(lib, b"cuMemRangeGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuMemRangeGetAttributes: {
-                let p = get_proc_addr(lib, b"cuMemRangeGetAttributes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuPointerSetAttribute: {
-                let p = get_proc_addr(lib, b"cuPointerSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuPointerGetAttributes: {
-                let p = get_proc_addr(lib, b"cuPointerGetAttributes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamCreate: {
-                let p = get_proc_addr(lib, b"cuStreamCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamCreateWithPriority: {
-                let p = get_proc_addr(lib, b"cuStreamCreateWithPriority\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamBeginCaptureToCig: {
-                let p = get_proc_addr(lib, b"cuStreamBeginCaptureToCig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamEndCaptureToCig: {
-                let p = get_proc_addr(lib, b"cuStreamEndCaptureToCig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetPriority: {
-                let p = get_proc_addr(lib, b"cuStreamGetPriority\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetDevice: {
-                let p = get_proc_addr(lib, b"cuStreamGetDevice\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetFlags: {
-                let p = get_proc_addr(lib, b"cuStreamGetFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetId: {
-                let p = get_proc_addr(lib, b"cuStreamGetId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetCtx: {
-                let p = get_proc_addr(lib, b"cuStreamGetCtx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetCtx_v2: {
-                let p = get_proc_addr(lib, b"cuStreamGetCtx_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamWaitEvent: {
-                let p = get_proc_addr(lib, b"cuStreamWaitEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamAddCallback: {
-                let p = get_proc_addr(lib, b"cuStreamAddCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamBeginCapture_v2: {
-                let p = get_proc_addr(lib, b"cuStreamBeginCapture_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamBeginCaptureToGraph: {
-                let p = get_proc_addr(lib, b"cuStreamBeginCaptureToGraph\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuThreadExchangeStreamCaptureMode: {
-                let p = get_proc_addr(lib, b"cuThreadExchangeStreamCaptureMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamEndCapture: {
-                let p = get_proc_addr(lib, b"cuStreamEndCapture\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamIsCapturing: {
-                let p = get_proc_addr(lib, b"cuStreamIsCapturing\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetCaptureInfo_v3: {
-                let p = get_proc_addr(lib, b"cuStreamGetCaptureInfo_v3\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamUpdateCaptureDependencies_v2: {
-                let p = get_proc_addr(lib, b"cuStreamUpdateCaptureDependencies_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamAttachMemAsync: {
-                let p = get_proc_addr(lib, b"cuStreamAttachMemAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamQuery: {
-                let p = get_proc_addr(lib, b"cuStreamQuery\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamSynchronize: {
-                let p = get_proc_addr(lib, b"cuStreamSynchronize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamDestroy_v2: {
-                let p = get_proc_addr(lib, b"cuStreamDestroy_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamCopyAttributes: {
-                let p = get_proc_addr(lib, b"cuStreamCopyAttributes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetAttribute: {
-                let p = get_proc_addr(lib, b"cuStreamGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamSetAttribute: {
-                let p = get_proc_addr(lib, b"cuStreamSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuEventCreate: {
-                let p = get_proc_addr(lib, b"cuEventCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuEventRecord: {
-                let p = get_proc_addr(lib, b"cuEventRecord\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuEventRecordWithFlags: {
-                let p = get_proc_addr(lib, b"cuEventRecordWithFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuEventQuery: {
-                let p = get_proc_addr(lib, b"cuEventQuery\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuEventSynchronize: {
-                let p = get_proc_addr(lib, b"cuEventSynchronize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuEventDestroy_v2: {
-                let p = get_proc_addr(lib, b"cuEventDestroy_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuEventElapsedTime_v2: {
-                let p = get_proc_addr(lib, b"cuEventElapsedTime_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuImportExternalMemory: {
-                let p = get_proc_addr(lib, b"cuImportExternalMemory\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuExternalMemoryGetMappedBuffer: {
-                let p = get_proc_addr(lib, b"cuExternalMemoryGetMappedBuffer\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuExternalMemoryGetMappedMipmappedArray: {
-                let p = get_proc_addr(lib, b"cuExternalMemoryGetMappedMipmappedArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDestroyExternalMemory: {
-                let p = get_proc_addr(lib, b"cuDestroyExternalMemory\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuImportExternalSemaphore: {
-                let p = get_proc_addr(lib, b"cuImportExternalSemaphore\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuSignalExternalSemaphoresAsync: {
-                let p = get_proc_addr(lib, b"cuSignalExternalSemaphoresAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuWaitExternalSemaphoresAsync: {
-                let p = get_proc_addr(lib, b"cuWaitExternalSemaphoresAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDestroyExternalSemaphore: {
-                let p = get_proc_addr(lib, b"cuDestroyExternalSemaphore\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamWaitValue32_v2: {
-                let p = get_proc_addr(lib, b"cuStreamWaitValue32_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamWaitValue64_v2: {
-                let p = get_proc_addr(lib, b"cuStreamWaitValue64_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamWriteValue32_v2: {
-                let p = get_proc_addr(lib, b"cuStreamWriteValue32_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamWriteValue64_v2: {
-                let p = get_proc_addr(lib, b"cuStreamWriteValue64_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamBatchMemOp_v2: {
-                let p = get_proc_addr(lib, b"cuStreamBatchMemOp_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncGetAttribute: {
-                let p = get_proc_addr(lib, b"cuFuncGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncSetAttribute: {
-                let p = get_proc_addr(lib, b"cuFuncSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncSetCacheConfig: {
-                let p = get_proc_addr(lib, b"cuFuncSetCacheConfig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncGetModule: {
-                let p = get_proc_addr(lib, b"cuFuncGetModule\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncGetName: {
-                let p = get_proc_addr(lib, b"cuFuncGetName\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncGetParamInfo: {
-                let p = get_proc_addr(lib, b"cuFuncGetParamInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncGetParamCount: {
-                let p = get_proc_addr(lib, b"cuFuncGetParamCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncIsLoaded: {
-                let p = get_proc_addr(lib, b"cuFuncIsLoaded\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncLoad: {
-                let p = get_proc_addr(lib, b"cuFuncLoad\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchKernel: {
-                let p = get_proc_addr(lib, b"cuLaunchKernel\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchKernelEx: {
-                let p = get_proc_addr(lib, b"cuLaunchKernelEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchCooperativeKernel: {
-                let p = get_proc_addr(lib, b"cuLaunchCooperativeKernel\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchCooperativeKernelMultiDevice: {
-                let p = get_proc_addr(lib, b"cuLaunchCooperativeKernelMultiDevice\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchHostFunc: {
-                let p = get_proc_addr(lib, b"cuLaunchHostFunc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchHostFunc_v2: {
-                let p = get_proc_addr(lib, b"cuLaunchHostFunc_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncSetBlockShape: {
-                let p = get_proc_addr(lib, b"cuFuncSetBlockShape\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncSetSharedSize: {
-                let p = get_proc_addr(lib, b"cuFuncSetSharedSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuParamSetSize: {
-                let p = get_proc_addr(lib, b"cuParamSetSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuParamSeti: {
-                let p = get_proc_addr(lib, b"cuParamSeti\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuParamSetf: {
-                let p = get_proc_addr(lib, b"cuParamSetf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuParamSetv: {
-                let p = get_proc_addr(lib, b"cuParamSetv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunch: {
-                let p = get_proc_addr(lib, b"cuLaunch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchGrid: {
-                let p = get_proc_addr(lib, b"cuLaunchGrid\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLaunchGridAsync: {
-                let p = get_proc_addr(lib, b"cuLaunchGridAsync\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuParamSetTexRef: {
-                let p = get_proc_addr(lib, b"cuParamSetTexRef\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuFuncSetSharedMemConfig: {
-                let p = get_proc_addr(lib, b"cuFuncSetSharedMemConfig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphCreate: {
-                let p = get_proc_addr(lib, b"cuGraphCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddKernelNode_v2: {
-                let p = get_proc_addr(lib, b"cuGraphAddKernelNode_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphKernelNodeGetParams_v2: {
-                let p = get_proc_addr(lib, b"cuGraphKernelNodeGetParams_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphKernelNodeSetParams_v2: {
-                let p = get_proc_addr(lib, b"cuGraphKernelNodeSetParams_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddMemcpyNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddMemcpyNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphMemcpyNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphMemcpyNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphMemcpyNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphMemcpyNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddMemsetNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddMemsetNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphMemsetNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphMemsetNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphMemsetNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphMemsetNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddHostNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddHostNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphHostNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphHostNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphHostNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphHostNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddChildGraphNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddChildGraphNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphChildGraphNodeGetGraph: {
-                let p = get_proc_addr(lib, b"cuGraphChildGraphNodeGetGraph\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddEmptyNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddEmptyNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddEventRecordNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddEventRecordNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphEventRecordNodeGetEvent: {
-                let p = get_proc_addr(lib, b"cuGraphEventRecordNodeGetEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphEventRecordNodeSetEvent: {
-                let p = get_proc_addr(lib, b"cuGraphEventRecordNodeSetEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddEventWaitNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddEventWaitNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphEventWaitNodeGetEvent: {
-                let p = get_proc_addr(lib, b"cuGraphEventWaitNodeGetEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphEventWaitNodeSetEvent: {
-                let p = get_proc_addr(lib, b"cuGraphEventWaitNodeSetEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddExternalSemaphoresSignalNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddExternalSemaphoresSignalNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExternalSemaphoresSignalNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresSignalNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExternalSemaphoresSignalNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresSignalNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddExternalSemaphoresWaitNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddExternalSemaphoresWaitNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExternalSemaphoresWaitNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresWaitNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExternalSemaphoresWaitNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresWaitNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddBatchMemOpNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddBatchMemOpNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphBatchMemOpNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphBatchMemOpNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphBatchMemOpNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphBatchMemOpNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecBatchMemOpNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecBatchMemOpNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddMemAllocNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddMemAllocNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphMemAllocNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphMemAllocNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddMemFreeNode: {
-                let p = get_proc_addr(lib, b"cuGraphAddMemFreeNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphMemFreeNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphMemFreeNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGraphMemTrim: {
-                let p = get_proc_addr(lib, b"cuDeviceGraphMemTrim\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetGraphMemAttribute: {
-                let p = get_proc_addr(lib, b"cuDeviceGetGraphMemAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceSetGraphMemAttribute: {
-                let p = get_proc_addr(lib, b"cuDeviceSetGraphMemAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphClone: {
-                let p = get_proc_addr(lib, b"cuGraphClone\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeFindInClone: {
-                let p = get_proc_addr(lib, b"cuGraphNodeFindInClone\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetType: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetContainingGraph: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetContainingGraph\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetLocalId: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetLocalId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetToolsId: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetToolsId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphGetId: {
-                let p = get_proc_addr(lib, b"cuGraphGetId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecGetId: {
-                let p = get_proc_addr(lib, b"cuGraphExecGetId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphGetNodes: {
-                let p = get_proc_addr(lib, b"cuGraphGetNodes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphGetRootNodes: {
-                let p = get_proc_addr(lib, b"cuGraphGetRootNodes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphGetEdges_v2: {
-                let p = get_proc_addr(lib, b"cuGraphGetEdges_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetDependencies_v2: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetDependencies_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetDependentNodes_v2: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetDependentNodes_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddDependencies_v2: {
-                let p = get_proc_addr(lib, b"cuGraphAddDependencies_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphRemoveDependencies_v2: {
-                let p = get_proc_addr(lib, b"cuGraphRemoveDependencies_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphDestroyNode: {
-                let p = get_proc_addr(lib, b"cuGraphDestroyNode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphInstantiateWithFlags: {
-                let p = get_proc_addr(lib, b"cuGraphInstantiateWithFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphInstantiateWithParams: {
-                let p = get_proc_addr(lib, b"cuGraphInstantiateWithParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecGetFlags: {
-                let p = get_proc_addr(lib, b"cuGraphExecGetFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecKernelNodeSetParams_v2: {
-                let p = get_proc_addr(lib, b"cuGraphExecKernelNodeSetParams_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecMemcpyNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecMemcpyNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecMemsetNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecMemsetNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecHostNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecHostNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecChildGraphNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecChildGraphNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecEventRecordNodeSetEvent: {
-                let p = get_proc_addr(lib, b"cuGraphExecEventRecordNodeSetEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecEventWaitNodeSetEvent: {
-                let p = get_proc_addr(lib, b"cuGraphExecEventWaitNodeSetEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecExternalSemaphoresSignalNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecExternalSemaphoresSignalNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecExternalSemaphoresWaitNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecExternalSemaphoresWaitNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeSetEnabled: {
-                let p = get_proc_addr(lib, b"cuGraphNodeSetEnabled\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetEnabled: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetEnabled\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphUpload: {
-                let p = get_proc_addr(lib, b"cuGraphUpload\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphLaunch: {
-                let p = get_proc_addr(lib, b"cuGraphLaunch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecDestroy: {
-                let p = get_proc_addr(lib, b"cuGraphExecDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphDestroy: {
-                let p = get_proc_addr(lib, b"cuGraphDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecUpdate_v2: {
-                let p = get_proc_addr(lib, b"cuGraphExecUpdate_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphKernelNodeCopyAttributes: {
-                let p = get_proc_addr(lib, b"cuGraphKernelNodeCopyAttributes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphKernelNodeGetAttribute: {
-                let p = get_proc_addr(lib, b"cuGraphKernelNodeGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphKernelNodeSetAttribute: {
-                let p = get_proc_addr(lib, b"cuGraphKernelNodeSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphDebugDotPrint: {
-                let p = get_proc_addr(lib, b"cuGraphDebugDotPrint\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuUserObjectCreate: {
-                let p = get_proc_addr(lib, b"cuUserObjectCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuUserObjectRetain: {
-                let p = get_proc_addr(lib, b"cuUserObjectRetain\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuUserObjectRelease: {
-                let p = get_proc_addr(lib, b"cuUserObjectRelease\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphRetainUserObject: {
-                let p = get_proc_addr(lib, b"cuGraphRetainUserObject\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphReleaseUserObject: {
-                let p = get_proc_addr(lib, b"cuGraphReleaseUserObject\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphAddNode_v2: {
-                let p = get_proc_addr(lib, b"cuGraphAddNode_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphNodeGetParams: {
-                let p = get_proc_addr(lib, b"cuGraphNodeGetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphExecNodeSetParams: {
-                let p = get_proc_addr(lib, b"cuGraphExecNodeSetParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphConditionalHandleCreate: {
-                let p = get_proc_addr(lib, b"cuGraphConditionalHandleCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuOccupancyMaxActiveBlocksPerMultiprocessor: {
-                let p = get_proc_addr(lib, b"cuOccupancyMaxActiveBlocksPerMultiprocessor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags: {
-                let p = get_proc_addr(lib, b"cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuOccupancyMaxPotentialBlockSize: {
-                let p = get_proc_addr(lib, b"cuOccupancyMaxPotentialBlockSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuOccupancyMaxPotentialBlockSizeWithFlags: {
-                let p = get_proc_addr(lib, b"cuOccupancyMaxPotentialBlockSizeWithFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuOccupancyAvailableDynamicSMemPerBlock: {
-                let p = get_proc_addr(lib, b"cuOccupancyAvailableDynamicSMemPerBlock\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuOccupancyMaxPotentialClusterSize: {
-                let p = get_proc_addr(lib, b"cuOccupancyMaxPotentialClusterSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuOccupancyMaxActiveClusters: {
-                let p = get_proc_addr(lib, b"cuOccupancyMaxActiveClusters\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetArray: {
-                let p = get_proc_addr(lib, b"cuTexRefSetArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetMipmappedArray: {
-                let p = get_proc_addr(lib, b"cuTexRefSetMipmappedArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetAddress_v2: {
-                let p = get_proc_addr(lib, b"cuTexRefSetAddress_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetAddress2D_v3: {
-                let p = get_proc_addr(lib, b"cuTexRefSetAddress2D_v3\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetFormat: {
-                let p = get_proc_addr(lib, b"cuTexRefSetFormat\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetAddressMode: {
-                let p = get_proc_addr(lib, b"cuTexRefSetAddressMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetFilterMode: {
-                let p = get_proc_addr(lib, b"cuTexRefSetFilterMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetMipmapFilterMode: {
-                let p = get_proc_addr(lib, b"cuTexRefSetMipmapFilterMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetMipmapLevelBias: {
-                let p = get_proc_addr(lib, b"cuTexRefSetMipmapLevelBias\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetMipmapLevelClamp: {
-                let p = get_proc_addr(lib, b"cuTexRefSetMipmapLevelClamp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetMaxAnisotropy: {
-                let p = get_proc_addr(lib, b"cuTexRefSetMaxAnisotropy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetBorderColor: {
-                let p = get_proc_addr(lib, b"cuTexRefSetBorderColor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefSetFlags: {
-                let p = get_proc_addr(lib, b"cuTexRefSetFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetAddress_v2: {
-                let p = get_proc_addr(lib, b"cuTexRefGetAddress_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetArray: {
-                let p = get_proc_addr(lib, b"cuTexRefGetArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetMipmappedArray: {
-                let p = get_proc_addr(lib, b"cuTexRefGetMipmappedArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetAddressMode: {
-                let p = get_proc_addr(lib, b"cuTexRefGetAddressMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetFilterMode: {
-                let p = get_proc_addr(lib, b"cuTexRefGetFilterMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetFormat: {
-                let p = get_proc_addr(lib, b"cuTexRefGetFormat\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetMipmapFilterMode: {
-                let p = get_proc_addr(lib, b"cuTexRefGetMipmapFilterMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetMipmapLevelBias: {
-                let p = get_proc_addr(lib, b"cuTexRefGetMipmapLevelBias\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetMipmapLevelClamp: {
-                let p = get_proc_addr(lib, b"cuTexRefGetMipmapLevelClamp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetMaxAnisotropy: {
-                let p = get_proc_addr(lib, b"cuTexRefGetMaxAnisotropy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetBorderColor: {
-                let p = get_proc_addr(lib, b"cuTexRefGetBorderColor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefGetFlags: {
-                let p = get_proc_addr(lib, b"cuTexRefGetFlags\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefCreate: {
-                let p = get_proc_addr(lib, b"cuTexRefCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexRefDestroy: {
-                let p = get_proc_addr(lib, b"cuTexRefDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuSurfRefSetArray: {
-                let p = get_proc_addr(lib, b"cuSurfRefSetArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuSurfRefGetArray: {
-                let p = get_proc_addr(lib, b"cuSurfRefGetArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexObjectCreate: {
-                let p = get_proc_addr(lib, b"cuTexObjectCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexObjectDestroy: {
-                let p = get_proc_addr(lib, b"cuTexObjectDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexObjectGetResourceDesc: {
-                let p = get_proc_addr(lib, b"cuTexObjectGetResourceDesc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexObjectGetTextureDesc: {
-                let p = get_proc_addr(lib, b"cuTexObjectGetTextureDesc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTexObjectGetResourceViewDesc: {
-                let p = get_proc_addr(lib, b"cuTexObjectGetResourceViewDesc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuSurfObjectCreate: {
-                let p = get_proc_addr(lib, b"cuSurfObjectCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuSurfObjectDestroy: {
-                let p = get_proc_addr(lib, b"cuSurfObjectDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuSurfObjectGetResourceDesc: {
-                let p = get_proc_addr(lib, b"cuSurfObjectGetResourceDesc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTensorMapEncodeTiled: {
-                let p = get_proc_addr(lib, b"cuTensorMapEncodeTiled\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTensorMapEncodeIm2col: {
-                let p = get_proc_addr(lib, b"cuTensorMapEncodeIm2col\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTensorMapEncodeIm2colWide: {
-                let p = get_proc_addr(lib, b"cuTensorMapEncodeIm2colWide\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuTensorMapReplaceAddress: {
-                let p = get_proc_addr(lib, b"cuTensorMapReplaceAddress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceCanAccessPeer: {
-                let p = get_proc_addr(lib, b"cuDeviceCanAccessPeer\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxEnablePeerAccess: {
-                let p = get_proc_addr(lib, b"cuCtxEnablePeerAccess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxDisablePeerAccess: {
-                let p = get_proc_addr(lib, b"cuCtxDisablePeerAccess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetP2PAttribute: {
-                let p = get_proc_addr(lib, b"cuDeviceGetP2PAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetP2PAtomicCapabilities: {
-                let p = get_proc_addr(lib, b"cuDeviceGetP2PAtomicCapabilities\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphicsUnregisterResource: {
-                let p = get_proc_addr(lib, b"cuGraphicsUnregisterResource\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphicsSubResourceGetMappedArray: {
-                let p = get_proc_addr(lib, b"cuGraphicsSubResourceGetMappedArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphicsResourceGetMappedMipmappedArray: {
-                let p = get_proc_addr(lib, b"cuGraphicsResourceGetMappedMipmappedArray\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphicsResourceGetMappedPointer_v2: {
-                let p = get_proc_addr(lib, b"cuGraphicsResourceGetMappedPointer_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphicsResourceSetMapFlags_v2: {
-                let p = get_proc_addr(lib, b"cuGraphicsResourceSetMapFlags_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphicsMapResources: {
-                let p = get_proc_addr(lib, b"cuGraphicsMapResources\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGraphicsUnmapResources: {
-                let p = get_proc_addr(lib, b"cuGraphicsUnmapResources\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGetProcAddress_v2: {
-                let p = get_proc_addr(lib, b"cuGetProcAddress_v2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpGetAttribute: {
-                let p = get_proc_addr(lib, b"cuCoredumpGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpGetAttributeGlobal: {
-                let p = get_proc_addr(lib, b"cuCoredumpGetAttributeGlobal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpSetAttribute: {
-                let p = get_proc_addr(lib, b"cuCoredumpSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpSetAttributeGlobal: {
-                let p = get_proc_addr(lib, b"cuCoredumpSetAttributeGlobal\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpRegisterStartCallback: {
-                let p = get_proc_addr(lib, b"cuCoredumpRegisterStartCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpRegisterCompleteCallback: {
-                let p = get_proc_addr(lib, b"cuCoredumpRegisterCompleteCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpDeregisterStartCallback: {
-                let p = get_proc_addr(lib, b"cuCoredumpDeregisterStartCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCoredumpDeregisterCompleteCallback: {
-                let p = get_proc_addr(lib, b"cuCoredumpDeregisterCompleteCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGetExportTable: {
-                let p = get_proc_addr(lib, b"cuGetExportTable\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGreenCtxCreate: {
-                let p = get_proc_addr(lib, b"cuGreenCtxCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGreenCtxDestroy: {
-                let p = get_proc_addr(lib, b"cuGreenCtxDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxFromGreenCtx: {
-                let p = get_proc_addr(lib, b"cuCtxFromGreenCtx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDeviceGetDevResource: {
-                let p = get_proc_addr(lib, b"cuDeviceGetDevResource\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCtxGetDevResource: {
-                let p = get_proc_addr(lib, b"cuCtxGetDevResource\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGreenCtxGetDevResource: {
-                let p = get_proc_addr(lib, b"cuGreenCtxGetDevResource\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevSmResourceSplitByCount: {
-                let p = get_proc_addr(lib, b"cuDevSmResourceSplitByCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevSmResourceSplit: {
-                let p = get_proc_addr(lib, b"cuDevSmResourceSplit\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuDevResourceGenerateDesc: {
-                let p = get_proc_addr(lib, b"cuDevResourceGenerateDesc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGreenCtxRecordEvent: {
-                let p = get_proc_addr(lib, b"cuGreenCtxRecordEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGreenCtxWaitEvent: {
-                let p = get_proc_addr(lib, b"cuGreenCtxWaitEvent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetGreenCtx: {
-                let p = get_proc_addr(lib, b"cuStreamGetGreenCtx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGreenCtxStreamCreate: {
-                let p = get_proc_addr(lib, b"cuGreenCtxStreamCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuGreenCtxGetId: {
-                let p = get_proc_addr(lib, b"cuGreenCtxGetId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuStreamGetDevResource: {
-                let p = get_proc_addr(lib, b"cuStreamGetDevResource\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLogsRegisterCallback: {
-                let p = get_proc_addr(lib, b"cuLogsRegisterCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLogsUnregisterCallback: {
-                let p = get_proc_addr(lib, b"cuLogsUnregisterCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLogsCurrent: {
-                let p = get_proc_addr(lib, b"cuLogsCurrent\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLogsDumpToFile: {
-                let p = get_proc_addr(lib, b"cuLogsDumpToFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuLogsDumpToMemory: {
-                let p = get_proc_addr(lib, b"cuLogsDumpToMemory\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCheckpointProcessGetRestoreThreadId: {
-                let p = get_proc_addr(lib, b"cuCheckpointProcessGetRestoreThreadId\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCheckpointProcessGetState: {
-                let p = get_proc_addr(lib, b"cuCheckpointProcessGetState\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCheckpointProcessLock: {
-                let p = get_proc_addr(lib, b"cuCheckpointProcessLock\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCheckpointProcessCheckpoint: {
-                let p = get_proc_addr(lib, b"cuCheckpointProcessCheckpoint\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCheckpointProcessRestore: {
-                let p = get_proc_addr(lib, b"cuCheckpointProcessRestore\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cuCheckpointProcessUnlock: {
-                let p = get_proc_addr(lib, b"cuCheckpointProcessUnlock\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-        })
-    };
+    let bindings = Box::new(DynamicBindings {
+        cuGetErrorString: {
+            let p = get_proc_addr(lib, b"cuGetErrorString\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGetErrorName: {
+            let p = get_proc_addr(lib, b"cuGetErrorName\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuInit: {
+            let p = get_proc_addr(lib, b"cuInit\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDriverGetVersion: {
+            let p = get_proc_addr(lib, b"cuDriverGetVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGet: {
+            let p = get_proc_addr(lib, b"cuDeviceGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetCount: {
+            let p = get_proc_addr(lib, b"cuDeviceGetCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetName: {
+            let p = get_proc_addr(lib, b"cuDeviceGetName\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetUuid_v2: {
+            let p = get_proc_addr(lib, b"cuDeviceGetUuid_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetLuid: {
+            let p = get_proc_addr(lib, b"cuDeviceGetLuid\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceTotalMem_v2: {
+            let p = get_proc_addr(lib, b"cuDeviceTotalMem_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetTexture1DLinearMaxWidth: {
+            let p = get_proc_addr(lib, b"cuDeviceGetTexture1DLinearMaxWidth\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetAttribute: {
+            let p = get_proc_addr(lib, b"cuDeviceGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetHostAtomicCapabilities: {
+            let p = get_proc_addr(lib, b"cuDeviceGetHostAtomicCapabilities\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetNvSciSyncAttributes: {
+            let p = get_proc_addr(lib, b"cuDeviceGetNvSciSyncAttributes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceSetMemPool: {
+            let p = get_proc_addr(lib, b"cuDeviceSetMemPool\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetMemPool: {
+            let p = get_proc_addr(lib, b"cuDeviceGetMemPool\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetDefaultMemPool: {
+            let p = get_proc_addr(lib, b"cuDeviceGetDefaultMemPool\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetExecAffinitySupport: {
+            let p = get_proc_addr(lib, b"cuDeviceGetExecAffinitySupport\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFlushGPUDirectRDMAWrites: {
+            let p = get_proc_addr(lib, b"cuFlushGPUDirectRDMAWrites\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetProperties: {
+            let p = get_proc_addr(lib, b"cuDeviceGetProperties\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceComputeCapability: {
+            let p = get_proc_addr(lib, b"cuDeviceComputeCapability\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevicePrimaryCtxRetain: {
+            let p = get_proc_addr(lib, b"cuDevicePrimaryCtxRetain\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevicePrimaryCtxRelease_v2: {
+            let p = get_proc_addr(lib, b"cuDevicePrimaryCtxRelease_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevicePrimaryCtxSetFlags_v2: {
+            let p = get_proc_addr(lib, b"cuDevicePrimaryCtxSetFlags_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevicePrimaryCtxGetState: {
+            let p = get_proc_addr(lib, b"cuDevicePrimaryCtxGetState\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevicePrimaryCtxReset_v2: {
+            let p = get_proc_addr(lib, b"cuDevicePrimaryCtxReset_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxCreate_v4: {
+            let p = get_proc_addr(lib, b"cuCtxCreate_v4\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxDestroy_v2: {
+            let p = get_proc_addr(lib, b"cuCtxDestroy_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxPushCurrent_v2: {
+            let p = get_proc_addr(lib, b"cuCtxPushCurrent_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxPopCurrent_v2: {
+            let p = get_proc_addr(lib, b"cuCtxPopCurrent_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxSetCurrent: {
+            let p = get_proc_addr(lib, b"cuCtxSetCurrent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetCurrent: {
+            let p = get_proc_addr(lib, b"cuCtxGetCurrent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetDevice: {
+            let p = get_proc_addr(lib, b"cuCtxGetDevice\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetDevice_v2: {
+            let p = get_proc_addr(lib, b"cuCtxGetDevice_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetFlags: {
+            let p = get_proc_addr(lib, b"cuCtxGetFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxSetFlags: {
+            let p = get_proc_addr(lib, b"cuCtxSetFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetId: {
+            let p = get_proc_addr(lib, b"cuCtxGetId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxSynchronize: {
+            let p = get_proc_addr(lib, b"cuCtxSynchronize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxSynchronize_v2: {
+            let p = get_proc_addr(lib, b"cuCtxSynchronize_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxSetLimit: {
+            let p = get_proc_addr(lib, b"cuCtxSetLimit\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetLimit: {
+            let p = get_proc_addr(lib, b"cuCtxGetLimit\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetCacheConfig: {
+            let p = get_proc_addr(lib, b"cuCtxGetCacheConfig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxSetCacheConfig: {
+            let p = get_proc_addr(lib, b"cuCtxSetCacheConfig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetApiVersion: {
+            let p = get_proc_addr(lib, b"cuCtxGetApiVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetStreamPriorityRange: {
+            let p = get_proc_addr(lib, b"cuCtxGetStreamPriorityRange\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxResetPersistingL2Cache: {
+            let p = get_proc_addr(lib, b"cuCtxResetPersistingL2Cache\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetExecAffinity: {
+            let p = get_proc_addr(lib, b"cuCtxGetExecAffinity\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxRecordEvent: {
+            let p = get_proc_addr(lib, b"cuCtxRecordEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxWaitEvent: {
+            let p = get_proc_addr(lib, b"cuCtxWaitEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxAttach: {
+            let p = get_proc_addr(lib, b"cuCtxAttach\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxDetach: {
+            let p = get_proc_addr(lib, b"cuCtxDetach\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetSharedMemConfig: {
+            let p = get_proc_addr(lib, b"cuCtxGetSharedMemConfig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxSetSharedMemConfig: {
+            let p = get_proc_addr(lib, b"cuCtxSetSharedMemConfig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleLoad: {
+            let p = get_proc_addr(lib, b"cuModuleLoad\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleLoadData: {
+            let p = get_proc_addr(lib, b"cuModuleLoadData\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleLoadDataEx: {
+            let p = get_proc_addr(lib, b"cuModuleLoadDataEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleLoadFatBinary: {
+            let p = get_proc_addr(lib, b"cuModuleLoadFatBinary\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleUnload: {
+            let p = get_proc_addr(lib, b"cuModuleUnload\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleGetLoadingMode: {
+            let p = get_proc_addr(lib, b"cuModuleGetLoadingMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleGetFunction: {
+            let p = get_proc_addr(lib, b"cuModuleGetFunction\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleGetFunctionCount: {
+            let p = get_proc_addr(lib, b"cuModuleGetFunctionCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleEnumerateFunctions: {
+            let p = get_proc_addr(lib, b"cuModuleEnumerateFunctions\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleGetGlobal_v2: {
+            let p = get_proc_addr(lib, b"cuModuleGetGlobal_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLinkCreate_v2: {
+            let p = get_proc_addr(lib, b"cuLinkCreate_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLinkAddData_v2: {
+            let p = get_proc_addr(lib, b"cuLinkAddData_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLinkAddFile_v2: {
+            let p = get_proc_addr(lib, b"cuLinkAddFile_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLinkComplete: {
+            let p = get_proc_addr(lib, b"cuLinkComplete\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLinkDestroy: {
+            let p = get_proc_addr(lib, b"cuLinkDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleGetTexRef: {
+            let p = get_proc_addr(lib, b"cuModuleGetTexRef\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuModuleGetSurfRef: {
+            let p = get_proc_addr(lib, b"cuModuleGetSurfRef\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryLoadData: {
+            let p = get_proc_addr(lib, b"cuLibraryLoadData\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryLoadFromFile: {
+            let p = get_proc_addr(lib, b"cuLibraryLoadFromFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryUnload: {
+            let p = get_proc_addr(lib, b"cuLibraryUnload\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryGetKernel: {
+            let p = get_proc_addr(lib, b"cuLibraryGetKernel\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryGetKernelCount: {
+            let p = get_proc_addr(lib, b"cuLibraryGetKernelCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryEnumerateKernels: {
+            let p = get_proc_addr(lib, b"cuLibraryEnumerateKernels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryGetModule: {
+            let p = get_proc_addr(lib, b"cuLibraryGetModule\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelGetFunction: {
+            let p = get_proc_addr(lib, b"cuKernelGetFunction\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelGetLibrary: {
+            let p = get_proc_addr(lib, b"cuKernelGetLibrary\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryGetGlobal: {
+            let p = get_proc_addr(lib, b"cuLibraryGetGlobal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryGetManaged: {
+            let p = get_proc_addr(lib, b"cuLibraryGetManaged\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLibraryGetUnifiedFunction: {
+            let p = get_proc_addr(lib, b"cuLibraryGetUnifiedFunction\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelGetAttribute: {
+            let p = get_proc_addr(lib, b"cuKernelGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelSetAttribute: {
+            let p = get_proc_addr(lib, b"cuKernelSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelSetCacheConfig: {
+            let p = get_proc_addr(lib, b"cuKernelSetCacheConfig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelGetName: {
+            let p = get_proc_addr(lib, b"cuKernelGetName\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelGetParamInfo: {
+            let p = get_proc_addr(lib, b"cuKernelGetParamInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuKernelGetParamCount: {
+            let p = get_proc_addr(lib, b"cuKernelGetParamCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetInfo_v2: {
+            let p = get_proc_addr(lib, b"cuMemGetInfo_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAlloc_v2: {
+            let p = get_proc_addr(lib, b"cuMemAlloc_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAllocPitch_v2: {
+            let p = get_proc_addr(lib, b"cuMemAllocPitch_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemFree_v2: {
+            let p = get_proc_addr(lib, b"cuMemFree_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetAddressRange_v2: {
+            let p = get_proc_addr(lib, b"cuMemGetAddressRange_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAllocHost_v2: {
+            let p = get_proc_addr(lib, b"cuMemAllocHost_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemFreeHost: {
+            let p = get_proc_addr(lib, b"cuMemFreeHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemHostAlloc: {
+            let p = get_proc_addr(lib, b"cuMemHostAlloc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemHostGetDevicePointer_v2: {
+            let p = get_proc_addr(lib, b"cuMemHostGetDevicePointer_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemHostGetFlags: {
+            let p = get_proc_addr(lib, b"cuMemHostGetFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAllocManaged: {
+            let p = get_proc_addr(lib, b"cuMemAllocManaged\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceRegisterAsyncNotification: {
+            let p = get_proc_addr(lib, b"cuDeviceRegisterAsyncNotification\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceUnregisterAsyncNotification: {
+            let p = get_proc_addr(lib, b"cuDeviceUnregisterAsyncNotification\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetByPCIBusId: {
+            let p = get_proc_addr(lib, b"cuDeviceGetByPCIBusId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetPCIBusId: {
+            let p = get_proc_addr(lib, b"cuDeviceGetPCIBusId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuIpcGetEventHandle: {
+            let p = get_proc_addr(lib, b"cuIpcGetEventHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuIpcOpenEventHandle: {
+            let p = get_proc_addr(lib, b"cuIpcOpenEventHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuIpcGetMemHandle: {
+            let p = get_proc_addr(lib, b"cuIpcGetMemHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuIpcOpenMemHandle_v2: {
+            let p = get_proc_addr(lib, b"cuIpcOpenMemHandle_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuIpcCloseMemHandle: {
+            let p = get_proc_addr(lib, b"cuIpcCloseMemHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemHostRegister_v2: {
+            let p = get_proc_addr(lib, b"cuMemHostRegister_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemHostUnregister: {
+            let p = get_proc_addr(lib, b"cuMemHostUnregister\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy: {
+            let p = get_proc_addr(lib, b"cuMemcpy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyPeer: {
+            let p = get_proc_addr(lib, b"cuMemcpyPeer\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyHtoD_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyHtoD_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyDtoH_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyDtoH_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyDtoD_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyDtoD_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyDtoA_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyDtoA_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyAtoD_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyAtoD_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyHtoA_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyHtoA_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyAtoH_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyAtoH_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyAtoA_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyAtoA_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy2D_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpy2D_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy2DUnaligned_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpy2DUnaligned_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy3D_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpy3D_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy3DPeer: {
+            let p = get_proc_addr(lib, b"cuMemcpy3DPeer\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyAsync: {
+            let p = get_proc_addr(lib, b"cuMemcpyAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyPeerAsync: {
+            let p = get_proc_addr(lib, b"cuMemcpyPeerAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyHtoDAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyHtoDAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyDtoHAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyDtoHAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyDtoDAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyDtoDAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyHtoAAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyHtoAAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyAtoHAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyAtoHAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy2DAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpy2DAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy3DAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpy3DAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy3DPeerAsync: {
+            let p = get_proc_addr(lib, b"cuMemcpy3DPeerAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyBatchAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpyBatchAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy3DBatchAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemcpy3DBatchAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpyWithAttributesAsync: {
+            let p = get_proc_addr(lib, b"cuMemcpyWithAttributesAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemcpy3DWithAttributesAsync: {
+            let p = get_proc_addr(lib, b"cuMemcpy3DWithAttributesAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD8_v2: {
+            let p = get_proc_addr(lib, b"cuMemsetD8_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD16_v2: {
+            let p = get_proc_addr(lib, b"cuMemsetD16_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD32_v2: {
+            let p = get_proc_addr(lib, b"cuMemsetD32_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD2D8_v2: {
+            let p = get_proc_addr(lib, b"cuMemsetD2D8_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD2D16_v2: {
+            let p = get_proc_addr(lib, b"cuMemsetD2D16_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD2D32_v2: {
+            let p = get_proc_addr(lib, b"cuMemsetD2D32_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD8Async: {
+            let p = get_proc_addr(lib, b"cuMemsetD8Async\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD16Async: {
+            let p = get_proc_addr(lib, b"cuMemsetD16Async\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD32Async: {
+            let p = get_proc_addr(lib, b"cuMemsetD32Async\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD2D8Async: {
+            let p = get_proc_addr(lib, b"cuMemsetD2D8Async\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD2D16Async: {
+            let p = get_proc_addr(lib, b"cuMemsetD2D16Async\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemsetD2D32Async: {
+            let p = get_proc_addr(lib, b"cuMemsetD2D32Async\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArrayCreate_v2: {
+            let p = get_proc_addr(lib, b"cuArrayCreate_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArrayGetDescriptor_v2: {
+            let p = get_proc_addr(lib, b"cuArrayGetDescriptor_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArrayGetSparseProperties: {
+            let p = get_proc_addr(lib, b"cuArrayGetSparseProperties\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMipmappedArrayGetSparseProperties: {
+            let p = get_proc_addr(lib, b"cuMipmappedArrayGetSparseProperties\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArrayGetMemoryRequirements: {
+            let p = get_proc_addr(lib, b"cuArrayGetMemoryRequirements\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMipmappedArrayGetMemoryRequirements: {
+            let p = get_proc_addr(lib, b"cuMipmappedArrayGetMemoryRequirements\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArrayGetPlane: {
+            let p = get_proc_addr(lib, b"cuArrayGetPlane\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArrayDestroy: {
+            let p = get_proc_addr(lib, b"cuArrayDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArray3DCreate_v2: {
+            let p = get_proc_addr(lib, b"cuArray3DCreate_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuArray3DGetDescriptor_v2: {
+            let p = get_proc_addr(lib, b"cuArray3DGetDescriptor_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMipmappedArrayCreate: {
+            let p = get_proc_addr(lib, b"cuMipmappedArrayCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMipmappedArrayGetLevel: {
+            let p = get_proc_addr(lib, b"cuMipmappedArrayGetLevel\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMipmappedArrayDestroy: {
+            let p = get_proc_addr(lib, b"cuMipmappedArrayDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetHandleForAddressRange: {
+            let p = get_proc_addr(lib, b"cuMemGetHandleForAddressRange\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemBatchDecompressAsync: {
+            let p = get_proc_addr(lib, b"cuMemBatchDecompressAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAddressReserve: {
+            let p = get_proc_addr(lib, b"cuMemAddressReserve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAddressFree: {
+            let p = get_proc_addr(lib, b"cuMemAddressFree\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemCreate: {
+            let p = get_proc_addr(lib, b"cuMemCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemRelease: {
+            let p = get_proc_addr(lib, b"cuMemRelease\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemMap: {
+            let p = get_proc_addr(lib, b"cuMemMap\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemMapArrayAsync: {
+            let p = get_proc_addr(lib, b"cuMemMapArrayAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemUnmap: {
+            let p = get_proc_addr(lib, b"cuMemUnmap\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemSetAccess: {
+            let p = get_proc_addr(lib, b"cuMemSetAccess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetAccess: {
+            let p = get_proc_addr(lib, b"cuMemGetAccess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemExportToShareableHandle: {
+            let p = get_proc_addr(lib, b"cuMemExportToShareableHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemImportFromShareableHandle: {
+            let p = get_proc_addr(lib, b"cuMemImportFromShareableHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetAllocationGranularity: {
+            let p = get_proc_addr(lib, b"cuMemGetAllocationGranularity\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetAllocationPropertiesFromHandle: {
+            let p = get_proc_addr(lib, b"cuMemGetAllocationPropertiesFromHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemRetainAllocationHandle: {
+            let p = get_proc_addr(lib, b"cuMemRetainAllocationHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemFreeAsync: {
+            let p = get_proc_addr(lib, b"cuMemFreeAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAllocAsync: {
+            let p = get_proc_addr(lib, b"cuMemAllocAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolTrimTo: {
+            let p = get_proc_addr(lib, b"cuMemPoolTrimTo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolSetAttribute: {
+            let p = get_proc_addr(lib, b"cuMemPoolSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolGetAttribute: {
+            let p = get_proc_addr(lib, b"cuMemPoolGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolSetAccess: {
+            let p = get_proc_addr(lib, b"cuMemPoolSetAccess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolGetAccess: {
+            let p = get_proc_addr(lib, b"cuMemPoolGetAccess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolCreate: {
+            let p = get_proc_addr(lib, b"cuMemPoolCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolDestroy: {
+            let p = get_proc_addr(lib, b"cuMemPoolDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetDefaultMemPool: {
+            let p = get_proc_addr(lib, b"cuMemGetDefaultMemPool\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemGetMemPool: {
+            let p = get_proc_addr(lib, b"cuMemGetMemPool\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemSetMemPool: {
+            let p = get_proc_addr(lib, b"cuMemSetMemPool\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAllocFromPoolAsync: {
+            let p = get_proc_addr(lib, b"cuMemAllocFromPoolAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolExportToShareableHandle: {
+            let p = get_proc_addr(lib, b"cuMemPoolExportToShareableHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolImportFromShareableHandle: {
+            let p = get_proc_addr(lib, b"cuMemPoolImportFromShareableHandle\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolExportPointer: {
+            let p = get_proc_addr(lib, b"cuMemPoolExportPointer\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPoolImportPointer: {
+            let p = get_proc_addr(lib, b"cuMemPoolImportPointer\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastCreate: {
+            let p = get_proc_addr(lib, b"cuMulticastCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastAddDevice: {
+            let p = get_proc_addr(lib, b"cuMulticastAddDevice\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastBindMem: {
+            let p = get_proc_addr(lib, b"cuMulticastBindMem\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastBindMem_v2: {
+            let p = get_proc_addr(lib, b"cuMulticastBindMem_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastBindAddr: {
+            let p = get_proc_addr(lib, b"cuMulticastBindAddr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastBindAddr_v2: {
+            let p = get_proc_addr(lib, b"cuMulticastBindAddr_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastUnbind: {
+            let p = get_proc_addr(lib, b"cuMulticastUnbind\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMulticastGetGranularity: {
+            let p = get_proc_addr(lib, b"cuMulticastGetGranularity\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuPointerGetAttribute: {
+            let p = get_proc_addr(lib, b"cuPointerGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPrefetchAsync_v2: {
+            let p = get_proc_addr(lib, b"cuMemPrefetchAsync_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemAdvise_v2: {
+            let p = get_proc_addr(lib, b"cuMemAdvise_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemPrefetchBatchAsync: {
+            let p = get_proc_addr(lib, b"cuMemPrefetchBatchAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemDiscardBatchAsync: {
+            let p = get_proc_addr(lib, b"cuMemDiscardBatchAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemDiscardAndPrefetchBatchAsync: {
+            let p = get_proc_addr(lib, b"cuMemDiscardAndPrefetchBatchAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemRangeGetAttribute: {
+            let p = get_proc_addr(lib, b"cuMemRangeGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuMemRangeGetAttributes: {
+            let p = get_proc_addr(lib, b"cuMemRangeGetAttributes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuPointerSetAttribute: {
+            let p = get_proc_addr(lib, b"cuPointerSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuPointerGetAttributes: {
+            let p = get_proc_addr(lib, b"cuPointerGetAttributes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamCreate: {
+            let p = get_proc_addr(lib, b"cuStreamCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamCreateWithPriority: {
+            let p = get_proc_addr(lib, b"cuStreamCreateWithPriority\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamBeginCaptureToCig: {
+            let p = get_proc_addr(lib, b"cuStreamBeginCaptureToCig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamEndCaptureToCig: {
+            let p = get_proc_addr(lib, b"cuStreamEndCaptureToCig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetPriority: {
+            let p = get_proc_addr(lib, b"cuStreamGetPriority\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetDevice: {
+            let p = get_proc_addr(lib, b"cuStreamGetDevice\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetFlags: {
+            let p = get_proc_addr(lib, b"cuStreamGetFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetId: {
+            let p = get_proc_addr(lib, b"cuStreamGetId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetCtx: {
+            let p = get_proc_addr(lib, b"cuStreamGetCtx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetCtx_v2: {
+            let p = get_proc_addr(lib, b"cuStreamGetCtx_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamWaitEvent: {
+            let p = get_proc_addr(lib, b"cuStreamWaitEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamAddCallback: {
+            let p = get_proc_addr(lib, b"cuStreamAddCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamBeginCapture_v2: {
+            let p = get_proc_addr(lib, b"cuStreamBeginCapture_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamBeginCaptureToGraph: {
+            let p = get_proc_addr(lib, b"cuStreamBeginCaptureToGraph\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuThreadExchangeStreamCaptureMode: {
+            let p = get_proc_addr(lib, b"cuThreadExchangeStreamCaptureMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamEndCapture: {
+            let p = get_proc_addr(lib, b"cuStreamEndCapture\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamIsCapturing: {
+            let p = get_proc_addr(lib, b"cuStreamIsCapturing\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetCaptureInfo_v3: {
+            let p = get_proc_addr(lib, b"cuStreamGetCaptureInfo_v3\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamUpdateCaptureDependencies_v2: {
+            let p = get_proc_addr(lib, b"cuStreamUpdateCaptureDependencies_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamAttachMemAsync: {
+            let p = get_proc_addr(lib, b"cuStreamAttachMemAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamQuery: {
+            let p = get_proc_addr(lib, b"cuStreamQuery\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamSynchronize: {
+            let p = get_proc_addr(lib, b"cuStreamSynchronize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamDestroy_v2: {
+            let p = get_proc_addr(lib, b"cuStreamDestroy_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamCopyAttributes: {
+            let p = get_proc_addr(lib, b"cuStreamCopyAttributes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetAttribute: {
+            let p = get_proc_addr(lib, b"cuStreamGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamSetAttribute: {
+            let p = get_proc_addr(lib, b"cuStreamSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuEventCreate: {
+            let p = get_proc_addr(lib, b"cuEventCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuEventRecord: {
+            let p = get_proc_addr(lib, b"cuEventRecord\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuEventRecordWithFlags: {
+            let p = get_proc_addr(lib, b"cuEventRecordWithFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuEventQuery: {
+            let p = get_proc_addr(lib, b"cuEventQuery\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuEventSynchronize: {
+            let p = get_proc_addr(lib, b"cuEventSynchronize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuEventDestroy_v2: {
+            let p = get_proc_addr(lib, b"cuEventDestroy_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuEventElapsedTime_v2: {
+            let p = get_proc_addr(lib, b"cuEventElapsedTime_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuImportExternalMemory: {
+            let p = get_proc_addr(lib, b"cuImportExternalMemory\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuExternalMemoryGetMappedBuffer: {
+            let p = get_proc_addr(lib, b"cuExternalMemoryGetMappedBuffer\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuExternalMemoryGetMappedMipmappedArray: {
+            let p = get_proc_addr(lib, b"cuExternalMemoryGetMappedMipmappedArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDestroyExternalMemory: {
+            let p = get_proc_addr(lib, b"cuDestroyExternalMemory\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuImportExternalSemaphore: {
+            let p = get_proc_addr(lib, b"cuImportExternalSemaphore\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuSignalExternalSemaphoresAsync: {
+            let p = get_proc_addr(lib, b"cuSignalExternalSemaphoresAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuWaitExternalSemaphoresAsync: {
+            let p = get_proc_addr(lib, b"cuWaitExternalSemaphoresAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDestroyExternalSemaphore: {
+            let p = get_proc_addr(lib, b"cuDestroyExternalSemaphore\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamWaitValue32_v2: {
+            let p = get_proc_addr(lib, b"cuStreamWaitValue32_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamWaitValue64_v2: {
+            let p = get_proc_addr(lib, b"cuStreamWaitValue64_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamWriteValue32_v2: {
+            let p = get_proc_addr(lib, b"cuStreamWriteValue32_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamWriteValue64_v2: {
+            let p = get_proc_addr(lib, b"cuStreamWriteValue64_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamBatchMemOp_v2: {
+            let p = get_proc_addr(lib, b"cuStreamBatchMemOp_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncGetAttribute: {
+            let p = get_proc_addr(lib, b"cuFuncGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncSetAttribute: {
+            let p = get_proc_addr(lib, b"cuFuncSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncSetCacheConfig: {
+            let p = get_proc_addr(lib, b"cuFuncSetCacheConfig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncGetModule: {
+            let p = get_proc_addr(lib, b"cuFuncGetModule\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncGetName: {
+            let p = get_proc_addr(lib, b"cuFuncGetName\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncGetParamInfo: {
+            let p = get_proc_addr(lib, b"cuFuncGetParamInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncGetParamCount: {
+            let p = get_proc_addr(lib, b"cuFuncGetParamCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncIsLoaded: {
+            let p = get_proc_addr(lib, b"cuFuncIsLoaded\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncLoad: {
+            let p = get_proc_addr(lib, b"cuFuncLoad\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchKernel: {
+            let p = get_proc_addr(lib, b"cuLaunchKernel\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchKernelEx: {
+            let p = get_proc_addr(lib, b"cuLaunchKernelEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchCooperativeKernel: {
+            let p = get_proc_addr(lib, b"cuLaunchCooperativeKernel\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchCooperativeKernelMultiDevice: {
+            let p = get_proc_addr(lib, b"cuLaunchCooperativeKernelMultiDevice\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchHostFunc: {
+            let p = get_proc_addr(lib, b"cuLaunchHostFunc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchHostFunc_v2: {
+            let p = get_proc_addr(lib, b"cuLaunchHostFunc_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncSetBlockShape: {
+            let p = get_proc_addr(lib, b"cuFuncSetBlockShape\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncSetSharedSize: {
+            let p = get_proc_addr(lib, b"cuFuncSetSharedSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuParamSetSize: {
+            let p = get_proc_addr(lib, b"cuParamSetSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuParamSeti: {
+            let p = get_proc_addr(lib, b"cuParamSeti\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuParamSetf: {
+            let p = get_proc_addr(lib, b"cuParamSetf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuParamSetv: {
+            let p = get_proc_addr(lib, b"cuParamSetv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunch: {
+            let p = get_proc_addr(lib, b"cuLaunch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchGrid: {
+            let p = get_proc_addr(lib, b"cuLaunchGrid\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLaunchGridAsync: {
+            let p = get_proc_addr(lib, b"cuLaunchGridAsync\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuParamSetTexRef: {
+            let p = get_proc_addr(lib, b"cuParamSetTexRef\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuFuncSetSharedMemConfig: {
+            let p = get_proc_addr(lib, b"cuFuncSetSharedMemConfig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphCreate: {
+            let p = get_proc_addr(lib, b"cuGraphCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddKernelNode_v2: {
+            let p = get_proc_addr(lib, b"cuGraphAddKernelNode_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphKernelNodeGetParams_v2: {
+            let p = get_proc_addr(lib, b"cuGraphKernelNodeGetParams_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphKernelNodeSetParams_v2: {
+            let p = get_proc_addr(lib, b"cuGraphKernelNodeSetParams_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddMemcpyNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddMemcpyNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphMemcpyNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphMemcpyNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphMemcpyNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphMemcpyNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddMemsetNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddMemsetNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphMemsetNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphMemsetNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphMemsetNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphMemsetNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddHostNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddHostNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphHostNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphHostNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphHostNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphHostNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddChildGraphNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddChildGraphNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphChildGraphNodeGetGraph: {
+            let p = get_proc_addr(lib, b"cuGraphChildGraphNodeGetGraph\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddEmptyNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddEmptyNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddEventRecordNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddEventRecordNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphEventRecordNodeGetEvent: {
+            let p = get_proc_addr(lib, b"cuGraphEventRecordNodeGetEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphEventRecordNodeSetEvent: {
+            let p = get_proc_addr(lib, b"cuGraphEventRecordNodeSetEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddEventWaitNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddEventWaitNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphEventWaitNodeGetEvent: {
+            let p = get_proc_addr(lib, b"cuGraphEventWaitNodeGetEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphEventWaitNodeSetEvent: {
+            let p = get_proc_addr(lib, b"cuGraphEventWaitNodeSetEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddExternalSemaphoresSignalNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddExternalSemaphoresSignalNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExternalSemaphoresSignalNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresSignalNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExternalSemaphoresSignalNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresSignalNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddExternalSemaphoresWaitNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddExternalSemaphoresWaitNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExternalSemaphoresWaitNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresWaitNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExternalSemaphoresWaitNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExternalSemaphoresWaitNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddBatchMemOpNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddBatchMemOpNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphBatchMemOpNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphBatchMemOpNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphBatchMemOpNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphBatchMemOpNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecBatchMemOpNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecBatchMemOpNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddMemAllocNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddMemAllocNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphMemAllocNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphMemAllocNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddMemFreeNode: {
+            let p = get_proc_addr(lib, b"cuGraphAddMemFreeNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphMemFreeNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphMemFreeNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGraphMemTrim: {
+            let p = get_proc_addr(lib, b"cuDeviceGraphMemTrim\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetGraphMemAttribute: {
+            let p = get_proc_addr(lib, b"cuDeviceGetGraphMemAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceSetGraphMemAttribute: {
+            let p = get_proc_addr(lib, b"cuDeviceSetGraphMemAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphClone: {
+            let p = get_proc_addr(lib, b"cuGraphClone\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeFindInClone: {
+            let p = get_proc_addr(lib, b"cuGraphNodeFindInClone\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetType: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetContainingGraph: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetContainingGraph\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetLocalId: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetLocalId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetToolsId: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetToolsId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphGetId: {
+            let p = get_proc_addr(lib, b"cuGraphGetId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecGetId: {
+            let p = get_proc_addr(lib, b"cuGraphExecGetId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphGetNodes: {
+            let p = get_proc_addr(lib, b"cuGraphGetNodes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphGetRootNodes: {
+            let p = get_proc_addr(lib, b"cuGraphGetRootNodes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphGetEdges_v2: {
+            let p = get_proc_addr(lib, b"cuGraphGetEdges_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetDependencies_v2: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetDependencies_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetDependentNodes_v2: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetDependentNodes_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddDependencies_v2: {
+            let p = get_proc_addr(lib, b"cuGraphAddDependencies_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphRemoveDependencies_v2: {
+            let p = get_proc_addr(lib, b"cuGraphRemoveDependencies_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphDestroyNode: {
+            let p = get_proc_addr(lib, b"cuGraphDestroyNode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphInstantiateWithFlags: {
+            let p = get_proc_addr(lib, b"cuGraphInstantiateWithFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphInstantiateWithParams: {
+            let p = get_proc_addr(lib, b"cuGraphInstantiateWithParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecGetFlags: {
+            let p = get_proc_addr(lib, b"cuGraphExecGetFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecKernelNodeSetParams_v2: {
+            let p = get_proc_addr(lib, b"cuGraphExecKernelNodeSetParams_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecMemcpyNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecMemcpyNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecMemsetNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecMemsetNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecHostNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecHostNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecChildGraphNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecChildGraphNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecEventRecordNodeSetEvent: {
+            let p = get_proc_addr(lib, b"cuGraphExecEventRecordNodeSetEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecEventWaitNodeSetEvent: {
+            let p = get_proc_addr(lib, b"cuGraphExecEventWaitNodeSetEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecExternalSemaphoresSignalNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecExternalSemaphoresSignalNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecExternalSemaphoresWaitNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecExternalSemaphoresWaitNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeSetEnabled: {
+            let p = get_proc_addr(lib, b"cuGraphNodeSetEnabled\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetEnabled: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetEnabled\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphUpload: {
+            let p = get_proc_addr(lib, b"cuGraphUpload\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphLaunch: {
+            let p = get_proc_addr(lib, b"cuGraphLaunch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecDestroy: {
+            let p = get_proc_addr(lib, b"cuGraphExecDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphDestroy: {
+            let p = get_proc_addr(lib, b"cuGraphDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecUpdate_v2: {
+            let p = get_proc_addr(lib, b"cuGraphExecUpdate_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphKernelNodeCopyAttributes: {
+            let p = get_proc_addr(lib, b"cuGraphKernelNodeCopyAttributes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphKernelNodeGetAttribute: {
+            let p = get_proc_addr(lib, b"cuGraphKernelNodeGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphKernelNodeSetAttribute: {
+            let p = get_proc_addr(lib, b"cuGraphKernelNodeSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphDebugDotPrint: {
+            let p = get_proc_addr(lib, b"cuGraphDebugDotPrint\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuUserObjectCreate: {
+            let p = get_proc_addr(lib, b"cuUserObjectCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuUserObjectRetain: {
+            let p = get_proc_addr(lib, b"cuUserObjectRetain\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuUserObjectRelease: {
+            let p = get_proc_addr(lib, b"cuUserObjectRelease\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphRetainUserObject: {
+            let p = get_proc_addr(lib, b"cuGraphRetainUserObject\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphReleaseUserObject: {
+            let p = get_proc_addr(lib, b"cuGraphReleaseUserObject\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphAddNode_v2: {
+            let p = get_proc_addr(lib, b"cuGraphAddNode_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphNodeGetParams: {
+            let p = get_proc_addr(lib, b"cuGraphNodeGetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphExecNodeSetParams: {
+            let p = get_proc_addr(lib, b"cuGraphExecNodeSetParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphConditionalHandleCreate: {
+            let p = get_proc_addr(lib, b"cuGraphConditionalHandleCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuOccupancyMaxActiveBlocksPerMultiprocessor: {
+            let p = get_proc_addr(lib, b"cuOccupancyMaxActiveBlocksPerMultiprocessor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags: {
+            let p = get_proc_addr(lib, b"cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuOccupancyMaxPotentialBlockSize: {
+            let p = get_proc_addr(lib, b"cuOccupancyMaxPotentialBlockSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuOccupancyMaxPotentialBlockSizeWithFlags: {
+            let p = get_proc_addr(lib, b"cuOccupancyMaxPotentialBlockSizeWithFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuOccupancyAvailableDynamicSMemPerBlock: {
+            let p = get_proc_addr(lib, b"cuOccupancyAvailableDynamicSMemPerBlock\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuOccupancyMaxPotentialClusterSize: {
+            let p = get_proc_addr(lib, b"cuOccupancyMaxPotentialClusterSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuOccupancyMaxActiveClusters: {
+            let p = get_proc_addr(lib, b"cuOccupancyMaxActiveClusters\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetArray: {
+            let p = get_proc_addr(lib, b"cuTexRefSetArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetMipmappedArray: {
+            let p = get_proc_addr(lib, b"cuTexRefSetMipmappedArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetAddress_v2: {
+            let p = get_proc_addr(lib, b"cuTexRefSetAddress_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetAddress2D_v3: {
+            let p = get_proc_addr(lib, b"cuTexRefSetAddress2D_v3\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetFormat: {
+            let p = get_proc_addr(lib, b"cuTexRefSetFormat\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetAddressMode: {
+            let p = get_proc_addr(lib, b"cuTexRefSetAddressMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetFilterMode: {
+            let p = get_proc_addr(lib, b"cuTexRefSetFilterMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetMipmapFilterMode: {
+            let p = get_proc_addr(lib, b"cuTexRefSetMipmapFilterMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetMipmapLevelBias: {
+            let p = get_proc_addr(lib, b"cuTexRefSetMipmapLevelBias\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetMipmapLevelClamp: {
+            let p = get_proc_addr(lib, b"cuTexRefSetMipmapLevelClamp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetMaxAnisotropy: {
+            let p = get_proc_addr(lib, b"cuTexRefSetMaxAnisotropy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetBorderColor: {
+            let p = get_proc_addr(lib, b"cuTexRefSetBorderColor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefSetFlags: {
+            let p = get_proc_addr(lib, b"cuTexRefSetFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetAddress_v2: {
+            let p = get_proc_addr(lib, b"cuTexRefGetAddress_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetArray: {
+            let p = get_proc_addr(lib, b"cuTexRefGetArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetMipmappedArray: {
+            let p = get_proc_addr(lib, b"cuTexRefGetMipmappedArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetAddressMode: {
+            let p = get_proc_addr(lib, b"cuTexRefGetAddressMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetFilterMode: {
+            let p = get_proc_addr(lib, b"cuTexRefGetFilterMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetFormat: {
+            let p = get_proc_addr(lib, b"cuTexRefGetFormat\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetMipmapFilterMode: {
+            let p = get_proc_addr(lib, b"cuTexRefGetMipmapFilterMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetMipmapLevelBias: {
+            let p = get_proc_addr(lib, b"cuTexRefGetMipmapLevelBias\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetMipmapLevelClamp: {
+            let p = get_proc_addr(lib, b"cuTexRefGetMipmapLevelClamp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetMaxAnisotropy: {
+            let p = get_proc_addr(lib, b"cuTexRefGetMaxAnisotropy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetBorderColor: {
+            let p = get_proc_addr(lib, b"cuTexRefGetBorderColor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefGetFlags: {
+            let p = get_proc_addr(lib, b"cuTexRefGetFlags\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefCreate: {
+            let p = get_proc_addr(lib, b"cuTexRefCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexRefDestroy: {
+            let p = get_proc_addr(lib, b"cuTexRefDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuSurfRefSetArray: {
+            let p = get_proc_addr(lib, b"cuSurfRefSetArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuSurfRefGetArray: {
+            let p = get_proc_addr(lib, b"cuSurfRefGetArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexObjectCreate: {
+            let p = get_proc_addr(lib, b"cuTexObjectCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexObjectDestroy: {
+            let p = get_proc_addr(lib, b"cuTexObjectDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexObjectGetResourceDesc: {
+            let p = get_proc_addr(lib, b"cuTexObjectGetResourceDesc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexObjectGetTextureDesc: {
+            let p = get_proc_addr(lib, b"cuTexObjectGetTextureDesc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTexObjectGetResourceViewDesc: {
+            let p = get_proc_addr(lib, b"cuTexObjectGetResourceViewDesc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuSurfObjectCreate: {
+            let p = get_proc_addr(lib, b"cuSurfObjectCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuSurfObjectDestroy: {
+            let p = get_proc_addr(lib, b"cuSurfObjectDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuSurfObjectGetResourceDesc: {
+            let p = get_proc_addr(lib, b"cuSurfObjectGetResourceDesc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTensorMapEncodeTiled: {
+            let p = get_proc_addr(lib, b"cuTensorMapEncodeTiled\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTensorMapEncodeIm2col: {
+            let p = get_proc_addr(lib, b"cuTensorMapEncodeIm2col\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTensorMapEncodeIm2colWide: {
+            let p = get_proc_addr(lib, b"cuTensorMapEncodeIm2colWide\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuTensorMapReplaceAddress: {
+            let p = get_proc_addr(lib, b"cuTensorMapReplaceAddress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceCanAccessPeer: {
+            let p = get_proc_addr(lib, b"cuDeviceCanAccessPeer\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxEnablePeerAccess: {
+            let p = get_proc_addr(lib, b"cuCtxEnablePeerAccess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxDisablePeerAccess: {
+            let p = get_proc_addr(lib, b"cuCtxDisablePeerAccess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetP2PAttribute: {
+            let p = get_proc_addr(lib, b"cuDeviceGetP2PAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetP2PAtomicCapabilities: {
+            let p = get_proc_addr(lib, b"cuDeviceGetP2PAtomicCapabilities\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphicsUnregisterResource: {
+            let p = get_proc_addr(lib, b"cuGraphicsUnregisterResource\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphicsSubResourceGetMappedArray: {
+            let p = get_proc_addr(lib, b"cuGraphicsSubResourceGetMappedArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphicsResourceGetMappedMipmappedArray: {
+            let p = get_proc_addr(lib, b"cuGraphicsResourceGetMappedMipmappedArray\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphicsResourceGetMappedPointer_v2: {
+            let p = get_proc_addr(lib, b"cuGraphicsResourceGetMappedPointer_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphicsResourceSetMapFlags_v2: {
+            let p = get_proc_addr(lib, b"cuGraphicsResourceSetMapFlags_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphicsMapResources: {
+            let p = get_proc_addr(lib, b"cuGraphicsMapResources\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGraphicsUnmapResources: {
+            let p = get_proc_addr(lib, b"cuGraphicsUnmapResources\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGetProcAddress_v2: {
+            let p = get_proc_addr(lib, b"cuGetProcAddress_v2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpGetAttribute: {
+            let p = get_proc_addr(lib, b"cuCoredumpGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpGetAttributeGlobal: {
+            let p = get_proc_addr(lib, b"cuCoredumpGetAttributeGlobal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpSetAttribute: {
+            let p = get_proc_addr(lib, b"cuCoredumpSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpSetAttributeGlobal: {
+            let p = get_proc_addr(lib, b"cuCoredumpSetAttributeGlobal\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpRegisterStartCallback: {
+            let p = get_proc_addr(lib, b"cuCoredumpRegisterStartCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpRegisterCompleteCallback: {
+            let p = get_proc_addr(lib, b"cuCoredumpRegisterCompleteCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpDeregisterStartCallback: {
+            let p = get_proc_addr(lib, b"cuCoredumpDeregisterStartCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCoredumpDeregisterCompleteCallback: {
+            let p = get_proc_addr(lib, b"cuCoredumpDeregisterCompleteCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGetExportTable: {
+            let p = get_proc_addr(lib, b"cuGetExportTable\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGreenCtxCreate: {
+            let p = get_proc_addr(lib, b"cuGreenCtxCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGreenCtxDestroy: {
+            let p = get_proc_addr(lib, b"cuGreenCtxDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxFromGreenCtx: {
+            let p = get_proc_addr(lib, b"cuCtxFromGreenCtx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDeviceGetDevResource: {
+            let p = get_proc_addr(lib, b"cuDeviceGetDevResource\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCtxGetDevResource: {
+            let p = get_proc_addr(lib, b"cuCtxGetDevResource\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGreenCtxGetDevResource: {
+            let p = get_proc_addr(lib, b"cuGreenCtxGetDevResource\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevSmResourceSplitByCount: {
+            let p = get_proc_addr(lib, b"cuDevSmResourceSplitByCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevSmResourceSplit: {
+            let p = get_proc_addr(lib, b"cuDevSmResourceSplit\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuDevResourceGenerateDesc: {
+            let p = get_proc_addr(lib, b"cuDevResourceGenerateDesc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGreenCtxRecordEvent: {
+            let p = get_proc_addr(lib, b"cuGreenCtxRecordEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGreenCtxWaitEvent: {
+            let p = get_proc_addr(lib, b"cuGreenCtxWaitEvent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetGreenCtx: {
+            let p = get_proc_addr(lib, b"cuStreamGetGreenCtx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGreenCtxStreamCreate: {
+            let p = get_proc_addr(lib, b"cuGreenCtxStreamCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuGreenCtxGetId: {
+            let p = get_proc_addr(lib, b"cuGreenCtxGetId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuStreamGetDevResource: {
+            let p = get_proc_addr(lib, b"cuStreamGetDevResource\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLogsRegisterCallback: {
+            let p = get_proc_addr(lib, b"cuLogsRegisterCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLogsUnregisterCallback: {
+            let p = get_proc_addr(lib, b"cuLogsUnregisterCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLogsCurrent: {
+            let p = get_proc_addr(lib, b"cuLogsCurrent\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLogsDumpToFile: {
+            let p = get_proc_addr(lib, b"cuLogsDumpToFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuLogsDumpToMemory: {
+            let p = get_proc_addr(lib, b"cuLogsDumpToMemory\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCheckpointProcessGetRestoreThreadId: {
+            let p = get_proc_addr(lib, b"cuCheckpointProcessGetRestoreThreadId\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCheckpointProcessGetState: {
+            let p = get_proc_addr(lib, b"cuCheckpointProcessGetState\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCheckpointProcessLock: {
+            let p = get_proc_addr(lib, b"cuCheckpointProcessLock\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCheckpointProcessCheckpoint: {
+            let p = get_proc_addr(lib, b"cuCheckpointProcessCheckpoint\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCheckpointProcessRestore: {
+            let p = get_proc_addr(lib, b"cuCheckpointProcessRestore\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cuCheckpointProcessUnlock: {
+            let p = get_proc_addr(lib, b"cuCheckpointProcessUnlock\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+    });
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
 unsafe impl Send for CUctx_st {}

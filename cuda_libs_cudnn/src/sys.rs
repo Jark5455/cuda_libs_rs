@@ -1,3 +1,4 @@
+#![allow(unsafe_op_in_unsafe_fn)]
 use cuda_libs_cudart::sys::*;
 pub const CUDNN_MAJOR: u32 = 9;
 pub const CUDNN_MINOR: u32 = 20;
@@ -3319,1413 +3320,1003 @@ pub struct DynamicBindings {
     pub cudnnGetVersion: Option<unsafe extern "C" fn() -> usize>,
     pub cudnnGetMaxDeviceVersion: Option<unsafe extern "C" fn() -> usize>,
     pub cudnnGetCudartVersion: Option<unsafe extern "C" fn() -> usize>,
-    pub cudnnGetErrorString: Option<unsafe extern "C" fn(status: cudnnStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cudnnGetLastErrorString: Option<unsafe extern "C" fn(message: *mut ::std::os::raw::c_char, max_size: usize)>,
-    pub cudnnQueryRuntimeError: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rstatus: *mut cudnnStatus_t, mode: cudnnErrQueryMode_t, tag: *mut cudnnRuntimeTag_t) -> cudnnStatus_t>,
-    pub cudnnGetProperty: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnCreate: Option<unsafe extern "C" fn(handle: *mut cudnnHandle_t) -> cudnnStatus_t>,
-    pub cudnnDestroy: Option<unsafe extern "C" fn(handle: cudnnHandle_t) -> cudnnStatus_t>,
-    pub cudnnSetStream: Option<unsafe extern "C" fn(handle: cudnnHandle_t, streamId: cudaStream_t) -> cudnnStatus_t>,
-    pub cudnnGetStream: Option<unsafe extern "C" fn(handle: cudnnHandle_t, streamId: *mut cudaStream_t) -> cudnnStatus_t>,
-    pub cudnnSetCallback: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_uint, udata: *mut ::std::os::raw::c_void, fptr: cudnnCallback_t) -> cudnnStatus_t>,
-    pub cudnnGetCallback: Option<unsafe extern "C" fn(mask: *mut ::std::os::raw::c_uint, udata: *mut *mut ::std::os::raw::c_void, fptr: *mut cudnnCallback_t) -> cudnnStatus_t>,
+    pub cudnnGetErrorString: Option<unsafe extern "C" fn(cudnnStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cudnnGetLastErrorString: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, usize)>,
+    pub cudnnQueryRuntimeError: Option<unsafe extern "C" fn(cudnnHandle_t, *mut cudnnStatus_t, cudnnErrQueryMode_t, *mut cudnnRuntimeTag_t) -> cudnnStatus_t>,
+    pub cudnnGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnCreate: Option<unsafe extern "C" fn(*mut cudnnHandle_t) -> cudnnStatus_t>,
+    pub cudnnDestroy: Option<unsafe extern "C" fn(cudnnHandle_t) -> cudnnStatus_t>,
+    pub cudnnSetStream: Option<unsafe extern "C" fn(cudnnHandle_t, cudaStream_t) -> cudnnStatus_t>,
+    pub cudnnGetStream: Option<unsafe extern "C" fn(cudnnHandle_t, *mut cudaStream_t) -> cudnnStatus_t>,
+    pub cudnnSetCallback: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut ::std::os::raw::c_void, cudnnCallback_t) -> cudnnStatus_t>,
+    pub cudnnGetCallback: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *mut *mut ::std::os::raw::c_void, *mut cudnnCallback_t) -> cudnnStatus_t>,
     pub cudnnGraphVersionCheck: Option<unsafe extern "C" fn() -> cudnnStatus_t>,
-    pub cudnnBackendCreateDescriptor: Option<unsafe extern "C" fn(descriptorType: cudnnBackendDescriptorType_t, descriptor: *mut cudnnBackendDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnBackendDestroyDescriptor: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnBackendInitialize: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnBackendFinalize: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnBackendSetAttribute: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, elementCount: i64, arrayOfElements: *const ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnBackendGetAttribute:
-        Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, requestedElementCount: i64, elementCount: *mut i64, arrayOfElements: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnBackendExecute: Option<unsafe extern "C" fn(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnBackendPopulateCudaGraph: Option<unsafe extern "C" fn(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t, graph: cudaGraph_t) -> cudnnStatus_t>,
-    pub cudnnBackendUpdateCudaGraph: Option<unsafe extern "C" fn(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t, graph: cudaGraph_t) -> cudnnStatus_t>,
-    pub cudnnCreateTensorDescriptor: Option<unsafe extern "C" fn(tensorDesc: *mut cudnnTensorDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetTensor4dDescriptor: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, n: ::std::os::raw::c_int, c: ::std::os::raw::c_int, h: ::std::os::raw::c_int, w: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnSetTensor4dDescriptorEx: Option<
-        unsafe extern "C" fn(
-            tensorDesc: cudnnTensorDescriptor_t,
-            dataType: cudnnDataType_t,
-            n: ::std::os::raw::c_int,
-            c: ::std::os::raw::c_int,
-            h: ::std::os::raw::c_int,
-            w: ::std::os::raw::c_int,
-            nStride: ::std::os::raw::c_int,
-            cStride: ::std::os::raw::c_int,
-            hStride: ::std::os::raw::c_int,
-            wStride: ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnBackendCreateDescriptor: Option<unsafe extern "C" fn(cudnnBackendDescriptorType_t, *mut cudnnBackendDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnBackendDestroyDescriptor: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnBackendInitialize: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnBackendFinalize: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnBackendSetAttribute: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *const ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnBackendGetAttribute: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *mut i64, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnBackendExecute: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBackendDescriptor_t, cudnnBackendDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnBackendPopulateCudaGraph: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBackendDescriptor_t, cudnnBackendDescriptor_t, cudaGraph_t) -> cudnnStatus_t>,
+    pub cudnnBackendUpdateCudaGraph: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBackendDescriptor_t, cudnnBackendDescriptor_t, cudaGraph_t) -> cudnnStatus_t>,
+    pub cudnnCreateTensorDescriptor: Option<unsafe extern "C" fn(*mut cudnnTensorDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetTensor4dDescriptor: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnSetTensor4dDescriptorEx:
+        Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnGetTensor4dDescriptor: Option<
         unsafe extern "C" fn(
-            tensorDesc: cudnnTensorDescriptor_t,
-            dataType: *mut cudnnDataType_t,
-            n: *mut ::std::os::raw::c_int,
-            c: *mut ::std::os::raw::c_int,
-            h: *mut ::std::os::raw::c_int,
-            w: *mut ::std::os::raw::c_int,
-            nStride: *mut ::std::os::raw::c_int,
-            cStride: *mut ::std::os::raw::c_int,
-            hStride: *mut ::std::os::raw::c_int,
-            wStride: *mut ::std::os::raw::c_int,
+            cudnnTensorDescriptor_t,
+            *mut cudnnDataType_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnSetTensorNdDescriptor: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, dataType: cudnnDataType_t, nbDims: ::std::os::raw::c_int, dimA: *const ::std::os::raw::c_int, strideA: *const ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnSetTensorNdDescriptorEx: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, nbDims: ::std::os::raw::c_int, dimA: *const ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetTensorNdDescriptor: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, nbDimsRequested: ::std::os::raw::c_int, dataType: *mut cudnnDataType_t, nbDims: *mut ::std::os::raw::c_int, dimA: *mut ::std::os::raw::c_int, strideA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetTensorSizeInBytes: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, size: *mut usize) -> cudnnStatus_t>,
-    pub cudnnDestroyTensorDescriptor: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnInitTransformDest: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t, srcDesc: cudnnTensorDescriptor_t, destDesc: cudnnTensorDescriptor_t, destSizeInBytes: *mut usize) -> cudnnStatus_t>,
-    pub cudnnCreateTensorTransformDescriptor: Option<unsafe extern "C" fn(transformDesc: *mut cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetTensorTransformDescriptor: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t, nbDims: u32, destFormat: cudnnTensorFormat_t, padBeforeA: *const i32, padAfterA: *const i32, foldA: *const u32, direction: cudnnFoldingDirection_t) -> cudnnStatus_t>,
-    pub cudnnGetTensorTransformDescriptor: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t, nbDimsRequested: u32, destFormat: *mut cudnnTensorFormat_t, padBeforeA: *mut i32, padAfterA: *mut i32, foldA: *mut u32, direction: *mut cudnnFoldingDirection_t) -> cudnnStatus_t>,
-    pub cudnnDestroyTensorTransformDescriptor: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnTransformTensor:
-        Option<unsafe extern "C" fn(handle: cudnnHandle_t, alpha: *const ::std::os::raw::c_void, xDesc: cudnnTensorDescriptor_t, x: *const ::std::os::raw::c_void, beta: *const ::std::os::raw::c_void, yDesc: cudnnTensorDescriptor_t, y: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnTransformTensorEx: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            transDesc: cudnnTensorTransformDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            srcDesc: cudnnTensorDescriptor_t,
-            srcData: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            destDesc: cudnnTensorDescriptor_t,
-            destData: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnAddTensor: Option<unsafe extern "C" fn(handle: cudnnHandle_t, alpha: *const ::std::os::raw::c_void, aDesc: cudnnTensorDescriptor_t, A: *const ::std::os::raw::c_void, beta: *const ::std::os::raw::c_void, cDesc: cudnnTensorDescriptor_t, C: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnCreateOpTensorDescriptor: Option<unsafe extern "C" fn(opTensorDesc: *mut cudnnOpTensorDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetOpTensorDescriptor: Option<unsafe extern "C" fn(opTensorDesc: cudnnOpTensorDescriptor_t, opTensorOp: cudnnOpTensorOp_t, opTensorCompType: cudnnDataType_t, opTensorNanOpt: cudnnNanPropagation_t) -> cudnnStatus_t>,
-    pub cudnnGetOpTensorDescriptor: Option<unsafe extern "C" fn(opTensorDesc: cudnnOpTensorDescriptor_t, opTensorOp: *mut cudnnOpTensorOp_t, opTensorCompType: *mut cudnnDataType_t, opTensorNanOpt: *mut cudnnNanPropagation_t) -> cudnnStatus_t>,
-    pub cudnnDestroyOpTensorDescriptor: Option<unsafe extern "C" fn(opTensorDesc: cudnnOpTensorDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetTensorNdDescriptor: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnSetTensorNdDescriptorEx: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetTensorNdDescriptor: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut cudnnDataType_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetTensorSizeInBytes: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnDestroyTensorDescriptor: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnInitTransformDest: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnCreateTensorTransformDescriptor: Option<unsafe extern "C" fn(*mut cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetTensorTransformDescriptor: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t, u32, cudnnTensorFormat_t, *const i32, *const i32, *const u32, cudnnFoldingDirection_t) -> cudnnStatus_t>,
+    pub cudnnGetTensorTransformDescriptor: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t, u32, *mut cudnnTensorFormat_t, *mut i32, *mut i32, *mut u32, *mut cudnnFoldingDirection_t) -> cudnnStatus_t>,
+    pub cudnnDestroyTensorTransformDescriptor: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnTransformTensor: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnTransformTensorEx: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnAddTensor: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateOpTensorDescriptor: Option<unsafe extern "C" fn(*mut cudnnOpTensorDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetOpTensorDescriptor: Option<unsafe extern "C" fn(cudnnOpTensorDescriptor_t, cudnnOpTensorOp_t, cudnnDataType_t, cudnnNanPropagation_t) -> cudnnStatus_t>,
+    pub cudnnGetOpTensorDescriptor: Option<unsafe extern "C" fn(cudnnOpTensorDescriptor_t, *mut cudnnOpTensorOp_t, *mut cudnnDataType_t, *mut cudnnNanPropagation_t) -> cudnnStatus_t>,
+    pub cudnnDestroyOpTensorDescriptor: Option<unsafe extern "C" fn(cudnnOpTensorDescriptor_t) -> cudnnStatus_t>,
     pub cudnnOpTensor: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            opTensorDesc: cudnnOpTensorDescriptor_t,
-            alpha1: *const ::std::os::raw::c_void,
-            aDesc: cudnnTensorDescriptor_t,
-            A: *const ::std::os::raw::c_void,
-            alpha2: *const ::std::os::raw::c_void,
-            bDesc: cudnnTensorDescriptor_t,
-            B: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            cDesc: cudnnTensorDescriptor_t,
-            C: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnOpTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateReduceTensorDescriptor: Option<unsafe extern "C" fn(reduceTensorDesc: *mut cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetReduceTensorDescriptor: Option<
-        unsafe extern "C" fn(
-            reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-            reduceTensorOp: cudnnReduceTensorOp_t,
-            reduceTensorCompType: cudnnDataType_t,
-            reduceTensorNanOpt: cudnnNanPropagation_t,
-            reduceTensorIndices: cudnnReduceTensorIndices_t,
-            reduceTensorIndicesType: cudnnIndicesType_t,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetReduceTensorDescriptor: Option<
-        unsafe extern "C" fn(
-            reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-            reduceTensorOp: *mut cudnnReduceTensorOp_t,
-            reduceTensorCompType: *mut cudnnDataType_t,
-            reduceTensorNanOpt: *mut cudnnNanPropagation_t,
-            reduceTensorIndices: *mut cudnnReduceTensorIndices_t,
-            reduceTensorIndicesType: *mut cudnnIndicesType_t,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnDestroyReduceTensorDescriptor: Option<unsafe extern "C" fn(reduceTensorDesc: cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnGetReductionIndicesSize: Option<unsafe extern "C" fn(handle: cudnnHandle_t, reduceTensorDesc: cudnnReduceTensorDescriptor_t, aDesc: cudnnTensorDescriptor_t, cDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    pub cudnnGetReductionWorkspaceSize: Option<unsafe extern "C" fn(handle: cudnnHandle_t, reduceTensorDesc: cudnnReduceTensorDescriptor_t, aDesc: cudnnTensorDescriptor_t, cDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
+    pub cudnnCreateReduceTensorDescriptor: Option<unsafe extern "C" fn(*mut cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetReduceTensorDescriptor: Option<unsafe extern "C" fn(cudnnReduceTensorDescriptor_t, cudnnReduceTensorOp_t, cudnnDataType_t, cudnnNanPropagation_t, cudnnReduceTensorIndices_t, cudnnIndicesType_t) -> cudnnStatus_t>,
+    pub cudnnGetReduceTensorDescriptor: Option<unsafe extern "C" fn(cudnnReduceTensorDescriptor_t, *mut cudnnReduceTensorOp_t, *mut cudnnDataType_t, *mut cudnnNanPropagation_t, *mut cudnnReduceTensorIndices_t, *mut cudnnIndicesType_t) -> cudnnStatus_t>,
+    pub cudnnDestroyReduceTensorDescriptor: Option<unsafe extern "C" fn(cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnGetReductionIndicesSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnReduceTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetReductionWorkspaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnReduceTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>,
     pub cudnnReduceTensor: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-            indices: *mut ::std::os::raw::c_void,
-            indicesSizeInBytes: usize,
-            workspace: *mut ::std::os::raw::c_void,
-            workspaceSizeInBytes: usize,
-            alpha: *const ::std::os::raw::c_void,
-            aDesc: cudnnTensorDescriptor_t,
-            A: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            cDesc: cudnnTensorDescriptor_t,
-            C: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnReduceTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnSetTensor: Option<unsafe extern "C" fn(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, y: *mut ::std::os::raw::c_void, valuePtr: *const ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnScaleTensor: Option<unsafe extern "C" fn(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, y: *mut ::std::os::raw::c_void, alpha: *const ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnCreateFilterDescriptor: Option<unsafe extern "C" fn(filterDesc: *mut cudnnFilterDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetFilter4dDescriptor: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, k: ::std::os::raw::c_int, c: ::std::os::raw::c_int, h: ::std::os::raw::c_int, w: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetFilter4dDescriptor:
-        Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, dataType: *mut cudnnDataType_t, format: *mut cudnnTensorFormat_t, k: *mut ::std::os::raw::c_int, c: *mut ::std::os::raw::c_int, h: *mut ::std::os::raw::c_int, w: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnSetFilterNdDescriptor: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, nbDims: ::std::os::raw::c_int, filterDimA: *const ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetFilterNdDescriptor:
-        Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, nbDimsRequested: ::std::os::raw::c_int, dataType: *mut cudnnDataType_t, format: *mut cudnnTensorFormat_t, nbDims: *mut ::std::os::raw::c_int, filterDimA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetFilterSizeInBytes: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, size: *mut usize) -> cudnnStatus_t>,
-    pub cudnnTransformFilter: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            transDesc: cudnnTensorTransformDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            srcDesc: cudnnFilterDescriptor_t,
-            srcData: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            destDesc: cudnnFilterDescriptor_t,
-            destData: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnDestroyFilterDescriptor: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSoftmaxForward: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            algo: cudnnSoftmaxAlgorithm_t,
-            mode: cudnnSoftmaxMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnCreatePoolingDescriptor: Option<unsafe extern "C" fn(poolingDesc: *mut cudnnPoolingDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetPooling2dDescriptor: Option<
-        unsafe extern "C" fn(
-            poolingDesc: cudnnPoolingDescriptor_t,
-            mode: cudnnPoolingMode_t,
-            maxpoolingNanOpt: cudnnNanPropagation_t,
-            windowHeight: ::std::os::raw::c_int,
-            windowWidth: ::std::os::raw::c_int,
-            verticalPadding: ::std::os::raw::c_int,
-            horizontalPadding: ::std::os::raw::c_int,
-            verticalStride: ::std::os::raw::c_int,
-            horizontalStride: ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnSetTensor: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnScaleTensor: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateFilterDescriptor: Option<unsafe extern "C" fn(*mut cudnnFilterDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetFilter4dDescriptor: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetFilter4dDescriptor: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnSetFilterNdDescriptor: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetFilterNdDescriptor: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetFilterSizeInBytes: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnTransformFilter: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnDestroyFilterDescriptor: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSoftmaxForward:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSoftmaxAlgorithm_t, cudnnSoftmaxMode_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreatePoolingDescriptor: Option<unsafe extern "C" fn(*mut cudnnPoolingDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetPooling2dDescriptor: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnGetPooling2dDescriptor: Option<
-        unsafe extern "C" fn(
-            poolingDesc: cudnnPoolingDescriptor_t,
-            mode: *mut cudnnPoolingMode_t,
-            maxpoolingNanOpt: *mut cudnnNanPropagation_t,
-            windowHeight: *mut ::std::os::raw::c_int,
-            windowWidth: *mut ::std::os::raw::c_int,
-            verticalPadding: *mut ::std::os::raw::c_int,
-            horizontalPadding: *mut ::std::os::raw::c_int,
-            verticalStride: *mut ::std::os::raw::c_int,
-            horizontalStride: *mut ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(cudnnPoolingDescriptor_t, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t,
     >,
-    pub cudnnSetPoolingNdDescriptor: Option<
-        unsafe extern "C" fn(
-            poolingDesc: cudnnPoolingDescriptor_t,
-            mode: cudnnPoolingMode_t,
-            maxpoolingNanOpt: cudnnNanPropagation_t,
-            nbDims: ::std::os::raw::c_int,
-            windowDimA: *const ::std::os::raw::c_int,
-            paddingA: *const ::std::os::raw::c_int,
-            strideA: *const ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetPoolingNdDescriptor: Option<
-        unsafe extern "C" fn(
-            poolingDesc: cudnnPoolingDescriptor_t,
-            nbDimsRequested: ::std::os::raw::c_int,
-            mode: *mut cudnnPoolingMode_t,
-            maxpoolingNanOpt: *mut cudnnNanPropagation_t,
-            nbDims: *mut ::std::os::raw::c_int,
-            windowDimA: *mut ::std::os::raw::c_int,
-            paddingA: *mut ::std::os::raw::c_int,
-            strideA: *mut ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetPoolingNdForwardOutputDim: Option<unsafe extern "C" fn(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, nbDims: ::std::os::raw::c_int, outputTensorDimA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetPooling2dForwardOutputDim: Option<unsafe extern "C" fn(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, n: *mut ::std::os::raw::c_int, c: *mut ::std::os::raw::c_int, h: *mut ::std::os::raw::c_int, w: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnDestroyPoolingDescriptor: Option<unsafe extern "C" fn(poolingDesc: cudnnPoolingDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnPoolingForward: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            poolingDesc: cudnnPoolingDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnCreateActivationDescriptor: Option<unsafe extern "C" fn(activationDesc: *mut cudnnActivationDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetActivationDescriptor: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, mode: cudnnActivationMode_t, reluNanOpt: cudnnNanPropagation_t, coef: f64) -> cudnnStatus_t>,
-    pub cudnnGetActivationDescriptor: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, mode: *mut cudnnActivationMode_t, reluNanOpt: *mut cudnnNanPropagation_t, coef: *mut f64) -> cudnnStatus_t>,
-    pub cudnnSetActivationDescriptorSwishBeta: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, swish_beta: f64) -> cudnnStatus_t>,
-    pub cudnnGetActivationDescriptorSwishBeta: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, swish_beta: *mut f64) -> cudnnStatus_t>,
-    pub cudnnDestroyActivationDescriptor: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnActivationForward: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            activationDesc: cudnnActivationDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnCreateLRNDescriptor: Option<unsafe extern "C" fn(normDesc: *mut cudnnLRNDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetLRNDescriptor: Option<unsafe extern "C" fn(normDesc: cudnnLRNDescriptor_t, lrnN: ::std::os::raw::c_uint, lrnAlpha: f64, lrnBeta: f64, lrnK: f64) -> cudnnStatus_t>,
-    pub cudnnGetLRNDescriptor: Option<unsafe extern "C" fn(normDesc: cudnnLRNDescriptor_t, lrnN: *mut ::std::os::raw::c_uint, lrnAlpha: *mut f64, lrnBeta: *mut f64, lrnK: *mut f64) -> cudnnStatus_t>,
-    pub cudnnDestroyLRNDescriptor: Option<unsafe extern "C" fn(lrnDesc: cudnnLRNDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnLRNCrossChannelForward: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            normDesc: cudnnLRNDescriptor_t,
-            lrnMode: cudnnLRNMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnSetPoolingNdDescriptor: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetPoolingNdDescriptor: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, ::std::os::raw::c_int, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetPoolingNdForwardOutputDim: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetPooling2dForwardOutputDim: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnDestroyPoolingDescriptor: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnPoolingForward: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnPoolingDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateActivationDescriptor: Option<unsafe extern "C" fn(*mut cudnnActivationDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetActivationDescriptor: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, cudnnActivationMode_t, cudnnNanPropagation_t, f64) -> cudnnStatus_t>,
+    pub cudnnGetActivationDescriptor: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, *mut cudnnActivationMode_t, *mut cudnnNanPropagation_t, *mut f64) -> cudnnStatus_t>,
+    pub cudnnSetActivationDescriptorSwishBeta: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, f64) -> cudnnStatus_t>,
+    pub cudnnGetActivationDescriptorSwishBeta: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, *mut f64) -> cudnnStatus_t>,
+    pub cudnnDestroyActivationDescriptor: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnActivationForward: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnActivationDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateLRNDescriptor: Option<unsafe extern "C" fn(*mut cudnnLRNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetLRNDescriptor: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, ::std::os::raw::c_uint, f64, f64, f64) -> cudnnStatus_t>,
+    pub cudnnGetLRNDescriptor: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, *mut ::std::os::raw::c_uint, *mut f64, *mut f64, *mut f64) -> cudnnStatus_t>,
+    pub cudnnDestroyLRNDescriptor: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnLRNCrossChannelForward:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnLRNDescriptor_t, cudnnLRNMode_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     pub cudnnDivisiveNormalizationForward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            normDesc: cudnnLRNDescriptor_t,
-            mode: cudnnDivNormMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            means: *const ::std::os::raw::c_void,
-            temp: *mut ::std::os::raw::c_void,
-            temp2: *mut ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnLRNDescriptor_t,
+            cudnnDivNormMode_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnDeriveBNTensorDescriptor: Option<unsafe extern "C" fn(derivedBnDesc: cudnnTensorDescriptor_t, xDesc: cudnnTensorDescriptor_t, mode: cudnnBatchNormMode_t) -> cudnnStatus_t>,
+    pub cudnnDeriveBNTensorDescriptor: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnBatchNormMode_t) -> cudnnStatus_t>,
     pub cudnnBatchNormalizationForwardInference: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnBatchNormMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-            bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-            bnScale: *const ::std::os::raw::c_void,
-            bnBias: *const ::std::os::raw::c_void,
-            estimatedMean: *const ::std::os::raw::c_void,
-            estimatedVariance: *const ::std::os::raw::c_void,
-            epsilon: f64,
+            cudnnHandle_t,
+            cudnnBatchNormMode_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            f64,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnDeriveNormTensorDescriptor: Option<unsafe extern "C" fn(derivedNormScaleBiasDesc: cudnnTensorDescriptor_t, derivedNormMeanVarDesc: cudnnTensorDescriptor_t, xDesc: cudnnTensorDescriptor_t, mode: cudnnNormMode_t, groupCnt: ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnDeriveNormTensorDescriptor: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnNormMode_t, ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnNormalizationForwardInference: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnNormMode_t,
-            normOps: cudnnNormOps_t,
-            algo: cudnnNormAlgo_t,
-            alpha: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            normScaleBiasDesc: cudnnTensorDescriptor_t,
-            normScale: *const ::std::os::raw::c_void,
-            normBias: *const ::std::os::raw::c_void,
-            normMeanVarDesc: cudnnTensorDescriptor_t,
-            estimatedMean: *const ::std::os::raw::c_void,
-            estimatedVariance: *const ::std::os::raw::c_void,
-            zDesc: cudnnTensorDescriptor_t,
-            z: *const ::std::os::raw::c_void,
-            activationDesc: cudnnActivationDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-            epsilon: f64,
-            groupCnt: ::std::os::raw::c_int,
+            cudnnHandle_t,
+            cudnnNormMode_t,
+            cudnnNormOps_t,
+            cudnnNormAlgo_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnActivationDescriptor_t,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            f64,
+            ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateSpatialTransformerDescriptor: Option<unsafe extern "C" fn(stDesc: *mut cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetSpatialTransformerNdDescriptor: Option<unsafe extern "C" fn(stDesc: cudnnSpatialTransformerDescriptor_t, samplerType: cudnnSamplerType_t, dataType: cudnnDataType_t, nbDims: ::std::os::raw::c_int, dimA: *const ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnDestroySpatialTransformerDescriptor: Option<unsafe extern "C" fn(stDesc: cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSpatialTfGridGeneratorForward: Option<unsafe extern "C" fn(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, theta: *const ::std::os::raw::c_void, grid: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateSpatialTransformerDescriptor: Option<unsafe extern "C" fn(*mut cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetSpatialTransformerNdDescriptor: Option<unsafe extern "C" fn(cudnnSpatialTransformerDescriptor_t, cudnnSamplerType_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnDestroySpatialTransformerDescriptor: Option<unsafe extern "C" fn(cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSpatialTfGridGeneratorForward: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     pub cudnnSpatialTfSamplerForward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            stDesc: cudnnSpatialTransformerDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            grid: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnSpatialTransformerDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateDropoutDescriptor: Option<unsafe extern "C" fn(dropoutDesc: *mut cudnnDropoutDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroyDropoutDescriptor: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDropoutGetStatesSize: Option<unsafe extern "C" fn(handle: cudnnHandle_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    pub cudnnDropoutGetReserveSpaceSize: Option<unsafe extern "C" fn(xdesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    pub cudnnSetDropoutDescriptor: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, states: *mut ::std::os::raw::c_void, stateSizeInBytes: usize, seed: ::std::os::raw::c_ulonglong) -> cudnnStatus_t>,
-    pub cudnnRestoreDropoutDescriptor: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, states: *mut ::std::os::raw::c_void, stateSizeInBytes: usize, seed: ::std::os::raw::c_ulonglong) -> cudnnStatus_t>,
-    pub cudnnGetDropoutDescriptor: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: *mut f32, states: *mut *mut ::std::os::raw::c_void, seed: *mut ::std::os::raw::c_ulonglong) -> cudnnStatus_t>,
-    pub cudnnDropoutForward: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            dropoutDesc: cudnnDropoutDescriptor_t,
-            xdesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            ydesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-            reserveSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnCreateDropoutDescriptor: Option<unsafe extern "C" fn(*mut cudnnDropoutDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyDropoutDescriptor: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDropoutGetStatesSize: Option<unsafe extern "C" fn(cudnnHandle_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnDropoutGetReserveSpaceSize: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnSetDropoutDescriptor: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_ulonglong) -> cudnnStatus_t>,
+    pub cudnnRestoreDropoutDescriptor: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_ulonglong) -> cudnnStatus_t>,
+    pub cudnnGetDropoutDescriptor: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, *mut f32, *mut *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_ulonglong) -> cudnnStatus_t>,
+    pub cudnnDropoutForward: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, usize) -> cudnnStatus_t>,
     pub cudnnOpsVersionCheck: Option<unsafe extern "C" fn() -> cudnnStatus_t>,
     pub cudnnSoftmaxBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            algo: cudnnSoftmaxAlgorithm_t,
-            mode: cudnnSoftmaxMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnSoftmaxAlgorithm_t,
+            cudnnSoftmaxMode_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnPoolingBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            poolingDesc: cudnnPoolingDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnPoolingDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnActivationBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            activationDesc: cudnnActivationDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnActivationDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnLRNCrossChannelBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            normDesc: cudnnLRNDescriptor_t,
-            lrnMode: cudnnLRNMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnLRNDescriptor_t,
+            cudnnLRNMode_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnDivisiveNormalizationBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            normDesc: cudnnLRNDescriptor_t,
-            mode: cudnnDivNormMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            means: *const ::std::os::raw::c_void,
-            dy: *const ::std::os::raw::c_void,
-            temp: *mut ::std::os::raw::c_void,
-            temp2: *mut ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            dXdMeansDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
-            dMeans: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnLRNDescriptor_t,
+            cudnnDivNormMode_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnBatchNormMode_t,
-            bnOps: cudnnBatchNormOps_t,
-            xDesc: cudnnTensorDescriptor_t,
-            zDesc: cudnnTensorDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-            activationDesc: cudnnActivationDescriptor_t,
-            sizeInBytes: *mut usize,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBatchNormMode_t, cudnnBatchNormOps_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnActivationDescriptor_t, *mut usize) -> cudnnStatus_t>,
     pub cudnnGetBatchNormalizationBackwardExWorkspaceSize: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnBatchNormMode_t,
-            bnOps: cudnnBatchNormOps_t,
-            xDesc: cudnnTensorDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            dyDesc: cudnnTensorDescriptor_t,
-            dzDesc: cudnnTensorDescriptor_t,
-            dxDesc: cudnnTensorDescriptor_t,
-            dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-            activationDesc: cudnnActivationDescriptor_t,
-            sizeInBytes: *mut usize,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(cudnnHandle_t, cudnnBatchNormMode_t, cudnnBatchNormOps_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnActivationDescriptor_t, *mut usize) -> cudnnStatus_t,
     >,
-    pub cudnnGetBatchNormalizationTrainingExReserveSpaceSize: Option<unsafe extern "C" fn(handle: cudnnHandle_t, mode: cudnnBatchNormMode_t, bnOps: cudnnBatchNormOps_t, activationDesc: cudnnActivationDescriptor_t, xDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetBatchNormalizationTrainingExReserveSpaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBatchNormMode_t, cudnnBatchNormOps_t, cudnnActivationDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>,
     pub cudnnBatchNormalizationForwardTraining: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnBatchNormMode_t,
-            alpha: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-            bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-            bnScale: *const ::std::os::raw::c_void,
-            bnBias: *const ::std::os::raw::c_void,
-            exponentialAverageFactor: f64,
-            resultRunningMean: *mut ::std::os::raw::c_void,
-            resultRunningVariance: *mut ::std::os::raw::c_void,
-            epsilon: f64,
-            resultSaveMean: *mut ::std::os::raw::c_void,
-            resultSaveInvVariance: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnBatchNormMode_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            f64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            f64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnBatchNormalizationForwardTrainingEx: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnBatchNormMode_t,
-            bnOps: cudnnBatchNormOps_t,
-            alpha: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            xData: *const ::std::os::raw::c_void,
-            zDesc: cudnnTensorDescriptor_t,
-            zData: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            yData: *mut ::std::os::raw::c_void,
-            bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-            bnScale: *const ::std::os::raw::c_void,
-            bnBias: *const ::std::os::raw::c_void,
-            exponentialAverageFactor: f64,
-            resultRunningMean: *mut ::std::os::raw::c_void,
-            resultRunningVariance: *mut ::std::os::raw::c_void,
-            epsilon: f64,
-            resultSaveMean: *mut ::std::os::raw::c_void,
-            resultSaveInvVariance: *mut ::std::os::raw::c_void,
-            activationDesc: cudnnActivationDescriptor_t,
-            workspace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
+            cudnnHandle_t,
+            cudnnBatchNormMode_t,
+            cudnnBatchNormOps_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            f64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            f64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            cudnnActivationDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
         ) -> cudnnStatus_t,
     >,
     pub cudnnBatchNormalizationBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnBatchNormMode_t,
-            alphaDataDiff: *const ::std::os::raw::c_void,
-            betaDataDiff: *const ::std::os::raw::c_void,
-            alphaParamDiff: *const ::std::os::raw::c_void,
-            betaParamDiff: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
-            dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-            bnScale: *const ::std::os::raw::c_void,
-            dBnScaleResult: *mut ::std::os::raw::c_void,
-            dBnBiasResult: *mut ::std::os::raw::c_void,
-            epsilon: f64,
-            savedMean: *const ::std::os::raw::c_void,
-            savedInvVariance: *const ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnBatchNormMode_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            f64,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnBatchNormalizationBackwardEx: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnBatchNormMode_t,
-            bnOps: cudnnBatchNormOps_t,
-            alphaDataDiff: *const ::std::os::raw::c_void,
-            betaDataDiff: *const ::std::os::raw::c_void,
-            alphaParamDiff: *const ::std::os::raw::c_void,
-            betaParamDiff: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            xData: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            yData: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dyData: *const ::std::os::raw::c_void,
-            dzDesc: cudnnTensorDescriptor_t,
-            dzData: *mut ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dxData: *mut ::std::os::raw::c_void,
-            dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-            bnScaleData: *const ::std::os::raw::c_void,
-            bnBiasData: *const ::std::os::raw::c_void,
-            dBnScaleData: *mut ::std::os::raw::c_void,
-            dBnBiasData: *mut ::std::os::raw::c_void,
-            epsilon: f64,
-            savedMean: *const ::std::os::raw::c_void,
-            savedInvVariance: *const ::std::os::raw::c_void,
-            activationDesc: cudnnActivationDescriptor_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
+            cudnnHandle_t,
+            cudnnBatchNormMode_t,
+            cudnnBatchNormOps_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            f64,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnActivationDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
         ) -> cudnnStatus_t,
     >,
     pub cudnnGetNormalizationForwardTrainingWorkspaceSize: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnNormMode_t,
-            normOps: cudnnNormOps_t,
-            algo: cudnnNormAlgo_t,
-            xDesc: cudnnTensorDescriptor_t,
-            zDesc: cudnnTensorDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            normScaleBiasDesc: cudnnTensorDescriptor_t,
-            activationDesc: cudnnActivationDescriptor_t,
-            normMeanVarDesc: cudnnTensorDescriptor_t,
-            sizeInBytes: *mut usize,
-            groupCnt: ::std::os::raw::c_int,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(cudnnHandle_t, cudnnNormMode_t, cudnnNormOps_t, cudnnNormAlgo_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnActivationDescriptor_t, cudnnTensorDescriptor_t, *mut usize, ::std::os::raw::c_int) -> cudnnStatus_t,
     >,
     pub cudnnGetNormalizationBackwardWorkspaceSize: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnNormMode_t,
-            normOps: cudnnNormOps_t,
-            algo: cudnnNormAlgo_t,
-            xDesc: cudnnTensorDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            dyDesc: cudnnTensorDescriptor_t,
-            dzDesc: cudnnTensorDescriptor_t,
-            dxDesc: cudnnTensorDescriptor_t,
-            dNormScaleBiasDesc: cudnnTensorDescriptor_t,
-            activationDesc: cudnnActivationDescriptor_t,
-            normMeanVarDesc: cudnnTensorDescriptor_t,
-            sizeInBytes: *mut usize,
-            groupCnt: ::std::os::raw::c_int,
+            cudnnHandle_t,
+            cudnnNormMode_t,
+            cudnnNormOps_t,
+            cudnnNormAlgo_t,
+            cudnnTensorDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnActivationDescriptor_t,
+            cudnnTensorDescriptor_t,
+            *mut usize,
+            ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetNormalizationTrainingReserveSpaceSize:
-        Option<unsafe extern "C" fn(handle: cudnnHandle_t, mode: cudnnNormMode_t, normOps: cudnnNormOps_t, algo: cudnnNormAlgo_t, activationDesc: cudnnActivationDescriptor_t, xDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize, groupCnt: ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetNormalizationTrainingReserveSpaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnNormMode_t, cudnnNormOps_t, cudnnNormAlgo_t, cudnnActivationDescriptor_t, cudnnTensorDescriptor_t, *mut usize, ::std::os::raw::c_int) -> cudnnStatus_t>,
     pub cudnnNormalizationForwardTraining: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnNormMode_t,
-            normOps: cudnnNormOps_t,
-            algo: cudnnNormAlgo_t,
-            alpha: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            xData: *const ::std::os::raw::c_void,
-            normScaleBiasDesc: cudnnTensorDescriptor_t,
-            normScale: *const ::std::os::raw::c_void,
-            normBias: *const ::std::os::raw::c_void,
-            exponentialAverageFactor: f64,
-            normMeanVarDesc: cudnnTensorDescriptor_t,
-            resultRunningMean: *mut ::std::os::raw::c_void,
-            resultRunningVariance: *mut ::std::os::raw::c_void,
-            epsilon: f64,
-            resultSaveMean: *mut ::std::os::raw::c_void,
-            resultSaveInvVariance: *mut ::std::os::raw::c_void,
-            activationDesc: cudnnActivationDescriptor_t,
-            zDesc: cudnnTensorDescriptor_t,
-            zData: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            yData: *mut ::std::os::raw::c_void,
-            workspace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
-            groupCnt: ::std::os::raw::c_int,
+            cudnnHandle_t,
+            cudnnNormMode_t,
+            cudnnNormOps_t,
+            cudnnNormAlgo_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            f64,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            f64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            cudnnActivationDescriptor_t,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
     pub cudnnNormalizationBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            mode: cudnnNormMode_t,
-            normOps: cudnnNormOps_t,
-            algo: cudnnNormAlgo_t,
-            alphaDataDiff: *const ::std::os::raw::c_void,
-            betaDataDiff: *const ::std::os::raw::c_void,
-            alphaParamDiff: *const ::std::os::raw::c_void,
-            betaParamDiff: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            xData: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            yData: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dyData: *const ::std::os::raw::c_void,
-            dzDesc: cudnnTensorDescriptor_t,
-            dzData: *mut ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dxData: *mut ::std::os::raw::c_void,
-            dNormScaleBiasDesc: cudnnTensorDescriptor_t,
-            normScaleData: *const ::std::os::raw::c_void,
-            normBiasData: *const ::std::os::raw::c_void,
-            dNormScaleData: *mut ::std::os::raw::c_void,
-            dNormBiasData: *mut ::std::os::raw::c_void,
-            epsilon: f64,
-            normMeanVarDesc: cudnnTensorDescriptor_t,
-            savedMean: *const ::std::os::raw::c_void,
-            savedInvVariance: *const ::std::os::raw::c_void,
-            activationDesc: cudnnActivationDescriptor_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
-            groupCnt: ::std::os::raw::c_int,
+            cudnnHandle_t,
+            cudnnNormMode_t,
+            cudnnNormOps_t,
+            cudnnNormAlgo_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            f64,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnActivationDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnSpatialTfGridGeneratorBackward: Option<unsafe extern "C" fn(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, dgrid: *const ::std::os::raw::c_void, dtheta: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnSpatialTfGridGeneratorBackward: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     pub cudnnSpatialTfSamplerBackward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            stDesc: cudnnSpatialTransformerDescriptor_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            beta: *const ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
-            alphaDgrid: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            grid: *const ::std::os::raw::c_void,
-            betaDgrid: *const ::std::os::raw::c_void,
-            dgrid: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnSpatialTransformerDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnDropoutBackward: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            dropoutDesc: cudnnDropoutDescriptor_t,
-            dydesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            dxdesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
-            reserveSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnCreateRNNDescriptor: Option<unsafe extern "C" fn(rnnDesc: *mut cudnnRNNDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroyRNNDescriptor: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetRNNDescriptor_v8: Option<
-        unsafe extern "C" fn(
-            rnnDesc: cudnnRNNDescriptor_t,
-            algo: cudnnRNNAlgo_t,
-            cellMode: cudnnRNNMode_t,
-            biasMode: cudnnRNNBiasMode_t,
-            dirMode: cudnnDirectionMode_t,
-            inputMode: cudnnRNNInputMode_t,
-            dataType: cudnnDataType_t,
-            mathPrec: cudnnDataType_t,
-            mathType: cudnnMathType_t,
-            inputSize: i32,
-            hiddenSize: i32,
-            projSize: i32,
-            numLayers: i32,
-            dropoutDesc: cudnnDropoutDescriptor_t,
-            auxFlags: u32,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnDropoutBackward: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, usize) -> cudnnStatus_t>,
+    pub cudnnCreateRNNDescriptor: Option<unsafe extern "C" fn(*mut cudnnRNNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyRNNDescriptor: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetRNNDescriptor_v8: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, cudnnRNNAlgo_t, cudnnRNNMode_t, cudnnRNNBiasMode_t, cudnnDirectionMode_t, cudnnRNNInputMode_t, cudnnDataType_t, cudnnDataType_t, cudnnMathType_t, i32, i32, i32, i32, cudnnDropoutDescriptor_t, u32) -> cudnnStatus_t>,
     pub cudnnGetRNNDescriptor_v8: Option<
         unsafe extern "C" fn(
-            rnnDesc: cudnnRNNDescriptor_t,
-            algo: *mut cudnnRNNAlgo_t,
-            cellMode: *mut cudnnRNNMode_t,
-            biasMode: *mut cudnnRNNBiasMode_t,
-            dirMode: *mut cudnnDirectionMode_t,
-            inputMode: *mut cudnnRNNInputMode_t,
-            dataType: *mut cudnnDataType_t,
-            mathPrec: *mut cudnnDataType_t,
-            mathType: *mut cudnnMathType_t,
-            inputSize: *mut i32,
-            hiddenSize: *mut i32,
-            projSize: *mut i32,
-            numLayers: *mut i32,
-            dropoutDesc: *mut cudnnDropoutDescriptor_t,
-            auxFlags: *mut u32,
+            cudnnRNNDescriptor_t,
+            *mut cudnnRNNAlgo_t,
+            *mut cudnnRNNMode_t,
+            *mut cudnnRNNBiasMode_t,
+            *mut cudnnDirectionMode_t,
+            *mut cudnnRNNInputMode_t,
+            *mut cudnnDataType_t,
+            *mut cudnnDataType_t,
+            *mut cudnnMathType_t,
+            *mut i32,
+            *mut i32,
+            *mut i32,
+            *mut i32,
+            *mut cudnnDropoutDescriptor_t,
+            *mut u32,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnRNNSetClip_v8: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: cudnnRNNClipMode_t, clipNanOpt: cudnnNanPropagation_t, lclip: f64, rclip: f64) -> cudnnStatus_t>,
-    pub cudnnRNNSetClip_v9: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: cudnnRNNClipMode_t, lclip: f64, rclip: f64) -> cudnnStatus_t>,
-    pub cudnnRNNGetClip_v8: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: *mut cudnnRNNClipMode_t, clipNanOpt: *mut cudnnNanPropagation_t, lclip: *mut f64, rclip: *mut f64) -> cudnnStatus_t>,
-    pub cudnnRNNGetClip_v9: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: *mut cudnnRNNClipMode_t, lclip: *mut f64, rclip: *mut f64) -> cudnnStatus_t>,
-    pub cudnnBuildRNNDynamic: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, miniBatch: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetRNNTempSpaceSizes: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, fwdMode: cudnnForwardMode_t, xDesc: cudnnRNNDataDescriptor_t, workSpaceSize: *mut usize, reserveSpaceSize: *mut usize) -> cudnnStatus_t>,
-    pub cudnnGetRNNWeightSpaceSize: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, weightSpaceSize: *mut usize) -> cudnnStatus_t>,
-    pub cudnnGetRNNWeightParams: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            rnnDesc: cudnnRNNDescriptor_t,
-            pseudoLayer: i32,
-            weightSpaceSize: usize,
-            weightSpace: *const ::std::os::raw::c_void,
-            linLayerID: i32,
-            mDesc: cudnnTensorDescriptor_t,
-            mAddr: *mut *mut ::std::os::raw::c_void,
-            bDesc: cudnnTensorDescriptor_t,
-            bAddr: *mut *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnCreateRNNDataDescriptor: Option<unsafe extern "C" fn(rnnDataDesc: *mut cudnnRNNDataDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroyRNNDataDescriptor: Option<unsafe extern "C" fn(rnnDataDesc: cudnnRNNDataDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetRNNDataDescriptor: Option<
-        unsafe extern "C" fn(
-            rnnDataDesc: cudnnRNNDataDescriptor_t,
-            dataType: cudnnDataType_t,
-            layout: cudnnRNNDataLayout_t,
-            maxSeqLength: ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-            vectorSize: ::std::os::raw::c_int,
-            seqLengthArray: *const ::std::os::raw::c_int,
-            paddingFill: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetRNNDataDescriptor: Option<
-        unsafe extern "C" fn(
-            rnnDataDesc: cudnnRNNDataDescriptor_t,
-            dataType: *mut cudnnDataType_t,
-            layout: *mut cudnnRNNDataLayout_t,
-            maxSeqLength: *mut ::std::os::raw::c_int,
-            batchSize: *mut ::std::os::raw::c_int,
-            vectorSize: *mut ::std::os::raw::c_int,
-            arrayLengthRequested: ::std::os::raw::c_int,
-            seqLengthArray: *mut ::std::os::raw::c_int,
-            paddingFill: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnRNNSetClip_v8: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, cudnnRNNClipMode_t, cudnnNanPropagation_t, f64, f64) -> cudnnStatus_t>,
+    pub cudnnRNNSetClip_v9: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, cudnnRNNClipMode_t, f64, f64) -> cudnnStatus_t>,
+    pub cudnnRNNGetClip_v8: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, *mut cudnnRNNClipMode_t, *mut cudnnNanPropagation_t, *mut f64, *mut f64) -> cudnnStatus_t>,
+    pub cudnnRNNGetClip_v9: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, *mut cudnnRNNClipMode_t, *mut f64, *mut f64) -> cudnnStatus_t>,
+    pub cudnnBuildRNNDynamic: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetRNNTempSpaceSizes: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, cudnnForwardMode_t, cudnnRNNDataDescriptor_t, *mut usize, *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetRNNWeightSpaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetRNNWeightParams: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, i32, usize, *const ::std::os::raw::c_void, i32, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateRNNDataDescriptor: Option<unsafe extern "C" fn(*mut cudnnRNNDataDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyRNNDataDescriptor: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetRNNDataDescriptor: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, cudnnDataType_t, cudnnRNNDataLayout_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnGetRNNDataDescriptor:
+        Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, *mut cudnnDataType_t, *mut cudnnRNNDataLayout_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     pub cudnnRNNForward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            rnnDesc: cudnnRNNDescriptor_t,
-            fwdMode: cudnnForwardMode_t,
-            devSeqLengths: *const i32,
-            xDesc: cudnnRNNDataDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            yDesc: cudnnRNNDataDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-            hDesc: cudnnTensorDescriptor_t,
-            hx: *const ::std::os::raw::c_void,
-            hy: *mut ::std::os::raw::c_void,
-            cDesc: cudnnTensorDescriptor_t,
-            cx: *const ::std::os::raw::c_void,
-            cy: *mut ::std::os::raw::c_void,
-            weightSpaceSize: usize,
-            weightSpace: *const ::std::os::raw::c_void,
-            workSpaceSize: usize,
-            workSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSize: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnRNNDescriptor_t,
+            cudnnForwardMode_t,
+            *const i32,
+            cudnnRNNDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnRNNDataDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateSeqDataDescriptor: Option<unsafe extern "C" fn(seqDataDesc: *mut cudnnSeqDataDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroySeqDataDescriptor: Option<unsafe extern "C" fn(seqDataDesc: cudnnSeqDataDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetSeqDataDescriptor: Option<
-        unsafe extern "C" fn(
-            seqDataDesc: cudnnSeqDataDescriptor_t,
-            dataType: cudnnDataType_t,
-            nbDims: ::std::os::raw::c_int,
-            dimA: *const ::std::os::raw::c_int,
-            axes: *const cudnnSeqDataAxis_t,
-            seqLengthArraySize: usize,
-            seqLengthArray: *const ::std::os::raw::c_int,
-            paddingFill: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetSeqDataDescriptor: Option<
-        unsafe extern "C" fn(
-            seqDataDesc: cudnnSeqDataDescriptor_t,
-            dataType: *mut cudnnDataType_t,
-            nbDims: *mut ::std::os::raw::c_int,
-            nbDimsRequested: ::std::os::raw::c_int,
-            dimA: *mut ::std::os::raw::c_int,
-            axes: *mut cudnnSeqDataAxis_t,
-            seqLengthArraySize: *mut usize,
-            seqLengthSizeRequested: usize,
-            seqLengthArray: *mut ::std::os::raw::c_int,
-            paddingFill: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnCreateAttnDescriptor: Option<unsafe extern "C" fn(attnDesc: *mut cudnnAttnDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroyAttnDescriptor: Option<unsafe extern "C" fn(attnDesc: cudnnAttnDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnCreateSeqDataDescriptor: Option<unsafe extern "C" fn(*mut cudnnSeqDataDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroySeqDataDescriptor: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetSeqDataDescriptor: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const cudnnSeqDataAxis_t, usize, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnGetSeqDataDescriptor:
+        Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, *mut cudnnDataType_t, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnSeqDataAxis_t, *mut usize, usize, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateAttnDescriptor: Option<unsafe extern "C" fn(*mut cudnnAttnDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyAttnDescriptor: Option<unsafe extern "C" fn(cudnnAttnDescriptor_t) -> cudnnStatus_t>,
     pub cudnnSetAttnDescriptor: Option<
         unsafe extern "C" fn(
-            attnDesc: cudnnAttnDescriptor_t,
-            attnMode: ::std::os::raw::c_uint,
-            nHeads: ::std::os::raw::c_int,
-            smScaler: f64,
-            dataType: cudnnDataType_t,
-            computePrec: cudnnDataType_t,
-            mathType: cudnnMathType_t,
-            attnDropoutDesc: cudnnDropoutDescriptor_t,
-            postDropoutDesc: cudnnDropoutDescriptor_t,
-            qSize: ::std::os::raw::c_int,
-            kSize: ::std::os::raw::c_int,
-            vSize: ::std::os::raw::c_int,
-            qProjSize: ::std::os::raw::c_int,
-            kProjSize: ::std::os::raw::c_int,
-            vProjSize: ::std::os::raw::c_int,
-            oProjSize: ::std::os::raw::c_int,
-            qoMaxSeqLength: ::std::os::raw::c_int,
-            kvMaxSeqLength: ::std::os::raw::c_int,
-            maxBatchSize: ::std::os::raw::c_int,
-            maxBeamSize: ::std::os::raw::c_int,
+            cudnnAttnDescriptor_t,
+            ::std::os::raw::c_uint,
+            ::std::os::raw::c_int,
+            f64,
+            cudnnDataType_t,
+            cudnnDataType_t,
+            cudnnMathType_t,
+            cudnnDropoutDescriptor_t,
+            cudnnDropoutDescriptor_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
     pub cudnnGetAttnDescriptor: Option<
         unsafe extern "C" fn(
-            attnDesc: cudnnAttnDescriptor_t,
-            attnMode: *mut ::std::os::raw::c_uint,
-            nHeads: *mut ::std::os::raw::c_int,
-            smScaler: *mut f64,
-            dataType: *mut cudnnDataType_t,
-            computePrec: *mut cudnnDataType_t,
-            mathType: *mut cudnnMathType_t,
-            attnDropoutDesc: *mut cudnnDropoutDescriptor_t,
-            postDropoutDesc: *mut cudnnDropoutDescriptor_t,
-            qSize: *mut ::std::os::raw::c_int,
-            kSize: *mut ::std::os::raw::c_int,
-            vSize: *mut ::std::os::raw::c_int,
-            qProjSize: *mut ::std::os::raw::c_int,
-            kProjSize: *mut ::std::os::raw::c_int,
-            vProjSize: *mut ::std::os::raw::c_int,
-            oProjSize: *mut ::std::os::raw::c_int,
-            qoMaxSeqLength: *mut ::std::os::raw::c_int,
-            kvMaxSeqLength: *mut ::std::os::raw::c_int,
-            maxBatchSize: *mut ::std::os::raw::c_int,
-            maxBeamSize: *mut ::std::os::raw::c_int,
+            cudnnAttnDescriptor_t,
+            *mut ::std::os::raw::c_uint,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            *mut cudnnDataType_t,
+            *mut cudnnDataType_t,
+            *mut cudnnMathType_t,
+            *mut cudnnDropoutDescriptor_t,
+            *mut cudnnDropoutDescriptor_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetMultiHeadAttnBuffers: Option<unsafe extern "C" fn(handle: cudnnHandle_t, attnDesc: cudnnAttnDescriptor_t, weightSizeInBytes: *mut usize, workSpaceSizeInBytes: *mut usize, reserveSpaceSizeInBytes: *mut usize) -> cudnnStatus_t>,
-    pub cudnnGetMultiHeadAttnWeights:
-        Option<unsafe extern "C" fn(handle: cudnnHandle_t, attnDesc: cudnnAttnDescriptor_t, wKind: cudnnMultiHeadAttnWeightKind_t, weightSizeInBytes: usize, weights: *const ::std::os::raw::c_void, wDesc: cudnnTensorDescriptor_t, wAddr: *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnGetMultiHeadAttnBuffers: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnAttnDescriptor_t, *mut usize, *mut usize, *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetMultiHeadAttnWeights: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnAttnDescriptor_t, cudnnMultiHeadAttnWeightKind_t, usize, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     pub cudnnMultiHeadAttnForward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            attnDesc: cudnnAttnDescriptor_t,
-            currIdx: ::std::os::raw::c_int,
-            loWinIdx: *const ::std::os::raw::c_int,
-            hiWinIdx: *const ::std::os::raw::c_int,
-            devSeqLengthsQO: *const ::std::os::raw::c_int,
-            devSeqLengthsKV: *const ::std::os::raw::c_int,
-            qDesc: cudnnSeqDataDescriptor_t,
-            queries: *const ::std::os::raw::c_void,
-            residuals: *const ::std::os::raw::c_void,
-            kDesc: cudnnSeqDataDescriptor_t,
-            keys: *const ::std::os::raw::c_void,
-            vDesc: cudnnSeqDataDescriptor_t,
-            values: *const ::std::os::raw::c_void,
-            oDesc: cudnnSeqDataDescriptor_t,
-            out: *mut ::std::os::raw::c_void,
-            weightSizeInBytes: usize,
-            weights: *const ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            workSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnAttnDescriptor_t,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnAdvVersionCheck: Option<unsafe extern "C" fn() -> cudnnStatus_t>,
     pub cudnnRNNBackwardData_v8: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            rnnDesc: cudnnRNNDescriptor_t,
-            devSeqLengths: *const i32,
-            yDesc: cudnnRNNDataDescriptor_t,
-            y: *const ::std::os::raw::c_void,
-            dy: *const ::std::os::raw::c_void,
-            xDesc: cudnnRNNDataDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
-            hDesc: cudnnTensorDescriptor_t,
-            hx: *const ::std::os::raw::c_void,
-            dhy: *const ::std::os::raw::c_void,
-            dhx: *mut ::std::os::raw::c_void,
-            cDesc: cudnnTensorDescriptor_t,
-            cx: *const ::std::os::raw::c_void,
-            dcy: *const ::std::os::raw::c_void,
-            dcx: *mut ::std::os::raw::c_void,
-            weightSpaceSize: usize,
-            weightSpace: *const ::std::os::raw::c_void,
-            workSpaceSize: usize,
-            workSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSize: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnRNNDescriptor_t,
+            *const i32,
+            cudnnRNNDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnRNNDataDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnRNNBackwardWeights_v8: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            rnnDesc: cudnnRNNDescriptor_t,
-            addGrad: cudnnWgradMode_t,
-            devSeqLengths: *const i32,
-            xDesc: cudnnRNNDataDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            hDesc: cudnnTensorDescriptor_t,
-            hx: *const ::std::os::raw::c_void,
-            yDesc: cudnnRNNDataDescriptor_t,
-            y: *const ::std::os::raw::c_void,
-            weightSpaceSize: usize,
-            dweightSpace: *mut ::std::os::raw::c_void,
-            workSpaceSize: usize,
-            workSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSize: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnRNNDescriptor_t,
+            cudnnWgradMode_t,
+            *const i32,
+            cudnnRNNDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnRNNDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnMultiHeadAttnBackwardData: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            attnDesc: cudnnAttnDescriptor_t,
-            loWinIdx: *const ::std::os::raw::c_int,
-            hiWinIdx: *const ::std::os::raw::c_int,
-            devSeqLengthsDQDO: *const ::std::os::raw::c_int,
-            devSeqLengthsDKDV: *const ::std::os::raw::c_int,
-            doDesc: cudnnSeqDataDescriptor_t,
-            dout: *const ::std::os::raw::c_void,
-            dqDesc: cudnnSeqDataDescriptor_t,
-            dqueries: *mut ::std::os::raw::c_void,
-            queries: *const ::std::os::raw::c_void,
-            dkDesc: cudnnSeqDataDescriptor_t,
-            dkeys: *mut ::std::os::raw::c_void,
-            keys: *const ::std::os::raw::c_void,
-            dvDesc: cudnnSeqDataDescriptor_t,
-            dvalues: *mut ::std::os::raw::c_void,
-            values: *const ::std::os::raw::c_void,
-            weightSizeInBytes: usize,
-            weights: *const ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            workSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnAttnDescriptor_t,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            *const ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnMultiHeadAttnBackwardWeights: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            attnDesc: cudnnAttnDescriptor_t,
-            addGrad: cudnnWgradMode_t,
-            qDesc: cudnnSeqDataDescriptor_t,
-            queries: *const ::std::os::raw::c_void,
-            kDesc: cudnnSeqDataDescriptor_t,
-            keys: *const ::std::os::raw::c_void,
-            vDesc: cudnnSeqDataDescriptor_t,
-            values: *const ::std::os::raw::c_void,
-            doDesc: cudnnSeqDataDescriptor_t,
-            dout: *const ::std::os::raw::c_void,
-            weightSizeInBytes: usize,
-            weights: *const ::std::os::raw::c_void,
-            dweights: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            workSpace: *mut ::std::os::raw::c_void,
-            reserveSpaceSizeInBytes: usize,
-            reserveSpace: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnAttnDescriptor_t,
+            cudnnWgradMode_t,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnSeqDataDescriptor_t,
+            *const ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnCreateCTCLossDescriptor: Option<unsafe extern "C" fn(ctcLossDesc: *mut cudnnCTCLossDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetCTCLossDescriptor: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t) -> cudnnStatus_t>,
-    pub cudnnSetCTCLossDescriptorEx: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, gradMode: cudnnNanPropagation_t) -> cudnnStatus_t>,
-    pub cudnnSetCTCLossDescriptor_v8: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, gradMode: cudnnNanPropagation_t, maxLabelLength: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnSetCTCLossDescriptor_v9: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, ctcGradMode: cudnnCTCGradMode_t, maxLabelLength: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetCTCLossDescriptor: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t) -> cudnnStatus_t>,
-    pub cudnnGetCTCLossDescriptorEx: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t, normMode: *mut cudnnLossNormalizationMode_t, gradMode: *mut cudnnNanPropagation_t) -> cudnnStatus_t>,
-    pub cudnnGetCTCLossDescriptor_v8: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t, normMode: *mut cudnnLossNormalizationMode_t, gradMode: *mut cudnnNanPropagation_t, maxLabelLength: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetCTCLossDescriptor_v9: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t, normMode: *mut cudnnLossNormalizationMode_t, ctcGradMode: *mut cudnnCTCGradMode_t, maxLabelLength: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnDestroyCTCLossDescriptor: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnCreateCTCLossDescriptor: Option<unsafe extern "C" fn(*mut cudnnCTCLossDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetCTCLossDescriptor: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t) -> cudnnStatus_t>,
+    pub cudnnSetCTCLossDescriptorEx: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t) -> cudnnStatus_t>,
+    pub cudnnSetCTCLossDescriptor_v8: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnSetCTCLossDescriptor_v9: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnCTCGradMode_t, ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetCTCLossDescriptor: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t) -> cudnnStatus_t>,
+    pub cudnnGetCTCLossDescriptorEx: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnNanPropagation_t) -> cudnnStatus_t>,
+    pub cudnnGetCTCLossDescriptor_v8: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetCTCLossDescriptor_v9: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnCTCGradMode_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnDestroyCTCLossDescriptor: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t) -> cudnnStatus_t>,
     pub cudnnCTCLoss: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            probsDesc: cudnnTensorDescriptor_t,
-            probs: *const ::std::os::raw::c_void,
-            hostLabels: *const ::std::os::raw::c_int,
-            hostLabelLengths: *const ::std::os::raw::c_int,
-            hostInputLengths: *const ::std::os::raw::c_int,
-            costs: *mut ::std::os::raw::c_void,
-            gradientsDesc: cudnnTensorDescriptor_t,
-            gradients: *mut ::std::os::raw::c_void,
-            algo: cudnnCTCLossAlgo_t,
-            ctcLossDesc: cudnnCTCLossDescriptor_t,
-            workspace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
+            cudnnHandle_t,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            cudnnCTCLossAlgo_t,
+            cudnnCTCLossDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            usize,
         ) -> cudnnStatus_t,
     >,
     pub cudnnCTCLoss_v8: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            algo: cudnnCTCLossAlgo_t,
-            ctcLossDesc: cudnnCTCLossDescriptor_t,
-            probsDesc: cudnnTensorDescriptor_t,
-            probs: *const ::std::os::raw::c_void,
-            labels: *const ::std::os::raw::c_int,
-            labelLengths: *const ::std::os::raw::c_int,
-            inputLengths: *const ::std::os::raw::c_int,
-            costs: *mut ::std::os::raw::c_void,
-            gradientsDesc: cudnnTensorDescriptor_t,
-            gradients: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            workspace: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            cudnnCTCLossAlgo_t,
+            cudnnCTCLossDescriptor_t,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetCTCLossWorkspaceSize: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            probsDesc: cudnnTensorDescriptor_t,
-            gradientsDesc: cudnnTensorDescriptor_t,
-            labels: *const ::std::os::raw::c_int,
-            labelLengths: *const ::std::os::raw::c_int,
-            inputLengths: *const ::std::os::raw::c_int,
-            algo: cudnnCTCLossAlgo_t,
-            ctcLossDesc: cudnnCTCLossDescriptor_t,
-            sizeInBytes: *mut usize,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetCTCLossWorkspaceSize_v8: Option<unsafe extern "C" fn(handle: cudnnHandle_t, algo: cudnnCTCLossAlgo_t, ctcLossDesc: cudnnCTCLossDescriptor_t, probsDesc: cudnnTensorDescriptor_t, gradientsDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    pub cudnnCreateConvolutionDescriptor: Option<unsafe extern "C" fn(convDesc: *mut cudnnConvolutionDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnDestroyConvolutionDescriptor: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t) -> cudnnStatus_t>,
-    pub cudnnSetConvolutionMathType: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, mathType: cudnnMathType_t) -> cudnnStatus_t>,
-    pub cudnnGetConvolutionMathType: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, mathType: *mut cudnnMathType_t) -> cudnnStatus_t>,
-    pub cudnnSetConvolutionGroupCount: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, groupCount: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetConvolutionGroupCount: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, groupCount: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnSetConvolutionReorderType: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, reorderType: cudnnReorderType_t) -> cudnnStatus_t>,
-    pub cudnnGetConvolutionReorderType: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, reorderType: *mut cudnnReorderType_t) -> cudnnStatus_t>,
-    pub cudnnSetConvolution2dDescriptor: Option<
-        unsafe extern "C" fn(
-            convDesc: cudnnConvolutionDescriptor_t,
-            pad_h: ::std::os::raw::c_int,
-            pad_w: ::std::os::raw::c_int,
-            u: ::std::os::raw::c_int,
-            v: ::std::os::raw::c_int,
-            dilation_h: ::std::os::raw::c_int,
-            dilation_w: ::std::os::raw::c_int,
-            mode: cudnnConvolutionMode_t,
-            computeType: cudnnDataType_t,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetCTCLossWorkspaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cudnnCTCLossAlgo_t, cudnnCTCLossDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetCTCLossWorkspaceSize_v8: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnCTCLossAlgo_t, cudnnCTCLossDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnCreateConvolutionDescriptor: Option<unsafe extern "C" fn(*mut cudnnConvolutionDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnDestroyConvolutionDescriptor: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t) -> cudnnStatus_t>,
+    pub cudnnSetConvolutionMathType: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnMathType_t) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionMathType: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut cudnnMathType_t) -> cudnnStatus_t>,
+    pub cudnnSetConvolutionGroupCount: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionGroupCount: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnSetConvolutionReorderType: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnReorderType_t) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionReorderType: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut cudnnReorderType_t) -> cudnnStatus_t>,
+    pub cudnnSetConvolution2dDescriptor: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>,
     pub cudnnGetConvolution2dDescriptor: Option<
-        unsafe extern "C" fn(
-            convDesc: cudnnConvolutionDescriptor_t,
-            pad_h: *mut ::std::os::raw::c_int,
-            pad_w: *mut ::std::os::raw::c_int,
-            u: *mut ::std::os::raw::c_int,
-            v: *mut ::std::os::raw::c_int,
-            dilation_h: *mut ::std::os::raw::c_int,
-            dilation_w: *mut ::std::os::raw::c_int,
-            mode: *mut cudnnConvolutionMode_t,
-            computeType: *mut cudnnDataType_t,
-        ) -> cudnnStatus_t,
+        unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t,
     >,
-    pub cudnnSetConvolutionNdDescriptor: Option<
-        unsafe extern "C" fn(
-            convDesc: cudnnConvolutionDescriptor_t,
-            arrayLength: ::std::os::raw::c_int,
-            padA: *const ::std::os::raw::c_int,
-            filterStrideA: *const ::std::os::raw::c_int,
-            dilationA: *const ::std::os::raw::c_int,
-            mode: cudnnConvolutionMode_t,
-            computeType: cudnnDataType_t,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetConvolutionNdDescriptor: Option<
-        unsafe extern "C" fn(
-            convDesc: cudnnConvolutionDescriptor_t,
-            arrayLengthRequested: ::std::os::raw::c_int,
-            arrayLength: *mut ::std::os::raw::c_int,
-            padA: *mut ::std::os::raw::c_int,
-            strideA: *mut ::std::os::raw::c_int,
-            dilationA: *mut ::std::os::raw::c_int,
-            mode: *mut cudnnConvolutionMode_t,
-            computeType: *mut cudnnDataType_t,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetConvolution2dForwardOutputDim:
-        Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t, n: *mut ::std::os::raw::c_int, c: *mut ::std::os::raw::c_int, h: *mut ::std::os::raw::c_int, w: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetConvolutionNdForwardOutputDim: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t, nbDims: ::std::os::raw::c_int, tensorOuputDimA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetConvolutionForwardAlgorithmMaxCount: Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnGetConvolutionForwardAlgorithm_v7: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            srcDesc: cudnnTensorDescriptor_t,
-            filterDesc: cudnnFilterDescriptor_t,
-            convDesc: cudnnConvolutionDescriptor_t,
-            destDesc: cudnnTensorDescriptor_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionFwdAlgoPerf_t,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnFindConvolutionForwardAlgorithm: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            xDesc: cudnnTensorDescriptor_t,
-            wDesc: cudnnFilterDescriptor_t,
-            convDesc: cudnnConvolutionDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionFwdAlgoPerf_t,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnSetConvolutionNdDescriptor: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionNdDescriptor:
+        Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t>,
+    pub cudnnGetConvolution2dForwardOutputDim: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionNdForwardOutputDim: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionForwardAlgorithmMaxCount: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionForwardAlgorithm_v7:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
+    pub cudnnFindConvolutionForwardAlgorithm: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
     pub cudnnFindConvolutionForwardAlgorithmEx: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            wDesc: cudnnFilterDescriptor_t,
-            w: *const ::std::os::raw::c_void,
-            convDesc: cudnnConvolutionDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionFwdAlgoPerf_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
+            cudnnHandle_t,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnFilterDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnConvolutionDescriptor_t,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut cudnnConvolutionFwdAlgoPerf_t,
+            *mut ::std::os::raw::c_void,
+            usize,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnIm2Col: Option<unsafe extern "C" fn(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, x: *const ::std::os::raw::c_void, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, colBuffer: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnReorderFilterAndBias: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            filterDesc: cudnnFilterDescriptor_t,
-            reorderType: cudnnReorderType_t,
-            filterData: *const ::std::os::raw::c_void,
-            reorderedFilterData: *mut ::std::os::raw::c_void,
-            reorderBias: ::std::os::raw::c_int,
-            biasData: *const ::std::os::raw::c_void,
-            reorderedBiasData: *mut ::std::os::raw::c_void,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetConvolutionForwardWorkspaceSize:
-        Option<unsafe extern "C" fn(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, yDesc: cudnnTensorDescriptor_t, algo: cudnnConvolutionFwdAlgo_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
+    pub cudnnIm2Col: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnReorderFilterAndBias: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnReorderType_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionForwardWorkspaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionFwdAlgo_t, *mut usize) -> cudnnStatus_t>,
     pub cudnnConvolutionForward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            wDesc: cudnnFilterDescriptor_t,
-            w: *const ::std::os::raw::c_void,
-            convDesc: cudnnConvolutionDescriptor_t,
-            algo: cudnnConvolutionFwdAlgo_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            beta: *const ::std::os::raw::c_void,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnFilterDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnConvolutionDescriptor_t,
+            cudnnConvolutionFwdAlgo_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnConvolutionBiasActivationForward: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            alpha1: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            wDesc: cudnnFilterDescriptor_t,
-            w: *const ::std::os::raw::c_void,
-            convDesc: cudnnConvolutionDescriptor_t,
-            algo: cudnnConvolutionFwdAlgo_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            alpha2: *const ::std::os::raw::c_void,
-            zDesc: cudnnTensorDescriptor_t,
-            z: *const ::std::os::raw::c_void,
-            biasDesc: cudnnTensorDescriptor_t,
-            bias: *const ::std::os::raw::c_void,
-            activationDesc: cudnnActivationDescriptor_t,
-            yDesc: cudnnTensorDescriptor_t,
-            y: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnFilterDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnConvolutionDescriptor_t,
+            cudnnConvolutionFwdAlgo_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnActivationDescriptor_t,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetConvolutionBackwardDataAlgorithmMaxCount: Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnFindConvolutionBackwardDataAlgorithm: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            wDesc: cudnnFilterDescriptor_t,
-            dyDesc: cudnnTensorDescriptor_t,
-            convDesc: cudnnConvolutionDescriptor_t,
-            dxDesc: cudnnTensorDescriptor_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionBwdDataAlgoPerf_t,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetConvolutionBackwardDataAlgorithmMaxCount: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnFindConvolutionBackwardDataAlgorithm:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
     pub cudnnFindConvolutionBackwardDataAlgorithmEx: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            wDesc: cudnnFilterDescriptor_t,
-            w: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            convDesc: cudnnConvolutionDescriptor_t,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionBwdDataAlgoPerf_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
+            cudnnHandle_t,
+            cudnnFilterDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnConvolutionDescriptor_t,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut cudnnConvolutionBwdDataAlgoPerf_t,
+            *mut ::std::os::raw::c_void,
+            usize,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetConvolutionBackwardDataAlgorithm_v7: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            filterDesc: cudnnFilterDescriptor_t,
-            diffDesc: cudnnTensorDescriptor_t,
-            convDesc: cudnnConvolutionDescriptor_t,
-            gradDesc: cudnnTensorDescriptor_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionBwdDataAlgoPerf_t,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetConvolutionBackwardDataWorkspaceSize:
-        Option<unsafe extern "C" fn(handle: cudnnHandle_t, wDesc: cudnnFilterDescriptor_t, dyDesc: cudnnTensorDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, dxDesc: cudnnTensorDescriptor_t, algo: cudnnConvolutionBwdDataAlgo_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionBackwardDataAlgorithm_v7:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionBackwardDataWorkspaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionBwdDataAlgo_t, *mut usize) -> cudnnStatus_t>,
     pub cudnnConvolutionBackwardData: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            alpha: *const ::std::os::raw::c_void,
-            wDesc: cudnnFilterDescriptor_t,
-            w: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            convDesc: cudnnConvolutionDescriptor_t,
-            algo: cudnnConvolutionBwdDataAlgo_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            beta: *const ::std::os::raw::c_void,
-            dxDesc: cudnnTensorDescriptor_t,
-            dx: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            *const ::std::os::raw::c_void,
+            cudnnFilterDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnConvolutionDescriptor_t,
+            cudnnConvolutionBwdDataAlgo_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
     pub cudnnGetFoldedConvBackwardDataDescriptors: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            filterDesc: cudnnFilterDescriptor_t,
-            diffDesc: cudnnTensorDescriptor_t,
-            convDesc: cudnnConvolutionDescriptor_t,
-            gradDesc: cudnnTensorDescriptor_t,
-            transformFormat: cudnnTensorFormat_t,
-            foldedFilterDesc: cudnnFilterDescriptor_t,
-            paddedDiffDesc: cudnnTensorDescriptor_t,
-            foldedConvDesc: cudnnConvolutionDescriptor_t,
-            foldedGradDesc: cudnnTensorDescriptor_t,
-            filterFoldTransDesc: cudnnTensorTransformDescriptor_t,
-            diffPadTransDesc: cudnnTensorTransformDescriptor_t,
-            gradFoldTransDesc: cudnnTensorTransformDescriptor_t,
-            gradUnfoldTransDesc: cudnnTensorTransformDescriptor_t,
+            cudnnHandle_t,
+            cudnnFilterDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnConvolutionDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnTensorFormat_t,
+            cudnnFilterDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnConvolutionDescriptor_t,
+            cudnnTensorDescriptor_t,
+            cudnnTensorTransformDescriptor_t,
+            cudnnTensorTransformDescriptor_t,
+            cudnnTensorTransformDescriptor_t,
+            cudnnTensorTransformDescriptor_t,
         ) -> cudnnStatus_t,
     >,
     pub cudnnCnnVersionCheck: Option<unsafe extern "C" fn() -> cudnnStatus_t>,
-    pub cudnnGetConvolutionBackwardFilterAlgorithmMaxCount: Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnFindConvolutionBackwardFilterAlgorithm: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            xDesc: cudnnTensorDescriptor_t,
-            dyDesc: cudnnTensorDescriptor_t,
-            convDesc: cudnnConvolutionDescriptor_t,
-            dwDesc: cudnnFilterDescriptor_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionBwdFilterAlgoPerf_t,
-        ) -> cudnnStatus_t,
-    >,
+    pub cudnnGetConvolutionBackwardFilterAlgorithmMaxCount: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnFindConvolutionBackwardFilterAlgorithm:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
     pub cudnnFindConvolutionBackwardFilterAlgorithmEx: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            y: *const ::std::os::raw::c_void,
-            convDesc: cudnnConvolutionDescriptor_t,
-            dwDesc: cudnnFilterDescriptor_t,
-            dw: *mut ::std::os::raw::c_void,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionBwdFilterAlgoPerf_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
+            cudnnHandle_t,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnConvolutionDescriptor_t,
+            cudnnFilterDescriptor_t,
+            *mut ::std::os::raw::c_void,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut cudnnConvolutionBwdFilterAlgoPerf_t,
+            *mut ::std::os::raw::c_void,
+            usize,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnGetConvolutionBackwardFilterAlgorithm_v7: Option<
-        unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            srcDesc: cudnnTensorDescriptor_t,
-            diffDesc: cudnnTensorDescriptor_t,
-            convDesc: cudnnConvolutionDescriptor_t,
-            gradDesc: cudnnFilterDescriptor_t,
-            requestedAlgoCount: ::std::os::raw::c_int,
-            returnedAlgoCount: *mut ::std::os::raw::c_int,
-            perfResults: *mut cudnnConvolutionBwdFilterAlgoPerf_t,
-        ) -> cudnnStatus_t,
-    >,
-    pub cudnnGetConvolutionBackwardFilterWorkspaceSize:
-        Option<unsafe extern "C" fn(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, dyDesc: cudnnTensorDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, gradDesc: cudnnFilterDescriptor_t, algo: cudnnConvolutionBwdFilterAlgo_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionBackwardFilterAlgorithm_v7:
+        Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
+    pub cudnnGetConvolutionBackwardFilterWorkspaceSize: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionBwdFilterAlgo_t, *mut usize) -> cudnnStatus_t>,
     pub cudnnConvolutionBackwardFilter: Option<
         unsafe extern "C" fn(
-            handle: cudnnHandle_t,
-            alpha: *const ::std::os::raw::c_void,
-            xDesc: cudnnTensorDescriptor_t,
-            x: *const ::std::os::raw::c_void,
-            dyDesc: cudnnTensorDescriptor_t,
-            dy: *const ::std::os::raw::c_void,
-            convDesc: cudnnConvolutionDescriptor_t,
-            algo: cudnnConvolutionBwdFilterAlgo_t,
-            workSpace: *mut ::std::os::raw::c_void,
-            workSpaceSizeInBytes: usize,
-            beta: *const ::std::os::raw::c_void,
-            dwDesc: cudnnFilterDescriptor_t,
-            dw: *mut ::std::os::raw::c_void,
+            cudnnHandle_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnTensorDescriptor_t,
+            *const ::std::os::raw::c_void,
+            cudnnConvolutionDescriptor_t,
+            cudnnConvolutionBwdFilterAlgo_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            cudnnFilterDescriptor_t,
+            *mut ::std::os::raw::c_void,
         ) -> cudnnStatus_t,
     >,
-    pub cudnnConvolutionBackwardBias:
-        Option<unsafe extern "C" fn(handle: cudnnHandle_t, alpha: *const ::std::os::raw::c_void, dyDesc: cudnnTensorDescriptor_t, dy: *const ::std::os::raw::c_void, beta: *const ::std::os::raw::c_void, dbDesc: cudnnTensorDescriptor_t, db: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnCreateFusedOpsConstParamPack: Option<unsafe extern "C" fn(constPack: *mut cudnnFusedOpsConstParamPack_t, ops: cudnnFusedOps_t) -> cudnnStatus_t>,
-    pub cudnnDestroyFusedOpsConstParamPack: Option<unsafe extern "C" fn(constPack: cudnnFusedOpsConstParamPack_t) -> cudnnStatus_t>,
-    pub cudnnSetFusedOpsConstParamPackAttribute: Option<unsafe extern "C" fn(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: *const ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnGetFusedOpsConstParamPackAttribute: Option<unsafe extern "C" fn(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: *mut ::std::os::raw::c_void, isNULL: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    pub cudnnCreateFusedOpsVariantParamPack: Option<unsafe extern "C" fn(varPack: *mut cudnnFusedOpsVariantParamPack_t, ops: cudnnFusedOps_t) -> cudnnStatus_t>,
-    pub cudnnDestroyFusedOpsVariantParamPack: Option<unsafe extern "C" fn(varPack: cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>,
-    pub cudnnSetFusedOpsVariantParamPackAttribute: Option<unsafe extern "C" fn(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, ptr: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnGetFusedOpsVariantParamPackAttribute: Option<unsafe extern "C" fn(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, ptr: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    pub cudnnCreateFusedOpsPlan: Option<unsafe extern "C" fn(plan: *mut cudnnFusedOpsPlan_t, ops: cudnnFusedOps_t) -> cudnnStatus_t>,
-    pub cudnnDestroyFusedOpsPlan: Option<unsafe extern "C" fn(plan: cudnnFusedOpsPlan_t) -> cudnnStatus_t>,
-    pub cudnnMakeFusedOpsPlan: Option<unsafe extern "C" fn(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, constPack: cudnnFusedOpsConstParamPack_t, workspaceSizeInBytes: *mut usize) -> cudnnStatus_t>,
-    pub cudnnFusedOpsExecute: Option<unsafe extern "C" fn(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, varPack: cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>,
+    pub cudnnConvolutionBackwardBias: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateFusedOpsConstParamPack: Option<unsafe extern "C" fn(*mut cudnnFusedOpsConstParamPack_t, cudnnFusedOps_t) -> cudnnStatus_t>,
+    pub cudnnDestroyFusedOpsConstParamPack: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t) -> cudnnStatus_t>,
+    pub cudnnSetFusedOpsConstParamPackAttribute: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *const ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnGetFusedOpsConstParamPackAttribute: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
+    pub cudnnCreateFusedOpsVariantParamPack: Option<unsafe extern "C" fn(*mut cudnnFusedOpsVariantParamPack_t, cudnnFusedOps_t) -> cudnnStatus_t>,
+    pub cudnnDestroyFusedOpsVariantParamPack: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>,
+    pub cudnnSetFusedOpsVariantParamPackAttribute: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnGetFusedOpsVariantParamPackAttribute: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
+    pub cudnnCreateFusedOpsPlan: Option<unsafe extern "C" fn(*mut cudnnFusedOpsPlan_t, cudnnFusedOps_t) -> cudnnStatus_t>,
+    pub cudnnDestroyFusedOpsPlan: Option<unsafe extern "C" fn(cudnnFusedOpsPlan_t) -> cudnnStatus_t>,
+    pub cudnnMakeFusedOpsPlan: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFusedOpsPlan_t, cudnnFusedOpsConstParamPack_t, *mut usize) -> cudnnStatus_t>,
+    pub cudnnFusedOpsExecute: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFusedOpsPlan_t, cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
 unsafe impl Send for DynamicBindings {}
@@ -8398,890 +7989,888 @@ pub unsafe extern "C" fn cudnnFusedOpsExecute(handle: cudnnHandle_t, plan: cudnn
 }
 #[cfg(feature = "runtime-link")]
 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-    let bindings = unsafe {
-        Box::new(DynamicBindings {
-            cudnnGetVersion: {
-                let p = get_proc_addr(lib, b"cudnnGetVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetMaxDeviceVersion: {
-                let p = get_proc_addr(lib, b"cudnnGetMaxDeviceVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCudartVersion: {
-                let p = get_proc_addr(lib, b"cudnnGetCudartVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetErrorString: {
-                let p = get_proc_addr(lib, b"cudnnGetErrorString\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetLastErrorString: {
-                let p = get_proc_addr(lib, b"cudnnGetLastErrorString\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnQueryRuntimeError: {
-                let p = get_proc_addr(lib, b"cudnnQueryRuntimeError\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetProperty: {
-                let p = get_proc_addr(lib, b"cudnnGetProperty\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreate: {
-                let p = get_proc_addr(lib, b"cudnnCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroy: {
-                let p = get_proc_addr(lib, b"cudnnDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetStream: {
-                let p = get_proc_addr(lib, b"cudnnSetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetStream: {
-                let p = get_proc_addr(lib, b"cudnnGetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetCallback: {
-                let p = get_proc_addr(lib, b"cudnnSetCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCallback: {
-                let p = get_proc_addr(lib, b"cudnnGetCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGraphVersionCheck: {
-                let p = get_proc_addr(lib, b"cudnnGraphVersionCheck\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendCreateDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnBackendCreateDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendDestroyDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnBackendDestroyDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendInitialize: {
-                let p = get_proc_addr(lib, b"cudnnBackendInitialize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendFinalize: {
-                let p = get_proc_addr(lib, b"cudnnBackendFinalize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendSetAttribute: {
-                let p = get_proc_addr(lib, b"cudnnBackendSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendGetAttribute: {
-                let p = get_proc_addr(lib, b"cudnnBackendGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendExecute: {
-                let p = get_proc_addr(lib, b"cudnnBackendExecute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendPopulateCudaGraph: {
-                let p = get_proc_addr(lib, b"cudnnBackendPopulateCudaGraph\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBackendUpdateCudaGraph: {
-                let p = get_proc_addr(lib, b"cudnnBackendUpdateCudaGraph\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetTensor4dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetTensor4dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetTensor4dDescriptorEx: {
-                let p = get_proc_addr(lib, b"cudnnSetTensor4dDescriptorEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetTensor4dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetTensor4dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetTensorNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetTensorNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetTensorNdDescriptorEx: {
-                let p = get_proc_addr(lib, b"cudnnSetTensorNdDescriptorEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetTensorNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetTensorNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetTensorSizeInBytes: {
-                let p = get_proc_addr(lib, b"cudnnGetTensorSizeInBytes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnInitTransformDest: {
-                let p = get_proc_addr(lib, b"cudnnInitTransformDest\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateTensorTransformDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateTensorTransformDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetTensorTransformDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetTensorTransformDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetTensorTransformDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetTensorTransformDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyTensorTransformDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyTensorTransformDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnTransformTensor: {
-                let p = get_proc_addr(lib, b"cudnnTransformTensor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnTransformTensorEx: {
-                let p = get_proc_addr(lib, b"cudnnTransformTensorEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnAddTensor: {
-                let p = get_proc_addr(lib, b"cudnnAddTensor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateOpTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateOpTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetOpTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetOpTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetOpTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetOpTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyOpTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyOpTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnOpTensor: {
-                let p = get_proc_addr(lib, b"cudnnOpTensor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateReduceTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateReduceTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetReduceTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetReduceTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetReduceTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetReduceTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyReduceTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyReduceTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetReductionIndicesSize: {
-                let p = get_proc_addr(lib, b"cudnnGetReductionIndicesSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetReductionWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetReductionWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnReduceTensor: {
-                let p = get_proc_addr(lib, b"cudnnReduceTensor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetTensor: {
-                let p = get_proc_addr(lib, b"cudnnSetTensor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnScaleTensor: {
-                let p = get_proc_addr(lib, b"cudnnScaleTensor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateFilterDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateFilterDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetFilter4dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetFilter4dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetFilter4dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetFilter4dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetFilterNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetFilterNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetFilterNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetFilterNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetFilterSizeInBytes: {
-                let p = get_proc_addr(lib, b"cudnnGetFilterSizeInBytes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnTransformFilter: {
-                let p = get_proc_addr(lib, b"cudnnTransformFilter\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyFilterDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyFilterDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSoftmaxForward: {
-                let p = get_proc_addr(lib, b"cudnnSoftmaxForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreatePoolingDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreatePoolingDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetPooling2dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetPooling2dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetPooling2dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetPooling2dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetPoolingNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetPoolingNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetPoolingNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetPoolingNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetPoolingNdForwardOutputDim: {
-                let p = get_proc_addr(lib, b"cudnnGetPoolingNdForwardOutputDim\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetPooling2dForwardOutputDim: {
-                let p = get_proc_addr(lib, b"cudnnGetPooling2dForwardOutputDim\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyPoolingDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyPoolingDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnPoolingForward: {
-                let p = get_proc_addr(lib, b"cudnnPoolingForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateActivationDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateActivationDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetActivationDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetActivationDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetActivationDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetActivationDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetActivationDescriptorSwishBeta: {
-                let p = get_proc_addr(lib, b"cudnnSetActivationDescriptorSwishBeta\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetActivationDescriptorSwishBeta: {
-                let p = get_proc_addr(lib, b"cudnnGetActivationDescriptorSwishBeta\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyActivationDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyActivationDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnActivationForward: {
-                let p = get_proc_addr(lib, b"cudnnActivationForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateLRNDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateLRNDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetLRNDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetLRNDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetLRNDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetLRNDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyLRNDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyLRNDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnLRNCrossChannelForward: {
-                let p = get_proc_addr(lib, b"cudnnLRNCrossChannelForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDivisiveNormalizationForward: {
-                let p = get_proc_addr(lib, b"cudnnDivisiveNormalizationForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDeriveBNTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDeriveBNTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBatchNormalizationForwardInference: {
-                let p = get_proc_addr(lib, b"cudnnBatchNormalizationForwardInference\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDeriveNormTensorDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDeriveNormTensorDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnNormalizationForwardInference: {
-                let p = get_proc_addr(lib, b"cudnnNormalizationForwardInference\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateSpatialTransformerDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateSpatialTransformerDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetSpatialTransformerNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetSpatialTransformerNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroySpatialTransformerDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroySpatialTransformerDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSpatialTfGridGeneratorForward: {
-                let p = get_proc_addr(lib, b"cudnnSpatialTfGridGeneratorForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSpatialTfSamplerForward: {
-                let p = get_proc_addr(lib, b"cudnnSpatialTfSamplerForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateDropoutDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateDropoutDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyDropoutDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyDropoutDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDropoutGetStatesSize: {
-                let p = get_proc_addr(lib, b"cudnnDropoutGetStatesSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDropoutGetReserveSpaceSize: {
-                let p = get_proc_addr(lib, b"cudnnDropoutGetReserveSpaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetDropoutDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetDropoutDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRestoreDropoutDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnRestoreDropoutDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetDropoutDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetDropoutDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDropoutForward: {
-                let p = get_proc_addr(lib, b"cudnnDropoutForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnOpsVersionCheck: {
-                let p = get_proc_addr(lib, b"cudnnOpsVersionCheck\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSoftmaxBackward: {
-                let p = get_proc_addr(lib, b"cudnnSoftmaxBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnPoolingBackward: {
-                let p = get_proc_addr(lib, b"cudnnPoolingBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnActivationBackward: {
-                let p = get_proc_addr(lib, b"cudnnActivationBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnLRNCrossChannelBackward: {
-                let p = get_proc_addr(lib, b"cudnnLRNCrossChannelBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDivisiveNormalizationBackward: {
-                let p = get_proc_addr(lib, b"cudnnDivisiveNormalizationBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetBatchNormalizationBackwardExWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationBackwardExWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetBatchNormalizationTrainingExReserveSpaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationTrainingExReserveSpaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBatchNormalizationForwardTraining: {
-                let p = get_proc_addr(lib, b"cudnnBatchNormalizationForwardTraining\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBatchNormalizationForwardTrainingEx: {
-                let p = get_proc_addr(lib, b"cudnnBatchNormalizationForwardTrainingEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBatchNormalizationBackward: {
-                let p = get_proc_addr(lib, b"cudnnBatchNormalizationBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBatchNormalizationBackwardEx: {
-                let p = get_proc_addr(lib, b"cudnnBatchNormalizationBackwardEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetNormalizationForwardTrainingWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetNormalizationForwardTrainingWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetNormalizationBackwardWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetNormalizationBackwardWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetNormalizationTrainingReserveSpaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetNormalizationTrainingReserveSpaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnNormalizationForwardTraining: {
-                let p = get_proc_addr(lib, b"cudnnNormalizationForwardTraining\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnNormalizationBackward: {
-                let p = get_proc_addr(lib, b"cudnnNormalizationBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSpatialTfGridGeneratorBackward: {
-                let p = get_proc_addr(lib, b"cudnnSpatialTfGridGeneratorBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSpatialTfSamplerBackward: {
-                let p = get_proc_addr(lib, b"cudnnSpatialTfSamplerBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDropoutBackward: {
-                let p = get_proc_addr(lib, b"cudnnDropoutBackward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateRNNDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateRNNDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyRNNDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyRNNDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetRNNDescriptor_v8: {
-                let p = get_proc_addr(lib, b"cudnnSetRNNDescriptor_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetRNNDescriptor_v8: {
-                let p = get_proc_addr(lib, b"cudnnGetRNNDescriptor_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRNNSetClip_v8: {
-                let p = get_proc_addr(lib, b"cudnnRNNSetClip_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRNNSetClip_v9: {
-                let p = get_proc_addr(lib, b"cudnnRNNSetClip_v9\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRNNGetClip_v8: {
-                let p = get_proc_addr(lib, b"cudnnRNNGetClip_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRNNGetClip_v9: {
-                let p = get_proc_addr(lib, b"cudnnRNNGetClip_v9\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnBuildRNNDynamic: {
-                let p = get_proc_addr(lib, b"cudnnBuildRNNDynamic\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetRNNTempSpaceSizes: {
-                let p = get_proc_addr(lib, b"cudnnGetRNNTempSpaceSizes\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetRNNWeightSpaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetRNNWeightSpaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetRNNWeightParams: {
-                let p = get_proc_addr(lib, b"cudnnGetRNNWeightParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateRNNDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateRNNDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyRNNDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyRNNDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetRNNDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetRNNDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetRNNDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetRNNDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRNNForward: {
-                let p = get_proc_addr(lib, b"cudnnRNNForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateSeqDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateSeqDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroySeqDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroySeqDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetSeqDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetSeqDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetSeqDataDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetSeqDataDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateAttnDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateAttnDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyAttnDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyAttnDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetAttnDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetAttnDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetAttnDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetAttnDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetMultiHeadAttnBuffers: {
-                let p = get_proc_addr(lib, b"cudnnGetMultiHeadAttnBuffers\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetMultiHeadAttnWeights: {
-                let p = get_proc_addr(lib, b"cudnnGetMultiHeadAttnWeights\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnMultiHeadAttnForward: {
-                let p = get_proc_addr(lib, b"cudnnMultiHeadAttnForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnAdvVersionCheck: {
-                let p = get_proc_addr(lib, b"cudnnAdvVersionCheck\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRNNBackwardData_v8: {
-                let p = get_proc_addr(lib, b"cudnnRNNBackwardData_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnRNNBackwardWeights_v8: {
-                let p = get_proc_addr(lib, b"cudnnRNNBackwardWeights_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnMultiHeadAttnBackwardData: {
-                let p = get_proc_addr(lib, b"cudnnMultiHeadAttnBackwardData\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnMultiHeadAttnBackwardWeights: {
-                let p = get_proc_addr(lib, b"cudnnMultiHeadAttnBackwardWeights\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateCTCLossDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateCTCLossDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetCTCLossDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetCTCLossDescriptorEx: {
-                let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptorEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetCTCLossDescriptor_v8: {
-                let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptor_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetCTCLossDescriptor_v9: {
-                let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptor_v9\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCTCLossDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCTCLossDescriptorEx: {
-                let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptorEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCTCLossDescriptor_v8: {
-                let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptor_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCTCLossDescriptor_v9: {
-                let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptor_v9\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyCTCLossDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyCTCLossDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCTCLoss: {
-                let p = get_proc_addr(lib, b"cudnnCTCLoss\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCTCLoss_v8: {
-                let p = get_proc_addr(lib, b"cudnnCTCLoss_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCTCLossWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetCTCLossWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetCTCLossWorkspaceSize_v8: {
-                let p = get_proc_addr(lib, b"cudnnGetCTCLossWorkspaceSize_v8\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateConvolutionDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnCreateConvolutionDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyConvolutionDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnDestroyConvolutionDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetConvolutionMathType: {
-                let p = get_proc_addr(lib, b"cudnnSetConvolutionMathType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionMathType: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionMathType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetConvolutionGroupCount: {
-                let p = get_proc_addr(lib, b"cudnnSetConvolutionGroupCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionGroupCount: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionGroupCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetConvolutionReorderType: {
-                let p = get_proc_addr(lib, b"cudnnSetConvolutionReorderType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionReorderType: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionReorderType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetConvolution2dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetConvolution2dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolution2dDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolution2dDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetConvolutionNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnSetConvolutionNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionNdDescriptor: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionNdDescriptor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolution2dForwardOutputDim: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolution2dForwardOutputDim\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionNdForwardOutputDim: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionNdForwardOutputDim\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionForwardAlgorithmMaxCount: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionForwardAlgorithmMaxCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionForwardAlgorithm_v7: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionForwardAlgorithm_v7\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnFindConvolutionForwardAlgorithm: {
-                let p = get_proc_addr(lib, b"cudnnFindConvolutionForwardAlgorithm\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnFindConvolutionForwardAlgorithmEx: {
-                let p = get_proc_addr(lib, b"cudnnFindConvolutionForwardAlgorithmEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnIm2Col: {
-                let p = get_proc_addr(lib, b"cudnnIm2Col\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnReorderFilterAndBias: {
-                let p = get_proc_addr(lib, b"cudnnReorderFilterAndBias\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionForwardWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionForwardWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnConvolutionForward: {
-                let p = get_proc_addr(lib, b"cudnnConvolutionForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnConvolutionBiasActivationForward: {
-                let p = get_proc_addr(lib, b"cudnnConvolutionBiasActivationForward\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionBackwardDataAlgorithmMaxCount: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataAlgorithmMaxCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnFindConvolutionBackwardDataAlgorithm: {
-                let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardDataAlgorithm\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnFindConvolutionBackwardDataAlgorithmEx: {
-                let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardDataAlgorithmEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionBackwardDataAlgorithm_v7: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataAlgorithm_v7\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionBackwardDataWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnConvolutionBackwardData: {
-                let p = get_proc_addr(lib, b"cudnnConvolutionBackwardData\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetFoldedConvBackwardDataDescriptors: {
-                let p = get_proc_addr(lib, b"cudnnGetFoldedConvBackwardDataDescriptors\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCnnVersionCheck: {
-                let p = get_proc_addr(lib, b"cudnnCnnVersionCheck\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionBackwardFilterAlgorithmMaxCount: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterAlgorithmMaxCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnFindConvolutionBackwardFilterAlgorithm: {
-                let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardFilterAlgorithm\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnFindConvolutionBackwardFilterAlgorithmEx: {
-                let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardFilterAlgorithmEx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionBackwardFilterAlgorithm_v7: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterAlgorithm_v7\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetConvolutionBackwardFilterWorkspaceSize: {
-                let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterWorkspaceSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnConvolutionBackwardFilter: {
-                let p = get_proc_addr(lib, b"cudnnConvolutionBackwardFilter\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnConvolutionBackwardBias: {
-                let p = get_proc_addr(lib, b"cudnnConvolutionBackwardBias\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateFusedOpsConstParamPack: {
-                let p = get_proc_addr(lib, b"cudnnCreateFusedOpsConstParamPack\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyFusedOpsConstParamPack: {
-                let p = get_proc_addr(lib, b"cudnnDestroyFusedOpsConstParamPack\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetFusedOpsConstParamPackAttribute: {
-                let p = get_proc_addr(lib, b"cudnnSetFusedOpsConstParamPackAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetFusedOpsConstParamPackAttribute: {
-                let p = get_proc_addr(lib, b"cudnnGetFusedOpsConstParamPackAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateFusedOpsVariantParamPack: {
-                let p = get_proc_addr(lib, b"cudnnCreateFusedOpsVariantParamPack\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyFusedOpsVariantParamPack: {
-                let p = get_proc_addr(lib, b"cudnnDestroyFusedOpsVariantParamPack\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnSetFusedOpsVariantParamPackAttribute: {
-                let p = get_proc_addr(lib, b"cudnnSetFusedOpsVariantParamPackAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnGetFusedOpsVariantParamPackAttribute: {
-                let p = get_proc_addr(lib, b"cudnnGetFusedOpsVariantParamPackAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnCreateFusedOpsPlan: {
-                let p = get_proc_addr(lib, b"cudnnCreateFusedOpsPlan\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnDestroyFusedOpsPlan: {
-                let p = get_proc_addr(lib, b"cudnnDestroyFusedOpsPlan\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnMakeFusedOpsPlan: {
-                let p = get_proc_addr(lib, b"cudnnMakeFusedOpsPlan\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cudnnFusedOpsExecute: {
-                let p = get_proc_addr(lib, b"cudnnFusedOpsExecute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-        })
-    };
+    let bindings = Box::new(DynamicBindings {
+        cudnnGetVersion: {
+            let p = get_proc_addr(lib, b"cudnnGetVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetMaxDeviceVersion: {
+            let p = get_proc_addr(lib, b"cudnnGetMaxDeviceVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCudartVersion: {
+            let p = get_proc_addr(lib, b"cudnnGetCudartVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetErrorString: {
+            let p = get_proc_addr(lib, b"cudnnGetErrorString\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetLastErrorString: {
+            let p = get_proc_addr(lib, b"cudnnGetLastErrorString\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnQueryRuntimeError: {
+            let p = get_proc_addr(lib, b"cudnnQueryRuntimeError\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetProperty: {
+            let p = get_proc_addr(lib, b"cudnnGetProperty\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreate: {
+            let p = get_proc_addr(lib, b"cudnnCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroy: {
+            let p = get_proc_addr(lib, b"cudnnDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetStream: {
+            let p = get_proc_addr(lib, b"cudnnSetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetStream: {
+            let p = get_proc_addr(lib, b"cudnnGetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetCallback: {
+            let p = get_proc_addr(lib, b"cudnnSetCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCallback: {
+            let p = get_proc_addr(lib, b"cudnnGetCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGraphVersionCheck: {
+            let p = get_proc_addr(lib, b"cudnnGraphVersionCheck\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendCreateDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnBackendCreateDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendDestroyDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnBackendDestroyDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendInitialize: {
+            let p = get_proc_addr(lib, b"cudnnBackendInitialize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendFinalize: {
+            let p = get_proc_addr(lib, b"cudnnBackendFinalize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendSetAttribute: {
+            let p = get_proc_addr(lib, b"cudnnBackendSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendGetAttribute: {
+            let p = get_proc_addr(lib, b"cudnnBackendGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendExecute: {
+            let p = get_proc_addr(lib, b"cudnnBackendExecute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendPopulateCudaGraph: {
+            let p = get_proc_addr(lib, b"cudnnBackendPopulateCudaGraph\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBackendUpdateCudaGraph: {
+            let p = get_proc_addr(lib, b"cudnnBackendUpdateCudaGraph\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetTensor4dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetTensor4dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetTensor4dDescriptorEx: {
+            let p = get_proc_addr(lib, b"cudnnSetTensor4dDescriptorEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetTensor4dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetTensor4dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetTensorNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetTensorNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetTensorNdDescriptorEx: {
+            let p = get_proc_addr(lib, b"cudnnSetTensorNdDescriptorEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetTensorNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetTensorNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetTensorSizeInBytes: {
+            let p = get_proc_addr(lib, b"cudnnGetTensorSizeInBytes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnInitTransformDest: {
+            let p = get_proc_addr(lib, b"cudnnInitTransformDest\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateTensorTransformDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateTensorTransformDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetTensorTransformDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetTensorTransformDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetTensorTransformDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetTensorTransformDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyTensorTransformDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyTensorTransformDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnTransformTensor: {
+            let p = get_proc_addr(lib, b"cudnnTransformTensor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnTransformTensorEx: {
+            let p = get_proc_addr(lib, b"cudnnTransformTensorEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnAddTensor: {
+            let p = get_proc_addr(lib, b"cudnnAddTensor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateOpTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateOpTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetOpTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetOpTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetOpTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetOpTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyOpTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyOpTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnOpTensor: {
+            let p = get_proc_addr(lib, b"cudnnOpTensor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateReduceTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateReduceTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetReduceTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetReduceTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetReduceTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetReduceTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyReduceTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyReduceTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetReductionIndicesSize: {
+            let p = get_proc_addr(lib, b"cudnnGetReductionIndicesSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetReductionWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetReductionWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnReduceTensor: {
+            let p = get_proc_addr(lib, b"cudnnReduceTensor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetTensor: {
+            let p = get_proc_addr(lib, b"cudnnSetTensor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnScaleTensor: {
+            let p = get_proc_addr(lib, b"cudnnScaleTensor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateFilterDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateFilterDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetFilter4dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetFilter4dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetFilter4dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetFilter4dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetFilterNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetFilterNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetFilterNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetFilterNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetFilterSizeInBytes: {
+            let p = get_proc_addr(lib, b"cudnnGetFilterSizeInBytes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnTransformFilter: {
+            let p = get_proc_addr(lib, b"cudnnTransformFilter\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyFilterDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyFilterDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSoftmaxForward: {
+            let p = get_proc_addr(lib, b"cudnnSoftmaxForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreatePoolingDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreatePoolingDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetPooling2dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetPooling2dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetPooling2dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetPooling2dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetPoolingNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetPoolingNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetPoolingNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetPoolingNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetPoolingNdForwardOutputDim: {
+            let p = get_proc_addr(lib, b"cudnnGetPoolingNdForwardOutputDim\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetPooling2dForwardOutputDim: {
+            let p = get_proc_addr(lib, b"cudnnGetPooling2dForwardOutputDim\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyPoolingDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyPoolingDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnPoolingForward: {
+            let p = get_proc_addr(lib, b"cudnnPoolingForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateActivationDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateActivationDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetActivationDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetActivationDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetActivationDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetActivationDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetActivationDescriptorSwishBeta: {
+            let p = get_proc_addr(lib, b"cudnnSetActivationDescriptorSwishBeta\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetActivationDescriptorSwishBeta: {
+            let p = get_proc_addr(lib, b"cudnnGetActivationDescriptorSwishBeta\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyActivationDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyActivationDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnActivationForward: {
+            let p = get_proc_addr(lib, b"cudnnActivationForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateLRNDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateLRNDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetLRNDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetLRNDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetLRNDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetLRNDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyLRNDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyLRNDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnLRNCrossChannelForward: {
+            let p = get_proc_addr(lib, b"cudnnLRNCrossChannelForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDivisiveNormalizationForward: {
+            let p = get_proc_addr(lib, b"cudnnDivisiveNormalizationForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDeriveBNTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDeriveBNTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBatchNormalizationForwardInference: {
+            let p = get_proc_addr(lib, b"cudnnBatchNormalizationForwardInference\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDeriveNormTensorDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDeriveNormTensorDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnNormalizationForwardInference: {
+            let p = get_proc_addr(lib, b"cudnnNormalizationForwardInference\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateSpatialTransformerDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateSpatialTransformerDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetSpatialTransformerNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetSpatialTransformerNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroySpatialTransformerDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroySpatialTransformerDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSpatialTfGridGeneratorForward: {
+            let p = get_proc_addr(lib, b"cudnnSpatialTfGridGeneratorForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSpatialTfSamplerForward: {
+            let p = get_proc_addr(lib, b"cudnnSpatialTfSamplerForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateDropoutDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateDropoutDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyDropoutDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyDropoutDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDropoutGetStatesSize: {
+            let p = get_proc_addr(lib, b"cudnnDropoutGetStatesSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDropoutGetReserveSpaceSize: {
+            let p = get_proc_addr(lib, b"cudnnDropoutGetReserveSpaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetDropoutDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetDropoutDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRestoreDropoutDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnRestoreDropoutDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetDropoutDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetDropoutDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDropoutForward: {
+            let p = get_proc_addr(lib, b"cudnnDropoutForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnOpsVersionCheck: {
+            let p = get_proc_addr(lib, b"cudnnOpsVersionCheck\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSoftmaxBackward: {
+            let p = get_proc_addr(lib, b"cudnnSoftmaxBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnPoolingBackward: {
+            let p = get_proc_addr(lib, b"cudnnPoolingBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnActivationBackward: {
+            let p = get_proc_addr(lib, b"cudnnActivationBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnLRNCrossChannelBackward: {
+            let p = get_proc_addr(lib, b"cudnnLRNCrossChannelBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDivisiveNormalizationBackward: {
+            let p = get_proc_addr(lib, b"cudnnDivisiveNormalizationBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetBatchNormalizationBackwardExWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationBackwardExWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetBatchNormalizationTrainingExReserveSpaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetBatchNormalizationTrainingExReserveSpaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBatchNormalizationForwardTraining: {
+            let p = get_proc_addr(lib, b"cudnnBatchNormalizationForwardTraining\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBatchNormalizationForwardTrainingEx: {
+            let p = get_proc_addr(lib, b"cudnnBatchNormalizationForwardTrainingEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBatchNormalizationBackward: {
+            let p = get_proc_addr(lib, b"cudnnBatchNormalizationBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBatchNormalizationBackwardEx: {
+            let p = get_proc_addr(lib, b"cudnnBatchNormalizationBackwardEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetNormalizationForwardTrainingWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetNormalizationForwardTrainingWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetNormalizationBackwardWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetNormalizationBackwardWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetNormalizationTrainingReserveSpaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetNormalizationTrainingReserveSpaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnNormalizationForwardTraining: {
+            let p = get_proc_addr(lib, b"cudnnNormalizationForwardTraining\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnNormalizationBackward: {
+            let p = get_proc_addr(lib, b"cudnnNormalizationBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSpatialTfGridGeneratorBackward: {
+            let p = get_proc_addr(lib, b"cudnnSpatialTfGridGeneratorBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSpatialTfSamplerBackward: {
+            let p = get_proc_addr(lib, b"cudnnSpatialTfSamplerBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDropoutBackward: {
+            let p = get_proc_addr(lib, b"cudnnDropoutBackward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateRNNDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateRNNDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyRNNDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyRNNDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetRNNDescriptor_v8: {
+            let p = get_proc_addr(lib, b"cudnnSetRNNDescriptor_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetRNNDescriptor_v8: {
+            let p = get_proc_addr(lib, b"cudnnGetRNNDescriptor_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRNNSetClip_v8: {
+            let p = get_proc_addr(lib, b"cudnnRNNSetClip_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRNNSetClip_v9: {
+            let p = get_proc_addr(lib, b"cudnnRNNSetClip_v9\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRNNGetClip_v8: {
+            let p = get_proc_addr(lib, b"cudnnRNNGetClip_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRNNGetClip_v9: {
+            let p = get_proc_addr(lib, b"cudnnRNNGetClip_v9\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnBuildRNNDynamic: {
+            let p = get_proc_addr(lib, b"cudnnBuildRNNDynamic\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetRNNTempSpaceSizes: {
+            let p = get_proc_addr(lib, b"cudnnGetRNNTempSpaceSizes\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetRNNWeightSpaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetRNNWeightSpaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetRNNWeightParams: {
+            let p = get_proc_addr(lib, b"cudnnGetRNNWeightParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateRNNDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateRNNDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyRNNDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyRNNDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetRNNDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetRNNDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetRNNDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetRNNDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRNNForward: {
+            let p = get_proc_addr(lib, b"cudnnRNNForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateSeqDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateSeqDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroySeqDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroySeqDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetSeqDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetSeqDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetSeqDataDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetSeqDataDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateAttnDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateAttnDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyAttnDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyAttnDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetAttnDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetAttnDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetAttnDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetAttnDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetMultiHeadAttnBuffers: {
+            let p = get_proc_addr(lib, b"cudnnGetMultiHeadAttnBuffers\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetMultiHeadAttnWeights: {
+            let p = get_proc_addr(lib, b"cudnnGetMultiHeadAttnWeights\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnMultiHeadAttnForward: {
+            let p = get_proc_addr(lib, b"cudnnMultiHeadAttnForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnAdvVersionCheck: {
+            let p = get_proc_addr(lib, b"cudnnAdvVersionCheck\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRNNBackwardData_v8: {
+            let p = get_proc_addr(lib, b"cudnnRNNBackwardData_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnRNNBackwardWeights_v8: {
+            let p = get_proc_addr(lib, b"cudnnRNNBackwardWeights_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnMultiHeadAttnBackwardData: {
+            let p = get_proc_addr(lib, b"cudnnMultiHeadAttnBackwardData\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnMultiHeadAttnBackwardWeights: {
+            let p = get_proc_addr(lib, b"cudnnMultiHeadAttnBackwardWeights\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateCTCLossDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateCTCLossDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetCTCLossDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetCTCLossDescriptorEx: {
+            let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptorEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetCTCLossDescriptor_v8: {
+            let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptor_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetCTCLossDescriptor_v9: {
+            let p = get_proc_addr(lib, b"cudnnSetCTCLossDescriptor_v9\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCTCLossDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCTCLossDescriptorEx: {
+            let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptorEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCTCLossDescriptor_v8: {
+            let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptor_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCTCLossDescriptor_v9: {
+            let p = get_proc_addr(lib, b"cudnnGetCTCLossDescriptor_v9\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyCTCLossDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyCTCLossDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCTCLoss: {
+            let p = get_proc_addr(lib, b"cudnnCTCLoss\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCTCLoss_v8: {
+            let p = get_proc_addr(lib, b"cudnnCTCLoss_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCTCLossWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetCTCLossWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetCTCLossWorkspaceSize_v8: {
+            let p = get_proc_addr(lib, b"cudnnGetCTCLossWorkspaceSize_v8\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateConvolutionDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnCreateConvolutionDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyConvolutionDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnDestroyConvolutionDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetConvolutionMathType: {
+            let p = get_proc_addr(lib, b"cudnnSetConvolutionMathType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionMathType: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionMathType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetConvolutionGroupCount: {
+            let p = get_proc_addr(lib, b"cudnnSetConvolutionGroupCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionGroupCount: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionGroupCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetConvolutionReorderType: {
+            let p = get_proc_addr(lib, b"cudnnSetConvolutionReorderType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionReorderType: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionReorderType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetConvolution2dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetConvolution2dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolution2dDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolution2dDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetConvolutionNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnSetConvolutionNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionNdDescriptor: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionNdDescriptor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolution2dForwardOutputDim: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolution2dForwardOutputDim\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionNdForwardOutputDim: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionNdForwardOutputDim\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionForwardAlgorithmMaxCount: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionForwardAlgorithmMaxCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionForwardAlgorithm_v7: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionForwardAlgorithm_v7\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnFindConvolutionForwardAlgorithm: {
+            let p = get_proc_addr(lib, b"cudnnFindConvolutionForwardAlgorithm\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnFindConvolutionForwardAlgorithmEx: {
+            let p = get_proc_addr(lib, b"cudnnFindConvolutionForwardAlgorithmEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnIm2Col: {
+            let p = get_proc_addr(lib, b"cudnnIm2Col\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnReorderFilterAndBias: {
+            let p = get_proc_addr(lib, b"cudnnReorderFilterAndBias\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionForwardWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionForwardWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnConvolutionForward: {
+            let p = get_proc_addr(lib, b"cudnnConvolutionForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnConvolutionBiasActivationForward: {
+            let p = get_proc_addr(lib, b"cudnnConvolutionBiasActivationForward\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionBackwardDataAlgorithmMaxCount: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataAlgorithmMaxCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnFindConvolutionBackwardDataAlgorithm: {
+            let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardDataAlgorithm\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnFindConvolutionBackwardDataAlgorithmEx: {
+            let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardDataAlgorithmEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionBackwardDataAlgorithm_v7: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataAlgorithm_v7\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionBackwardDataWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardDataWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnConvolutionBackwardData: {
+            let p = get_proc_addr(lib, b"cudnnConvolutionBackwardData\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetFoldedConvBackwardDataDescriptors: {
+            let p = get_proc_addr(lib, b"cudnnGetFoldedConvBackwardDataDescriptors\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCnnVersionCheck: {
+            let p = get_proc_addr(lib, b"cudnnCnnVersionCheck\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionBackwardFilterAlgorithmMaxCount: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterAlgorithmMaxCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnFindConvolutionBackwardFilterAlgorithm: {
+            let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardFilterAlgorithm\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnFindConvolutionBackwardFilterAlgorithmEx: {
+            let p = get_proc_addr(lib, b"cudnnFindConvolutionBackwardFilterAlgorithmEx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionBackwardFilterAlgorithm_v7: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterAlgorithm_v7\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetConvolutionBackwardFilterWorkspaceSize: {
+            let p = get_proc_addr(lib, b"cudnnGetConvolutionBackwardFilterWorkspaceSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnConvolutionBackwardFilter: {
+            let p = get_proc_addr(lib, b"cudnnConvolutionBackwardFilter\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnConvolutionBackwardBias: {
+            let p = get_proc_addr(lib, b"cudnnConvolutionBackwardBias\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateFusedOpsConstParamPack: {
+            let p = get_proc_addr(lib, b"cudnnCreateFusedOpsConstParamPack\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyFusedOpsConstParamPack: {
+            let p = get_proc_addr(lib, b"cudnnDestroyFusedOpsConstParamPack\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetFusedOpsConstParamPackAttribute: {
+            let p = get_proc_addr(lib, b"cudnnSetFusedOpsConstParamPackAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetFusedOpsConstParamPackAttribute: {
+            let p = get_proc_addr(lib, b"cudnnGetFusedOpsConstParamPackAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateFusedOpsVariantParamPack: {
+            let p = get_proc_addr(lib, b"cudnnCreateFusedOpsVariantParamPack\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyFusedOpsVariantParamPack: {
+            let p = get_proc_addr(lib, b"cudnnDestroyFusedOpsVariantParamPack\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnSetFusedOpsVariantParamPackAttribute: {
+            let p = get_proc_addr(lib, b"cudnnSetFusedOpsVariantParamPackAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnGetFusedOpsVariantParamPackAttribute: {
+            let p = get_proc_addr(lib, b"cudnnGetFusedOpsVariantParamPackAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnCreateFusedOpsPlan: {
+            let p = get_proc_addr(lib, b"cudnnCreateFusedOpsPlan\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnDestroyFusedOpsPlan: {
+            let p = get_proc_addr(lib, b"cudnnDestroyFusedOpsPlan\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnMakeFusedOpsPlan: {
+            let p = get_proc_addr(lib, b"cudnnMakeFusedOpsPlan\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cudnnFusedOpsExecute: {
+            let p = get_proc_addr(lib, b"cudnnFusedOpsExecute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+    });
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
 unsafe impl Send for CUgraph_st {}

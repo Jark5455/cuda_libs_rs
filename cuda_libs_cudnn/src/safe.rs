@@ -1,21 +1,168 @@
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(dead_code)]
+#![allow(unused_mut)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unsafe_op_in_unsafe_fn)]
+pub use crate::sys::CUDNN_ADV_MAJOR;
+pub use crate::sys::CUDNN_ADV_MINOR;
+pub use crate::sys::CUDNN_ADV_PATCH;
+pub use crate::sys::CUDNN_ATTN_DISABLE_PROJ_BIASES;
+pub use crate::sys::CUDNN_ATTN_ENABLE_PROJ_BIASES;
+pub use crate::sys::CUDNN_ATTN_QUERYMAP_ALL_TO_ONE;
+pub use crate::sys::CUDNN_ATTN_QUERYMAP_ONE_TO_ONE;
+pub use crate::sys::CUDNN_ATTN_WKIND_COUNT;
+pub use crate::sys::CUDNN_BN_MIN_EPSILON;
+pub use crate::sys::CUDNN_CNN_MAJOR;
+pub use crate::sys::CUDNN_CNN_MINOR;
+pub use crate::sys::CUDNN_CNN_PATCH;
+pub use crate::sys::CUDNN_DIM_MAX;
+pub use crate::sys::CUDNN_GRAPH_MAJOR;
+pub use crate::sys::CUDNN_GRAPH_MINOR;
+pub use crate::sys::CUDNN_GRAPH_PATCH;
+pub use crate::sys::CUDNN_LRN_MAX_N;
+pub use crate::sys::CUDNN_LRN_MIN_BETA;
+pub use crate::sys::CUDNN_LRN_MIN_K;
+pub use crate::sys::CUDNN_LRN_MIN_N;
+pub use crate::sys::CUDNN_MAJOR;
+pub use crate::sys::CUDNN_MAX_DEVICE_VERSION;
+pub use crate::sys::CUDNN_MAX_SM_MAJOR_NUMBER;
+pub use crate::sys::CUDNN_MAX_SM_MINOR_NUMBER;
+pub use crate::sys::CUDNN_MINOR;
+pub use crate::sys::CUDNN_OPS_MAJOR;
+pub use crate::sys::CUDNN_OPS_MINOR;
+pub use crate::sys::CUDNN_OPS_PATCH;
+pub use crate::sys::CUDNN_PATCHLEVEL;
+pub use crate::sys::CUDNN_RNN_PADDED_IO_DISABLED;
+pub use crate::sys::CUDNN_RNN_PADDED_IO_ENABLED;
+pub use crate::sys::CUDNN_SEQDATA_DIM_COUNT;
+pub use crate::sys::CUDNN_VERSION;
+pub use crate::sys::CUgraph_st;
+pub use crate::sys::cudnnActivationDescriptor_t;
+pub use crate::sys::cudnnActivationMode_t;
+pub use crate::sys::cudnnActivationStruct;
+pub use crate::sys::cudnnAttnDescriptor_t;
+pub use crate::sys::cudnnAttnStruct;
+pub use crate::sys::cudnnBackendAttributeName_t;
+pub use crate::sys::cudnnBackendAttributeType_t;
+pub use crate::sys::cudnnBackendBehaviorNote_t;
+pub use crate::sys::cudnnBackendDescriptor_t;
+pub use crate::sys::cudnnBackendDescriptorType_t;
+pub use crate::sys::cudnnBackendHeurMode_t;
+pub use crate::sys::cudnnBackendKnobType_t;
+pub use crate::sys::cudnnBackendLayoutType_t;
+pub use crate::sys::cudnnBackendNormFwdPhase_t;
+pub use crate::sys::cudnnBackendNormMode_t;
+pub use crate::sys::cudnnBackendNumericalNote_t;
+pub use crate::sys::cudnnBackendTensorReordering_t;
+pub use crate::sys::cudnnBatchNormMode_t;
+pub use crate::sys::cudnnBatchNormOps_t;
+pub use crate::sys::cudnnBnFinalizeStatsMode_t;
+pub use crate::sys::cudnnCTCGradMode_t;
+pub use crate::sys::cudnnCTCLossAlgo_t;
+pub use crate::sys::cudnnCTCLossDescriptor_t;
+pub use crate::sys::cudnnCTCLossStruct;
+pub use crate::sys::cudnnCallback_t;
+pub use crate::sys::cudnnContext;
+pub use crate::sys::cudnnConvolutionBwdDataAlgo_t;
+pub use crate::sys::cudnnConvolutionBwdDataAlgoPerf_t;
+pub use crate::sys::cudnnConvolutionBwdDataAlgoPerfStruct;
+pub use crate::sys::cudnnConvolutionBwdFilterAlgo_t;
+pub use crate::sys::cudnnConvolutionBwdFilterAlgoPerf_t;
+pub use crate::sys::cudnnConvolutionBwdFilterAlgoPerfStruct;
+pub use crate::sys::cudnnConvolutionDescriptor_t;
+pub use crate::sys::cudnnConvolutionFwdAlgo_t;
+pub use crate::sys::cudnnConvolutionFwdAlgoPerf_t;
+pub use crate::sys::cudnnConvolutionFwdAlgoPerfStruct;
+pub use crate::sys::cudnnConvolutionMode_t;
+pub use crate::sys::cudnnConvolutionStruct;
+pub use crate::sys::cudnnDataType_t;
+pub use crate::sys::cudnnDebug_t;
+pub use crate::sys::cudnnDebugStruct;
+pub use crate::sys::cudnnDeterminism_t;
+pub use crate::sys::cudnnDirectionMode_t;
+pub use crate::sys::cudnnDivNormMode_t;
+pub use crate::sys::cudnnDropoutDescriptor_t;
+pub use crate::sys::cudnnDropoutStruct;
+pub use crate::sys::cudnnErrQueryMode_t;
+pub use crate::sys::cudnnFilterDescriptor_t;
+pub use crate::sys::cudnnFilterStruct;
+pub use crate::sys::cudnnFoldingDirection_t;
+pub use crate::sys::cudnnForwardMode_t;
+pub use crate::sys::cudnnFraction_t;
+pub use crate::sys::cudnnFractionStruct;
+pub use crate::sys::cudnnFusedOps_t;
+pub use crate::sys::cudnnFusedOpsConstParamLabel_t;
+pub use crate::sys::cudnnFusedOpsConstParamPack_t;
+pub use crate::sys::cudnnFusedOpsConstParamStruct;
+pub use crate::sys::cudnnFusedOpsPlan_t;
+pub use crate::sys::cudnnFusedOpsPlanStruct;
+pub use crate::sys::cudnnFusedOpsPointerPlaceHolder_t;
+pub use crate::sys::cudnnFusedOpsVariantParamLabel_t;
+pub use crate::sys::cudnnFusedOpsVariantParamPack_t;
+pub use crate::sys::cudnnFusedOpsVariantParamStruct;
+pub use crate::sys::cudnnGenStatsMode_t;
+pub use crate::sys::cudnnHandle_t;
+pub use crate::sys::cudnnIndicesType_t;
+pub use crate::sys::cudnnLRNDescriptor_t;
+pub use crate::sys::cudnnLRNMode_t;
+pub use crate::sys::cudnnLRNStruct;
+pub use crate::sys::cudnnLossNormalizationMode_t;
+pub use crate::sys::cudnnMathType_t;
+pub use crate::sys::cudnnMoeGroupedMatmulMode_t;
+pub use crate::sys::cudnnMultiHeadAttnWeightKind_t;
+pub use crate::sys::cudnnNanPropagation_t;
+pub use crate::sys::cudnnNormAlgo_t;
+pub use crate::sys::cudnnNormMode_t;
+pub use crate::sys::cudnnNormOps_t;
+pub use crate::sys::cudnnOpTensorDescriptor_t;
+pub use crate::sys::cudnnOpTensorOp_t;
+pub use crate::sys::cudnnOpTensorStruct;
+pub use crate::sys::cudnnPaddingMode_t;
+pub use crate::sys::cudnnPointwiseMode_t;
+pub use crate::sys::cudnnPoolingDescriptor_t;
+pub use crate::sys::cudnnPoolingMode_t;
+pub use crate::sys::cudnnPoolingStruct;
+pub use crate::sys::cudnnRNNAlgo_t;
+pub use crate::sys::cudnnRNNBiasMode_t;
+pub use crate::sys::cudnnRNNClipMode_t;
+pub use crate::sys::cudnnRNNDataDescriptor_t;
+pub use crate::sys::cudnnRNNDataLayout_t;
+pub use crate::sys::cudnnRNNDataStruct;
+pub use crate::sys::cudnnRNNDescriptor_t;
+pub use crate::sys::cudnnRNNInputMode_t;
+pub use crate::sys::cudnnRNNMode_t;
+pub use crate::sys::cudnnRNNStruct;
+pub use crate::sys::cudnnReduceTensorDescriptor_t;
+pub use crate::sys::cudnnReduceTensorIndices_t;
+pub use crate::sys::cudnnReduceTensorOp_t;
+pub use crate::sys::cudnnReduceTensorStruct;
+pub use crate::sys::cudnnReorderType_t;
+pub use crate::sys::cudnnResampleMode_t;
+pub use crate::sys::cudnnRngDistribution_t;
+pub use crate::sys::cudnnRuntimeTag_t;
+pub use crate::sys::cudnnSamplerType_t;
+pub use crate::sys::cudnnSeqDataAxis_t;
+pub use crate::sys::cudnnSeqDataDescriptor_t;
+pub use crate::sys::cudnnSeqDataStruct;
+pub use crate::sys::cudnnSeverity_t;
+pub use crate::sys::cudnnSignalMode_t;
+pub use crate::sys::cudnnSoftmaxAlgorithm_t;
+pub use crate::sys::cudnnSoftmaxMode_t;
+pub use crate::sys::cudnnSpatialTransformerDescriptor_t;
+pub use crate::sys::cudnnSpatialTransformerStruct;
 pub use crate::sys::cudnnStatus_t as CudaTargetStatus;
+pub use crate::sys::cudnnStatus_t;
+pub use crate::sys::cudnnTensorDescriptor_t;
+pub use crate::sys::cudnnTensorFormat_t;
+pub use crate::sys::cudnnTensorStruct;
+pub use crate::sys::cudnnTensorTransformDescriptor_t;
+pub use crate::sys::cudnnTensorTransformStruct;
+pub use crate::sys::cudnnWgradMode_t;
 #[allow(unused_imports)]
 use crate::sys::*;
-pub use crate::sys::{
-    CUDNN_ADV_MAJOR, CUDNN_ADV_MINOR, CUDNN_ADV_PATCH, CUDNN_ATTN_DISABLE_PROJ_BIASES, CUDNN_ATTN_ENABLE_PROJ_BIASES, CUDNN_ATTN_QUERYMAP_ALL_TO_ONE, CUDNN_ATTN_QUERYMAP_ONE_TO_ONE, CUDNN_ATTN_WKIND_COUNT, CUDNN_BN_MIN_EPSILON, CUDNN_CNN_MAJOR, CUDNN_CNN_MINOR, CUDNN_CNN_PATCH, CUDNN_DIM_MAX,
-    CUDNN_GRAPH_MAJOR, CUDNN_GRAPH_MINOR, CUDNN_GRAPH_PATCH, CUDNN_LRN_MAX_N, CUDNN_LRN_MIN_BETA, CUDNN_LRN_MIN_K, CUDNN_LRN_MIN_N, CUDNN_MAJOR, CUDNN_MAX_DEVICE_VERSION, CUDNN_MAX_SM_MAJOR_NUMBER, CUDNN_MAX_SM_MINOR_NUMBER, CUDNN_MINOR, CUDNN_OPS_MAJOR, CUDNN_OPS_MINOR, CUDNN_OPS_PATCH,
-    CUDNN_PATCHLEVEL, CUDNN_RNN_PADDED_IO_DISABLED, CUDNN_RNN_PADDED_IO_ENABLED, CUDNN_SEQDATA_DIM_COUNT, CUDNN_VERSION, CUgraph_st, cudnnActivationDescriptor_t, cudnnActivationMode_t, cudnnActivationStruct, cudnnAttnDescriptor_t, cudnnAttnStruct, cudnnBackendAttributeName_t,
-    cudnnBackendAttributeType_t, cudnnBackendBehaviorNote_t, cudnnBackendDescriptor_t, cudnnBackendDescriptorType_t, cudnnBackendHeurMode_t, cudnnBackendKnobType_t, cudnnBackendLayoutType_t, cudnnBackendNormFwdPhase_t, cudnnBackendNormMode_t, cudnnBackendNumericalNote_t,
-    cudnnBackendTensorReordering_t, cudnnBatchNormMode_t, cudnnBatchNormOps_t, cudnnBnFinalizeStatsMode_t, cudnnCTCGradMode_t, cudnnCTCLossAlgo_t, cudnnCTCLossDescriptor_t, cudnnCTCLossStruct, cudnnCallback_t, cudnnContext, cudnnConvolutionBwdDataAlgo_t, cudnnConvolutionBwdDataAlgoPerf_t,
-    cudnnConvolutionBwdDataAlgoPerfStruct, cudnnConvolutionBwdFilterAlgo_t, cudnnConvolutionBwdFilterAlgoPerf_t, cudnnConvolutionBwdFilterAlgoPerfStruct, cudnnConvolutionDescriptor_t, cudnnConvolutionFwdAlgo_t, cudnnConvolutionFwdAlgoPerf_t, cudnnConvolutionFwdAlgoPerfStruct,
-    cudnnConvolutionMode_t, cudnnConvolutionStruct, cudnnDataType_t, cudnnDebug_t, cudnnDebugStruct, cudnnDeterminism_t, cudnnDirectionMode_t, cudnnDivNormMode_t, cudnnDropoutDescriptor_t, cudnnDropoutStruct, cudnnErrQueryMode_t, cudnnFilterDescriptor_t, cudnnFilterStruct, cudnnFoldingDirection_t,
-    cudnnForwardMode_t, cudnnFraction_t, cudnnFractionStruct, cudnnFusedOps_t, cudnnFusedOpsConstParamLabel_t, cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamStruct, cudnnFusedOpsPlan_t, cudnnFusedOpsPlanStruct, cudnnFusedOpsPointerPlaceHolder_t, cudnnFusedOpsVariantParamLabel_t,
-    cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamStruct, cudnnGenStatsMode_t, cudnnHandle_t, cudnnIndicesType_t, cudnnLRNDescriptor_t, cudnnLRNMode_t, cudnnLRNStruct, cudnnLossNormalizationMode_t, cudnnMathType_t, cudnnMoeGroupedMatmulMode_t, cudnnMultiHeadAttnWeightKind_t,
-    cudnnNanPropagation_t, cudnnNormAlgo_t, cudnnNormMode_t, cudnnNormOps_t, cudnnOpTensorDescriptor_t, cudnnOpTensorOp_t, cudnnOpTensorStruct, cudnnPaddingMode_t, cudnnPointwiseMode_t, cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnPoolingStruct, cudnnRNNAlgo_t, cudnnRNNBiasMode_t,
-    cudnnRNNClipMode_t, cudnnRNNDataDescriptor_t, cudnnRNNDataLayout_t, cudnnRNNDataStruct, cudnnRNNDescriptor_t, cudnnRNNInputMode_t, cudnnRNNMode_t, cudnnRNNStruct, cudnnReduceTensorDescriptor_t, cudnnReduceTensorIndices_t, cudnnReduceTensorOp_t, cudnnReduceTensorStruct, cudnnReorderType_t,
-    cudnnResampleMode_t, cudnnRngDistribution_t, cudnnRuntimeTag_t, cudnnSamplerType_t, cudnnSeqDataAxis_t, cudnnSeqDataDescriptor_t, cudnnSeqDataStruct, cudnnSeverity_t, cudnnSignalMode_t, cudnnSoftmaxAlgorithm_t, cudnnSoftmaxMode_t, cudnnSpatialTransformerDescriptor_t,
-    cudnnSpatialTransformerStruct, cudnnStatus_t, cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnTensorStruct, cudnnTensorTransformDescriptor_t, cudnnTensorTransformStruct, cudnnWgradMode_t,
-};
 use cuda_libs_cudart;
 #[allow(unused_imports)]
 use cuda_libs_cudart::sys::*;
@@ -186,43 +333,43 @@ impl crate::sys::DynamicBindings {
         self.cudnnGetCudartVersion = val;
         self
     }
-    pub fn cudnnGetErrorString(mut self, val: Option<unsafe extern "C" fn(status: cudnnStatus_t) -> *const ::std::os::raw::c_char>) -> Self {
+    pub fn cudnnGetErrorString(mut self, val: Option<unsafe extern "C" fn(cudnnStatus_t) -> *const ::std::os::raw::c_char>) -> Self {
         self.cudnnGetErrorString = val;
         self
     }
-    pub fn cudnnGetLastErrorString(mut self, val: Option<unsafe extern "C" fn(message: *mut ::std::os::raw::c_char, max_size: usize)>) -> Self {
+    pub fn cudnnGetLastErrorString(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, usize)>) -> Self {
         self.cudnnGetLastErrorString = val;
         self
     }
-    pub fn cudnnQueryRuntimeError(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rstatus: *mut cudnnStatus_t, mode: cudnnErrQueryMode_t, tag: *mut cudnnRuntimeTag_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnQueryRuntimeError(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut cudnnStatus_t, cudnnErrQueryMode_t, *mut cudnnRuntimeTag_t) -> cudnnStatus_t>) -> Self {
         self.cudnnQueryRuntimeError = val;
         self
     }
-    pub fn cudnnGetProperty(mut self, val: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetProperty(mut self, val: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetProperty = val;
         self
     }
-    pub fn cudnnCreate(mut self, val: Option<unsafe extern "C" fn(handle: *mut cudnnHandle_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudnnHandle_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreate = val;
         self
     }
-    pub fn cudnnDestroy(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroy(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroy = val;
         self
     }
-    pub fn cudnnSetStream(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, streamId: cudaStream_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetStream(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudaStream_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetStream = val;
         self
     }
-    pub fn cudnnGetStream(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, streamId: *mut cudaStream_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetStream(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut cudaStream_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetStream = val;
         self
     }
-    pub fn cudnnSetCallback(mut self, val: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_uint, udata: *mut ::std::os::raw::c_void, fptr: cudnnCallback_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCallback(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint, *mut ::std::os::raw::c_void, cudnnCallback_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCallback = val;
         self
     }
-    pub fn cudnnGetCallback(mut self, val: Option<unsafe extern "C" fn(mask: *mut ::std::os::raw::c_uint, udata: *mut *mut ::std::os::raw::c_void, fptr: *mut cudnnCallback_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetCallback(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *mut *mut ::std::os::raw::c_void, *mut cudnnCallback_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCallback = val;
         self
     }
@@ -230,72 +377,53 @@ impl crate::sys::DynamicBindings {
         self.cudnnGraphVersionCheck = val;
         self
     }
-    pub fn cudnnBackendCreateDescriptor(mut self, val: Option<unsafe extern "C" fn(descriptorType: cudnnBackendDescriptorType_t, descriptor: *mut cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendCreateDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptorType_t, *mut cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendCreateDescriptor = val;
         self
     }
-    pub fn cudnnBackendDestroyDescriptor(mut self, val: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendDestroyDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendDestroyDescriptor = val;
         self
     }
-    pub fn cudnnBackendInitialize(mut self, val: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendInitialize(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendInitialize = val;
         self
     }
-    pub fn cudnnBackendFinalize(mut self, val: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendFinalize(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendFinalize = val;
         self
     }
-    pub fn cudnnBackendSetAttribute(mut self, val: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, elementCount: i64, arrayOfElements: *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendSetAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendSetAttribute = val;
         self
     }
-    pub fn cudnnBackendGetAttribute(
-        mut self,
-        val: Option<unsafe extern "C" fn(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, requestedElementCount: i64, elementCount: *mut i64, arrayOfElements: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnBackendGetAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnBackendDescriptor_t, cudnnBackendAttributeName_t, cudnnBackendAttributeType_t, i64, *mut i64, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendGetAttribute = val;
         self
     }
-    pub fn cudnnBackendExecute(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendExecute(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBackendDescriptor_t, cudnnBackendDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendExecute = val;
         self
     }
-    pub fn cudnnBackendPopulateCudaGraph(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t, graph: cudaGraph_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendPopulateCudaGraph(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBackendDescriptor_t, cudnnBackendDescriptor_t, cudaGraph_t) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendPopulateCudaGraph = val;
         self
     }
-    pub fn cudnnBackendUpdateCudaGraph(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, executionPlan: cudnnBackendDescriptor_t, variantPack: cudnnBackendDescriptor_t, graph: cudaGraph_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBackendUpdateCudaGraph(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBackendDescriptor_t, cudnnBackendDescriptor_t, cudaGraph_t) -> cudnnStatus_t>) -> Self {
         self.cudnnBackendUpdateCudaGraph = val;
         self
     }
-    pub fn cudnnCreateTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(tensorDesc: *mut cudnnTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateTensorDescriptor = val;
         self
     }
-    pub fn cudnnSetTensor4dDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, n: ::std::os::raw::c_int, c: ::std::os::raw::c_int, h: ::std::os::raw::c_int, w: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnSetTensor4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensor4dDescriptor = val;
         self
     }
     pub fn cudnnSetTensor4dDescriptorEx(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                tensorDesc: cudnnTensorDescriptor_t,
-                dataType: cudnnDataType_t,
-                n: ::std::os::raw::c_int,
-                c: ::std::os::raw::c_int,
-                h: ::std::os::raw::c_int,
-                w: ::std::os::raw::c_int,
-                nStride: ::std::os::raw::c_int,
-                cStride: ::std::os::raw::c_int,
-                hStride: ::std::os::raw::c_int,
-                wStride: ::std::os::raw::c_int,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSetTensor4dDescriptorEx = val;
         self
@@ -304,116 +432,90 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                tensorDesc: cudnnTensorDescriptor_t,
-                dataType: *mut cudnnDataType_t,
-                n: *mut ::std::os::raw::c_int,
-                c: *mut ::std::os::raw::c_int,
-                h: *mut ::std::os::raw::c_int,
-                w: *mut ::std::os::raw::c_int,
-                nStride: *mut ::std::os::raw::c_int,
-                cStride: *mut ::std::os::raw::c_int,
-                hStride: *mut ::std::os::raw::c_int,
-                wStride: *mut ::std::os::raw::c_int,
+                cudnnTensorDescriptor_t,
+                *mut cudnnDataType_t,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetTensor4dDescriptor = val;
         self
     }
-    pub fn cudnnSetTensorNdDescriptor(mut self, val: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, dataType: cudnnDataType_t, nbDims: ::std::os::raw::c_int, dimA: *const ::std::os::raw::c_int, strideA: *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetTensorNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensorNdDescriptor = val;
         self
     }
-    pub fn cudnnSetTensorNdDescriptorEx(mut self, val: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, nbDims: ::std::os::raw::c_int, dimA: *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetTensorNdDescriptorEx(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorFormat_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensorNdDescriptorEx = val;
         self
     }
-    pub fn cudnnGetTensorNdDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, nbDimsRequested: ::std::os::raw::c_int, dataType: *mut cudnnDataType_t, nbDims: *mut ::std::os::raw::c_int, dimA: *mut ::std::os::raw::c_int, strideA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetTensorNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut cudnnDataType_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetTensorNdDescriptor = val;
         self
     }
-    pub fn cudnnGetTensorSizeInBytes(mut self, val: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t, size: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetTensorSizeInBytes(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetTensorSizeInBytes = val;
         self
     }
-    pub fn cudnnDestroyTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(tensorDesc: cudnnTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyTensorDescriptor = val;
         self
     }
-    pub fn cudnnInitTransformDest(mut self, val: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t, srcDesc: cudnnTensorDescriptor_t, destDesc: cudnnTensorDescriptor_t, destSizeInBytes: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnInitTransformDest(mut self, val: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnInitTransformDest = val;
         self
     }
-    pub fn cudnnCreateTensorTransformDescriptor(mut self, val: Option<unsafe extern "C" fn(transformDesc: *mut cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateTensorTransformDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateTensorTransformDescriptor = val;
         self
     }
-    pub fn cudnnSetTensorTransformDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t, nbDims: u32, destFormat: cudnnTensorFormat_t, padBeforeA: *const i32, padAfterA: *const i32, foldA: *const u32, direction: cudnnFoldingDirection_t) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnSetTensorTransformDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t, u32, cudnnTensorFormat_t, *const i32, *const i32, *const u32, cudnnFoldingDirection_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensorTransformDescriptor = val;
         self
     }
-    pub fn cudnnGetTensorTransformDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t, nbDimsRequested: u32, destFormat: *mut cudnnTensorFormat_t, padBeforeA: *mut i32, padAfterA: *mut i32, foldA: *mut u32, direction: *mut cudnnFoldingDirection_t) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetTensorTransformDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t, u32, *mut cudnnTensorFormat_t, *mut i32, *mut i32, *mut u32, *mut cudnnFoldingDirection_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetTensorTransformDescriptor = val;
         self
     }
-    pub fn cudnnDestroyTensorTransformDescriptor(mut self, val: Option<unsafe extern "C" fn(transformDesc: cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyTensorTransformDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorTransformDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyTensorTransformDescriptor = val;
         self
     }
-    pub fn cudnnTransformTensor(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, alpha: *const ::std::os::raw::c_void, xDesc: cudnnTensorDescriptor_t, x: *const ::std::os::raw::c_void, beta: *const ::std::os::raw::c_void, yDesc: cudnnTensorDescriptor_t, y: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnTransformTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnTransformTensor = val;
         self
     }
     pub fn cudnnTransformTensorEx(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                transDesc: cudnnTensorTransformDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                srcDesc: cudnnTensorDescriptor_t,
-                srcData: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                destDesc: cudnnTensorDescriptor_t,
-                destData: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnTransformTensorEx = val;
         self
     }
-    pub fn cudnnAddTensor(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, alpha: *const ::std::os::raw::c_void, aDesc: cudnnTensorDescriptor_t, A: *const ::std::os::raw::c_void, beta: *const ::std::os::raw::c_void, cDesc: cudnnTensorDescriptor_t, C: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnAddTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnAddTensor = val;
         self
     }
-    pub fn cudnnCreateOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(opTensorDesc: *mut cudnnOpTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnOpTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateOpTensorDescriptor = val;
         self
     }
-    pub fn cudnnSetOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(opTensorDesc: cudnnOpTensorDescriptor_t, opTensorOp: cudnnOpTensorOp_t, opTensorCompType: cudnnDataType_t, opTensorNanOpt: cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnOpTensorDescriptor_t, cudnnOpTensorOp_t, cudnnDataType_t, cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetOpTensorDescriptor = val;
         self
     }
-    pub fn cudnnGetOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(opTensorDesc: cudnnOpTensorDescriptor_t, opTensorOp: *mut cudnnOpTensorOp_t, opTensorCompType: *mut cudnnDataType_t, opTensorNanOpt: *mut cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnOpTensorDescriptor_t, *mut cudnnOpTensorOp_t, *mut cudnnDataType_t, *mut cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetOpTensorDescriptor = val;
         self
     }
-    pub fn cudnnDestroyOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(opTensorDesc: cudnnOpTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyOpTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnOpTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyOpTensorDescriptor = val;
         self
     }
@@ -421,68 +523,44 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                opTensorDesc: cudnnOpTensorDescriptor_t,
-                alpha1: *const ::std::os::raw::c_void,
-                aDesc: cudnnTensorDescriptor_t,
-                A: *const ::std::os::raw::c_void,
-                alpha2: *const ::std::os::raw::c_void,
-                bDesc: cudnnTensorDescriptor_t,
-                B: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                cDesc: cudnnTensorDescriptor_t,
-                C: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnOpTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnOpTensor = val;
         self
     }
-    pub fn cudnnCreateReduceTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(reduceTensorDesc: *mut cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateReduceTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateReduceTensorDescriptor = val;
         self
     }
-    pub fn cudnnSetReduceTensorDescriptor(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-                reduceTensorOp: cudnnReduceTensorOp_t,
-                reduceTensorCompType: cudnnDataType_t,
-                reduceTensorNanOpt: cudnnNanPropagation_t,
-                reduceTensorIndices: cudnnReduceTensorIndices_t,
-                reduceTensorIndicesType: cudnnIndicesType_t,
-            ) -> cudnnStatus_t,
-        >,
-    ) -> Self {
+    pub fn cudnnSetReduceTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnReduceTensorDescriptor_t, cudnnReduceTensorOp_t, cudnnDataType_t, cudnnNanPropagation_t, cudnnReduceTensorIndices_t, cudnnIndicesType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetReduceTensorDescriptor = val;
         self
     }
-    pub fn cudnnGetReduceTensorDescriptor(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-                reduceTensorOp: *mut cudnnReduceTensorOp_t,
-                reduceTensorCompType: *mut cudnnDataType_t,
-                reduceTensorNanOpt: *mut cudnnNanPropagation_t,
-                reduceTensorIndices: *mut cudnnReduceTensorIndices_t,
-                reduceTensorIndicesType: *mut cudnnIndicesType_t,
-            ) -> cudnnStatus_t,
-        >,
-    ) -> Self {
+    pub fn cudnnGetReduceTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnReduceTensorDescriptor_t, *mut cudnnReduceTensorOp_t, *mut cudnnDataType_t, *mut cudnnNanPropagation_t, *mut cudnnReduceTensorIndices_t, *mut cudnnIndicesType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetReduceTensorDescriptor = val;
         self
     }
-    pub fn cudnnDestroyReduceTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(reduceTensorDesc: cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyReduceTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnReduceTensorDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyReduceTensorDescriptor = val;
         self
     }
-    pub fn cudnnGetReductionIndicesSize(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, reduceTensorDesc: cudnnReduceTensorDescriptor_t, aDesc: cudnnTensorDescriptor_t, cDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetReductionIndicesSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnReduceTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetReductionIndicesSize = val;
         self
     }
-    pub fn cudnnGetReductionWorkspaceSize(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, reduceTensorDesc: cudnnReduceTensorDescriptor_t, aDesc: cudnnTensorDescriptor_t, cDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetReductionWorkspaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnReduceTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetReductionWorkspaceSize = val;
         self
     }
@@ -490,125 +568,81 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-                indices: *mut ::std::os::raw::c_void,
-                indicesSizeInBytes: usize,
-                workspace: *mut ::std::os::raw::c_void,
-                workspaceSizeInBytes: usize,
-                alpha: *const ::std::os::raw::c_void,
-                aDesc: cudnnTensorDescriptor_t,
-                A: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                cDesc: cudnnTensorDescriptor_t,
-                C: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnReduceTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnReduceTensor = val;
         self
     }
-    pub fn cudnnSetTensor(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, y: *mut ::std::os::raw::c_void, valuePtr: *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetTensor = val;
         self
     }
-    pub fn cudnnScaleTensor(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, y: *mut ::std::os::raw::c_void, alpha: *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnScaleTensor(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnScaleTensor = val;
         self
     }
-    pub fn cudnnCreateFilterDescriptor(mut self, val: Option<unsafe extern "C" fn(filterDesc: *mut cudnnFilterDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateFilterDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnFilterDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateFilterDescriptor = val;
         self
     }
-    pub fn cudnnSetFilter4dDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, k: ::std::os::raw::c_int, c: ::std::os::raw::c_int, h: ::std::os::raw::c_int, w: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnSetFilter4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFilter4dDescriptor = val;
         self
     }
-    pub fn cudnnGetFilter4dDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, dataType: *mut cudnnDataType_t, format: *mut cudnnTensorFormat_t, k: *mut ::std::os::raw::c_int, c: *mut ::std::os::raw::c_int, h: *mut ::std::os::raw::c_int, w: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetFilter4dDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFilter4dDescriptor = val;
         self
     }
-    pub fn cudnnSetFilterNdDescriptor(mut self, val: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, nbDims: ::std::os::raw::c_int, filterDimA: *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetFilterNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, cudnnDataType_t, cudnnTensorFormat_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFilterNdDescriptor = val;
         self
     }
-    pub fn cudnnGetFilterNdDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, nbDimsRequested: ::std::os::raw::c_int, dataType: *mut cudnnDataType_t, format: *mut cudnnTensorFormat_t, nbDims: *mut ::std::os::raw::c_int, filterDimA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetFilterNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut cudnnDataType_t, *mut cudnnTensorFormat_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFilterNdDescriptor = val;
         self
     }
-    pub fn cudnnGetFilterSizeInBytes(mut self, val: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t, size: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetFilterSizeInBytes(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFilterSizeInBytes = val;
         self
     }
     pub fn cudnnTransformFilter(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                transDesc: cudnnTensorTransformDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                srcDesc: cudnnFilterDescriptor_t,
-                srcData: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                destDesc: cudnnFilterDescriptor_t,
-                destData: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorTransformDescriptor_t, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnTransformFilter = val;
         self
     }
-    pub fn cudnnDestroyFilterDescriptor(mut self, val: Option<unsafe extern "C" fn(filterDesc: cudnnFilterDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyFilterDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnFilterDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyFilterDescriptor = val;
         self
     }
     pub fn cudnnSoftmaxForward(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                algo: cudnnSoftmaxAlgorithm_t,
-                mode: cudnnSoftmaxMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSoftmaxAlgorithm_t, cudnnSoftmaxMode_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSoftmaxForward = val;
         self
     }
-    pub fn cudnnCreatePoolingDescriptor(mut self, val: Option<unsafe extern "C" fn(poolingDesc: *mut cudnnPoolingDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreatePoolingDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnPoolingDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreatePoolingDescriptor = val;
         self
     }
     pub fn cudnnSetPooling2dDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                poolingDesc: cudnnPoolingDescriptor_t,
-                mode: cudnnPoolingMode_t,
-                maxpoolingNanOpt: cudnnNanPropagation_t,
-                windowHeight: ::std::os::raw::c_int,
-                windowWidth: ::std::os::raw::c_int,
-                verticalPadding: ::std::os::raw::c_int,
-                horizontalPadding: ::std::os::raw::c_int,
-                verticalStride: ::std::os::raw::c_int,
-                horizontalStride: ::std::os::raw::c_int,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSetPooling2dDescriptor = val;
         self
@@ -616,163 +650,92 @@ impl crate::sys::DynamicBindings {
     pub fn cudnnGetPooling2dDescriptor(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                poolingDesc: cudnnPoolingDescriptor_t,
-                mode: *mut cudnnPoolingMode_t,
-                maxpoolingNanOpt: *mut cudnnNanPropagation_t,
-                windowHeight: *mut ::std::os::raw::c_int,
-                windowWidth: *mut ::std::os::raw::c_int,
-                verticalPadding: *mut ::std::os::raw::c_int,
-                horizontalPadding: *mut ::std::os::raw::c_int,
-                verticalStride: *mut ::std::os::raw::c_int,
-                horizontalStride: *mut ::std::os::raw::c_int,
-            ) -> cudnnStatus_t,
+            unsafe extern "C" fn(cudnnPoolingDescriptor_t, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetPooling2dDescriptor = val;
         self
     }
-    pub fn cudnnSetPoolingNdDescriptor(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                poolingDesc: cudnnPoolingDescriptor_t,
-                mode: cudnnPoolingMode_t,
-                maxpoolingNanOpt: cudnnNanPropagation_t,
-                nbDims: ::std::os::raw::c_int,
-                windowDimA: *const ::std::os::raw::c_int,
-                paddingA: *const ::std::os::raw::c_int,
-                strideA: *const ::std::os::raw::c_int,
-            ) -> cudnnStatus_t,
-        >,
-    ) -> Self {
+    pub fn cudnnSetPoolingNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnPoolingMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetPoolingNdDescriptor = val;
         self
     }
     pub fn cudnnGetPoolingNdDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                poolingDesc: cudnnPoolingDescriptor_t,
-                nbDimsRequested: ::std::os::raw::c_int,
-                mode: *mut cudnnPoolingMode_t,
-                maxpoolingNanOpt: *mut cudnnNanPropagation_t,
-                nbDims: *mut ::std::os::raw::c_int,
-                windowDimA: *mut ::std::os::raw::c_int,
-                paddingA: *mut ::std::os::raw::c_int,
-                strideA: *mut ::std::os::raw::c_int,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, ::std::os::raw::c_int, *mut cudnnPoolingMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetPoolingNdDescriptor = val;
         self
     }
-    pub fn cudnnGetPoolingNdForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, nbDims: ::std::os::raw::c_int, outputTensorDimA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetPoolingNdForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetPoolingNdForwardOutputDim = val;
         self
     }
-    pub fn cudnnGetPooling2dForwardOutputDim(
-        mut self,
-        val: Option<unsafe extern "C" fn(poolingDesc: cudnnPoolingDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, n: *mut ::std::os::raw::c_int, c: *mut ::std::os::raw::c_int, h: *mut ::std::os::raw::c_int, w: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetPooling2dForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetPooling2dForwardOutputDim = val;
         self
     }
-    pub fn cudnnDestroyPoolingDescriptor(mut self, val: Option<unsafe extern "C" fn(poolingDesc: cudnnPoolingDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyPoolingDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnPoolingDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyPoolingDescriptor = val;
         self
     }
     pub fn cudnnPoolingForward(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                poolingDesc: cudnnPoolingDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnPoolingDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnPoolingForward = val;
         self
     }
-    pub fn cudnnCreateActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(activationDesc: *mut cudnnActivationDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnActivationDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateActivationDescriptor = val;
         self
     }
-    pub fn cudnnSetActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, mode: cudnnActivationMode_t, reluNanOpt: cudnnNanPropagation_t, coef: f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, cudnnActivationMode_t, cudnnNanPropagation_t, f64) -> cudnnStatus_t>) -> Self {
         self.cudnnSetActivationDescriptor = val;
         self
     }
-    pub fn cudnnGetActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, mode: *mut cudnnActivationMode_t, reluNanOpt: *mut cudnnNanPropagation_t, coef: *mut f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, *mut cudnnActivationMode_t, *mut cudnnNanPropagation_t, *mut f64) -> cudnnStatus_t>) -> Self {
         self.cudnnGetActivationDescriptor = val;
         self
     }
-    pub fn cudnnSetActivationDescriptorSwishBeta(mut self, val: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, swish_beta: f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetActivationDescriptorSwishBeta(mut self, val: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, f64) -> cudnnStatus_t>) -> Self {
         self.cudnnSetActivationDescriptorSwishBeta = val;
         self
     }
-    pub fn cudnnGetActivationDescriptorSwishBeta(mut self, val: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t, swish_beta: *mut f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetActivationDescriptorSwishBeta(mut self, val: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t, *mut f64) -> cudnnStatus_t>) -> Self {
         self.cudnnGetActivationDescriptorSwishBeta = val;
         self
     }
-    pub fn cudnnDestroyActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(activationDesc: cudnnActivationDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyActivationDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnActivationDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyActivationDescriptor = val;
         self
     }
     pub fn cudnnActivationForward(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                activationDesc: cudnnActivationDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnActivationDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnActivationForward = val;
         self
     }
-    pub fn cudnnCreateLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(normDesc: *mut cudnnLRNDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnLRNDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateLRNDescriptor = val;
         self
     }
-    pub fn cudnnSetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(normDesc: cudnnLRNDescriptor_t, lrnN: ::std::os::raw::c_uint, lrnAlpha: f64, lrnBeta: f64, lrnK: f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, ::std::os::raw::c_uint, f64, f64, f64) -> cudnnStatus_t>) -> Self {
         self.cudnnSetLRNDescriptor = val;
         self
     }
-    pub fn cudnnGetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(normDesc: cudnnLRNDescriptor_t, lrnN: *mut ::std::os::raw::c_uint, lrnAlpha: *mut f64, lrnBeta: *mut f64, lrnK: *mut f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t, *mut ::std::os::raw::c_uint, *mut f64, *mut f64, *mut f64) -> cudnnStatus_t>) -> Self {
         self.cudnnGetLRNDescriptor = val;
         self
     }
-    pub fn cudnnDestroyLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(lrnDesc: cudnnLRNDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyLRNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnLRNDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyLRNDescriptor = val;
         self
     }
     pub fn cudnnLRNCrossChannelForward(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                normDesc: cudnnLRNDescriptor_t,
-                lrnMode: cudnnLRNMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnLRNDescriptor_t, cudnnLRNMode_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnLRNCrossChannelForward = val;
         self
@@ -781,25 +744,25 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                normDesc: cudnnLRNDescriptor_t,
-                mode: cudnnDivNormMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                means: *const ::std::os::raw::c_void,
-                temp: *mut ::std::os::raw::c_void,
-                temp2: *mut ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnLRNDescriptor_t,
+                cudnnDivNormMode_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnDivisiveNormalizationForward = val;
         self
     }
-    pub fn cudnnDeriveBNTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(derivedBnDesc: cudnnTensorDescriptor_t, xDesc: cudnnTensorDescriptor_t, mode: cudnnBatchNormMode_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDeriveBNTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnBatchNormMode_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDeriveBNTensorDescriptor = val;
         self
     }
@@ -807,30 +770,27 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnBatchNormMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-                bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-                bnScale: *const ::std::os::raw::c_void,
-                bnBias: *const ::std::os::raw::c_void,
-                estimatedMean: *const ::std::os::raw::c_void,
-                estimatedVariance: *const ::std::os::raw::c_void,
-                epsilon: f64,
+                cudnnHandle_t,
+                cudnnBatchNormMode_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                f64,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnBatchNormalizationForwardInference = val;
         self
     }
-    pub fn cudnnDeriveNormTensorDescriptor(
-        mut self,
-        val: Option<unsafe extern "C" fn(derivedNormScaleBiasDesc: cudnnTensorDescriptor_t, derivedNormMeanVarDesc: cudnnTensorDescriptor_t, xDesc: cudnnTensorDescriptor_t, mode: cudnnNormMode_t, groupCnt: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnDeriveNormTensorDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnNormMode_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnDeriveNormTensorDescriptor = val;
         self
     }
@@ -838,46 +798,46 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnNormMode_t,
-                normOps: cudnnNormOps_t,
-                algo: cudnnNormAlgo_t,
-                alpha: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                normScaleBiasDesc: cudnnTensorDescriptor_t,
-                normScale: *const ::std::os::raw::c_void,
-                normBias: *const ::std::os::raw::c_void,
-                normMeanVarDesc: cudnnTensorDescriptor_t,
-                estimatedMean: *const ::std::os::raw::c_void,
-                estimatedVariance: *const ::std::os::raw::c_void,
-                zDesc: cudnnTensorDescriptor_t,
-                z: *const ::std::os::raw::c_void,
-                activationDesc: cudnnActivationDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-                epsilon: f64,
-                groupCnt: ::std::os::raw::c_int,
+                cudnnHandle_t,
+                cudnnNormMode_t,
+                cudnnNormOps_t,
+                cudnnNormAlgo_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnActivationDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                f64,
+                ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnNormalizationForwardInference = val;
         self
     }
-    pub fn cudnnCreateSpatialTransformerDescriptor(mut self, val: Option<unsafe extern "C" fn(stDesc: *mut cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateSpatialTransformerDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateSpatialTransformerDescriptor = val;
         self
     }
-    pub fn cudnnSetSpatialTransformerNdDescriptor(mut self, val: Option<unsafe extern "C" fn(stDesc: cudnnSpatialTransformerDescriptor_t, samplerType: cudnnSamplerType_t, dataType: cudnnDataType_t, nbDims: ::std::os::raw::c_int, dimA: *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetSpatialTransformerNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSpatialTransformerDescriptor_t, cudnnSamplerType_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetSpatialTransformerNdDescriptor = val;
         self
     }
-    pub fn cudnnDestroySpatialTransformerDescriptor(mut self, val: Option<unsafe extern "C" fn(stDesc: cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroySpatialTransformerDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSpatialTransformerDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroySpatialTransformerDescriptor = val;
         self
     }
-    pub fn cudnnSpatialTfGridGeneratorForward(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, theta: *const ::std::os::raw::c_void, grid: *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSpatialTfGridGeneratorForward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSpatialTfGridGeneratorForward = val;
         self
     }
@@ -885,64 +845,50 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                stDesc: cudnnSpatialTransformerDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                grid: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnSpatialTransformerDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnSpatialTfSamplerForward = val;
         self
     }
-    pub fn cudnnCreateDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(dropoutDesc: *mut cudnnDropoutDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnDropoutDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateDropoutDescriptor = val;
         self
     }
-    pub fn cudnnDestroyDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyDropoutDescriptor = val;
         self
     }
-    pub fn cudnnDropoutGetStatesSize(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, sizeInBytes: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDropoutGetStatesSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnDropoutGetStatesSize = val;
         self
     }
-    pub fn cudnnDropoutGetReserveSpaceSize(mut self, val: Option<unsafe extern "C" fn(xdesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDropoutGetReserveSpaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnDropoutGetReserveSpaceSize = val;
         self
     }
-    pub fn cudnnSetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, states: *mut ::std::os::raw::c_void, stateSizeInBytes: usize, seed: ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
         self.cudnnSetDropoutDescriptor = val;
         self
     }
-    pub fn cudnnRestoreDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, states: *mut ::std::os::raw::c_void, stateSizeInBytes: usize, seed: ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnRestoreDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, f32, *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
         self.cudnnRestoreDropoutDescriptor = val;
         self
     }
-    pub fn cudnnGetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: *mut f32, states: *mut *mut ::std::os::raw::c_void, seed: *mut ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetDropoutDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnDropoutDescriptor_t, cudnnHandle_t, *mut f32, *mut *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_ulonglong) -> cudnnStatus_t>) -> Self {
         self.cudnnGetDropoutDescriptor = val;
         self
     }
-    pub fn cudnnDropoutForward(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                dropoutDesc: cudnnDropoutDescriptor_t,
-                xdesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                ydesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-                reserveSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
-            ) -> cudnnStatus_t,
-        >,
-    ) -> Self {
+    pub fn cudnnDropoutForward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, usize) -> cudnnStatus_t>) -> Self {
         self.cudnnDropoutForward = val;
         self
     }
@@ -954,17 +900,17 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                algo: cudnnSoftmaxAlgorithm_t,
-                mode: cudnnSoftmaxMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnSoftmaxAlgorithm_t,
+                cudnnSoftmaxMode_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -975,18 +921,18 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                poolingDesc: cudnnPoolingDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnPoolingDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -997,18 +943,18 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                activationDesc: cudnnActivationDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnActivationDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1019,19 +965,19 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                normDesc: cudnnLRNDescriptor_t,
-                lrnMode: cudnnLRNMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnLRNDescriptor_t,
+                cudnnLRNMode_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1042,20 +988,20 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                normDesc: cudnnLRNDescriptor_t,
-                mode: cudnnDivNormMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                means: *const ::std::os::raw::c_void,
-                dy: *const ::std::os::raw::c_void,
-                temp: *mut ::std::os::raw::c_void,
-                temp2: *mut ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                dXdMeansDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
-                dMeans: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnLRNDescriptor_t,
+                cudnnDivNormMode_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1064,19 +1010,7 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnBatchNormMode_t,
-                bnOps: cudnnBatchNormOps_t,
-                xDesc: cudnnTensorDescriptor_t,
-                zDesc: cudnnTensorDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-                activationDesc: cudnnActivationDescriptor_t,
-                sizeInBytes: *mut usize,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBatchNormMode_t, cudnnBatchNormOps_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnActivationDescriptor_t, *mut usize) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize = val;
         self
@@ -1084,28 +1018,13 @@ impl crate::sys::DynamicBindings {
     pub fn cudnnGetBatchNormalizationBackwardExWorkspaceSize(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnBatchNormMode_t,
-                bnOps: cudnnBatchNormOps_t,
-                xDesc: cudnnTensorDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                dyDesc: cudnnTensorDescriptor_t,
-                dzDesc: cudnnTensorDescriptor_t,
-                dxDesc: cudnnTensorDescriptor_t,
-                dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-                activationDesc: cudnnActivationDescriptor_t,
-                sizeInBytes: *mut usize,
-            ) -> cudnnStatus_t,
+            unsafe extern "C" fn(cudnnHandle_t, cudnnBatchNormMode_t, cudnnBatchNormOps_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnActivationDescriptor_t, *mut usize) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetBatchNormalizationBackwardExWorkspaceSize = val;
         self
     }
-    pub fn cudnnGetBatchNormalizationTrainingExReserveSpaceSize(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, mode: cudnnBatchNormMode_t, bnOps: cudnnBatchNormOps_t, activationDesc: cudnnActivationDescriptor_t, xDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetBatchNormalizationTrainingExReserveSpaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnBatchNormMode_t, cudnnBatchNormOps_t, cudnnActivationDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetBatchNormalizationTrainingExReserveSpaceSize = val;
         self
     }
@@ -1113,23 +1032,23 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnBatchNormMode_t,
-                alpha: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-                bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-                bnScale: *const ::std::os::raw::c_void,
-                bnBias: *const ::std::os::raw::c_void,
-                exponentialAverageFactor: f64,
-                resultRunningMean: *mut ::std::os::raw::c_void,
-                resultRunningVariance: *mut ::std::os::raw::c_void,
-                epsilon: f64,
-                resultSaveMean: *mut ::std::os::raw::c_void,
-                resultSaveInvVariance: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnBatchNormMode_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                f64,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                f64,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1140,31 +1059,31 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnBatchNormMode_t,
-                bnOps: cudnnBatchNormOps_t,
-                alpha: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                xData: *const ::std::os::raw::c_void,
-                zDesc: cudnnTensorDescriptor_t,
-                zData: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                yData: *mut ::std::os::raw::c_void,
-                bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-                bnScale: *const ::std::os::raw::c_void,
-                bnBias: *const ::std::os::raw::c_void,
-                exponentialAverageFactor: f64,
-                resultRunningMean: *mut ::std::os::raw::c_void,
-                resultRunningVariance: *mut ::std::os::raw::c_void,
-                epsilon: f64,
-                resultSaveMean: *mut ::std::os::raw::c_void,
-                resultSaveInvVariance: *mut ::std::os::raw::c_void,
-                activationDesc: cudnnActivationDescriptor_t,
-                workspace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
+                cudnnHandle_t,
+                cudnnBatchNormMode_t,
+                cudnnBatchNormOps_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                f64,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                f64,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                cudnnActivationDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1175,25 +1094,25 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnBatchNormMode_t,
-                alphaDataDiff: *const ::std::os::raw::c_void,
-                betaDataDiff: *const ::std::os::raw::c_void,
-                alphaParamDiff: *const ::std::os::raw::c_void,
-                betaParamDiff: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
-                dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-                bnScale: *const ::std::os::raw::c_void,
-                dBnScaleResult: *mut ::std::os::raw::c_void,
-                dBnBiasResult: *mut ::std::os::raw::c_void,
-                epsilon: f64,
-                savedMean: *const ::std::os::raw::c_void,
-                savedInvVariance: *const ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnBatchNormMode_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                f64,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1204,36 +1123,36 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnBatchNormMode_t,
-                bnOps: cudnnBatchNormOps_t,
-                alphaDataDiff: *const ::std::os::raw::c_void,
-                betaDataDiff: *const ::std::os::raw::c_void,
-                alphaParamDiff: *const ::std::os::raw::c_void,
-                betaParamDiff: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                xData: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                yData: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dyData: *const ::std::os::raw::c_void,
-                dzDesc: cudnnTensorDescriptor_t,
-                dzData: *mut ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dxData: *mut ::std::os::raw::c_void,
-                dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-                bnScaleData: *const ::std::os::raw::c_void,
-                bnBiasData: *const ::std::os::raw::c_void,
-                dBnScaleData: *mut ::std::os::raw::c_void,
-                dBnBiasData: *mut ::std::os::raw::c_void,
-                epsilon: f64,
-                savedMean: *const ::std::os::raw::c_void,
-                savedInvVariance: *const ::std::os::raw::c_void,
-                activationDesc: cudnnActivationDescriptor_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
+                cudnnHandle_t,
+                cudnnBatchNormMode_t,
+                cudnnBatchNormOps_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                f64,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnActivationDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1244,18 +1163,18 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnNormMode_t,
-                normOps: cudnnNormOps_t,
-                algo: cudnnNormAlgo_t,
-                xDesc: cudnnTensorDescriptor_t,
-                zDesc: cudnnTensorDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                normScaleBiasDesc: cudnnTensorDescriptor_t,
-                activationDesc: cudnnActivationDescriptor_t,
-                normMeanVarDesc: cudnnTensorDescriptor_t,
-                sizeInBytes: *mut usize,
-                groupCnt: ::std::os::raw::c_int,
+                cudnnHandle_t,
+                cudnnNormMode_t,
+                cudnnNormOps_t,
+                cudnnNormAlgo_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnActivationDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *mut usize,
+                ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1266,30 +1185,27 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnNormMode_t,
-                normOps: cudnnNormOps_t,
-                algo: cudnnNormAlgo_t,
-                xDesc: cudnnTensorDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                dyDesc: cudnnTensorDescriptor_t,
-                dzDesc: cudnnTensorDescriptor_t,
-                dxDesc: cudnnTensorDescriptor_t,
-                dNormScaleBiasDesc: cudnnTensorDescriptor_t,
-                activationDesc: cudnnActivationDescriptor_t,
-                normMeanVarDesc: cudnnTensorDescriptor_t,
-                sizeInBytes: *mut usize,
-                groupCnt: ::std::os::raw::c_int,
+                cudnnHandle_t,
+                cudnnNormMode_t,
+                cudnnNormOps_t,
+                cudnnNormAlgo_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnActivationDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *mut usize,
+                ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetNormalizationBackwardWorkspaceSize = val;
         self
     }
-    pub fn cudnnGetNormalizationTrainingReserveSpaceSize(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, mode: cudnnNormMode_t, normOps: cudnnNormOps_t, algo: cudnnNormAlgo_t, activationDesc: cudnnActivationDescriptor_t, xDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize, groupCnt: ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetNormalizationTrainingReserveSpaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnNormMode_t, cudnnNormOps_t, cudnnNormAlgo_t, cudnnActivationDescriptor_t, cudnnTensorDescriptor_t, *mut usize, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetNormalizationTrainingReserveSpaceSize = val;
         self
     }
@@ -1297,34 +1213,34 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnNormMode_t,
-                normOps: cudnnNormOps_t,
-                algo: cudnnNormAlgo_t,
-                alpha: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                xData: *const ::std::os::raw::c_void,
-                normScaleBiasDesc: cudnnTensorDescriptor_t,
-                normScale: *const ::std::os::raw::c_void,
-                normBias: *const ::std::os::raw::c_void,
-                exponentialAverageFactor: f64,
-                normMeanVarDesc: cudnnTensorDescriptor_t,
-                resultRunningMean: *mut ::std::os::raw::c_void,
-                resultRunningVariance: *mut ::std::os::raw::c_void,
-                epsilon: f64,
-                resultSaveMean: *mut ::std::os::raw::c_void,
-                resultSaveInvVariance: *mut ::std::os::raw::c_void,
-                activationDesc: cudnnActivationDescriptor_t,
-                zDesc: cudnnTensorDescriptor_t,
-                zData: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                yData: *mut ::std::os::raw::c_void,
-                workspace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
-                groupCnt: ::std::os::raw::c_int,
+                cudnnHandle_t,
+                cudnnNormMode_t,
+                cudnnNormOps_t,
+                cudnnNormAlgo_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                f64,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                f64,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                cudnnActivationDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1335,46 +1251,46 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                mode: cudnnNormMode_t,
-                normOps: cudnnNormOps_t,
-                algo: cudnnNormAlgo_t,
-                alphaDataDiff: *const ::std::os::raw::c_void,
-                betaDataDiff: *const ::std::os::raw::c_void,
-                alphaParamDiff: *const ::std::os::raw::c_void,
-                betaParamDiff: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                xData: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                yData: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dyData: *const ::std::os::raw::c_void,
-                dzDesc: cudnnTensorDescriptor_t,
-                dzData: *mut ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dxData: *mut ::std::os::raw::c_void,
-                dNormScaleBiasDesc: cudnnTensorDescriptor_t,
-                normScaleData: *const ::std::os::raw::c_void,
-                normBiasData: *const ::std::os::raw::c_void,
-                dNormScaleData: *mut ::std::os::raw::c_void,
-                dNormBiasData: *mut ::std::os::raw::c_void,
-                epsilon: f64,
-                normMeanVarDesc: cudnnTensorDescriptor_t,
-                savedMean: *const ::std::os::raw::c_void,
-                savedInvVariance: *const ::std::os::raw::c_void,
-                activationDesc: cudnnActivationDescriptor_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
-                groupCnt: ::std::os::raw::c_int,
+                cudnnHandle_t,
+                cudnnNormMode_t,
+                cudnnNormOps_t,
+                cudnnNormAlgo_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                f64,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnActivationDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnNormalizationBackward = val;
         self
     }
-    pub fn cudnnSpatialTfGridGeneratorBackward(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, dgrid: *const ::std::os::raw::c_void, dtheta: *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSpatialTfGridGeneratorBackward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnSpatialTransformerDescriptor_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSpatialTfGridGeneratorBackward = val;
         self
     }
@@ -1382,73 +1298,41 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                stDesc: cudnnSpatialTransformerDescriptor_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                beta: *const ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
-                alphaDgrid: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                grid: *const ::std::os::raw::c_void,
-                betaDgrid: *const ::std::os::raw::c_void,
-                dgrid: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnSpatialTransformerDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnSpatialTfSamplerBackward = val;
         self
     }
-    pub fn cudnnDropoutBackward(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                dropoutDesc: cudnnDropoutDescriptor_t,
-                dydesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                dxdesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
-                reserveSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
-            ) -> cudnnStatus_t,
-        >,
-    ) -> Self {
+    pub fn cudnnDropoutBackward(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnDropoutDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, usize) -> cudnnStatus_t>) -> Self {
         self.cudnnDropoutBackward = val;
         self
     }
-    pub fn cudnnCreateRNNDescriptor(mut self, val: Option<unsafe extern "C" fn(rnnDesc: *mut cudnnRNNDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateRNNDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnRNNDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateRNNDescriptor = val;
         self
     }
-    pub fn cudnnDestroyRNNDescriptor(mut self, val: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyRNNDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyRNNDescriptor = val;
         self
     }
     pub fn cudnnSetRNNDescriptor_v8(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                rnnDesc: cudnnRNNDescriptor_t,
-                algo: cudnnRNNAlgo_t,
-                cellMode: cudnnRNNMode_t,
-                biasMode: cudnnRNNBiasMode_t,
-                dirMode: cudnnDirectionMode_t,
-                inputMode: cudnnRNNInputMode_t,
-                dataType: cudnnDataType_t,
-                mathPrec: cudnnDataType_t,
-                mathType: cudnnMathType_t,
-                inputSize: i32,
-                hiddenSize: i32,
-                projSize: i32,
-                numLayers: i32,
-                dropoutDesc: cudnnDropoutDescriptor_t,
-                auxFlags: u32,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, cudnnRNNAlgo_t, cudnnRNNMode_t, cudnnRNNBiasMode_t, cudnnDirectionMode_t, cudnnRNNInputMode_t, cudnnDataType_t, cudnnDataType_t, cudnnMathType_t, i32, i32, i32, i32, cudnnDropoutDescriptor_t, u32) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSetRNNDescriptor_v8 = val;
         self
@@ -1457,116 +1341,80 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                rnnDesc: cudnnRNNDescriptor_t,
-                algo: *mut cudnnRNNAlgo_t,
-                cellMode: *mut cudnnRNNMode_t,
-                biasMode: *mut cudnnRNNBiasMode_t,
-                dirMode: *mut cudnnDirectionMode_t,
-                inputMode: *mut cudnnRNNInputMode_t,
-                dataType: *mut cudnnDataType_t,
-                mathPrec: *mut cudnnDataType_t,
-                mathType: *mut cudnnMathType_t,
-                inputSize: *mut i32,
-                hiddenSize: *mut i32,
-                projSize: *mut i32,
-                numLayers: *mut i32,
-                dropoutDesc: *mut cudnnDropoutDescriptor_t,
-                auxFlags: *mut u32,
+                cudnnRNNDescriptor_t,
+                *mut cudnnRNNAlgo_t,
+                *mut cudnnRNNMode_t,
+                *mut cudnnRNNBiasMode_t,
+                *mut cudnnDirectionMode_t,
+                *mut cudnnRNNInputMode_t,
+                *mut cudnnDataType_t,
+                *mut cudnnDataType_t,
+                *mut cudnnMathType_t,
+                *mut i32,
+                *mut i32,
+                *mut i32,
+                *mut i32,
+                *mut cudnnDropoutDescriptor_t,
+                *mut u32,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetRNNDescriptor_v8 = val;
         self
     }
-    pub fn cudnnRNNSetClip_v8(mut self, val: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: cudnnRNNClipMode_t, clipNanOpt: cudnnNanPropagation_t, lclip: f64, rclip: f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnRNNSetClip_v8(mut self, val: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, cudnnRNNClipMode_t, cudnnNanPropagation_t, f64, f64) -> cudnnStatus_t>) -> Self {
         self.cudnnRNNSetClip_v8 = val;
         self
     }
-    pub fn cudnnRNNSetClip_v9(mut self, val: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: cudnnRNNClipMode_t, lclip: f64, rclip: f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnRNNSetClip_v9(mut self, val: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, cudnnRNNClipMode_t, f64, f64) -> cudnnStatus_t>) -> Self {
         self.cudnnRNNSetClip_v9 = val;
         self
     }
-    pub fn cudnnRNNGetClip_v8(mut self, val: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: *mut cudnnRNNClipMode_t, clipNanOpt: *mut cudnnNanPropagation_t, lclip: *mut f64, rclip: *mut f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnRNNGetClip_v8(mut self, val: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, *mut cudnnRNNClipMode_t, *mut cudnnNanPropagation_t, *mut f64, *mut f64) -> cudnnStatus_t>) -> Self {
         self.cudnnRNNGetClip_v8 = val;
         self
     }
-    pub fn cudnnRNNGetClip_v9(mut self, val: Option<unsafe extern "C" fn(rnnDesc: cudnnRNNDescriptor_t, clipMode: *mut cudnnRNNClipMode_t, lclip: *mut f64, rclip: *mut f64) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnRNNGetClip_v9(mut self, val: Option<unsafe extern "C" fn(cudnnRNNDescriptor_t, *mut cudnnRNNClipMode_t, *mut f64, *mut f64) -> cudnnStatus_t>) -> Self {
         self.cudnnRNNGetClip_v9 = val;
         self
     }
-    pub fn cudnnBuildRNNDynamic(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, miniBatch: ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnBuildRNNDynamic(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnBuildRNNDynamic = val;
         self
     }
-    pub fn cudnnGetRNNTempSpaceSizes(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, fwdMode: cudnnForwardMode_t, xDesc: cudnnRNNDataDescriptor_t, workSpaceSize: *mut usize, reserveSpaceSize: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetRNNTempSpaceSizes(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, cudnnForwardMode_t, cudnnRNNDataDescriptor_t, *mut usize, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetRNNTempSpaceSizes = val;
         self
     }
-    pub fn cudnnGetRNNWeightSpaceSize(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, rnnDesc: cudnnRNNDescriptor_t, weightSpaceSize: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetRNNWeightSpaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetRNNWeightSpaceSize = val;
         self
     }
     pub fn cudnnGetRNNWeightParams(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                rnnDesc: cudnnRNNDescriptor_t,
-                pseudoLayer: i32,
-                weightSpaceSize: usize,
-                weightSpace: *const ::std::os::raw::c_void,
-                linLayerID: i32,
-                mDesc: cudnnTensorDescriptor_t,
-                mAddr: *mut *mut ::std::os::raw::c_void,
-                bDesc: cudnnTensorDescriptor_t,
-                bAddr: *mut *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnRNNDescriptor_t, i32, usize, *const ::std::os::raw::c_void, i32, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetRNNWeightParams = val;
         self
     }
-    pub fn cudnnCreateRNNDataDescriptor(mut self, val: Option<unsafe extern "C" fn(rnnDataDesc: *mut cudnnRNNDataDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateRNNDataDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnRNNDataDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateRNNDataDescriptor = val;
         self
     }
-    pub fn cudnnDestroyRNNDataDescriptor(mut self, val: Option<unsafe extern "C" fn(rnnDataDesc: cudnnRNNDataDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyRNNDataDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyRNNDataDescriptor = val;
         self
     }
     pub fn cudnnSetRNNDataDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                rnnDataDesc: cudnnRNNDataDescriptor_t,
-                dataType: cudnnDataType_t,
-                layout: cudnnRNNDataLayout_t,
-                maxSeqLength: ::std::os::raw::c_int,
-                batchSize: ::std::os::raw::c_int,
-                vectorSize: ::std::os::raw::c_int,
-                seqLengthArray: *const ::std::os::raw::c_int,
-                paddingFill: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, cudnnDataType_t, cudnnRNNDataLayout_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSetRNNDataDescriptor = val;
         self
     }
     pub fn cudnnGetRNNDataDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                rnnDataDesc: cudnnRNNDataDescriptor_t,
-                dataType: *mut cudnnDataType_t,
-                layout: *mut cudnnRNNDataLayout_t,
-                maxSeqLength: *mut ::std::os::raw::c_int,
-                batchSize: *mut ::std::os::raw::c_int,
-                vectorSize: *mut ::std::os::raw::c_int,
-                arrayLengthRequested: ::std::os::raw::c_int,
-                seqLengthArray: *mut ::std::os::raw::c_int,
-                paddingFill: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnRNNDataDescriptor_t, *mut cudnnDataType_t, *mut cudnnRNNDataLayout_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetRNNDataDescriptor = val;
         self
@@ -1575,83 +1423,56 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                rnnDesc: cudnnRNNDescriptor_t,
-                fwdMode: cudnnForwardMode_t,
-                devSeqLengths: *const i32,
-                xDesc: cudnnRNNDataDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                yDesc: cudnnRNNDataDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-                hDesc: cudnnTensorDescriptor_t,
-                hx: *const ::std::os::raw::c_void,
-                hy: *mut ::std::os::raw::c_void,
-                cDesc: cudnnTensorDescriptor_t,
-                cx: *const ::std::os::raw::c_void,
-                cy: *mut ::std::os::raw::c_void,
-                weightSpaceSize: usize,
-                weightSpace: *const ::std::os::raw::c_void,
-                workSpaceSize: usize,
-                workSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSize: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnRNNDescriptor_t,
+                cudnnForwardMode_t,
+                *const i32,
+                cudnnRNNDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnRNNDataDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnRNNForward = val;
         self
     }
-    pub fn cudnnCreateSeqDataDescriptor(mut self, val: Option<unsafe extern "C" fn(seqDataDesc: *mut cudnnSeqDataDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateSeqDataDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnSeqDataDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateSeqDataDescriptor = val;
         self
     }
-    pub fn cudnnDestroySeqDataDescriptor(mut self, val: Option<unsafe extern "C" fn(seqDataDesc: cudnnSeqDataDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroySeqDataDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroySeqDataDescriptor = val;
         self
     }
-    pub fn cudnnSetSeqDataDescriptor(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                seqDataDesc: cudnnSeqDataDescriptor_t,
-                dataType: cudnnDataType_t,
-                nbDims: ::std::os::raw::c_int,
-                dimA: *const ::std::os::raw::c_int,
-                axes: *const cudnnSeqDataAxis_t,
-                seqLengthArraySize: usize,
-                seqLengthArray: *const ::std::os::raw::c_int,
-                paddingFill: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
-    ) -> Self {
+    pub fn cudnnSetSeqDataDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, cudnnDataType_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const cudnnSeqDataAxis_t, usize, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetSeqDataDescriptor = val;
         self
     }
     pub fn cudnnGetSeqDataDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                seqDataDesc: cudnnSeqDataDescriptor_t,
-                dataType: *mut cudnnDataType_t,
-                nbDims: *mut ::std::os::raw::c_int,
-                nbDimsRequested: ::std::os::raw::c_int,
-                dimA: *mut ::std::os::raw::c_int,
-                axes: *mut cudnnSeqDataAxis_t,
-                seqLengthArraySize: *mut usize,
-                seqLengthSizeRequested: usize,
-                seqLengthArray: *mut ::std::os::raw::c_int,
-                paddingFill: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnSeqDataDescriptor_t, *mut cudnnDataType_t, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnSeqDataAxis_t, *mut usize, usize, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetSeqDataDescriptor = val;
         self
     }
-    pub fn cudnnCreateAttnDescriptor(mut self, val: Option<unsafe extern "C" fn(attnDesc: *mut cudnnAttnDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateAttnDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnAttnDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateAttnDescriptor = val;
         self
     }
-    pub fn cudnnDestroyAttnDescriptor(mut self, val: Option<unsafe extern "C" fn(attnDesc: cudnnAttnDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyAttnDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnAttnDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyAttnDescriptor = val;
         self
     }
@@ -1659,26 +1480,26 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                attnDesc: cudnnAttnDescriptor_t,
-                attnMode: ::std::os::raw::c_uint,
-                nHeads: ::std::os::raw::c_int,
-                smScaler: f64,
-                dataType: cudnnDataType_t,
-                computePrec: cudnnDataType_t,
-                mathType: cudnnMathType_t,
-                attnDropoutDesc: cudnnDropoutDescriptor_t,
-                postDropoutDesc: cudnnDropoutDescriptor_t,
-                qSize: ::std::os::raw::c_int,
-                kSize: ::std::os::raw::c_int,
-                vSize: ::std::os::raw::c_int,
-                qProjSize: ::std::os::raw::c_int,
-                kProjSize: ::std::os::raw::c_int,
-                vProjSize: ::std::os::raw::c_int,
-                oProjSize: ::std::os::raw::c_int,
-                qoMaxSeqLength: ::std::os::raw::c_int,
-                kvMaxSeqLength: ::std::os::raw::c_int,
-                maxBatchSize: ::std::os::raw::c_int,
-                maxBeamSize: ::std::os::raw::c_int,
+                cudnnAttnDescriptor_t,
+                ::std::os::raw::c_uint,
+                ::std::os::raw::c_int,
+                f64,
+                cudnnDataType_t,
+                cudnnDataType_t,
+                cudnnMathType_t,
+                cudnnDropoutDescriptor_t,
+                cudnnDropoutDescriptor_t,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1689,40 +1510,37 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                attnDesc: cudnnAttnDescriptor_t,
-                attnMode: *mut ::std::os::raw::c_uint,
-                nHeads: *mut ::std::os::raw::c_int,
-                smScaler: *mut f64,
-                dataType: *mut cudnnDataType_t,
-                computePrec: *mut cudnnDataType_t,
-                mathType: *mut cudnnMathType_t,
-                attnDropoutDesc: *mut cudnnDropoutDescriptor_t,
-                postDropoutDesc: *mut cudnnDropoutDescriptor_t,
-                qSize: *mut ::std::os::raw::c_int,
-                kSize: *mut ::std::os::raw::c_int,
-                vSize: *mut ::std::os::raw::c_int,
-                qProjSize: *mut ::std::os::raw::c_int,
-                kProjSize: *mut ::std::os::raw::c_int,
-                vProjSize: *mut ::std::os::raw::c_int,
-                oProjSize: *mut ::std::os::raw::c_int,
-                qoMaxSeqLength: *mut ::std::os::raw::c_int,
-                kvMaxSeqLength: *mut ::std::os::raw::c_int,
-                maxBatchSize: *mut ::std::os::raw::c_int,
-                maxBeamSize: *mut ::std::os::raw::c_int,
+                cudnnAttnDescriptor_t,
+                *mut ::std::os::raw::c_uint,
+                *mut ::std::os::raw::c_int,
+                *mut f64,
+                *mut cudnnDataType_t,
+                *mut cudnnDataType_t,
+                *mut cudnnMathType_t,
+                *mut cudnnDropoutDescriptor_t,
+                *mut cudnnDropoutDescriptor_t,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetAttnDescriptor = val;
         self
     }
-    pub fn cudnnGetMultiHeadAttnBuffers(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, attnDesc: cudnnAttnDescriptor_t, weightSizeInBytes: *mut usize, workSpaceSizeInBytes: *mut usize, reserveSpaceSizeInBytes: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetMultiHeadAttnBuffers(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnAttnDescriptor_t, *mut usize, *mut usize, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetMultiHeadAttnBuffers = val;
         self
     }
-    pub fn cudnnGetMultiHeadAttnWeights(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, attnDesc: cudnnAttnDescriptor_t, wKind: cudnnMultiHeadAttnWeightKind_t, weightSizeInBytes: usize, weights: *const ::std::os::raw::c_void, wDesc: cudnnTensorDescriptor_t, wAddr: *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetMultiHeadAttnWeights(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnAttnDescriptor_t, cudnnMultiHeadAttnWeightKind_t, usize, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnGetMultiHeadAttnWeights = val;
         self
     }
@@ -1730,28 +1548,28 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                attnDesc: cudnnAttnDescriptor_t,
-                currIdx: ::std::os::raw::c_int,
-                loWinIdx: *const ::std::os::raw::c_int,
-                hiWinIdx: *const ::std::os::raw::c_int,
-                devSeqLengthsQO: *const ::std::os::raw::c_int,
-                devSeqLengthsKV: *const ::std::os::raw::c_int,
-                qDesc: cudnnSeqDataDescriptor_t,
-                queries: *const ::std::os::raw::c_void,
-                residuals: *const ::std::os::raw::c_void,
-                kDesc: cudnnSeqDataDescriptor_t,
-                keys: *const ::std::os::raw::c_void,
-                vDesc: cudnnSeqDataDescriptor_t,
-                values: *const ::std::os::raw::c_void,
-                oDesc: cudnnSeqDataDescriptor_t,
-                out: *mut ::std::os::raw::c_void,
-                weightSizeInBytes: usize,
-                weights: *const ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                workSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnAttnDescriptor_t,
+                ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1766,28 +1584,28 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                rnnDesc: cudnnRNNDescriptor_t,
-                devSeqLengths: *const i32,
-                yDesc: cudnnRNNDataDescriptor_t,
-                y: *const ::std::os::raw::c_void,
-                dy: *const ::std::os::raw::c_void,
-                xDesc: cudnnRNNDataDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
-                hDesc: cudnnTensorDescriptor_t,
-                hx: *const ::std::os::raw::c_void,
-                dhy: *const ::std::os::raw::c_void,
-                dhx: *mut ::std::os::raw::c_void,
-                cDesc: cudnnTensorDescriptor_t,
-                cx: *const ::std::os::raw::c_void,
-                dcy: *const ::std::os::raw::c_void,
-                dcx: *mut ::std::os::raw::c_void,
-                weightSpaceSize: usize,
-                weightSpace: *const ::std::os::raw::c_void,
-                workSpaceSize: usize,
-                workSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSize: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnRNNDescriptor_t,
+                *const i32,
+                cudnnRNNDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnRNNDataDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1798,22 +1616,22 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                rnnDesc: cudnnRNNDescriptor_t,
-                addGrad: cudnnWgradMode_t,
-                devSeqLengths: *const i32,
-                xDesc: cudnnRNNDataDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                hDesc: cudnnTensorDescriptor_t,
-                hx: *const ::std::os::raw::c_void,
-                yDesc: cudnnRNNDataDescriptor_t,
-                y: *const ::std::os::raw::c_void,
-                weightSpaceSize: usize,
-                dweightSpace: *mut ::std::os::raw::c_void,
-                workSpaceSize: usize,
-                workSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSize: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnRNNDescriptor_t,
+                cudnnWgradMode_t,
+                *const i32,
+                cudnnRNNDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnRNNDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1824,29 +1642,29 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                attnDesc: cudnnAttnDescriptor_t,
-                loWinIdx: *const ::std::os::raw::c_int,
-                hiWinIdx: *const ::std::os::raw::c_int,
-                devSeqLengthsDQDO: *const ::std::os::raw::c_int,
-                devSeqLengthsDKDV: *const ::std::os::raw::c_int,
-                doDesc: cudnnSeqDataDescriptor_t,
-                dout: *const ::std::os::raw::c_void,
-                dqDesc: cudnnSeqDataDescriptor_t,
-                dqueries: *mut ::std::os::raw::c_void,
-                queries: *const ::std::os::raw::c_void,
-                dkDesc: cudnnSeqDataDescriptor_t,
-                dkeys: *mut ::std::os::raw::c_void,
-                keys: *const ::std::os::raw::c_void,
-                dvDesc: cudnnSeqDataDescriptor_t,
-                dvalues: *mut ::std::os::raw::c_void,
-                values: *const ::std::os::raw::c_void,
-                weightSizeInBytes: usize,
-                weights: *const ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                workSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnAttnDescriptor_t,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                *const ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1857,73 +1675,67 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                attnDesc: cudnnAttnDescriptor_t,
-                addGrad: cudnnWgradMode_t,
-                qDesc: cudnnSeqDataDescriptor_t,
-                queries: *const ::std::os::raw::c_void,
-                kDesc: cudnnSeqDataDescriptor_t,
-                keys: *const ::std::os::raw::c_void,
-                vDesc: cudnnSeqDataDescriptor_t,
-                values: *const ::std::os::raw::c_void,
-                doDesc: cudnnSeqDataDescriptor_t,
-                dout: *const ::std::os::raw::c_void,
-                weightSizeInBytes: usize,
-                weights: *const ::std::os::raw::c_void,
-                dweights: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                workSpace: *mut ::std::os::raw::c_void,
-                reserveSpaceSizeInBytes: usize,
-                reserveSpace: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnAttnDescriptor_t,
+                cudnnWgradMode_t,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnSeqDataDescriptor_t,
+                *const ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnMultiHeadAttnBackwardWeights = val;
         self
     }
-    pub fn cudnnCreateCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: *mut cudnnCTCLossDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnCTCLossDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateCTCLossDescriptor = val;
         self
     }
-    pub fn cudnnSetCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCTCLossDescriptor = val;
         self
     }
-    pub fn cudnnSetCTCLossDescriptorEx(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, gradMode: cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCTCLossDescriptorEx(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCTCLossDescriptorEx = val;
         self
     }
-    pub fn cudnnSetCTCLossDescriptor_v8(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, gradMode: cudnnNanPropagation_t, maxLabelLength: ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCTCLossDescriptor_v8(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnNanPropagation_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCTCLossDescriptor_v8 = val;
         self
     }
-    pub fn cudnnSetCTCLossDescriptor_v9(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: cudnnDataType_t, normMode: cudnnLossNormalizationMode_t, ctcGradMode: cudnnCTCGradMode_t, maxLabelLength: ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetCTCLossDescriptor_v9(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, cudnnDataType_t, cudnnLossNormalizationMode_t, cudnnCTCGradMode_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetCTCLossDescriptor_v9 = val;
         self
     }
-    pub fn cudnnGetCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCTCLossDescriptor = val;
         self
     }
-    pub fn cudnnGetCTCLossDescriptorEx(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t, normMode: *mut cudnnLossNormalizationMode_t, gradMode: *mut cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetCTCLossDescriptorEx(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnNanPropagation_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCTCLossDescriptorEx = val;
         self
     }
-    pub fn cudnnGetCTCLossDescriptor_v8(
-        mut self,
-        val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t, normMode: *mut cudnnLossNormalizationMode_t, gradMode: *mut cudnnNanPropagation_t, maxLabelLength: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetCTCLossDescriptor_v8(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnNanPropagation_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCTCLossDescriptor_v8 = val;
         self
     }
-    pub fn cudnnGetCTCLossDescriptor_v9(
-        mut self,
-        val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t, compType: *mut cudnnDataType_t, normMode: *mut cudnnLossNormalizationMode_t, ctcGradMode: *mut cudnnCTCGradMode_t, maxLabelLength: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetCTCLossDescriptor_v9(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t, *mut cudnnDataType_t, *mut cudnnLossNormalizationMode_t, *mut cudnnCTCGradMode_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCTCLossDescriptor_v9 = val;
         self
     }
-    pub fn cudnnDestroyCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(ctcLossDesc: cudnnCTCLossDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyCTCLossDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnCTCLossDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyCTCLossDescriptor = val;
         self
     }
@@ -1931,19 +1743,19 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                probsDesc: cudnnTensorDescriptor_t,
-                probs: *const ::std::os::raw::c_void,
-                hostLabels: *const ::std::os::raw::c_int,
-                hostLabelLengths: *const ::std::os::raw::c_int,
-                hostInputLengths: *const ::std::os::raw::c_int,
-                costs: *mut ::std::os::raw::c_void,
-                gradientsDesc: cudnnTensorDescriptor_t,
-                gradients: *mut ::std::os::raw::c_void,
-                algo: cudnnCTCLossAlgo_t,
-                ctcLossDesc: cudnnCTCLossDescriptor_t,
-                workspace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
+                cudnnHandle_t,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                cudnnCTCLossAlgo_t,
+                cudnnCTCLossDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                usize,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1954,19 +1766,19 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                algo: cudnnCTCLossAlgo_t,
-                ctcLossDesc: cudnnCTCLossDescriptor_t,
-                probsDesc: cudnnTensorDescriptor_t,
-                probs: *const ::std::os::raw::c_void,
-                labels: *const ::std::os::raw::c_int,
-                labelLengths: *const ::std::os::raw::c_int,
-                inputLengths: *const ::std::os::raw::c_int,
-                costs: *mut ::std::os::raw::c_void,
-                gradientsDesc: cudnnTensorDescriptor_t,
-                gradients: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                workspace: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                cudnnCTCLossAlgo_t,
+                cudnnCTCLossDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *const ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -1975,77 +1787,50 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnGetCTCLossWorkspaceSize(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                probsDesc: cudnnTensorDescriptor_t,
-                gradientsDesc: cudnnTensorDescriptor_t,
-                labels: *const ::std::os::raw::c_int,
-                labelLengths: *const ::std::os::raw::c_int,
-                inputLengths: *const ::std::os::raw::c_int,
-                algo: cudnnCTCLossAlgo_t,
-                ctcLossDesc: cudnnCTCLossDescriptor_t,
-                sizeInBytes: *mut usize,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cudnnCTCLossAlgo_t, cudnnCTCLossDescriptor_t, *mut usize) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetCTCLossWorkspaceSize = val;
         self
     }
-    pub fn cudnnGetCTCLossWorkspaceSize_v8(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, algo: cudnnCTCLossAlgo_t, ctcLossDesc: cudnnCTCLossDescriptor_t, probsDesc: cudnnTensorDescriptor_t, gradientsDesc: cudnnTensorDescriptor_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetCTCLossWorkspaceSize_v8(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnCTCLossAlgo_t, cudnnCTCLossDescriptor_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetCTCLossWorkspaceSize_v8 = val;
         self
     }
-    pub fn cudnnCreateConvolutionDescriptor(mut self, val: Option<unsafe extern "C" fn(convDesc: *mut cudnnConvolutionDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateConvolutionDescriptor(mut self, val: Option<unsafe extern "C" fn(*mut cudnnConvolutionDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateConvolutionDescriptor = val;
         self
     }
-    pub fn cudnnDestroyConvolutionDescriptor(mut self, val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyConvolutionDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyConvolutionDescriptor = val;
         self
     }
-    pub fn cudnnSetConvolutionMathType(mut self, val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, mathType: cudnnMathType_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetConvolutionMathType(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnMathType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetConvolutionMathType = val;
         self
     }
-    pub fn cudnnGetConvolutionMathType(mut self, val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, mathType: *mut cudnnMathType_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionMathType(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut cudnnMathType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionMathType = val;
         self
     }
-    pub fn cudnnSetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, groupCount: ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnSetConvolutionGroupCount = val;
         self
     }
-    pub fn cudnnGetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, groupCount: *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionGroupCount(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionGroupCount = val;
         self
     }
-    pub fn cudnnSetConvolutionReorderType(mut self, val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, reorderType: cudnnReorderType_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetConvolutionReorderType(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnReorderType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetConvolutionReorderType = val;
         self
     }
-    pub fn cudnnGetConvolutionReorderType(mut self, val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, reorderType: *mut cudnnReorderType_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionReorderType(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut cudnnReorderType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionReorderType = val;
         self
     }
     pub fn cudnnSetConvolution2dDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                convDesc: cudnnConvolutionDescriptor_t,
-                pad_h: ::std::os::raw::c_int,
-                pad_w: ::std::os::raw::c_int,
-                u: ::std::os::raw::c_int,
-                v: ::std::os::raw::c_int,
-                dilation_h: ::std::os::raw::c_int,
-                dilation_w: ::std::os::raw::c_int,
-                mode: cudnnConvolutionMode_t,
-                computeType: cudnnDataType_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnSetConvolution2dDescriptor = val;
         self
@@ -2053,109 +1838,48 @@ impl crate::sys::DynamicBindings {
     pub fn cudnnGetConvolution2dDescriptor(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                convDesc: cudnnConvolutionDescriptor_t,
-                pad_h: *mut ::std::os::raw::c_int,
-                pad_w: *mut ::std::os::raw::c_int,
-                u: *mut ::std::os::raw::c_int,
-                v: *mut ::std::os::raw::c_int,
-                dilation_h: *mut ::std::os::raw::c_int,
-                dilation_w: *mut ::std::os::raw::c_int,
-                mode: *mut cudnnConvolutionMode_t,
-                computeType: *mut cudnnDataType_t,
-            ) -> cudnnStatus_t,
+            unsafe extern "C" fn(cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnGetConvolution2dDescriptor = val;
         self
     }
-    pub fn cudnnSetConvolutionNdDescriptor(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                convDesc: cudnnConvolutionDescriptor_t,
-                arrayLength: ::std::os::raw::c_int,
-                padA: *const ::std::os::raw::c_int,
-                filterStrideA: *const ::std::os::raw::c_int,
-                dilationA: *const ::std::os::raw::c_int,
-                mode: cudnnConvolutionMode_t,
-                computeType: cudnnDataType_t,
-            ) -> cudnnStatus_t,
-        >,
-    ) -> Self {
+    pub fn cudnnSetConvolutionNdDescriptor(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cudnnConvolutionMode_t, cudnnDataType_t) -> cudnnStatus_t>) -> Self {
         self.cudnnSetConvolutionNdDescriptor = val;
         self
     }
     pub fn cudnnGetConvolutionNdDescriptor(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                convDesc: cudnnConvolutionDescriptor_t,
-                arrayLengthRequested: ::std::os::raw::c_int,
-                arrayLength: *mut ::std::os::raw::c_int,
-                padA: *mut ::std::os::raw::c_int,
-                strideA: *mut ::std::os::raw::c_int,
-                dilationA: *mut ::std::os::raw::c_int,
-                mode: *mut cudnnConvolutionMode_t,
-                computeType: *mut cudnnDataType_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionMode_t, *mut cudnnDataType_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionNdDescriptor = val;
         self
     }
     pub fn cudnnGetConvolution2dForwardOutputDim(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t, n: *mut ::std::os::raw::c_int, c: *mut ::std::os::raw::c_int, h: *mut ::std::os::raw::c_int, w: *mut ::std::os::raw::c_int) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolution2dForwardOutputDim = val;
         self
     }
-    pub fn cudnnGetConvolutionNdForwardOutputDim(
-        mut self,
-        val: Option<unsafe extern "C" fn(convDesc: cudnnConvolutionDescriptor_t, inputTensorDesc: cudnnTensorDescriptor_t, filterDesc: cudnnFilterDescriptor_t, nbDims: ::std::os::raw::c_int, tensorOuputDimA: *mut ::std::os::raw::c_int) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetConvolutionNdForwardOutputDim(mut self, val: Option<unsafe extern "C" fn(cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionNdForwardOutputDim = val;
         self
     }
-    pub fn cudnnGetConvolutionForwardAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionForwardAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionForwardAlgorithmMaxCount = val;
         self
     }
     pub fn cudnnGetConvolutionForwardAlgorithm_v7(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                srcDesc: cudnnTensorDescriptor_t,
-                filterDesc: cudnnFilterDescriptor_t,
-                convDesc: cudnnConvolutionDescriptor_t,
-                destDesc: cudnnTensorDescriptor_t,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionFwdAlgoPerf_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionForwardAlgorithm_v7 = val;
         self
     }
     pub fn cudnnFindConvolutionForwardAlgorithm(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                xDesc: cudnnTensorDescriptor_t,
-                wDesc: cudnnFilterDescriptor_t,
-                convDesc: cudnnConvolutionDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionFwdAlgoPerf_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionFwdAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnFindConvolutionForwardAlgorithm = val;
         self
@@ -2164,51 +1888,37 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                wDesc: cudnnFilterDescriptor_t,
-                w: *const ::std::os::raw::c_void,
-                convDesc: cudnnConvolutionDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionFwdAlgoPerf_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
+                cudnnHandle_t,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnFilterDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnConvolutionDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut cudnnConvolutionFwdAlgoPerf_t,
+                *mut ::std::os::raw::c_void,
+                usize,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnFindConvolutionForwardAlgorithmEx = val;
         self
     }
-    pub fn cudnnIm2Col(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, x: *const ::std::os::raw::c_void, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, colBuffer: *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnIm2Col(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnIm2Col = val;
         self
     }
     pub fn cudnnReorderFilterAndBias(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                filterDesc: cudnnFilterDescriptor_t,
-                reorderType: cudnnReorderType_t,
-                filterData: *const ::std::os::raw::c_void,
-                reorderedFilterData: *mut ::std::os::raw::c_void,
-                reorderBias: ::std::os::raw::c_int,
-                biasData: *const ::std::os::raw::c_void,
-                reorderedBiasData: *mut ::std::os::raw::c_void,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnReorderType_t, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void, ::std::os::raw::c_int, *const ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnReorderFilterAndBias = val;
         self
     }
-    pub fn cudnnGetConvolutionForwardWorkspaceSize(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, yDesc: cudnnTensorDescriptor_t, algo: cudnnConvolutionFwdAlgo_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetConvolutionForwardWorkspaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionFwdAlgo_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionForwardWorkspaceSize = val;
         self
     }
@@ -2216,19 +1926,19 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                wDesc: cudnnFilterDescriptor_t,
-                w: *const ::std::os::raw::c_void,
-                convDesc: cudnnConvolutionDescriptor_t,
-                algo: cudnnConvolutionFwdAlgo_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                beta: *const ::std::os::raw::c_void,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnFilterDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnConvolutionDescriptor_t,
+                cudnnConvolutionFwdAlgo_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -2239,48 +1949,37 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                alpha1: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                wDesc: cudnnFilterDescriptor_t,
-                w: *const ::std::os::raw::c_void,
-                convDesc: cudnnConvolutionDescriptor_t,
-                algo: cudnnConvolutionFwdAlgo_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                alpha2: *const ::std::os::raw::c_void,
-                zDesc: cudnnTensorDescriptor_t,
-                z: *const ::std::os::raw::c_void,
-                biasDesc: cudnnTensorDescriptor_t,
-                bias: *const ::std::os::raw::c_void,
-                activationDesc: cudnnActivationDescriptor_t,
-                yDesc: cudnnTensorDescriptor_t,
-                y: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnFilterDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnConvolutionDescriptor_t,
+                cudnnConvolutionFwdAlgo_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnActivationDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnConvolutionBiasActivationForward = val;
         self
     }
-    pub fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionBackwardDataAlgorithmMaxCount = val;
         self
     }
     pub fn cudnnFindConvolutionBackwardDataAlgorithm(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                wDesc: cudnnFilterDescriptor_t,
-                dyDesc: cudnnTensorDescriptor_t,
-                convDesc: cudnnConvolutionDescriptor_t,
-                dxDesc: cudnnTensorDescriptor_t,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionBwdDataAlgoPerf_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnFindConvolutionBackwardDataAlgorithm = val;
         self
@@ -2289,19 +1988,19 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                wDesc: cudnnFilterDescriptor_t,
-                w: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                convDesc: cudnnConvolutionDescriptor_t,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionBwdDataAlgoPerf_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
+                cudnnHandle_t,
+                cudnnFilterDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnConvolutionDescriptor_t,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut cudnnConvolutionBwdDataAlgoPerf_t,
+                *mut ::std::os::raw::c_void,
+                usize,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -2310,26 +2009,12 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnGetConvolutionBackwardDataAlgorithm_v7(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                filterDesc: cudnnFilterDescriptor_t,
-                diffDesc: cudnnTensorDescriptor_t,
-                convDesc: cudnnConvolutionDescriptor_t,
-                gradDesc: cudnnTensorDescriptor_t,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionBwdDataAlgoPerf_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdDataAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionBackwardDataAlgorithm_v7 = val;
         self
     }
-    pub fn cudnnGetConvolutionBackwardDataWorkspaceSize(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, wDesc: cudnnFilterDescriptor_t, dyDesc: cudnnTensorDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, dxDesc: cudnnTensorDescriptor_t, algo: cudnnConvolutionBwdDataAlgo_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetConvolutionBackwardDataWorkspaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFilterDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionBwdDataAlgo_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionBackwardDataWorkspaceSize = val;
         self
     }
@@ -2337,19 +2022,19 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                alpha: *const ::std::os::raw::c_void,
-                wDesc: cudnnFilterDescriptor_t,
-                w: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                convDesc: cudnnConvolutionDescriptor_t,
-                algo: cudnnConvolutionBwdDataAlgo_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                beta: *const ::std::os::raw::c_void,
-                dxDesc: cudnnTensorDescriptor_t,
-                dx: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                *const ::std::os::raw::c_void,
+                cudnnFilterDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnConvolutionDescriptor_t,
+                cudnnConvolutionBwdDataAlgo_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -2360,20 +2045,20 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                filterDesc: cudnnFilterDescriptor_t,
-                diffDesc: cudnnTensorDescriptor_t,
-                convDesc: cudnnConvolutionDescriptor_t,
-                gradDesc: cudnnTensorDescriptor_t,
-                transformFormat: cudnnTensorFormat_t,
-                foldedFilterDesc: cudnnFilterDescriptor_t,
-                paddedDiffDesc: cudnnTensorDescriptor_t,
-                foldedConvDesc: cudnnConvolutionDescriptor_t,
-                foldedGradDesc: cudnnTensorDescriptor_t,
-                filterFoldTransDesc: cudnnTensorTransformDescriptor_t,
-                diffPadTransDesc: cudnnTensorTransformDescriptor_t,
-                gradFoldTransDesc: cudnnTensorTransformDescriptor_t,
-                gradUnfoldTransDesc: cudnnTensorTransformDescriptor_t,
+                cudnnHandle_t,
+                cudnnFilterDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnConvolutionDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorFormat_t,
+                cudnnFilterDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnConvolutionDescriptor_t,
+                cudnnTensorDescriptor_t,
+                cudnnTensorTransformDescriptor_t,
+                cudnnTensorTransformDescriptor_t,
+                cudnnTensorTransformDescriptor_t,
+                cudnnTensorTransformDescriptor_t,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -2384,24 +2069,13 @@ impl crate::sys::DynamicBindings {
         self.cudnnCnnVersionCheck = val;
         self
     }
-    pub fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, count: *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionBackwardFilterAlgorithmMaxCount = val;
         self
     }
     pub fn cudnnFindConvolutionBackwardFilterAlgorithm(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                xDesc: cudnnTensorDescriptor_t,
-                dyDesc: cudnnTensorDescriptor_t,
-                convDesc: cudnnConvolutionDescriptor_t,
-                dwDesc: cudnnFilterDescriptor_t,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionBwdFilterAlgoPerf_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnFindConvolutionBackwardFilterAlgorithm = val;
         self
@@ -2410,19 +2084,19 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                y: *const ::std::os::raw::c_void,
-                convDesc: cudnnConvolutionDescriptor_t,
-                dwDesc: cudnnFilterDescriptor_t,
-                dw: *mut ::std::os::raw::c_void,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionBwdFilterAlgoPerf_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
+                cudnnHandle_t,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnConvolutionDescriptor_t,
+                cudnnFilterDescriptor_t,
+                *mut ::std::os::raw::c_void,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut cudnnConvolutionBwdFilterAlgoPerf_t,
+                *mut ::std::os::raw::c_void,
+                usize,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
@@ -2431,26 +2105,12 @@ impl crate::sys::DynamicBindings {
     }
     pub fn cudnnGetConvolutionBackwardFilterAlgorithm_v7(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                srcDesc: cudnnTensorDescriptor_t,
-                diffDesc: cudnnTensorDescriptor_t,
-                convDesc: cudnnConvolutionDescriptor_t,
-                gradDesc: cudnnFilterDescriptor_t,
-                requestedAlgoCount: ::std::os::raw::c_int,
-                returnedAlgoCount: *mut ::std::os::raw::c_int,
-                perfResults: *mut cudnnConvolutionBwdFilterAlgoPerf_t,
-            ) -> cudnnStatus_t,
-        >,
+        val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cudnnConvolutionBwdFilterAlgoPerf_t) -> cudnnStatus_t>,
     ) -> Self {
         self.cudnnGetConvolutionBackwardFilterAlgorithm_v7 = val;
         self
     }
-    pub fn cudnnGetConvolutionBackwardFilterWorkspaceSize(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, dyDesc: cudnnTensorDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, gradDesc: cudnnFilterDescriptor_t, algo: cudnnConvolutionBwdFilterAlgo_t, sizeInBytes: *mut usize) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnGetConvolutionBackwardFilterWorkspaceSize(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnTensorDescriptor_t, cudnnTensorDescriptor_t, cudnnConvolutionDescriptor_t, cudnnFilterDescriptor_t, cudnnConvolutionBwdFilterAlgo_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnGetConvolutionBackwardFilterWorkspaceSize = val;
         self
     }
@@ -2458,77 +2118,74 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cudnnHandle_t,
-                alpha: *const ::std::os::raw::c_void,
-                xDesc: cudnnTensorDescriptor_t,
-                x: *const ::std::os::raw::c_void,
-                dyDesc: cudnnTensorDescriptor_t,
-                dy: *const ::std::os::raw::c_void,
-                convDesc: cudnnConvolutionDescriptor_t,
-                algo: cudnnConvolutionBwdFilterAlgo_t,
-                workSpace: *mut ::std::os::raw::c_void,
-                workSpaceSizeInBytes: usize,
-                beta: *const ::std::os::raw::c_void,
-                dwDesc: cudnnFilterDescriptor_t,
-                dw: *mut ::std::os::raw::c_void,
+                cudnnHandle_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnTensorDescriptor_t,
+                *const ::std::os::raw::c_void,
+                cudnnConvolutionDescriptor_t,
+                cudnnConvolutionBwdFilterAlgo_t,
+                *mut ::std::os::raw::c_void,
+                usize,
+                *const ::std::os::raw::c_void,
+                cudnnFilterDescriptor_t,
+                *mut ::std::os::raw::c_void,
             ) -> cudnnStatus_t,
         >,
     ) -> Self {
         self.cudnnConvolutionBackwardFilter = val;
         self
     }
-    pub fn cudnnConvolutionBackwardBias(
-        mut self,
-        val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, alpha: *const ::std::os::raw::c_void, dyDesc: cudnnTensorDescriptor_t, dy: *const ::std::os::raw::c_void, beta: *const ::std::os::raw::c_void, dbDesc: cudnnTensorDescriptor_t, db: *mut ::std::os::raw::c_void) -> cudnnStatus_t>,
-    ) -> Self {
+    pub fn cudnnConvolutionBackwardBias(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudnnTensorDescriptor_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnConvolutionBackwardBias = val;
         self
     }
-    pub fn cudnnCreateFusedOpsConstParamPack(mut self, val: Option<unsafe extern "C" fn(constPack: *mut cudnnFusedOpsConstParamPack_t, ops: cudnnFusedOps_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateFusedOpsConstParamPack(mut self, val: Option<unsafe extern "C" fn(*mut cudnnFusedOpsConstParamPack_t, cudnnFusedOps_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateFusedOpsConstParamPack = val;
         self
     }
-    pub fn cudnnDestroyFusedOpsConstParamPack(mut self, val: Option<unsafe extern "C" fn(constPack: cudnnFusedOpsConstParamPack_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyFusedOpsConstParamPack(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyFusedOpsConstParamPack = val;
         self
     }
-    pub fn cudnnSetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *const ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFusedOpsConstParamPackAttribute = val;
         self
     }
-    pub fn cudnnGetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: *mut ::std::os::raw::c_void, isNULL: *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetFusedOpsConstParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsConstParamPack_t, cudnnFusedOpsConstParamLabel_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_int) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFusedOpsConstParamPackAttribute = val;
         self
     }
-    pub fn cudnnCreateFusedOpsVariantParamPack(mut self, val: Option<unsafe extern "C" fn(varPack: *mut cudnnFusedOpsVariantParamPack_t, ops: cudnnFusedOps_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateFusedOpsVariantParamPack(mut self, val: Option<unsafe extern "C" fn(*mut cudnnFusedOpsVariantParamPack_t, cudnnFusedOps_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateFusedOpsVariantParamPack = val;
         self
     }
-    pub fn cudnnDestroyFusedOpsVariantParamPack(mut self, val: Option<unsafe extern "C" fn(varPack: cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyFusedOpsVariantParamPack(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyFusedOpsVariantParamPack = val;
         self
     }
-    pub fn cudnnSetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, ptr: *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnSetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnSetFusedOpsVariantParamPackAttribute = val;
         self
     }
-    pub fn cudnnGetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, ptr: *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnGetFusedOpsVariantParamPackAttribute(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsVariantParamPack_t, cudnnFusedOpsVariantParamLabel_t, *mut ::std::os::raw::c_void) -> cudnnStatus_t>) -> Self {
         self.cudnnGetFusedOpsVariantParamPackAttribute = val;
         self
     }
-    pub fn cudnnCreateFusedOpsPlan(mut self, val: Option<unsafe extern "C" fn(plan: *mut cudnnFusedOpsPlan_t, ops: cudnnFusedOps_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnCreateFusedOpsPlan(mut self, val: Option<unsafe extern "C" fn(*mut cudnnFusedOpsPlan_t, cudnnFusedOps_t) -> cudnnStatus_t>) -> Self {
         self.cudnnCreateFusedOpsPlan = val;
         self
     }
-    pub fn cudnnDestroyFusedOpsPlan(mut self, val: Option<unsafe extern "C" fn(plan: cudnnFusedOpsPlan_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnDestroyFusedOpsPlan(mut self, val: Option<unsafe extern "C" fn(cudnnFusedOpsPlan_t) -> cudnnStatus_t>) -> Self {
         self.cudnnDestroyFusedOpsPlan = val;
         self
     }
-    pub fn cudnnMakeFusedOpsPlan(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, constPack: cudnnFusedOpsConstParamPack_t, workspaceSizeInBytes: *mut usize) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnMakeFusedOpsPlan(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFusedOpsPlan_t, cudnnFusedOpsConstParamPack_t, *mut usize) -> cudnnStatus_t>) -> Self {
         self.cudnnMakeFusedOpsPlan = val;
         self
     }
-    pub fn cudnnFusedOpsExecute(mut self, val: Option<unsafe extern "C" fn(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, varPack: cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>) -> Self {
+    pub fn cudnnFusedOpsExecute(mut self, val: Option<unsafe extern "C" fn(cudnnHandle_t, cudnnFusedOpsPlan_t, cudnnFusedOpsVariantParamPack_t) -> cudnnStatus_t>) -> Self {
         self.cudnnFusedOpsExecute = val;
         self
     }
@@ -2545,10 +2202,10 @@ pub unsafe fn cudnnGetCudartVersion() -> usize {
 pub unsafe fn cudnnGetErrorString(status: cudnnStatus_t) -> *const ::std::os::raw::c_char {
     unsafe { crate::sys::cudnnGetErrorString(status) }
 }
-pub unsafe fn cudnnGetLastErrorString<T: types::CudaAsMutPtr>(mut message: T, max_size: usize) {
+pub unsafe fn cudnnGetLastErrorString<T0: types::CudaAsMutPtr>(mut message: T0, max_size: usize) -> () {
     unsafe { crate::sys::cudnnGetLastErrorString(message.as_mut_ptr() as *mut _, max_size) }
 }
-pub unsafe fn cudnnQueryRuntimeError<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, mut rstatus: T, mode: cudnnErrQueryMode_t, mut tag: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnQueryRuntimeError<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, mut rstatus: T0, mode: cudnnErrQueryMode_t, mut tag: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnQueryRuntimeError(handle, rstatus.as_mut_ptr() as *mut _, mode, tag.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2587,7 +2244,7 @@ pub unsafe fn cudnnGetStream(handle: cudnnHandle_t) -> Result<cudaStream_t, crat
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetCallback<T: types::CudaAsMutPtr>(mask: u32, mut udata: T, fptr: cudnnCallback_t) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetCallback<T0: types::CudaAsMutPtr>(mask: u32, mut udata: T0, fptr: cudnnCallback_t) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetCallback(mask as _, udata.as_mut_ptr() as *mut _, fptr) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2605,7 +2262,7 @@ pub unsafe fn cudnnGraphVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> 
     let status = unsafe { crate::sys::cudnnGraphVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnBackendCreateDescriptor<T: types::CudaAsMutPtr>(descriptorType: cudnnBackendDescriptorType_t, mut descriptor: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnBackendCreateDescriptor<T0: types::CudaAsMutPtr>(descriptorType: cudnnBackendDescriptorType_t, mut descriptor: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendCreateDescriptor(descriptorType, descriptor.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2621,7 +2278,7 @@ pub unsafe fn cudnnBackendFinalize(descriptor: cudnnBackendDescriptor_t) -> Resu
     let status = unsafe { crate::sys::cudnnBackendFinalize(descriptor) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnBackendSetAttribute<T: types::CudaAsPtr>(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, elementCount: i64, arrayOfElements: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnBackendSetAttribute<T0: types::CudaAsPtr>(descriptor: cudnnBackendDescriptor_t, attributeName: cudnnBackendAttributeName_t, attributeType: cudnnBackendAttributeType_t, elementCount: i64, arrayOfElements: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnBackendSetAttribute(descriptor, attributeName, attributeType, elementCount, arrayOfElements.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2705,11 +2362,11 @@ pub unsafe fn cudnnGetTensor4dDescriptor(tensorDesc: cudnnTensorDescriptor_t) ->
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetTensorNdDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T, strideA: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetTensorNdDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T0, strideA: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetTensorNdDescriptor(tensorDesc, dataType, nbDims as _, dimA.as_const_ptr() as *const _, strideA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetTensorNdDescriptorEx<T: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetTensorNdDescriptorEx<T0: types::CudaAsPtr>(tensorDesc: cudnnTensorDescriptor_t, format: cudnnTensorFormat_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetTensorNdDescriptorEx(tensorDesc, format, dataType, nbDims as _, dimA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2739,7 +2396,7 @@ pub unsafe fn cudnnDestroyTensorDescriptor(tensorDesc: cudnnTensorDescriptor_t) 
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 #[doc = "Create a destination descriptor for cudnnTransformTensor"]
-pub unsafe fn cudnnInitTransformDest<T: types::CudaAsMutPtr>(transformDesc: cudnnTensorTransformDescriptor_t, srcDesc: cudnnTensorDescriptor_t, destDesc: cudnnTensorDescriptor_t, mut destSizeInBytes: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnInitTransformDest<T0: types::CudaAsMutPtr>(transformDesc: cudnnTensorTransformDescriptor_t, srcDesc: cudnnTensorDescriptor_t, destDesc: cudnnTensorDescriptor_t, mut destSizeInBytes: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnInitTransformDest(transformDesc, srcDesc, destDesc, destSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2754,13 +2411,13 @@ pub unsafe fn cudnnCreateTensorTransformDescriptor() -> Result<cudnnTensorTransf
     }
 }
 #[doc = "Initialize a previously created tensor transform descriptor."]
-pub unsafe fn cudnnSetTensorTransformDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cudnnSetTensorTransformDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
     transformDesc: cudnnTensorTransformDescriptor_t,
     nbDims: u32,
     destFormat: cudnnTensorFormat_t,
-    padBeforeA: T,
-    padAfterA: U,
-    foldA: V,
+    padBeforeA: T0,
+    padAfterA: T1,
+    foldA: T2,
     direction: cudnnFoldingDirection_t,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetTensorTransformDescriptor(transformDesc, nbDims, destFormat, padBeforeA.as_const_ptr() as *const _, padAfterA.as_const_ptr() as *const _, foldA.as_const_ptr() as *const _, direction) };
@@ -2785,24 +2442,24 @@ pub unsafe fn cudnnDestroyTensorTransformDescriptor(transformDesc: cudnnTensorTr
     let status = unsafe { crate::sys::cudnnDestroyTensorTransformDescriptor(transformDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnTransformTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T, xDesc: cudnnTensorDescriptor_t, x: U, beta: V, yDesc: cudnnTensorDescriptor_t, mut y: W) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnTransformTensor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T0, xDesc: cudnnTensorDescriptor_t, x: T1, beta: T2, yDesc: cudnnTensorDescriptor_t, mut y: T3) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnTransformTensor(handle, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnTransformTensorEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnTransformTensorEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     transDesc: cudnnTensorTransformDescriptor_t,
-    alpha: T,
+    alpha: T0,
     srcDesc: cudnnTensorDescriptor_t,
-    srcData: U,
-    beta: V,
+    srcData: T1,
+    beta: T2,
     destDesc: cudnnTensorDescriptor_t,
-    mut destData: W,
+    mut destData: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnTransformTensorEx(handle, transDesc, alpha.as_const_ptr() as *const _, srcDesc, srcData.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, destDesc, destData.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnAddTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T, aDesc: cudnnTensorDescriptor_t, A: U, beta: V, cDesc: cudnnTensorDescriptor_t, mut C: W) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnAddTensor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T0, aDesc: cudnnTensorDescriptor_t, A: T1, beta: T2, cDesc: cudnnTensorDescriptor_t, mut C: T3) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnAddTensor(handle, alpha.as_const_ptr() as *const _, aDesc, A.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, cDesc, C.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -2834,18 +2491,18 @@ pub unsafe fn cudnnDestroyOpTensorDescriptor(opTensorDesc: cudnnOpTensorDescript
     let status = unsafe { crate::sys::cudnnDestroyOpTensorDescriptor(opTensorDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnOpTensor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnOpTensor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     opTensorDesc: cudnnOpTensorDescriptor_t,
-    alpha1: T,
+    alpha1: T0,
     aDesc: cudnnTensorDescriptor_t,
-    A: U,
-    alpha2: V,
+    A: T1,
+    alpha2: T2,
     bDesc: cudnnTensorDescriptor_t,
-    B: W,
-    beta: X,
+    B: T3,
+    beta: T4,
     cDesc: cudnnTensorDescriptor_t,
-    mut C: Y,
+    mut C: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnOpTensor(
@@ -2927,19 +2584,19 @@ pub unsafe fn cudnnGetReductionWorkspaceSize(handle: cudnnHandle_t, reduceTensor
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnReduceTensor<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnReduceTensor<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     reduceTensorDesc: cudnnReduceTensorDescriptor_t,
-    mut indices: T,
+    mut indices: T0,
     indicesSizeInBytes: usize,
-    mut workspace: U,
+    mut workspace: T1,
     workspaceSizeInBytes: usize,
-    alpha: V,
+    alpha: T2,
     aDesc: cudnnTensorDescriptor_t,
-    A: W,
-    beta: X,
+    A: T3,
+    beta: T4,
     cDesc: cudnnTensorDescriptor_t,
-    mut C: Y,
+    mut C: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnReduceTensor(
@@ -2959,11 +2616,11 @@ pub unsafe fn cudnnReduceTensor<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetTensor<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T, valuePtr: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetTensor<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T0, valuePtr: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetTensor(handle, yDesc, y.as_mut_ptr() as *mut _, valuePtr.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnScaleTensor<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T, alpha: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnScaleTensor<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(handle: cudnnHandle_t, yDesc: cudnnTensorDescriptor_t, mut y: T0, alpha: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnScaleTensor(handle, yDesc, y.as_mut_ptr() as *mut _, alpha.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -3013,7 +2670,7 @@ pub unsafe fn cudnnGetFilter4dDescriptor(filterDesc: cudnnFilterDescriptor_t) ->
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetFilterNdDescriptor<T: types::CudaAsPtr>(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, nbDims: i32, filterDimA: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetFilterNdDescriptor<T0: types::CudaAsPtr>(filterDesc: cudnnFilterDescriptor_t, dataType: cudnnDataType_t, format: cudnnTensorFormat_t, nbDims: i32, filterDimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetFilterNdDescriptor(filterDesc, dataType, format, nbDims as _, filterDimA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -3038,15 +2695,15 @@ pub unsafe fn cudnnGetFilterSizeInBytes(filterDesc: cudnnFilterDescriptor_t) -> 
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnTransformFilter<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnTransformFilter<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     transDesc: cudnnTensorTransformDescriptor_t,
-    alpha: T,
+    alpha: T0,
     srcDesc: cudnnFilterDescriptor_t,
-    srcData: U,
-    beta: V,
+    srcData: T1,
+    beta: T2,
     destDesc: cudnnFilterDescriptor_t,
-    mut destData: W,
+    mut destData: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnTransformFilter(handle, transDesc, alpha.as_const_ptr() as *const _, srcDesc, srcData.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, destDesc, destData.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -3055,16 +2712,16 @@ pub unsafe fn cudnnDestroyFilterDescriptor(filterDesc: cudnnFilterDescriptor_t) 
     let status = unsafe { crate::sys::cudnnDestroyFilterDescriptor(filterDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSoftmaxForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnSoftmaxForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnSoftmaxAlgorithm_t,
     mode: cudnnSoftmaxMode_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    beta: V,
+    x: T1,
+    beta: T2,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: W,
+    mut y: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSoftmaxForward(handle, algo, mode, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -3131,14 +2788,14 @@ pub unsafe fn cudnnGetPooling2dDescriptor(poolingDesc: cudnnPoolingDescriptor_t)
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetPoolingNdDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cudnnSetPoolingNdDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
     poolingDesc: cudnnPoolingDescriptor_t,
     mode: cudnnPoolingMode_t,
     maxpoolingNanOpt: cudnnNanPropagation_t,
     nbDims: i32,
-    windowDimA: T,
-    paddingA: U,
-    strideA: V,
+    windowDimA: T0,
+    paddingA: T1,
+    strideA: T2,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetPoolingNdDescriptor(poolingDesc, mode, maxpoolingNanOpt, nbDims as _, windowDimA.as_const_ptr() as *const _, paddingA.as_const_ptr() as *const _, strideA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -3202,15 +2859,15 @@ pub unsafe fn cudnnDestroyPoolingDescriptor(poolingDesc: cudnnPoolingDescriptor_
     let status = unsafe { crate::sys::cudnnDestroyPoolingDescriptor(poolingDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnPoolingForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnPoolingForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     poolingDesc: cudnnPoolingDescriptor_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    beta: V,
+    x: T1,
+    beta: T2,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: W,
+    mut y: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnPoolingForward(handle, poolingDesc, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -3256,15 +2913,15 @@ pub unsafe fn cudnnDestroyActivationDescriptor(activationDesc: cudnnActivationDe
     let status = unsafe { crate::sys::cudnnDestroyActivationDescriptor(activationDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnActivationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnActivationForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     activationDesc: cudnnActivationDescriptor_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    beta: V,
+    x: T1,
+    beta: T2,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: W,
+    mut y: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnActivationForward(handle, activationDesc, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -3298,33 +2955,33 @@ pub unsafe fn cudnnDestroyLRNDescriptor(lrnDesc: cudnnLRNDescriptor_t) -> Result
     let status = unsafe { crate::sys::cudnnDestroyLRNDescriptor(lrnDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnLRNCrossChannelForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnLRNCrossChannelForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     lrnMode: cudnnLRNMode_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    beta: V,
+    x: T1,
+    beta: T2,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: W,
+    mut y: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnLRNCrossChannelForward(handle, normDesc, lrnMode, alpha.as_const_ptr() as *const _, xDesc, x.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, yDesc, y.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnDivisiveNormalizationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr>(
+pub unsafe fn cudnnDivisiveNormalizationForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     mode: cudnnDivNormMode_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    means: V,
-    mut temp: W,
-    mut temp2: X,
-    beta: Y,
+    x: T1,
+    means: T2,
+    mut temp: T3,
+    mut temp2: T4,
+    beta: T5,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: Z,
+    mut y: T6,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnDivisiveNormalizationForward(
@@ -3348,20 +3005,20 @@ pub unsafe fn cudnnDeriveBNTensorDescriptor(derivedBnDesc: cudnnTensorDescriptor
     let status = unsafe { crate::sys::cudnnDeriveBNTensorDescriptor(derivedBnDesc, xDesc, mode) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnBatchNormalizationForwardInference<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr>(
+pub unsafe fn cudnnBatchNormalizationForwardInference<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsPtr>(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
-    alpha: T,
-    beta: U,
+    alpha: T0,
+    beta: T1,
     xDesc: cudnnTensorDescriptor_t,
-    x: V,
+    x: T2,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: W,
+    mut y: T3,
     bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-    bnScale: X,
-    bnBias: Y,
-    estimatedMean: Z,
-    estimatedVariance: A,
+    bnScale: T4,
+    bnBias: T5,
+    estimatedMean: T6,
+    estimatedVariance: T7,
     epsilon: f64,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
@@ -3388,26 +3045,26 @@ pub unsafe fn cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc: cudnnTen
     let status = unsafe { crate::sys::cudnnDeriveNormTensorDescriptor(derivedNormScaleBiasDesc, derivedNormMeanVarDesc, xDesc, mode, groupCnt as _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnNormalizationForwardInference<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
+pub unsafe fn cudnnNormalizationForwardInference<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsPtr, T8: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
     normOps: cudnnNormOps_t,
     algo: cudnnNormAlgo_t,
-    alpha: T,
-    beta: U,
+    alpha: T0,
+    beta: T1,
     xDesc: cudnnTensorDescriptor_t,
-    x: V,
+    x: T2,
     normScaleBiasDesc: cudnnTensorDescriptor_t,
-    normScale: W,
-    normBias: X,
+    normScale: T3,
+    normBias: T4,
     normMeanVarDesc: cudnnTensorDescriptor_t,
-    estimatedMean: Y,
-    estimatedVariance: Z,
+    estimatedMean: T5,
+    estimatedVariance: T6,
     zDesc: cudnnTensorDescriptor_t,
-    z: A,
+    z: T7,
     activationDesc: cudnnActivationDescriptor_t,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: B,
+    mut y: T8,
     epsilon: f64,
     groupCnt: i32,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
@@ -3447,7 +3104,7 @@ pub unsafe fn cudnnCreateSpatialTransformerDescriptor() -> Result<cudnnSpatialTr
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetSpatialTransformerNdDescriptor<T: types::CudaAsPtr>(stDesc: cudnnSpatialTransformerDescriptor_t, samplerType: cudnnSamplerType_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetSpatialTransformerNdDescriptor<T0: types::CudaAsPtr>(stDesc: cudnnSpatialTransformerDescriptor_t, samplerType: cudnnSamplerType_t, dataType: cudnnDataType_t, nbDims: i32, dimA: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetSpatialTransformerNdDescriptor(stDesc, samplerType, dataType, nbDims as _, dimA.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -3455,20 +3112,20 @@ pub unsafe fn cudnnDestroySpatialTransformerDescriptor(stDesc: cudnnSpatialTrans
     let status = unsafe { crate::sys::cudnnDestroySpatialTransformerDescriptor(stDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfGridGeneratorForward<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, theta: T, mut grid: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSpatialTfGridGeneratorForward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, theta: T0, mut grid: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSpatialTfGridGeneratorForward(handle, stDesc, theta.as_const_ptr() as *const _, grid.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfSamplerForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
+pub unsafe fn cudnnSpatialTfSamplerForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     stDesc: cudnnSpatialTransformerDescriptor_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    grid: V,
-    beta: W,
+    x: T1,
+    grid: T2,
+    beta: T3,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: X,
+    mut y: T4,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnSpatialTfSamplerForward(
@@ -3516,11 +3173,11 @@ pub unsafe fn cudnnDropoutGetReserveSpaceSize(xdesc: cudnnTensorDescriptor_t) ->
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetDropoutDescriptor<T: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetDropoutDescriptor<T0: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T0, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed as _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnRestoreDropoutDescriptor<T: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnRestoreDropoutDescriptor<T0: types::CudaAsMutPtr>(dropoutDesc: cudnnDropoutDescriptor_t, handle: cudnnHandle_t, dropout: f32, mut states: T0, stateSizeInBytes: usize, seed: u64) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnRestoreDropoutDescriptor(dropoutDesc, handle, dropout, states.as_mut_ptr() as *mut _, stateSizeInBytes, seed as _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -3534,14 +3191,14 @@ pub unsafe fn cudnnGetDropoutDescriptor(dropoutDesc: cudnnDropoutDescriptor_t, h
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnDropoutForward<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
+pub unsafe fn cudnnDropoutForward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     dropoutDesc: cudnnDropoutDescriptor_t,
     xdesc: cudnnTensorDescriptor_t,
-    x: T,
+    x: T0,
     ydesc: cudnnTensorDescriptor_t,
-    mut y: U,
-    mut reserveSpace: V,
+    mut y: T1,
+    mut reserveSpace: T2,
     reserveSpaceSizeInBytes: usize,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDropoutForward(handle, dropoutDesc, xdesc, x.as_const_ptr() as *const _, ydesc, y.as_mut_ptr() as *mut _, reserveSpace.as_mut_ptr() as *mut _, reserveSpaceSizeInBytes) };
@@ -3551,18 +3208,18 @@ pub unsafe fn cudnnOpsVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnOpsVersionCheck() };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSoftmaxBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr>(
+pub unsafe fn cudnnSoftmaxBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnSoftmaxAlgorithm_t,
     mode: cudnnSoftmaxMode_t,
-    alpha: T,
+    alpha: T0,
     yDesc: cudnnTensorDescriptor_t,
-    y: U,
+    y: T1,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: V,
-    beta: W,
+    dy: T2,
+    beta: T3,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: X,
+    mut dx: T4,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnSoftmaxBackward(
@@ -3581,19 +3238,19 @@ pub unsafe fn cudnnSoftmaxBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnPoolingBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnPoolingBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     poolingDesc: cudnnPoolingDescriptor_t,
-    alpha: T,
+    alpha: T0,
     yDesc: cudnnTensorDescriptor_t,
-    y: U,
+    y: T1,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: V,
+    dy: T2,
     xDesc: cudnnTensorDescriptor_t,
-    x: W,
-    beta: X,
+    x: T3,
+    beta: T4,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: Y,
+    mut dx: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnPoolingBackward(
@@ -3613,19 +3270,19 @@ pub unsafe fn cudnnPoolingBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnActivationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnActivationBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     activationDesc: cudnnActivationDescriptor_t,
-    alpha: T,
+    alpha: T0,
     yDesc: cudnnTensorDescriptor_t,
-    y: U,
+    y: T1,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: V,
+    dy: T2,
     xDesc: cudnnTensorDescriptor_t,
-    x: W,
-    beta: X,
+    x: T3,
+    beta: T4,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: Y,
+    mut dx: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnActivationBackward(
@@ -3645,20 +3302,20 @@ pub unsafe fn cudnnActivationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnLRNCrossChannelBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnLRNCrossChannelBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     lrnMode: cudnnLRNMode_t,
-    alpha: T,
+    alpha: T0,
     yDesc: cudnnTensorDescriptor_t,
-    y: U,
+    y: T1,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: V,
+    dy: T2,
     xDesc: cudnnTensorDescriptor_t,
-    x: W,
-    beta: X,
+    x: T3,
+    beta: T4,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: Y,
+    mut dx: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnLRNCrossChannelBackward(
@@ -3679,21 +3336,21 @@ pub unsafe fn cudnnLRNCrossChannelBackward<T: types::CudaAsPtr, U: types::CudaAs
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnDivisiveNormalizationBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsPtr, A: types::CudaAsMutPtr, B: types::CudaAsMutPtr>(
+pub unsafe fn cudnnDivisiveNormalizationBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsPtr, T7: types::CudaAsMutPtr, T8: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     normDesc: cudnnLRNDescriptor_t,
     mode: cudnnDivNormMode_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    means: V,
-    dy: W,
-    mut temp: X,
-    mut temp2: Y,
-    beta: Z,
+    x: T1,
+    means: T2,
+    dy: T3,
+    mut temp: T4,
+    mut temp2: T5,
+    beta: T6,
     dXdMeansDesc: cudnnTensorDescriptor_t,
-    mut dx: A,
-    mut dMeans: B,
+    mut dx: T7,
+    mut dMeans: T8,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnDivisiveNormalizationBackward(
@@ -3762,24 +3419,24 @@ pub unsafe fn cudnnGetBatchNormalizationTrainingExReserveSpaceSize(handle: cudnn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnBatchNormalizationForwardTraining<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr>(
+pub unsafe fn cudnnBatchNormalizationForwardTraining<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsMutPtr, T7: types::CudaAsMutPtr, T8: types::CudaAsMutPtr, T9: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
-    alpha: T,
-    beta: U,
+    alpha: T0,
+    beta: T1,
     xDesc: cudnnTensorDescriptor_t,
-    x: V,
+    x: T2,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: W,
+    mut y: T3,
     bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-    bnScale: X,
-    bnBias: Y,
+    bnScale: T4,
+    bnBias: T5,
     exponentialAverageFactor: f64,
-    mut resultRunningMean: Z,
-    mut resultRunningVariance: A,
+    mut resultRunningMean: T6,
+    mut resultRunningVariance: T7,
     epsilon: f64,
-    mut resultSaveMean: B,
-    mut resultSaveInvVariance: C,
+    mut resultSaveMean: T8,
+    mut resultSaveInvVariance: T9,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnBatchNormalizationForwardTraining(
@@ -3805,44 +3462,44 @@ pub unsafe fn cudnnBatchNormalizationForwardTraining<T: types::CudaAsPtr, U: typ
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cudnnBatchNormalizationForwardTrainingEx<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
-    X: types::CudaAsMutPtr,
-    Y: types::CudaAsPtr,
-    Z: types::CudaAsPtr,
-    A: types::CudaAsMutPtr,
-    B: types::CudaAsMutPtr,
-    C: types::CudaAsMutPtr,
-    D: types::CudaAsMutPtr,
-    E: types::CudaAsMutPtr,
-    F: types::CudaAsMutPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsPtr,
+    T4: types::CudaAsMutPtr,
+    T5: types::CudaAsPtr,
+    T6: types::CudaAsPtr,
+    T7: types::CudaAsMutPtr,
+    T8: types::CudaAsMutPtr,
+    T9: types::CudaAsMutPtr,
+    T10: types::CudaAsMutPtr,
+    T11: types::CudaAsMutPtr,
+    T12: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
     bnOps: cudnnBatchNormOps_t,
-    alpha: T,
-    beta: U,
+    alpha: T0,
+    beta: T1,
     xDesc: cudnnTensorDescriptor_t,
-    xData: V,
+    xData: T2,
     zDesc: cudnnTensorDescriptor_t,
-    zData: W,
+    zData: T3,
     yDesc: cudnnTensorDescriptor_t,
-    mut yData: X,
+    mut yData: T4,
     bnScaleBiasMeanVarDesc: cudnnTensorDescriptor_t,
-    bnScale: Y,
-    bnBias: Z,
+    bnScale: T5,
+    bnBias: T6,
     exponentialAverageFactor: f64,
-    mut resultRunningMean: A,
-    mut resultRunningVariance: B,
+    mut resultRunningMean: T7,
+    mut resultRunningVariance: T8,
     epsilon: f64,
-    mut resultSaveMean: C,
-    mut resultSaveInvVariance: D,
+    mut resultSaveMean: T9,
+    mut resultSaveInvVariance: T10,
     activationDesc: cudnnActivationDescriptor_t,
-    mut workspace: E,
+    mut workspace: T11,
     workSpaceSizeInBytes: usize,
-    mut reserveSpace: F,
+    mut reserveSpace: T12,
     reserveSpaceSizeInBytes: usize,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
@@ -3877,38 +3534,38 @@ pub unsafe fn cudnnBatchNormalizationForwardTrainingEx<
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cudnnBatchNormalizationBackward<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
-    X: types::CudaAsPtr,
-    Y: types::CudaAsPtr,
-    Z: types::CudaAsMutPtr,
-    A: types::CudaAsPtr,
-    B: types::CudaAsMutPtr,
-    C: types::CudaAsMutPtr,
-    D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsPtr,
+    T4: types::CudaAsPtr,
+    T5: types::CudaAsPtr,
+    T6: types::CudaAsMutPtr,
+    T7: types::CudaAsPtr,
+    T8: types::CudaAsMutPtr,
+    T9: types::CudaAsMutPtr,
+    T10: types::CudaAsPtr,
+    T11: types::CudaAsPtr,
 >(
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
-    alphaDataDiff: T,
-    betaDataDiff: U,
-    alphaParamDiff: V,
-    betaParamDiff: W,
+    alphaDataDiff: T0,
+    betaDataDiff: T1,
+    alphaParamDiff: T2,
+    betaParamDiff: T3,
     xDesc: cudnnTensorDescriptor_t,
-    x: X,
+    x: T4,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: Y,
+    dy: T5,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: Z,
+    mut dx: T6,
     dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-    bnScale: A,
-    mut dBnScaleResult: B,
-    mut dBnBiasResult: C,
+    bnScale: T7,
+    mut dBnScaleResult: T8,
+    mut dBnBiasResult: T9,
     epsilon: f64,
-    savedMean: D,
-    savedInvVariance: E,
+    savedMean: T10,
+    savedInvVariance: T11,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnBatchNormalizationBackward(
@@ -3936,19 +3593,19 @@ pub unsafe fn cudnnBatchNormalizationBackward<
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cudnnBatchNormalizationBackwardEx<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
-    X: types::CudaAsPtr,
-    Y: types::CudaAsPtr,
-    Z: types::CudaAsPtr,
-    A: types::CudaAsMutPtr,
-    B: types::CudaAsMutPtr,
-    C: types::CudaAsPtr,
-    D: types::CudaAsPtr,
-    E: types::CudaAsMutPtr,
-    F: types::CudaAsMutPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsPtr,
+    T4: types::CudaAsPtr,
+    T5: types::CudaAsPtr,
+    T6: types::CudaAsPtr,
+    T7: types::CudaAsMutPtr,
+    T8: types::CudaAsMutPtr,
+    T9: types::CudaAsPtr,
+    T10: types::CudaAsPtr,
+    T11: types::CudaAsMutPtr,
+    T12: types::CudaAsMutPtr,
     T13: types::CudaAsPtr,
     T14: types::CudaAsPtr,
     T15: types::CudaAsMutPtr,
@@ -3957,25 +3614,25 @@ pub unsafe fn cudnnBatchNormalizationBackwardEx<
     handle: cudnnHandle_t,
     mode: cudnnBatchNormMode_t,
     bnOps: cudnnBatchNormOps_t,
-    alphaDataDiff: T,
-    betaDataDiff: U,
-    alphaParamDiff: V,
-    betaParamDiff: W,
+    alphaDataDiff: T0,
+    betaDataDiff: T1,
+    alphaParamDiff: T2,
+    betaParamDiff: T3,
     xDesc: cudnnTensorDescriptor_t,
-    xData: X,
+    xData: T4,
     yDesc: cudnnTensorDescriptor_t,
-    yData: Y,
+    yData: T5,
     dyDesc: cudnnTensorDescriptor_t,
-    dyData: Z,
+    dyData: T6,
     dzDesc: cudnnTensorDescriptor_t,
-    mut dzData: A,
+    mut dzData: T7,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dxData: B,
+    mut dxData: T8,
     dBnScaleBiasDesc: cudnnTensorDescriptor_t,
-    bnScaleData: C,
-    bnBiasData: D,
-    mut dBnScaleData: E,
-    mut dBnBiasData: F,
+    bnScaleData: T9,
+    bnBiasData: T10,
+    mut dBnScaleData: T11,
+    mut dBnBiasData: T12,
     epsilon: f64,
     savedMean: T13,
     savedInvVariance: T14,
@@ -4075,46 +3732,46 @@ pub unsafe fn cudnnGetNormalizationTrainingReserveSpaceSize(handle: cudnnHandle_
     }
 }
 pub unsafe fn cudnnNormalizationForwardTraining<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
-    X: types::CudaAsPtr,
-    Y: types::CudaAsMutPtr,
-    Z: types::CudaAsMutPtr,
-    A: types::CudaAsMutPtr,
-    B: types::CudaAsMutPtr,
-    C: types::CudaAsPtr,
-    D: types::CudaAsMutPtr,
-    E: types::CudaAsMutPtr,
-    F: types::CudaAsMutPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsPtr,
+    T4: types::CudaAsPtr,
+    T5: types::CudaAsMutPtr,
+    T6: types::CudaAsMutPtr,
+    T7: types::CudaAsMutPtr,
+    T8: types::CudaAsMutPtr,
+    T9: types::CudaAsPtr,
+    T10: types::CudaAsMutPtr,
+    T11: types::CudaAsMutPtr,
+    T12: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     mode: cudnnNormMode_t,
     normOps: cudnnNormOps_t,
     algo: cudnnNormAlgo_t,
-    alpha: T,
-    beta: U,
+    alpha: T0,
+    beta: T1,
     xDesc: cudnnTensorDescriptor_t,
-    xData: V,
+    xData: T2,
     normScaleBiasDesc: cudnnTensorDescriptor_t,
-    normScale: W,
-    normBias: X,
+    normScale: T3,
+    normBias: T4,
     exponentialAverageFactor: f64,
     normMeanVarDesc: cudnnTensorDescriptor_t,
-    mut resultRunningMean: Y,
-    mut resultRunningVariance: Z,
+    mut resultRunningMean: T5,
+    mut resultRunningVariance: T6,
     epsilon: f64,
-    mut resultSaveMean: A,
-    mut resultSaveInvVariance: B,
+    mut resultSaveMean: T7,
+    mut resultSaveInvVariance: T8,
     activationDesc: cudnnActivationDescriptor_t,
     zDesc: cudnnTensorDescriptor_t,
-    zData: C,
+    zData: T9,
     yDesc: cudnnTensorDescriptor_t,
-    mut yData: D,
-    mut workspace: E,
+    mut yData: T10,
+    mut workspace: T11,
     workSpaceSizeInBytes: usize,
-    mut reserveSpace: F,
+    mut reserveSpace: T12,
     reserveSpaceSizeInBytes: usize,
     groupCnt: i32,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
@@ -4153,19 +3810,19 @@ pub unsafe fn cudnnNormalizationForwardTraining<
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cudnnNormalizationBackward<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
-    X: types::CudaAsPtr,
-    Y: types::CudaAsPtr,
-    Z: types::CudaAsPtr,
-    A: types::CudaAsMutPtr,
-    B: types::CudaAsMutPtr,
-    C: types::CudaAsPtr,
-    D: types::CudaAsPtr,
-    E: types::CudaAsMutPtr,
-    F: types::CudaAsMutPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsPtr,
+    T4: types::CudaAsPtr,
+    T5: types::CudaAsPtr,
+    T6: types::CudaAsPtr,
+    T7: types::CudaAsMutPtr,
+    T8: types::CudaAsMutPtr,
+    T9: types::CudaAsPtr,
+    T10: types::CudaAsPtr,
+    T11: types::CudaAsMutPtr,
+    T12: types::CudaAsMutPtr,
     T13: types::CudaAsPtr,
     T14: types::CudaAsPtr,
     T15: types::CudaAsMutPtr,
@@ -4175,25 +3832,25 @@ pub unsafe fn cudnnNormalizationBackward<
     mode: cudnnNormMode_t,
     normOps: cudnnNormOps_t,
     algo: cudnnNormAlgo_t,
-    alphaDataDiff: T,
-    betaDataDiff: U,
-    alphaParamDiff: V,
-    betaParamDiff: W,
+    alphaDataDiff: T0,
+    betaDataDiff: T1,
+    alphaParamDiff: T2,
+    betaParamDiff: T3,
     xDesc: cudnnTensorDescriptor_t,
-    xData: X,
+    xData: T4,
     yDesc: cudnnTensorDescriptor_t,
-    yData: Y,
+    yData: T5,
     dyDesc: cudnnTensorDescriptor_t,
-    dyData: Z,
+    dyData: T6,
     dzDesc: cudnnTensorDescriptor_t,
-    mut dzData: A,
+    mut dzData: T7,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dxData: B,
+    mut dxData: T8,
     dNormScaleBiasDesc: cudnnTensorDescriptor_t,
-    normScaleData: C,
-    normBiasData: D,
-    mut dNormScaleData: E,
-    mut dNormBiasData: F,
+    normScaleData: T9,
+    normBiasData: T10,
+    mut dNormScaleData: T11,
+    mut dNormBiasData: T12,
     epsilon: f64,
     normMeanVarDesc: cudnnTensorDescriptor_t,
     savedMean: T13,
@@ -4244,25 +3901,25 @@ pub unsafe fn cudnnNormalizationBackward<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfGridGeneratorBackward<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, dgrid: T, mut dtheta: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSpatialTfGridGeneratorBackward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, stDesc: cudnnSpatialTransformerDescriptor_t, dgrid: T0, mut dtheta: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSpatialTfGridGeneratorBackward(handle, stDesc, dgrid.as_const_ptr() as *const _, dtheta.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSpatialTfSamplerBackward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr>(
+pub unsafe fn cudnnSpatialTfSamplerBackward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsPtr, T8: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     stDesc: cudnnSpatialTransformerDescriptor_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
-    beta: V,
+    x: T1,
+    beta: T2,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: W,
-    alphaDgrid: X,
+    mut dx: T3,
+    alphaDgrid: T4,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: Y,
-    grid: Z,
-    betaDgrid: A,
-    mut dgrid: B,
+    dy: T5,
+    grid: T6,
+    betaDgrid: T7,
+    mut dgrid: T8,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnSpatialTfSamplerBackward(
@@ -4284,14 +3941,14 @@ pub unsafe fn cudnnSpatialTfSamplerBackward<T: types::CudaAsPtr, U: types::CudaA
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnDropoutBackward<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
+pub unsafe fn cudnnDropoutBackward<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     dropoutDesc: cudnnDropoutDescriptor_t,
     dydesc: cudnnTensorDescriptor_t,
-    dy: T,
+    dy: T0,
     dxdesc: cudnnTensorDescriptor_t,
-    mut dx: U,
-    mut reserveSpace: V,
+    mut dx: T1,
+    mut reserveSpace: T2,
     reserveSpaceSizeInBytes: usize,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnDropoutBackward(handle, dropoutDesc, dydesc, dy.as_const_ptr() as *const _, dxdesc, dx.as_mut_ptr() as *mut _, reserveSpace.as_mut_ptr() as *mut _, reserveSpaceSizeInBytes) };
@@ -4461,17 +4118,17 @@ pub unsafe fn cudnnGetRNNWeightSpaceSize(handle: cudnnHandle_t, rnnDesc: cudnnRN
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetRNNWeightParams<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(
+pub unsafe fn cudnnGetRNNWeightParams<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
     pseudoLayer: i32,
     weightSpaceSize: usize,
-    weightSpace: T,
+    weightSpace: T0,
     linLayerID: i32,
     mDesc: cudnnTensorDescriptor_t,
-    mut mAddr: U,
+    mut mAddr: T1,
     bDesc: cudnnTensorDescriptor_t,
-    mut bAddr: V,
+    mut bAddr: T2,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnGetRNNWeightParams(handle, rnnDesc, pseudoLayer, weightSpaceSize, weightSpace.as_const_ptr() as *const _, linLayerID, mDesc, mAddr.as_mut_ptr() as *mut _, bDesc, bAddr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -4489,15 +4146,15 @@ pub unsafe fn cudnnDestroyRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_
     let status = unsafe { crate::sys::cudnnDestroyRNNDataDescriptor(rnnDataDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetRNNDataDescriptor<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
+pub unsafe fn cudnnSetRNNDataDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
     rnnDataDesc: cudnnRNNDataDescriptor_t,
     dataType: cudnnDataType_t,
     layout: cudnnRNNDataLayout_t,
     maxSeqLength: i32,
     batchSize: i32,
     vectorSize: i32,
-    seqLengthArray: T,
-    mut paddingFill: U,
+    seqLengthArray: T0,
+    mut paddingFill: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetRNNDataDescriptor(rnnDataDesc, dataType, layout, maxSeqLength as _, batchSize as _, vectorSize as _, seqLengthArray.as_const_ptr() as *const _, paddingFill.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
@@ -4527,27 +4184,27 @@ pub unsafe fn cudnnGetRNNDataDescriptor(rnnDataDesc: cudnnRNNDataDescriptor_t, a
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnRNNForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsPtr, Z: types::CudaAsMutPtr, A: types::CudaAsPtr, B: types::CudaAsMutPtr, C: types::CudaAsMutPtr>(
+pub unsafe fn cudnnRNNForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsPtr, T6: types::CudaAsMutPtr, T7: types::CudaAsPtr, T8: types::CudaAsMutPtr, T9: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
     fwdMode: cudnnForwardMode_t,
-    devSeqLengths: T,
+    devSeqLengths: T0,
     xDesc: cudnnRNNDataDescriptor_t,
-    x: U,
+    x: T1,
     yDesc: cudnnRNNDataDescriptor_t,
-    mut y: V,
+    mut y: T2,
     hDesc: cudnnTensorDescriptor_t,
-    hx: W,
-    mut hy: X,
+    hx: T3,
+    mut hy: T4,
     cDesc: cudnnTensorDescriptor_t,
-    cx: Y,
-    mut cy: Z,
+    cx: T5,
+    mut cy: T6,
     weightSpaceSize: usize,
-    weightSpace: A,
+    weightSpace: T7,
     workSpaceSize: usize,
-    mut workSpace: B,
+    mut workSpace: T8,
     reserveSpaceSize: usize,
-    mut reserveSpace: C,
+    mut reserveSpace: T9,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnRNNForward(
@@ -4588,15 +4245,15 @@ pub unsafe fn cudnnDestroySeqDataDescriptor(seqDataDesc: cudnnSeqDataDescriptor_
     let status = unsafe { crate::sys::cudnnDestroySeqDataDescriptor(seqDataDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetSeqDataDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnSetSeqDataDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     seqDataDesc: cudnnSeqDataDescriptor_t,
     dataType: cudnnDataType_t,
     nbDims: i32,
-    dimA: T,
-    axes: U,
+    dimA: T0,
+    axes: T1,
     seqLengthArraySize: usize,
-    seqLengthArray: V,
-    mut paddingFill: W,
+    seqLengthArray: T2,
+    mut paddingFill: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnSetSeqDataDescriptor(
@@ -4788,54 +4445,54 @@ pub unsafe fn cudnnGetMultiHeadAttnBuffers(handle: cudnnHandle_t, attnDesc: cudn
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnGetMultiHeadAttnWeights<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(
+pub unsafe fn cudnnGetMultiHeadAttnWeights<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
     wKind: cudnnMultiHeadAttnWeightKind_t,
     weightSizeInBytes: usize,
-    weights: T,
+    weights: T0,
     wDesc: cudnnTensorDescriptor_t,
-    mut wAddr: U,
+    mut wAddr: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnGetMultiHeadAttnWeights(handle, attnDesc, wKind, weightSizeInBytes, weights.as_const_ptr() as *const _, wDesc, wAddr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cudnnMultiHeadAttnForward<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
-    X: types::CudaAsPtr,
-    Y: types::CudaAsPtr,
-    Z: types::CudaAsPtr,
-    A: types::CudaAsPtr,
-    B: types::CudaAsMutPtr,
-    C: types::CudaAsPtr,
-    D: types::CudaAsMutPtr,
-    E: types::CudaAsMutPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsPtr,
+    T4: types::CudaAsPtr,
+    T5: types::CudaAsPtr,
+    T6: types::CudaAsPtr,
+    T7: types::CudaAsPtr,
+    T8: types::CudaAsMutPtr,
+    T9: types::CudaAsPtr,
+    T10: types::CudaAsMutPtr,
+    T11: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
     currIdx: i32,
-    loWinIdx: T,
-    hiWinIdx: U,
-    devSeqLengthsQO: V,
-    devSeqLengthsKV: W,
+    loWinIdx: T0,
+    hiWinIdx: T1,
+    devSeqLengthsQO: T2,
+    devSeqLengthsKV: T3,
     qDesc: cudnnSeqDataDescriptor_t,
-    queries: X,
-    residuals: Y,
+    queries: T4,
+    residuals: T5,
     kDesc: cudnnSeqDataDescriptor_t,
-    keys: Z,
+    keys: T6,
     vDesc: cudnnSeqDataDescriptor_t,
-    values: A,
+    values: T7,
     oDesc: cudnnSeqDataDescriptor_t,
-    mut out: B,
+    mut out: T8,
     weightSizeInBytes: usize,
-    weights: C,
+    weights: T9,
     workSpaceSizeInBytes: usize,
-    mut workSpace: D,
+    mut workSpace: T10,
     reserveSpaceSizeInBytes: usize,
-    mut reserveSpace: E,
+    mut reserveSpace: T11,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnMultiHeadAttnForward(
@@ -4870,42 +4527,42 @@ pub unsafe fn cudnnAdvVersionCheck() -> Result<(), crate::sys::cudnnStatus_t> {
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cudnnRNNBackwardData_v8<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsMutPtr,
-    X: types::CudaAsPtr,
-    Y: types::CudaAsPtr,
-    Z: types::CudaAsMutPtr,
-    A: types::CudaAsPtr,
-    B: types::CudaAsPtr,
-    C: types::CudaAsMutPtr,
-    D: types::CudaAsPtr,
-    E: types::CudaAsMutPtr,
-    F: types::CudaAsMutPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsMutPtr,
+    T4: types::CudaAsPtr,
+    T5: types::CudaAsPtr,
+    T6: types::CudaAsMutPtr,
+    T7: types::CudaAsPtr,
+    T8: types::CudaAsPtr,
+    T9: types::CudaAsMutPtr,
+    T10: types::CudaAsPtr,
+    T11: types::CudaAsMutPtr,
+    T12: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
-    devSeqLengths: T,
+    devSeqLengths: T0,
     yDesc: cudnnRNNDataDescriptor_t,
-    y: U,
-    dy: V,
+    y: T1,
+    dy: T2,
     xDesc: cudnnRNNDataDescriptor_t,
-    mut dx: W,
+    mut dx: T3,
     hDesc: cudnnTensorDescriptor_t,
-    hx: X,
-    dhy: Y,
-    mut dhx: Z,
+    hx: T4,
+    dhy: T5,
+    mut dhx: T6,
     cDesc: cudnnTensorDescriptor_t,
-    cx: A,
-    dcy: B,
-    mut dcx: C,
+    cx: T7,
+    dcy: T8,
+    mut dcx: T9,
     weightSpaceSize: usize,
-    weightSpace: D,
+    weightSpace: T10,
     workSpaceSize: usize,
-    mut workSpace: E,
+    mut workSpace: T11,
     reserveSpaceSize: usize,
-    mut reserveSpace: F,
+    mut reserveSpace: T12,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnRNNBackwardData_v8(
@@ -4935,23 +4592,23 @@ pub unsafe fn cudnnRNNBackwardData_v8<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnRNNBackwardWeights_v8<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
+pub unsafe fn cudnnRNNBackwardWeights_v8<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     rnnDesc: cudnnRNNDescriptor_t,
     addGrad: cudnnWgradMode_t,
-    devSeqLengths: T,
+    devSeqLengths: T0,
     xDesc: cudnnRNNDataDescriptor_t,
-    x: U,
+    x: T1,
     hDesc: cudnnTensorDescriptor_t,
-    hx: V,
+    hx: T2,
     yDesc: cudnnRNNDataDescriptor_t,
-    y: W,
+    y: T3,
     weightSpaceSize: usize,
-    mut dweightSpace: X,
+    mut dweightSpace: T4,
     workSpaceSize: usize,
-    mut workSpace: Y,
+    mut workSpace: T5,
     reserveSpaceSize: usize,
-    mut reserveSpace: Z,
+    mut reserveSpace: T6,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnRNNBackwardWeights_v8(
@@ -4976,42 +4633,42 @@ pub unsafe fn cudnnRNNBackwardWeights_v8<T: types::CudaAsPtr, U: types::CudaAsPt
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
 pub unsafe fn cudnnMultiHeadAttnBackwardData<
-    T: types::CudaAsPtr,
-    U: types::CudaAsPtr,
-    V: types::CudaAsPtr,
-    W: types::CudaAsPtr,
-    X: types::CudaAsPtr,
-    Y: types::CudaAsMutPtr,
-    Z: types::CudaAsPtr,
-    A: types::CudaAsMutPtr,
-    B: types::CudaAsPtr,
-    C: types::CudaAsMutPtr,
-    D: types::CudaAsPtr,
-    E: types::CudaAsPtr,
-    F: types::CudaAsMutPtr,
+    T0: types::CudaAsPtr,
+    T1: types::CudaAsPtr,
+    T2: types::CudaAsPtr,
+    T3: types::CudaAsPtr,
+    T4: types::CudaAsPtr,
+    T5: types::CudaAsMutPtr,
+    T6: types::CudaAsPtr,
+    T7: types::CudaAsMutPtr,
+    T8: types::CudaAsPtr,
+    T9: types::CudaAsMutPtr,
+    T10: types::CudaAsPtr,
+    T11: types::CudaAsPtr,
+    T12: types::CudaAsMutPtr,
     T13: types::CudaAsMutPtr,
 >(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
-    loWinIdx: T,
-    hiWinIdx: U,
-    devSeqLengthsDQDO: V,
-    devSeqLengthsDKDV: W,
+    loWinIdx: T0,
+    hiWinIdx: T1,
+    devSeqLengthsDQDO: T2,
+    devSeqLengthsDKDV: T3,
     doDesc: cudnnSeqDataDescriptor_t,
-    dout: X,
+    dout: T4,
     dqDesc: cudnnSeqDataDescriptor_t,
-    mut dqueries: Y,
-    queries: Z,
+    mut dqueries: T5,
+    queries: T6,
     dkDesc: cudnnSeqDataDescriptor_t,
-    mut dkeys: A,
-    keys: B,
+    mut dkeys: T7,
+    keys: T8,
     dvDesc: cudnnSeqDataDescriptor_t,
-    mut dvalues: C,
-    values: D,
+    mut dvalues: T9,
+    values: T10,
     weightSizeInBytes: usize,
-    weights: E,
+    weights: T11,
     workSpaceSizeInBytes: usize,
-    mut workSpace: F,
+    mut workSpace: T12,
     reserveSpaceSizeInBytes: usize,
     mut reserveSpace: T13,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
@@ -5044,25 +4701,25 @@ pub unsafe fn cudnnMultiHeadAttnBackwardData<
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnMultiHeadAttnBackwardWeights<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr, A: types::CudaAsMutPtr>(
+pub unsafe fn cudnnMultiHeadAttnBackwardWeights<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr, T7: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     attnDesc: cudnnAttnDescriptor_t,
     addGrad: cudnnWgradMode_t,
     qDesc: cudnnSeqDataDescriptor_t,
-    queries: T,
+    queries: T0,
     kDesc: cudnnSeqDataDescriptor_t,
-    keys: U,
+    keys: T1,
     vDesc: cudnnSeqDataDescriptor_t,
-    values: V,
+    values: T2,
     doDesc: cudnnSeqDataDescriptor_t,
-    dout: W,
+    dout: T3,
     weightSizeInBytes: usize,
-    weights: X,
-    mut dweights: Y,
+    weights: T4,
+    mut dweights: T5,
     workSpaceSizeInBytes: usize,
-    mut workSpace: Z,
+    mut workSpace: T6,
     reserveSpaceSizeInBytes: usize,
-    mut reserveSpace: A,
+    mut reserveSpace: T7,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnMultiHeadAttnBackwardWeights(
@@ -5161,19 +4818,19 @@ pub unsafe fn cudnnDestroyCTCLossDescriptor(ctcLossDesc: cudnnCTCLossDescriptor_
     let status = unsafe { crate::sys::cudnnDestroyCTCLossDescriptor(ctcLossDesc) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnCTCLoss<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
+pub unsafe fn cudnnCTCLoss<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     probsDesc: cudnnTensorDescriptor_t,
-    probs: T,
-    hostLabels: U,
-    hostLabelLengths: V,
-    hostInputLengths: W,
-    mut costs: X,
+    probs: T0,
+    hostLabels: T1,
+    hostLabelLengths: T2,
+    hostInputLengths: T3,
+    mut costs: T4,
     gradientsDesc: cudnnTensorDescriptor_t,
-    mut gradients: Y,
+    mut gradients: T5,
     algo: cudnnCTCLossAlgo_t,
     ctcLossDesc: cudnnCTCLossDescriptor_t,
-    mut workspace: Z,
+    mut workspace: T6,
     workSpaceSizeInBytes: usize,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
@@ -5195,20 +4852,20 @@ pub unsafe fn cudnnCTCLoss<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::C
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnCTCLoss_v8<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr, Z: types::CudaAsMutPtr>(
+pub unsafe fn cudnnCTCLoss_v8<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr, T6: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     algo: cudnnCTCLossAlgo_t,
     ctcLossDesc: cudnnCTCLossDescriptor_t,
     probsDesc: cudnnTensorDescriptor_t,
-    probs: T,
-    labels: U,
-    labelLengths: V,
-    inputLengths: W,
-    mut costs: X,
+    probs: T0,
+    labels: T1,
+    labelLengths: T2,
+    inputLengths: T3,
+    mut costs: T4,
     gradientsDesc: cudnnTensorDescriptor_t,
-    mut gradients: Y,
+    mut gradients: T5,
     workSpaceSizeInBytes: usize,
-    mut workspace: Z,
+    mut workspace: T6,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnCTCLoss_v8(
@@ -5351,12 +5008,12 @@ pub unsafe fn cudnnGetConvolution2dDescriptor(convDesc: cudnnConvolutionDescript
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnSetConvolutionNdDescriptor<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(
+pub unsafe fn cudnnSetConvolutionNdDescriptor<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(
     convDesc: cudnnConvolutionDescriptor_t,
     arrayLength: i32,
-    padA: T,
-    filterStrideA: U,
-    dilationA: V,
+    padA: T0,
+    filterStrideA: T1,
+    dilationA: T2,
     mode: cudnnConvolutionMode_t,
     computeType: cudnnDataType_t,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
@@ -5444,32 +5101,32 @@ pub unsafe fn cudnnGetConvolutionForwardAlgorithm_v7(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnFindConvolutionForwardAlgorithm<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
+pub unsafe fn cudnnFindConvolutionForwardAlgorithm<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     wDesc: cudnnFilterDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     yDesc: cudnnTensorDescriptor_t,
     requestedAlgoCount: i32,
-    mut returnedAlgoCount: T,
-    mut perfResults: U,
+    mut returnedAlgoCount: T0,
+    mut perfResults: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnFindConvolutionForwardAlgorithm(handle, xDesc, wDesc, convDesc, yDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
-    x: T,
+    x: T0,
     wDesc: cudnnFilterDescriptor_t,
-    w: U,
+    w: T1,
     convDesc: cudnnConvolutionDescriptor_t,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: V,
+    mut y: T2,
     requestedAlgoCount: i32,
-    mut returnedAlgoCount: W,
-    mut perfResults: X,
-    mut workSpace: Y,
+    mut returnedAlgoCount: T3,
+    mut perfResults: T4,
+    mut workSpace: T5,
     workSpaceSizeInBytes: usize,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
@@ -5491,19 +5148,19 @@ pub unsafe fn cudnnFindConvolutionForwardAlgorithmEx<T: types::CudaAsPtr, U: typ
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnIm2Col<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, x: T, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, mut colBuffer: U) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnIm2Col<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(handle: cudnnHandle_t, xDesc: cudnnTensorDescriptor_t, x: T0, wDesc: cudnnFilterDescriptor_t, convDesc: cudnnConvolutionDescriptor_t, mut colBuffer: T1) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnIm2Col(handle, xDesc, x.as_const_ptr() as *const _, wDesc, convDesc, colBuffer.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnReorderFilterAndBias<T: types::CudaAsPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cudnnReorderFilterAndBias<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     filterDesc: cudnnFilterDescriptor_t,
     reorderType: cudnnReorderType_t,
-    filterData: T,
-    mut reorderedFilterData: U,
+    filterData: T0,
+    mut reorderedFilterData: T1,
     reorderBias: i32,
-    biasData: V,
-    mut reorderedBiasData: W,
+    biasData: T2,
+    mut reorderedBiasData: T3,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnReorderFilterAndBias(
@@ -5528,20 +5185,20 @@ pub unsafe fn cudnnGetConvolutionForwardWorkspaceSize(handle: cudnnHandle_t, xDe
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnConvolutionForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnConvolutionForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
+    x: T1,
     wDesc: cudnnFilterDescriptor_t,
-    w: V,
+    w: T2,
     convDesc: cudnnConvolutionDescriptor_t,
     algo: cudnnConvolutionFwdAlgo_t,
-    mut workSpace: W,
+    mut workSpace: T3,
     workSpaceSizeInBytes: usize,
-    beta: X,
+    beta: T4,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: Y,
+    mut y: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnConvolutionForward(
@@ -5562,25 +5219,25 @@ pub unsafe fn cudnnConvolutionForward<T: types::CudaAsPtr, U: types::CudaAsPtr, 
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnConvolutionBiasActivationForward<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsPtr, Z: types::CudaAsPtr, A: types::CudaAsMutPtr>(
+pub unsafe fn cudnnConvolutionBiasActivationForward<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsPtr, T6: types::CudaAsPtr, T7: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
-    alpha1: T,
+    alpha1: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
+    x: T1,
     wDesc: cudnnFilterDescriptor_t,
-    w: V,
+    w: T2,
     convDesc: cudnnConvolutionDescriptor_t,
     algo: cudnnConvolutionFwdAlgo_t,
-    mut workSpace: W,
+    mut workSpace: T3,
     workSpaceSizeInBytes: usize,
-    alpha2: X,
+    alpha2: T4,
     zDesc: cudnnTensorDescriptor_t,
-    z: Y,
+    z: T5,
     biasDesc: cudnnTensorDescriptor_t,
-    bias: Z,
+    bias: T6,
     activationDesc: cudnnActivationDescriptor_t,
     yDesc: cudnnTensorDescriptor_t,
-    mut y: A,
+    mut y: T7,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnConvolutionBiasActivationForward(
@@ -5615,32 +5272,32 @@ pub unsafe fn cudnnGetConvolutionBackwardDataAlgorithmMaxCount(handle: cudnnHand
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithm<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithm<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     wDesc: cudnnFilterDescriptor_t,
     dyDesc: cudnnTensorDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     dxDesc: cudnnTensorDescriptor_t,
     requestedAlgoCount: i32,
-    mut returnedAlgoCount: T,
-    mut perfResults: U,
+    mut returnedAlgoCount: T0,
+    mut perfResults: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnFindConvolutionBackwardDataAlgorithm(handle, wDesc, dyDesc, convDesc, dxDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardDataAlgorithmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     wDesc: cudnnFilterDescriptor_t,
-    w: T,
+    w: T0,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: U,
+    dy: T1,
     convDesc: cudnnConvolutionDescriptor_t,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: V,
+    mut dx: T2,
     requestedAlgoCount: i32,
-    mut returnedAlgoCount: W,
-    mut perfResults: X,
-    mut workSpace: Y,
+    mut returnedAlgoCount: T3,
+    mut perfResults: T4,
+    mut workSpace: T5,
     workSpaceSizeInBytes: usize,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
@@ -5695,20 +5352,20 @@ pub unsafe fn cudnnGetConvolutionBackwardDataWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnConvolutionBackwardData<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnConvolutionBackwardData<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
-    alpha: T,
+    alpha: T0,
     wDesc: cudnnFilterDescriptor_t,
-    w: U,
+    w: T1,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: V,
+    dy: T2,
     convDesc: cudnnConvolutionDescriptor_t,
     algo: cudnnConvolutionBwdDataAlgo_t,
-    mut workSpace: W,
+    mut workSpace: T3,
     workSpaceSizeInBytes: usize,
-    beta: X,
+    beta: T4,
     dxDesc: cudnnTensorDescriptor_t,
-    mut dx: Y,
+    mut dx: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnConvolutionBackwardData(
@@ -5778,32 +5435,32 @@ pub unsafe fn cudnnGetConvolutionBackwardFilterAlgorithmMaxCount(handle: cudnnHa
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithm<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithm<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
     dyDesc: cudnnTensorDescriptor_t,
     convDesc: cudnnConvolutionDescriptor_t,
     dwDesc: cudnnFilterDescriptor_t,
     requestedAlgoCount: i32,
-    mut returnedAlgoCount: T,
-    mut perfResults: U,
+    mut returnedAlgoCount: T0,
+    mut perfResults: T1,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnFindConvolutionBackwardFilterAlgorithm(handle, xDesc, dyDesc, convDesc, dwDesc, requestedAlgoCount as _, returnedAlgoCount.as_mut_ptr() as *mut _, perfResults.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnFindConvolutionBackwardFilterAlgorithmEx<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
     xDesc: cudnnTensorDescriptor_t,
-    x: T,
+    x: T0,
     dyDesc: cudnnTensorDescriptor_t,
-    y: U,
+    y: T1,
     convDesc: cudnnConvolutionDescriptor_t,
     dwDesc: cudnnFilterDescriptor_t,
-    mut dw: V,
+    mut dw: T2,
     requestedAlgoCount: i32,
-    mut returnedAlgoCount: W,
-    mut perfResults: X,
-    mut workSpace: Y,
+    mut returnedAlgoCount: T3,
+    mut perfResults: T4,
+    mut workSpace: T5,
     workSpaceSizeInBytes: usize,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
@@ -5858,20 +5515,20 @@ pub unsafe fn cudnnGetConvolutionBackwardFilterWorkspaceSize(
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudnnConvolutionBackwardFilter<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsPtr, Y: types::CudaAsMutPtr>(
+pub unsafe fn cudnnConvolutionBackwardFilter<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsPtr, T5: types::CudaAsMutPtr>(
     handle: cudnnHandle_t,
-    alpha: T,
+    alpha: T0,
     xDesc: cudnnTensorDescriptor_t,
-    x: U,
+    x: T1,
     dyDesc: cudnnTensorDescriptor_t,
-    dy: V,
+    dy: T2,
     convDesc: cudnnConvolutionDescriptor_t,
     algo: cudnnConvolutionBwdFilterAlgo_t,
-    mut workSpace: W,
+    mut workSpace: T3,
     workSpaceSizeInBytes: usize,
-    beta: X,
+    beta: T4,
     dwDesc: cudnnFilterDescriptor_t,
-    mut dw: Y,
+    mut dw: T5,
 ) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe {
         crate::sys::cudnnConvolutionBackwardFilter(
@@ -5892,7 +5549,15 @@ pub unsafe fn cudnnConvolutionBackwardFilter<T: types::CudaAsPtr, U: types::Cuda
     };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnConvolutionBackwardBias<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(handle: cudnnHandle_t, alpha: T, dyDesc: cudnnTensorDescriptor_t, dy: U, beta: V, dbDesc: cudnnTensorDescriptor_t, mut db: W) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnConvolutionBackwardBias<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(
+    handle: cudnnHandle_t,
+    alpha: T0,
+    dyDesc: cudnnTensorDescriptor_t,
+    dy: T1,
+    beta: T2,
+    dbDesc: cudnnTensorDescriptor_t,
+    mut db: T3,
+) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnConvolutionBackwardBias(handle, alpha.as_const_ptr() as *const _, dyDesc, dy.as_const_ptr() as *const _, beta.as_const_ptr() as *const _, dbDesc, db.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -5909,7 +5574,7 @@ pub unsafe fn cudnnDestroyFusedOpsConstParamPack(constPack: cudnnFusedOpsConstPa
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsConstParamPack(constPack) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetFusedOpsConstParamPackAttribute<T: types::CudaAsPtr>(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetFusedOpsConstParamPackAttribute<T0: types::CudaAsPtr>(constPack: cudnnFusedOpsConstParamPack_t, paramLabel: cudnnFusedOpsConstParamLabel_t, param: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetFusedOpsConstParamPackAttribute(constPack, paramLabel, param.as_const_ptr() as *const _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -5935,11 +5600,11 @@ pub unsafe fn cudnnDestroyFusedOpsVariantParamPack(varPack: cudnnFusedOpsVariant
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsVariantParamPack(varPack) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnSetFusedOpsVariantParamPackAttribute<T: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnSetFusedOpsVariantParamPackAttribute<T0: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnSetFusedOpsVariantParamPackAttribute(varPack, paramLabel, ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnGetFusedOpsVariantParamPackAttribute<T: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnGetFusedOpsVariantParamPackAttribute<T0: types::CudaAsMutPtr>(varPack: cudnnFusedOpsVariantParamPack_t, paramLabel: cudnnFusedOpsVariantParamLabel_t, mut ptr: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnGetFusedOpsVariantParamPackAttribute(varPack, paramLabel, ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -5956,7 +5621,7 @@ pub unsafe fn cudnnDestroyFusedOpsPlan(plan: cudnnFusedOpsPlan_t) -> Result<(), 
     let status = unsafe { crate::sys::cudnnDestroyFusedOpsPlan(plan) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudnnMakeFusedOpsPlan<T: types::CudaAsMutPtr>(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, constPack: cudnnFusedOpsConstParamPack_t, mut workspaceSizeInBytes: T) -> Result<(), crate::sys::cudnnStatus_t> {
+pub unsafe fn cudnnMakeFusedOpsPlan<T0: types::CudaAsMutPtr>(handle: cudnnHandle_t, plan: cudnnFusedOpsPlan_t, constPack: cudnnFusedOpsConstParamPack_t, mut workspaceSizeInBytes: T0) -> Result<(), crate::sys::cudnnStatus_t> {
     let status = unsafe { crate::sys::cudnnMakeFusedOpsPlan(handle, plan, constPack, workspaceSizeInBytes.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudnnStatus_t::CUDNN_STATUS_SUCCESS { Ok(()) } else { Err(status) }
 }

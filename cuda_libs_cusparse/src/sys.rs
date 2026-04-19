@@ -1,3 +1,4 @@
+#![allow(unsafe_op_in_unsafe_fn)]
 use cuda_libs_cudart::sys::*;
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -6169,4803 +6170,3060 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cusparseCreate: Option<unsafe extern "C" fn(handle: *mut cusparseHandle_t) -> cusparseStatus_t>,
-    pub cusparseDestroy: Option<unsafe extern "C" fn(handle: cusparseHandle_t) -> cusparseStatus_t>,
-    pub cusparseGetVersion: Option<unsafe extern "C" fn(handle: cusparseHandle_t, version: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseGetProperty: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseGetErrorName: Option<unsafe extern "C" fn(status: cusparseStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cusparseGetErrorString: Option<unsafe extern "C" fn(status: cusparseStatus_t) -> *const ::std::os::raw::c_char>,
-    pub cusparseSetStream: Option<unsafe extern "C" fn(handle: cusparseHandle_t, streamId: cudaStream_t) -> cusparseStatus_t>,
-    pub cusparseGetStream: Option<unsafe extern "C" fn(handle: cusparseHandle_t, streamId: *mut cudaStream_t) -> cusparseStatus_t>,
-    pub cusparseGetPointerMode: Option<unsafe extern "C" fn(handle: cusparseHandle_t, mode: *mut cusparsePointerMode_t) -> cusparseStatus_t>,
-    pub cusparseSetPointerMode: Option<unsafe extern "C" fn(handle: cusparseHandle_t, mode: cusparsePointerMode_t) -> cusparseStatus_t>,
-    pub cusparseLoggerSetCallback: Option<unsafe extern "C" fn(callback: cusparseLoggerCallback_t) -> cusparseStatus_t>,
-    pub cusparseLoggerSetFile: Option<unsafe extern "C" fn(file: *mut FILE) -> cusparseStatus_t>,
-    pub cusparseLoggerOpenFile: Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cusparseStatus_t>,
-    pub cusparseLoggerSetLevel: Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseLoggerSetMask: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCreate: Option<unsafe extern "C" fn(*mut cusparseHandle_t) -> cusparseStatus_t>,
+    pub cusparseDestroy: Option<unsafe extern "C" fn(cusparseHandle_t) -> cusparseStatus_t>,
+    pub cusparseGetVersion: Option<unsafe extern "C" fn(cusparseHandle_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseGetErrorName: Option<unsafe extern "C" fn(cusparseStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cusparseGetErrorString: Option<unsafe extern "C" fn(cusparseStatus_t) -> *const ::std::os::raw::c_char>,
+    pub cusparseSetStream: Option<unsafe extern "C" fn(cusparseHandle_t, cudaStream_t) -> cusparseStatus_t>,
+    pub cusparseGetStream: Option<unsafe extern "C" fn(cusparseHandle_t, *mut cudaStream_t) -> cusparseStatus_t>,
+    pub cusparseGetPointerMode: Option<unsafe extern "C" fn(cusparseHandle_t, *mut cusparsePointerMode_t) -> cusparseStatus_t>,
+    pub cusparseSetPointerMode: Option<unsafe extern "C" fn(cusparseHandle_t, cusparsePointerMode_t) -> cusparseStatus_t>,
+    pub cusparseLoggerSetCallback: Option<unsafe extern "C" fn(cusparseLoggerCallback_t) -> cusparseStatus_t>,
+    pub cusparseLoggerSetFile: Option<unsafe extern "C" fn(*mut FILE) -> cusparseStatus_t>,
+    pub cusparseLoggerOpenFile: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char) -> cusparseStatus_t>,
+    pub cusparseLoggerSetLevel: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseLoggerSetMask: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseLoggerForceDisable: Option<unsafe extern "C" fn() -> cusparseStatus_t>,
-    pub cusparseCreateMatDescr: Option<unsafe extern "C" fn(descrA: *mut cusparseMatDescr_t) -> cusparseStatus_t>,
-    pub cusparseDestroyMatDescr: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t) -> cusparseStatus_t>,
-    pub cusparseSetMatType: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t, type_: cusparseMatrixType_t) -> cusparseStatus_t>,
-    pub cusparseGetMatType: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t) -> cusparseMatrixType_t>,
-    pub cusparseSetMatFillMode: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t, fillMode: cusparseFillMode_t) -> cusparseStatus_t>,
-    pub cusparseGetMatFillMode: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t) -> cusparseFillMode_t>,
-    pub cusparseSetMatDiagType: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t, diagType: cusparseDiagType_t) -> cusparseStatus_t>,
-    pub cusparseGetMatDiagType: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t) -> cusparseDiagType_t>,
-    pub cusparseSetMatIndexBase: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t, base: cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseGetMatIndexBase: Option<unsafe extern "C" fn(descrA: cusparseMatDescr_t) -> cusparseIndexBase_t>,
-    pub cusparseCreateCsric02Info: Option<unsafe extern "C" fn(info: *mut csric02Info_t) -> cusparseStatus_t>,
-    pub cusparseDestroyCsric02Info: Option<unsafe extern "C" fn(info: csric02Info_t) -> cusparseStatus_t>,
-    pub cusparseCreateBsric02Info: Option<unsafe extern "C" fn(info: *mut bsric02Info_t) -> cusparseStatus_t>,
-    pub cusparseDestroyBsric02Info: Option<unsafe extern "C" fn(info: bsric02Info_t) -> cusparseStatus_t>,
-    pub cusparseCreateCsrilu02Info: Option<unsafe extern "C" fn(info: *mut csrilu02Info_t) -> cusparseStatus_t>,
-    pub cusparseDestroyCsrilu02Info: Option<unsafe extern "C" fn(info: csrilu02Info_t) -> cusparseStatus_t>,
-    pub cusparseCreateBsrilu02Info: Option<unsafe extern "C" fn(info: *mut bsrilu02Info_t) -> cusparseStatus_t>,
-    pub cusparseDestroyBsrilu02Info: Option<unsafe extern "C" fn(info: bsrilu02Info_t) -> cusparseStatus_t>,
-    pub cusparseCreateBsrsv2Info: Option<unsafe extern "C" fn(info: *mut bsrsv2Info_t) -> cusparseStatus_t>,
-    pub cusparseDestroyBsrsv2Info: Option<unsafe extern "C" fn(info: bsrsv2Info_t) -> cusparseStatus_t>,
-    pub cusparseCreateBsrsm2Info: Option<unsafe extern "C" fn(info: *mut bsrsm2Info_t) -> cusparseStatus_t>,
-    pub cusparseDestroyBsrsm2Info: Option<unsafe extern "C" fn(info: bsrsm2Info_t) -> cusparseStatus_t>,
-    pub cusparseCreateCsru2csrInfo: Option<unsafe extern "C" fn(info: *mut csru2csrInfo_t) -> cusparseStatus_t>,
-    pub cusparseDestroyCsru2csrInfo: Option<unsafe extern "C" fn(info: csru2csrInfo_t) -> cusparseStatus_t>,
-    pub cusparseCreateColorInfo: Option<unsafe extern "C" fn(info: *mut cusparseColorInfo_t) -> cusparseStatus_t>,
-    pub cusparseDestroyColorInfo: Option<unsafe extern "C" fn(info: cusparseColorInfo_t) -> cusparseStatus_t>,
-    pub cusparseCreatePruneInfo: Option<unsafe extern "C" fn(info: *mut pruneInfo_t) -> cusparseStatus_t>,
-    pub cusparseDestroyPruneInfo: Option<unsafe extern "C" fn(info: pruneInfo_t) -> cusparseStatus_t>,
+    pub cusparseCreateMatDescr: Option<unsafe extern "C" fn(*mut cusparseMatDescr_t) -> cusparseStatus_t>,
+    pub cusparseDestroyMatDescr: Option<unsafe extern "C" fn(cusparseMatDescr_t) -> cusparseStatus_t>,
+    pub cusparseSetMatType: Option<unsafe extern "C" fn(cusparseMatDescr_t, cusparseMatrixType_t) -> cusparseStatus_t>,
+    pub cusparseGetMatType: Option<unsafe extern "C" fn(cusparseMatDescr_t) -> cusparseMatrixType_t>,
+    pub cusparseSetMatFillMode: Option<unsafe extern "C" fn(cusparseMatDescr_t, cusparseFillMode_t) -> cusparseStatus_t>,
+    pub cusparseGetMatFillMode: Option<unsafe extern "C" fn(cusparseMatDescr_t) -> cusparseFillMode_t>,
+    pub cusparseSetMatDiagType: Option<unsafe extern "C" fn(cusparseMatDescr_t, cusparseDiagType_t) -> cusparseStatus_t>,
+    pub cusparseGetMatDiagType: Option<unsafe extern "C" fn(cusparseMatDescr_t) -> cusparseDiagType_t>,
+    pub cusparseSetMatIndexBase: Option<unsafe extern "C" fn(cusparseMatDescr_t, cusparseIndexBase_t) -> cusparseStatus_t>,
+    pub cusparseGetMatIndexBase: Option<unsafe extern "C" fn(cusparseMatDescr_t) -> cusparseIndexBase_t>,
+    pub cusparseCreateCsric02Info: Option<unsafe extern "C" fn(*mut csric02Info_t) -> cusparseStatus_t>,
+    pub cusparseDestroyCsric02Info: Option<unsafe extern "C" fn(csric02Info_t) -> cusparseStatus_t>,
+    pub cusparseCreateBsric02Info: Option<unsafe extern "C" fn(*mut bsric02Info_t) -> cusparseStatus_t>,
+    pub cusparseDestroyBsric02Info: Option<unsafe extern "C" fn(bsric02Info_t) -> cusparseStatus_t>,
+    pub cusparseCreateCsrilu02Info: Option<unsafe extern "C" fn(*mut csrilu02Info_t) -> cusparseStatus_t>,
+    pub cusparseDestroyCsrilu02Info: Option<unsafe extern "C" fn(csrilu02Info_t) -> cusparseStatus_t>,
+    pub cusparseCreateBsrilu02Info: Option<unsafe extern "C" fn(*mut bsrilu02Info_t) -> cusparseStatus_t>,
+    pub cusparseDestroyBsrilu02Info: Option<unsafe extern "C" fn(bsrilu02Info_t) -> cusparseStatus_t>,
+    pub cusparseCreateBsrsv2Info: Option<unsafe extern "C" fn(*mut bsrsv2Info_t) -> cusparseStatus_t>,
+    pub cusparseDestroyBsrsv2Info: Option<unsafe extern "C" fn(bsrsv2Info_t) -> cusparseStatus_t>,
+    pub cusparseCreateBsrsm2Info: Option<unsafe extern "C" fn(*mut bsrsm2Info_t) -> cusparseStatus_t>,
+    pub cusparseDestroyBsrsm2Info: Option<unsafe extern "C" fn(bsrsm2Info_t) -> cusparseStatus_t>,
+    pub cusparseCreateCsru2csrInfo: Option<unsafe extern "C" fn(*mut csru2csrInfo_t) -> cusparseStatus_t>,
+    pub cusparseDestroyCsru2csrInfo: Option<unsafe extern "C" fn(csru2csrInfo_t) -> cusparseStatus_t>,
+    pub cusparseCreateColorInfo: Option<unsafe extern "C" fn(*mut cusparseColorInfo_t) -> cusparseStatus_t>,
+    pub cusparseDestroyColorInfo: Option<unsafe extern "C" fn(cusparseColorInfo_t) -> cusparseStatus_t>,
+    pub cusparseCreatePruneInfo: Option<unsafe extern "C" fn(*mut pruneInfo_t) -> cusparseStatus_t>,
+    pub cusparseDestroyPruneInfo: Option<unsafe extern "C" fn(pruneInfo_t) -> cusparseStatus_t>,
     pub cusparseSgemvi: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            transA: cusparseOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const f32,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            xVal: *const f32,
-            xInd: *const ::std::os::raw::c_int,
-            beta: *const f32,
-            y: *mut f32,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            *mut f32,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSgemvi_bufferSize: Option<unsafe extern "C" fn(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseSgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseDgemvi: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            transA: cusparseOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const f64,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            xVal: *const f64,
-            xInd: *const ::std::os::raw::c_int,
-            beta: *const f64,
-            y: *mut f64,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            *mut f64,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseDgemvi_bufferSize: Option<unsafe extern "C" fn(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseCgemvi: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            transA: cusparseOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            xVal: *const cuComplex,
-            xInd: *const ::std::os::raw::c_int,
-            beta: *const cuComplex,
-            y: *mut cuComplex,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            *mut cuComplex,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCgemvi_bufferSize: Option<unsafe extern "C" fn(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseZgemvi: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            transA: cusparseOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            xVal: *const cuDoubleComplex,
-            xInd: *const ::std::os::raw::c_int,
-            beta: *const cuDoubleComplex,
-            y: *mut cuDoubleComplex,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *mut cuDoubleComplex,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseZgemvi_bufferSize: Option<unsafe extern "C" fn(handle: cusparseHandle_t, transA: cusparseOperation_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, pBufferSize: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseZgemvi_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseSbsrmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f32,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const f32,
-            beta: *const f32,
-            y: *mut f32,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const f32,
+            *mut f32,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f64,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const f64,
-            beta: *const f64,
-            y: *mut f64,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const f64,
+            *mut f64,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const cuComplex,
-            beta: *const cuComplex,
-            y: *mut cuComplex,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const cuComplex,
+            *mut cuComplex,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const cuDoubleComplex,
-            beta: *const cuDoubleComplex,
-            y: *mut cuDoubleComplex,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const cuDoubleComplex,
+            *mut cuDoubleComplex,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrxmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            sizeOfMask: ::std::os::raw::c_int,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f32,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const f32,
-            beta: *const f32,
-            y: *mut f32,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const f32,
+            *mut f32,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrxmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            sizeOfMask: ::std::os::raw::c_int,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f64,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const f64,
-            beta: *const f64,
-            y: *mut f64,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const f64,
+            *mut f64,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrxmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            sizeOfMask: ::std::os::raw::c_int,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const cuComplex,
-            beta: *const cuComplex,
-            y: *mut cuComplex,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const cuComplex,
+            *mut cuComplex,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrxmv: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            sizeOfMask: ::std::os::raw::c_int,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedMaskPtrA: *const ::std::os::raw::c_int,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedEndPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            x: *const cuDoubleComplex,
-            beta: *const cuDoubleComplex,
-            y: *mut cuDoubleComplex,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const cuDoubleComplex,
+            *mut cuDoubleComplex,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXbsrsv2_zeroPivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsrsv2Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseXbsrsv2_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrsv2Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseSbsrsv2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsv2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsv2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsv2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, cusparseOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrsv2Info_t, *mut usize) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsv2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *mut cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsv2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsv2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsv2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsv2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsv2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f32,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            f: *const f32,
-            x: *mut f32,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *const f32,
+            *mut f32,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsv2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f64,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            f: *const f64,
-            x: *mut f64,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *const f64,
+            *mut f64,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsv2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            f: *const cuComplex,
-            x: *mut cuComplex,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *const cuComplex,
+            *mut cuComplex,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsv2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrsv2Info_t,
-            f: *const cuDoubleComplex,
-            x: *mut cuDoubleComplex,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsv2Info_t,
+            *const cuDoubleComplex,
+            *mut cuDoubleComplex,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrmm: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            kb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f32,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            B: *const f32,
-            ldb: ::std::os::raw::c_int,
-            beta: *const f32,
-            C: *mut f32,
-            ldc: ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            *const f32,
+            *mut f32,
+            ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrmm: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            kb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f64,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            B: *const f64,
-            ldb: ::std::os::raw::c_int,
-            beta: *const f64,
-            C: *mut f64,
-            ldc: ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            *const f64,
+            *mut f64,
+            ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrmm: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            kb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            B: *const cuComplex,
-            ldb: ::std::os::raw::c_int,
-            beta: *const cuComplex,
-            C: *mut cuComplex,
-            ldc: ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrmm: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            kb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            B: *const cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            beta: *const cuDoubleComplex,
-            C: *mut cuDoubleComplex,
-            ldc: ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXbsrsm2_zeroPivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsrsm2Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseXbsrsm2_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrsm2Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseSbsrsm2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsm2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsm2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsm2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsm2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsm2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsm2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsm2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transB: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsm2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsm2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsm2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsm2_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrsm2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f32,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            B: *const f32,
-            ldb: ::std::os::raw::c_int,
-            X: *mut f32,
-            ldx: ::std::os::raw::c_int,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *const f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrsm2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const f64,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            B: *const f64,
-            ldb: ::std::os::raw::c_int,
-            X: *mut f64,
-            ldx: ::std::os::raw::c_int,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *const f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrsm2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            B: *const cuComplex,
-            ldb: ::std::os::raw::c_int,
-            X: *mut cuComplex,
-            ldx: ::std::os::raw::c_int,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrsm2_solve: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            transA: cusparseOperation_t,
-            transXY: cusparseOperation_t,
-            mb: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrsm2Info_t,
-            B: *const cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            X: *mut cuDoubleComplex,
-            ldx: ::std::os::raw::c_int,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrsm2Info_t,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseScsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t>,
-    pub cusparseDcsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t>,
-    pub cusparseCcsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t>,
-    pub cusparseZcsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: csrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t>,
-    pub cusparseXcsrilu02_zeroPivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: csrilu02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseScsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut f32,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut f64,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut cuComplex,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut cuDoubleComplex,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsrilu02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsrilu02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsrilu02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsrilu02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsrilu02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsrilu02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsrilu02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsrilu02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSbsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f32) -> cusparseStatus_t>,
-    pub cusparseDbsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut f64) -> cusparseStatus_t>,
-    pub cusparseCbsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuComplex) -> cusparseStatus_t>,
-    pub cusparseZbsrilu02_numericBoost: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsrilu02Info_t, enable_boost: ::std::os::raw::c_int, tol: *mut f64, boost_val: *mut cuDoubleComplex) -> cusparseStatus_t>,
-    pub cusparseXbsrilu02_zeroPivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsrilu02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseSbsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDbsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseScsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f32) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f64) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuComplex) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex) -> cusparseStatus_t>,
+    pub cusparseXcsrilu02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseScsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseScsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseScsrilu02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseScsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsrilu02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsrilu02:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsrilu02:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrilu02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f32) -> cusparseStatus_t>,
+    pub cusparseDbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut f64) -> cusparseStatus_t>,
+    pub cusparseCbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuComplex) -> cusparseStatus_t>,
+    pub cusparseZbsrilu02_numericBoost: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex) -> cusparseStatus_t>,
+    pub cusparseXbsrilu02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseSbsrilu02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDbsrilu02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseCbsrilu02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
     >,
     pub cusparseZbsrilu02_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSbsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDbsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCbsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZbsrilu02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSbsrilu02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDbsrilu02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCbsrilu02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZbsrilu02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsrilu02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSbsrilu02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrilu02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrilu02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrilu02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsrilu02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsrilu02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsrilu02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsrilu02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsrilu02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsrilu02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXcsric02_zeroPivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: csric02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseScsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *mut cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut f32,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut f64,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut cuComplex,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedVal: *mut cuDoubleComplex,
-            csrSortedRowPtr: *const ::std::os::raw::c_int,
-            csrSortedColInd: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsric02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsric02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsric02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsric02_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsric02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsric02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsric02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsric02: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA_valM: *mut cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            info: csric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseXbsric02_zeroPivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, info: bsric02Info_t, position: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseSbsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDbsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseXcsric02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseScsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseZcsric02_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseScsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZcsric02_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseScsric02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsric02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsric02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsric02_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseScsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsric02: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsric02:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsric02:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csric02Info_t, cusparseSolvePolicy_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseXbsric02_zeroPivot: Option<unsafe extern "C" fn(cusparseHandle_t, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseSbsric02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDbsric02_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseCbsric02_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
     >,
     pub cusparseZbsric02_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSbsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDbsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCbsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZbsric02_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockSize: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSbsric02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDbsric02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCbsric02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZbsric02_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, bsric02Info_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSbsric02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pInputBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsric02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pInputBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsric02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pInputBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsric02_analysis: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *const cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pInputBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsric02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsric02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsric02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsric02: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedVal: *mut cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            info: bsric02Info_t,
-            policy: cusparseSolvePolicy_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            bsric02Info_t,
+            cusparseSolvePolicy_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsv2_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsv2_bufferSizeExt: Option<
-        unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuDoubleComplex, d: *const cuDoubleComplex, du: *const cuDoubleComplex, B: *const cuDoubleComplex, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t,
-    >,
-    pub cusparseSgtsv2: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsv2: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsv2:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgtsv2: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            dl: *const cuDoubleComplex,
-            d: *const cuDoubleComplex,
-            du: *const cuDoubleComplex,
-            B: *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *const f32, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *const f64, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsv2_nopivot_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *const cuComplex, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsv2_nopivot_bufferSizeExt: Option<
-        unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuDoubleComplex, d: *const cuDoubleComplex, du: *const cuDoubleComplex, B: *const cuDoubleComplex, ldb: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t,
-    >,
-    pub cusparseSgtsv2_nopivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, B: *mut f32, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsv2_nopivot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, B: *mut f64, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsv2_nopivot:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, B: *mut cuComplex, ldb: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgtsv2_nopivot: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            dl: *const cuDoubleComplex,
-            d: *const cuDoubleComplex,
-            du: *const cuDoubleComplex,
-            B: *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSgtsv2StridedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsv2StridedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsv2StridedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, x: *const cuComplex, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, bufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsv2StridedBatch_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            dl: *const cuDoubleComplex,
-            d: *const cuDoubleComplex,
-            du: *const cuDoubleComplex,
-            x: *const cuDoubleComplex,
-            batchCount: ::std::os::raw::c_int,
-            batchStride: ::std::os::raw::c_int,
-            bufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSgtsv2StridedBatch:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *mut f32, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsv2StridedBatch:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *mut f64, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsv2StridedBatch: Option<
-        unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, x: *mut cuComplex, batchCount: ::std::os::raw::c_int, batchStride: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t,
-    >,
-    pub cusparseZgtsv2StridedBatch: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            dl: *const cuDoubleComplex,
-            d: *const cuDoubleComplex,
-            du: *const cuDoubleComplex,
-            x: *mut cuDoubleComplex,
-            batchCount: ::std::os::raw::c_int,
-            batchStride: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSgtsvInterleavedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *const f32, d: *const f32, du: *const f32, x: *const f32, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgtsvInterleavedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *const f64, d: *const f64, du: *const f64, x: *const f64, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgtsvInterleavedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *const cuComplex, d: *const cuComplex, du: *const cuComplex, x: *const cuComplex, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseZgtsvInterleavedBatch_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            algo: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            dl: *const cuDoubleComplex,
-            d: *const cuDoubleComplex,
-            du: *const cuDoubleComplex,
-            x: *const cuDoubleComplex,
-            batchCount: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSgtsvInterleavedBatch: Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut f32, d: *mut f32, du: *mut f32, x: *mut f32, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgtsvInterleavedBatch: Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut f64, d: *mut f64, du: *mut f64, x: *mut f64, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgtsvInterleavedBatch:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, dl: *mut cuComplex, d: *mut cuComplex, du: *mut cuComplex, x: *mut cuComplex, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseZgtsvInterleavedBatch: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            algo: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            dl: *mut cuDoubleComplex,
-            d: *mut cuDoubleComplex,
-            du: *mut cuDoubleComplex,
-            x: *mut cuDoubleComplex,
-            batchCount: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSgpsvInterleavedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, ds: *const f32, dl: *const f32, d: *const f32, du: *const f32, dw: *const f32, x: *const f32, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseDgpsvInterleavedBatch_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, ds: *const f64, dl: *const f64, d: *const f64, du: *const f64, dw: *const f64, x: *const f64, batchCount: ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseCgpsvInterleavedBatch_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            algo: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            ds: *const cuComplex,
-            dl: *const cuComplex,
-            d: *const cuComplex,
-            du: *const cuComplex,
-            dw: *const cuComplex,
-            x: *const cuComplex,
-            batchCount: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZgpsvInterleavedBatch_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            algo: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            ds: *const cuDoubleComplex,
-            dl: *const cuDoubleComplex,
-            d: *const cuDoubleComplex,
-            du: *const cuDoubleComplex,
-            dw: *const cuDoubleComplex,
-            x: *const cuDoubleComplex,
-            batchCount: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSgpsvInterleavedBatch:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, ds: *mut f32, dl: *mut f32, d: *mut f32, du: *mut f32, dw: *mut f32, x: *mut f32, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDgpsvInterleavedBatch:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, algo: ::std::os::raw::c_int, m: ::std::os::raw::c_int, ds: *mut f64, dl: *mut f64, d: *mut f64, du: *mut f64, dw: *mut f64, x: *mut f64, batchCount: ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCgpsvInterleavedBatch: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            algo: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            ds: *mut cuComplex,
-            dl: *mut cuComplex,
-            d: *mut cuComplex,
-            du: *mut cuComplex,
-            dw: *mut cuComplex,
-            x: *mut cuComplex,
-            batchCount: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsv2_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsv2: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsv2_nopivot_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsv2_nopivot: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsv2StridedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut f32, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut f64, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsv2StridedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgtsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZgtsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSgpsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *const f32, *const f32, *const f32, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgpsvInterleavedBatch_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *const f64, *const f64, *const f64, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgpsvInterleavedBatch_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgpsvInterleavedBatch_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, *const cuDoubleComplex, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCgpsvInterleavedBatch: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
     pub cusparseZgpsvInterleavedBatch: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            algo: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            ds: *mut cuDoubleComplex,
-            dl: *mut cuDoubleComplex,
-            d: *mut cuDoubleComplex,
-            du: *mut cuDoubleComplex,
-            dw: *mut cuDoubleComplex,
-            x: *mut cuDoubleComplex,
-            batchCount: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t,
     >,
     pub cusparseScsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const f32,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const f32,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const f32,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const f64,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const f64,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const f64,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const cuComplex,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const cuComplex,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const cuComplex,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsrgeam2_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const cuDoubleComplex,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const cuDoubleComplex,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const cuDoubleComplex,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseXcsrgeam2Nnz: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            workspace: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsrgeam2: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const f32,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const f32,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const f32,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f32,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsrgeam2: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const f64,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const f64,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const f64,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f64,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsrgeam2: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const cuComplex,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const cuComplex,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const cuComplex,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut cuComplex,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsrgeam2: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            alpha: *const cuDoubleComplex,
-            descrA: cusparseMatDescr_t,
-            nnzA: ::std::os::raw::c_int,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            beta: *const cuDoubleComplex,
-            descrB: cusparseMatDescr_t,
-            nnzB: ::std::os::raw::c_int,
-            csrSortedValB: *const cuDoubleComplex,
-            csrSortedRowPtrB: *const ::std::os::raw::c_int,
-            csrSortedColIndB: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut cuDoubleComplex,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            cusparseMatDescr_t,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsrcolor: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            fractionToColor: *const f32,
-            ncolors: *mut ::std::os::raw::c_int,
-            coloring: *mut ::std::os::raw::c_int,
-            reordering: *mut ::std::os::raw::c_int,
-            info: cusparseColorInfo_t,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsrcolor: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            fractionToColor: *const f64,
-            ncolors: *mut ::std::os::raw::c_int,
-            coloring: *mut ::std::os::raw::c_int,
-            reordering: *mut ::std::os::raw::c_int,
-            info: cusparseColorInfo_t,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsrcolor: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            fractionToColor: *const f32,
-            ncolors: *mut ::std::os::raw::c_int,
-            coloring: *mut ::std::os::raw::c_int,
-            reordering: *mut ::std::os::raw::c_int,
-            info: cusparseColorInfo_t,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsrcolor: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            fractionToColor: *const f64,
-            ncolors: *mut ::std::os::raw::c_int,
-            coloring: *mut ::std::os::raw::c_int,
-            reordering: *mut ::std::os::raw::c_int,
-            info: cusparseColorInfo_t,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseColorInfo_t,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSnnz: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            nnzPerRowCol: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDnnz: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            nnzPerRowCol: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCnnz: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            nnzPerRowCol: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZnnz: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            nnzPerRowCol: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSnnz_compress:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f32, csrSortedRowPtrA: *const ::std::os::raw::c_int, nnzPerRow: *mut ::std::os::raw::c_int, nnzC: *mut ::std::os::raw::c_int, tol: f32) -> cusparseStatus_t>,
-    pub cusparseDnnz_compress:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const f64, csrSortedRowPtrA: *const ::std::os::raw::c_int, nnzPerRow: *mut ::std::os::raw::c_int, nnzC: *mut ::std::os::raw::c_int, tol: f64) -> cusparseStatus_t>,
-    pub cusparseCnnz_compress: Option<
-        unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, descr: cusparseMatDescr_t, csrSortedValA: *const cuComplex, csrSortedRowPtrA: *const ::std::os::raw::c_int, nnzPerRow: *mut ::std::os::raw::c_int, nnzC: *mut ::std::os::raw::c_int, tol: cuComplex) -> cusparseStatus_t,
-    >,
-    pub cusparseZnnz_compress: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            descr: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            nnzPerRow: *mut ::std::os::raw::c_int,
-            nnzC: *mut ::std::os::raw::c_int,
-            tol: cuDoubleComplex,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseZnnz: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseSnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, f32) -> cusparseStatus_t>,
+    pub cusparseDnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, f64) -> cusparseStatus_t>,
+    pub cusparseCnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cuComplex) -> cusparseStatus_t>,
+    pub cusparseZnnz_compress: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cuDoubleComplex) -> cusparseStatus_t>,
     pub cusparseScsr2csr_compress: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            nnzPerRow: *const ::std::os::raw::c_int,
-            csrSortedValC: *mut f32,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            tol: f32,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            f32,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsr2csr_compress: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            nnzPerRow: *const ::std::os::raw::c_int,
-            csrSortedValC: *mut f64,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            tol: f64,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            f64,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsr2csr_compress: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            nnzPerRow: *const ::std::os::raw::c_int,
-            csrSortedValC: *mut cuComplex,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            tol: cuComplex,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cuComplex,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsr2csr_compress: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            nnzPerRow: *const ::std::os::raw::c_int,
-            csrSortedValC: *mut cuDoubleComplex,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            tol: cuDoubleComplex,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cuDoubleComplex,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseXcoo2csr: Option<unsafe extern "C" fn(handle: cusparseHandle_t, cooRowInd: *const ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, m: ::std::os::raw::c_int, csrSortedRowPtr: *mut ::std::os::raw::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseXcsr2coo: Option<unsafe extern "C" fn(handle: cusparseHandle_t, csrSortedRowPtr: *const ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, m: ::std::os::raw::c_int, cooRowInd: *mut ::std::os::raw::c_int, idxBase: cusparseIndexBase_t) -> cusparseStatus_t>,
+    pub cusparseXcoo2csr: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cusparseIndexBase_t) -> cusparseStatus_t>,
+    pub cusparseXcsr2coo: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, cusparseIndexBase_t) -> cusparseStatus_t>,
     pub cusparseXcsr2bsrNnz: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsr2bsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut f32,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsr2bsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut f64,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsr2bsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut cuComplex,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsr2bsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut cuDoubleComplex,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSbsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f32,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDbsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f64,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCbsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut cuComplex,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZbsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            blockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut cuDoubleComplex,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSgebsr2gebsc_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDgebsr2gebsc_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCgebsr2gebsc_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSgebsr2gebsc_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseDgebsr2gebsc_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCgebsr2gebsc_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
     pub cusparseZgebsr2gebsc_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
     >,
-    pub cusparseSgebsr2gebsc_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDgebsr2gebsc_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCgebsr2gebsc_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZgebsr2gebsc_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSgebsr2gebsc_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDgebsr2gebsc_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCgebsr2gebsc_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZgebsr2gebsc_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseSgebsr2gebsc: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const f32,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            bscVal: *mut f32,
-            bscRowInd: *mut ::std::os::raw::c_int,
-            bscColPtr: *mut ::std::os::raw::c_int,
-            copyValues: cusparseAction_t,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseAction_t,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2gebsc: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const f64,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            bscVal: *mut f64,
-            bscRowInd: *mut ::std::os::raw::c_int,
-            bscColPtr: *mut ::std::os::raw::c_int,
-            copyValues: cusparseAction_t,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseAction_t,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2gebsc: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const cuComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            bscVal: *mut cuComplex,
-            bscRowInd: *mut ::std::os::raw::c_int,
-            bscColPtr: *mut ::std::os::raw::c_int,
-            copyValues: cusparseAction_t,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseAction_t,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2gebsc: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            bsrSortedVal: *const cuDoubleComplex,
-            bsrSortedRowPtr: *const ::std::os::raw::c_int,
-            bsrSortedColInd: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            bscVal: *mut cuDoubleComplex,
-            bscRowInd: *mut ::std::os::raw::c_int,
-            bscColPtr: *mut ::std::os::raw::c_int,
-            copyValues: cusparseAction_t,
-            idxBase: cusparseIndexBase_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cusparseAction_t,
+            cusparseIndexBase_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseXgebsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f32,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f64,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut cuComplex,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut cuDoubleComplex,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsr2gebsr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
     >,
     pub cusparseDcsr2gebsr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t,
     >,
     pub cusparseCcsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseScsr2gebsr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsr2gebsr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsr2gebsr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseScsr2gebsr_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDcsr2gebsr_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCcsr2gebsr_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
     pub cusparseZcsr2gebsr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseDirection_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t,
     >,
     pub cusparseXcsr2gebsrNnz: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseScsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut f32,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDcsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut f64,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCcsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut cuComplex,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZcsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const cuDoubleComplex,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut cuDoubleComplex,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDim: ::std::os::raw::c_int,
-            colBlockDim: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2gebsr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut ::std::os::raw::c_int,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2gebsr_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2gebsr_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2gebsr_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2gebsr_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBufferSize: *mut usize,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseXgebsr2gebsrNnz: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSgebsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f32,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut f32,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDgebsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const f64,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut f64,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCgebsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut cuComplex,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseZgebsr2gebsr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            dirA: cusparseDirection_t,
-            mb: ::std::os::raw::c_int,
-            nb: ::std::os::raw::c_int,
-            nnzb: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            bsrSortedValA: *const cuDoubleComplex,
-            bsrSortedRowPtrA: *const ::std::os::raw::c_int,
-            bsrSortedColIndA: *const ::std::os::raw::c_int,
-            rowBlockDimA: ::std::os::raw::c_int,
-            colBlockDimA: ::std::os::raw::c_int,
-            descrC: cusparseMatDescr_t,
-            bsrSortedValC: *mut cuDoubleComplex,
-            bsrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            bsrSortedColIndC: *mut ::std::os::raw::c_int,
-            rowBlockDimC: ::std::os::raw::c_int,
-            colBlockDimC: ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseDirection_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCreateIdentityPermutation: Option<unsafe extern "C" fn(handle: cusparseHandle_t, n: ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseXcoosort_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cooRowsA: *const ::std::os::raw::c_int, cooColsA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseXcoosortByRow: Option<
-        unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cooRowsA: *mut ::std::os::raw::c_int, cooColsA: *mut ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t,
-    >,
-    pub cusparseXcoosortByColumn: Option<
-        unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cooRowsA: *mut ::std::os::raw::c_int, cooColsA: *mut ::std::os::raw::c_int, P: *mut ::std::os::raw::c_int, pBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t,
-    >,
-    pub cusparseXcsrsort_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseXcsrsort: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *mut ::std::os::raw::c_int,
-            P: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseXcscsort_bufferSizeExt:
-        Option<unsafe extern "C" fn(handle: cusparseHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnz: ::std::os::raw::c_int, cscColPtrA: *const ::std::os::raw::c_int, cscRowIndA: *const ::std::os::raw::c_int, pBufferSizeInBytes: *mut usize) -> cusparseStatus_t>,
-    pub cusparseXcscsort: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            cscColPtrA: *const ::std::os::raw::c_int,
-            cscRowIndA: *mut ::std::os::raw::c_int,
-            P: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsru2csr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            csrVal: *mut f32,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsru2csr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            csrVal: *mut f64,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsru2csr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            csrVal: *mut cuComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsru2csr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            csrVal: *mut cuDoubleComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsru2csr: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut f32,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsru2csr: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut f64,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsru2csr: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut cuComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsru2csr: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut cuDoubleComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseScsr2csru: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut f32,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDcsr2csru: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut f64,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCcsr2csru: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut cuComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseZcsr2csru: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *mut cuDoubleComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *mut ::std::os::raw::c_int,
-            info: csru2csrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpruneDense2csr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            threshold: *const f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDpruneDense2csr_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            threshold: *const f64,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpruneDense2csrNnz: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            threshold: *const f32,
-            descrC: cusparseMatDescr_t,
-            csrRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDpruneDense2csrNnz: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            threshold: *const f64,
-            descrC: cusparseMatDescr_t,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpruneDense2csr: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            threshold: *const f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDpruneDense2csr: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            threshold: *const f64,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseCreateIdentityPermutation: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseXcoosort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseXcoosortByRow: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseXcoosortByColumn: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseXcsrsort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseXcsrsort: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseXcscsort_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseXcscsort: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseScsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseCcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseZcsru2csr_bufferSizeExt: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseScsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsru2csr: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsru2csr:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsru2csr:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseScsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDcsr2csru: Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCcsr2csru:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseZcsr2csru:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *mut cuDoubleComplex, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, csru2csrInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csr_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csr_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csrNnz:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csrNnz:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csr:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csr:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
     pub cusparseSpruneCsr2csr_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            threshold: *const f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csr_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            threshold: *const f64,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneCsr2csrNnz: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            threshold: *const f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csrNnz: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            threshold: *const f64,
-            descrC: cusparseMatDescr_t,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneCsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            threshold: *const f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csr: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            threshold: *const f64,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSpruneDense2csrByPercentage_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDpruneDense2csrByPercentage_bufferSizeExt: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBufferSizeInBytes: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpruneDense2csrNnzByPercentage: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDpruneDense2csrNnzByPercentage: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpruneDense2csrByPercentage: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseDpruneDense2csrByPercentage: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSpruneDense2csrByPercentage_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, pruneInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csrByPercentage_bufferSizeExt:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, pruneInfo_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csrNnzByPercentage:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csrNnzByPercentage:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpruneDense2csrByPercentage:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut f32, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDpruneDense2csrByPercentage:
+        Option<unsafe extern "C" fn(cusparseHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, f32, cusparseMatDescr_t, *mut f64, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, pruneInfo_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
     pub cusparseSpruneCsr2csrByPercentage_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            f32,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            pruneInfo_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csrByPercentage_bufferSizeExt: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *const f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *const ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBufferSizeInBytes: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            f32,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            pruneInfo_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneCsr2csrNnzByPercentage: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            f32,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            pruneInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csrNnzByPercentage: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedRowPtrC: *mut ::std::os::raw::c_int,
-            nnzTotalDevHostPtr: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            f32,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            pruneInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpruneCsr2csrByPercentage: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f32,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f32,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            f32,
+            cusparseMatDescr_t,
+            *mut f32,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            pruneInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseDpruneCsr2csrByPercentage: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrSortedValA: *const f64,
-            csrSortedRowPtrA: *const ::std::os::raw::c_int,
-            csrSortedColIndA: *const ::std::os::raw::c_int,
-            percentage: f32,
-            descrC: cusparseMatDescr_t,
-            csrSortedValC: *mut f64,
-            csrSortedRowPtrC: *const ::std::os::raw::c_int,
-            csrSortedColIndC: *mut ::std::os::raw::c_int,
-            info: pruneInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            f32,
+            cusparseMatDescr_t,
+            *mut f64,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            pruneInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCsr2cscEx2: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            csrVal: *const ::std::os::raw::c_void,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            cscVal: *mut ::std::os::raw::c_void,
-            cscColPtr: *mut ::std::os::raw::c_int,
-            cscRowInd: *mut ::std::os::raw::c_int,
-            valType: cudaDataType,
-            copyValues: cusparseAction_t,
-            idxBase: cusparseIndexBase_t,
-            alg: cusparseCsr2CscAlg_t,
-            buffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cudaDataType,
+            cusparseAction_t,
+            cusparseIndexBase_t,
+            cusparseCsr2CscAlg_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCsr2cscEx2_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            csrVal: *const ::std::os::raw::c_void,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            cscVal: *mut ::std::os::raw::c_void,
-            cscColPtr: *mut ::std::os::raw::c_int,
-            cscRowInd: *mut ::std::os::raw::c_int,
-            valType: cudaDataType,
-            copyValues: cusparseAction_t,
-            idxBase: cusparseIndexBase_t,
-            alg: cusparseCsr2CscAlg_t,
-            bufferSize: *mut usize,
+            cusparseHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const ::std::os::raw::c_void,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            cudaDataType,
+            cusparseAction_t,
+            cusparseIndexBase_t,
+            cusparseCsr2CscAlg_t,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCreateSpVec: Option<unsafe extern "C" fn(spVecDescr: *mut cusparseSpVecDescr_t, size: i64, nnz: i64, indices: *mut ::std::os::raw::c_void, values: *mut ::std::os::raw::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstSpVec:
-        Option<unsafe extern "C" fn(spVecDescr: *mut cusparseConstSpVecDescr_t, size: i64, nnz: i64, indices: *const ::std::os::raw::c_void, values: *const ::std::os::raw::c_void, idxType: cusparseIndexType_t, idxBase: cusparseIndexBase_t, valueType: cudaDataType) -> cusparseStatus_t>,
-    pub cusparseDestroySpVec: Option<unsafe extern "C" fn(spVecDescr: cusparseConstSpVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpVecGet: Option<
-        unsafe extern "C" fn(spVecDescr: cusparseSpVecDescr_t, size: *mut i64, nnz: *mut i64, indices: *mut *mut ::std::os::raw::c_void, values: *mut *mut ::std::os::raw::c_void, idxType: *mut cusparseIndexType_t, idxBase: *mut cusparseIndexBase_t, valueType: *mut cudaDataType) -> cusparseStatus_t,
-    >,
-    pub cusparseConstSpVecGet: Option<
-        unsafe extern "C" fn(
-            spVecDescr: cusparseConstSpVecDescr_t,
-            size: *mut i64,
-            nnz: *mut i64,
-            indices: *mut *const ::std::os::raw::c_void,
-            values: *mut *const ::std::os::raw::c_void,
-            idxType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpVecGetIndexBase: Option<unsafe extern "C" fn(spVecDescr: cusparseConstSpVecDescr_t, idxBase: *mut cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseSpVecGetValues: Option<unsafe extern "C" fn(spVecDescr: cusparseSpVecDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstSpVecGetValues: Option<unsafe extern "C" fn(spVecDescr: cusparseConstSpVecDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpVecSetValues: Option<unsafe extern "C" fn(spVecDescr: cusparseSpVecDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCreateDnVec: Option<unsafe extern "C" fn(dnVecDescr: *mut cusparseDnVecDescr_t, size: i64, values: *mut ::std::os::raw::c_void, valueType: cudaDataType) -> cusparseStatus_t>,
-    pub cusparseCreateConstDnVec: Option<unsafe extern "C" fn(dnVecDescr: *mut cusparseConstDnVecDescr_t, size: i64, values: *const ::std::os::raw::c_void, valueType: cudaDataType) -> cusparseStatus_t>,
-    pub cusparseDestroyDnVec: Option<unsafe extern "C" fn(dnVecDescr: cusparseConstDnVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseDnVecGet: Option<unsafe extern "C" fn(dnVecDescr: cusparseDnVecDescr_t, size: *mut i64, values: *mut *mut ::std::os::raw::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseConstDnVecGet: Option<unsafe extern "C" fn(dnVecDescr: cusparseConstDnVecDescr_t, size: *mut i64, values: *mut *const ::std::os::raw::c_void, valueType: *mut cudaDataType) -> cusparseStatus_t>,
-    pub cusparseDnVecGetValues: Option<unsafe extern "C" fn(dnVecDescr: cusparseDnVecDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstDnVecGetValues: Option<unsafe extern "C" fn(dnVecDescr: cusparseConstDnVecDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDnVecSetValues: Option<unsafe extern "C" fn(dnVecDescr: cusparseDnVecDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDestroySpMat: Option<unsafe extern "C" fn(spMatDescr: cusparseConstSpMatDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpMatGetFormat: Option<unsafe extern "C" fn(spMatDescr: cusparseConstSpMatDescr_t, format: *mut cusparseFormat_t) -> cusparseStatus_t>,
-    pub cusparseSpMatGetIndexBase: Option<unsafe extern "C" fn(spMatDescr: cusparseConstSpMatDescr_t, idxBase: *mut cusparseIndexBase_t) -> cusparseStatus_t>,
-    pub cusparseSpMatGetValues: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstSpMatGetValues: Option<unsafe extern "C" fn(spMatDescr: cusparseConstSpMatDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpMatSetValues: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpMatGetSize: Option<unsafe extern "C" fn(spMatDescr: cusparseConstSpMatDescr_t, rows: *mut i64, cols: *mut i64, nnz: *mut i64) -> cusparseStatus_t>,
-    pub cusparseSpMatGetStridedBatch: Option<unsafe extern "C" fn(spMatDescr: cusparseConstSpMatDescr_t, batchCount: *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
-    pub cusparseCooSetStridedBatch: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, batchStride: i64) -> cusparseStatus_t>,
-    pub cusparseCsrSetStridedBatch: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, offsetsBatchStride: i64, columnsValuesBatchStride: i64) -> cusparseStatus_t>,
-    pub cusparseBsrSetStridedBatch: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, batchCount: ::std::os::raw::c_int, offsetsBatchStride: i64, columnsBatchStride: i64, ValuesBatchStride: i64) -> cusparseStatus_t>,
-    pub cusparseSpMatGetAttribute: Option<unsafe extern "C" fn(spMatDescr: cusparseConstSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::std::os::raw::c_void, dataSize: usize) -> cusparseStatus_t>,
-    pub cusparseSpMatSetAttribute: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, attribute: cusparseSpMatAttribute_t, data: *mut ::std::os::raw::c_void, dataSize: usize) -> cusparseStatus_t>,
-    pub cusparseCreateCsr: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            csrRowOffsets: *mut ::std::os::raw::c_void,
-            csrColInd: *mut ::std::os::raw::c_void,
-            csrValues: *mut ::std::os::raw::c_void,
-            csrRowOffsetsType: cusparseIndexType_t,
-            csrColIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateConstCsr: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseConstSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            csrRowOffsets: *const ::std::os::raw::c_void,
-            csrColInd: *const ::std::os::raw::c_void,
-            csrValues: *const ::std::os::raw::c_void,
-            csrRowOffsetsType: cusparseIndexType_t,
-            csrColIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateCsc: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            cscColOffsets: *mut ::std::os::raw::c_void,
-            cscRowInd: *mut ::std::os::raw::c_void,
-            cscValues: *mut ::std::os::raw::c_void,
-            cscColOffsetsType: cusparseIndexType_t,
-            cscRowIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateConstCsc: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseConstSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            cscColOffsets: *const ::std::os::raw::c_void,
-            cscRowInd: *const ::std::os::raw::c_void,
-            cscValues: *const ::std::os::raw::c_void,
-            cscColOffsetsType: cusparseIndexType_t,
-            cscRowIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseCreateSpVec: Option<unsafe extern "C" fn(*mut cusparseSpVecDescr_t, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstSpVec: Option<unsafe extern "C" fn(*mut cusparseConstSpVecDescr_t, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseDestroySpVec: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpVecGet: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseConstSpVecGet: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseSpVecGetIndexBase: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut cusparseIndexBase_t) -> cusparseStatus_t>,
+    pub cusparseSpVecGetValues: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseConstSpVecGetValues: Option<unsafe extern "C" fn(cusparseConstSpVecDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpVecSetValues: Option<unsafe extern "C" fn(cusparseSpVecDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCreateDnVec: Option<unsafe extern "C" fn(*mut cusparseDnVecDescr_t, i64, *mut ::std::os::raw::c_void, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstDnVec: Option<unsafe extern "C" fn(*mut cusparseConstDnVecDescr_t, i64, *const ::std::os::raw::c_void, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseDestroyDnVec: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseDnVecGet: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut i64, *mut *mut ::std::os::raw::c_void, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseConstDnVecGet: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t, *mut i64, *mut *const ::std::os::raw::c_void, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseDnVecGetValues: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseConstDnVecGetValues: Option<unsafe extern "C" fn(cusparseConstDnVecDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDnVecSetValues: Option<unsafe extern "C" fn(cusparseDnVecDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDestroySpMat: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpMatGetFormat: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut cusparseFormat_t) -> cusparseStatus_t>,
+    pub cusparseSpMatGetIndexBase: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut cusparseIndexBase_t) -> cusparseStatus_t>,
+    pub cusparseSpMatGetValues: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseConstSpMatGetValues: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMatSetValues: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMatGetSize: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64) -> cusparseStatus_t>,
+    pub cusparseSpMatGetStridedBatch: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut ::std::os::raw::c_int) -> cusparseStatus_t>,
+    pub cusparseCooSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::std::os::raw::c_int, i64) -> cusparseStatus_t>,
+    pub cusparseCsrSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::std::os::raw::c_int, i64, i64) -> cusparseStatus_t>,
+    pub cusparseBsrSetStridedBatch: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, ::std::os::raw::c_int, i64, i64, i64) -> cusparseStatus_t>,
+    pub cusparseSpMatGetAttribute: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, cusparseSpMatAttribute_t, *mut ::std::os::raw::c_void, usize) -> cusparseStatus_t>,
+    pub cusparseSpMatSetAttribute: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, cusparseSpMatAttribute_t, *mut ::std::os::raw::c_void, usize) -> cusparseStatus_t>,
+    pub cusparseCreateCsr: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstCsr: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateCsc: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstCsc: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
     pub cusparseCsrGet: Option<
-        unsafe extern "C" fn(
-            spMatDescr: cusparseSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            nnz: *mut i64,
-            csrRowOffsets: *mut *mut ::std::os::raw::c_void,
-            csrColInd: *mut *mut ::std::os::raw::c_void,
-            csrValues: *mut *mut ::std::os::raw::c_void,
-            csrRowOffsetsType: *mut cusparseIndexType_t,
-            csrColIndType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t,
     >,
     pub cusparseConstCsrGet: Option<
         unsafe extern "C" fn(
-            spMatDescr: cusparseConstSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            nnz: *mut i64,
-            csrRowOffsets: *mut *const ::std::os::raw::c_void,
-            csrColInd: *mut *const ::std::os::raw::c_void,
-            csrValues: *mut *const ::std::os::raw::c_void,
-            csrRowOffsetsType: *mut cusparseIndexType_t,
-            csrColIndType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
+            cusparseConstSpMatDescr_t,
+            *mut i64,
+            *mut i64,
+            *mut i64,
+            *mut *const ::std::os::raw::c_void,
+            *mut *const ::std::os::raw::c_void,
+            *mut *const ::std::os::raw::c_void,
+            *mut cusparseIndexType_t,
+            *mut cusparseIndexType_t,
+            *mut cusparseIndexBase_t,
+            *mut cudaDataType,
         ) -> cusparseStatus_t,
     >,
     pub cusparseCscGet: Option<
-        unsafe extern "C" fn(
-            spMatDescr: cusparseSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            nnz: *mut i64,
-            cscColOffsets: *mut *mut ::std::os::raw::c_void,
-            cscRowInd: *mut *mut ::std::os::raw::c_void,
-            cscValues: *mut *mut ::std::os::raw::c_void,
-            cscColOffsetsType: *mut cusparseIndexType_t,
-            cscRowIndType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t,
     >,
     pub cusparseConstCscGet: Option<
         unsafe extern "C" fn(
-            spMatDescr: cusparseConstSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            nnz: *mut i64,
-            cscColOffsets: *mut *const ::std::os::raw::c_void,
-            cscRowInd: *mut *const ::std::os::raw::c_void,
-            cscValues: *mut *const ::std::os::raw::c_void,
-            cscColOffsetsType: *mut cusparseIndexType_t,
-            cscRowIndType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
+            cusparseConstSpMatDescr_t,
+            *mut i64,
+            *mut i64,
+            *mut i64,
+            *mut *const ::std::os::raw::c_void,
+            *mut *const ::std::os::raw::c_void,
+            *mut *const ::std::os::raw::c_void,
+            *mut cusparseIndexType_t,
+            *mut cusparseIndexType_t,
+            *mut cusparseIndexBase_t,
+            *mut cudaDataType,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseCsrSetPointers: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, csrRowOffsets: *mut ::std::os::raw::c_void, csrColInd: *mut ::std::os::raw::c_void, csrValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCscSetPointers: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, cscColOffsets: *mut ::std::os::raw::c_void, cscRowInd: *mut ::std::os::raw::c_void, cscValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCreateBsr: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseSpMatDescr_t,
-            brows: i64,
-            bcols: i64,
-            bnnz: i64,
-            rowBlockSize: i64,
-            colBlockSize: i64,
-            bsrRowOffsets: *mut ::std::os::raw::c_void,
-            bsrColInd: *mut ::std::os::raw::c_void,
-            bsrValues: *mut ::std::os::raw::c_void,
-            bsrRowOffsetsType: cusparseIndexType_t,
-            bsrColIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-            order: cusparseOrder_t,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseCsrSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCscSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCreateBsr:
+        Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
     pub cusparseCreateConstBsr: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseConstSpMatDescr_t,
-            brows: i64,
-            bcols: i64,
-            bnnz: i64,
-            rowBlockDim: i64,
-            colBlockDim: i64,
-            bsrRowOffsets: *const ::std::os::raw::c_void,
-            bsrColInd: *const ::std::os::raw::c_void,
-            bsrValues: *const ::std::os::raw::c_void,
-            bsrRowOffsetsType: cusparseIndexType_t,
-            bsrColIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-            order: cusparseOrder_t,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType, cusparseOrder_t) -> cusparseStatus_t,
     >,
-    pub cusparseCreateCoo: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            cooRowInd: *mut ::std::os::raw::c_void,
-            cooColInd: *mut ::std::os::raw::c_void,
-            cooValues: *mut ::std::os::raw::c_void,
-            cooIdxType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateConstCoo: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseConstSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            cooRowInd: *const ::std::os::raw::c_void,
-            cooColInd: *const ::std::os::raw::c_void,
-            cooValues: *const ::std::os::raw::c_void,
-            cooIdxType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCooGet: Option<
-        unsafe extern "C" fn(
-            spMatDescr: cusparseSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            nnz: *mut i64,
-            cooRowInd: *mut *mut ::std::os::raw::c_void,
-            cooColInd: *mut *mut ::std::os::raw::c_void,
-            cooValues: *mut *mut ::std::os::raw::c_void,
-            idxType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseConstCooGet: Option<
-        unsafe extern "C" fn(
-            spMatDescr: cusparseConstSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            nnz: *mut i64,
-            cooRowInd: *mut *const ::std::os::raw::c_void,
-            cooColInd: *mut *const ::std::os::raw::c_void,
-            cooValues: *mut *const ::std::os::raw::c_void,
-            idxType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCooSetPointers: Option<unsafe extern "C" fn(spMatDescr: cusparseSpMatDescr_t, cooRows: *mut ::std::os::raw::c_void, cooColumns: *mut ::std::os::raw::c_void, cooValues: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseCreateBlockedEll: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            ellBlockSize: i64,
-            ellCols: i64,
-            ellColInd: *mut ::std::os::raw::c_void,
-            ellValue: *mut ::std::os::raw::c_void,
-            ellIdxType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateConstBlockedEll: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseConstSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            ellBlockSize: i64,
-            ellCols: i64,
-            ellColInd: *const ::std::os::raw::c_void,
-            ellValue: *const ::std::os::raw::c_void,
-            ellIdxType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseBlockedEllGet: Option<
-        unsafe extern "C" fn(
-            spMatDescr: cusparseSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            ellBlockSize: *mut i64,
-            ellCols: *mut i64,
-            ellColInd: *mut *mut ::std::os::raw::c_void,
-            ellValue: *mut *mut ::std::os::raw::c_void,
-            ellIdxType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseConstBlockedEllGet: Option<
-        unsafe extern "C" fn(
-            spMatDescr: cusparseConstSpMatDescr_t,
-            rows: *mut i64,
-            cols: *mut i64,
-            ellBlockSize: *mut i64,
-            ellCols: *mut i64,
-            ellColInd: *mut *const ::std::os::raw::c_void,
-            ellValue: *mut *const ::std::os::raw::c_void,
-            ellIdxType: *mut cusparseIndexType_t,
-            idxBase: *mut cusparseIndexBase_t,
-            valueType: *mut cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateSlicedEll: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            sellValuesSize: i64,
-            sliceSize: i64,
-            sellSliceOffsets: *mut ::std::os::raw::c_void,
-            sellColInd: *mut ::std::os::raw::c_void,
-            sellValues: *mut ::std::os::raw::c_void,
-            sellSliceOffsetsType: cusparseIndexType_t,
-            sellColIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateConstSlicedEll: Option<
-        unsafe extern "C" fn(
-            spMatDescr: *mut cusparseConstSpMatDescr_t,
-            rows: i64,
-            cols: i64,
-            nnz: i64,
-            sellValuesSize: i64,
-            sliceSize: i64,
-            sellSliceOffsets: *const ::std::os::raw::c_void,
-            sellColInd: *const ::std::os::raw::c_void,
-            sellValues: *const ::std::os::raw::c_void,
-            sellSliceOffsetsType: cusparseIndexType_t,
-            sellColIndType: cusparseIndexType_t,
-            idxBase: cusparseIndexBase_t,
-            valueType: cudaDataType,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseCreateDnMat: Option<unsafe extern "C" fn(dnMatDescr: *mut cusparseDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *mut ::std::os::raw::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseCreateConstDnMat: Option<unsafe extern "C" fn(dnMatDescr: *mut cusparseConstDnMatDescr_t, rows: i64, cols: i64, ld: i64, values: *const ::std::os::raw::c_void, valueType: cudaDataType, order: cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseDestroyDnMat: Option<unsafe extern "C" fn(dnMatDescr: cusparseConstDnMatDescr_t) -> cusparseStatus_t>,
-    pub cusparseDnMatGet: Option<unsafe extern "C" fn(dnMatDescr: cusparseDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *mut ::std::os::raw::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseConstDnMatGet: Option<unsafe extern "C" fn(dnMatDescr: cusparseConstDnMatDescr_t, rows: *mut i64, cols: *mut i64, ld: *mut i64, values: *mut *const ::std::os::raw::c_void, type_: *mut cudaDataType, order: *mut cusparseOrder_t) -> cusparseStatus_t>,
-    pub cusparseDnMatGetValues: Option<unsafe extern "C" fn(dnMatDescr: cusparseDnMatDescr_t, values: *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseConstDnMatGetValues: Option<unsafe extern "C" fn(dnMatDescr: cusparseConstDnMatDescr_t, values: *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDnMatSetValues: Option<unsafe extern "C" fn(dnMatDescr: cusparseDnMatDescr_t, values: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDnMatSetStridedBatch: Option<unsafe extern "C" fn(dnMatDescr: cusparseDnMatDescr_t, batchCount: ::std::os::raw::c_int, batchStride: i64) -> cusparseStatus_t>,
-    pub cusparseDnMatGetStridedBatch: Option<unsafe extern "C" fn(dnMatDescr: cusparseConstDnMatDescr_t, batchCount: *mut ::std::os::raw::c_int, batchStride: *mut i64) -> cusparseStatus_t>,
-    pub cusparseAxpby: Option<unsafe extern "C" fn(handle: cusparseHandle_t, alpha: *const ::std::os::raw::c_void, vecX: cusparseConstSpVecDescr_t, beta: *const ::std::os::raw::c_void, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseGather: Option<unsafe extern "C" fn(handle: cusparseHandle_t, vecY: cusparseConstDnVecDescr_t, vecX: cusparseSpVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseScatter: Option<unsafe extern "C" fn(handle: cusparseHandle_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseRot: Option<unsafe extern "C" fn(handle: cusparseHandle_t, c_coeff: *const ::std::os::raw::c_void, s_coeff: *const ::std::os::raw::c_void, vecX: cusparseSpVecDescr_t, vecY: cusparseDnVecDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpVV_bufferSize: Option<unsafe extern "C" fn(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *const ::std::os::raw::c_void, computeType: cudaDataType, bufferSize: *mut usize) -> cusparseStatus_t>,
-    pub cusparseSpVV: Option<unsafe extern "C" fn(handle: cusparseHandle_t, opX: cusparseOperation_t, vecX: cusparseConstSpVecDescr_t, vecY: cusparseConstDnVecDescr_t, result: *mut ::std::os::raw::c_void, computeType: cudaDataType, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSparseToDense_bufferSize: Option<unsafe extern "C" fn(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, bufferSize: *mut usize) -> cusparseStatus_t>,
-    pub cusparseSparseToDense: Option<unsafe extern "C" fn(handle: cusparseHandle_t, matA: cusparseConstSpMatDescr_t, matB: cusparseDnMatDescr_t, alg: cusparseSparseToDenseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDenseToSparse_bufferSize: Option<unsafe extern "C" fn(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, bufferSize: *mut usize) -> cusparseStatus_t>,
-    pub cusparseDenseToSparse_analysis: Option<unsafe extern "C" fn(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseDenseToSparse_convert: Option<unsafe extern "C" fn(handle: cusparseHandle_t, matA: cusparseConstDnMatDescr_t, matB: cusparseSpMatDescr_t, alg: cusparseDenseToSparseAlg_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpMV: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            vecX: cusparseConstDnVecDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            vecY: cusparseDnVecDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpMVAlg_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpMV_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            vecX: cusparseConstDnVecDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            vecY: cusparseDnVecDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpMVAlg_t,
-            bufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpMV_preprocess: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            vecX: cusparseConstDnVecDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            vecY: cusparseDnVecDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpMVAlg_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpSV_createDescr: Option<unsafe extern "C" fn(descr: *mut cusparseSpSVDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpSV_destroyDescr: Option<unsafe extern "C" fn(descr: cusparseSpSVDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpSV_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            vecX: cusparseConstDnVecDescr_t,
-            vecY: cusparseDnVecDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpSVAlg_t,
-            spsvDescr: cusparseSpSVDescr_t,
-            bufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpSV_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            vecX: cusparseConstDnVecDescr_t,
-            vecY: cusparseDnVecDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpSVAlg_t,
-            spsvDescr: cusparseSpSVDescr_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpSV_solve: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            vecX: cusparseConstDnVecDescr_t,
-            vecY: cusparseDnVecDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpSVAlg_t,
-            spsvDescr: cusparseSpSVDescr_t,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpSV_updateMatrix: Option<unsafe extern "C" fn(handle: cusparseHandle_t, spsvDescr: cusparseSpSVDescr_t, newValues: *mut ::std::os::raw::c_void, updatePart: cusparseSpSVUpdate_t) -> cusparseStatus_t>,
-    pub cusparseSpSM_createDescr: Option<unsafe extern "C" fn(descr: *mut cusparseSpSMDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpSM_destroyDescr: Option<unsafe extern "C" fn(descr: cusparseSpSMDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpSM_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            matC: cusparseDnMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpSMAlg_t,
-            spsmDescr: cusparseSpSMDescr_t,
-            bufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseCreateCoo: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstCoo: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCooGet: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseConstCooGet:
+        Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCooSetPointers: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseCreateBlockedEll: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstBlockedEll: Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseBlockedEllGet: Option<unsafe extern "C" fn(cusparseSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseConstBlockedEllGet: Option<unsafe extern "C" fn(cusparseConstSpMatDescr_t, *mut i64, *mut i64, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut *const ::std::os::raw::c_void, *mut cusparseIndexType_t, *mut cusparseIndexBase_t, *mut cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateSlicedEll: Option<unsafe extern "C" fn(*mut cusparseSpMatDescr_t, i64, i64, i64, i64, i64, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateConstSlicedEll:
+        Option<unsafe extern "C" fn(*mut cusparseConstSpMatDescr_t, i64, i64, i64, i64, i64, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseIndexType_t, cusparseIndexType_t, cusparseIndexBase_t, cudaDataType) -> cusparseStatus_t>,
+    pub cusparseCreateDnMat: Option<unsafe extern "C" fn(*mut cusparseDnMatDescr_t, i64, i64, i64, *mut ::std::os::raw::c_void, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseCreateConstDnMat: Option<unsafe extern "C" fn(*mut cusparseConstDnMatDescr_t, i64, i64, i64, *const ::std::os::raw::c_void, cudaDataType, cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseDestroyDnMat: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t) -> cusparseStatus_t>,
+    pub cusparseDnMatGet: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *mut ::std::os::raw::c_void, *mut cudaDataType, *mut cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseConstDnMatGet: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut i64, *mut i64, *mut i64, *mut *const ::std::os::raw::c_void, *mut cudaDataType, *mut cusparseOrder_t) -> cusparseStatus_t>,
+    pub cusparseDnMatGetValues: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseConstDnMatGetValues: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut *const ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDnMatSetValues: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDnMatSetStridedBatch: Option<unsafe extern "C" fn(cusparseDnMatDescr_t, ::std::os::raw::c_int, i64) -> cusparseStatus_t>,
+    pub cusparseDnMatGetStridedBatch: Option<unsafe extern "C" fn(cusparseConstDnMatDescr_t, *mut ::std::os::raw::c_int, *mut i64) -> cusparseStatus_t>,
+    pub cusparseAxpby: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_void, cusparseConstSpVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseGather: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnVecDescr_t, cusparseSpVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseScatter: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstSpVecDescr_t, cusparseDnVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseRot: Option<unsafe extern "C" fn(cusparseHandle_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cusparseSpVecDescr_t, cusparseDnVecDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpVV_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseConstSpVecDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cudaDataType, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpVV: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseConstSpVecDescr_t, cusparseConstDnVecDescr_t, *mut ::std::os::raw::c_void, cudaDataType, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSparseToDense_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstSpMatDescr_t, cusparseDnMatDescr_t, cusparseSparseToDenseAlg_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSparseToDense: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstSpMatDescr_t, cusparseDnMatDescr_t, cusparseSparseToDenseAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDenseToSparse_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseDenseToSparse_analysis: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseDenseToSparse_convert: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseConstDnMatDescr_t, cusparseSpMatDescr_t, cusparseDenseToSparseAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMV:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMV_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpMV_preprocess:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, *const ::std::os::raw::c_void, cusparseDnVecDescr_t, cudaDataType, cusparseSpMVAlg_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpSV_createDescr: Option<unsafe extern "C" fn(*mut cusparseSpSVDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSV_destroyDescr: Option<unsafe extern "C" fn(cusparseSpSVDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSV_bufferSize: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t, *mut usize) -> cusparseStatus_t>,
+    pub cusparseSpSV_analysis:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpSV_solve: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnVecDescr_t, cusparseDnVecDescr_t, cudaDataType, cusparseSpSVAlg_t, cusparseSpSVDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSV_updateMatrix: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseSpSVDescr_t, *mut ::std::os::raw::c_void, cusparseSpSVUpdate_t) -> cusparseStatus_t>,
+    pub cusparseSpSM_createDescr: Option<unsafe extern "C" fn(*mut cusparseSpSMDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSM_destroyDescr: Option<unsafe extern "C" fn(cusparseSpSMDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSM_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSpSM_analysis: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            matC: cusparseDnMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpSMAlg_t,
-            spsmDescr: cusparseSpSMDescr_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t,
     >,
-    pub cusparseSpSM_solve: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            matC: cusparseDnMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpSMAlg_t,
-            spsmDescr: cusparseSpSMDescr_t,
-        ) -> cusparseStatus_t,
-    >,
-    pub cusparseSpSM_updateMatrix: Option<unsafe extern "C" fn(handle: cusparseHandle_t, spsmDescr: cusparseSpSMDescr_t, newValues: *mut ::std::os::raw::c_void, updatePart: cusparseSpSMUpdate_t) -> cusparseStatus_t>,
-    pub cusparseSpMM_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseDnMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpMMAlg_t,
-            bufferSize: *mut usize,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSpSM_solve: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, cusparseDnMatDescr_t, cudaDataType, cusparseSpSMAlg_t, cusparseSpSMDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpSM_updateMatrix: Option<unsafe extern "C" fn(cusparseHandle_t, cusparseSpSMDescr_t, *mut ::std::os::raw::c_void, cusparseSpSMUpdate_t) -> cusparseStatus_t>,
+    pub cusparseSpMM_bufferSize:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstSpMatDescr_t, cusparseConstDnMatDescr_t, *const ::std::os::raw::c_void, cusparseDnMatDescr_t, cudaDataType, cusparseSpMMAlg_t, *mut usize) -> cusparseStatus_t>,
     pub cusparseSpMM_preprocess: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseDnMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpMMAlg_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstSpMatDescr_t,
+            cusparseConstDnMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseDnMatDescr_t,
+            cudaDataType,
+            cusparseSpMMAlg_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpMM: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseDnMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpMMAlg_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstSpMatDescr_t,
+            cusparseConstDnMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseDnMatDescr_t,
+            cudaDataType,
+            cusparseSpMMAlg_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSpGEMM_createDescr: Option<unsafe extern "C" fn(descr: *mut cusparseSpGEMMDescr_t) -> cusparseStatus_t>,
-    pub cusparseSpGEMM_destroyDescr: Option<unsafe extern "C" fn(descr: cusparseSpGEMMDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpGEMM_createDescr: Option<unsafe extern "C" fn(*mut cusparseSpGEMMDescr_t) -> cusparseStatus_t>,
+    pub cusparseSpGEMM_destroyDescr: Option<unsafe extern "C" fn(cusparseSpGEMMDescr_t) -> cusparseStatus_t>,
     pub cusparseSpGEMM_workEstimation: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
-            bufferSize1: *mut usize,
-            externalBuffer1: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstSpMatDescr_t,
+            cusparseConstSpMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseSpMatDescr_t,
+            cudaDataType,
+            cusparseSpGEMMAlg_t,
+            cusparseSpGEMMDescr_t,
+            *mut usize,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSpGEMM_getNumProducts: Option<unsafe extern "C" fn(spgemmDescr: cusparseSpGEMMDescr_t, num_prods: *mut i64) -> cusparseStatus_t>,
+    pub cusparseSpGEMM_getNumProducts: Option<unsafe extern "C" fn(cusparseSpGEMMDescr_t, *mut i64) -> cusparseStatus_t>,
     pub cusparseSpGEMM_estimateMemory: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
-            chunk_fraction: f32,
-            bufferSize3: *mut usize,
-            externalBuffer3: *mut ::std::os::raw::c_void,
-            bufferSize2: *mut usize,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstSpMatDescr_t,
+            cusparseConstSpMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseSpMatDescr_t,
+            cudaDataType,
+            cusparseSpGEMMAlg_t,
+            cusparseSpGEMMDescr_t,
+            f32,
+            *mut usize,
+            *mut ::std::os::raw::c_void,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpGEMM_compute: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
-            bufferSize2: *mut usize,
-            externalBuffer2: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstSpMatDescr_t,
+            cusparseConstSpMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseSpMatDescr_t,
+            cudaDataType,
+            cusparseSpGEMMAlg_t,
+            cusparseSpGEMMDescr_t,
+            *mut usize,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpGEMM_copy: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstSpMatDescr_t,
+            cusparseConstSpMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseSpMatDescr_t,
+            cudaDataType,
+            cusparseSpGEMMAlg_t,
+            cusparseSpGEMMDescr_t,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSpGEMMreuse_workEstimation: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            matC: cusparseSpMatDescr_t,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
-            bufferSize1: *mut usize,
-            externalBuffer1: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSpGEMMreuse_workEstimation:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, cusparseSpMatDescr_t, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t, *mut usize, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
     pub cusparseSpGEMMreuse_nnz: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            matC: cusparseSpMatDescr_t,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
-            bufferSize2: *mut usize,
-            externalBuffer2: *mut ::std::os::raw::c_void,
-            bufferSize3: *mut usize,
-            externalBuffer3: *mut ::std::os::raw::c_void,
-            bufferSize4: *mut usize,
-            externalBuffer4: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            cusparseConstSpMatDescr_t,
+            cusparseConstSpMatDescr_t,
+            cusparseSpMatDescr_t,
+            cusparseSpGEMMAlg_t,
+            cusparseSpGEMMDescr_t,
+            *mut usize,
+            *mut ::std::os::raw::c_void,
+            *mut usize,
+            *mut ::std::os::raw::c_void,
+            *mut usize,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSpGEMMreuse_copy: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            matC: cusparseSpMatDescr_t,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
-            bufferSize5: *mut usize,
-            externalBuffer5: *mut ::std::os::raw::c_void,
-        ) -> cusparseStatus_t,
-    >,
+    pub cusparseSpGEMMreuse_copy:
+        Option<unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, cusparseConstSpMatDescr_t, cusparseConstSpMatDescr_t, cusparseSpMatDescr_t, cusparseSpGEMMAlg_t, cusparseSpGEMMDescr_t, *mut usize, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
     pub cusparseSpGEMMreuse_compute: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstSpMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpGEMMAlg_t,
-            spgemmDescr: cusparseSpGEMMDescr_t,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstSpMatDescr_t,
+            cusparseConstSpMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseSpMatDescr_t,
+            cudaDataType,
+            cusparseSpGEMMAlg_t,
+            cusparseSpGEMMDescr_t,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSDDMM_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstDnMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSDDMMAlg_t,
-            bufferSize: *mut usize,
-        ) -> cusparseStatus_t,
+        unsafe extern "C" fn(cusparseHandle_t, cusparseOperation_t, cusparseOperation_t, *const ::std::os::raw::c_void, cusparseConstDnMatDescr_t, cusparseConstDnMatDescr_t, *const ::std::os::raw::c_void, cusparseSpMatDescr_t, cudaDataType, cusparseSDDMMAlg_t, *mut usize) -> cusparseStatus_t,
     >,
     pub cusparseSDDMM_preprocess: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstDnMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSDDMMAlg_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstDnMatDescr_t,
+            cusparseConstDnMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseSpMatDescr_t,
+            cudaDataType,
+            cusparseSDDMMAlg_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSDDMM: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            alpha: *const ::std::os::raw::c_void,
-            matA: cusparseConstDnMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            beta: *const ::std::os::raw::c_void,
-            matC: cusparseSpMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSDDMMAlg_t,
-            externalBuffer: *mut ::std::os::raw::c_void,
+            cusparseHandle_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            *const ::std::os::raw::c_void,
+            cusparseConstDnMatDescr_t,
+            cusparseConstDnMatDescr_t,
+            *const ::std::os::raw::c_void,
+            cusparseSpMatDescr_t,
+            cudaDataType,
+            cusparseSDDMMAlg_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusparseStatus_t,
     >,
     pub cusparseSpMMOp_createPlan: Option<
         unsafe extern "C" fn(
-            handle: cusparseHandle_t,
-            plan: *mut cusparseSpMMOpPlan_t,
-            opA: cusparseOperation_t,
-            opB: cusparseOperation_t,
-            matA: cusparseConstSpMatDescr_t,
-            matB: cusparseConstDnMatDescr_t,
-            matC: cusparseDnMatDescr_t,
-            computeType: cudaDataType,
-            alg: cusparseSpMMOpAlg_t,
-            addOperationLtoirBuffer: *const ::std::os::raw::c_void,
-            addOperationBufferSize: usize,
-            mulOperationLtoirBuffer: *const ::std::os::raw::c_void,
-            mulOperationBufferSize: usize,
-            epilogueLtoirBuffer: *const ::std::os::raw::c_void,
-            epilogueBufferSize: usize,
-            SpMMWorkspaceSize: *mut usize,
+            cusparseHandle_t,
+            *mut cusparseSpMMOpPlan_t,
+            cusparseOperation_t,
+            cusparseOperation_t,
+            cusparseConstSpMatDescr_t,
+            cusparseConstDnMatDescr_t,
+            cusparseDnMatDescr_t,
+            cudaDataType,
+            cusparseSpMMOpAlg_t,
+            *const ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            usize,
+            *const ::std::os::raw::c_void,
+            usize,
+            *mut usize,
         ) -> cusparseStatus_t,
     >,
-    pub cusparseSpMMOp: Option<unsafe extern "C" fn(plan: cusparseSpMMOpPlan_t, externalBuffer: *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
-    pub cusparseSpMMOp_destroyPlan: Option<unsafe extern "C" fn(plan: cusparseSpMMOpPlan_t) -> cusparseStatus_t>,
+    pub cusparseSpMMOp: Option<unsafe extern "C" fn(cusparseSpMMOpPlan_t, *mut ::std::os::raw::c_void) -> cusparseStatus_t>,
+    pub cusparseSpMMOp_destroyPlan: Option<unsafe extern "C" fn(cusparseSpMMOpPlan_t) -> cusparseStatus_t>,
 }
 #[cfg(feature = "runtime-link")]
 unsafe impl Send for DynamicBindings {}
@@ -19470,1802 +17728,1800 @@ pub unsafe extern "C" fn cusparseSpMMOp_destroyPlan(plan: cusparseSpMMOpPlan_t) 
 }
 #[cfg(feature = "runtime-link")]
 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-    let bindings = unsafe {
-        Box::new(DynamicBindings {
-            cusparseCreate: {
-                let p = get_proc_addr(lib, b"cusparseCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroy: {
-                let p = get_proc_addr(lib, b"cusparseDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetVersion: {
-                let p = get_proc_addr(lib, b"cusparseGetVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetProperty: {
-                let p = get_proc_addr(lib, b"cusparseGetProperty\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetErrorName: {
-                let p = get_proc_addr(lib, b"cusparseGetErrorName\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetErrorString: {
-                let p = get_proc_addr(lib, b"cusparseGetErrorString\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSetStream: {
-                let p = get_proc_addr(lib, b"cusparseSetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetStream: {
-                let p = get_proc_addr(lib, b"cusparseGetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetPointerMode: {
-                let p = get_proc_addr(lib, b"cusparseGetPointerMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSetPointerMode: {
-                let p = get_proc_addr(lib, b"cusparseSetPointerMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseLoggerSetCallback: {
-                let p = get_proc_addr(lib, b"cusparseLoggerSetCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseLoggerSetFile: {
-                let p = get_proc_addr(lib, b"cusparseLoggerSetFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseLoggerOpenFile: {
-                let p = get_proc_addr(lib, b"cusparseLoggerOpenFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseLoggerSetLevel: {
-                let p = get_proc_addr(lib, b"cusparseLoggerSetLevel\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseLoggerSetMask: {
-                let p = get_proc_addr(lib, b"cusparseLoggerSetMask\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseLoggerForceDisable: {
-                let p = get_proc_addr(lib, b"cusparseLoggerForceDisable\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateMatDescr: {
-                let p = get_proc_addr(lib, b"cusparseCreateMatDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyMatDescr: {
-                let p = get_proc_addr(lib, b"cusparseDestroyMatDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSetMatType: {
-                let p = get_proc_addr(lib, b"cusparseSetMatType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetMatType: {
-                let p = get_proc_addr(lib, b"cusparseGetMatType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSetMatFillMode: {
-                let p = get_proc_addr(lib, b"cusparseSetMatFillMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetMatFillMode: {
-                let p = get_proc_addr(lib, b"cusparseGetMatFillMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSetMatDiagType: {
-                let p = get_proc_addr(lib, b"cusparseSetMatDiagType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetMatDiagType: {
-                let p = get_proc_addr(lib, b"cusparseGetMatDiagType\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSetMatIndexBase: {
-                let p = get_proc_addr(lib, b"cusparseSetMatIndexBase\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGetMatIndexBase: {
-                let p = get_proc_addr(lib, b"cusparseGetMatIndexBase\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateCsric02Info: {
-                let p = get_proc_addr(lib, b"cusparseCreateCsric02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyCsric02Info: {
-                let p = get_proc_addr(lib, b"cusparseDestroyCsric02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateBsric02Info: {
-                let p = get_proc_addr(lib, b"cusparseCreateBsric02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyBsric02Info: {
-                let p = get_proc_addr(lib, b"cusparseDestroyBsric02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateCsrilu02Info: {
-                let p = get_proc_addr(lib, b"cusparseCreateCsrilu02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyCsrilu02Info: {
-                let p = get_proc_addr(lib, b"cusparseDestroyCsrilu02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateBsrilu02Info: {
-                let p = get_proc_addr(lib, b"cusparseCreateBsrilu02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyBsrilu02Info: {
-                let p = get_proc_addr(lib, b"cusparseDestroyBsrilu02Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateBsrsv2Info: {
-                let p = get_proc_addr(lib, b"cusparseCreateBsrsv2Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyBsrsv2Info: {
-                let p = get_proc_addr(lib, b"cusparseDestroyBsrsv2Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateBsrsm2Info: {
-                let p = get_proc_addr(lib, b"cusparseCreateBsrsm2Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyBsrsm2Info: {
-                let p = get_proc_addr(lib, b"cusparseDestroyBsrsm2Info\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateCsru2csrInfo: {
-                let p = get_proc_addr(lib, b"cusparseCreateCsru2csrInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyCsru2csrInfo: {
-                let p = get_proc_addr(lib, b"cusparseDestroyCsru2csrInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateColorInfo: {
-                let p = get_proc_addr(lib, b"cusparseCreateColorInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyColorInfo: {
-                let p = get_proc_addr(lib, b"cusparseDestroyColorInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreatePruneInfo: {
-                let p = get_proc_addr(lib, b"cusparseCreatePruneInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyPruneInfo: {
-                let p = get_proc_addr(lib, b"cusparseDestroyPruneInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgemvi: {
-                let p = get_proc_addr(lib, b"cusparseSgemvi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgemvi_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSgemvi_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgemvi: {
-                let p = get_proc_addr(lib, b"cusparseDgemvi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgemvi_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDgemvi_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgemvi: {
-                let p = get_proc_addr(lib, b"cusparseCgemvi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgemvi_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCgemvi_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgemvi: {
-                let p = get_proc_addr(lib, b"cusparseZgemvi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgemvi_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZgemvi_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrmv: {
-                let p = get_proc_addr(lib, b"cusparseSbsrmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrmv: {
-                let p = get_proc_addr(lib, b"cusparseDbsrmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrmv: {
-                let p = get_proc_addr(lib, b"cusparseCbsrmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrmv: {
-                let p = get_proc_addr(lib, b"cusparseZbsrmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrxmv: {
-                let p = get_proc_addr(lib, b"cusparseSbsrxmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrxmv: {
-                let p = get_proc_addr(lib, b"cusparseDbsrxmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrxmv: {
-                let p = get_proc_addr(lib, b"cusparseCbsrxmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrxmv: {
-                let p = get_proc_addr(lib, b"cusparseZbsrxmv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXbsrsv2_zeroPivot: {
-                let p = get_proc_addr(lib, b"cusparseXbsrsv2_zeroPivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsv2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsv2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsv2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsv2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsv2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsv2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsv2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsv2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsv2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsv2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsv2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsv2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsv2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsv2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsv2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsv2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsv2_solve: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsv2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsv2_solve: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsv2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsv2_solve: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsv2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsv2_solve: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsv2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrmm: {
-                let p = get_proc_addr(lib, b"cusparseSbsrmm\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrmm: {
-                let p = get_proc_addr(lib, b"cusparseDbsrmm\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrmm: {
-                let p = get_proc_addr(lib, b"cusparseCbsrmm\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrmm: {
-                let p = get_proc_addr(lib, b"cusparseZbsrmm\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXbsrsm2_zeroPivot: {
-                let p = get_proc_addr(lib, b"cusparseXbsrsm2_zeroPivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsm2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsm2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsm2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsm2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsm2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsm2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsm2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsm2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsm2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsm2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsm2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsm2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsm2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsm2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsm2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsm2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsm2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsm2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsm2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsm2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsm2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsm2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsm2_analysis: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsm2_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrsm2_solve: {
-                let p = get_proc_addr(lib, b"cusparseSbsrsm2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrsm2_solve: {
-                let p = get_proc_addr(lib, b"cusparseDbsrsm2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrsm2_solve: {
-                let p = get_proc_addr(lib, b"cusparseCbsrsm2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrsm2_solve: {
-                let p = get_proc_addr(lib, b"cusparseZbsrsm2_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseScsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseDcsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseCcsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseZcsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsrilu02_zeroPivot: {
-                let p = get_proc_addr(lib, b"cusparseXcsrilu02_zeroPivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseScsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDcsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCcsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZcsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseScsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDcsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCcsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZcsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseScsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseDcsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseCcsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseZcsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseScsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseDcsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseCcsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseZcsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseSbsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseDbsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseCbsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrilu02_numericBoost: {
-                let p = get_proc_addr(lib, b"cusparseZbsrilu02_numericBoost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXbsrilu02_zeroPivot: {
-                let p = get_proc_addr(lib, b"cusparseXbsrilu02_zeroPivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSbsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDbsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCbsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrilu02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZbsrilu02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSbsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDbsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCbsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrilu02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZbsrilu02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseSbsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseDbsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseCbsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrilu02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseZbsrilu02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseSbsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseDbsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseCbsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsrilu02: {
-                let p = get_proc_addr(lib, b"cusparseZbsrilu02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsric02_zeroPivot: {
-                let p = get_proc_addr(lib, b"cusparseXcsric02_zeroPivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseScsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDcsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCcsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZcsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseScsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDcsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCcsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZcsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseScsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseDcsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseCcsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseZcsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsric02: {
-                let p = get_proc_addr(lib, b"cusparseScsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsric02: {
-                let p = get_proc_addr(lib, b"cusparseDcsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsric02: {
-                let p = get_proc_addr(lib, b"cusparseCcsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsric02: {
-                let p = get_proc_addr(lib, b"cusparseZcsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXbsric02_zeroPivot: {
-                let p = get_proc_addr(lib, b"cusparseXbsric02_zeroPivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSbsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDbsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCbsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsric02_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZbsric02_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSbsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDbsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCbsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsric02_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZbsric02_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseSbsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseDbsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseCbsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsric02_analysis: {
-                let p = get_proc_addr(lib, b"cusparseZbsric02_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsric02: {
-                let p = get_proc_addr(lib, b"cusparseSbsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsric02: {
-                let p = get_proc_addr(lib, b"cusparseDbsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsric02: {
-                let p = get_proc_addr(lib, b"cusparseCbsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsric02: {
-                let p = get_proc_addr(lib, b"cusparseZbsric02\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSgtsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDgtsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCgtsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsv2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZgtsv2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsv2: {
-                let p = get_proc_addr(lib, b"cusparseSgtsv2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsv2: {
-                let p = get_proc_addr(lib, b"cusparseDgtsv2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsv2: {
-                let p = get_proc_addr(lib, b"cusparseCgtsv2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsv2: {
-                let p = get_proc_addr(lib, b"cusparseZgtsv2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsv2_nopivot_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSgtsv2_nopivot_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsv2_nopivot_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDgtsv2_nopivot_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsv2_nopivot_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCgtsv2_nopivot_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsv2_nopivot_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZgtsv2_nopivot_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsv2_nopivot: {
-                let p = get_proc_addr(lib, b"cusparseSgtsv2_nopivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsv2_nopivot: {
-                let p = get_proc_addr(lib, b"cusparseDgtsv2_nopivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsv2_nopivot: {
-                let p = get_proc_addr(lib, b"cusparseCgtsv2_nopivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsv2_nopivot: {
-                let p = get_proc_addr(lib, b"cusparseZgtsv2_nopivot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsv2StridedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsv2StridedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsv2StridedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsv2StridedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsv2StridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseSgtsv2StridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsv2StridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseDgtsv2StridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsv2StridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseCgtsv2StridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsv2StridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseZgtsv2StridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgtsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseSgtsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgtsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseDgtsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgtsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseCgtsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgtsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseZgtsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgpsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgpsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgpsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgpsvInterleavedBatch_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgpsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseSgpsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgpsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseDgpsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgpsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseCgpsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgpsvInterleavedBatch: {
-                let p = get_proc_addr(lib, b"cusparseZgpsvInterleavedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrgeam2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseScsrgeam2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrgeam2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDcsrgeam2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrgeam2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCcsrgeam2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrgeam2_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZcsrgeam2_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsrgeam2Nnz: {
-                let p = get_proc_addr(lib, b"cusparseXcsrgeam2Nnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrgeam2: {
-                let p = get_proc_addr(lib, b"cusparseScsrgeam2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrgeam2: {
-                let p = get_proc_addr(lib, b"cusparseDcsrgeam2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrgeam2: {
-                let p = get_proc_addr(lib, b"cusparseCcsrgeam2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrgeam2: {
-                let p = get_proc_addr(lib, b"cusparseZcsrgeam2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsrcolor: {
-                let p = get_proc_addr(lib, b"cusparseScsrcolor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsrcolor: {
-                let p = get_proc_addr(lib, b"cusparseDcsrcolor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsrcolor: {
-                let p = get_proc_addr(lib, b"cusparseCcsrcolor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsrcolor: {
-                let p = get_proc_addr(lib, b"cusparseZcsrcolor\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSnnz: {
-                let p = get_proc_addr(lib, b"cusparseSnnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnnz: {
-                let p = get_proc_addr(lib, b"cusparseDnnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCnnz: {
-                let p = get_proc_addr(lib, b"cusparseCnnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZnnz: {
-                let p = get_proc_addr(lib, b"cusparseZnnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSnnz_compress: {
-                let p = get_proc_addr(lib, b"cusparseSnnz_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnnz_compress: {
-                let p = get_proc_addr(lib, b"cusparseDnnz_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCnnz_compress: {
-                let p = get_proc_addr(lib, b"cusparseCnnz_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZnnz_compress: {
-                let p = get_proc_addr(lib, b"cusparseZnnz_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsr2csr_compress: {
-                let p = get_proc_addr(lib, b"cusparseScsr2csr_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsr2csr_compress: {
-                let p = get_proc_addr(lib, b"cusparseDcsr2csr_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsr2csr_compress: {
-                let p = get_proc_addr(lib, b"cusparseCcsr2csr_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsr2csr_compress: {
-                let p = get_proc_addr(lib, b"cusparseZcsr2csr_compress\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcoo2csr: {
-                let p = get_proc_addr(lib, b"cusparseXcoo2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsr2coo: {
-                let p = get_proc_addr(lib, b"cusparseXcsr2coo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsr2bsrNnz: {
-                let p = get_proc_addr(lib, b"cusparseXcsr2bsrNnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsr2bsr: {
-                let p = get_proc_addr(lib, b"cusparseScsr2bsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsr2bsr: {
-                let p = get_proc_addr(lib, b"cusparseDcsr2bsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsr2bsr: {
-                let p = get_proc_addr(lib, b"cusparseCcsr2bsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsr2bsr: {
-                let p = get_proc_addr(lib, b"cusparseZcsr2bsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSbsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseSbsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDbsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseDbsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCbsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseCbsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZbsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseZbsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgebsr2gebsc_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSgebsr2gebsc_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgebsr2gebsc_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDgebsr2gebsc_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgebsr2gebsc_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCgebsr2gebsc_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgebsr2gebsc_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZgebsr2gebsc_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgebsr2gebsc_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSgebsr2gebsc_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgebsr2gebsc_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDgebsr2gebsc_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgebsr2gebsc_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCgebsr2gebsc_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgebsr2gebsc_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZgebsr2gebsc_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgebsr2gebsc: {
-                let p = get_proc_addr(lib, b"cusparseSgebsr2gebsc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgebsr2gebsc: {
-                let p = get_proc_addr(lib, b"cusparseDgebsr2gebsc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgebsr2gebsc: {
-                let p = get_proc_addr(lib, b"cusparseCgebsr2gebsc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgebsr2gebsc: {
-                let p = get_proc_addr(lib, b"cusparseZgebsr2gebsc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXgebsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseXgebsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgebsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseSgebsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgebsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseDgebsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgebsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseCgebsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgebsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseZgebsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseScsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDcsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCcsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZcsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseScsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDcsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCcsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZcsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsr2gebsrNnz: {
-                let p = get_proc_addr(lib, b"cusparseXcsr2gebsrNnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseScsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseDcsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseCcsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseZcsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgebsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSgebsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgebsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDgebsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgebsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCgebsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgebsr2gebsr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseZgebsr2gebsr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgebsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSgebsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgebsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDgebsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgebsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCgebsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgebsr2gebsr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZgebsr2gebsr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXgebsr2gebsrNnz: {
-                let p = get_proc_addr(lib, b"cusparseXgebsr2gebsrNnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSgebsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseSgebsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDgebsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseDgebsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCgebsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseCgebsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZgebsr2gebsr: {
-                let p = get_proc_addr(lib, b"cusparseZgebsr2gebsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateIdentityPermutation: {
-                let p = get_proc_addr(lib, b"cusparseCreateIdentityPermutation\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcoosort_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseXcoosort_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcoosortByRow: {
-                let p = get_proc_addr(lib, b"cusparseXcoosortByRow\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcoosortByColumn: {
-                let p = get_proc_addr(lib, b"cusparseXcoosortByColumn\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsrsort_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseXcsrsort_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcsrsort: {
-                let p = get_proc_addr(lib, b"cusparseXcsrsort\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcscsort_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseXcscsort_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseXcscsort: {
-                let p = get_proc_addr(lib, b"cusparseXcscsort\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsru2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseScsru2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsru2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDcsru2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsru2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseCcsru2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsru2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseZcsru2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsru2csr: {
-                let p = get_proc_addr(lib, b"cusparseScsru2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsru2csr: {
-                let p = get_proc_addr(lib, b"cusparseDcsru2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsru2csr: {
-                let p = get_proc_addr(lib, b"cusparseCcsru2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsru2csr: {
-                let p = get_proc_addr(lib, b"cusparseZcsru2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScsr2csru: {
-                let p = get_proc_addr(lib, b"cusparseScsr2csru\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDcsr2csru: {
-                let p = get_proc_addr(lib, b"cusparseDcsr2csru\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCcsr2csru: {
-                let p = get_proc_addr(lib, b"cusparseCcsr2csru\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseZcsr2csru: {
-                let p = get_proc_addr(lib, b"cusparseZcsr2csru\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneDense2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSpruneDense2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneDense2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDpruneDense2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneDense2csrNnz: {
-                let p = get_proc_addr(lib, b"cusparseSpruneDense2csrNnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneDense2csrNnz: {
-                let p = get_proc_addr(lib, b"cusparseDpruneDense2csrNnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneDense2csr: {
-                let p = get_proc_addr(lib, b"cusparseSpruneDense2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneDense2csr: {
-                let p = get_proc_addr(lib, b"cusparseDpruneDense2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneCsr2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSpruneCsr2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneCsr2csr_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDpruneCsr2csr_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneCsr2csrNnz: {
-                let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrNnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneCsr2csrNnz: {
-                let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrNnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneCsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseSpruneCsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneCsr2csr: {
-                let p = get_proc_addr(lib, b"cusparseDpruneCsr2csr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneDense2csrByPercentage_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSpruneDense2csrByPercentage_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneDense2csrByPercentage_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDpruneDense2csrByPercentage_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneDense2csrNnzByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseSpruneDense2csrNnzByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneDense2csrNnzByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseDpruneDense2csrNnzByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneDense2csrByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseSpruneDense2csrByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneDense2csrByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseDpruneDense2csrByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneCsr2csrByPercentage_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrByPercentage_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneCsr2csrByPercentage_bufferSizeExt: {
-                let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrByPercentage_bufferSizeExt\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneCsr2csrNnzByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrNnzByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneCsr2csrNnzByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrNnzByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpruneCsr2csrByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDpruneCsr2csrByPercentage: {
-                let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrByPercentage\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCsr2cscEx2: {
-                let p = get_proc_addr(lib, b"cusparseCsr2cscEx2\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCsr2cscEx2_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseCsr2cscEx2_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateSpVec: {
-                let p = get_proc_addr(lib, b"cusparseCreateSpVec\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstSpVec: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstSpVec\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroySpVec: {
-                let p = get_proc_addr(lib, b"cusparseDestroySpVec\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpVecGet: {
-                let p = get_proc_addr(lib, b"cusparseSpVecGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstSpVecGet: {
-                let p = get_proc_addr(lib, b"cusparseConstSpVecGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpVecGetIndexBase: {
-                let p = get_proc_addr(lib, b"cusparseSpVecGetIndexBase\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpVecGetValues: {
-                let p = get_proc_addr(lib, b"cusparseSpVecGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstSpVecGetValues: {
-                let p = get_proc_addr(lib, b"cusparseConstSpVecGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpVecSetValues: {
-                let p = get_proc_addr(lib, b"cusparseSpVecSetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateDnVec: {
-                let p = get_proc_addr(lib, b"cusparseCreateDnVec\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstDnVec: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstDnVec\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyDnVec: {
-                let p = get_proc_addr(lib, b"cusparseDestroyDnVec\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnVecGet: {
-                let p = get_proc_addr(lib, b"cusparseDnVecGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstDnVecGet: {
-                let p = get_proc_addr(lib, b"cusparseConstDnVecGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnVecGetValues: {
-                let p = get_proc_addr(lib, b"cusparseDnVecGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstDnVecGetValues: {
-                let p = get_proc_addr(lib, b"cusparseConstDnVecGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnVecSetValues: {
-                let p = get_proc_addr(lib, b"cusparseDnVecSetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroySpMat: {
-                let p = get_proc_addr(lib, b"cusparseDestroySpMat\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatGetFormat: {
-                let p = get_proc_addr(lib, b"cusparseSpMatGetFormat\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatGetIndexBase: {
-                let p = get_proc_addr(lib, b"cusparseSpMatGetIndexBase\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatGetValues: {
-                let p = get_proc_addr(lib, b"cusparseSpMatGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstSpMatGetValues: {
-                let p = get_proc_addr(lib, b"cusparseConstSpMatGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatSetValues: {
-                let p = get_proc_addr(lib, b"cusparseSpMatSetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatGetSize: {
-                let p = get_proc_addr(lib, b"cusparseSpMatGetSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatGetStridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseSpMatGetStridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCooSetStridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseCooSetStridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCsrSetStridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseCsrSetStridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseBsrSetStridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseBsrSetStridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatGetAttribute: {
-                let p = get_proc_addr(lib, b"cusparseSpMatGetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMatSetAttribute: {
-                let p = get_proc_addr(lib, b"cusparseSpMatSetAttribute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateCsr: {
-                let p = get_proc_addr(lib, b"cusparseCreateCsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstCsr: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstCsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateCsc: {
-                let p = get_proc_addr(lib, b"cusparseCreateCsc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstCsc: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstCsc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCsrGet: {
-                let p = get_proc_addr(lib, b"cusparseCsrGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstCsrGet: {
-                let p = get_proc_addr(lib, b"cusparseConstCsrGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCscGet: {
-                let p = get_proc_addr(lib, b"cusparseCscGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstCscGet: {
-                let p = get_proc_addr(lib, b"cusparseConstCscGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCsrSetPointers: {
-                let p = get_proc_addr(lib, b"cusparseCsrSetPointers\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCscSetPointers: {
-                let p = get_proc_addr(lib, b"cusparseCscSetPointers\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateBsr: {
-                let p = get_proc_addr(lib, b"cusparseCreateBsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstBsr: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstBsr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateCoo: {
-                let p = get_proc_addr(lib, b"cusparseCreateCoo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstCoo: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstCoo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCooGet: {
-                let p = get_proc_addr(lib, b"cusparseCooGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstCooGet: {
-                let p = get_proc_addr(lib, b"cusparseConstCooGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCooSetPointers: {
-                let p = get_proc_addr(lib, b"cusparseCooSetPointers\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateBlockedEll: {
-                let p = get_proc_addr(lib, b"cusparseCreateBlockedEll\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstBlockedEll: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstBlockedEll\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseBlockedEllGet: {
-                let p = get_proc_addr(lib, b"cusparseBlockedEllGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstBlockedEllGet: {
-                let p = get_proc_addr(lib, b"cusparseConstBlockedEllGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateSlicedEll: {
-                let p = get_proc_addr(lib, b"cusparseCreateSlicedEll\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstSlicedEll: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstSlicedEll\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateDnMat: {
-                let p = get_proc_addr(lib, b"cusparseCreateDnMat\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseCreateConstDnMat: {
-                let p = get_proc_addr(lib, b"cusparseCreateConstDnMat\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDestroyDnMat: {
-                let p = get_proc_addr(lib, b"cusparseDestroyDnMat\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnMatGet: {
-                let p = get_proc_addr(lib, b"cusparseDnMatGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstDnMatGet: {
-                let p = get_proc_addr(lib, b"cusparseConstDnMatGet\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnMatGetValues: {
-                let p = get_proc_addr(lib, b"cusparseDnMatGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseConstDnMatGetValues: {
-                let p = get_proc_addr(lib, b"cusparseConstDnMatGetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnMatSetValues: {
-                let p = get_proc_addr(lib, b"cusparseDnMatSetValues\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnMatSetStridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseDnMatSetStridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDnMatGetStridedBatch: {
-                let p = get_proc_addr(lib, b"cusparseDnMatGetStridedBatch\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseAxpby: {
-                let p = get_proc_addr(lib, b"cusparseAxpby\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseGather: {
-                let p = get_proc_addr(lib, b"cusparseGather\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseScatter: {
-                let p = get_proc_addr(lib, b"cusparseScatter\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseRot: {
-                let p = get_proc_addr(lib, b"cusparseRot\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpVV_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSpVV_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpVV: {
-                let p = get_proc_addr(lib, b"cusparseSpVV\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSparseToDense_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSparseToDense_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSparseToDense: {
-                let p = get_proc_addr(lib, b"cusparseSparseToDense\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDenseToSparse_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseDenseToSparse_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDenseToSparse_analysis: {
-                let p = get_proc_addr(lib, b"cusparseDenseToSparse_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseDenseToSparse_convert: {
-                let p = get_proc_addr(lib, b"cusparseDenseToSparse_convert\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMV: {
-                let p = get_proc_addr(lib, b"cusparseSpMV\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMV_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSpMV_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMV_preprocess: {
-                let p = get_proc_addr(lib, b"cusparseSpMV_preprocess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSV_createDescr: {
-                let p = get_proc_addr(lib, b"cusparseSpSV_createDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSV_destroyDescr: {
-                let p = get_proc_addr(lib, b"cusparseSpSV_destroyDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSV_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSpSV_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSV_analysis: {
-                let p = get_proc_addr(lib, b"cusparseSpSV_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSV_solve: {
-                let p = get_proc_addr(lib, b"cusparseSpSV_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSV_updateMatrix: {
-                let p = get_proc_addr(lib, b"cusparseSpSV_updateMatrix\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSM_createDescr: {
-                let p = get_proc_addr(lib, b"cusparseSpSM_createDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSM_destroyDescr: {
-                let p = get_proc_addr(lib, b"cusparseSpSM_destroyDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSM_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSpSM_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSM_analysis: {
-                let p = get_proc_addr(lib, b"cusparseSpSM_analysis\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSM_solve: {
-                let p = get_proc_addr(lib, b"cusparseSpSM_solve\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpSM_updateMatrix: {
-                let p = get_proc_addr(lib, b"cusparseSpSM_updateMatrix\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMM_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSpMM_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMM_preprocess: {
-                let p = get_proc_addr(lib, b"cusparseSpMM_preprocess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMM: {
-                let p = get_proc_addr(lib, b"cusparseSpMM\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMM_createDescr: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMM_createDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMM_destroyDescr: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMM_destroyDescr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMM_workEstimation: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMM_workEstimation\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMM_getNumProducts: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMM_getNumProducts\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMM_estimateMemory: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMM_estimateMemory\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMM_compute: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMM_compute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMM_copy: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMM_copy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMMreuse_workEstimation: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_workEstimation\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMMreuse_nnz: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_nnz\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMMreuse_copy: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_copy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpGEMMreuse_compute: {
-                let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_compute\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSDDMM_bufferSize: {
-                let p = get_proc_addr(lib, b"cusparseSDDMM_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSDDMM_preprocess: {
-                let p = get_proc_addr(lib, b"cusparseSDDMM_preprocess\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSDDMM: {
-                let p = get_proc_addr(lib, b"cusparseSDDMM\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMMOp_createPlan: {
-                let p = get_proc_addr(lib, b"cusparseSpMMOp_createPlan\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMMOp: {
-                let p = get_proc_addr(lib, b"cusparseSpMMOp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusparseSpMMOp_destroyPlan: {
-                let p = get_proc_addr(lib, b"cusparseSpMMOp_destroyPlan\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-        })
-    };
+    let bindings = Box::new(DynamicBindings {
+        cusparseCreate: {
+            let p = get_proc_addr(lib, b"cusparseCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroy: {
+            let p = get_proc_addr(lib, b"cusparseDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetVersion: {
+            let p = get_proc_addr(lib, b"cusparseGetVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetProperty: {
+            let p = get_proc_addr(lib, b"cusparseGetProperty\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetErrorName: {
+            let p = get_proc_addr(lib, b"cusparseGetErrorName\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetErrorString: {
+            let p = get_proc_addr(lib, b"cusparseGetErrorString\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSetStream: {
+            let p = get_proc_addr(lib, b"cusparseSetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetStream: {
+            let p = get_proc_addr(lib, b"cusparseGetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetPointerMode: {
+            let p = get_proc_addr(lib, b"cusparseGetPointerMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSetPointerMode: {
+            let p = get_proc_addr(lib, b"cusparseSetPointerMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseLoggerSetCallback: {
+            let p = get_proc_addr(lib, b"cusparseLoggerSetCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseLoggerSetFile: {
+            let p = get_proc_addr(lib, b"cusparseLoggerSetFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseLoggerOpenFile: {
+            let p = get_proc_addr(lib, b"cusparseLoggerOpenFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseLoggerSetLevel: {
+            let p = get_proc_addr(lib, b"cusparseLoggerSetLevel\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseLoggerSetMask: {
+            let p = get_proc_addr(lib, b"cusparseLoggerSetMask\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseLoggerForceDisable: {
+            let p = get_proc_addr(lib, b"cusparseLoggerForceDisable\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateMatDescr: {
+            let p = get_proc_addr(lib, b"cusparseCreateMatDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyMatDescr: {
+            let p = get_proc_addr(lib, b"cusparseDestroyMatDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSetMatType: {
+            let p = get_proc_addr(lib, b"cusparseSetMatType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetMatType: {
+            let p = get_proc_addr(lib, b"cusparseGetMatType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSetMatFillMode: {
+            let p = get_proc_addr(lib, b"cusparseSetMatFillMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetMatFillMode: {
+            let p = get_proc_addr(lib, b"cusparseGetMatFillMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSetMatDiagType: {
+            let p = get_proc_addr(lib, b"cusparseSetMatDiagType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetMatDiagType: {
+            let p = get_proc_addr(lib, b"cusparseGetMatDiagType\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSetMatIndexBase: {
+            let p = get_proc_addr(lib, b"cusparseSetMatIndexBase\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGetMatIndexBase: {
+            let p = get_proc_addr(lib, b"cusparseGetMatIndexBase\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateCsric02Info: {
+            let p = get_proc_addr(lib, b"cusparseCreateCsric02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyCsric02Info: {
+            let p = get_proc_addr(lib, b"cusparseDestroyCsric02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateBsric02Info: {
+            let p = get_proc_addr(lib, b"cusparseCreateBsric02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyBsric02Info: {
+            let p = get_proc_addr(lib, b"cusparseDestroyBsric02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateCsrilu02Info: {
+            let p = get_proc_addr(lib, b"cusparseCreateCsrilu02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyCsrilu02Info: {
+            let p = get_proc_addr(lib, b"cusparseDestroyCsrilu02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateBsrilu02Info: {
+            let p = get_proc_addr(lib, b"cusparseCreateBsrilu02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyBsrilu02Info: {
+            let p = get_proc_addr(lib, b"cusparseDestroyBsrilu02Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateBsrsv2Info: {
+            let p = get_proc_addr(lib, b"cusparseCreateBsrsv2Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyBsrsv2Info: {
+            let p = get_proc_addr(lib, b"cusparseDestroyBsrsv2Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateBsrsm2Info: {
+            let p = get_proc_addr(lib, b"cusparseCreateBsrsm2Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyBsrsm2Info: {
+            let p = get_proc_addr(lib, b"cusparseDestroyBsrsm2Info\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateCsru2csrInfo: {
+            let p = get_proc_addr(lib, b"cusparseCreateCsru2csrInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyCsru2csrInfo: {
+            let p = get_proc_addr(lib, b"cusparseDestroyCsru2csrInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateColorInfo: {
+            let p = get_proc_addr(lib, b"cusparseCreateColorInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyColorInfo: {
+            let p = get_proc_addr(lib, b"cusparseDestroyColorInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreatePruneInfo: {
+            let p = get_proc_addr(lib, b"cusparseCreatePruneInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyPruneInfo: {
+            let p = get_proc_addr(lib, b"cusparseDestroyPruneInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgemvi: {
+            let p = get_proc_addr(lib, b"cusparseSgemvi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgemvi_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSgemvi_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgemvi: {
+            let p = get_proc_addr(lib, b"cusparseDgemvi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgemvi_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDgemvi_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgemvi: {
+            let p = get_proc_addr(lib, b"cusparseCgemvi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgemvi_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCgemvi_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgemvi: {
+            let p = get_proc_addr(lib, b"cusparseZgemvi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgemvi_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZgemvi_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrmv: {
+            let p = get_proc_addr(lib, b"cusparseSbsrmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrmv: {
+            let p = get_proc_addr(lib, b"cusparseDbsrmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrmv: {
+            let p = get_proc_addr(lib, b"cusparseCbsrmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrmv: {
+            let p = get_proc_addr(lib, b"cusparseZbsrmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrxmv: {
+            let p = get_proc_addr(lib, b"cusparseSbsrxmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrxmv: {
+            let p = get_proc_addr(lib, b"cusparseDbsrxmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrxmv: {
+            let p = get_proc_addr(lib, b"cusparseCbsrxmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrxmv: {
+            let p = get_proc_addr(lib, b"cusparseZbsrxmv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXbsrsv2_zeroPivot: {
+            let p = get_proc_addr(lib, b"cusparseXbsrsv2_zeroPivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsv2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsv2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsv2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsv2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsv2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsv2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsv2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsv2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsv2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsv2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsv2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsv2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsv2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsv2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsv2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsv2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsv2_solve: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsv2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsv2_solve: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsv2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsv2_solve: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsv2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsv2_solve: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsv2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrmm: {
+            let p = get_proc_addr(lib, b"cusparseSbsrmm\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrmm: {
+            let p = get_proc_addr(lib, b"cusparseDbsrmm\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrmm: {
+            let p = get_proc_addr(lib, b"cusparseCbsrmm\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrmm: {
+            let p = get_proc_addr(lib, b"cusparseZbsrmm\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXbsrsm2_zeroPivot: {
+            let p = get_proc_addr(lib, b"cusparseXbsrsm2_zeroPivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsm2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsm2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsm2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsm2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsm2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsm2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsm2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsm2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsm2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsm2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsm2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsm2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsm2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsm2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsm2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsm2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsm2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsm2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsm2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsm2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsm2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsm2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsm2_analysis: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsm2_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrsm2_solve: {
+            let p = get_proc_addr(lib, b"cusparseSbsrsm2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrsm2_solve: {
+            let p = get_proc_addr(lib, b"cusparseDbsrsm2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrsm2_solve: {
+            let p = get_proc_addr(lib, b"cusparseCbsrsm2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrsm2_solve: {
+            let p = get_proc_addr(lib, b"cusparseZbsrsm2_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseScsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseDcsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseCcsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseZcsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsrilu02_zeroPivot: {
+            let p = get_proc_addr(lib, b"cusparseXcsrilu02_zeroPivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseScsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDcsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCcsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZcsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseScsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDcsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCcsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZcsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseScsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseDcsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseCcsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseZcsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseScsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseDcsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseCcsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseZcsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseSbsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseDbsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseCbsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrilu02_numericBoost: {
+            let p = get_proc_addr(lib, b"cusparseZbsrilu02_numericBoost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXbsrilu02_zeroPivot: {
+            let p = get_proc_addr(lib, b"cusparseXbsrilu02_zeroPivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSbsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDbsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCbsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrilu02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZbsrilu02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSbsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDbsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCbsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrilu02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZbsrilu02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseSbsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseDbsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseCbsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrilu02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseZbsrilu02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseSbsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseDbsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseCbsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsrilu02: {
+            let p = get_proc_addr(lib, b"cusparseZbsrilu02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsric02_zeroPivot: {
+            let p = get_proc_addr(lib, b"cusparseXcsric02_zeroPivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseScsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDcsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCcsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZcsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseScsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDcsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCcsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZcsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseScsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseDcsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseCcsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseZcsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsric02: {
+            let p = get_proc_addr(lib, b"cusparseScsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsric02: {
+            let p = get_proc_addr(lib, b"cusparseDcsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsric02: {
+            let p = get_proc_addr(lib, b"cusparseCcsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsric02: {
+            let p = get_proc_addr(lib, b"cusparseZcsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXbsric02_zeroPivot: {
+            let p = get_proc_addr(lib, b"cusparseXbsric02_zeroPivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSbsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDbsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCbsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsric02_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZbsric02_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSbsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDbsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCbsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsric02_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZbsric02_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseSbsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseDbsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseCbsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsric02_analysis: {
+            let p = get_proc_addr(lib, b"cusparseZbsric02_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsric02: {
+            let p = get_proc_addr(lib, b"cusparseSbsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsric02: {
+            let p = get_proc_addr(lib, b"cusparseDbsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsric02: {
+            let p = get_proc_addr(lib, b"cusparseCbsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsric02: {
+            let p = get_proc_addr(lib, b"cusparseZbsric02\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSgtsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDgtsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCgtsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsv2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZgtsv2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsv2: {
+            let p = get_proc_addr(lib, b"cusparseSgtsv2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsv2: {
+            let p = get_proc_addr(lib, b"cusparseDgtsv2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsv2: {
+            let p = get_proc_addr(lib, b"cusparseCgtsv2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsv2: {
+            let p = get_proc_addr(lib, b"cusparseZgtsv2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsv2_nopivot_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSgtsv2_nopivot_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsv2_nopivot_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDgtsv2_nopivot_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsv2_nopivot_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCgtsv2_nopivot_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsv2_nopivot_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZgtsv2_nopivot_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsv2_nopivot: {
+            let p = get_proc_addr(lib, b"cusparseSgtsv2_nopivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsv2_nopivot: {
+            let p = get_proc_addr(lib, b"cusparseDgtsv2_nopivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsv2_nopivot: {
+            let p = get_proc_addr(lib, b"cusparseCgtsv2_nopivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsv2_nopivot: {
+            let p = get_proc_addr(lib, b"cusparseZgtsv2_nopivot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsv2StridedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsv2StridedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsv2StridedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsv2StridedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZgtsv2StridedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsv2StridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseSgtsv2StridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsv2StridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseDgtsv2StridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsv2StridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseCgtsv2StridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsv2StridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseZgtsv2StridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZgtsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgtsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseSgtsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgtsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseDgtsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgtsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseCgtsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgtsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseZgtsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgpsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgpsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgpsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgpsvInterleavedBatch_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZgpsvInterleavedBatch_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgpsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseSgpsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgpsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseDgpsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgpsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseCgpsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgpsvInterleavedBatch: {
+            let p = get_proc_addr(lib, b"cusparseZgpsvInterleavedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrgeam2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseScsrgeam2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrgeam2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDcsrgeam2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrgeam2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCcsrgeam2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrgeam2_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZcsrgeam2_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsrgeam2Nnz: {
+            let p = get_proc_addr(lib, b"cusparseXcsrgeam2Nnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrgeam2: {
+            let p = get_proc_addr(lib, b"cusparseScsrgeam2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrgeam2: {
+            let p = get_proc_addr(lib, b"cusparseDcsrgeam2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrgeam2: {
+            let p = get_proc_addr(lib, b"cusparseCcsrgeam2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrgeam2: {
+            let p = get_proc_addr(lib, b"cusparseZcsrgeam2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsrcolor: {
+            let p = get_proc_addr(lib, b"cusparseScsrcolor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsrcolor: {
+            let p = get_proc_addr(lib, b"cusparseDcsrcolor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsrcolor: {
+            let p = get_proc_addr(lib, b"cusparseCcsrcolor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsrcolor: {
+            let p = get_proc_addr(lib, b"cusparseZcsrcolor\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSnnz: {
+            let p = get_proc_addr(lib, b"cusparseSnnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnnz: {
+            let p = get_proc_addr(lib, b"cusparseDnnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCnnz: {
+            let p = get_proc_addr(lib, b"cusparseCnnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZnnz: {
+            let p = get_proc_addr(lib, b"cusparseZnnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSnnz_compress: {
+            let p = get_proc_addr(lib, b"cusparseSnnz_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnnz_compress: {
+            let p = get_proc_addr(lib, b"cusparseDnnz_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCnnz_compress: {
+            let p = get_proc_addr(lib, b"cusparseCnnz_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZnnz_compress: {
+            let p = get_proc_addr(lib, b"cusparseZnnz_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsr2csr_compress: {
+            let p = get_proc_addr(lib, b"cusparseScsr2csr_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsr2csr_compress: {
+            let p = get_proc_addr(lib, b"cusparseDcsr2csr_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsr2csr_compress: {
+            let p = get_proc_addr(lib, b"cusparseCcsr2csr_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsr2csr_compress: {
+            let p = get_proc_addr(lib, b"cusparseZcsr2csr_compress\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcoo2csr: {
+            let p = get_proc_addr(lib, b"cusparseXcoo2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsr2coo: {
+            let p = get_proc_addr(lib, b"cusparseXcsr2coo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsr2bsrNnz: {
+            let p = get_proc_addr(lib, b"cusparseXcsr2bsrNnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsr2bsr: {
+            let p = get_proc_addr(lib, b"cusparseScsr2bsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsr2bsr: {
+            let p = get_proc_addr(lib, b"cusparseDcsr2bsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsr2bsr: {
+            let p = get_proc_addr(lib, b"cusparseCcsr2bsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsr2bsr: {
+            let p = get_proc_addr(lib, b"cusparseZcsr2bsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSbsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseSbsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDbsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseDbsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCbsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseCbsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZbsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseZbsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgebsr2gebsc_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSgebsr2gebsc_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgebsr2gebsc_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDgebsr2gebsc_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgebsr2gebsc_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCgebsr2gebsc_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgebsr2gebsc_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZgebsr2gebsc_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgebsr2gebsc_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSgebsr2gebsc_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgebsr2gebsc_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDgebsr2gebsc_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgebsr2gebsc_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCgebsr2gebsc_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgebsr2gebsc_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZgebsr2gebsc_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgebsr2gebsc: {
+            let p = get_proc_addr(lib, b"cusparseSgebsr2gebsc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgebsr2gebsc: {
+            let p = get_proc_addr(lib, b"cusparseDgebsr2gebsc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgebsr2gebsc: {
+            let p = get_proc_addr(lib, b"cusparseCgebsr2gebsc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgebsr2gebsc: {
+            let p = get_proc_addr(lib, b"cusparseZgebsr2gebsc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXgebsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseXgebsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgebsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseSgebsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgebsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseDgebsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgebsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseCgebsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgebsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseZgebsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseScsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDcsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCcsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZcsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseScsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDcsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCcsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZcsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsr2gebsrNnz: {
+            let p = get_proc_addr(lib, b"cusparseXcsr2gebsrNnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseScsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseDcsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseCcsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseZcsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgebsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSgebsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgebsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDgebsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgebsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCgebsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgebsr2gebsr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseZgebsr2gebsr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgebsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSgebsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgebsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDgebsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgebsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCgebsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgebsr2gebsr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZgebsr2gebsr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXgebsr2gebsrNnz: {
+            let p = get_proc_addr(lib, b"cusparseXgebsr2gebsrNnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSgebsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseSgebsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDgebsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseDgebsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCgebsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseCgebsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZgebsr2gebsr: {
+            let p = get_proc_addr(lib, b"cusparseZgebsr2gebsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateIdentityPermutation: {
+            let p = get_proc_addr(lib, b"cusparseCreateIdentityPermutation\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcoosort_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseXcoosort_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcoosortByRow: {
+            let p = get_proc_addr(lib, b"cusparseXcoosortByRow\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcoosortByColumn: {
+            let p = get_proc_addr(lib, b"cusparseXcoosortByColumn\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsrsort_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseXcsrsort_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcsrsort: {
+            let p = get_proc_addr(lib, b"cusparseXcsrsort\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcscsort_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseXcscsort_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseXcscsort: {
+            let p = get_proc_addr(lib, b"cusparseXcscsort\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsru2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseScsru2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsru2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDcsru2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsru2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseCcsru2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsru2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseZcsru2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsru2csr: {
+            let p = get_proc_addr(lib, b"cusparseScsru2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsru2csr: {
+            let p = get_proc_addr(lib, b"cusparseDcsru2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsru2csr: {
+            let p = get_proc_addr(lib, b"cusparseCcsru2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsru2csr: {
+            let p = get_proc_addr(lib, b"cusparseZcsru2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScsr2csru: {
+            let p = get_proc_addr(lib, b"cusparseScsr2csru\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDcsr2csru: {
+            let p = get_proc_addr(lib, b"cusparseDcsr2csru\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCcsr2csru: {
+            let p = get_proc_addr(lib, b"cusparseCcsr2csru\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseZcsr2csru: {
+            let p = get_proc_addr(lib, b"cusparseZcsr2csru\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneDense2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSpruneDense2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneDense2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDpruneDense2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneDense2csrNnz: {
+            let p = get_proc_addr(lib, b"cusparseSpruneDense2csrNnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneDense2csrNnz: {
+            let p = get_proc_addr(lib, b"cusparseDpruneDense2csrNnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneDense2csr: {
+            let p = get_proc_addr(lib, b"cusparseSpruneDense2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneDense2csr: {
+            let p = get_proc_addr(lib, b"cusparseDpruneDense2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneCsr2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSpruneCsr2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneCsr2csr_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDpruneCsr2csr_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneCsr2csrNnz: {
+            let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrNnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneCsr2csrNnz: {
+            let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrNnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneCsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseSpruneCsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneCsr2csr: {
+            let p = get_proc_addr(lib, b"cusparseDpruneCsr2csr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneDense2csrByPercentage_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSpruneDense2csrByPercentage_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneDense2csrByPercentage_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDpruneDense2csrByPercentage_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneDense2csrNnzByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseSpruneDense2csrNnzByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneDense2csrNnzByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseDpruneDense2csrNnzByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneDense2csrByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseSpruneDense2csrByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneDense2csrByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseDpruneDense2csrByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneCsr2csrByPercentage_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrByPercentage_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneCsr2csrByPercentage_bufferSizeExt: {
+            let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrByPercentage_bufferSizeExt\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneCsr2csrNnzByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrNnzByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneCsr2csrNnzByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrNnzByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpruneCsr2csrByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseSpruneCsr2csrByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDpruneCsr2csrByPercentage: {
+            let p = get_proc_addr(lib, b"cusparseDpruneCsr2csrByPercentage\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCsr2cscEx2: {
+            let p = get_proc_addr(lib, b"cusparseCsr2cscEx2\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCsr2cscEx2_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseCsr2cscEx2_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateSpVec: {
+            let p = get_proc_addr(lib, b"cusparseCreateSpVec\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstSpVec: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstSpVec\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroySpVec: {
+            let p = get_proc_addr(lib, b"cusparseDestroySpVec\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpVecGet: {
+            let p = get_proc_addr(lib, b"cusparseSpVecGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstSpVecGet: {
+            let p = get_proc_addr(lib, b"cusparseConstSpVecGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpVecGetIndexBase: {
+            let p = get_proc_addr(lib, b"cusparseSpVecGetIndexBase\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpVecGetValues: {
+            let p = get_proc_addr(lib, b"cusparseSpVecGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstSpVecGetValues: {
+            let p = get_proc_addr(lib, b"cusparseConstSpVecGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpVecSetValues: {
+            let p = get_proc_addr(lib, b"cusparseSpVecSetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateDnVec: {
+            let p = get_proc_addr(lib, b"cusparseCreateDnVec\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstDnVec: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstDnVec\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyDnVec: {
+            let p = get_proc_addr(lib, b"cusparseDestroyDnVec\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnVecGet: {
+            let p = get_proc_addr(lib, b"cusparseDnVecGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstDnVecGet: {
+            let p = get_proc_addr(lib, b"cusparseConstDnVecGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnVecGetValues: {
+            let p = get_proc_addr(lib, b"cusparseDnVecGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstDnVecGetValues: {
+            let p = get_proc_addr(lib, b"cusparseConstDnVecGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnVecSetValues: {
+            let p = get_proc_addr(lib, b"cusparseDnVecSetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroySpMat: {
+            let p = get_proc_addr(lib, b"cusparseDestroySpMat\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatGetFormat: {
+            let p = get_proc_addr(lib, b"cusparseSpMatGetFormat\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatGetIndexBase: {
+            let p = get_proc_addr(lib, b"cusparseSpMatGetIndexBase\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatGetValues: {
+            let p = get_proc_addr(lib, b"cusparseSpMatGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstSpMatGetValues: {
+            let p = get_proc_addr(lib, b"cusparseConstSpMatGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatSetValues: {
+            let p = get_proc_addr(lib, b"cusparseSpMatSetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatGetSize: {
+            let p = get_proc_addr(lib, b"cusparseSpMatGetSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatGetStridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseSpMatGetStridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCooSetStridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseCooSetStridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCsrSetStridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseCsrSetStridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseBsrSetStridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseBsrSetStridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatGetAttribute: {
+            let p = get_proc_addr(lib, b"cusparseSpMatGetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMatSetAttribute: {
+            let p = get_proc_addr(lib, b"cusparseSpMatSetAttribute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateCsr: {
+            let p = get_proc_addr(lib, b"cusparseCreateCsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstCsr: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstCsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateCsc: {
+            let p = get_proc_addr(lib, b"cusparseCreateCsc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstCsc: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstCsc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCsrGet: {
+            let p = get_proc_addr(lib, b"cusparseCsrGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstCsrGet: {
+            let p = get_proc_addr(lib, b"cusparseConstCsrGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCscGet: {
+            let p = get_proc_addr(lib, b"cusparseCscGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstCscGet: {
+            let p = get_proc_addr(lib, b"cusparseConstCscGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCsrSetPointers: {
+            let p = get_proc_addr(lib, b"cusparseCsrSetPointers\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCscSetPointers: {
+            let p = get_proc_addr(lib, b"cusparseCscSetPointers\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateBsr: {
+            let p = get_proc_addr(lib, b"cusparseCreateBsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstBsr: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstBsr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateCoo: {
+            let p = get_proc_addr(lib, b"cusparseCreateCoo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstCoo: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstCoo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCooGet: {
+            let p = get_proc_addr(lib, b"cusparseCooGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstCooGet: {
+            let p = get_proc_addr(lib, b"cusparseConstCooGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCooSetPointers: {
+            let p = get_proc_addr(lib, b"cusparseCooSetPointers\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateBlockedEll: {
+            let p = get_proc_addr(lib, b"cusparseCreateBlockedEll\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstBlockedEll: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstBlockedEll\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseBlockedEllGet: {
+            let p = get_proc_addr(lib, b"cusparseBlockedEllGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstBlockedEllGet: {
+            let p = get_proc_addr(lib, b"cusparseConstBlockedEllGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateSlicedEll: {
+            let p = get_proc_addr(lib, b"cusparseCreateSlicedEll\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstSlicedEll: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstSlicedEll\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateDnMat: {
+            let p = get_proc_addr(lib, b"cusparseCreateDnMat\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseCreateConstDnMat: {
+            let p = get_proc_addr(lib, b"cusparseCreateConstDnMat\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDestroyDnMat: {
+            let p = get_proc_addr(lib, b"cusparseDestroyDnMat\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnMatGet: {
+            let p = get_proc_addr(lib, b"cusparseDnMatGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstDnMatGet: {
+            let p = get_proc_addr(lib, b"cusparseConstDnMatGet\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnMatGetValues: {
+            let p = get_proc_addr(lib, b"cusparseDnMatGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseConstDnMatGetValues: {
+            let p = get_proc_addr(lib, b"cusparseConstDnMatGetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnMatSetValues: {
+            let p = get_proc_addr(lib, b"cusparseDnMatSetValues\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnMatSetStridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseDnMatSetStridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDnMatGetStridedBatch: {
+            let p = get_proc_addr(lib, b"cusparseDnMatGetStridedBatch\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseAxpby: {
+            let p = get_proc_addr(lib, b"cusparseAxpby\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseGather: {
+            let p = get_proc_addr(lib, b"cusparseGather\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseScatter: {
+            let p = get_proc_addr(lib, b"cusparseScatter\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseRot: {
+            let p = get_proc_addr(lib, b"cusparseRot\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpVV_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSpVV_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpVV: {
+            let p = get_proc_addr(lib, b"cusparseSpVV\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSparseToDense_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSparseToDense_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSparseToDense: {
+            let p = get_proc_addr(lib, b"cusparseSparseToDense\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDenseToSparse_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseDenseToSparse_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDenseToSparse_analysis: {
+            let p = get_proc_addr(lib, b"cusparseDenseToSparse_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseDenseToSparse_convert: {
+            let p = get_proc_addr(lib, b"cusparseDenseToSparse_convert\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMV: {
+            let p = get_proc_addr(lib, b"cusparseSpMV\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMV_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSpMV_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMV_preprocess: {
+            let p = get_proc_addr(lib, b"cusparseSpMV_preprocess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSV_createDescr: {
+            let p = get_proc_addr(lib, b"cusparseSpSV_createDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSV_destroyDescr: {
+            let p = get_proc_addr(lib, b"cusparseSpSV_destroyDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSV_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSpSV_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSV_analysis: {
+            let p = get_proc_addr(lib, b"cusparseSpSV_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSV_solve: {
+            let p = get_proc_addr(lib, b"cusparseSpSV_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSV_updateMatrix: {
+            let p = get_proc_addr(lib, b"cusparseSpSV_updateMatrix\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSM_createDescr: {
+            let p = get_proc_addr(lib, b"cusparseSpSM_createDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSM_destroyDescr: {
+            let p = get_proc_addr(lib, b"cusparseSpSM_destroyDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSM_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSpSM_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSM_analysis: {
+            let p = get_proc_addr(lib, b"cusparseSpSM_analysis\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSM_solve: {
+            let p = get_proc_addr(lib, b"cusparseSpSM_solve\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpSM_updateMatrix: {
+            let p = get_proc_addr(lib, b"cusparseSpSM_updateMatrix\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMM_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSpMM_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMM_preprocess: {
+            let p = get_proc_addr(lib, b"cusparseSpMM_preprocess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMM: {
+            let p = get_proc_addr(lib, b"cusparseSpMM\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMM_createDescr: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMM_createDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMM_destroyDescr: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMM_destroyDescr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMM_workEstimation: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMM_workEstimation\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMM_getNumProducts: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMM_getNumProducts\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMM_estimateMemory: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMM_estimateMemory\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMM_compute: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMM_compute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMM_copy: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMM_copy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMMreuse_workEstimation: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_workEstimation\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMMreuse_nnz: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_nnz\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMMreuse_copy: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_copy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpGEMMreuse_compute: {
+            let p = get_proc_addr(lib, b"cusparseSpGEMMreuse_compute\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSDDMM_bufferSize: {
+            let p = get_proc_addr(lib, b"cusparseSDDMM_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSDDMM_preprocess: {
+            let p = get_proc_addr(lib, b"cusparseSDDMM_preprocess\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSDDMM: {
+            let p = get_proc_addr(lib, b"cusparseSDDMM\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMMOp_createPlan: {
+            let p = get_proc_addr(lib, b"cusparseSpMMOp_createPlan\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMMOp: {
+            let p = get_proc_addr(lib, b"cusparseSpMMOp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusparseSpMMOp_destroyPlan: {
+            let p = get_proc_addr(lib, b"cusparseSpMMOp_destroyPlan\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+    });
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
 unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}

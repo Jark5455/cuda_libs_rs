@@ -1,7 +1,31 @@
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(dead_code)]
+#![allow(unused_mut)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unsafe_op_in_unsafe_fn)]
+pub use crate::sys::CUFFT_FORWARD;
+pub use crate::sys::CUFFT_INVERSE;
+pub use crate::sys::CUFFT_PLAN_NULL;
+pub use crate::sys::CUFFT_VER_BUILD;
+pub use crate::sys::CUFFT_VER_MAJOR;
+pub use crate::sys::CUFFT_VER_MINOR;
+pub use crate::sys::CUFFT_VER_PATCH;
+pub use crate::sys::CUFFT_VERSION;
+pub use crate::sys::cufftCompatibility_t;
+pub use crate::sys::cufftComplex;
+pub use crate::sys::cufftDoubleComplex;
+pub use crate::sys::cufftDoubleReal;
+pub use crate::sys::cufftHandle;
+pub use crate::sys::cufftProperty_t;
+pub use crate::sys::cufftReal;
 pub use crate::sys::cufftResult as CudaTargetStatus;
+pub use crate::sys::cufftResult_t;
+pub use crate::sys::cufftType_t;
 #[allow(unused_imports)]
 use crate::sys::*;
-pub use crate::sys::{CUFFT_FORWARD, CUFFT_INVERSE, CUFFT_PLAN_NULL, CUFFT_VER_BUILD, CUFFT_VER_MAJOR, CUFFT_VER_MINOR, CUFFT_VER_PATCH, CUFFT_VERSION, cufftCompatibility_t, cufftComplex, cufftDoubleComplex, cufftDoubleReal, cufftHandle, cufftProperty_t, cufftReal, cufftResult_t, cufftType_t};
 use cuda_libs_cudart;
 #[allow(unused_imports)]
 use cuda_libs_cudart::sys::*;
@@ -9,48 +33,36 @@ use cuda_libs_cudart::sys::*;
 use cuda_libs_cudart::types;
 #[cfg(feature = "runtime-link")]
 impl crate::sys::DynamicBindings {
-    pub fn cufftPlan1d(mut self, val: Option<unsafe extern "C" fn(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int) -> cufftResult>) -> Self {
+    pub fn cufftPlan1d(mut self, val: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int) -> cufftResult>) -> Self {
         self.cufftPlan1d = val;
         self
     }
-    pub fn cufftPlan2d(mut self, val: Option<unsafe extern "C" fn(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType) -> cufftResult>) -> Self {
+    pub fn cufftPlan2d(mut self, val: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType) -> cufftResult>) -> Self {
         self.cufftPlan2d = val;
         self
     }
-    pub fn cufftPlan3d(mut self, val: Option<unsafe extern "C" fn(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType) -> cufftResult>) -> Self {
+    pub fn cufftPlan3d(mut self, val: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType) -> cufftResult>) -> Self {
         self.cufftPlan3d = val;
         self
     }
     pub fn cufftPlanMany(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                plan: *mut cufftHandle,
-                rank: ::std::os::raw::c_int,
-                n: *mut ::std::os::raw::c_int,
-                inembed: *mut ::std::os::raw::c_int,
-                istride: ::std::os::raw::c_int,
-                idist: ::std::os::raw::c_int,
-                onembed: *mut ::std::os::raw::c_int,
-                ostride: ::std::os::raw::c_int,
-                odist: ::std::os::raw::c_int,
-                type_: cufftType,
-                batch: ::std::os::raw::c_int,
-            ) -> cufftResult,
+            unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int) -> cufftResult,
         >,
     ) -> Self {
         self.cufftPlanMany = val;
         self
     }
-    pub fn cufftMakePlan1d(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftMakePlan1d(mut self, val: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>) -> Self {
         self.cufftMakePlan1d = val;
         self
     }
-    pub fn cufftMakePlan2d(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftMakePlan2d(mut self, val: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>) -> Self {
         self.cufftMakePlan2d = val;
         self
     }
-    pub fn cufftMakePlan3d(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftMakePlan3d(mut self, val: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>) -> Self {
         self.cufftMakePlan3d = val;
         self
     }
@@ -58,18 +70,18 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                plan: cufftHandle,
-                rank: ::std::os::raw::c_int,
-                n: *mut ::std::os::raw::c_int,
-                inembed: *mut ::std::os::raw::c_int,
-                istride: ::std::os::raw::c_int,
-                idist: ::std::os::raw::c_int,
-                onembed: *mut ::std::os::raw::c_int,
-                ostride: ::std::os::raw::c_int,
-                odist: ::std::os::raw::c_int,
-                type_: cufftType,
-                batch: ::std::os::raw::c_int,
-                workSize: *mut usize,
+                cufftHandle,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                cufftType,
+                ::std::os::raw::c_int,
+                *mut usize,
             ) -> cufftResult,
         >,
     ) -> Self {
@@ -80,18 +92,18 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                plan: cufftHandle,
-                rank: ::std::os::raw::c_int,
-                n: *mut ::std::os::raw::c_longlong,
-                inembed: *mut ::std::os::raw::c_longlong,
-                istride: ::std::os::raw::c_longlong,
-                idist: ::std::os::raw::c_longlong,
-                onembed: *mut ::std::os::raw::c_longlong,
-                ostride: ::std::os::raw::c_longlong,
-                odist: ::std::os::raw::c_longlong,
-                type_: cufftType,
-                batch: ::std::os::raw::c_longlong,
-                workSize: *mut usize,
+                cufftHandle,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_longlong,
+                *mut ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                *mut ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                cufftType,
+                ::std::os::raw::c_longlong,
+                *mut usize,
             ) -> cufftResult,
         >,
     ) -> Self {
@@ -102,70 +114,58 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                plan: cufftHandle,
-                rank: ::std::os::raw::c_int,
-                n: *mut ::std::os::raw::c_longlong,
-                inembed: *mut ::std::os::raw::c_longlong,
-                istride: ::std::os::raw::c_longlong,
-                idist: ::std::os::raw::c_longlong,
-                onembed: *mut ::std::os::raw::c_longlong,
-                ostride: ::std::os::raw::c_longlong,
-                odist: ::std::os::raw::c_longlong,
-                type_: cufftType,
-                batch: ::std::os::raw::c_longlong,
-                workSize: *mut usize,
+                cufftHandle,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_longlong,
+                *mut ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                *mut ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                ::std::os::raw::c_longlong,
+                cufftType,
+                ::std::os::raw::c_longlong,
+                *mut usize,
             ) -> cufftResult,
         >,
     ) -> Self {
         self.cufftGetSizeMany64 = val;
         self
     }
-    pub fn cufftEstimate1d(mut self, val: Option<unsafe extern "C" fn(nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftEstimate1d(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>) -> Self {
         self.cufftEstimate1d = val;
         self
     }
-    pub fn cufftEstimate2d(mut self, val: Option<unsafe extern "C" fn(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftEstimate2d(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>) -> Self {
         self.cufftEstimate2d = val;
         self
     }
-    pub fn cufftEstimate3d(mut self, val: Option<unsafe extern "C" fn(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftEstimate3d(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>) -> Self {
         self.cufftEstimate3d = val;
         self
     }
     pub fn cufftEstimateMany(
         mut self,
         val: Option<
-            unsafe extern "C" fn(
-                rank: ::std::os::raw::c_int,
-                n: *mut ::std::os::raw::c_int,
-                inembed: *mut ::std::os::raw::c_int,
-                istride: ::std::os::raw::c_int,
-                idist: ::std::os::raw::c_int,
-                onembed: *mut ::std::os::raw::c_int,
-                ostride: ::std::os::raw::c_int,
-                odist: ::std::os::raw::c_int,
-                type_: cufftType,
-                batch: ::std::os::raw::c_int,
-                workSize: *mut usize,
-            ) -> cufftResult,
+            unsafe extern "C" fn(::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult,
         >,
     ) -> Self {
         self.cufftEstimateMany = val;
         self
     }
-    pub fn cufftCreate(mut self, val: Option<unsafe extern "C" fn(handle: *mut cufftHandle) -> cufftResult>) -> Self {
+    pub fn cufftCreate(mut self, val: Option<unsafe extern "C" fn(*mut cufftHandle) -> cufftResult>) -> Self {
         self.cufftCreate = val;
         self
     }
-    pub fn cufftGetSize1d(mut self, val: Option<unsafe extern "C" fn(handle: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftGetSize1d(mut self, val: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>) -> Self {
         self.cufftGetSize1d = val;
         self
     }
-    pub fn cufftGetSize2d(mut self, val: Option<unsafe extern "C" fn(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftGetSize2d(mut self, val: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>) -> Self {
         self.cufftGetSize2d = val;
         self
     }
-    pub fn cufftGetSize3d(mut self, val: Option<unsafe extern "C" fn(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftGetSize3d(mut self, val: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>) -> Self {
         self.cufftGetSize3d = val;
         self
     }
@@ -173,85 +173,85 @@ impl crate::sys::DynamicBindings {
         mut self,
         val: Option<
             unsafe extern "C" fn(
-                handle: cufftHandle,
-                rank: ::std::os::raw::c_int,
-                n: *mut ::std::os::raw::c_int,
-                inembed: *mut ::std::os::raw::c_int,
-                istride: ::std::os::raw::c_int,
-                idist: ::std::os::raw::c_int,
-                onembed: *mut ::std::os::raw::c_int,
-                ostride: ::std::os::raw::c_int,
-                odist: ::std::os::raw::c_int,
-                type_: cufftType,
-                batch: ::std::os::raw::c_int,
-                workArea: *mut usize,
+                cufftHandle,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                *mut ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                ::std::os::raw::c_int,
+                cufftType,
+                ::std::os::raw::c_int,
+                *mut usize,
             ) -> cufftResult,
         >,
     ) -> Self {
         self.cufftGetSizeMany = val;
         self
     }
-    pub fn cufftGetSize(mut self, val: Option<unsafe extern "C" fn(handle: cufftHandle, workSize: *mut usize) -> cufftResult>) -> Self {
+    pub fn cufftGetSize(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut usize) -> cufftResult>) -> Self {
         self.cufftGetSize = val;
         self
     }
-    pub fn cufftSetWorkArea(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, workArea: *mut ::std::os::raw::c_void) -> cufftResult>) -> Self {
+    pub fn cufftSetWorkArea(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut ::std::os::raw::c_void) -> cufftResult>) -> Self {
         self.cufftSetWorkArea = val;
         self
     }
-    pub fn cufftSetAutoAllocation(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult>) -> Self {
+    pub fn cufftSetAutoAllocation(mut self, val: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int) -> cufftResult>) -> Self {
         self.cufftSetAutoAllocation = val;
         self
     }
-    pub fn cufftExecC2C(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftComplex, direction: ::std::os::raw::c_int) -> cufftResult>) -> Self {
+    pub fn cufftExecC2C(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut cufftComplex, *mut cufftComplex, ::std::os::raw::c_int) -> cufftResult>) -> Self {
         self.cufftExecC2C = val;
         self
     }
-    pub fn cufftExecR2C(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftReal, odata: *mut cufftComplex) -> cufftResult>) -> Self {
+    pub fn cufftExecR2C(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut cufftReal, *mut cufftComplex) -> cufftResult>) -> Self {
         self.cufftExecR2C = val;
         self
     }
-    pub fn cufftExecC2R(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftReal) -> cufftResult>) -> Self {
+    pub fn cufftExecC2R(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut cufftComplex, *mut cufftReal) -> cufftResult>) -> Self {
         self.cufftExecC2R = val;
         self
     }
-    pub fn cufftExecZ2Z(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleComplex, direction: ::std::os::raw::c_int) -> cufftResult>) -> Self {
+    pub fn cufftExecZ2Z(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleComplex, *mut cufftDoubleComplex, ::std::os::raw::c_int) -> cufftResult>) -> Self {
         self.cufftExecZ2Z = val;
         self
     }
-    pub fn cufftExecD2Z(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftDoubleReal, odata: *mut cufftDoubleComplex) -> cufftResult>) -> Self {
+    pub fn cufftExecD2Z(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleReal, *mut cufftDoubleComplex) -> cufftResult>) -> Self {
         self.cufftExecD2Z = val;
         self
     }
-    pub fn cufftExecZ2D(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleReal) -> cufftResult>) -> Self {
+    pub fn cufftExecZ2D(mut self, val: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleComplex, *mut cufftDoubleReal) -> cufftResult>) -> Self {
         self.cufftExecZ2D = val;
         self
     }
-    pub fn cufftSetStream(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, stream: cudaStream_t) -> cufftResult>) -> Self {
+    pub fn cufftSetStream(mut self, val: Option<unsafe extern "C" fn(cufftHandle, cudaStream_t) -> cufftResult>) -> Self {
         self.cufftSetStream = val;
         self
     }
-    pub fn cufftDestroy(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle) -> cufftResult>) -> Self {
+    pub fn cufftDestroy(mut self, val: Option<unsafe extern "C" fn(cufftHandle) -> cufftResult>) -> Self {
         self.cufftDestroy = val;
         self
     }
-    pub fn cufftGetVersion(mut self, val: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cufftResult>) -> Self {
+    pub fn cufftGetVersion(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cufftResult>) -> Self {
         self.cufftGetVersion = val;
         self
     }
-    pub fn cufftGetProperty(mut self, val: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cufftResult>) -> Self {
+    pub fn cufftGetProperty(mut self, val: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cufftResult>) -> Self {
         self.cufftGetProperty = val;
         self
     }
-    pub fn cufftSetPlanPropertyInt64(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty, inputValueInt: ::std::os::raw::c_longlong) -> cufftResult>) -> Self {
+    pub fn cufftSetPlanPropertyInt64(mut self, val: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, ::std::os::raw::c_longlong) -> cufftResult>) -> Self {
         self.cufftSetPlanPropertyInt64 = val;
         self
     }
-    pub fn cufftGetPlanPropertyInt64(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty, returnPtrValue: *mut ::std::os::raw::c_longlong) -> cufftResult>) -> Self {
+    pub fn cufftGetPlanPropertyInt64(mut self, val: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, *mut ::std::os::raw::c_longlong) -> cufftResult>) -> Self {
         self.cufftGetPlanPropertyInt64 = val;
         self
     }
-    pub fn cufftResetPlanProperty(mut self, val: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty) -> cufftResult>) -> Self {
+    pub fn cufftResetPlanProperty(mut self, val: Option<unsafe extern "C" fn(cufftHandle, cufftProperty) -> cufftResult>) -> Self {
         self.cufftResetPlanProperty = val;
         self
     }
@@ -292,31 +292,31 @@ pub unsafe fn cufftPlanMany(rank: i32, n: *mut ::std::os::raw::c_int, inembed: *
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cufftMakePlan1d<T: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, type_: cufftType, batch: i32, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftMakePlan1d<T0: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, type_: cufftType, batch: i32, mut workSize: T0) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftMakePlan1d(plan, nx as _, type_, batch as _, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlan2d<T: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, ny: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftMakePlan2d<T0: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, ny: i32, type_: cufftType, mut workSize: T0) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftMakePlan2d(plan, nx as _, ny as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlan3d<T: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftMakePlan3d<T0: types::CudaAsMutPtr>(plan: cufftHandle, nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T0) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftMakePlan3d(plan, nx as _, ny as _, nz as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlanMany<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cufftMakePlanMany<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
     plan: cufftHandle,
     rank: i32,
-    mut n: T,
-    mut inembed: U,
+    mut n: T0,
+    mut inembed: T1,
     istride: i32,
     idist: i32,
-    mut onembed: V,
+    mut onembed: T2,
     ostride: i32,
     odist: i32,
     type_: cufftType,
     batch: i32,
-    mut workSize: W,
+    mut workSize: T3,
 ) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe {
         crate::sys::cufftMakePlanMany(
@@ -336,19 +336,19 @@ pub unsafe fn cufftMakePlanMany<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, 
     };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftMakePlanMany64<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cufftMakePlanMany64<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
     plan: cufftHandle,
     rank: i32,
-    mut n: T,
-    mut inembed: U,
+    mut n: T0,
+    mut inembed: T1,
     istride: i64,
     idist: i64,
-    mut onembed: V,
+    mut onembed: T2,
     ostride: i64,
     odist: i64,
     type_: cufftType,
     batch: i64,
-    mut workSize: W,
+    mut workSize: T3,
 ) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe {
         crate::sys::cufftMakePlanMany64(
@@ -395,30 +395,30 @@ pub unsafe fn cufftGetSizeMany64(plan: cufftHandle, rank: i32, istride: i64, idi
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cufftEstimate1d<T: types::CudaAsMutPtr>(nx: i32, type_: cufftType, batch: i32, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftEstimate1d<T0: types::CudaAsMutPtr>(nx: i32, type_: cufftType, batch: i32, mut workSize: T0) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftEstimate1d(nx as _, type_, batch as _, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftEstimate2d<T: types::CudaAsMutPtr>(nx: i32, ny: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftEstimate2d<T0: types::CudaAsMutPtr>(nx: i32, ny: i32, type_: cufftType, mut workSize: T0) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftEstimate2d(nx as _, ny as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftEstimate3d<T: types::CudaAsMutPtr>(nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftEstimate3d<T0: types::CudaAsMutPtr>(nx: i32, ny: i32, nz: i32, type_: cufftType, mut workSize: T0) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftEstimate3d(nx as _, ny as _, nz as _, type_, workSize.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftEstimateMany<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
+pub unsafe fn cufftEstimateMany<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
     rank: i32,
-    mut n: T,
-    mut inembed: U,
+    mut n: T0,
+    mut inembed: T1,
     istride: i32,
     idist: i32,
-    mut onembed: V,
+    mut onembed: T2,
     ostride: i32,
     odist: i32,
     type_: cufftType,
     batch: i32,
-    mut workSize: W,
+    mut workSize: T3,
 ) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe {
         crate::sys::cufftEstimateMany(
@@ -509,7 +509,7 @@ pub unsafe fn cufftGetSize(handle: cufftHandle) -> Result<usize, crate::sys::cuf
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cufftSetWorkArea<T: types::CudaAsMutPtr>(plan: cufftHandle, mut workArea: T) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftSetWorkArea<T0: types::CudaAsMutPtr>(plan: cufftHandle, mut workArea: T0) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftSetWorkArea(plan, workArea.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
@@ -517,27 +517,27 @@ pub unsafe fn cufftSetAutoAllocation(plan: cufftHandle, autoAllocate: i32) -> Re
     let status = unsafe { crate::sys::cufftSetAutoAllocation(plan, autoAllocate as _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecC2C<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U, direction: i32) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecC2C<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T0, mut odata: T1, direction: i32) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecC2C(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _, direction as _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecR2C<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecR2C<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T0, mut odata: T1) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecR2C(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecC2R<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecC2R<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T0, mut odata: T1) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecC2R(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecZ2Z<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U, direction: i32) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecZ2Z<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T0, mut odata: T1, direction: i32) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecZ2Z(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _, direction as _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecD2Z<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecD2Z<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T0, mut odata: T1) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecD2Z(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cufftExecZ2D<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T, mut odata: U) -> Result<(), crate::sys::cufftResult> {
+pub unsafe fn cufftExecZ2D<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(plan: cufftHandle, mut idata: T0, mut odata: T1) -> Result<(), crate::sys::cufftResult> {
     let status = unsafe { crate::sys::cufftExecZ2D(plan, idata.as_mut_ptr() as *mut _, odata.as_mut_ptr() as *mut _) };
     if status == crate::sys::cufftResult::CUFFT_SUCCESS { Ok(()) } else { Err(status) }
 }

@@ -1,37 +1,328 @@
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+#![allow(non_upper_case_globals)]
+#![allow(dead_code)]
+#![allow(unused_mut)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unsafe_op_in_unsafe_fn)]
+pub use crate::sys::CUDA_IPC_HANDLE_SIZE;
+pub use crate::sys::CUDART_VERSION;
+pub use crate::sys::CUDAlogLevel_enum;
+pub use crate::sys::CUdevResourceDesc_st;
+pub use crate::sys::CUevent_st;
+pub use crate::sys::CUexternalMemory_st;
+pub use crate::sys::CUexternalSemaphore_st;
+pub use crate::sys::CUfunc_st;
+pub use crate::sys::CUgraph_st;
+pub use crate::sys::CUgraphDeviceUpdatableNode_st;
+pub use crate::sys::CUgraphExec_st;
+pub use crate::sys::CUgraphNode_st;
+pub use crate::sys::CUkern_st;
+pub use crate::sys::CUlib_st;
+pub use crate::sys::CUlogsCallbackEntry_st;
+pub use crate::sys::CUmemPoolHandle_st;
+pub use crate::sys::CUstream_st;
+pub use crate::sys::CUuserObject_st;
+pub use crate::sys::CUuuid_st;
+pub use crate::sys::cuComplex;
+pub use crate::sys::cuDoubleComplex;
+pub use crate::sys::cuFloatComplex;
+pub use crate::sys::cudaAccessPolicyWindow;
+pub use crate::sys::cudaAccessProperty;
+pub use crate::sys::cudaArray;
+pub use crate::sys::cudaArray_const_t;
+pub use crate::sys::cudaArray_t;
+pub use crate::sys::cudaArrayColorAttachment;
+pub use crate::sys::cudaArrayCubemap;
+pub use crate::sys::cudaArrayDefault;
+pub use crate::sys::cudaArrayDeferredMapping;
+pub use crate::sys::cudaArrayLayered;
+pub use crate::sys::cudaArrayMemoryRequirements;
+pub use crate::sys::cudaArraySparse;
+pub use crate::sys::cudaArraySparseProperties;
+pub use crate::sys::cudaArraySparseProperties__bindgen_ty_1;
+pub use crate::sys::cudaArraySparsePropertiesSingleMipTail;
+pub use crate::sys::cudaArraySurfaceLoadStore;
+pub use crate::sys::cudaArrayTextureGather;
+pub use crate::sys::cudaAsyncCallback;
+pub use crate::sys::cudaAsyncCallbackEntry;
+pub use crate::sys::cudaAsyncCallbackHandle_t;
+pub use crate::sys::cudaAsyncNotificationInfo;
+pub use crate::sys::cudaAsyncNotificationInfo__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaAsyncNotificationInfo_t;
+pub use crate::sys::cudaAsyncNotificationType_enum;
+pub use crate::sys::cudaAtomicOperation;
+pub use crate::sys::cudaAtomicOperationCapability;
+pub use crate::sys::cudaCGScope;
+pub use crate::sys::cudaChannelFormatDesc;
+pub use crate::sys::cudaChannelFormatKind;
+pub use crate::sys::cudaChildGraphNodeParams;
+pub use crate::sys::cudaClusterSchedulingPolicy;
+pub use crate::sys::cudaComputeMode;
+pub use crate::sys::cudaConditionalNodeParams;
+pub use crate::sys::cudaDataType_t;
+pub use crate::sys::cudaDevResource;
+pub use crate::sys::cudaDevResource_st;
+pub use crate::sys::cudaDevResourceDesc_t;
+pub use crate::sys::cudaDevResourceType;
+pub use crate::sys::cudaDevSmResource;
+pub use crate::sys::cudaDevSmResourceGroup_flags;
+pub use crate::sys::cudaDevSmResourceGroupParams;
+pub use crate::sys::cudaDevSmResourceGroupParams_st;
+pub use crate::sys::cudaDevSmResourceSplitByCount_flags;
+pub use crate::sys::cudaDevWorkqueueConfigResource;
+pub use crate::sys::cudaDevWorkqueueConfigScope;
+pub use crate::sys::cudaDevWorkqueueResource;
+pub use crate::sys::cudaDeviceAttr;
+pub use crate::sys::cudaDeviceBlockingSync;
+pub use crate::sys::cudaDeviceLmemResizeToMax;
+pub use crate::sys::cudaDeviceMapHost;
+pub use crate::sys::cudaDeviceMask;
+pub use crate::sys::cudaDeviceNumaConfig;
+pub use crate::sys::cudaDeviceP2PAttr;
+pub use crate::sys::cudaDeviceProp;
+pub use crate::sys::cudaDeviceScheduleAuto;
+pub use crate::sys::cudaDeviceScheduleBlockingSync;
+pub use crate::sys::cudaDeviceScheduleMask;
+pub use crate::sys::cudaDeviceScheduleSpin;
+pub use crate::sys::cudaDeviceScheduleYield;
+pub use crate::sys::cudaDeviceSyncMemops;
+pub use crate::sys::cudaDriverEntryPointQueryResult;
+pub use crate::sys::cudaEmulationMantissaControl_t;
+pub use crate::sys::cudaEmulationSpecialValuesSupport_t;
+pub use crate::sys::cudaEmulationStrategy_t;
 pub use crate::sys::cudaError as CudaTargetStatus;
+pub use crate::sys::cudaError;
+pub use crate::sys::cudaEvent_t;
+pub use crate::sys::cudaEventBlockingSync;
+pub use crate::sys::cudaEventDefault;
+pub use crate::sys::cudaEventDisableTiming;
+pub use crate::sys::cudaEventInterprocess;
+pub use crate::sys::cudaEventRecordDefault;
+pub use crate::sys::cudaEventRecordExternal;
+pub use crate::sys::cudaEventRecordNodeParams;
+pub use crate::sys::cudaEventWaitDefault;
+pub use crate::sys::cudaEventWaitExternal;
+pub use crate::sys::cudaEventWaitNodeParams;
+pub use crate::sys::cudaExecutionContext_st;
+pub use crate::sys::cudaExecutionContext_t;
+pub use crate::sys::cudaExtent;
+pub use crate::sys::cudaExternalMemory_t;
+pub use crate::sys::cudaExternalMemoryBufferDesc;
+pub use crate::sys::cudaExternalMemoryDedicated;
+pub use crate::sys::cudaExternalMemoryHandleDesc;
+pub use crate::sys::cudaExternalMemoryHandleDesc__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaExternalMemoryHandleType;
+pub use crate::sys::cudaExternalMemoryMipmappedArrayDesc;
+pub use crate::sys::cudaExternalSemaphore_t;
+pub use crate::sys::cudaExternalSemaphoreHandleDesc;
+pub use crate::sys::cudaExternalSemaphoreHandleDesc__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaExternalSemaphoreHandleType;
+pub use crate::sys::cudaExternalSemaphoreSignalNodeParams;
+pub use crate::sys::cudaExternalSemaphoreSignalNodeParamsV2;
+pub use crate::sys::cudaExternalSemaphoreSignalParams;
+pub use crate::sys::cudaExternalSemaphoreSignalParams__bindgen_ty_1;
+pub use crate::sys::cudaExternalSemaphoreSignalParams__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaExternalSemaphoreSignalParams__bindgen_ty_1__bindgen_ty_3;
+pub use crate::sys::cudaExternalSemaphoreSignalSkipNvSciBufMemSync;
+pub use crate::sys::cudaExternalSemaphoreWaitNodeParams;
+pub use crate::sys::cudaExternalSemaphoreWaitNodeParamsV2;
+pub use crate::sys::cudaExternalSemaphoreWaitParams;
+pub use crate::sys::cudaExternalSemaphoreWaitParams__bindgen_ty_1;
+pub use crate::sys::cudaExternalSemaphoreWaitParams__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaExternalSemaphoreWaitParams__bindgen_ty_1__bindgen_ty_3;
+pub use crate::sys::cudaExternalSemaphoreWaitSkipNvSciBufMemSync;
+pub use crate::sys::cudaFlushGPUDirectRDMAWritesOptions;
+pub use crate::sys::cudaFlushGPUDirectRDMAWritesScope;
+pub use crate::sys::cudaFlushGPUDirectRDMAWritesTarget;
+pub use crate::sys::cudaFuncAttribute;
+pub use crate::sys::cudaFuncAttributes;
+pub use crate::sys::cudaFuncCache;
+pub use crate::sys::cudaFunction_t;
+pub use crate::sys::cudaGPUDirectRDMAWritesOrdering;
+pub use crate::sys::cudaGetDriverEntryPointFlags;
+pub use crate::sys::cudaGraph_t;
+pub use crate::sys::cudaGraphChildGraphNodeOwnership;
+pub use crate::sys::cudaGraphConditionalHandle;
+pub use crate::sys::cudaGraphConditionalHandleFlags;
+pub use crate::sys::cudaGraphConditionalNodeType;
+pub use crate::sys::cudaGraphDebugDotFlags;
+pub use crate::sys::cudaGraphDependencyType_enum;
+pub use crate::sys::cudaGraphDeviceNode_t;
+pub use crate::sys::cudaGraphEdgeData;
+pub use crate::sys::cudaGraphEdgeData_st;
+pub use crate::sys::cudaGraphExec_t;
+pub use crate::sys::cudaGraphExecUpdateResult;
+pub use crate::sys::cudaGraphExecUpdateResultInfo;
+pub use crate::sys::cudaGraphExecUpdateResultInfo_st;
+pub use crate::sys::cudaGraphInstantiateFlags;
+pub use crate::sys::cudaGraphInstantiateParams;
+pub use crate::sys::cudaGraphInstantiateParams_st;
+pub use crate::sys::cudaGraphInstantiateResult;
+pub use crate::sys::cudaGraphKernelNodeField;
+pub use crate::sys::cudaGraphKernelNodePortDefault;
+pub use crate::sys::cudaGraphKernelNodePortLaunchCompletion;
+pub use crate::sys::cudaGraphKernelNodePortProgrammatic;
+pub use crate::sys::cudaGraphKernelNodeUpdate;
+pub use crate::sys::cudaGraphKernelNodeUpdate__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaGraphMemAttributeType;
+pub use crate::sys::cudaGraphNode_t;
+pub use crate::sys::cudaGraphNodeParams;
+pub use crate::sys::cudaGraphNodeType;
+pub use crate::sys::cudaGraphicsCubeFace;
+pub use crate::sys::cudaGraphicsMapFlags;
+pub use crate::sys::cudaGraphicsRegisterFlags;
+pub use crate::sys::cudaGraphicsResource;
+pub use crate::sys::cudaGraphicsResource_t;
+pub use crate::sys::cudaHostAllocDefault;
+pub use crate::sys::cudaHostAllocMapped;
+pub use crate::sys::cudaHostAllocPortable;
+pub use crate::sys::cudaHostAllocWriteCombined;
+pub use crate::sys::cudaHostFn_t;
+pub use crate::sys::cudaHostNodeParams;
+pub use crate::sys::cudaHostNodeParamsV2;
+pub use crate::sys::cudaHostRegisterDefault;
+pub use crate::sys::cudaHostRegisterIoMemory;
+pub use crate::sys::cudaHostRegisterMapped;
+pub use crate::sys::cudaHostRegisterPortable;
+pub use crate::sys::cudaHostRegisterReadOnly;
+pub use crate::sys::cudaHostTaskSyncMode;
+pub use crate::sys::cudaInitDeviceFlagsAreValid;
+pub use crate::sys::cudaIpcEventHandle_st;
+pub use crate::sys::cudaIpcEventHandle_t;
+pub use crate::sys::cudaIpcMemHandle_st;
+pub use crate::sys::cudaIpcMemHandle_t;
+pub use crate::sys::cudaIpcMemLazyEnablePeerAccess;
+pub use crate::sys::cudaJit_CacheMode;
+pub use crate::sys::cudaJit_Fallback;
+pub use crate::sys::cudaJitOption;
+pub use crate::sys::cudaKernel_t;
+pub use crate::sys::cudaKernelFunctionType;
+pub use crate::sys::cudaKernelNodeParams;
+pub use crate::sys::cudaKernelNodeParamsV2;
+pub use crate::sys::cudaLaunchAttribute;
+pub use crate::sys::cudaLaunchAttribute_st;
+pub use crate::sys::cudaLaunchAttributeID;
+pub use crate::sys::cudaLaunchAttributePortableClusterMode;
+pub use crate::sys::cudaLaunchAttributeValue__bindgen_ty_1;
+pub use crate::sys::cudaLaunchAttributeValue__bindgen_ty_2;
+pub use crate::sys::cudaLaunchAttributeValue__bindgen_ty_3;
+pub use crate::sys::cudaLaunchAttributeValue__bindgen_ty_4;
+pub use crate::sys::cudaLaunchAttributeValue__bindgen_ty_5;
+pub use crate::sys::cudaLaunchConfig_st;
+pub use crate::sys::cudaLaunchConfig_t;
+pub use crate::sys::cudaLaunchMemSyncDomain;
+pub use crate::sys::cudaLaunchMemSyncDomainMap;
+pub use crate::sys::cudaLaunchMemSyncDomainMap_st;
+pub use crate::sys::cudaLibrary_t;
+pub use crate::sys::cudaLibraryOption;
+pub use crate::sys::cudaLimit;
+pub use crate::sys::cudaLogIterator;
+pub use crate::sys::cudaLogsCallback_t;
+pub use crate::sys::cudaLogsCallbackHandle;
+pub use crate::sys::cudaMemAccessDesc;
+pub use crate::sys::cudaMemAccessFlags;
+pub use crate::sys::cudaMemAllocNodeParams;
+pub use crate::sys::cudaMemAllocNodeParamsV2;
+pub use crate::sys::cudaMemAllocationHandleType;
+pub use crate::sys::cudaMemAllocationType;
+pub use crate::sys::cudaMemAttachGlobal;
+pub use crate::sys::cudaMemAttachHost;
+pub use crate::sys::cudaMemAttachSingle;
+pub use crate::sys::cudaMemFabricHandle_st;
+pub use crate::sys::cudaMemFabricHandle_t;
+pub use crate::sys::cudaMemFreeNodeParams;
+pub use crate::sys::cudaMemLocation;
+pub use crate::sys::cudaMemLocationType;
+pub use crate::sys::cudaMemPool_t;
+pub use crate::sys::cudaMemPoolAttr;
+pub use crate::sys::cudaMemPoolCreateUsageHwDecompress;
+pub use crate::sys::cudaMemPoolProps;
+pub use crate::sys::cudaMemPoolPtrExportData;
+pub use crate::sys::cudaMemRangeAttribute;
+pub use crate::sys::cudaMemcpy3DBatchOp;
+pub use crate::sys::cudaMemcpy3DOperand;
+pub use crate::sys::cudaMemcpy3DOperand__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaMemcpy3DOperand__bindgen_ty_1__bindgen_ty_2;
+pub use crate::sys::cudaMemcpy3DOperandType;
+pub use crate::sys::cudaMemcpy3DParms;
+pub use crate::sys::cudaMemcpy3DPeerParms;
+pub use crate::sys::cudaMemcpyAttributes;
+pub use crate::sys::cudaMemcpyFlags;
+pub use crate::sys::cudaMemcpyKind;
+pub use crate::sys::cudaMemcpyNodeParams;
+pub use crate::sys::cudaMemcpySrcAccessOrder;
+pub use crate::sys::cudaMemoryAdvise;
+pub use crate::sys::cudaMemoryType;
+pub use crate::sys::cudaMemsetParams;
+pub use crate::sys::cudaMemsetParamsV2;
+pub use crate::sys::cudaMipmappedArray;
+pub use crate::sys::cudaMipmappedArray_const_t;
+pub use crate::sys::cudaMipmappedArray_t;
+pub use crate::sys::cudaNvSciSyncAttrSignal;
+pub use crate::sys::cudaNvSciSyncAttrWait;
+pub use crate::sys::cudaOccupancyDefault;
+pub use crate::sys::cudaOccupancyDisableCachingOverride;
+pub use crate::sys::cudaOffset3D;
+pub use crate::sys::cudaPeerAccessDefault;
+pub use crate::sys::cudaPitchedPtr;
+pub use crate::sys::cudaPointerAttributes;
+pub use crate::sys::cudaPos;
+pub use crate::sys::cudaResourceDesc;
+pub use crate::sys::cudaResourceDesc__bindgen_ty_1__bindgen_ty_1;
+pub use crate::sys::cudaResourceDesc__bindgen_ty_1__bindgen_ty_2;
+pub use crate::sys::cudaResourceDesc__bindgen_ty_1__bindgen_ty_3;
+pub use crate::sys::cudaResourceDesc__bindgen_ty_1__bindgen_ty_4;
+pub use crate::sys::cudaResourceDesc__bindgen_ty_1__bindgen_ty_5;
+pub use crate::sys::cudaResourceType;
+pub use crate::sys::cudaResourceViewDesc;
+pub use crate::sys::cudaResourceViewFormat;
+pub use crate::sys::cudaRoundMode;
+pub use crate::sys::cudaSharedCarveout;
+pub use crate::sys::cudaSharedMemConfig;
+pub use crate::sys::cudaSharedMemoryMode;
+pub use crate::sys::cudaStream_t;
+pub use crate::sys::cudaStreamCallback_t;
+pub use crate::sys::cudaStreamCaptureMode;
+pub use crate::sys::cudaStreamCaptureStatus;
+pub use crate::sys::cudaStreamDefault;
+pub use crate::sys::cudaStreamNonBlocking;
+pub use crate::sys::cudaStreamUpdateCaptureDependenciesFlags;
+pub use crate::sys::cudaSurfaceBoundaryMode;
+pub use crate::sys::cudaSurfaceFormatMode;
+pub use crate::sys::cudaSurfaceObject_t;
+pub use crate::sys::cudaSurfaceType1D;
+pub use crate::sys::cudaSurfaceType1DLayered;
+pub use crate::sys::cudaSurfaceType2D;
+pub use crate::sys::cudaSurfaceType2DLayered;
+pub use crate::sys::cudaSurfaceType3D;
+pub use crate::sys::cudaSurfaceTypeCubemap;
+pub use crate::sys::cudaSurfaceTypeCubemapLayered;
+pub use crate::sys::cudaSynchronizationPolicy;
+pub use crate::sys::cudaTextureAddressMode;
+pub use crate::sys::cudaTextureDesc;
+pub use crate::sys::cudaTextureFilterMode;
+pub use crate::sys::cudaTextureObject_t;
+pub use crate::sys::cudaTextureReadMode;
+pub use crate::sys::cudaTextureType1D;
+pub use crate::sys::cudaTextureType1DLayered;
+pub use crate::sys::cudaTextureType2D;
+pub use crate::sys::cudaTextureType2DLayered;
+pub use crate::sys::cudaTextureType3D;
+pub use crate::sys::cudaTextureTypeCubemap;
+pub use crate::sys::cudaTextureTypeCubemapLayered;
+pub use crate::sys::cudaUUID_t;
+pub use crate::sys::cudaUserObject_t;
+pub use crate::sys::cudaUserObjectFlags;
+pub use crate::sys::cudaUserObjectRetainFlags;
+pub use crate::sys::cudalibraryHostUniversalFunctionAndDataTable;
+pub use crate::sys::dim3;
+pub use crate::sys::double2;
+pub use crate::sys::float2;
+pub use crate::sys::libraryPropertyType_t;
 #[allow(unused_imports)]
 use crate::sys::*;
-pub use crate::sys::{
-    CUDA_IPC_HANDLE_SIZE, CUDART_VERSION, CUDAlogLevel_enum, CUdevResourceDesc_st, CUevent_st, CUexternalMemory_st, CUexternalSemaphore_st, CUfunc_st, CUgraph_st, CUgraphDeviceUpdatableNode_st, CUgraphExec_st, CUgraphNode_st, CUkern_st, CUlib_st, CUlogsCallbackEntry_st, CUmemPoolHandle_st,
-    CUstream_st, CUuserObject_st, CUuuid_st, cuComplex, cuDoubleComplex, cuFloatComplex, cudaAccessPolicyWindow, cudaAccessProperty, cudaArray, cudaArray_const_t, cudaArray_t, cudaArrayColorAttachment, cudaArrayCubemap, cudaArrayDefault, cudaArrayDeferredMapping, cudaArrayLayered,
-    cudaArrayMemoryRequirements, cudaArraySparse, cudaArraySparseProperties, cudaArraySparseProperties__bindgen_ty_1, cudaArraySparsePropertiesSingleMipTail, cudaArraySurfaceLoadStore, cudaArrayTextureGather, cudaAsyncCallback, cudaAsyncCallbackEntry, cudaAsyncCallbackHandle_t,
-    cudaAsyncNotificationInfo, cudaAsyncNotificationInfo__bindgen_ty_1__bindgen_ty_1, cudaAsyncNotificationInfo_t, cudaAsyncNotificationType_enum, cudaAtomicOperation, cudaAtomicOperationCapability, cudaCGScope, cudaChannelFormatDesc, cudaChannelFormatKind, cudaChildGraphNodeParams,
-    cudaClusterSchedulingPolicy, cudaComputeMode, cudaConditionalNodeParams, cudaDataType_t, cudaDevResource, cudaDevResource_st, cudaDevResourceDesc_t, cudaDevResourceType, cudaDevSmResource, cudaDevSmResourceGroup_flags, cudaDevSmResourceGroupParams, cudaDevSmResourceGroupParams_st,
-    cudaDevSmResourceSplitByCount_flags, cudaDevWorkqueueConfigResource, cudaDevWorkqueueConfigScope, cudaDevWorkqueueResource, cudaDeviceAttr, cudaDeviceBlockingSync, cudaDeviceLmemResizeToMax, cudaDeviceMapHost, cudaDeviceMask, cudaDeviceNumaConfig, cudaDeviceP2PAttr, cudaDeviceProp,
-    cudaDeviceScheduleAuto, cudaDeviceScheduleBlockingSync, cudaDeviceScheduleMask, cudaDeviceScheduleSpin, cudaDeviceScheduleYield, cudaDeviceSyncMemops, cudaDriverEntryPointQueryResult, cudaEmulationMantissaControl_t, cudaEmulationSpecialValuesSupport_t, cudaEmulationStrategy_t, cudaError,
-    cudaEvent_t, cudaEventBlockingSync, cudaEventDefault, cudaEventDisableTiming, cudaEventInterprocess, cudaEventRecordDefault, cudaEventRecordExternal, cudaEventRecordNodeParams, cudaEventWaitDefault, cudaEventWaitExternal, cudaEventWaitNodeParams, cudaExecutionContext_st, cudaExecutionContext_t,
-    cudaExtent, cudaExternalMemory_t, cudaExternalMemoryBufferDesc, cudaExternalMemoryDedicated, cudaExternalMemoryHandleDesc, cudaExternalMemoryHandleDesc__bindgen_ty_1__bindgen_ty_1, cudaExternalMemoryHandleType, cudaExternalMemoryMipmappedArrayDesc, cudaExternalSemaphore_t,
-    cudaExternalSemaphoreHandleDesc, cudaExternalSemaphoreHandleDesc__bindgen_ty_1__bindgen_ty_1, cudaExternalSemaphoreHandleType, cudaExternalSemaphoreSignalNodeParams, cudaExternalSemaphoreSignalNodeParamsV2, cudaExternalSemaphoreSignalParams, cudaExternalSemaphoreSignalParams__bindgen_ty_1,
-    cudaExternalSemaphoreSignalParams__bindgen_ty_1__bindgen_ty_1, cudaExternalSemaphoreSignalParams__bindgen_ty_1__bindgen_ty_3, cudaExternalSemaphoreSignalSkipNvSciBufMemSync, cudaExternalSemaphoreWaitNodeParams, cudaExternalSemaphoreWaitNodeParamsV2, cudaExternalSemaphoreWaitParams,
-    cudaExternalSemaphoreWaitParams__bindgen_ty_1, cudaExternalSemaphoreWaitParams__bindgen_ty_1__bindgen_ty_1, cudaExternalSemaphoreWaitParams__bindgen_ty_1__bindgen_ty_3, cudaExternalSemaphoreWaitSkipNvSciBufMemSync, cudaFlushGPUDirectRDMAWritesOptions, cudaFlushGPUDirectRDMAWritesScope,
-    cudaFlushGPUDirectRDMAWritesTarget, cudaFuncAttribute, cudaFuncAttributes, cudaFuncCache, cudaFunction_t, cudaGPUDirectRDMAWritesOrdering, cudaGetDriverEntryPointFlags, cudaGraph_t, cudaGraphChildGraphNodeOwnership, cudaGraphConditionalHandle, cudaGraphConditionalHandleFlags,
-    cudaGraphConditionalNodeType, cudaGraphDebugDotFlags, cudaGraphDependencyType_enum, cudaGraphDeviceNode_t, cudaGraphEdgeData, cudaGraphEdgeData_st, cudaGraphExec_t, cudaGraphExecUpdateResult, cudaGraphExecUpdateResultInfo, cudaGraphExecUpdateResultInfo_st, cudaGraphInstantiateFlags,
-    cudaGraphInstantiateParams, cudaGraphInstantiateParams_st, cudaGraphInstantiateResult, cudaGraphKernelNodeField, cudaGraphKernelNodePortDefault, cudaGraphKernelNodePortLaunchCompletion, cudaGraphKernelNodePortProgrammatic, cudaGraphKernelNodeUpdate,
-    cudaGraphKernelNodeUpdate__bindgen_ty_1__bindgen_ty_1, cudaGraphMemAttributeType, cudaGraphNode_t, cudaGraphNodeParams, cudaGraphNodeType, cudaGraphicsCubeFace, cudaGraphicsMapFlags, cudaGraphicsRegisterFlags, cudaGraphicsResource, cudaGraphicsResource_t, cudaHostAllocDefault,
-    cudaHostAllocMapped, cudaHostAllocPortable, cudaHostAllocWriteCombined, cudaHostFn_t, cudaHostNodeParams, cudaHostNodeParamsV2, cudaHostRegisterDefault, cudaHostRegisterIoMemory, cudaHostRegisterMapped, cudaHostRegisterPortable, cudaHostRegisterReadOnly, cudaHostTaskSyncMode,
-    cudaInitDeviceFlagsAreValid, cudaIpcEventHandle_st, cudaIpcEventHandle_t, cudaIpcMemHandle_st, cudaIpcMemHandle_t, cudaIpcMemLazyEnablePeerAccess, cudaJit_CacheMode, cudaJit_Fallback, cudaJitOption, cudaKernel_t, cudaKernelFunctionType, cudaKernelNodeParams, cudaKernelNodeParamsV2,
-    cudaLaunchAttribute, cudaLaunchAttribute_st, cudaLaunchAttributeID, cudaLaunchAttributePortableClusterMode, cudaLaunchAttributeValue__bindgen_ty_1, cudaLaunchAttributeValue__bindgen_ty_2, cudaLaunchAttributeValue__bindgen_ty_3, cudaLaunchAttributeValue__bindgen_ty_4,
-    cudaLaunchAttributeValue__bindgen_ty_5, cudaLaunchConfig_st, cudaLaunchConfig_t, cudaLaunchMemSyncDomain, cudaLaunchMemSyncDomainMap, cudaLaunchMemSyncDomainMap_st, cudaLibrary_t, cudaLibraryOption, cudaLimit, cudaLogIterator, cudaLogsCallback_t, cudaLogsCallbackHandle, cudaMemAccessDesc,
-    cudaMemAccessFlags, cudaMemAllocNodeParams, cudaMemAllocNodeParamsV2, cudaMemAllocationHandleType, cudaMemAllocationType, cudaMemAttachGlobal, cudaMemAttachHost, cudaMemAttachSingle, cudaMemFabricHandle_st, cudaMemFabricHandle_t, cudaMemFreeNodeParams, cudaMemLocation, cudaMemLocationType,
-    cudaMemPool_t, cudaMemPoolAttr, cudaMemPoolCreateUsageHwDecompress, cudaMemPoolProps, cudaMemPoolPtrExportData, cudaMemRangeAttribute, cudaMemcpy3DBatchOp, cudaMemcpy3DOperand, cudaMemcpy3DOperand__bindgen_ty_1__bindgen_ty_1, cudaMemcpy3DOperand__bindgen_ty_1__bindgen_ty_2,
-    cudaMemcpy3DOperandType, cudaMemcpy3DParms, cudaMemcpy3DPeerParms, cudaMemcpyAttributes, cudaMemcpyFlags, cudaMemcpyKind, cudaMemcpyNodeParams, cudaMemcpySrcAccessOrder, cudaMemoryAdvise, cudaMemoryType, cudaMemsetParams, cudaMemsetParamsV2, cudaMipmappedArray, cudaMipmappedArray_const_t,
-    cudaMipmappedArray_t, cudaNvSciSyncAttrSignal, cudaNvSciSyncAttrWait, cudaOccupancyDefault, cudaOccupancyDisableCachingOverride, cudaOffset3D, cudaPeerAccessDefault, cudaPitchedPtr, cudaPointerAttributes, cudaPos, cudaResourceDesc, cudaResourceDesc__bindgen_ty_1__bindgen_ty_1,
-    cudaResourceDesc__bindgen_ty_1__bindgen_ty_2, cudaResourceDesc__bindgen_ty_1__bindgen_ty_3, cudaResourceDesc__bindgen_ty_1__bindgen_ty_4, cudaResourceDesc__bindgen_ty_1__bindgen_ty_5, cudaResourceType, cudaResourceViewDesc, cudaResourceViewFormat, cudaRoundMode, cudaSharedCarveout,
-    cudaSharedMemConfig, cudaSharedMemoryMode, cudaStream_t, cudaStreamCallback_t, cudaStreamCaptureMode, cudaStreamCaptureStatus, cudaStreamDefault, cudaStreamNonBlocking, cudaStreamUpdateCaptureDependenciesFlags, cudaSurfaceBoundaryMode, cudaSurfaceFormatMode, cudaSurfaceObject_t,
-    cudaSurfaceType1D, cudaSurfaceType1DLayered, cudaSurfaceType2D, cudaSurfaceType2DLayered, cudaSurfaceType3D, cudaSurfaceTypeCubemap, cudaSurfaceTypeCubemapLayered, cudaSynchronizationPolicy, cudaTextureAddressMode, cudaTextureDesc, cudaTextureFilterMode, cudaTextureObject_t,
-    cudaTextureReadMode, cudaTextureType1D, cudaTextureType1DLayered, cudaTextureType2D, cudaTextureType2DLayered, cudaTextureType3D, cudaTextureTypeCubemap, cudaTextureTypeCubemapLayered, cudaUUID_t, cudaUserObject_t, cudaUserObjectFlags, cudaUserObjectRetainFlags,
-    cudalibraryHostUniversalFunctionAndDataTable, dim3, double2, float2, libraryPropertyType_t,
-};
 #[allow(unused_imports)]
 use crate::types;
 #[cfg(feature = "runtime-link")]
@@ -2008,75 +2299,75 @@ impl crate::sys::DynamicBindings {
         self.cudaDeviceSynchronize = val;
         self
     }
-    pub fn cudaDeviceSetLimit(mut self, val: Option<unsafe extern "C" fn(limit: cudaLimit, value: usize) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceSetLimit(mut self, val: Option<unsafe extern "C" fn(cudaLimit, usize) -> cudaError_t>) -> Self {
         self.cudaDeviceSetLimit = val;
         self
     }
-    pub fn cudaDeviceGetLimit(mut self, val: Option<unsafe extern "C" fn(pValue: *mut usize, limit: cudaLimit) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetLimit(mut self, val: Option<unsafe extern "C" fn(*mut usize, cudaLimit) -> cudaError_t>) -> Self {
         self.cudaDeviceGetLimit = val;
         self
     }
-    pub fn cudaDeviceGetTexture1DLinearMaxWidth(mut self, val: Option<unsafe extern "C" fn(maxWidthInElements: *mut usize, fmtDesc: *const cudaChannelFormatDesc, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetTexture1DLinearMaxWidth(mut self, val: Option<unsafe extern "C" fn(*mut usize, *const cudaChannelFormatDesc, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetTexture1DLinearMaxWidth = val;
         self
     }
-    pub fn cudaDeviceGetCacheConfig(mut self, val: Option<unsafe extern "C" fn(pCacheConfig: *mut cudaFuncCache) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetCacheConfig(mut self, val: Option<unsafe extern "C" fn(*mut cudaFuncCache) -> cudaError_t>) -> Self {
         self.cudaDeviceGetCacheConfig = val;
         self
     }
-    pub fn cudaDeviceGetStreamPriorityRange(mut self, val: Option<unsafe extern "C" fn(leastPriority: *mut ::std::os::raw::c_int, greatestPriority: *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetStreamPriorityRange(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetStreamPriorityRange = val;
         self
     }
-    pub fn cudaDeviceSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(cacheConfig: cudaFuncCache) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(cudaFuncCache) -> cudaError_t>) -> Self {
         self.cudaDeviceSetCacheConfig = val;
         self
     }
-    pub fn cudaDeviceGetByPCIBusId(mut self, val: Option<unsafe extern "C" fn(device: *mut ::std::os::raw::c_int, pciBusId: *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetByPCIBusId(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
         self.cudaDeviceGetByPCIBusId = val;
         self
     }
-    pub fn cudaDeviceGetPCIBusId(mut self, val: Option<unsafe extern "C" fn(pciBusId: *mut ::std::os::raw::c_char, len: ::std::os::raw::c_int, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetPCIBusId(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_char, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetPCIBusId = val;
         self
     }
-    pub fn cudaIpcGetEventHandle(mut self, val: Option<unsafe extern "C" fn(handle: *mut cudaIpcEventHandle_t, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaIpcGetEventHandle(mut self, val: Option<unsafe extern "C" fn(*mut cudaIpcEventHandle_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaIpcGetEventHandle = val;
         self
     }
-    pub fn cudaIpcOpenEventHandle(mut self, val: Option<unsafe extern "C" fn(event: *mut cudaEvent_t, handle: cudaIpcEventHandle_t) -> cudaError_t>) -> Self {
+    pub fn cudaIpcOpenEventHandle(mut self, val: Option<unsafe extern "C" fn(*mut cudaEvent_t, cudaIpcEventHandle_t) -> cudaError_t>) -> Self {
         self.cudaIpcOpenEventHandle = val;
         self
     }
-    pub fn cudaIpcGetMemHandle(mut self, val: Option<unsafe extern "C" fn(handle: *mut cudaIpcMemHandle_t, devPtr: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaIpcGetMemHandle(mut self, val: Option<unsafe extern "C" fn(*mut cudaIpcMemHandle_t, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaIpcGetMemHandle = val;
         self
     }
-    pub fn cudaIpcOpenMemHandle(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, handle: cudaIpcMemHandle_t, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaIpcOpenMemHandle(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, cudaIpcMemHandle_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaIpcOpenMemHandle = val;
         self
     }
-    pub fn cudaIpcCloseMemHandle(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaIpcCloseMemHandle(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaIpcCloseMemHandle = val;
         self
     }
-    pub fn cudaDeviceFlushGPUDirectRDMAWrites(mut self, val: Option<unsafe extern "C" fn(target: cudaFlushGPUDirectRDMAWritesTarget, scope: cudaFlushGPUDirectRDMAWritesScope) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceFlushGPUDirectRDMAWrites(mut self, val: Option<unsafe extern "C" fn(cudaFlushGPUDirectRDMAWritesTarget, cudaFlushGPUDirectRDMAWritesScope) -> cudaError_t>) -> Self {
         self.cudaDeviceFlushGPUDirectRDMAWrites = val;
         self
     }
-    pub fn cudaDeviceRegisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int, callbackFunc: cudaAsyncCallback, userData: *mut ::std::os::raw::c_void, callback: *mut cudaAsyncCallbackHandle_t) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceRegisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, cudaAsyncCallback, *mut ::std::os::raw::c_void, *mut cudaAsyncCallbackHandle_t) -> cudaError_t>) -> Self {
         self.cudaDeviceRegisterAsyncNotification = val;
         self
     }
-    pub fn cudaDeviceUnregisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int, callback: cudaAsyncCallbackHandle_t) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceUnregisterAsyncNotification(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, cudaAsyncCallbackHandle_t) -> cudaError_t>) -> Self {
         self.cudaDeviceUnregisterAsyncNotification = val;
         self
     }
-    pub fn cudaDeviceGetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(pConfig: *mut cudaSharedMemConfig) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(*mut cudaSharedMemConfig) -> cudaError_t>) -> Self {
         self.cudaDeviceGetSharedMemConfig = val;
         self
     }
-    pub fn cudaDeviceSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(config: cudaSharedMemConfig) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(cudaSharedMemConfig) -> cudaError_t>) -> Self {
         self.cudaDeviceSetSharedMemConfig = val;
         self
     }
@@ -2088,107 +2379,107 @@ impl crate::sys::DynamicBindings {
         self.cudaPeekAtLastError = val;
         self
     }
-    pub fn cudaGetErrorName(mut self, val: Option<unsafe extern "C" fn(error: cudaError_t) -> *const ::std::os::raw::c_char>) -> Self {
+    pub fn cudaGetErrorName(mut self, val: Option<unsafe extern "C" fn(cudaError_t) -> *const ::std::os::raw::c_char>) -> Self {
         self.cudaGetErrorName = val;
         self
     }
-    pub fn cudaGetErrorString(mut self, val: Option<unsafe extern "C" fn(error: cudaError_t) -> *const ::std::os::raw::c_char>) -> Self {
+    pub fn cudaGetErrorString(mut self, val: Option<unsafe extern "C" fn(cudaError_t) -> *const ::std::os::raw::c_char>) -> Self {
         self.cudaGetErrorString = val;
         self
     }
-    pub fn cudaGetDeviceCount(mut self, val: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaGetDeviceCount(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaGetDeviceCount = val;
         self
     }
-    pub fn cudaGetDeviceProperties(mut self, val: Option<unsafe extern "C" fn(prop: *mut cudaDeviceProp, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaGetDeviceProperties(mut self, val: Option<unsafe extern "C" fn(*mut cudaDeviceProp, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaGetDeviceProperties = val;
         self
     }
-    pub fn cudaDeviceGetAttribute(mut self, val: Option<unsafe extern "C" fn(value: *mut ::std::os::raw::c_int, attr: cudaDeviceAttr, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, cudaDeviceAttr, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetAttribute = val;
         self
     }
-    pub fn cudaDeviceGetHostAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(capabilities: *mut ::std::os::raw::c_uint, operations: *const cudaAtomicOperation, count: ::std::os::raw::c_uint, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetHostAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *const cudaAtomicOperation, ::std::os::raw::c_uint, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetHostAtomicCapabilities = val;
         self
     }
-    pub fn cudaDeviceGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(memPool: *mut cudaMemPool_t, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemPool_t, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetDefaultMemPool = val;
         self
     }
-    pub fn cudaDeviceSetMemPool(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int, memPool: cudaMemPool_t) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceSetMemPool(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, cudaMemPool_t) -> cudaError_t>) -> Self {
         self.cudaDeviceSetMemPool = val;
         self
     }
-    pub fn cudaDeviceGetMemPool(mut self, val: Option<unsafe extern "C" fn(memPool: *mut cudaMemPool_t, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetMemPool(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemPool_t, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetMemPool = val;
         self
     }
-    pub fn cudaDeviceGetNvSciSyncAttributes(mut self, val: Option<unsafe extern "C" fn(nvSciSyncAttrList: *mut ::std::os::raw::c_void, device: ::std::os::raw::c_int, flags: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetNvSciSyncAttributes(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetNvSciSyncAttributes = val;
         self
     }
-    pub fn cudaDeviceGetP2PAttribute(mut self, val: Option<unsafe extern "C" fn(value: *mut ::std::os::raw::c_int, attr: cudaDeviceP2PAttr, srcDevice: ::std::os::raw::c_int, dstDevice: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetP2PAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, cudaDeviceP2PAttr, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetP2PAttribute = val;
         self
     }
-    pub fn cudaDeviceGetP2PAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(capabilities: *mut ::std::os::raw::c_uint, operations: *const cudaAtomicOperation, count: ::std::os::raw::c_uint, srcDevice: ::std::os::raw::c_int, dstDevice: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetP2PAtomicCapabilities(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *const cudaAtomicOperation, ::std::os::raw::c_uint, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetP2PAtomicCapabilities = val;
         self
     }
-    pub fn cudaChooseDevice(mut self, val: Option<unsafe extern "C" fn(device: *mut ::std::os::raw::c_int, prop: *const cudaDeviceProp) -> cudaError_t>) -> Self {
+    pub fn cudaChooseDevice(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *const cudaDeviceProp) -> cudaError_t>) -> Self {
         self.cudaChooseDevice = val;
         self
     }
-    pub fn cudaInitDevice(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int, deviceFlags: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaInitDevice(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaInitDevice = val;
         self
     }
-    pub fn cudaSetDevice(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaSetDevice(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaSetDevice = val;
         self
     }
-    pub fn cudaGetDevice(mut self, val: Option<unsafe extern "C" fn(device: *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaGetDevice(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaGetDevice = val;
         self
     }
-    pub fn cudaSetValidDevices(mut self, val: Option<unsafe extern "C" fn(device_arr: *mut ::std::os::raw::c_int, len: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaSetValidDevices(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaSetValidDevices = val;
         self
     }
-    pub fn cudaSetDeviceFlags(mut self, val: Option<unsafe extern "C" fn(flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaSetDeviceFlags(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaSetDeviceFlags = val;
         self
     }
-    pub fn cudaGetDeviceFlags(mut self, val: Option<unsafe extern "C" fn(flags: *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGetDeviceFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGetDeviceFlags = val;
         self
     }
-    pub fn cudaStreamCreate(mut self, val: Option<unsafe extern "C" fn(pStream: *mut cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaStreamCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaStreamCreate = val;
         self
     }
-    pub fn cudaStreamCreateWithFlags(mut self, val: Option<unsafe extern "C" fn(pStream: *mut cudaStream_t, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaStreamCreateWithFlags(mut self, val: Option<unsafe extern "C" fn(*mut cudaStream_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaStreamCreateWithFlags = val;
         self
     }
-    pub fn cudaStreamCreateWithPriority(mut self, val: Option<unsafe extern "C" fn(pStream: *mut cudaStream_t, flags: ::std::os::raw::c_uint, priority: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaStreamCreateWithPriority(mut self, val: Option<unsafe extern "C" fn(*mut cudaStream_t, ::std::os::raw::c_uint, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaStreamCreateWithPriority = val;
         self
     }
-    pub fn cudaStreamGetPriority(mut self, val: Option<unsafe extern "C" fn(hStream: cudaStream_t, priority: *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaStreamGetPriority(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaStreamGetPriority = val;
         self
     }
-    pub fn cudaStreamGetFlags(mut self, val: Option<unsafe extern "C" fn(hStream: cudaStream_t, flags: *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaStreamGetFlags(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaStreamGetFlags = val;
         self
     }
-    pub fn cudaStreamGetId(mut self, val: Option<unsafe extern "C" fn(hStream: cudaStream_t, streamId: *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
+    pub fn cudaStreamGetId(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
         self.cudaStreamGetId = val;
         self
     }
-    pub fn cudaStreamGetDevice(mut self, val: Option<unsafe extern "C" fn(hStream: cudaStream_t, device: *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaStreamGetDevice(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaStreamGetDevice = val;
         self
     }
@@ -2196,1219 +2487,1157 @@ impl crate::sys::DynamicBindings {
         self.cudaCtxResetPersistingL2Cache = val;
         self
     }
-    pub fn cudaStreamCopyAttributes(mut self, val: Option<unsafe extern "C" fn(dst: cudaStream_t, src: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaStreamCopyAttributes(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaStreamCopyAttributes = val;
         self
     }
-    pub fn cudaStreamGetAttribute(mut self, val: Option<unsafe extern "C" fn(hStream: cudaStream_t, attr: cudaLaunchAttributeID, value_out: *mut cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
+    pub fn cudaStreamGetAttribute(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaLaunchAttributeID, *mut cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
         self.cudaStreamGetAttribute = val;
         self
     }
-    pub fn cudaStreamSetAttribute(mut self, val: Option<unsafe extern "C" fn(hStream: cudaStream_t, attr: cudaLaunchAttributeID, value: *const cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
+    pub fn cudaStreamSetAttribute(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaLaunchAttributeID, *const cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
         self.cudaStreamSetAttribute = val;
         self
     }
-    pub fn cudaStreamDestroy(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaStreamDestroy(mut self, val: Option<unsafe extern "C" fn(cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaStreamDestroy = val;
         self
     }
-    pub fn cudaStreamWaitEvent(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, event: cudaEvent_t, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaStreamWaitEvent(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaEvent_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaStreamWaitEvent = val;
         self
     }
-    pub fn cudaStreamAddCallback(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, callback: cudaStreamCallback_t, userData: *mut ::std::os::raw::c_void, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaStreamAddCallback(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaStreamCallback_t, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaStreamAddCallback = val;
         self
     }
-    pub fn cudaStreamSynchronize(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaStreamSynchronize(mut self, val: Option<unsafe extern "C" fn(cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaStreamSynchronize = val;
         self
     }
-    pub fn cudaStreamQuery(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaStreamQuery(mut self, val: Option<unsafe extern "C" fn(cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaStreamQuery = val;
         self
     }
-    pub fn cudaStreamAttachMemAsync(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, devPtr: *mut ::std::os::raw::c_void, length: usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaStreamAttachMemAsync(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaStreamAttachMemAsync = val;
         self
     }
-    pub fn cudaStreamBeginCapture(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, mode: cudaStreamCaptureMode) -> cudaError_t>) -> Self {
+    pub fn cudaStreamBeginCapture(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaStreamCaptureMode) -> cudaError_t>) -> Self {
         self.cudaStreamBeginCapture = val;
         self
     }
-    pub fn cudaStreamBeginCaptureToGraph(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, graph: cudaGraph_t, dependencies: *const cudaGraphNode_t, dependencyData: *const cudaGraphEdgeData, numDependencies: usize, mode: cudaStreamCaptureMode) -> cudaError_t>) -> Self {
+    pub fn cudaStreamBeginCaptureToGraph(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaGraph_t, *const cudaGraphNode_t, *const cudaGraphEdgeData, usize, cudaStreamCaptureMode) -> cudaError_t>) -> Self {
         self.cudaStreamBeginCaptureToGraph = val;
         self
     }
-    pub fn cudaThreadExchangeStreamCaptureMode(mut self, val: Option<unsafe extern "C" fn(mode: *mut cudaStreamCaptureMode) -> cudaError_t>) -> Self {
+    pub fn cudaThreadExchangeStreamCaptureMode(mut self, val: Option<unsafe extern "C" fn(*mut cudaStreamCaptureMode) -> cudaError_t>) -> Self {
         self.cudaThreadExchangeStreamCaptureMode = val;
         self
     }
-    pub fn cudaStreamEndCapture(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, pGraph: *mut cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaStreamEndCapture(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaStreamEndCapture = val;
         self
     }
-    pub fn cudaStreamIsCapturing(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, pCaptureStatus: *mut cudaStreamCaptureStatus) -> cudaError_t>) -> Self {
+    pub fn cudaStreamIsCapturing(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut cudaStreamCaptureStatus) -> cudaError_t>) -> Self {
         self.cudaStreamIsCapturing = val;
         self
     }
-    pub fn cudaStreamGetCaptureInfo(
-        mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                stream: cudaStream_t,
-                captureStatus_out: *mut cudaStreamCaptureStatus,
-                id_out: *mut ::std::os::raw::c_ulonglong,
-                graph_out: *mut cudaGraph_t,
-                dependencies_out: *mut *const cudaGraphNode_t,
-                edgeData_out: *mut *const cudaGraphEdgeData,
-                numDependencies_out: *mut usize,
-            ) -> cudaError_t,
-        >,
-    ) -> Self {
+    pub fn cudaStreamGetCaptureInfo(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut cudaStreamCaptureStatus, *mut ::std::os::raw::c_ulonglong, *mut cudaGraph_t, *mut *const cudaGraphNode_t, *mut *const cudaGraphEdgeData, *mut usize) -> cudaError_t>) -> Self {
         self.cudaStreamGetCaptureInfo = val;
         self
     }
-    pub fn cudaStreamUpdateCaptureDependencies(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, dependencies: *mut cudaGraphNode_t, dependencyData: *const cudaGraphEdgeData, numDependencies: usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaStreamUpdateCaptureDependencies(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut cudaGraphNode_t, *const cudaGraphEdgeData, usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaStreamUpdateCaptureDependencies = val;
         self
     }
-    pub fn cudaEventCreate(mut self, val: Option<unsafe extern "C" fn(event: *mut cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaEventCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaEventCreate = val;
         self
     }
-    pub fn cudaEventCreateWithFlags(mut self, val: Option<unsafe extern "C" fn(event: *mut cudaEvent_t, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaEventCreateWithFlags(mut self, val: Option<unsafe extern "C" fn(*mut cudaEvent_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaEventCreateWithFlags = val;
         self
     }
-    pub fn cudaEventRecord(mut self, val: Option<unsafe extern "C" fn(event: cudaEvent_t, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaEventRecord(mut self, val: Option<unsafe extern "C" fn(cudaEvent_t, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaEventRecord = val;
         self
     }
-    pub fn cudaEventRecordWithFlags(mut self, val: Option<unsafe extern "C" fn(event: cudaEvent_t, stream: cudaStream_t, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaEventRecordWithFlags(mut self, val: Option<unsafe extern "C" fn(cudaEvent_t, cudaStream_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaEventRecordWithFlags = val;
         self
     }
-    pub fn cudaEventQuery(mut self, val: Option<unsafe extern "C" fn(event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaEventQuery(mut self, val: Option<unsafe extern "C" fn(cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaEventQuery = val;
         self
     }
-    pub fn cudaEventSynchronize(mut self, val: Option<unsafe extern "C" fn(event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaEventSynchronize(mut self, val: Option<unsafe extern "C" fn(cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaEventSynchronize = val;
         self
     }
-    pub fn cudaEventDestroy(mut self, val: Option<unsafe extern "C" fn(event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaEventDestroy(mut self, val: Option<unsafe extern "C" fn(cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaEventDestroy = val;
         self
     }
-    pub fn cudaEventElapsedTime(mut self, val: Option<unsafe extern "C" fn(ms: *mut f32, start: cudaEvent_t, end: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaEventElapsedTime(mut self, val: Option<unsafe extern "C" fn(*mut f32, cudaEvent_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaEventElapsedTime = val;
         self
     }
-    pub fn cudaImportExternalMemory(mut self, val: Option<unsafe extern "C" fn(extMem_out: *mut cudaExternalMemory_t, memHandleDesc: *const cudaExternalMemoryHandleDesc) -> cudaError_t>) -> Self {
+    pub fn cudaImportExternalMemory(mut self, val: Option<unsafe extern "C" fn(*mut cudaExternalMemory_t, *const cudaExternalMemoryHandleDesc) -> cudaError_t>) -> Self {
         self.cudaImportExternalMemory = val;
         self
     }
-    pub fn cudaExternalMemoryGetMappedBuffer(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, extMem: cudaExternalMemory_t, bufferDesc: *const cudaExternalMemoryBufferDesc) -> cudaError_t>) -> Self {
+    pub fn cudaExternalMemoryGetMappedBuffer(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, cudaExternalMemory_t, *const cudaExternalMemoryBufferDesc) -> cudaError_t>) -> Self {
         self.cudaExternalMemoryGetMappedBuffer = val;
         self
     }
-    pub fn cudaExternalMemoryGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(mipmap: *mut cudaMipmappedArray_t, extMem: cudaExternalMemory_t, mipmapDesc: *const cudaExternalMemoryMipmappedArrayDesc) -> cudaError_t>) -> Self {
+    pub fn cudaExternalMemoryGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(*mut cudaMipmappedArray_t, cudaExternalMemory_t, *const cudaExternalMemoryMipmappedArrayDesc) -> cudaError_t>) -> Self {
         self.cudaExternalMemoryGetMappedMipmappedArray = val;
         self
     }
-    pub fn cudaDestroyExternalMemory(mut self, val: Option<unsafe extern "C" fn(extMem: cudaExternalMemory_t) -> cudaError_t>) -> Self {
+    pub fn cudaDestroyExternalMemory(mut self, val: Option<unsafe extern "C" fn(cudaExternalMemory_t) -> cudaError_t>) -> Self {
         self.cudaDestroyExternalMemory = val;
         self
     }
-    pub fn cudaImportExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(extSem_out: *mut cudaExternalSemaphore_t, semHandleDesc: *const cudaExternalSemaphoreHandleDesc) -> cudaError_t>) -> Self {
+    pub fn cudaImportExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(*mut cudaExternalSemaphore_t, *const cudaExternalSemaphoreHandleDesc) -> cudaError_t>) -> Self {
         self.cudaImportExternalSemaphore = val;
         self
     }
-    pub fn cudaSignalExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(extSemArray: *const cudaExternalSemaphore_t, paramsArray: *const cudaExternalSemaphoreSignalParams, numExtSems: ::std::os::raw::c_uint, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaSignalExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(*const cudaExternalSemaphore_t, *const cudaExternalSemaphoreSignalParams, ::std::os::raw::c_uint, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaSignalExternalSemaphoresAsync = val;
         self
     }
-    pub fn cudaWaitExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(extSemArray: *const cudaExternalSemaphore_t, paramsArray: *const cudaExternalSemaphoreWaitParams, numExtSems: ::std::os::raw::c_uint, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaWaitExternalSemaphoresAsync(mut self, val: Option<unsafe extern "C" fn(*const cudaExternalSemaphore_t, *const cudaExternalSemaphoreWaitParams, ::std::os::raw::c_uint, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaWaitExternalSemaphoresAsync = val;
         self
     }
-    pub fn cudaDestroyExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(extSem: cudaExternalSemaphore_t) -> cudaError_t>) -> Self {
+    pub fn cudaDestroyExternalSemaphore(mut self, val: Option<unsafe extern "C" fn(cudaExternalSemaphore_t) -> cudaError_t>) -> Self {
         self.cudaDestroyExternalSemaphore = val;
         self
     }
-    pub fn cudaLaunchKernel(mut self, val: Option<unsafe extern "C" fn(func: *const ::std::os::raw::c_void, gridDim: dim3, blockDim: dim3, args: *mut *mut ::std::os::raw::c_void, sharedMem: usize, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaLaunchKernel(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, dim3, dim3, *mut *mut ::std::os::raw::c_void, usize, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaLaunchKernel = val;
         self
     }
-    pub fn cudaLaunchKernelExC(mut self, val: Option<unsafe extern "C" fn(config: *const cudaLaunchConfig_t, func: *const ::std::os::raw::c_void, args: *mut *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaLaunchKernelExC(mut self, val: Option<unsafe extern "C" fn(*const cudaLaunchConfig_t, *const ::std::os::raw::c_void, *mut *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaLaunchKernelExC = val;
         self
     }
-    pub fn cudaLaunchCooperativeKernel(mut self, val: Option<unsafe extern "C" fn(func: *const ::std::os::raw::c_void, gridDim: dim3, blockDim: dim3, args: *mut *mut ::std::os::raw::c_void, sharedMem: usize, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaLaunchCooperativeKernel(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, dim3, dim3, *mut *mut ::std::os::raw::c_void, usize, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaLaunchCooperativeKernel = val;
         self
     }
-    pub fn cudaFuncSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(func: *const ::std::os::raw::c_void, cacheConfig: cudaFuncCache) -> cudaError_t>) -> Self {
+    pub fn cudaFuncSetCacheConfig(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, cudaFuncCache) -> cudaError_t>) -> Self {
         self.cudaFuncSetCacheConfig = val;
         self
     }
-    pub fn cudaFuncGetAttributes(mut self, val: Option<unsafe extern "C" fn(attr: *mut cudaFuncAttributes, func: *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaFuncGetAttributes(mut self, val: Option<unsafe extern "C" fn(*mut cudaFuncAttributes, *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaFuncGetAttributes = val;
         self
     }
-    pub fn cudaFuncSetAttribute(mut self, val: Option<unsafe extern "C" fn(func: *const ::std::os::raw::c_void, attr: cudaFuncAttribute, value: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaFuncSetAttribute(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, cudaFuncAttribute, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaFuncSetAttribute = val;
         self
     }
-    pub fn cudaFuncGetName(mut self, val: Option<unsafe extern "C" fn(name: *mut *const ::std::os::raw::c_char, func: *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaFuncGetName(mut self, val: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_char, *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaFuncGetName = val;
         self
     }
-    pub fn cudaFuncGetParamInfo(mut self, val: Option<unsafe extern "C" fn(func: *const ::std::os::raw::c_void, paramIndex: usize, paramOffset: *mut usize, paramSize: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaFuncGetParamInfo(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, usize, *mut usize, *mut usize) -> cudaError_t>) -> Self {
         self.cudaFuncGetParamInfo = val;
         self
     }
-    pub fn cudaFuncGetParamCount(mut self, val: Option<unsafe extern "C" fn(func: *const ::std::os::raw::c_void, paramCount: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaFuncGetParamCount(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, *mut usize) -> cudaError_t>) -> Self {
         self.cudaFuncGetParamCount = val;
         self
     }
-    pub fn cudaLaunchHostFunc(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, fn_: cudaHostFn_t, userData: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaLaunchHostFunc(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaHostFn_t, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaLaunchHostFunc = val;
         self
     }
-    pub fn cudaLaunchHostFunc_v2(mut self, val: Option<unsafe extern "C" fn(stream: cudaStream_t, fn_: cudaHostFn_t, userData: *mut ::std::os::raw::c_void, syncMode: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaLaunchHostFunc_v2(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, cudaHostFn_t, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaLaunchHostFunc_v2 = val;
         self
     }
-    pub fn cudaFuncSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(func: *const ::std::os::raw::c_void, config: cudaSharedMemConfig) -> cudaError_t>) -> Self {
+    pub fn cudaFuncSetSharedMemConfig(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, cudaSharedMemConfig) -> cudaError_t>) -> Self {
         self.cudaFuncSetSharedMemConfig = val;
         self
     }
-    pub fn cudaOccupancyMaxActiveBlocksPerMultiprocessor(mut self, val: Option<unsafe extern "C" fn(numBlocks: *mut ::std::os::raw::c_int, func: *const ::std::os::raw::c_void, blockSize: ::std::os::raw::c_int, dynamicSMemSize: usize) -> cudaError_t>) -> Self {
+    pub fn cudaOccupancyMaxActiveBlocksPerMultiprocessor(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, usize) -> cudaError_t>) -> Self {
         self.cudaOccupancyMaxActiveBlocksPerMultiprocessor = val;
         self
     }
-    pub fn cudaOccupancyAvailableDynamicSMemPerBlock(mut self, val: Option<unsafe extern "C" fn(dynamicSmemSize: *mut usize, func: *const ::std::os::raw::c_void, numBlocks: ::std::os::raw::c_int, blockSize: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaOccupancyAvailableDynamicSMemPerBlock(mut self, val: Option<unsafe extern "C" fn(*mut usize, *const ::std::os::raw::c_void, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaOccupancyAvailableDynamicSMemPerBlock = val;
         self
     }
-    pub fn cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(mut self, val: Option<unsafe extern "C" fn(numBlocks: *mut ::std::os::raw::c_int, func: *const ::std::os::raw::c_void, blockSize: ::std::os::raw::c_int, dynamicSMemSize: usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags = val;
         self
     }
-    pub fn cudaOccupancyMaxPotentialClusterSize(mut self, val: Option<unsafe extern "C" fn(clusterSize: *mut ::std::os::raw::c_int, func: *const ::std::os::raw::c_void, launchConfig: *const cudaLaunchConfig_t) -> cudaError_t>) -> Self {
+    pub fn cudaOccupancyMaxPotentialClusterSize(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *const ::std::os::raw::c_void, *const cudaLaunchConfig_t) -> cudaError_t>) -> Self {
         self.cudaOccupancyMaxPotentialClusterSize = val;
         self
     }
-    pub fn cudaOccupancyMaxActiveClusters(mut self, val: Option<unsafe extern "C" fn(numClusters: *mut ::std::os::raw::c_int, func: *const ::std::os::raw::c_void, launchConfig: *const cudaLaunchConfig_t) -> cudaError_t>) -> Self {
+    pub fn cudaOccupancyMaxActiveClusters(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, *const ::std::os::raw::c_void, *const cudaLaunchConfig_t) -> cudaError_t>) -> Self {
         self.cudaOccupancyMaxActiveClusters = val;
         self
     }
-    pub fn cudaMallocManaged(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, size: usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaMallocManaged(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaMallocManaged = val;
         self
     }
-    pub fn cudaMalloc(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, size: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMalloc(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize) -> cudaError_t>) -> Self {
         self.cudaMalloc = val;
         self
     }
-    pub fn cudaMallocHost(mut self, val: Option<unsafe extern "C" fn(ptr: *mut *mut ::std::os::raw::c_void, size: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMallocHost(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize) -> cudaError_t>) -> Self {
         self.cudaMallocHost = val;
         self
     }
-    pub fn cudaMallocPitch(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, pitch: *mut usize, width: usize, height: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMallocPitch(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, usize, usize) -> cudaError_t>) -> Self {
         self.cudaMallocPitch = val;
         self
     }
-    pub fn cudaMallocArray(mut self, val: Option<unsafe extern "C" fn(array: *mut cudaArray_t, desc: *const cudaChannelFormatDesc, width: usize, height: usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaMallocArray(mut self, val: Option<unsafe extern "C" fn(*mut cudaArray_t, *const cudaChannelFormatDesc, usize, usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaMallocArray = val;
         self
     }
-    pub fn cudaFree(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaFree(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaFree = val;
         self
     }
-    pub fn cudaFreeHost(mut self, val: Option<unsafe extern "C" fn(ptr: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaFreeHost(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaFreeHost = val;
         self
     }
-    pub fn cudaFreeArray(mut self, val: Option<unsafe extern "C" fn(array: cudaArray_t) -> cudaError_t>) -> Self {
+    pub fn cudaFreeArray(mut self, val: Option<unsafe extern "C" fn(cudaArray_t) -> cudaError_t>) -> Self {
         self.cudaFreeArray = val;
         self
     }
-    pub fn cudaFreeMipmappedArray(mut self, val: Option<unsafe extern "C" fn(mipmappedArray: cudaMipmappedArray_t) -> cudaError_t>) -> Self {
+    pub fn cudaFreeMipmappedArray(mut self, val: Option<unsafe extern "C" fn(cudaMipmappedArray_t) -> cudaError_t>) -> Self {
         self.cudaFreeMipmappedArray = val;
         self
     }
-    pub fn cudaHostAlloc(mut self, val: Option<unsafe extern "C" fn(pHost: *mut *mut ::std::os::raw::c_void, size: usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaHostAlloc(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaHostAlloc = val;
         self
     }
-    pub fn cudaHostRegister(mut self, val: Option<unsafe extern "C" fn(ptr: *mut ::std::os::raw::c_void, size: usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaHostRegister(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaHostRegister = val;
         self
     }
-    pub fn cudaHostUnregister(mut self, val: Option<unsafe extern "C" fn(ptr: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaHostUnregister(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaHostUnregister = val;
         self
     }
-    pub fn cudaHostGetDevicePointer(mut self, val: Option<unsafe extern "C" fn(pDevice: *mut *mut ::std::os::raw::c_void, pHost: *mut ::std::os::raw::c_void, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaHostGetDevicePointer(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaHostGetDevicePointer = val;
         self
     }
-    pub fn cudaHostGetFlags(mut self, val: Option<unsafe extern "C" fn(pFlags: *mut ::std::os::raw::c_uint, pHost: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaHostGetFlags(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaHostGetFlags = val;
         self
     }
-    pub fn cudaMalloc3D(mut self, val: Option<unsafe extern "C" fn(pitchedDevPtr: *mut cudaPitchedPtr, extent: cudaExtent) -> cudaError_t>) -> Self {
+    pub fn cudaMalloc3D(mut self, val: Option<unsafe extern "C" fn(*mut cudaPitchedPtr, cudaExtent) -> cudaError_t>) -> Self {
         self.cudaMalloc3D = val;
         self
     }
-    pub fn cudaMalloc3DArray(mut self, val: Option<unsafe extern "C" fn(array: *mut cudaArray_t, desc: *const cudaChannelFormatDesc, extent: cudaExtent, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaMalloc3DArray(mut self, val: Option<unsafe extern "C" fn(*mut cudaArray_t, *const cudaChannelFormatDesc, cudaExtent, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaMalloc3DArray = val;
         self
     }
-    pub fn cudaMallocMipmappedArray(mut self, val: Option<unsafe extern "C" fn(mipmappedArray: *mut cudaMipmappedArray_t, desc: *const cudaChannelFormatDesc, extent: cudaExtent, numLevels: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaMallocMipmappedArray(mut self, val: Option<unsafe extern "C" fn(*mut cudaMipmappedArray_t, *const cudaChannelFormatDesc, cudaExtent, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaMallocMipmappedArray = val;
         self
     }
-    pub fn cudaGetMipmappedArrayLevel(mut self, val: Option<unsafe extern "C" fn(levelArray: *mut cudaArray_t, mipmappedArray: cudaMipmappedArray_const_t, level: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGetMipmappedArrayLevel(mut self, val: Option<unsafe extern "C" fn(*mut cudaArray_t, cudaMipmappedArray_const_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGetMipmappedArrayLevel = val;
         self
     }
-    pub fn cudaMemcpy3D(mut self, val: Option<unsafe extern "C" fn(p: *const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy3D(mut self, val: Option<unsafe extern "C" fn(*const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
         self.cudaMemcpy3D = val;
         self
     }
-    pub fn cudaMemcpy3DPeer(mut self, val: Option<unsafe extern "C" fn(p: *const cudaMemcpy3DPeerParms) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy3DPeer(mut self, val: Option<unsafe extern "C" fn(*const cudaMemcpy3DPeerParms) -> cudaError_t>) -> Self {
         self.cudaMemcpy3DPeer = val;
         self
     }
-    pub fn cudaMemcpy3DAsync(mut self, val: Option<unsafe extern "C" fn(p: *const cudaMemcpy3DParms, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy3DAsync(mut self, val: Option<unsafe extern "C" fn(*const cudaMemcpy3DParms, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpy3DAsync = val;
         self
     }
-    pub fn cudaMemcpy3DPeerAsync(mut self, val: Option<unsafe extern "C" fn(p: *const cudaMemcpy3DPeerParms, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy3DPeerAsync(mut self, val: Option<unsafe extern "C" fn(*const cudaMemcpy3DPeerParms, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpy3DPeerAsync = val;
         self
     }
-    pub fn cudaMemGetInfo(mut self, val: Option<unsafe extern "C" fn(free: *mut usize, total: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemGetInfo(mut self, val: Option<unsafe extern "C" fn(*mut usize, *mut usize) -> cudaError_t>) -> Self {
         self.cudaMemGetInfo = val;
         self
     }
-    pub fn cudaArrayGetInfo(mut self, val: Option<unsafe extern "C" fn(desc: *mut cudaChannelFormatDesc, extent: *mut cudaExtent, flags: *mut ::std::os::raw::c_uint, array: cudaArray_t) -> cudaError_t>) -> Self {
+    pub fn cudaArrayGetInfo(mut self, val: Option<unsafe extern "C" fn(*mut cudaChannelFormatDesc, *mut cudaExtent, *mut ::std::os::raw::c_uint, cudaArray_t) -> cudaError_t>) -> Self {
         self.cudaArrayGetInfo = val;
         self
     }
-    pub fn cudaArrayGetPlane(mut self, val: Option<unsafe extern "C" fn(pPlaneArray: *mut cudaArray_t, hArray: cudaArray_t, planeIdx: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaArrayGetPlane(mut self, val: Option<unsafe extern "C" fn(*mut cudaArray_t, cudaArray_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaArrayGetPlane = val;
         self
     }
-    pub fn cudaArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(memoryRequirements: *mut cudaArrayMemoryRequirements, array: cudaArray_t, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(*mut cudaArrayMemoryRequirements, cudaArray_t, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaArrayGetMemoryRequirements = val;
         self
     }
-    pub fn cudaMipmappedArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(memoryRequirements: *mut cudaArrayMemoryRequirements, mipmap: cudaMipmappedArray_t, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaMipmappedArrayGetMemoryRequirements(mut self, val: Option<unsafe extern "C" fn(*mut cudaArrayMemoryRequirements, cudaMipmappedArray_t, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaMipmappedArrayGetMemoryRequirements = val;
         self
     }
-    pub fn cudaArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(sparseProperties: *mut cudaArraySparseProperties, array: cudaArray_t) -> cudaError_t>) -> Self {
+    pub fn cudaArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(*mut cudaArraySparseProperties, cudaArray_t) -> cudaError_t>) -> Self {
         self.cudaArrayGetSparseProperties = val;
         self
     }
-    pub fn cudaMipmappedArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(sparseProperties: *mut cudaArraySparseProperties, mipmap: cudaMipmappedArray_t) -> cudaError_t>) -> Self {
+    pub fn cudaMipmappedArrayGetSparseProperties(mut self, val: Option<unsafe extern "C" fn(*mut cudaArraySparseProperties, cudaMipmappedArray_t) -> cudaError_t>) -> Self {
         self.cudaMipmappedArrayGetSparseProperties = val;
         self
     }
-    pub fn cudaMemcpy(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpy = val;
         self
     }
-    pub fn cudaMemcpyPeer(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, dstDevice: ::std::os::raw::c_int, src: *const ::std::os::raw::c_void, srcDevice: ::std::os::raw::c_int, count: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyPeer(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, usize) -> cudaError_t>) -> Self {
         self.cudaMemcpyPeer = val;
         self
     }
-    pub fn cudaMemcpy2D(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, dpitch: usize, src: *const ::std::os::raw::c_void, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy2D(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, *const ::std::os::raw::c_void, usize, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpy2D = val;
         self
     }
-    pub fn cudaMemcpy2DToArray(mut self, val: Option<unsafe extern "C" fn(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: *const ::std::os::raw::c_void, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy2DToArray(mut self, val: Option<unsafe extern "C" fn(cudaArray_t, usize, usize, *const ::std::os::raw::c_void, usize, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpy2DToArray = val;
         self
     }
-    pub fn cudaMemcpy2DFromArray(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, dpitch: usize, src: cudaArray_const_t, wOffset: usize, hOffset: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy2DFromArray(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, cudaArray_const_t, usize, usize, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpy2DFromArray = val;
         self
     }
-    pub fn cudaMemcpy2DArrayToArray(mut self, val: Option<unsafe extern "C" fn(dst: cudaArray_t, wOffsetDst: usize, hOffsetDst: usize, src: cudaArray_const_t, wOffsetSrc: usize, hOffsetSrc: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy2DArrayToArray(mut self, val: Option<unsafe extern "C" fn(cudaArray_t, usize, usize, cudaArray_const_t, usize, usize, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpy2DArrayToArray = val;
         self
     }
-    pub fn cudaMemcpyToSymbol(mut self, val: Option<unsafe extern "C" fn(symbol: *const ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyToSymbol(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpyToSymbol = val;
         self
     }
-    pub fn cudaMemcpyFromSymbol(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, symbol: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyFromSymbol(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpyFromSymbol = val;
         self
     }
-    pub fn cudaMemcpyAsync(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyAsync = val;
         self
     }
-    pub fn cudaMemcpyPeerAsync(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, dstDevice: ::std::os::raw::c_int, src: *const ::std::os::raw::c_void, srcDevice: ::std::os::raw::c_int, count: usize, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyPeerAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, ::std::os::raw::c_int, *const ::std::os::raw::c_void, ::std::os::raw::c_int, usize, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyPeerAsync = val;
         self
     }
-    pub fn cudaMemcpyBatchAsync(
-        mut self,
-        val: Option<unsafe extern "C" fn(dsts: *const *mut ::std::os::raw::c_void, srcs: *const *const ::std::os::raw::c_void, sizes: *const usize, count: usize, attrs: *mut cudaMemcpyAttributes, attrsIdxs: *mut usize, numAttrs: usize, stream: cudaStream_t) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaMemcpyBatchAsync(mut self, val: Option<unsafe extern "C" fn(*const *mut ::std::os::raw::c_void, *const *const ::std::os::raw::c_void, *const usize, usize, *mut cudaMemcpyAttributes, *mut usize, usize, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyBatchAsync = val;
         self
     }
-    pub fn cudaMemcpy3DBatchAsync(mut self, val: Option<unsafe extern "C" fn(numOps: usize, opList: *mut cudaMemcpy3DBatchOp, flags: ::std::os::raw::c_ulonglong, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy3DBatchAsync(mut self, val: Option<unsafe extern "C" fn(usize, *mut cudaMemcpy3DBatchOp, ::std::os::raw::c_ulonglong, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpy3DBatchAsync = val;
         self
     }
-    pub fn cudaMemcpyWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, size: usize, attr: *mut cudaMemcpyAttributes, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, *mut cudaMemcpyAttributes, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyWithAttributesAsync = val;
         self
     }
-    pub fn cudaMemcpy3DWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(op: *mut cudaMemcpy3DBatchOp, flags: ::std::os::raw::c_ulonglong, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy3DWithAttributesAsync(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemcpy3DBatchOp, ::std::os::raw::c_ulonglong, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpy3DWithAttributesAsync = val;
         self
     }
-    pub fn cudaMemcpy2DAsync(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, dpitch: usize, src: *const ::std::os::raw::c_void, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy2DAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, *const ::std::os::raw::c_void, usize, usize, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpy2DAsync = val;
         self
     }
-    pub fn cudaMemcpy2DToArrayAsync(mut self, val: Option<unsafe extern "C" fn(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: *const ::std::os::raw::c_void, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy2DToArrayAsync(mut self, val: Option<unsafe extern "C" fn(cudaArray_t, usize, usize, *const ::std::os::raw::c_void, usize, usize, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpy2DToArrayAsync = val;
         self
     }
-    pub fn cudaMemcpy2DFromArrayAsync(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, dpitch: usize, src: cudaArray_const_t, wOffset: usize, hOffset: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpy2DFromArrayAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, cudaArray_const_t, usize, usize, usize, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpy2DFromArrayAsync = val;
         self
     }
-    pub fn cudaMemcpyToSymbolAsync(mut self, val: Option<unsafe extern "C" fn(symbol: *const ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyToSymbolAsync(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyToSymbolAsync = val;
         self
     }
-    pub fn cudaMemcpyFromSymbolAsync(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, symbol: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyFromSymbolAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyFromSymbolAsync = val;
         self
     }
-    pub fn cudaMemset(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut ::std::os::raw::c_void, value: ::std::os::raw::c_int, count: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemset(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, ::std::os::raw::c_int, usize) -> cudaError_t>) -> Self {
         self.cudaMemset = val;
         self
     }
-    pub fn cudaMemset2D(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut ::std::os::raw::c_void, pitch: usize, value: ::std::os::raw::c_int, width: usize, height: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemset2D(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, ::std::os::raw::c_int, usize, usize) -> cudaError_t>) -> Self {
         self.cudaMemset2D = val;
         self
     }
-    pub fn cudaMemset3D(mut self, val: Option<unsafe extern "C" fn(pitchedDevPtr: cudaPitchedPtr, value: ::std::os::raw::c_int, extent: cudaExtent) -> cudaError_t>) -> Self {
+    pub fn cudaMemset3D(mut self, val: Option<unsafe extern "C" fn(cudaPitchedPtr, ::std::os::raw::c_int, cudaExtent) -> cudaError_t>) -> Self {
         self.cudaMemset3D = val;
         self
     }
-    pub fn cudaMemsetAsync(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut ::std::os::raw::c_void, value: ::std::os::raw::c_int, count: usize, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemsetAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, ::std::os::raw::c_int, usize, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemsetAsync = val;
         self
     }
-    pub fn cudaMemset2DAsync(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut ::std::os::raw::c_void, pitch: usize, value: ::std::os::raw::c_int, width: usize, height: usize, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemset2DAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, ::std::os::raw::c_int, usize, usize, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemset2DAsync = val;
         self
     }
-    pub fn cudaMemset3DAsync(mut self, val: Option<unsafe extern "C" fn(pitchedDevPtr: cudaPitchedPtr, value: ::std::os::raw::c_int, extent: cudaExtent, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemset3DAsync(mut self, val: Option<unsafe extern "C" fn(cudaPitchedPtr, ::std::os::raw::c_int, cudaExtent, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemset3DAsync = val;
         self
     }
-    pub fn cudaGetSymbolAddress(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, symbol: *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaGetSymbolAddress(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaGetSymbolAddress = val;
         self
     }
-    pub fn cudaGetSymbolSize(mut self, val: Option<unsafe extern "C" fn(size: *mut usize, symbol: *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaGetSymbolSize(mut self, val: Option<unsafe extern "C" fn(*mut usize, *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaGetSymbolSize = val;
         self
     }
-    pub fn cudaMemPrefetchAsync(mut self, val: Option<unsafe extern "C" fn(devPtr: *const ::std::os::raw::c_void, count: usize, location: cudaMemLocation, flags: ::std::os::raw::c_uint, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemPrefetchAsync(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, usize, cudaMemLocation, ::std::os::raw::c_uint, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemPrefetchAsync = val;
         self
     }
-    pub fn cudaMemPrefetchBatchAsync(
-        mut self,
-        val: Option<unsafe extern "C" fn(dptrs: *mut *mut ::std::os::raw::c_void, sizes: *mut usize, count: usize, prefetchLocs: *mut cudaMemLocation, prefetchLocIdxs: *mut usize, numPrefetchLocs: usize, flags: ::std::os::raw::c_ulonglong, stream: cudaStream_t) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaMemPrefetchBatchAsync(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, usize, *mut cudaMemLocation, *mut usize, usize, ::std::os::raw::c_ulonglong, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemPrefetchBatchAsync = val;
         self
     }
-    pub fn cudaMemDiscardBatchAsync(mut self, val: Option<unsafe extern "C" fn(dptrs: *mut *mut ::std::os::raw::c_void, sizes: *mut usize, count: usize, flags: ::std::os::raw::c_ulonglong, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemDiscardBatchAsync(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, usize, ::std::os::raw::c_ulonglong, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemDiscardBatchAsync = val;
         self
     }
-    pub fn cudaMemDiscardAndPrefetchBatchAsync(
-        mut self,
-        val: Option<unsafe extern "C" fn(dptrs: *mut *mut ::std::os::raw::c_void, sizes: *mut usize, count: usize, prefetchLocs: *mut cudaMemLocation, prefetchLocIdxs: *mut usize, numPrefetchLocs: usize, flags: ::std::os::raw::c_ulonglong, stream: cudaStream_t) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaMemDiscardAndPrefetchBatchAsync(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, usize, *mut cudaMemLocation, *mut usize, usize, ::std::os::raw::c_ulonglong, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemDiscardAndPrefetchBatchAsync = val;
         self
     }
-    pub fn cudaMemAdvise(mut self, val: Option<unsafe extern "C" fn(devPtr: *const ::std::os::raw::c_void, count: usize, advice: cudaMemoryAdvise, location: cudaMemLocation) -> cudaError_t>) -> Self {
+    pub fn cudaMemAdvise(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_void, usize, cudaMemoryAdvise, cudaMemLocation) -> cudaError_t>) -> Self {
         self.cudaMemAdvise = val;
         self
     }
-    pub fn cudaMemRangeGetAttribute(mut self, val: Option<unsafe extern "C" fn(data: *mut ::std::os::raw::c_void, dataSize: usize, attribute: cudaMemRangeAttribute, devPtr: *const ::std::os::raw::c_void, count: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemRangeGetAttribute(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, usize, cudaMemRangeAttribute, *const ::std::os::raw::c_void, usize) -> cudaError_t>) -> Self {
         self.cudaMemRangeGetAttribute = val;
         self
     }
-    pub fn cudaMemRangeGetAttributes(mut self, val: Option<unsafe extern "C" fn(data: *mut *mut ::std::os::raw::c_void, dataSizes: *mut usize, attributes: *mut cudaMemRangeAttribute, numAttributes: usize, devPtr: *const ::std::os::raw::c_void, count: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemRangeGetAttributes(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, *mut cudaMemRangeAttribute, usize, *const ::std::os::raw::c_void, usize) -> cudaError_t>) -> Self {
         self.cudaMemRangeGetAttributes = val;
         self
     }
-    pub fn cudaMemcpyToArray(mut self, val: Option<unsafe extern "C" fn(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: *const ::std::os::raw::c_void, count: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyToArray(mut self, val: Option<unsafe extern "C" fn(cudaArray_t, usize, usize, *const ::std::os::raw::c_void, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpyToArray = val;
         self
     }
-    pub fn cudaMemcpyFromArray(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, src: cudaArray_const_t, wOffset: usize, hOffset: usize, count: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyFromArray(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, cudaArray_const_t, usize, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpyFromArray = val;
         self
     }
-    pub fn cudaMemcpyArrayToArray(mut self, val: Option<unsafe extern "C" fn(dst: cudaArray_t, wOffsetDst: usize, hOffsetDst: usize, src: cudaArray_const_t, wOffsetSrc: usize, hOffsetSrc: usize, count: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyArrayToArray(mut self, val: Option<unsafe extern "C" fn(cudaArray_t, usize, usize, cudaArray_const_t, usize, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaMemcpyArrayToArray = val;
         self
     }
-    pub fn cudaMemcpyToArrayAsync(mut self, val: Option<unsafe extern "C" fn(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: *const ::std::os::raw::c_void, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyToArrayAsync(mut self, val: Option<unsafe extern "C" fn(cudaArray_t, usize, usize, *const ::std::os::raw::c_void, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyToArrayAsync = val;
         self
     }
-    pub fn cudaMemcpyFromArrayAsync(mut self, val: Option<unsafe extern "C" fn(dst: *mut ::std::os::raw::c_void, src: cudaArray_const_t, wOffset: usize, hOffset: usize, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemcpyFromArrayAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, cudaArray_const_t, usize, usize, usize, cudaMemcpyKind, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMemcpyFromArrayAsync = val;
         self
     }
-    pub fn cudaMallocAsync(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, size: usize, hStream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMallocAsync(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMallocAsync = val;
         self
     }
-    pub fn cudaFreeAsync(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut ::std::os::raw::c_void, hStream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaFreeAsync(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaFreeAsync = val;
         self
     }
-    pub fn cudaMemPoolTrimTo(mut self, val: Option<unsafe extern "C" fn(memPool: cudaMemPool_t, minBytesToKeep: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolTrimTo(mut self, val: Option<unsafe extern "C" fn(cudaMemPool_t, usize) -> cudaError_t>) -> Self {
         self.cudaMemPoolTrimTo = val;
         self
     }
-    pub fn cudaMemPoolSetAttribute(mut self, val: Option<unsafe extern "C" fn(memPool: cudaMemPool_t, attr: cudaMemPoolAttr, value: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolSetAttribute(mut self, val: Option<unsafe extern "C" fn(cudaMemPool_t, cudaMemPoolAttr, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaMemPoolSetAttribute = val;
         self
     }
-    pub fn cudaMemPoolGetAttribute(mut self, val: Option<unsafe extern "C" fn(memPool: cudaMemPool_t, attr: cudaMemPoolAttr, value: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolGetAttribute(mut self, val: Option<unsafe extern "C" fn(cudaMemPool_t, cudaMemPoolAttr, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaMemPoolGetAttribute = val;
         self
     }
-    pub fn cudaMemPoolSetAccess(mut self, val: Option<unsafe extern "C" fn(memPool: cudaMemPool_t, descList: *const cudaMemAccessDesc, count: usize) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolSetAccess(mut self, val: Option<unsafe extern "C" fn(cudaMemPool_t, *const cudaMemAccessDesc, usize) -> cudaError_t>) -> Self {
         self.cudaMemPoolSetAccess = val;
         self
     }
-    pub fn cudaMemPoolGetAccess(mut self, val: Option<unsafe extern "C" fn(flags: *mut cudaMemAccessFlags, memPool: cudaMemPool_t, location: *mut cudaMemLocation) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolGetAccess(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemAccessFlags, cudaMemPool_t, *mut cudaMemLocation) -> cudaError_t>) -> Self {
         self.cudaMemPoolGetAccess = val;
         self
     }
-    pub fn cudaMemPoolCreate(mut self, val: Option<unsafe extern "C" fn(memPool: *mut cudaMemPool_t, poolProps: *const cudaMemPoolProps) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemPool_t, *const cudaMemPoolProps) -> cudaError_t>) -> Self {
         self.cudaMemPoolCreate = val;
         self
     }
-    pub fn cudaMemPoolDestroy(mut self, val: Option<unsafe extern "C" fn(memPool: cudaMemPool_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolDestroy(mut self, val: Option<unsafe extern "C" fn(cudaMemPool_t) -> cudaError_t>) -> Self {
         self.cudaMemPoolDestroy = val;
         self
     }
-    pub fn cudaMemGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(memPool: *mut cudaMemPool_t, location: *mut cudaMemLocation, type_: cudaMemAllocationType) -> cudaError_t>) -> Self {
+    pub fn cudaMemGetDefaultMemPool(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemPool_t, *mut cudaMemLocation, cudaMemAllocationType) -> cudaError_t>) -> Self {
         self.cudaMemGetDefaultMemPool = val;
         self
     }
-    pub fn cudaMemGetMemPool(mut self, val: Option<unsafe extern "C" fn(memPool: *mut cudaMemPool_t, location: *mut cudaMemLocation, type_: cudaMemAllocationType) -> cudaError_t>) -> Self {
+    pub fn cudaMemGetMemPool(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemPool_t, *mut cudaMemLocation, cudaMemAllocationType) -> cudaError_t>) -> Self {
         self.cudaMemGetMemPool = val;
         self
     }
-    pub fn cudaMemSetMemPool(mut self, val: Option<unsafe extern "C" fn(location: *mut cudaMemLocation, type_: cudaMemAllocationType, memPool: cudaMemPool_t) -> cudaError_t>) -> Self {
+    pub fn cudaMemSetMemPool(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemLocation, cudaMemAllocationType, cudaMemPool_t) -> cudaError_t>) -> Self {
         self.cudaMemSetMemPool = val;
         self
     }
-    pub fn cudaMallocFromPoolAsync(mut self, val: Option<unsafe extern "C" fn(ptr: *mut *mut ::std::os::raw::c_void, size: usize, memPool: cudaMemPool_t, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaMallocFromPoolAsync(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, usize, cudaMemPool_t, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaMallocFromPoolAsync = val;
         self
     }
-    pub fn cudaMemPoolExportToShareableHandle(mut self, val: Option<unsafe extern "C" fn(shareableHandle: *mut ::std::os::raw::c_void, memPool: cudaMemPool_t, handleType: cudaMemAllocationHandleType, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolExportToShareableHandle(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_void, cudaMemPool_t, cudaMemAllocationHandleType, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaMemPoolExportToShareableHandle = val;
         self
     }
-    pub fn cudaMemPoolImportFromShareableHandle(mut self, val: Option<unsafe extern "C" fn(memPool: *mut cudaMemPool_t, shareableHandle: *mut ::std::os::raw::c_void, handleType: cudaMemAllocationHandleType, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolImportFromShareableHandle(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemPool_t, *mut ::std::os::raw::c_void, cudaMemAllocationHandleType, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaMemPoolImportFromShareableHandle = val;
         self
     }
-    pub fn cudaMemPoolExportPointer(mut self, val: Option<unsafe extern "C" fn(exportData: *mut cudaMemPoolPtrExportData, ptr: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolExportPointer(mut self, val: Option<unsafe extern "C" fn(*mut cudaMemPoolPtrExportData, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaMemPoolExportPointer = val;
         self
     }
-    pub fn cudaMemPoolImportPointer(mut self, val: Option<unsafe extern "C" fn(ptr: *mut *mut ::std::os::raw::c_void, memPool: cudaMemPool_t, exportData: *mut cudaMemPoolPtrExportData) -> cudaError_t>) -> Self {
+    pub fn cudaMemPoolImportPointer(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, cudaMemPool_t, *mut cudaMemPoolPtrExportData) -> cudaError_t>) -> Self {
         self.cudaMemPoolImportPointer = val;
         self
     }
-    pub fn cudaPointerGetAttributes(mut self, val: Option<unsafe extern "C" fn(attributes: *mut cudaPointerAttributes, ptr: *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaPointerGetAttributes(mut self, val: Option<unsafe extern "C" fn(*mut cudaPointerAttributes, *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaPointerGetAttributes = val;
         self
     }
-    pub fn cudaDeviceCanAccessPeer(mut self, val: Option<unsafe extern "C" fn(canAccessPeer: *mut ::std::os::raw::c_int, device: ::std::os::raw::c_int, peerDevice: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceCanAccessPeer(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceCanAccessPeer = val;
         self
     }
-    pub fn cudaDeviceEnablePeerAccess(mut self, val: Option<unsafe extern "C" fn(peerDevice: ::std::os::raw::c_int, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceEnablePeerAccess(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaDeviceEnablePeerAccess = val;
         self
     }
-    pub fn cudaDeviceDisablePeerAccess(mut self, val: Option<unsafe extern "C" fn(peerDevice: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceDisablePeerAccess(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceDisablePeerAccess = val;
         self
     }
-    pub fn cudaGraphicsUnregisterResource(mut self, val: Option<unsafe extern "C" fn(resource: cudaGraphicsResource_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphicsUnregisterResource(mut self, val: Option<unsafe extern "C" fn(cudaGraphicsResource_t) -> cudaError_t>) -> Self {
         self.cudaGraphicsUnregisterResource = val;
         self
     }
-    pub fn cudaGraphicsResourceSetMapFlags(mut self, val: Option<unsafe extern "C" fn(resource: cudaGraphicsResource_t, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphicsResourceSetMapFlags(mut self, val: Option<unsafe extern "C" fn(cudaGraphicsResource_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphicsResourceSetMapFlags = val;
         self
     }
-    pub fn cudaGraphicsMapResources(mut self, val: Option<unsafe extern "C" fn(count: ::std::os::raw::c_int, resources: *mut cudaGraphicsResource_t, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphicsMapResources(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut cudaGraphicsResource_t, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaGraphicsMapResources = val;
         self
     }
-    pub fn cudaGraphicsUnmapResources(mut self, val: Option<unsafe extern "C" fn(count: ::std::os::raw::c_int, resources: *mut cudaGraphicsResource_t, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphicsUnmapResources(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut cudaGraphicsResource_t, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaGraphicsUnmapResources = val;
         self
     }
-    pub fn cudaGraphicsResourceGetMappedPointer(mut self, val: Option<unsafe extern "C" fn(devPtr: *mut *mut ::std::os::raw::c_void, size: *mut usize, resource: cudaGraphicsResource_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphicsResourceGetMappedPointer(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, cudaGraphicsResource_t) -> cudaError_t>) -> Self {
         self.cudaGraphicsResourceGetMappedPointer = val;
         self
     }
-    pub fn cudaGraphicsSubResourceGetMappedArray(mut self, val: Option<unsafe extern "C" fn(array: *mut cudaArray_t, resource: cudaGraphicsResource_t, arrayIndex: ::std::os::raw::c_uint, mipLevel: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphicsSubResourceGetMappedArray(mut self, val: Option<unsafe extern "C" fn(*mut cudaArray_t, cudaGraphicsResource_t, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphicsSubResourceGetMappedArray = val;
         self
     }
-    pub fn cudaGraphicsResourceGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(mipmappedArray: *mut cudaMipmappedArray_t, resource: cudaGraphicsResource_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphicsResourceGetMappedMipmappedArray(mut self, val: Option<unsafe extern "C" fn(*mut cudaMipmappedArray_t, cudaGraphicsResource_t) -> cudaError_t>) -> Self {
         self.cudaGraphicsResourceGetMappedMipmappedArray = val;
         self
     }
-    pub fn cudaGetChannelDesc(mut self, val: Option<unsafe extern "C" fn(desc: *mut cudaChannelFormatDesc, array: cudaArray_const_t) -> cudaError_t>) -> Self {
+    pub fn cudaGetChannelDesc(mut self, val: Option<unsafe extern "C" fn(*mut cudaChannelFormatDesc, cudaArray_const_t) -> cudaError_t>) -> Self {
         self.cudaGetChannelDesc = val;
         self
     }
-    pub fn cudaCreateChannelDesc(mut self, val: Option<unsafe extern "C" fn(x: ::std::os::raw::c_int, y: ::std::os::raw::c_int, z: ::std::os::raw::c_int, w: ::std::os::raw::c_int, f: cudaChannelFormatKind) -> cudaChannelFormatDesc>) -> Self {
+    pub fn cudaCreateChannelDesc(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cudaChannelFormatKind) -> cudaChannelFormatDesc>) -> Self {
         self.cudaCreateChannelDesc = val;
         self
     }
-    pub fn cudaCreateTextureObject(mut self, val: Option<unsafe extern "C" fn(pTexObject: *mut cudaTextureObject_t, pResDesc: *const cudaResourceDesc, pTexDesc: *const cudaTextureDesc, pResViewDesc: *const cudaResourceViewDesc) -> cudaError_t>) -> Self {
+    pub fn cudaCreateTextureObject(mut self, val: Option<unsafe extern "C" fn(*mut cudaTextureObject_t, *const cudaResourceDesc, *const cudaTextureDesc, *const cudaResourceViewDesc) -> cudaError_t>) -> Self {
         self.cudaCreateTextureObject = val;
         self
     }
-    pub fn cudaDestroyTextureObject(mut self, val: Option<unsafe extern "C" fn(texObject: cudaTextureObject_t) -> cudaError_t>) -> Self {
+    pub fn cudaDestroyTextureObject(mut self, val: Option<unsafe extern "C" fn(cudaTextureObject_t) -> cudaError_t>) -> Self {
         self.cudaDestroyTextureObject = val;
         self
     }
-    pub fn cudaGetTextureObjectResourceDesc(mut self, val: Option<unsafe extern "C" fn(pResDesc: *mut cudaResourceDesc, texObject: cudaTextureObject_t) -> cudaError_t>) -> Self {
+    pub fn cudaGetTextureObjectResourceDesc(mut self, val: Option<unsafe extern "C" fn(*mut cudaResourceDesc, cudaTextureObject_t) -> cudaError_t>) -> Self {
         self.cudaGetTextureObjectResourceDesc = val;
         self
     }
-    pub fn cudaGetTextureObjectTextureDesc(mut self, val: Option<unsafe extern "C" fn(pTexDesc: *mut cudaTextureDesc, texObject: cudaTextureObject_t) -> cudaError_t>) -> Self {
+    pub fn cudaGetTextureObjectTextureDesc(mut self, val: Option<unsafe extern "C" fn(*mut cudaTextureDesc, cudaTextureObject_t) -> cudaError_t>) -> Self {
         self.cudaGetTextureObjectTextureDesc = val;
         self
     }
-    pub fn cudaGetTextureObjectResourceViewDesc(mut self, val: Option<unsafe extern "C" fn(pResViewDesc: *mut cudaResourceViewDesc, texObject: cudaTextureObject_t) -> cudaError_t>) -> Self {
+    pub fn cudaGetTextureObjectResourceViewDesc(mut self, val: Option<unsafe extern "C" fn(*mut cudaResourceViewDesc, cudaTextureObject_t) -> cudaError_t>) -> Self {
         self.cudaGetTextureObjectResourceViewDesc = val;
         self
     }
-    pub fn cudaCreateSurfaceObject(mut self, val: Option<unsafe extern "C" fn(pSurfObject: *mut cudaSurfaceObject_t, pResDesc: *const cudaResourceDesc) -> cudaError_t>) -> Self {
+    pub fn cudaCreateSurfaceObject(mut self, val: Option<unsafe extern "C" fn(*mut cudaSurfaceObject_t, *const cudaResourceDesc) -> cudaError_t>) -> Self {
         self.cudaCreateSurfaceObject = val;
         self
     }
-    pub fn cudaDestroySurfaceObject(mut self, val: Option<unsafe extern "C" fn(surfObject: cudaSurfaceObject_t) -> cudaError_t>) -> Self {
+    pub fn cudaDestroySurfaceObject(mut self, val: Option<unsafe extern "C" fn(cudaSurfaceObject_t) -> cudaError_t>) -> Self {
         self.cudaDestroySurfaceObject = val;
         self
     }
-    pub fn cudaGetSurfaceObjectResourceDesc(mut self, val: Option<unsafe extern "C" fn(pResDesc: *mut cudaResourceDesc, surfObject: cudaSurfaceObject_t) -> cudaError_t>) -> Self {
+    pub fn cudaGetSurfaceObjectResourceDesc(mut self, val: Option<unsafe extern "C" fn(*mut cudaResourceDesc, cudaSurfaceObject_t) -> cudaError_t>) -> Self {
         self.cudaGetSurfaceObjectResourceDesc = val;
         self
     }
-    pub fn cudaDriverGetVersion(mut self, val: Option<unsafe extern "C" fn(driverVersion: *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDriverGetVersion(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDriverGetVersion = val;
         self
     }
-    pub fn cudaRuntimeGetVersion(mut self, val: Option<unsafe extern "C" fn(runtimeVersion: *mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaRuntimeGetVersion(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaRuntimeGetVersion = val;
         self
     }
-    pub fn cudaLogsRegisterCallback(mut self, val: Option<unsafe extern "C" fn(callbackFunc: cudaLogsCallback_t, userData: *mut ::std::os::raw::c_void, callback_out: *mut cudaLogsCallbackHandle) -> cudaError_t>) -> Self {
+    pub fn cudaLogsRegisterCallback(mut self, val: Option<unsafe extern "C" fn(cudaLogsCallback_t, *mut ::std::os::raw::c_void, *mut cudaLogsCallbackHandle) -> cudaError_t>) -> Self {
         self.cudaLogsRegisterCallback = val;
         self
     }
-    pub fn cudaLogsUnregisterCallback(mut self, val: Option<unsafe extern "C" fn(callback: cudaLogsCallbackHandle) -> cudaError_t>) -> Self {
+    pub fn cudaLogsUnregisterCallback(mut self, val: Option<unsafe extern "C" fn(cudaLogsCallbackHandle) -> cudaError_t>) -> Self {
         self.cudaLogsUnregisterCallback = val;
         self
     }
-    pub fn cudaLogsCurrent(mut self, val: Option<unsafe extern "C" fn(iterator_out: *mut cudaLogIterator, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaLogsCurrent(mut self, val: Option<unsafe extern "C" fn(*mut cudaLogIterator, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaLogsCurrent = val;
         self
     }
-    pub fn cudaLogsDumpToFile(mut self, val: Option<unsafe extern "C" fn(iterator: *mut cudaLogIterator, pathToFile: *const ::std::os::raw::c_char, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaLogsDumpToFile(mut self, val: Option<unsafe extern "C" fn(*mut cudaLogIterator, *const ::std::os::raw::c_char, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaLogsDumpToFile = val;
         self
     }
-    pub fn cudaLogsDumpToMemory(mut self, val: Option<unsafe extern "C" fn(iterator: *mut cudaLogIterator, buffer: *mut ::std::os::raw::c_char, size: *mut usize, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaLogsDumpToMemory(mut self, val: Option<unsafe extern "C" fn(*mut cudaLogIterator, *mut ::std::os::raw::c_char, *mut usize, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaLogsDumpToMemory = val;
         self
     }
-    pub fn cudaGraphCreate(mut self, val: Option<unsafe extern "C" fn(pGraph: *mut cudaGraph_t, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraph_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphCreate = val;
         self
     }
-    pub fn cudaGraphAddKernelNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, pNodeParams: *const cudaKernelNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddKernelNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *const cudaKernelNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphAddKernelNode = val;
         self
     }
-    pub fn cudaGraphKernelNodeGetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *mut cudaKernelNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphKernelNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaKernelNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphKernelNodeGetParams = val;
         self
     }
-    pub fn cudaGraphKernelNodeSetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *const cudaKernelNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphKernelNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *const cudaKernelNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphKernelNodeSetParams = val;
         self
     }
-    pub fn cudaGraphKernelNodeCopyAttributes(mut self, val: Option<unsafe extern "C" fn(hDst: cudaGraphNode_t, hSrc: cudaGraphNode_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphKernelNodeCopyAttributes(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, cudaGraphNode_t) -> cudaError_t>) -> Self {
         self.cudaGraphKernelNodeCopyAttributes = val;
         self
     }
-    pub fn cudaGraphKernelNodeGetAttribute(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, attr: cudaLaunchAttributeID, value_out: *mut cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
+    pub fn cudaGraphKernelNodeGetAttribute(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, cudaLaunchAttributeID, *mut cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
         self.cudaGraphKernelNodeGetAttribute = val;
         self
     }
-    pub fn cudaGraphKernelNodeSetAttribute(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, attr: cudaLaunchAttributeID, value: *const cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
+    pub fn cudaGraphKernelNodeSetAttribute(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, cudaLaunchAttributeID, *const cudaLaunchAttributeValue) -> cudaError_t>) -> Self {
         self.cudaGraphKernelNodeSetAttribute = val;
         self
     }
-    pub fn cudaGraphAddMemcpyNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, pCopyParams: *const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddMemcpyNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
         self.cudaGraphAddMemcpyNode = val;
         self
     }
-    pub fn cudaGraphAddMemcpyNodeToSymbol(
-        mut self,
-        val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, symbol: *const ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaGraphAddMemcpyNodeToSymbol(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphAddMemcpyNodeToSymbol = val;
         self
     }
-    pub fn cudaGraphAddMemcpyNodeFromSymbol(
-        mut self,
-        val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, dst: *mut ::std::os::raw::c_void, symbol: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaGraphAddMemcpyNodeFromSymbol(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphAddMemcpyNodeFromSymbol = val;
         self
     }
-    pub fn cudaGraphAddMemcpyNode1D(
-        mut self,
-        val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, dst: *mut ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, kind: cudaMemcpyKind) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaGraphAddMemcpyNode1D(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphAddMemcpyNode1D = val;
         self
     }
-    pub fn cudaGraphMemcpyNodeGetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *mut cudaMemcpy3DParms) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemcpyNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaMemcpy3DParms) -> cudaError_t>) -> Self {
         self.cudaGraphMemcpyNodeGetParams = val;
         self
     }
-    pub fn cudaGraphMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
         self.cudaGraphMemcpyNodeSetParams = val;
         self
     }
-    pub fn cudaGraphMemcpyNodeSetParamsToSymbol(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, symbol: *const ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemcpyNodeSetParamsToSymbol(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphMemcpyNodeSetParamsToSymbol = val;
         self
     }
-    pub fn cudaGraphMemcpyNodeSetParamsFromSymbol(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, dst: *mut ::std::os::raw::c_void, symbol: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemcpyNodeSetParamsFromSymbol(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphMemcpyNodeSetParamsFromSymbol = val;
         self
     }
-    pub fn cudaGraphMemcpyNodeSetParams1D(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, dst: *mut ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemcpyNodeSetParams1D(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphMemcpyNodeSetParams1D = val;
         self
     }
-    pub fn cudaGraphAddMemsetNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, pMemsetParams: *const cudaMemsetParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddMemsetNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *const cudaMemsetParams) -> cudaError_t>) -> Self {
         self.cudaGraphAddMemsetNode = val;
         self
     }
-    pub fn cudaGraphMemsetNodeGetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *mut cudaMemsetParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemsetNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaMemsetParams) -> cudaError_t>) -> Self {
         self.cudaGraphMemsetNodeGetParams = val;
         self
     }
-    pub fn cudaGraphMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *const cudaMemsetParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *const cudaMemsetParams) -> cudaError_t>) -> Self {
         self.cudaGraphMemsetNodeSetParams = val;
         self
     }
-    pub fn cudaGraphAddHostNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, pNodeParams: *const cudaHostNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddHostNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *const cudaHostNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphAddHostNode = val;
         self
     }
-    pub fn cudaGraphHostNodeGetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *mut cudaHostNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphHostNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaHostNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphHostNodeGetParams = val;
         self
     }
-    pub fn cudaGraphHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pNodeParams: *const cudaHostNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *const cudaHostNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphHostNodeSetParams = val;
         self
     }
-    pub fn cudaGraphAddChildGraphNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, childGraph: cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddChildGraphNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaGraphAddChildGraphNode = val;
         self
     }
-    pub fn cudaGraphChildGraphNodeGetGraph(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pGraph: *mut cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphChildGraphNodeGetGraph(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaGraphChildGraphNodeGetGraph = val;
         self
     }
-    pub fn cudaGraphAddEmptyNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddEmptyNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize) -> cudaError_t>) -> Self {
         self.cudaGraphAddEmptyNode = val;
         self
     }
-    pub fn cudaGraphAddEventRecordNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddEventRecordNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphAddEventRecordNode = val;
         self
     }
-    pub fn cudaGraphEventRecordNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, event_out: *mut cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphEventRecordNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphEventRecordNodeGetEvent = val;
         self
     }
-    pub fn cudaGraphEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphEventRecordNodeSetEvent = val;
         self
     }
-    pub fn cudaGraphAddEventWaitNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddEventWaitNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphAddEventWaitNode = val;
         self
     }
-    pub fn cudaGraphEventWaitNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, event_out: *mut cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphEventWaitNodeGetEvent(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphEventWaitNodeGetEvent = val;
         self
     }
-    pub fn cudaGraphEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphEventWaitNodeSetEvent = val;
         self
     }
-    pub fn cudaGraphAddExternalSemaphoresSignalNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, nodeParams: *const cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddExternalSemaphoresSignalNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *const cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphAddExternalSemaphoresSignalNode = val;
         self
     }
-    pub fn cudaGraphExternalSemaphoresSignalNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, params_out: *mut cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExternalSemaphoresSignalNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExternalSemaphoresSignalNodeGetParams = val;
         self
     }
-    pub fn cudaGraphExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, nodeParams: *const cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *const cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExternalSemaphoresSignalNodeSetParams = val;
         self
     }
-    pub fn cudaGraphAddExternalSemaphoresWaitNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, nodeParams: *const cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddExternalSemaphoresWaitNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *const cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphAddExternalSemaphoresWaitNode = val;
         self
     }
-    pub fn cudaGraphExternalSemaphoresWaitNodeGetParams(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, params_out: *mut cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExternalSemaphoresWaitNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExternalSemaphoresWaitNodeGetParams = val;
         self
     }
-    pub fn cudaGraphExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, nodeParams: *const cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *const cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExternalSemaphoresWaitNodeSetParams = val;
         self
     }
-    pub fn cudaGraphAddMemAllocNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, nodeParams: *mut cudaMemAllocNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddMemAllocNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *mut cudaMemAllocNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphAddMemAllocNode = val;
         self
     }
-    pub fn cudaGraphMemAllocNodeGetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, params_out: *mut cudaMemAllocNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemAllocNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaMemAllocNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphMemAllocNodeGetParams = val;
         self
     }
-    pub fn cudaGraphAddMemFreeNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, numDependencies: usize, dptr: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddMemFreeNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, usize, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaGraphAddMemFreeNode = val;
         self
     }
-    pub fn cudaGraphMemFreeNodeGetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, dptr_out: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaGraphMemFreeNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaGraphMemFreeNodeGetParams = val;
         self
     }
-    pub fn cudaDeviceGraphMemTrim(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGraphMemTrim(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGraphMemTrim = val;
         self
     }
-    pub fn cudaDeviceGetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int, attr: cudaGraphMemAttributeType, value: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, cudaGraphMemAttributeType, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaDeviceGetGraphMemAttribute = val;
         self
     }
-    pub fn cudaDeviceSetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int, attr: cudaGraphMemAttributeType, value: *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceSetGraphMemAttribute(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, cudaGraphMemAttributeType, *mut ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaDeviceSetGraphMemAttribute = val;
         self
     }
-    pub fn cudaGraphClone(mut self, val: Option<unsafe extern "C" fn(pGraphClone: *mut cudaGraph_t, originalGraph: cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphClone(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraph_t, cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaGraphClone = val;
         self
     }
-    pub fn cudaGraphNodeFindInClone(mut self, val: Option<unsafe extern "C" fn(pNode: *mut cudaGraphNode_t, originalNode: cudaGraphNode_t, clonedGraph: cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeFindInClone(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraphNode_t, cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaGraphNodeFindInClone = val;
         self
     }
-    pub fn cudaGraphNodeGetType(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pType: *mut cudaGraphNodeType) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetType(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaGraphNodeType) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetType = val;
         self
     }
-    pub fn cudaGraphNodeGetContainingGraph(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, phGraph: *mut cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetContainingGraph(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetContainingGraph = val;
         self
     }
-    pub fn cudaGraphNodeGetLocalId(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, nodeId: *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetLocalId(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetLocalId = val;
         self
     }
-    pub fn cudaGraphNodeGetToolsId(mut self, val: Option<unsafe extern "C" fn(hNode: cudaGraphNode_t, toolsNodeId: *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetToolsId(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetToolsId = val;
         self
     }
-    pub fn cudaGraphGetId(mut self, val: Option<unsafe extern "C" fn(hGraph: cudaGraph_t, graphID: *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphGetId(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphGetId = val;
         self
     }
-    pub fn cudaGraphExecGetId(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, graphID: *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecGetId(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphExecGetId = val;
         self
     }
-    pub fn cudaGraphGetNodes(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, nodes: *mut cudaGraphNode_t, numNodes: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphGetNodes(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, *mut cudaGraphNode_t, *mut usize) -> cudaError_t>) -> Self {
         self.cudaGraphGetNodes = val;
         self
     }
-    pub fn cudaGraphGetRootNodes(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, pRootNodes: *mut cudaGraphNode_t, pNumRootNodes: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphGetRootNodes(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, *mut cudaGraphNode_t, *mut usize) -> cudaError_t>) -> Self {
         self.cudaGraphGetRootNodes = val;
         self
     }
-    pub fn cudaGraphGetEdges(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, from: *mut cudaGraphNode_t, to: *mut cudaGraphNode_t, edgeData: *mut cudaGraphEdgeData, numEdges: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphGetEdges(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, *mut cudaGraphNode_t, *mut cudaGraphNode_t, *mut cudaGraphEdgeData, *mut usize) -> cudaError_t>) -> Self {
         self.cudaGraphGetEdges = val;
         self
     }
-    pub fn cudaGraphNodeGetDependencies(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pDependencies: *mut cudaGraphNode_t, edgeData: *mut cudaGraphEdgeData, pNumDependencies: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetDependencies(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaGraphNode_t, *mut cudaGraphEdgeData, *mut usize) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetDependencies = val;
         self
     }
-    pub fn cudaGraphNodeGetDependentNodes(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, pDependentNodes: *mut cudaGraphNode_t, edgeData: *mut cudaGraphEdgeData, pNumDependentNodes: *mut usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetDependentNodes(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaGraphNode_t, *mut cudaGraphEdgeData, *mut usize) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetDependentNodes = val;
         self
     }
-    pub fn cudaGraphAddDependencies(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, from: *const cudaGraphNode_t, to: *const cudaGraphNode_t, edgeData: *const cudaGraphEdgeData, numDependencies: usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddDependencies(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, *const cudaGraphNode_t, *const cudaGraphNode_t, *const cudaGraphEdgeData, usize) -> cudaError_t>) -> Self {
         self.cudaGraphAddDependencies = val;
         self
     }
-    pub fn cudaGraphRemoveDependencies(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, from: *const cudaGraphNode_t, to: *const cudaGraphNode_t, edgeData: *const cudaGraphEdgeData, numDependencies: usize) -> cudaError_t>) -> Self {
+    pub fn cudaGraphRemoveDependencies(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, *const cudaGraphNode_t, *const cudaGraphNode_t, *const cudaGraphEdgeData, usize) -> cudaError_t>) -> Self {
         self.cudaGraphRemoveDependencies = val;
         self
     }
-    pub fn cudaGraphDestroyNode(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphDestroyNode(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t) -> cudaError_t>) -> Self {
         self.cudaGraphDestroyNode = val;
         self
     }
-    pub fn cudaGraphInstantiate(mut self, val: Option<unsafe extern "C" fn(pGraphExec: *mut cudaGraphExec_t, graph: cudaGraph_t, flags: ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
+    pub fn cudaGraphInstantiate(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphExec_t, cudaGraph_t, ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
         self.cudaGraphInstantiate = val;
         self
     }
-    pub fn cudaGraphInstantiateWithFlags(mut self, val: Option<unsafe extern "C" fn(pGraphExec: *mut cudaGraphExec_t, graph: cudaGraph_t, flags: ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
+    pub fn cudaGraphInstantiateWithFlags(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphExec_t, cudaGraph_t, ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
         self.cudaGraphInstantiateWithFlags = val;
         self
     }
-    pub fn cudaGraphInstantiateWithParams(mut self, val: Option<unsafe extern "C" fn(pGraphExec: *mut cudaGraphExec_t, graph: cudaGraph_t, instantiateParams: *mut cudaGraphInstantiateParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphInstantiateWithParams(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphExec_t, cudaGraph_t, *mut cudaGraphInstantiateParams) -> cudaError_t>) -> Self {
         self.cudaGraphInstantiateWithParams = val;
         self
     }
-    pub fn cudaGraphExecGetFlags(mut self, val: Option<unsafe extern "C" fn(graphExec: cudaGraphExec_t, flags: *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecGetFlags(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
         self.cudaGraphExecGetFlags = val;
         self
     }
-    pub fn cudaGraphExecKernelNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: *const cudaKernelNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecKernelNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *const cudaKernelNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExecKernelNodeSetParams = val;
         self
     }
-    pub fn cudaGraphExecMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: *const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecMemcpyNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *const cudaMemcpy3DParms) -> cudaError_t>) -> Self {
         self.cudaGraphExecMemcpyNodeSetParams = val;
         self
     }
-    pub fn cudaGraphExecMemcpyNodeSetParamsToSymbol(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, symbol: *const ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecMemcpyNodeSetParamsToSymbol(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphExecMemcpyNodeSetParamsToSymbol = val;
         self
     }
-    pub fn cudaGraphExecMemcpyNodeSetParamsFromSymbol(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, dst: *mut ::std::os::raw::c_void, symbol: *const ::std::os::raw::c_void, count: usize, offset: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecMemcpyNodeSetParamsFromSymbol(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphExecMemcpyNodeSetParamsFromSymbol = val;
         self
     }
-    pub fn cudaGraphExecMemcpyNodeSetParams1D(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, dst: *mut ::std::os::raw::c_void, src: *const ::std::os::raw::c_void, count: usize, kind: cudaMemcpyKind) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecMemcpyNodeSetParams1D(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *mut ::std::os::raw::c_void, *const ::std::os::raw::c_void, usize, cudaMemcpyKind) -> cudaError_t>) -> Self {
         self.cudaGraphExecMemcpyNodeSetParams1D = val;
         self
     }
-    pub fn cudaGraphExecMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: *const cudaMemsetParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecMemsetNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *const cudaMemsetParams) -> cudaError_t>) -> Self {
         self.cudaGraphExecMemsetNodeSetParams = val;
         self
     }
-    pub fn cudaGraphExecHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: *const cudaHostNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecHostNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *const cudaHostNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExecHostNodeSetParams = val;
         self
     }
-    pub fn cudaGraphExecChildGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, childGraph: cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecChildGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaGraphExecChildGraphNodeSetParams = val;
         self
     }
-    pub fn cudaGraphExecEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecEventRecordNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphExecEventRecordNodeSetEvent = val;
         self
     }
-    pub fn cudaGraphExecEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecEventWaitNodeSetEvent(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaGraphExecEventWaitNodeSetEvent = val;
         self
     }
-    pub fn cudaGraphExecExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, nodeParams: *const cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecExternalSemaphoresSignalNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *const cudaExternalSemaphoreSignalNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExecExternalSemaphoresSignalNodeSetParams = val;
         self
     }
-    pub fn cudaGraphExecExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, nodeParams: *const cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecExternalSemaphoresWaitNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *const cudaExternalSemaphoreWaitNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExecExternalSemaphoresWaitNodeSetParams = val;
         self
     }
-    pub fn cudaGraphNodeSetEnabled(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, isEnabled: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeSetEnabled(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphNodeSetEnabled = val;
         self
     }
-    pub fn cudaGraphNodeGetEnabled(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, isEnabled: *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetEnabled(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *mut ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetEnabled = val;
         self
     }
-    pub fn cudaGraphExecUpdate(mut self, val: Option<unsafe extern "C" fn(hGraphExec: cudaGraphExec_t, hGraph: cudaGraph_t, resultInfo: *mut cudaGraphExecUpdateResultInfo) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecUpdate(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraph_t, *mut cudaGraphExecUpdateResultInfo) -> cudaError_t>) -> Self {
         self.cudaGraphExecUpdate = val;
         self
     }
-    pub fn cudaGraphUpload(mut self, val: Option<unsafe extern "C" fn(graphExec: cudaGraphExec_t, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphUpload(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaGraphUpload = val;
         self
     }
-    pub fn cudaGraphLaunch(mut self, val: Option<unsafe extern "C" fn(graphExec: cudaGraphExec_t, stream: cudaStream_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphLaunch(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaStream_t) -> cudaError_t>) -> Self {
         self.cudaGraphLaunch = val;
         self
     }
-    pub fn cudaGraphExecDestroy(mut self, val: Option<unsafe extern "C" fn(graphExec: cudaGraphExec_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecDestroy(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t) -> cudaError_t>) -> Self {
         self.cudaGraphExecDestroy = val;
         self
     }
-    pub fn cudaGraphDestroy(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t) -> cudaError_t>) -> Self {
+    pub fn cudaGraphDestroy(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t) -> cudaError_t>) -> Self {
         self.cudaGraphDestroy = val;
         self
     }
-    pub fn cudaGraphDebugDotPrint(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, path: *const ::std::os::raw::c_char, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphDebugDotPrint(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, *const ::std::os::raw::c_char, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphDebugDotPrint = val;
         self
     }
-    pub fn cudaUserObjectCreate(mut self, val: Option<unsafe extern "C" fn(object_out: *mut cudaUserObject_t, ptr: *mut ::std::os::raw::c_void, destroy: cudaHostFn_t, initialRefcount: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaUserObjectCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaUserObject_t, *mut ::std::os::raw::c_void, cudaHostFn_t, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaUserObjectCreate = val;
         self
     }
-    pub fn cudaUserObjectRetain(mut self, val: Option<unsafe extern "C" fn(object: cudaUserObject_t, count: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaUserObjectRetain(mut self, val: Option<unsafe extern "C" fn(cudaUserObject_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaUserObjectRetain = val;
         self
     }
-    pub fn cudaUserObjectRelease(mut self, val: Option<unsafe extern "C" fn(object: cudaUserObject_t, count: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaUserObjectRelease(mut self, val: Option<unsafe extern "C" fn(cudaUserObject_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaUserObjectRelease = val;
         self
     }
-    pub fn cudaGraphRetainUserObject(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, object: cudaUserObject_t, count: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphRetainUserObject(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, cudaUserObject_t, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphRetainUserObject = val;
         self
     }
-    pub fn cudaGraphReleaseUserObject(mut self, val: Option<unsafe extern "C" fn(graph: cudaGraph_t, object: cudaUserObject_t, count: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphReleaseUserObject(mut self, val: Option<unsafe extern "C" fn(cudaGraph_t, cudaUserObject_t, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphReleaseUserObject = val;
         self
     }
-    pub fn cudaGraphAddNode(mut self, val: Option<unsafe extern "C" fn(pGraphNode: *mut cudaGraphNode_t, graph: cudaGraph_t, pDependencies: *const cudaGraphNode_t, dependencyData: *const cudaGraphEdgeData, numDependencies: usize, nodeParams: *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphAddNode(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphNode_t, cudaGraph_t, *const cudaGraphNode_t, *const cudaGraphEdgeData, usize, *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphAddNode = val;
         self
     }
-    pub fn cudaGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, nodeParams: *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphNodeSetParams = val;
         self
     }
-    pub fn cudaGraphNodeGetParams(mut self, val: Option<unsafe extern "C" fn(node: cudaGraphNode_t, nodeParams: *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphNodeGetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphNode_t, *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphNodeGetParams = val;
         self
     }
-    pub fn cudaGraphExecNodeSetParams(mut self, val: Option<unsafe extern "C" fn(graphExec: cudaGraphExec_t, node: cudaGraphNode_t, nodeParams: *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
+    pub fn cudaGraphExecNodeSetParams(mut self, val: Option<unsafe extern "C" fn(cudaGraphExec_t, cudaGraphNode_t, *mut cudaGraphNodeParams) -> cudaError_t>) -> Self {
         self.cudaGraphExecNodeSetParams = val;
         self
     }
-    pub fn cudaGraphConditionalHandleCreate(mut self, val: Option<unsafe extern "C" fn(pHandle_out: *mut cudaGraphConditionalHandle, graph: cudaGraph_t, defaultLaunchValue: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphConditionalHandleCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphConditionalHandle, cudaGraph_t, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphConditionalHandleCreate = val;
         self
     }
-    pub fn cudaGraphConditionalHandleCreate_v2(mut self, val: Option<unsafe extern "C" fn(pHandle_out: *mut cudaGraphConditionalHandle, graph: cudaGraph_t, ctx: cudaExecutionContext_t, defaultLaunchValue: ::std::os::raw::c_uint, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGraphConditionalHandleCreate_v2(mut self, val: Option<unsafe extern "C" fn(*mut cudaGraphConditionalHandle, cudaGraph_t, cudaExecutionContext_t, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGraphConditionalHandleCreate_v2 = val;
         self
     }
-    pub fn cudaGetDriverEntryPoint(mut self, val: Option<unsafe extern "C" fn(symbol: *const ::std::os::raw::c_char, funcPtr: *mut *mut ::std::os::raw::c_void, flags: ::std::os::raw::c_ulonglong, driverStatus: *mut cudaDriverEntryPointQueryResult) -> cudaError_t>) -> Self {
+    pub fn cudaGetDriverEntryPoint(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_ulonglong, *mut cudaDriverEntryPointQueryResult) -> cudaError_t>) -> Self {
         self.cudaGetDriverEntryPoint = val;
         self
     }
-    pub fn cudaGetDriverEntryPointByVersion(
-        mut self,
-        val: Option<unsafe extern "C" fn(symbol: *const ::std::os::raw::c_char, funcPtr: *mut *mut ::std::os::raw::c_void, cudaVersion: ::std::os::raw::c_uint, flags: ::std::os::raw::c_ulonglong, driverStatus: *mut cudaDriverEntryPointQueryResult) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaGetDriverEntryPointByVersion(mut self, val: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint, ::std::os::raw::c_ulonglong, *mut cudaDriverEntryPointQueryResult) -> cudaError_t>) -> Self {
         self.cudaGetDriverEntryPointByVersion = val;
         self
     }
     pub fn cudaLibraryLoadData(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                library: *mut cudaLibrary_t,
-                code: *const ::std::os::raw::c_void,
-                jitOptions: *mut cudaJitOption,
-                jitOptionsValues: *mut *mut ::std::os::raw::c_void,
-                numJitOptions: ::std::os::raw::c_uint,
-                libraryOptions: *mut cudaLibraryOption,
-                libraryOptionValues: *mut *mut ::std::os::raw::c_void,
-                numLibraryOptions: ::std::os::raw::c_uint,
-            ) -> cudaError_t,
-        >,
+        val: Option<unsafe extern "C" fn(*mut cudaLibrary_t, *const ::std::os::raw::c_void, *mut cudaJitOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut cudaLibraryOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> cudaError_t>,
     ) -> Self {
         self.cudaLibraryLoadData = val;
         self
     }
     pub fn cudaLibraryLoadFromFile(
         mut self,
-        val: Option<
-            unsafe extern "C" fn(
-                library: *mut cudaLibrary_t,
-                fileName: *const ::std::os::raw::c_char,
-                jitOptions: *mut cudaJitOption,
-                jitOptionsValues: *mut *mut ::std::os::raw::c_void,
-                numJitOptions: ::std::os::raw::c_uint,
-                libraryOptions: *mut cudaLibraryOption,
-                libraryOptionValues: *mut *mut ::std::os::raw::c_void,
-                numLibraryOptions: ::std::os::raw::c_uint,
-            ) -> cudaError_t,
-        >,
+        val: Option<unsafe extern "C" fn(*mut cudaLibrary_t, *const ::std::os::raw::c_char, *mut cudaJitOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint, *mut cudaLibraryOption, *mut *mut ::std::os::raw::c_void, ::std::os::raw::c_uint) -> cudaError_t>,
     ) -> Self {
         self.cudaLibraryLoadFromFile = val;
         self
     }
-    pub fn cudaLibraryUnload(mut self, val: Option<unsafe extern "C" fn(library: cudaLibrary_t) -> cudaError_t>) -> Self {
+    pub fn cudaLibraryUnload(mut self, val: Option<unsafe extern "C" fn(cudaLibrary_t) -> cudaError_t>) -> Self {
         self.cudaLibraryUnload = val;
         self
     }
-    pub fn cudaLibraryGetKernel(mut self, val: Option<unsafe extern "C" fn(pKernel: *mut cudaKernel_t, library: cudaLibrary_t, name: *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
+    pub fn cudaLibraryGetKernel(mut self, val: Option<unsafe extern "C" fn(*mut cudaKernel_t, cudaLibrary_t, *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
         self.cudaLibraryGetKernel = val;
         self
     }
-    pub fn cudaLibraryGetGlobal(mut self, val: Option<unsafe extern "C" fn(dptr: *mut *mut ::std::os::raw::c_void, bytes: *mut usize, library: cudaLibrary_t, name: *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
+    pub fn cudaLibraryGetGlobal(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, cudaLibrary_t, *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
         self.cudaLibraryGetGlobal = val;
         self
     }
-    pub fn cudaLibraryGetManaged(mut self, val: Option<unsafe extern "C" fn(dptr: *mut *mut ::std::os::raw::c_void, bytes: *mut usize, library: cudaLibrary_t, name: *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
+    pub fn cudaLibraryGetManaged(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, *mut usize, cudaLibrary_t, *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
         self.cudaLibraryGetManaged = val;
         self
     }
-    pub fn cudaLibraryGetUnifiedFunction(mut self, val: Option<unsafe extern "C" fn(fptr: *mut *mut ::std::os::raw::c_void, library: cudaLibrary_t, symbol: *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
+    pub fn cudaLibraryGetUnifiedFunction(mut self, val: Option<unsafe extern "C" fn(*mut *mut ::std::os::raw::c_void, cudaLibrary_t, *const ::std::os::raw::c_char) -> cudaError_t>) -> Self {
         self.cudaLibraryGetUnifiedFunction = val;
         self
     }
-    pub fn cudaLibraryGetKernelCount(mut self, val: Option<unsafe extern "C" fn(count: *mut ::std::os::raw::c_uint, lib: cudaLibrary_t) -> cudaError_t>) -> Self {
+    pub fn cudaLibraryGetKernelCount(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_uint, cudaLibrary_t) -> cudaError_t>) -> Self {
         self.cudaLibraryGetKernelCount = val;
         self
     }
-    pub fn cudaLibraryEnumerateKernels(mut self, val: Option<unsafe extern "C" fn(kernels: *mut cudaKernel_t, numKernels: ::std::os::raw::c_uint, lib: cudaLibrary_t) -> cudaError_t>) -> Self {
+    pub fn cudaLibraryEnumerateKernels(mut self, val: Option<unsafe extern "C" fn(*mut cudaKernel_t, ::std::os::raw::c_uint, cudaLibrary_t) -> cudaError_t>) -> Self {
         self.cudaLibraryEnumerateKernels = val;
         self
     }
-    pub fn cudaKernelSetAttributeForDevice(mut self, val: Option<unsafe extern "C" fn(kernel: cudaKernel_t, attr: cudaFuncAttribute, value: ::std::os::raw::c_int, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaKernelSetAttributeForDevice(mut self, val: Option<unsafe extern "C" fn(cudaKernel_t, cudaFuncAttribute, ::std::os::raw::c_int, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaKernelSetAttributeForDevice = val;
         self
     }
-    pub fn cudaDeviceGetDevResource(mut self, val: Option<unsafe extern "C" fn(device: ::std::os::raw::c_int, resource: *mut cudaDevResource, type_: cudaDevResourceType) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetDevResource(mut self, val: Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut cudaDevResource, cudaDevResourceType) -> cudaError_t>) -> Self {
         self.cudaDeviceGetDevResource = val;
         self
     }
-    pub fn cudaDevSmResourceSplitByCount(
-        mut self,
-        val: Option<unsafe extern "C" fn(result: *mut cudaDevResource, nbGroups: *mut ::std::os::raw::c_uint, input: *const cudaDevResource, remaining: *mut cudaDevResource, flags: ::std::os::raw::c_uint, minCount: ::std::os::raw::c_uint) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaDevSmResourceSplitByCount(mut self, val: Option<unsafe extern "C" fn(*mut cudaDevResource, *mut ::std::os::raw::c_uint, *const cudaDevResource, *mut cudaDevResource, ::std::os::raw::c_uint, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaDevSmResourceSplitByCount = val;
         self
     }
-    pub fn cudaDevSmResourceSplit(
-        mut self,
-        val: Option<unsafe extern "C" fn(result: *mut cudaDevResource, nbGroups: ::std::os::raw::c_uint, input: *const cudaDevResource, remainder: *mut cudaDevResource, flags: ::std::os::raw::c_uint, groupParams: *mut cudaDevSmResourceGroupParams) -> cudaError_t>,
-    ) -> Self {
+    pub fn cudaDevSmResourceSplit(mut self, val: Option<unsafe extern "C" fn(*mut cudaDevResource, ::std::os::raw::c_uint, *const cudaDevResource, *mut cudaDevResource, ::std::os::raw::c_uint, *mut cudaDevSmResourceGroupParams) -> cudaError_t>) -> Self {
         self.cudaDevSmResourceSplit = val;
         self
     }
-    pub fn cudaDevResourceGenerateDesc(mut self, val: Option<unsafe extern "C" fn(phDesc: *mut cudaDevResourceDesc_t, resources: *mut cudaDevResource, nbResources: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaDevResourceGenerateDesc(mut self, val: Option<unsafe extern "C" fn(*mut cudaDevResourceDesc_t, *mut cudaDevResource, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaDevResourceGenerateDesc = val;
         self
     }
-    pub fn cudaGreenCtxCreate(mut self, val: Option<unsafe extern "C" fn(phCtx: *mut cudaExecutionContext_t, desc: cudaDevResourceDesc_t, device: ::std::os::raw::c_int, flags: ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
+    pub fn cudaGreenCtxCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaExecutionContext_t, cudaDevResourceDesc_t, ::std::os::raw::c_int, ::std::os::raw::c_uint) -> cudaError_t>) -> Self {
         self.cudaGreenCtxCreate = val;
         self
     }
-    pub fn cudaExecutionCtxDestroy(mut self, val: Option<unsafe extern "C" fn(ctx: cudaExecutionContext_t) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxDestroy(mut self, val: Option<unsafe extern "C" fn(cudaExecutionContext_t) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxDestroy = val;
         self
     }
-    pub fn cudaExecutionCtxGetDevResource(mut self, val: Option<unsafe extern "C" fn(ctx: cudaExecutionContext_t, resource: *mut cudaDevResource, type_: cudaDevResourceType) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxGetDevResource(mut self, val: Option<unsafe extern "C" fn(cudaExecutionContext_t, *mut cudaDevResource, cudaDevResourceType) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxGetDevResource = val;
         self
     }
-    pub fn cudaExecutionCtxGetDevice(mut self, val: Option<unsafe extern "C" fn(device: *mut ::std::os::raw::c_int, ctx: cudaExecutionContext_t) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxGetDevice(mut self, val: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int, cudaExecutionContext_t) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxGetDevice = val;
         self
     }
-    pub fn cudaExecutionCtxGetId(mut self, val: Option<unsafe extern "C" fn(ctx: cudaExecutionContext_t, ctxId: *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxGetId(mut self, val: Option<unsafe extern "C" fn(cudaExecutionContext_t, *mut ::std::os::raw::c_ulonglong) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxGetId = val;
         self
     }
-    pub fn cudaExecutionCtxStreamCreate(mut self, val: Option<unsafe extern "C" fn(phStream: *mut cudaStream_t, ctx: cudaExecutionContext_t, flags: ::std::os::raw::c_uint, priority: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxStreamCreate(mut self, val: Option<unsafe extern "C" fn(*mut cudaStream_t, cudaExecutionContext_t, ::std::os::raw::c_uint, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxStreamCreate = val;
         self
     }
-    pub fn cudaExecutionCtxSynchronize(mut self, val: Option<unsafe extern "C" fn(ctx: cudaExecutionContext_t) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxSynchronize(mut self, val: Option<unsafe extern "C" fn(cudaExecutionContext_t) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxSynchronize = val;
         self
     }
-    pub fn cudaStreamGetDevResource(mut self, val: Option<unsafe extern "C" fn(hStream: cudaStream_t, resource: *mut cudaDevResource, type_: cudaDevResourceType) -> cudaError_t>) -> Self {
+    pub fn cudaStreamGetDevResource(mut self, val: Option<unsafe extern "C" fn(cudaStream_t, *mut cudaDevResource, cudaDevResourceType) -> cudaError_t>) -> Self {
         self.cudaStreamGetDevResource = val;
         self
     }
-    pub fn cudaExecutionCtxRecordEvent(mut self, val: Option<unsafe extern "C" fn(ctx: cudaExecutionContext_t, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxRecordEvent(mut self, val: Option<unsafe extern "C" fn(cudaExecutionContext_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxRecordEvent = val;
         self
     }
-    pub fn cudaExecutionCtxWaitEvent(mut self, val: Option<unsafe extern "C" fn(ctx: cudaExecutionContext_t, event: cudaEvent_t) -> cudaError_t>) -> Self {
+    pub fn cudaExecutionCtxWaitEvent(mut self, val: Option<unsafe extern "C" fn(cudaExecutionContext_t, cudaEvent_t) -> cudaError_t>) -> Self {
         self.cudaExecutionCtxWaitEvent = val;
         self
     }
-    pub fn cudaDeviceGetExecutionCtx(mut self, val: Option<unsafe extern "C" fn(ctx: *mut cudaExecutionContext_t, device: ::std::os::raw::c_int) -> cudaError_t>) -> Self {
+    pub fn cudaDeviceGetExecutionCtx(mut self, val: Option<unsafe extern "C" fn(*mut cudaExecutionContext_t, ::std::os::raw::c_int) -> cudaError_t>) -> Self {
         self.cudaDeviceGetExecutionCtx = val;
         self
     }
-    pub fn cudaGetExportTable(mut self, val: Option<unsafe extern "C" fn(ppExportTable: *mut *const ::std::os::raw::c_void, pExportTableId: *const cudaUUID_t) -> cudaError_t>) -> Self {
+    pub fn cudaGetExportTable(mut self, val: Option<unsafe extern "C" fn(*mut *const ::std::os::raw::c_void, *const cudaUUID_t) -> cudaError_t>) -> Self {
         self.cudaGetExportTable = val;
         self
     }
-    pub fn cudaGetFuncBySymbol(mut self, val: Option<unsafe extern "C" fn(functionPtr: *mut cudaFunction_t, symbolPtr: *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaGetFuncBySymbol(mut self, val: Option<unsafe extern "C" fn(*mut cudaFunction_t, *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaGetFuncBySymbol = val;
         self
     }
-    pub fn cudaGetKernel(mut self, val: Option<unsafe extern "C" fn(kernelPtr: *mut cudaKernel_t, entryFuncAddr: *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
+    pub fn cudaGetKernel(mut self, val: Option<unsafe extern "C" fn(*mut cudaKernel_t, *const ::std::os::raw::c_void) -> cudaError_t>) -> Self {
         self.cudaGetKernel = val;
         self
     }
@@ -3504,7 +3733,7 @@ pub unsafe fn cudaIpcGetEventHandle(event: cudaEvent_t) -> Result<cudaIpcEventHa
     }
 }
 #[doc = "Opens an interprocess event handle for use in the current process\nOpens an interprocess event handle exported from another process with\n::cudaIpcGetEventHandle. This function returns a ::cudaEvent_t that behaves like\na locally created event with the ::cudaEventDisableTiming flag specified.\nThis event must be freed with ::cudaEventDestroy.\nPerforming operations on the imported event after the exported event has\nbeen freed with ::cudaEventDestroy will result in undefined behavior.\nIPC functionality is restricted to devices with support for unified\naddressing on Linux and Windows operating systems.\nIPC functionality on Windows is supported for compatibility purposes\nbut not recommended as it comes with performance cost.\nUsers can test their device for IPC functionality by calling\n::cudaDeviceGetAttribute with ::cudaDevAttrIpcEventSupport\n\n# Arguments\n\n* `event` - - Returns the imported event\n* `handle` -  - Interprocess handle to open\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorMapBufferObjectFailed,\n::cudaErrorNotSupported,\n::cudaErrorInvalidValue,\n::cudaErrorDeviceUninitialized\n\\note_init_rt \\note_callback # See also\n\n> [`::cudaEventCreate,`]\n::cudaEventDestroy,\n::cudaEventSynchronize,\n::cudaEventQuery,\n::cudaStreamWaitEvent,\n::cudaIpcGetEventHandle,\n::cudaIpcGetMemHandle,\n::cudaIpcOpenMemHandle,\n::cudaIpcCloseMemHandle,\n::cuIpcOpenEventHandle"]
-pub unsafe fn cudaIpcOpenEventHandle<T: types::CudaAsMutPtr>(mut event: T, handle: cudaIpcEventHandle_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaIpcOpenEventHandle<T0: types::CudaAsMutPtr>(mut event: T0, handle: cudaIpcEventHandle_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaIpcOpenEventHandle(event.as_mut_ptr() as *mut _, handle) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3519,12 +3748,12 @@ pub unsafe fn cudaIpcGetMemHandle(devPtr: *mut ::std::os::raw::c_void) -> Result
     }
 }
 #[doc = "Opens an interprocess memory handle exported from another process\nand returns a device pointer usable in the local process.\nMaps memory exported from another process with ::cudaIpcGetMemHandle into\nthe current device address space. For contexts on different devices\n::cudaIpcOpenMemHandle can attempt to enable peer access between the\ndevices as if the user called ::cudaDeviceEnablePeerAccess. This behavior is\ncontrolled by the ::cudaIpcMemLazyEnablePeerAccess flag.\n::cudaDeviceCanAccessPeer can determine if a mapping is possible.\n::cudaIpcOpenMemHandle can open handles to devices that may not be visible\nin the process calling the API.\nContexts that may open ::cudaIpcMemHandles are restricted in the following way.\n::cudaIpcMemHandles from each device in a given process may only be opened\nby one context per device per other process.\nIf the memory handle has already been opened by the current context, the\nreference count on the handle is incremented by 1 and the existing device pointer\nis returned.\nMemory returned from ::cudaIpcOpenMemHandle must be freed with\n::cudaIpcCloseMemHandle.\nCalling ::cudaFree on an exported memory region before calling\n::cudaIpcCloseMemHandle in the importing context will result in undefined\nbehavior.\nIPC functionality is restricted to devices with support for unified\naddressing on Linux and Windows operating systems.\nIPC functionality on Windows is supported for compatibility purposes\nbut not recommended as it comes with performance cost.\nUsers can test their device for IPC functionality by calling\n::cudaDeviceGetAttribute with ::cudaDevAttrIpcEventSupport\n\n# Arguments\n\n* `devPtr` - - Returned device pointer\n* `handle` - - ::cudaIpcMemHandle to open\n* `flags` -  - Flags for this operation. Must be specified as ::cudaIpcMemLazyEnablePeerAccess\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorMapBufferObjectFailed,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorDeviceUninitialized,\n::cudaErrorTooManyPeers,\n::cudaErrorNotSupported,\n::cudaErrorInvalidValue\n\\note_init_rt \\note_callback > **Note** No guarantees are made about the address returned in `*devPtr.`\nIn particular, multiple processes may not receive the same address for the same `handle.`\n\n# See also\n\n> [`::cudaMalloc,`]\n::cudaFree,\n::cudaIpcGetEventHandle,\n::cudaIpcOpenEventHandle,\n::cudaIpcGetMemHandle,\n::cudaIpcCloseMemHandle,\n::cudaDeviceEnablePeerAccess,\n::cudaDeviceCanAccessPeer,\n::cuIpcOpenMemHandle"]
-pub unsafe fn cudaIpcOpenMemHandle<T: types::CudaAsMutPtr>(mut devPtr: T, handle: cudaIpcMemHandle_t, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaIpcOpenMemHandle<T0: types::CudaAsMutPtr>(mut devPtr: T0, handle: cudaIpcMemHandle_t, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaIpcOpenMemHandle(devPtr.as_mut_ptr() as *mut _, handle, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Attempts to close memory mapped with cudaIpcOpenMemHandle\nDecrements the reference count of the memory returnd by ::cudaIpcOpenMemHandle by 1.\nWhen the reference count reaches 0, this API unmaps the memory. The original allocation\nin the exporting process as well as imported mappings in other processes\nwill be unaffected.\nAny resources used to enable peer access will be freed if this is the\nlast mapping using them.\nIPC functionality is restricted to devices with support for unified\naddressing on Linux and Windows operating systems.\nIPC functionality on Windows is supported for compatibility purposes\nbut not recommended as it comes with performance cost.\nUsers can test their device for IPC functionality by calling\n::cudaDeviceGetAttribute with ::cudaDevAttrIpcEventSupport\n\n# Arguments\n\n* `devPtr` - - Device pointer returned by ::cudaIpcOpenMemHandle\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorMapBufferObjectFailed,\n::cudaErrorNotSupported,\n::cudaErrorInvalidValue\n\\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc,`]\n::cudaFree,\n::cudaIpcGetEventHandle,\n::cudaIpcOpenEventHandle,\n::cudaIpcGetMemHandle,\n::cudaIpcOpenMemHandle,\n::cuIpcCloseMemHandle"]
-pub unsafe fn cudaIpcCloseMemHandle<T: types::CudaAsMutPtr>(mut devPtr: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaIpcCloseMemHandle<T0: types::CudaAsMutPtr>(mut devPtr: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaIpcCloseMemHandle(devPtr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3533,7 +3762,7 @@ pub unsafe fn cudaDeviceFlushGPUDirectRDMAWrites(target: cudaFlushGPUDirectRDMAW
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Registers a callback function to receive async notifications\nRegisters `callbackFunc` to receive async notifications.\nThe `userData` parameter is passed to the callback function at async notification time.\nLikewise, `callback` is also passed to the callback function to distinguish between\nmultiple registered callbacks.\nThe callback function being registered should be designed to return quickly (~10ms).\nAny long running tasks should be queued for execution on an application thread.\nCallbacks may not call cudaDeviceRegisterAsyncNotification or cudaDeviceUnregisterAsyncNotification.\nDoing so will result in ::cudaErrorNotPermitted. Async notification callbacks execute\nin an undefined order and may be serialized.\nReturns in `*callback` a handle representing the registered callback instance.\n\n# Arguments\n\n* `device` - - The device on which to register the callback\n* `callbackFunc` - - The function to register as a callback\n* `userData` - - A generic pointer to user data. This is passed into the callback function.\n* `callback` - - A handle representing the registered callback instance\n\n# Returns\n\n::cudaSuccess\n::cudaErrorNotSupported\n::cudaErrorInvalidDevice\n::cudaErrorInvalidValue\n::cudaErrorNotPermitted\n::cudaErrorUnknown\n\\notefnerr # See also\n\n> [`::cudaDeviceUnregisterAsyncNotification`]"]
-pub unsafe fn cudaDeviceRegisterAsyncNotification<T: types::CudaAsMutPtr>(device: i32, callbackFunc: cudaAsyncCallback, mut userData: T, callback: *mut cudaAsyncCallbackHandle_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDeviceRegisterAsyncNotification<T0: types::CudaAsMutPtr>(device: i32, callbackFunc: cudaAsyncCallback, mut userData: T0, callback: *mut cudaAsyncCallbackHandle_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDeviceRegisterAsyncNotification(device as _, callbackFunc, userData.as_mut_ptr() as *mut _, callback) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3641,7 +3870,7 @@ pub unsafe fn cudaDeviceGetMemPool(device: i32) -> Result<cudaMemPool_t, crate::
     }
 }
 #[doc = "Return NvSciSync attributes that this device can support.\nReturns in `nvSciSyncAttrList,` the properties of NvSciSync that\nthis CUDA device, `dev` can support. The returned `nvSciSyncAttrList`\ncan be used to create an NvSciSync that matches this device's capabilities.\nIf NvSciSyncAttrKey_RequiredPerm field in `nvSciSyncAttrList` is\nalready set this API will return ::cudaErrorInvalidValue.\nThe applications should set `nvSciSyncAttrList` to a valid\nNvSciSyncAttrList failing which this API will return\n::cudaErrorInvalidHandle.\nThe `flags` controls how applications intends to use\nthe NvSciSync created from the `nvSciSyncAttrList.` The valid flags are:\n- ::cudaNvSciSyncAttrSignal, specifies that the applications intends to\nsignal an NvSciSync on this CUDA device.\n- ::cudaNvSciSyncAttrWait, specifies that the applications intends to\nwait on an NvSciSync on this CUDA device.\nAt least one of these flags must be set, failing which the API\nreturns ::cudaErrorInvalidValue. Both the flags are orthogonal\nto one another: a developer may set both these flags that allows to\nset both wait and signal specific attributes in the same `nvSciSyncAttrList.`\nNote that this API updates the input `nvSciSyncAttrList` with values equivalent\nto the following public attribute key-values:\nNvSciSyncAttrKey_RequiredPerm is set to\n- NvSciSyncAccessPerm_SignalOnly if ::cudaNvSciSyncAttrSignal is set in `flags.`\n- NvSciSyncAccessPerm_WaitOnly if ::cudaNvSciSyncAttrWait is set in `flags.`\n- NvSciSyncAccessPerm_WaitSignal if both ::cudaNvSciSyncAttrWait and\n::cudaNvSciSyncAttrSignal are set in `flags.`\nNvSciSyncAttrKey_PrimitiveInfo is set to\n- NvSciSyncAttrValPrimitiveType_SysmemSemaphore on any valid `device.`\n- NvSciSyncAttrValPrimitiveType_Syncpoint if `device` is a Tegra device.\n- NvSciSyncAttrValPrimitiveType_SysmemSemaphorePayload64b if `device` is GA10X+.\nNvSciSyncAttrKey_GpuId is set to the same UUID that is returned in\n`cudaDeviceProp.uuid` from ::cudaDeviceGetProperties for this `device.`\n\n# Arguments\n\n* `nvSciSyncAttrList` -     - Return NvSciSync attributes supported.\n* `device` -                - Valid Cuda Device to get NvSciSync attributes for.\n* `flags` -                 - flags describing NvSciSync usage.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorDeviceUninitialized,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidHandle,\n::cudaErrorInvalidDevice,\n::cudaErrorNotSupported,\n::cudaErrorMemoryAllocation\n\n# See also\n\n> [`::cudaImportExternalSemaphore,`]\n::cudaDestroyExternalSemaphore,\n::cudaSignalExternalSemaphoresAsync,\n::cudaWaitExternalSemaphoresAsync"]
-pub unsafe fn cudaDeviceGetNvSciSyncAttributes<T: types::CudaAsMutPtr>(mut nvSciSyncAttrList: T, device: i32, flags: i32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDeviceGetNvSciSyncAttributes<T0: types::CudaAsMutPtr>(mut nvSciSyncAttrList: T0, device: i32, flags: i32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDeviceGetNvSciSyncAttributes(nvSciSyncAttrList.as_mut_ptr() as *mut _, device as _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3666,7 +3895,7 @@ pub unsafe fn cudaDeviceGetP2PAtomicCapabilities(operations: *const cudaAtomicOp
     }
 }
 #[doc = "Select compute-device which best matches criteria\nReturns in `*device` the device which has properties that best match\n`*prop.`\n\n# Arguments\n\n* `device` - - Device with best match\n* `prop` -   - Desired device properties\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGetDeviceCount,`] ::cudaGetDevice, ::cudaSetDevice,\n::cudaGetDeviceProperties,\n::cudaInitDevice"]
-pub unsafe fn cudaChooseDevice<T: types::CudaAsMutPtr>(mut device: T, prop: *const cudaDeviceProp) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaChooseDevice<T0: types::CudaAsMutPtr>(mut device: T0, prop: *const cudaDeviceProp) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaChooseDevice(device.as_mut_ptr() as *mut _, prop) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3691,7 +3920,7 @@ pub unsafe fn cudaGetDevice() -> Result<i32, crate::sys::cudaError> {
     }
 }
 #[doc = "Set a list of devices that can be used for CUDA\nSets a list of devices for CUDA execution in priority order using\n`device_arr.` The parameter `len` specifies the number of elements in the\nlist.  CUDA will try devices from the list sequentially until it finds one\nthat works.  If this function is not called, or if it is called with a `len`\nof 0, then CUDA will go back to its default behavior of trying devices\nsequentially from a default list containing all of the available CUDA\ndevices in the system. If a specified device ID in the list does not exist,\nthis function will return ::cudaErrorInvalidDevice. If `len` is not 0 and\n`device_arr` is NULL or if `len` exceeds the number of devices in\nthe system, then ::cudaErrorInvalidValue is returned.\n\n# Arguments\n\n* `device_arr` - - List of devices to try\n* `len` -        - Number of devices in specified list\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGetDeviceCount,`] ::cudaSetDevice, ::cudaGetDeviceProperties,\n::cudaSetDeviceFlags,\n::cudaChooseDevice"]
-pub unsafe fn cudaSetValidDevices<T: types::CudaAsMutPtr>(mut device_arr: T, len: i32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaSetValidDevices<T0: types::CudaAsMutPtr>(mut device_arr: T0, len: i32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaSetValidDevices(device_arr.as_mut_ptr() as *mut _, len as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3801,7 +4030,7 @@ pub unsafe fn cudaStreamGetAttribute(hStream: cudaStream_t, attr: cudaLaunchAttr
     }
 }
 #[doc = "Sets stream attribute.\nSets attribute `attr` on `hStream` from corresponding attribute of\n`value.` The updated attribute will be applied to subsequent work\nsubmitted to the stream. It will not affect previously submitted work.\n\n# Arguments\n\n* `hStream` [out]  -\n* `attr` [in]  -\n* `value` [in]  -\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle\n\\notefnerr # See also\n\n> [`::cudaAccessPolicyWindow`]"]
-pub unsafe fn cudaStreamSetAttribute<T: types::CudaAsPtr>(hStream: cudaStream_t, attr: cudaLaunchAttributeID, value: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaStreamSetAttribute<T0: types::CudaAsPtr>(hStream: cudaStream_t, attr: cudaLaunchAttributeID, value: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaStreamSetAttribute(hStream, attr, value.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3816,7 +4045,7 @@ pub unsafe fn cudaStreamWaitEvent(stream: cudaStream_t, event: cudaEvent_t, flag
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Add a callback to a compute stream\n> **Note** This function is slated for eventual deprecation and removal. If\nyou do not require the callback to execute in case of a device error,\nconsider using ::cudaLaunchHostFunc. Additionally, this function is not\nsupported with ::cudaStreamBeginCapture and ::cudaStreamEndCapture, unlike\n::cudaLaunchHostFunc.\nAdds a callback to be called on the host after all currently enqueued\nitems in the stream have completed.  For each\ncudaStreamAddCallback call, a callback will be executed exactly once.\nThe callback will block later work in the stream until it is finished.\nThe callback may be passed ::cudaSuccess or an error code.  In the event\nof a device error, all subsequently executed callbacks will receive an\nappropriate ::cudaError_t.\nCallbacks must not make any CUDA API calls.  Attempting to use CUDA APIs\nmay result in ::cudaErrorNotPermitted.  Callbacks must not perform any\nsynchronization that may depend on outstanding device work or other callbacks\nthat are not mandated to run earlier.  Callbacks without a mandated order\n(in independent streams) execute in undefined order and may be serialized.\nFor the purposes of Unified Memory, callback execution makes a number of\nguarantees:\n<ul>\n<li>The callback stream is considered idle for the duration of the\ncallback.  Thus, for example, a callback may always use memory attached\nto the callback stream.</li>\n<li>The start of execution of a callback has the same effect as\nsynchronizing an event recorded in the same stream immediately prior to\nthe callback.  It thus synchronizes streams which have been \"joined\"\nprior to the callback.</li>\n<li>Adding device work to any stream does not have the effect of making\nthe stream active until all preceding callbacks have executed.  Thus, for\nexample, a callback might use global attached memory even if work has\nbeen added to another stream, if it has been properly ordered with an\nevent.</li>\n<li>Completion of a callback does not cause a stream to become\nactive except as described above.  The callback stream will remain idle\nif no device work follows the callback, and will remain idle across\nconsecutive callbacks without device work in between.  Thus, for example,\nstream synchronization can be done by signaling from a callback at the\nend of the stream.</li>\n</ul>\n\n# Arguments\n\n* `stream` -   - Stream to add callback to\n* `callback` - - The function to call once preceding stream operations are complete\n* `userData` - - User specified data to be passed to the callback function\n* `flags` -    - Reserved for future use, must be 0\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaStreamCreate,`] ::cudaStreamCreateWithFlags, ::cudaStreamQuery, ::cudaStreamSynchronize, ::cudaStreamWaitEvent, ::cudaStreamDestroy, ::cudaMallocManaged, ::cudaStreamAttachMemAsync,\n::cudaLaunchHostFunc, ::cuStreamAddCallback"]
-pub unsafe fn cudaStreamAddCallback<T: types::CudaAsMutPtr>(stream: cudaStream_t, callback: cudaStreamCallback_t, mut userData: T, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaStreamAddCallback<T0: types::CudaAsMutPtr>(stream: cudaStream_t, callback: cudaStreamCallback_t, mut userData: T0, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaStreamAddCallback(stream, callback, userData.as_mut_ptr() as *mut _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3830,7 +4059,7 @@ pub unsafe fn cudaStreamQuery(stream: cudaStream_t) -> Result<(), crate::sys::cu
     let status = unsafe { crate::sys::cudaStreamQuery(stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaStreamAttachMemAsync<T: types::CudaAsMutPtr>(stream: cudaStream_t, mut devPtr: T, length: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaStreamAttachMemAsync<T0: types::CudaAsMutPtr>(stream: cudaStream_t, mut devPtr: T0, length: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaStreamAttachMemAsync(stream, devPtr.as_mut_ptr() as *mut _, length, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3840,7 +4069,7 @@ pub unsafe fn cudaStreamBeginCapture(stream: cudaStream_t, mode: cudaStreamCaptu
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Begins graph capture on a stream to an existing graph\nBegin graph capture on `stream.` When a stream is in capture mode, all operations\npushed into the stream will not be executed, but will instead be captured into\n`graph,` which will be returned via ::cudaStreamEndCapture.\nCapture may not be initiated if `stream` is ::cudaStreamLegacy. Capture must be ended on the\nsame stream in which it was initiated, and it may only be initiated if the stream is not\nalready in capture mode. The capture mode may be queried via ::cudaStreamIsCapturing. A unique id\nrepresenting the capture sequence may be queried via ::cudaStreamGetCaptureInfo.\nIf `mode` is not ::cudaStreamCaptureModeRelaxed, ::cudaStreamEndCapture must be\ncalled on this stream from the same thread.\n> **Note** Kernels captured using this API must not use texture and surface references.\nReading or writing through any texture or surface reference is undefined\nbehavior. This restriction does not apply to texture and surface objects.\n\n# Arguments\n\n* `stream` -          - Stream in which to initiate capture.\n* `graph` -           - Graph to capture into.\n* `dependencies` -    - Dependencies of the first node captured in the stream.  Can be NULL if numDependencies is 0.\n* `dependencyData` -  - Optional array of data associated with each dependency.\n* `numDependencies` - - Number of dependencies.\n* `mode` -            - Controls the interaction of this capture sequence with other API\ncalls that are potentially unsafe. For more details see\n::cudaThreadExchangeStreamCaptureMode.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\notefnerr # See also\n\n> [`::cudaStreamCreate,`]\n::cudaStreamIsCapturing,\n::cudaStreamEndCapture,\n::cudaThreadExchangeStreamCaptureMode"]
-pub unsafe fn cudaStreamBeginCaptureToGraph<T: types::CudaAsPtr, U: types::CudaAsPtr>(stream: cudaStream_t, graph: cudaGraph_t, dependencies: T, dependencyData: U, numDependencies: usize, mode: cudaStreamCaptureMode) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaStreamBeginCaptureToGraph<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(stream: cudaStream_t, graph: cudaGraph_t, dependencies: T0, dependencyData: T1, numDependencies: usize, mode: cudaStreamCaptureMode) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaStreamBeginCaptureToGraph(stream, graph, dependencies.as_const_ptr() as *const _, dependencyData.as_const_ptr() as *const _, numDependencies, mode) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3850,7 +4079,7 @@ pub unsafe fn cudaThreadExchangeStreamCaptureMode(mode: *mut cudaStreamCaptureMo
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Ends capture on a stream, returning the captured graph\nEnd capture on `stream,` returning the captured graph via `pGraph.`\nCapture must have been initiated on `stream` via a call to ::cudaStreamBeginCapture.\nIf capture was invalidated, due to a violation of the rules of stream capture, then\na NULL graph will be returned.\nIf the `mode` argument to ::cudaStreamBeginCapture was not\n::cudaStreamCaptureModeRelaxed, this call must be from the same thread as\n::cudaStreamBeginCapture.\n\n# Arguments\n\n* `stream` - - Stream to query\n* `pGraph` - - The captured graph\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorStreamCaptureWrongThread\n\\notefnerr # See also\n\n> [`::cudaStreamCreate,`]\n::cudaStreamBeginCapture,\n::cudaStreamIsCapturing,\n::cudaGraphDestroy"]
-pub unsafe fn cudaStreamEndCapture<T: types::CudaAsMutPtr>(stream: cudaStream_t, mut pGraph: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaStreamEndCapture<T0: types::CudaAsMutPtr>(stream: cudaStream_t, mut pGraph: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaStreamEndCapture(stream, pGraph.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3894,7 +4123,7 @@ pub unsafe fn cudaStreamGetCaptureInfo(stream: cudaStream_t) -> Result<(cudaStre
     }
 }
 #[doc = "Update the set of dependencies in a capturing stream\nModifies the dependency set of a capturing stream. The dependency set is the set\nof nodes that the next captured node in the stream will depend on.\nValid flags are ::cudaStreamAddCaptureDependencies and\n::cudaStreamSetCaptureDependencies. These control whether the set passed to\nthe API is added to the existing set or replaces it. A flags value of 0 defaults\nto ::cudaStreamAddCaptureDependencies.\nNodes that are removed from the dependency set via this API do not result in\n::cudaErrorStreamCaptureUnjoined if they are unreachable from the stream at\n::cudaStreamEndCapture.\nReturns ::cudaErrorIllegalState if the stream is not capturing.\n\n# Arguments\n\n* `stream` - - The stream to update\n* `dependencies` - - The set of dependencies to add\n* `dependencyData` - - Optional array of data associated with each dependency.\n* `numDependencies` - - The size of the dependencies array\n* `flags` - - See above\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorIllegalState\n\\notefnerr # See also\n\n> [`::cudaStreamBeginCapture,`]\n::cudaStreamGetCaptureInfo,"]
-pub unsafe fn cudaStreamUpdateCaptureDependencies<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(stream: cudaStream_t, mut dependencies: T, dependencyData: U, numDependencies: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaStreamUpdateCaptureDependencies<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(stream: cudaStream_t, mut dependencies: T0, dependencyData: T1, numDependencies: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaStreamUpdateCaptureDependencies(stream, dependencies.as_mut_ptr() as *mut _, dependencyData.as_const_ptr() as *const _, numDependencies, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3943,17 +4172,17 @@ pub unsafe fn cudaEventDestroy(event: cudaEvent_t) -> Result<(), crate::sys::cud
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Computes the elapsed time between events\nComputes the elapsed time between two events (in milliseconds with a\nresolution of around 0.5 microseconds). Note this API is not guaranteed\nto return the latest errors for pending work. As such this API is intended to\nserve as a elapsed time calculation only and polling for completion on the\nevents to be compared should be done with ::cudaEventQuery instead.\nIf either event was last recorded in a non-NULL stream, the resulting time\nmay be greater than expected (even if both used the same stream handle). This\nhappens because the ::cudaEventRecord() operation takes place asynchronously\nand there is no guarantee that the measured latency is actually just between\nthe two events. Any number of other different stream operations could execute\nin between the two measured events, thus altering the timing in a significant\nway.\nIf ::cudaEventRecord() has not been called on either event, then\n::cudaErrorInvalidResourceHandle is returned. If ::cudaEventRecord() has been\ncalled on both events but one or both of them has not yet been completed\n(that is, ::cudaEventQuery() would return ::cudaErrorNotReady on at least one\nof the events), ::cudaErrorNotReady is returned. If either event was created\nwith the ::cudaEventDisableTiming flag, then this function will return\n::cudaErrorInvalidResourceHandle.\n\n# Arguments\n\n* `ms` -    - Time between `start` and `end` in ms\n* `start` - - Starting event\n* `end` -   - Ending event\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorNotReady,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorLaunchFailure,\n::cudaErrorUnknown\n\\notefnerr \\note_init_rt \\note_callback \\note_null_event # See also\n\n> [`\\ref`] ::cudaEventCreate(cudaEvent_t*) \"cudaEventCreate (C API)\",\n::cudaEventCreateWithFlags, ::cudaEventQuery,\n::cudaEventSynchronize, ::cudaEventDestroy, ::cudaEventRecord,\n::cuEventElapsedTime"]
-pub unsafe fn cudaEventElapsedTime<T: types::CudaAsMutPtr>(mut ms: T, start: cudaEvent_t, end: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaEventElapsedTime<T0: types::CudaAsMutPtr>(mut ms: T0, start: cudaEvent_t, end: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaEventElapsedTime(ms.as_mut_ptr() as *mut _, start, end) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Imports an external memory object\nImports an externally allocated memory object and returns\na handle to that in `extMem_out.`\nThe properties of the handle being imported must be described in\n`memHandleDesc.` The ::cudaExternalMemoryHandleDesc structure\nis defined as follows:\n\\code typedef struct cudaExternalMemoryHandleDesc_st {\ncudaExternalMemoryHandleType type;\nunion {\nint fd;\nstruct {\nvoid *handle;\nconst void *name;\n} win32;\nconst void *nvSciBufObject;\n} handle;\nunsigned long long size;\nunsigned int flags;\n} cudaExternalMemoryHandleDesc;\n\\endcode where ::cudaExternalMemoryHandleDesc::type specifies the type\nof handle being imported. ::cudaExternalMemoryHandleType is\ndefined as:\n\\code typedef enum cudaExternalMemoryHandleType_enum {\ncudaExternalMemoryHandleTypeOpaqueFd         = 1,\ncudaExternalMemoryHandleTypeOpaqueWin32      = 2,\ncudaExternalMemoryHandleTypeOpaqueWin32Kmt   = 3,\ncudaExternalMemoryHandleTypeD3D12Heap        = 4,\ncudaExternalMemoryHandleTypeD3D12Resource    = 5,\ncudaExternalMemoryHandleTypeD3D11Resource    = 6,\ncudaExternalMemoryHandleTypeD3D11ResourceKmt = 7,\ncudaExternalMemoryHandleTypeNvSciBuf         = 8\n} cudaExternalMemoryHandleType;\n\\endcode If ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeOpaqueFd, then\n::cudaExternalMemoryHandleDesc::handle::fd must be a valid\nfile descriptor referencing a memory object. Ownership of\nthe file descriptor is transferred to the CUDA driver when the\nhandle is imported successfully. Performing any operations on the\nfile descriptor after it is imported results in undefined behavior.\nIf ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeOpaqueWin32, then exactly one\nof ::cudaExternalMemoryHandleDesc::handle::win32::handle and\n::cudaExternalMemoryHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalMemoryHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nreferences a memory object. Ownership of this handle is\nnot transferred to CUDA after the import operation, so the\napplication must release the handle using the appropriate system\ncall. If ::cudaExternalMemoryHandleDesc::handle::win32::name\nis not NULL, then it must point to a NULL-terminated array of\nUTF-16 characters that refers to a memory object.\nIf ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeOpaqueWin32Kmt, then\n::cudaExternalMemoryHandleDesc::handle::win32::handle must\nbe non-NULL and\n::cudaExternalMemoryHandleDesc::handle::win32::name\nmust be NULL. The handle specified must be a globally shared KMT\nhandle. This handle does not hold a reference to the underlying\nobject, and thus will be invalid when all references to the\nmemory object are destroyed.\nIf ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeD3D12Heap, then exactly one\nof ::cudaExternalMemoryHandleDesc::handle::win32::handle and\n::cudaExternalMemoryHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalMemoryHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nis returned by ID3D12Device::CreateSharedHandle when referring to a\nID3D12Heap object. This handle holds a reference to the underlying\nobject. If ::cudaExternalMemoryHandleDesc::handle::win32::name\nis not NULL, then it must point to a NULL-terminated array of\nUTF-16 characters that refers to a ID3D12Heap object.\nIf ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeD3D12Resource, then exactly one\nof ::cudaExternalMemoryHandleDesc::handle::win32::handle and\n::cudaExternalMemoryHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalMemoryHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nis returned by ID3D12Device::CreateSharedHandle when referring to a\nID3D12Resource object. This handle holds a reference to the\nunderlying object. If\n::cudaExternalMemoryHandleDesc::handle::win32::name\nis not NULL, then it must point to a NULL-terminated array of\nUTF-16 characters that refers to a ID3D12Resource object.\nIf ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeD3D11Resource,then exactly one\nof ::cudaExternalMemoryHandleDesc::handle::win32::handle and\n::cudaExternalMemoryHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalMemoryHandleDesc::handle::win32::handle is\nnot NULL, then it must represent a valid shared NT handle that is\nreturned by  IDXGIResource1::CreateSharedHandle when referring to a\nID3D11Resource object. If\n::cudaExternalMemoryHandleDesc::handle::win32::name\nis not NULL, then it must point to a NULL-terminated array of\nUTF-16 characters that refers to a ID3D11Resource object.\nIf ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeD3D11ResourceKmt, then\n::cudaExternalMemoryHandleDesc::handle::win32::handle must\nbe non-NULL and ::cudaExternalMemoryHandleDesc::handle::win32::name\nmust be NULL. The handle specified must be a valid shared KMT\nhandle that is returned by IDXGIResource::GetSharedHandle when\nreferring to a ID3D11Resource object.\nIf ::cudaExternalMemoryHandleDesc::type is\n::cudaExternalMemoryHandleTypeNvSciBuf, then\n::cudaExternalMemoryHandleDesc::handle::nvSciBufObject must be NON-NULL\nand reference a valid NvSciBuf object.\nIf the NvSciBuf object imported into CUDA is also mapped by other drivers, then the\napplication must use ::cudaWaitExternalSemaphoresAsync or ::cudaSignalExternalSemaphoresAsync\nas approprriate barriers to maintain coherence between CUDA and the other drivers.\nSee ::cudaExternalSemaphoreWaitSkipNvSciBufMemSync and ::cudaExternalSemaphoreSignalSkipNvSciBufMemSync\nfor memory synchronization.\nThe size of the memory object must be specified in\n::cudaExternalMemoryHandleDesc::size.\nSpecifying the flag ::cudaExternalMemoryDedicated in\n::cudaExternalMemoryHandleDesc::flags indicates that the\nresource is a dedicated resource. The definition of what a\ndedicated resource is outside the scope of this extension.\nThis flag must be set if ::cudaExternalMemoryHandleDesc::type\nis one of the following:\n::cudaExternalMemoryHandleTypeD3D12Resource\n::cudaExternalMemoryHandleTypeD3D11Resource\n::cudaExternalMemoryHandleTypeD3D11ResourceKmt\n\n# Arguments\n\n* `extMem_out` -    - Returned handle to an external memory object\n* `memHandleDesc` - - Memory import handle descriptor\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorOperatingSystem\n\\notefnerr \\note_init_rt \\note_callback > **Note** If the Vulkan memory imported into CUDA is mapped on the CPU then the\napplication must use vkInvalidateMappedMemoryRanges/vkFlushMappedMemoryRanges\nas well as appropriate Vulkan pipeline barriers to maintain coherence between\nCPU and GPU. For more information on these APIs, please refer to \"Synchronization\nand Cache Control\" chapter from Vulkan specification.\n\n# See also\n\n> [`::cudaDestroyExternalMemory,`]\n::cudaExternalMemoryGetMappedBuffer,\n::cudaExternalMemoryGetMappedMipmappedArray"]
-pub unsafe fn cudaImportExternalMemory<T: types::CudaAsMutPtr>(mut extMem_out: T, memHandleDesc: *const cudaExternalMemoryHandleDesc) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaImportExternalMemory<T0: types::CudaAsMutPtr>(mut extMem_out: T0, memHandleDesc: *const cudaExternalMemoryHandleDesc) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaImportExternalMemory(extMem_out.as_mut_ptr() as *mut _, memHandleDesc) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Maps a buffer onto an imported memory object\nMaps a buffer onto an imported memory object and returns a device\npointer in `devPtr.`\nThe properties of the buffer being mapped must be described in\n`bufferDesc.` The ::cudaExternalMemoryBufferDesc structure is\ndefined as follows:\n\\code typedef struct cudaExternalMemoryBufferDesc_st {\nunsigned long long offset;\nunsigned long long size;\nunsigned int flags;\n} cudaExternalMemoryBufferDesc;\n\\endcode where ::cudaExternalMemoryBufferDesc::offset is the offset in\nthe memory object where the buffer's base address is.\n::cudaExternalMemoryBufferDesc::size is the size of the buffer.\n::cudaExternalMemoryBufferDesc::flags must be zero.\nThe offset and size have to be suitably aligned to match the\nrequirements of the external API. Mapping two buffers whose ranges\noverlap may or may not result in the same virtual address being\nreturned for the overlapped portion. In such cases, the application\nmust ensure that all accesses to that region from the GPU are\nvolatile. Otherwise writes made via one address are not guaranteed\nto be visible via the other address, even if they're issued by the\nsame thread. It is recommended that applications map the combined\nrange instead of mapping separate buffers and then apply the\nappropriate offsets to the returned pointer to derive the\nindividual buffers.\nThe returned pointer `devPtr` must be freed using ::cudaFree.\n\n# Arguments\n\n* `devPtr` -     - Returned device pointer to buffer\n* `extMem` -     - Handle to external memory object\n* `bufferDesc` - - Buffer descriptor\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaImportExternalMemory,`]\n::cudaDestroyExternalMemory,\n::cudaExternalMemoryGetMappedMipmappedArray"]
-pub unsafe fn cudaExternalMemoryGetMappedBuffer<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut devPtr: T, extMem: cudaExternalMemory_t, bufferDesc: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaExternalMemoryGetMappedBuffer<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut devPtr: T0, extMem: cudaExternalMemory_t, bufferDesc: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaExternalMemoryGetMappedBuffer(devPtr.as_mut_ptr() as *mut _, extMem, bufferDesc.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3973,17 +4202,17 @@ pub unsafe fn cudaDestroyExternalMemory(extMem: cudaExternalMemory_t) -> Result<
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Imports an external semaphore\nImports an externally allocated synchronization object and returns\na handle to that in `extSem_out.`\nThe properties of the handle being imported must be described in\n`semHandleDesc.` The ::cudaExternalSemaphoreHandleDesc is defined\nas follows:\n\\code typedef struct cudaExternalSemaphoreHandleDesc_st {\ncudaExternalSemaphoreHandleType type;\nunion {\nint fd;\nstruct {\nvoid *handle;\nconst void *name;\n} win32;\nconst void* NvSciSyncObj;\n} handle;\nunsigned int flags;\n} cudaExternalSemaphoreHandleDesc;\n\\endcode where ::cudaExternalSemaphoreHandleDesc::type specifies the type of\nhandle being imported. ::cudaExternalSemaphoreHandleType is defined\nas:\n\\code typedef enum cudaExternalSemaphoreHandleType_enum {\ncudaExternalSemaphoreHandleTypeOpaqueFd                = 1,\ncudaExternalSemaphoreHandleTypeOpaqueWin32             = 2,\ncudaExternalSemaphoreHandleTypeOpaqueWin32Kmt          = 3,\ncudaExternalSemaphoreHandleTypeD3D12Fence              = 4,\ncudaExternalSemaphoreHandleTypeD3D11Fence              = 5,\ncudaExternalSemaphoreHandleTypeNvSciSync               = 6,\ncudaExternalSemaphoreHandleTypeKeyedMutex              = 7,\ncudaExternalSemaphoreHandleTypeKeyedMutexKmt           = 8,\ncudaExternalSemaphoreHandleTypeTimelineSemaphoreFd     = 9,\ncudaExternalSemaphoreHandleTypeTimelineSemaphoreWin32  = 10\n} cudaExternalSemaphoreHandleType;\n\\endcode If ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeOpaqueFd, then\n::cudaExternalSemaphoreHandleDesc::handle::fd must be a valid file\ndescriptor referencing a synchronization object. Ownership of the\nfile descriptor is transferred to the CUDA driver when the handle\nis imported successfully. Performing any operations on the file\ndescriptor after it is imported results in undefined behavior.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeOpaqueWin32, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nreferences a synchronization object. Ownership of this handle is\nnot transferred to CUDA after the import operation, so the\napplication must release the handle using the appropriate system\ncall. If ::cudaExternalSemaphoreHandleDesc::handle::win32::name is\nnot NULL, then it must name a valid synchronization object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeOpaqueWin32Kmt, then\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle must be\nnon-NULL and ::cudaExternalSemaphoreHandleDesc::handle::win32::name\nmust be NULL. The handle specified must be a globally shared KMT\nhandle. This handle does not hold a reference to the underlying\nobject, and thus will be invalid when all references to the\nsynchronization object are destroyed.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeD3D12Fence, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nis returned by ID3D12Device::CreateSharedHandle when referring to a\nID3D12Fence object. This handle holds a reference to the underlying\nobject. If ::cudaExternalSemaphoreHandleDesc::handle::win32::name\nis not NULL, then it must name a valid synchronization object that\nrefers to a valid ID3D12Fence object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeD3D11Fence, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nis returned by ID3D11Fence::CreateSharedHandle. If\n::cudaExternalSemaphoreHandleDesc::handle::win32::name\nis not NULL, then it must name a valid synchronization object that\nrefers to a valid ID3D11Fence object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeNvSciSync, then\n::cudaExternalSemaphoreHandleDesc::handle::nvSciSyncObj\nrepresents a valid NvSciSyncObj.\n::cudaExternalSemaphoreHandleTypeKeyedMutex, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it represent a valid shared NT handle that\nis returned by IDXGIResource1::CreateSharedHandle when referring to\na IDXGIKeyedMutex object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeKeyedMutexKmt, then\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle must be\nnon-NULL and ::cudaExternalSemaphoreHandleDesc::handle::win32::name\nmust be NULL. The handle specified must represent a valid KMT\nhandle that is returned by IDXGIResource::GetSharedHandle when\nreferring to a IDXGIKeyedMutex object.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreFd, then\n::cudaExternalSemaphoreHandleDesc::handle::fd must be a valid file\ndescriptor referencing a synchronization object. Ownership of the\nfile descriptor is transferred to the CUDA driver when the handle\nis imported successfully. Performing any operations on the file\ndescriptor after it is imported results in undefined behavior.\nIf ::cudaExternalSemaphoreHandleDesc::type is\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreWin32, then exactly one of\n::cudaExternalSemaphoreHandleDesc::handle::win32::handle and\n::cudaExternalSemaphoreHandleDesc::handle::win32::name must not be\nNULL. If ::cudaExternalSemaphoreHandleDesc::handle::win32::handle\nis not NULL, then it must represent a valid shared NT handle that\nreferences a synchronization object. Ownership of this handle is\nnot transferred to CUDA after the import operation, so the\napplication must release the handle using the appropriate system\ncall. If ::cudaExternalSemaphoreHandleDesc::handle::win32::name is\nnot NULL, then it must name a valid synchronization object.\n\n# Arguments\n\n* `extSem_out` -    - Returned handle to an external semaphore\n* `semHandleDesc` - - Semaphore import handle descriptor\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorOperatingSystem\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaDestroyExternalSemaphore,`]\n::cudaSignalExternalSemaphoresAsync,\n::cudaWaitExternalSemaphoresAsync"]
-pub unsafe fn cudaImportExternalSemaphore<T: types::CudaAsMutPtr>(mut extSem_out: T, semHandleDesc: *const cudaExternalSemaphoreHandleDesc) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaImportExternalSemaphore<T0: types::CudaAsMutPtr>(mut extSem_out: T0, semHandleDesc: *const cudaExternalSemaphoreHandleDesc) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaImportExternalSemaphore(extSem_out.as_mut_ptr() as *mut _, semHandleDesc) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Signals a set of external semaphore objects\nEnqueues a signal operation on a set of externally allocated\nsemaphore object in the specified stream. The operations will be\nexecuted when all prior operations in the stream complete.\nThe exact semantics of signaling a semaphore depends on the type of\nthe object.\nIf the semaphore object is any one of the following types:\n::cudaExternalSemaphoreHandleTypeOpaqueFd,\n::cudaExternalSemaphoreHandleTypeOpaqueWin32,\n::cudaExternalSemaphoreHandleTypeOpaqueWin32Kmt\nthen signaling the semaphore will set it to the signaled state.\nIf the semaphore object is any one of the following types:\n::cudaExternalSemaphoreHandleTypeD3D12Fence,\n::cudaExternalSemaphoreHandleTypeD3D11Fence,\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreFd,\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreWin32\nthen the semaphore will be set to the value specified in\n::cudaExternalSemaphoreSignalParams::params::fence::value.\nIf the semaphore object is of the type ::cudaExternalSemaphoreHandleTypeNvSciSync\nthis API sets ::cudaExternalSemaphoreSignalParams::params::nvSciSync::fence to a\nvalue that can be used by subsequent waiters of the same NvSciSync object to\norder operations with those currently submitted in `stream.` Such an update\nwill overwrite previous contents of\n::cudaExternalSemaphoreSignalParams::params::nvSciSync::fence. By default,\nsignaling such an external semaphore object causes appropriate memory synchronization\noperations to be performed over all the external memory objects that are imported as\n::cudaExternalMemoryHandleTypeNvSciBuf. This ensures that any subsequent accesses\nmade by other importers of the same set of NvSciBuf memory object(s) are coherent.\nThese operations can be skipped by specifying the flag\n::cudaExternalSemaphoreSignalSkipNvSciBufMemSync, which can be used as a\nperformance optimization when data coherency is not required. But specifying this\nflag in scenarios where data coherency is required results in undefined behavior.\nAlso, for semaphore object of the type ::cudaExternalSemaphoreHandleTypeNvSciSync,\nif the NvSciSyncAttrList used to create the NvSciSyncObj had not set the flags in\n::cudaDeviceGetNvSciSyncAttributes to cudaNvSciSyncAttrSignal, this API will return\ncudaErrorNotSupported.\n::cudaExternalSemaphoreSignalParams::params::nvSciSync::fence associated with\nsemaphore object of the type ::cudaExternalSemaphoreHandleTypeNvSciSync can be\ndeterministic. For this the NvSciSyncAttrList used to create the semaphore object\nmust have value of NvSciSyncAttrKey_RequireDeterministicFences key set to true.\nDeterministic fences allow users to enqueue a wait over the semaphore object even\nbefore corresponding signal is enqueued. For such a semaphore object, CUDA guarantees\nthat each signal operation will increment the fence value by '1'. Users are expected\nto track count of signals enqueued on the semaphore object and insert waits accordingly.\nWhen such a semaphore object is signaled from multiple streams, due to concurrent\nstream execution, it is possible that the order in which the semaphore gets signaled\nis indeterministic. This could lead to waiters of the semaphore getting unblocked\nincorrectly. Users are expected to handle such situations, either by not using the\nsame semaphore object with deterministic fence support enabled in different streams\nor by adding explicit dependency amongst such streams so that the semaphore is\nsignaled in order.\n::cudaExternalSemaphoreSignalParams::params::nvSciSync::fence associated with\nsemaphore object of the type ::cudaExternalSemaphoreHandleTypeNvSciSync can be\ntimestamp enabled. For this the NvSciSyncAttrList used to create the object must\nhave the value of NvSciSyncAttrKey_WaiterRequireTimestamps key set to true. Timestamps\nare emitted asynchronously by the GPU and CUDA saves the GPU timestamp in the\ncorresponding NvSciSyncFence at the time of signal on GPU. Users are expected to\nconvert GPU clocks to CPU clocks using appropriate scaling functions. Users are\nexpected to wait for the completion of the fence before extracting timestamp using\nappropriate NvSciSync APIs. Users are expected to ensure that there is only one\noutstanding timestamp enabled fence per Cuda-NvSciSync object at any point of time,\nfailing which leads to undefined behavior. Extracting the timestamp before the\ncorresponding fence is signalled could lead to undefined behaviour. Timestamp\nextracted via appropriate NvSciSync API would be in microseconds.\nIf the semaphore object is any one of the following types:\n::cudaExternalSemaphoreHandleTypeKeyedMutex,\n::cudaExternalSemaphoreHandleTypeKeyedMutexKmt,\nthen the keyed mutex will be released with the key specified in\n::cudaExternalSemaphoreSignalParams::params::keyedmutex::key.\n\n# Arguments\n\n* `extSemArray` - - Set of external semaphores to be signaled\n* `paramsArray` - - Array of semaphore parameters\n* `numExtSems` -  - Number of semaphores to signal\n* `stream` -     - Stream to enqueue the signal operations in\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaImportExternalSemaphore,`]\n::cudaDestroyExternalSemaphore,\n::cudaWaitExternalSemaphoresAsync"]
-pub unsafe fn cudaSignalExternalSemaphoresAsync<T: types::CudaAsPtr, U: types::CudaAsPtr>(extSemArray: T, paramsArray: U, numExtSems: u32, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaSignalExternalSemaphoresAsync<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(extSemArray: T0, paramsArray: T1, numExtSems: u32, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaSignalExternalSemaphoresAsync(extSemArray.as_const_ptr() as *const _, paramsArray.as_const_ptr() as *const _, numExtSems as _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Waits on a set of external semaphore objects\nEnqueues a wait operation on a set of externally allocated\nsemaphore object in the specified stream. The operations will be\nexecuted when all prior operations in the stream complete.\nThe exact semantics of waiting on a semaphore depends on the type\nof the object.\nIf the semaphore object is any one of the following types:\n::cudaExternalSemaphoreHandleTypeOpaqueFd,\n::cudaExternalSemaphoreHandleTypeOpaqueWin32,\n::cudaExternalSemaphoreHandleTypeOpaqueWin32Kmt\nthen waiting on the semaphore will wait until the semaphore reaches\nthe signaled state. The semaphore will then be reset to the\nunsignaled state. Therefore for every signal operation, there can\nonly be one wait operation.\nIf the semaphore object is any one of the following types:\n::cudaExternalSemaphoreHandleTypeD3D12Fence,\n::cudaExternalSemaphoreHandleTypeD3D11Fence,\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreFd,\n::cudaExternalSemaphoreHandleTypeTimelineSemaphoreWin32\nthen waiting on the semaphore will wait until the value of the\nsemaphore is greater than or equal to\n::cudaExternalSemaphoreWaitParams::params::fence::value.\nIf the semaphore object is of the type ::cudaExternalSemaphoreHandleTypeNvSciSync\nthen, waiting on the semaphore will wait until the\n::cudaExternalSemaphoreSignalParams::params::nvSciSync::fence is signaled by the\nsignaler of the NvSciSyncObj that was associated with this semaphore object.\nBy default, waiting on such an external semaphore object causes appropriate\nmemory synchronization operations to be performed over all external memory objects\nthat are imported as ::cudaExternalMemoryHandleTypeNvSciBuf. This ensures that\nany subsequent accesses made by other importers of the same set of NvSciBuf memory\nobject(s) are coherent. These operations can be skipped by specifying the flag\n::cudaExternalSemaphoreWaitSkipNvSciBufMemSync, which can be used as a\nperformance optimization when data coherency is not required. But specifying this\nflag in scenarios where data coherency is required results in undefined behavior.\nAlso, for semaphore object of the type ::cudaExternalSemaphoreHandleTypeNvSciSync,\nif the NvSciSyncAttrList used to create the NvSciSyncObj had not set the flags in\n::cudaDeviceGetNvSciSyncAttributes to cudaNvSciSyncAttrWait, this API will return\ncudaErrorNotSupported.\nIf the semaphore object is any one of the following types:\n::cudaExternalSemaphoreHandleTypeKeyedMutex,\n::cudaExternalSemaphoreHandleTypeKeyedMutexKmt,\nthen the keyed mutex will be acquired when it is released with the key specified\nin ::cudaExternalSemaphoreSignalParams::params::keyedmutex::key or\nuntil the timeout specified by\n::cudaExternalSemaphoreSignalParams::params::keyedmutex::timeoutMs\nhas lapsed. The timeout interval can either be a finite value\nspecified in milliseconds or an infinite value. In case an infinite\nvalue is specified the timeout never elapses. The windows INFINITE\nmacro must be used to specify infinite timeout\n\n# Arguments\n\n* `extSemArray` - - External semaphores to be waited on\n* `paramsArray` - - Array of semaphore parameters\n* `numExtSems` -  - Number of semaphores to wait on\n* `stream` -      - Stream to enqueue the wait operations in\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle\n::cudaErrorTimeout\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaImportExternalSemaphore,`]\n::cudaDestroyExternalSemaphore,\n::cudaSignalExternalSemaphoresAsync"]
-pub unsafe fn cudaWaitExternalSemaphoresAsync<T: types::CudaAsPtr, U: types::CudaAsPtr>(extSemArray: T, paramsArray: U, numExtSems: u32, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaWaitExternalSemaphoresAsync<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(extSemArray: T0, paramsArray: T1, numExtSems: u32, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaWaitExternalSemaphoresAsync(extSemArray.as_const_ptr() as *const _, paramsArray.as_const_ptr() as *const _, numExtSems as _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -3993,22 +4222,22 @@ pub unsafe fn cudaDestroyExternalSemaphore(extSem: cudaExternalSemaphore_t) -> R
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Launches a device function\nThe function invokes kernel `func` on `gridDim` (`gridDim.x` &times; `gridDim.y`\n&times; `gridDim.z)` grid of blocks. Each block contains `blockDim` (`blockDim.x` &times;\n`blockDim.y` &times; `blockDim.z)` threads.\nIf the kernel has N parameters the `args` should point to array of N pointers.\nEach pointer, from <tt>args[0]</tt> to <tt>args[N - 1]</tt>, point to the region\nof memory from which the actual parameter will be copied.\nFor templated functions, pass the function symbol as follows:\nfunc_name<template_arg_0,...,template_arg_N>\n`sharedMem` sets the amount of dynamic shared memory that will be available to\neach thread block.\n`stream` specifies a stream the invocation is associated to.\n\n# Arguments\n\n* `func` -        - Device function symbol\n* `gridDim` -     - Grid dimentions\n* `blockDim` -    - Block dimentions\n* `args` -        - Arguments\n* `sharedMem` -   - Shared memory\n* `stream` -      - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidConfiguration,\n::cudaErrorLaunchFailure,\n::cudaErrorLaunchTimeout,\n::cudaErrorLaunchOutOfResources,\n::cudaErrorSharedObjectInitFailed,\n::cudaErrorInvalidPtx,\n::cudaErrorUnsupportedPtxVersion,\n::cudaErrorNoKernelImageForDevice,\n::cudaErrorJitCompilerNotFound,\n::cudaErrorJitCompilationDisabled\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`\\ref`] ::cudaLaunchKernel(const T *func, dim3 gridDim, dim3 blockDim, void **args, size_t sharedMem, cudaStream_t stream) \"cudaLaunchKernel (C++ API)\",\n::cuLaunchKernel"]
-pub unsafe fn cudaLaunchKernel<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(func: T, gridDim: dim3, blockDim: dim3, mut args: U, sharedMem: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLaunchKernel<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(func: T0, gridDim: dim3, blockDim: dim3, mut args: T1, sharedMem: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLaunchKernel(func.as_const_ptr() as *const _, gridDim, blockDim, args.as_mut_ptr() as *mut _, sharedMem, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Launches a CUDA function with launch-time configuration\nNote that the functionally equivalent variadic template ::cudaLaunchKernelEx\nis available for C++11 and newer.\nInvokes the kernel `func` on `config->gridDim` (`config->gridDim.x`\n&times; `config->gridDim.y` &times; `config->gridDim.z)` grid of blocks.\nEach block contains `config->blockDim` (`config->blockDim.x` &times;\n`config->blockDim.y` &times; `config->blockDim.z)` threads.\n`config->dynamicSmemBytes` sets the amount of dynamic shared memory that\nwill be available to each thread block.\n`config->stream` specifies a stream the invocation is associated to.\nConfiguration beyond grid and block dimensions, dynamic shared memory size,\nand stream can be provided with the following two fields of `config:`\n`config->attrs` is an array of `config->numAttrs` contiguous\n::cudaLaunchAttribute elements. The value of this pointer is not considered\nif `config->numAttrs` is zero. However, in that case, it is recommended to\nset the pointer to NULL.\n`config->numAttrs` is the number of attributes populating the first\n`config->numAttrs` positions of the `config->attrs` array.\nIf the kernel has N parameters the `args` should point to array of N\npointers. Each pointer, from <tt>args[0]</tt> to <tt>args[N - 1]</tt>, point\nto the region of memory from which the actual parameter will be copied.\nN.B. This function is so named to avoid unintentionally invoking the\ntemplated version, `cudaLaunchKernelEx,` for kernels taking a single\nvoid** or void* parameter.\n\n# Arguments\n\n* `config` - - Launch configuration\n* `func` -   - Kernel to launch\n* `args` -   - Array of pointers to kernel parameters\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidConfiguration,\n::cudaErrorLaunchFailure,\n::cudaErrorLaunchTimeout,\n::cudaErrorLaunchOutOfResources,\n::cudaErrorSharedObjectInitFailed,\n::cudaErrorInvalidPtx,\n::cudaErrorUnsupportedPtxVersion,\n::cudaErrorNoKernelImageForDevice,\n::cudaErrorJitCompilerNotFound,\n::cudaErrorJitCompilationDisabled\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`\\ref`] ::cudaLaunchKernelEx(const cudaLaunchConfig_t *config, void (*kernel)(ExpTypes...), ActTypes &&... args) \"cudaLaunchKernelEx (C++ API)\",\n::cuLaunchKernelEx"]
-pub unsafe fn cudaLaunchKernelExC<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(config: T, func: U, mut args: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLaunchKernelExC<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(config: T0, func: T1, mut args: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLaunchKernelExC(config.as_const_ptr() as *const _, func.as_const_ptr() as *const _, args.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Launches a device function where thread blocks can cooperate and synchronize as they execute\nThe function invokes kernel `func` on `gridDim` (`gridDim.x` &times; `gridDim.y`\n&times; `gridDim.z)` grid of blocks. Each block contains `blockDim` (`blockDim.x` &times;\n`blockDim.y` &times; `blockDim.z)` threads.\nThe device on which this kernel is invoked must have a non-zero value for\nthe device attribute ::cudaDevAttrCooperativeLaunch.\nThe total number of blocks launched cannot exceed the maximum number of blocks per\nmultiprocessor as returned by ::cudaOccupancyMaxActiveBlocksPerMultiprocessor (or\n::cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags) times the number of multiprocessors\nas specified by the device attribute ::cudaDevAttrMultiProcessorCount.\nThe kernel cannot make use of CUDA dynamic parallelism.\nIf the kernel has N parameters the `args` should point to array of N pointers.\nEach pointer, from <tt>args[0]</tt> to <tt>args[N - 1]</tt>, point to the region\nof memory from which the actual parameter will be copied.\nFor templated functions, pass the function symbol as follows:\nfunc_name<template_arg_0,...,template_arg_N>\n`sharedMem` sets the amount of dynamic shared memory that will be available to\neach thread block.\n`stream` specifies a stream the invocation is associated to.\n\n# Arguments\n\n* `func` -        - Device function symbol\n* `gridDim` -     - Grid dimentions\n* `blockDim` -    - Block dimentions\n* `args` -        - Arguments\n* `sharedMem` -   - Shared memory\n* `stream` -      - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidConfiguration,\n::cudaErrorLaunchFailure,\n::cudaErrorLaunchTimeout,\n::cudaErrorLaunchOutOfResources,\n::cudaErrorCooperativeLaunchTooLarge,\n::cudaErrorSharedObjectInitFailed\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`\\ref`] ::cudaLaunchCooperativeKernel(const T *func, dim3 gridDim, dim3 blockDim, void **args, size_t sharedMem, cudaStream_t stream) \"cudaLaunchCooperativeKernel (C++ API)\",\n::cuLaunchCooperativeKernel"]
-pub unsafe fn cudaLaunchCooperativeKernel<T: types::CudaAsPtr, U: types::CudaAsMutPtr>(func: T, gridDim: dim3, blockDim: dim3, mut args: U, sharedMem: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLaunchCooperativeKernel<T0: types::CudaAsPtr, T1: types::CudaAsMutPtr>(func: T0, gridDim: dim3, blockDim: dim3, mut args: T1, sharedMem: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLaunchCooperativeKernel(func.as_const_ptr() as *const _, gridDim, blockDim, args.as_mut_ptr() as *mut _, sharedMem, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Sets the preferred cache configuration for a device function\nOn devices where the L1 cache and shared memory use the same hardware\nresources, this sets through `cacheConfig` the preferred cache configuration\nfor the function specified via `func.` This is only a preference. The\nruntime will use the requested configuration if possible, but it is free to\nchoose a different configuration if required to execute `func.`\n`func` is a device function symbol and must be declared as a\n`__global__` function. If the specified function does not exist,\nthen ::cudaErrorInvalidDeviceFunction is returned. For templated functions,\npass the function symbol as follows: func_name<template_arg_0,...,template_arg_N>\nThis setting does nothing on devices where the size of the L1 cache and\nshared memory are fixed.\nLaunching a kernel with a different preference than the most recent\npreference setting may insert a device-side synchronization point.\nThe supported cache configurations are:\n- ::cudaFuncCachePreferNone: no preference for shared memory or L1 (default)\n- ::cudaFuncCachePreferShared: prefer larger shared memory and smaller L1 cache\n- ::cudaFuncCachePreferL1: prefer larger L1 cache and smaller shared memory\n- ::cudaFuncCachePreferEqual: prefer equal size L1 cache and shared memory\n\n# Arguments\n\n* `func` -        - Device function symbol\n* `cacheConfig` - - Requested cache configuration\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction\n\\notefnerr \\note_string_api_deprecation2 \\note_init_rt \\note_callback > **Note** This API does not accept a ::cudaKernel_t casted as void*. If cache config modification\nis required for a ::cudaKernel_t (or a __global__ function), it can be replaced with a call to\n::cudaFuncSetAttributes with the attribute ::cudaFuncAttributePreferredSharedMemoryCarveout\nto specify a more granular L1 cache and shared memory split configuration.\n\n# See also\n\n> [`\\ref`] ::cudaFuncSetCacheConfig(T*, enum cudaFuncCache) \"cudaFuncSetCacheConfig (C++ API)\",\n[`::cudaFuncGetAttributes(struct`] cudaFuncAttributes*, const void*) \"cudaFuncGetAttributes (C API)\",\n[`::cudaLaunchKernel(const`] void *func, dim3 gridDim, dim3 blockDim, void **args, size_t sharedMem, cudaStream_t stream) \"cudaLaunchKernel (C API)\",\n::cuFuncSetCacheConfig"]
-pub unsafe fn cudaFuncSetCacheConfig<T: types::CudaAsPtr>(func: T, cacheConfig: cudaFuncCache) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaFuncSetCacheConfig<T0: types::CudaAsPtr>(func: T0, cacheConfig: cudaFuncCache) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaFuncSetCacheConfig(func.as_const_ptr() as *const _, cacheConfig) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4023,12 +4252,12 @@ pub unsafe fn cudaFuncGetAttributes(func: *const ::std::os::raw::c_void) -> Resu
     }
 }
 #[doc = "Set attributes for a given function\nThis function sets the attributes of a function specified via `func.`\nThe parameter `func` must be a pointer to a function that executes\non the device. The parameter specified by `func` must be declared as a `__global__`\nfunction. The enumeration defined by `attr` is set to the value defined by `value.`\nIf the specified function does not exist, then it is assumed to\nbe a ::cudaKernel_t and used as is.\nIf the specified attribute cannot be written, or if the value is incorrect,\nthen ::cudaErrorInvalidValue is returned.\nValid values for `attr` are:\n- ::cudaFuncAttributeMaxDynamicSharedMemorySize - The requested maximum size in bytes of dynamically-allocated shared memory. The sum of this value and the function attribute ::sharedSizeBytes\ncannot exceed the device attribute ::cudaDevAttrMaxSharedMemoryPerBlockOptin. The maximal size of requestable dynamic shared memory may differ by GPU architecture.\n- ::cudaFuncAttributePreferredSharedMemoryCarveout - On devices where the L1 cache and shared memory use the same hardware resources,\nthis sets the shared memory carveout preference, in percent of the total shared memory. See ::cudaDevAttrMaxSharedMemoryPerMultiprocessor.\nThis is only a hint, and the driver can choose a different ratio if required to execute the function.\n- ::cudaFuncAttributeRequiredClusterWidth: The required cluster width in\nblocks. The width, height, and depth values must either all be 0 or all be\npositive. The validity of the cluster dimensions is checked at launch time.\nIf the value is set during compile time, it cannot be set at runtime.\nSetting it at runtime will return cudaErrorNotPermitted.\n- ::cudaFuncAttributeRequiredClusterHeight: The required cluster height in\nblocks. The width, height, and depth values must either all be 0 or all be\npositive. The validity of the cluster dimensions is checked at launch time.\nIf the value is set during compile time, it cannot be set at runtime.\nSetting it at runtime will return cudaErrorNotPermitted.\n- ::cudaFuncAttributeRequiredClusterDepth: The required cluster depth in\nblocks. The width, height, and depth values must either all be 0 or all be\npositive. The validity of the cluster dimensions is checked at launch time.\nIf the value is set during compile time, it cannot be set at runtime.\nSetting it at runtime will return cudaErrorNotPermitted.\n- ::cudaFuncAttributeNonPortableClusterSizeAllowed: Indicates whether the\nfunction can be launched with non-portable cluster size. 1 is allowed, 0 is\ndisallowed.\n- ::cudaFuncAttributeClusterSchedulingPolicyPreference: The block\nscheduling policy of a function. The value type is cudaClusterSchedulingPolicy.\n\n# Arguments\n\n* `func` -  - Function to get attributes of\n* `attr` -  - Attribute to set\n* `value` - - Value to set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidValue\n\\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t [`::cudaLaunchKernel(const`] T *func, dim3 gridDim, dim3 blockDim, void **args, size_t sharedMem, cudaStream_t stream) \"cudaLaunchKernel (C++ API)\",\n[`::cudaFuncSetCacheConfig(T*,`] enum cudaFuncCache) \"cudaFuncSetCacheConfig (C++ API)\",\n[`::cudaFuncGetAttributes(struct`] cudaFuncAttributes*, const void*) \"cudaFuncGetAttributes (C API)\","]
-pub unsafe fn cudaFuncSetAttribute<T: types::CudaAsPtr>(func: T, attr: cudaFuncAttribute, value: i32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaFuncSetAttribute<T0: types::CudaAsPtr>(func: T0, attr: cudaFuncAttribute, value: i32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaFuncSetAttribute(func.as_const_ptr() as *const _, attr, value as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Returns the function name for a device entry function pointer.\nReturns in `**name` the function name associated with the symbol `func` .\nThe function name is returned as a null-terminated string. This API may\nreturn a mangled name if the function is not declared as having C linkage.\nIf `**name` is NULL, ::cudaErrorInvalidValue is returned.\nIf `func` is not a device entry function, then it is assumed to\nbe a ::cudaKernel_t and used as is.\n\n# Arguments\n\n* `name` - - The returned name of the function\n* `func` - - The function pointer to retrieve name for\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDeviceFunction\n\\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t [`::cudaFuncGetName(const`] char **name, const T *func) \"cudaFuncGetName (C++ API)\""]
-pub unsafe fn cudaFuncGetName<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut name: T, func: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaFuncGetName<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut name: T0, func: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaFuncGetName(name.as_mut_ptr() as *mut _, func.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4054,76 +4283,76 @@ pub unsafe fn cudaFuncGetParamCount(func: *const ::std::os::raw::c_void) -> Resu
     }
 }
 #[doc = "Enqueues a host function call in a stream\nEnqueues a host function to run in a stream.  The function will be called\nafter currently enqueued work and will block work added after it.\nThe host function must not make any CUDA API calls.  Attempting to use a\nCUDA API may result in ::cudaErrorNotPermitted, but this is not required.\nThe host function must not perform any synchronization that may depend on\noutstanding CUDA work not mandated to run earlier.  Host functions without a\nmandated order (such as in independent streams) execute in undefined order\nand may be serialized.\nFor the purposes of Unified Memory, execution makes a number of guarantees:\n<ul>\n<li>The stream is considered idle for the duration of the function's\nexecution.  Thus, for example, the function may always use memory attached\nto the stream it was enqueued in.</li>\n<li>The start of execution of the function has the same effect as\nsynchronizing an event recorded in the same stream immediately prior to\nthe function.  It thus synchronizes streams which have been \"joined\"\nprior to the function.</li>\n<li>Adding device work to any stream does not have the effect of making\nthe stream active until all preceding host functions and stream callbacks\nhave executed.  Thus, for\nexample, a function might use global attached memory even if work has\nbeen added to another stream, if the work has been ordered behind the\nfunction call with an event.</li>\n<li>Completion of the function does not cause a stream to become\nactive except as described above.  The stream will remain idle\nif no device work follows the function, and will remain idle across\nconsecutive host functions or stream callbacks without device work in\nbetween.  Thus, for example,\nstream synchronization can be done by signaling from a host function at the\nend of the stream.</li>\n</ul>\nNote that, in constrast to ::cuStreamAddCallback, the function will not be\ncalled in the event of an error in the CUDA context.\n\n# Arguments\n\n* `hStream` -  - Stream to enqueue function call in\n* `fn` -       - The function to call once preceding stream operations are complete\n* `userData` - - User-specified data to be passed to the function\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaStreamCreate,`]\n::cudaStreamQuery,\n::cudaStreamSynchronize,\n::cudaStreamWaitEvent,\n::cudaStreamDestroy,\n::cudaMallocManaged,\n::cudaStreamAttachMemAsync,\n::cudaStreamAddCallback,\n::cuLaunchHostFunc"]
-pub unsafe fn cudaLaunchHostFunc<T: types::CudaAsMutPtr>(stream: cudaStream_t, fn_: cudaHostFn_t, mut userData: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLaunchHostFunc<T0: types::CudaAsMutPtr>(stream: cudaStream_t, fn_: cudaHostFn_t, mut userData: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLaunchHostFunc(stream, fn_, userData.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Enqueues a host function call in a stream\nEnqueues a host function to run in a stream.  The function will be called\nafter currently enqueued work and will block work added after it.\nThe host function must not make any CUDA API calls.  Attempting to use a\nCUDA API may result in ::cudaErrorNotPermitted, but this is not required.\nThe host function must not perform any synchronization that may depend on\noutstanding CUDA work not mandated to run earlier.  Host functions without a\nmandated order (such as in independent streams) execute in undefined order\nand may be serialized.\nFor the purposes of Unified Memory, execution makes a number of guarantees:\n<ul>\n<li>The stream is considered idle for the duration of the function's\nexecution.  Thus, for example, the function may always use memory attached\nto the stream it was enqueued in.</li>\n<li>The start of execution of the function has the same effect as\nsynchronizing an event recorded in the same stream immediately prior to\nthe function.  It thus synchronizes streams which have been \"joined\"\nprior to the function.</li>\n<li>Adding device work to any stream does not have the effect of making\nthe stream active until all preceding host functions and stream callbacks\nhave executed.  Thus, for\nexample, a function might use global attached memory even if work has\nbeen added to another stream, if the work has been ordered behind the\nfunction call with an event.</li>\n<li>Completion of the function does not cause a stream to become\nactive except as described above.  The stream will remain idle\nif no device work follows the function, and will remain idle across\nconsecutive host functions or stream callbacks without device work in\nbetween.  Thus, for example,\nstream synchronization can be done by signaling from a host function at the\nend of the stream.</li>\n</ul>\nNote that, in constrast to ::cuStreamAddCallback, the function will not be\ncalled in the event of an error in the CUDA context.\n\n# Arguments\n\n* `hStream` -  - Stream to enqueue function call in\n* `fn` -       - The function to call once preceding stream operations are complete\n* `userData` - - User-specified data to be passed to the function\n* `syncMode` - - Sync mode for the host function\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaStreamCreate,`]\n::cudaStreamQuery,\n::cudaStreamSynchronize,\n::cudaStreamWaitEvent,\n::cudaStreamDestroy,\n::cudaMallocManaged,\n::cudaStreamAttachMemAsync,\n::cudaStreamAddCallback,\n::cuLaunchHostFunc"]
-pub unsafe fn cudaLaunchHostFunc_v2<T: types::CudaAsMutPtr>(stream: cudaStream_t, fn_: cudaHostFn_t, mut userData: T, syncMode: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLaunchHostFunc_v2<T0: types::CudaAsMutPtr>(stream: cudaStream_t, fn_: cudaHostFn_t, mut userData: T0, syncMode: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLaunchHostFunc_v2(stream, fn_, userData.as_mut_ptr() as *mut _, syncMode as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Sets the shared memory configuration for a device function\n> **Deprecated** On devices with configurable shared memory banks, this function will\nforce all subsequent launches of the specified device function to have\nthe given shared memory bank size configuration. On any given launch of the\nfunction, the shared memory configuration of the device will be temporarily\nchanged if needed to suit the function's preferred configuration. Changes in\nshared memory configuration between subsequent launches of functions,\nmay introduce a device side synchronization point.\nAny per-function setting of shared memory bank size set via\n::cudaFuncSetSharedMemConfig will override the device wide setting set by\n::cudaDeviceSetSharedMemConfig.\nChanging the shared memory bank size will not increase shared memory usage\nor affect occupancy of kernels, but may have major effects on performance.\nLarger bank sizes will allow for greater potential bandwidth to shared memory,\nbut will change what kinds of accesses to shared memory will result in bank\nconflicts.\nThis function will do nothing on devices with fixed shared memory bank size.\nFor templated functions, pass the function symbol as follows:\nfunc_name<template_arg_0,...,template_arg_N>\nThe supported bank configurations are:\n- ::cudaSharedMemBankSizeDefault: use the device's shared memory configuration\nwhen launching this function.\n- ::cudaSharedMemBankSizeFourByte: set shared memory bank width to be\nfour bytes natively when launching this function.\n- ::cudaSharedMemBankSizeEightByte: set shared memory bank width to be eight\nbytes natively when launching this function.\n\n# Arguments\n\n* `func` -   - Device function symbol\n* `config` - - Requested shared memory configuration\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidValue,\n\\notefnerr \\note_string_api_deprecation2 \\note_init_rt \\note_callback # See also\n\n> [`::cudaDeviceSetSharedMemConfig,`]\n::cudaDeviceGetSharedMemConfig,\n::cudaDeviceSetCacheConfig,\n::cudaDeviceGetCacheConfig,\n::cudaFuncSetCacheConfig,\n::cuFuncSetSharedMemConfig"]
-pub unsafe fn cudaFuncSetSharedMemConfig<T: types::CudaAsPtr>(func: T, config: cudaSharedMemConfig) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaFuncSetSharedMemConfig<T0: types::CudaAsPtr>(func: T0, config: cudaSharedMemConfig) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaFuncSetSharedMemConfig(func.as_const_ptr() as *const _, config) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Returns occupancy for a device function\nReturns in `*numBlocks` the maximum number of active blocks per\nstreaming multiprocessor for the device function.\n\n# Arguments\n\n* `numBlocks` -       - Returned occupancy\n* `func` -            - Kernel function for which occupancy is calculated\n* `blockSize` -       - Block size the kernel is intended to be launched with\n* `dynamicSMemSize` - - Per-block dynamic shared memory usage intended, in bytes\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDevice,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidValue,\n::cudaErrorUnknown,\n\\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags,`]\n[`::cudaOccupancyMaxPotentialBlockSize(int*,`] int*, T, size_t, int) \"cudaOccupancyMaxPotentialBlockSize (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeWithFlags(int*,`] int*, T, size_t, int, unsigned int) \"cudaOccupancyMaxPotentialBlockSizeWithFlags (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeVariableSMem(int*,`] int*, T, UnaryFunction, int) \"cudaOccupancyMaxPotentialBlockSizeVariableSMem (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeVariableSMemWithFlags(int*,`] int*, T, UnaryFunction, int, unsigned int) \"cudaOccupancyMaxPotentialBlockSizeVariableSMemWithFlags (C++ API)\",\n[`::cudaOccupancyAvailableDynamicSMemPerBlock(size_t*,`] T, int, int) \"cudaOccupancyAvailableDynamicSMemPerBlock (C++ API)\",\n::cuOccupancyMaxActiveBlocksPerMultiprocessor"]
-pub unsafe fn cudaOccupancyMaxActiveBlocksPerMultiprocessor<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut numBlocks: T, func: U, blockSize: i32, dynamicSMemSize: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaOccupancyMaxActiveBlocksPerMultiprocessor<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut numBlocks: T0, func: T1, blockSize: i32, dynamicSMemSize: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks.as_mut_ptr() as *mut _, func.as_const_ptr() as *const _, blockSize as _, dynamicSMemSize) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Returns dynamic shared memory available per block when launching `numBlocks` blocks on SM.\nReturns in `*dynamicSmemSize` the maximum size of dynamic shared memory to allow `numBlocks` blocks per SM.\n\n# Arguments\n\n* `dynamicSmemSize` - - Returned maximum dynamic shared memory\n* `func` -            - Kernel function for which occupancy is calculated\n* `numBlocks` -       - Number of blocks to fit on SM\n* `blockSize` -       - Size of the block\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDevice,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidValue,\n::cudaErrorUnknown,\n\\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags,`]\n[`::cudaOccupancyMaxPotentialBlockSize(int*,`] int*, T, size_t, int) \"cudaOccupancyMaxPotentialBlockSize (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeWithFlags(int*,`] int*, T, size_t, int, unsigned int) \"cudaOccupancyMaxPotentialBlockSizeWithFlags (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeVariableSMem(int*,`] int*, T, UnaryFunction, int) \"cudaOccupancyMaxPotentialBlockSizeVariableSMem (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeVariableSMemWithFlags(int*,`] int*, T, UnaryFunction, int, unsigned int) \"cudaOccupancyMaxPotentialBlockSizeVariableSMemWithFlags (C++ API)\",\n::cudaOccupancyAvailableDynamicSMemPerBlock"]
-pub unsafe fn cudaOccupancyAvailableDynamicSMemPerBlock<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dynamicSmemSize: T, func: U, numBlocks: i32, blockSize: i32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaOccupancyAvailableDynamicSMemPerBlock<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dynamicSmemSize: T0, func: T1, numBlocks: i32, blockSize: i32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaOccupancyAvailableDynamicSMemPerBlock(dynamicSmemSize.as_mut_ptr() as *mut _, func.as_const_ptr() as *const _, numBlocks as _, blockSize as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Returns occupancy for a device function with the specified flags\nReturns in `*numBlocks` the maximum number of active blocks per\nstreaming multiprocessor for the device function.\nThe `flags` parameter controls how special cases are handled. Valid flags include:\n- ::cudaOccupancyDefault: keeps the default behavior as\n::cudaOccupancyMaxActiveBlocksPerMultiprocessor\n- ::cudaOccupancyDisableCachingOverride: This flag suppresses the default behavior\non platform where global caching affects occupancy. On such platforms, if caching\nis enabled, but per-block SM resource usage would result in zero occupancy, the\noccupancy calculator will calculate the occupancy as if caching is disabled.\nSetting this flag makes the occupancy calculator to return 0 in such cases.\nMore information can be found about this feature in the \"Unified L1/Texture Cache\"\nsection of the Maxwell tuning guide.\n\n# Arguments\n\n* `numBlocks` -       - Returned occupancy\n* `func` -            - Kernel function for which occupancy is calculated\n* `blockSize` -       - Block size the kernel is intended to be launched with\n* `dynamicSMemSize` - - Per-block dynamic shared memory usage intended, in bytes\n* `flags` -           - Requested behavior for the occupancy calculator\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDevice,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidValue,\n::cudaErrorUnknown,\n\\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaOccupancyMaxActiveBlocksPerMultiprocessor,`]\n[`::cudaOccupancyMaxPotentialBlockSize(int*,`] int*, T, size_t, int) \"cudaOccupancyMaxPotentialBlockSize (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeWithFlags(int*,`] int*, T, size_t, int, unsigned int) \"cudaOccupancyMaxPotentialBlockSizeWithFlags (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeVariableSMem(int*,`] int*, T, UnaryFunction, int) \"cudaOccupancyMaxPotentialBlockSizeVariableSMem (C++ API)\",\n[`::cudaOccupancyMaxPotentialBlockSizeVariableSMemWithFlags(int*,`] int*, T, UnaryFunction, int, unsigned int) \"cudaOccupancyMaxPotentialBlockSizeVariableSMemWithFlags (C++ API)\",\n[`::cudaOccupancyAvailableDynamicSMemPerBlock(size_t*,`] T, int, int) \"cudaOccupancyAvailableDynamicSMemPerBlock (C++ API)\",\n::cuOccupancyMaxActiveBlocksPerMultiprocessorWithFlags"]
-pub unsafe fn cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut numBlocks: T, func: U, blockSize: i32, dynamicSMemSize: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut numBlocks: T0, func: T1, blockSize: i32, dynamicSMemSize: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks.as_mut_ptr() as *mut _, func.as_const_ptr() as *const _, blockSize as _, dynamicSMemSize, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Given the kernel function (`func)` and launch configuration\n(`config),` return the maximum cluster size in `*clusterSize.`\nThe cluster dimensions in `config` are ignored. If func has a required\ncluster size set (see ::cudaFuncGetAttributes),`*clusterSize` will reflect\nthe required cluster size.\nBy default this function will always return a value that's portable on\nfuture hardware. A higher value may be returned if the kernel function\nallows non-portable cluster sizes.\nThis function will respect the compile time launch bounds.\n\n# Arguments\n\n* `clusterSize` - - Returned maximum cluster size that can be launched\nfor the given kernel function and launch configuration\n* `func` -        - Kernel function for which maximum cluster\nsize is calculated\n* `config` -      - Launch configuration for the given kernel function\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidValue,\n::cudaErrorUnknown,\n\\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaFuncGetAttributes`]\n[`::cudaOccupancyMaxPotentialClusterSize(int*,`] T, const cudaLaunchConfig_t*) \"cudaOccupancyMaxPotentialClusterSize (C++ API)\",\n::cuOccupancyMaxPotentialClusterSize"]
-pub unsafe fn cudaOccupancyMaxPotentialClusterSize<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut clusterSize: T, func: U, launchConfig: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaOccupancyMaxPotentialClusterSize<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut clusterSize: T0, func: T1, launchConfig: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaOccupancyMaxPotentialClusterSize(clusterSize.as_mut_ptr() as *mut _, func.as_const_ptr() as *const _, launchConfig.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Given the kernel function (`func)` and launch configuration\n(`config),` return the maximum number of clusters that could co-exist\non the target device in `*numClusters.`\nIf the function has required cluster size already set (see\n::cudaFuncGetAttributes), the cluster size from config must either be\nunspecified or match the required size.\nWithout required sizes, the cluster size must be specified in config,\nelse the function will return an error.\nNote that various attributes of the kernel function may affect occupancy\ncalculation. Runtime environment may affect how the hardware schedules\nthe clusters, so the calculated occupancy is not guaranteed to be achievable.\n\n# Arguments\n\n* `numClusters` - - Returned maximum number of clusters that\ncould co-exist on the target device\n* `func` -        - Kernel function for which maximum number\nof clusters are calculated\n* `config` -      - Launch configuration for the given kernel function\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidClusterSize,\n::cudaErrorUnknown,\n\\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaFuncGetAttributes`]\n[`::cudaOccupancyMaxActiveClusters(int*,`] T, const cudaLaunchConfig_t*) \"cudaOccupancyMaxActiveClusters (C++ API)\",\n::cuOccupancyMaxActiveClusters"]
-pub unsafe fn cudaOccupancyMaxActiveClusters<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut numClusters: T, func: U, launchConfig: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaOccupancyMaxActiveClusters<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut numClusters: T0, func: T1, launchConfig: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaOccupancyMaxActiveClusters(numClusters.as_mut_ptr() as *mut _, func.as_const_ptr() as *const _, launchConfig.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaMallocManaged<T>(size: usize, flags: u32) -> Result<::cuda_libs_cudart::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
-    let mut dev_ptr = std::ptr::null_mut();
+pub unsafe fn cudaMallocManaged<T>(size: usize, flags: u32) -> Result<crate::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMallocManaged(&mut dev_ptr as *mut _ as *mut _, size, flags as _) };
-    if status == crate::sys::cudaError::cudaSuccess { Ok(::cuda_libs_cudart::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
+    if status == crate::sys::cudaError::cudaSuccess { Ok(crate::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
 }
 #[doc = "Allocate memory on the device\nAllocates `size` bytes of linear memory on the device and returns in\n`*devPtr` a pointer to the allocated memory. The allocated memory is\nsuitably aligned for any kind of variable. The memory is not cleared.\n::cudaMalloc() returns ::cudaErrorMemoryAllocation in case of failure.\nThe device version of ::cudaFree cannot be used with a `*devPtr`\nallocated using the host API, and vice versa.\n\n# Arguments\n\n* `devPtr` - - Pointer to allocated device memory\n* `size` -   - Requested allocation size in bytes\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation,\n::cudaErrorExternalDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMallocPitch,`] ::cudaFree, ::cudaMallocArray, ::cudaFreeArray,\n::cudaMalloc3D, ::cudaMalloc3DArray,\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaHostAlloc,\n::cuMemAlloc"]
-pub unsafe fn cudaMalloc<T>(size: usize) -> Result<::cuda_libs_cudart::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
-    let mut dev_ptr = std::ptr::null_mut();
+pub unsafe fn cudaMalloc<T>(size: usize) -> Result<crate::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMalloc(&mut dev_ptr as *mut _ as *mut _, size) };
-    if status == crate::sys::cudaError::cudaSuccess { Ok(::cuda_libs_cudart::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
+    if status == crate::sys::cudaError::cudaSuccess { Ok(crate::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
 }
 #[doc = "Allocates page-locked memory on the host\nAllocates `size` bytes of host memory that is page-locked and accessible\nto the device. The driver tracks the virtual memory ranges allocated with\nthis function and automatically accelerates calls to functions such as\n::cudaMemcpy*(). Since the memory can be accessed directly by the device,\nit can be read or written with much higher bandwidth than pageable memory\nobtained with functions such as ::malloc().\nOn systems where ::pageableMemoryAccessUsesHostPageTables\nis true, ::cudaMallocHost may not page-lock the allocated memory.\nPage-locking excessive amounts of memory with ::cudaMallocHost() may degrade\nsystem performance, since it reduces the amount of memory available to the\nsystem for paging. As a result, this function is best used sparingly to allocate\nstaging areas for data exchange between host and device.\n\n# Arguments\n\n* `ptr` -  - Pointer to allocated host memory\n* `size` - - Requested allocation size in bytes\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation,\n::cudaErrorExternalDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc,`] ::cudaMallocPitch, ::cudaMallocArray, ::cudaMalloc3D,\n::cudaMalloc3DArray, ::cudaHostAlloc, ::cudaFree, ::cudaFreeArray,\n[`::cudaMallocHost(void**,`] size_t, unsigned int) \"cudaMallocHost (C++ API)\",\n::cudaFreeHost, ::cudaHostAlloc,\n::cuMemAllocHost"]
 pub unsafe fn cudaMallocHost<T>(size: usize) -> Result<*mut T, crate::sys::cudaError> {
-    let mut dev_ptr = std::ptr::null_mut();
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMallocHost(&mut dev_ptr as *mut _ as *mut _, size) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(dev_ptr as *mut T) } else { Err(status) }
 }
 #[doc = "Allocates pitched memory on the device\nAllocates at least `width` (in bytes) * `height` bytes of linear memory\non the device and returns in `*devPtr` a pointer to the allocated memory.\nThe function may pad the allocation to ensure that corresponding pointers\nin any given row will continue to meet the alignment requirements for\ncoalescing as the address is updated from row to row. The pitch returned in\n`*pitch` by ::cudaMallocPitch() is the width in bytes of the allocation.\nThe intended usage of `pitch` is as a separate parameter of the allocation,\nused to compute addresses within the 2D array. Given the row and column of\nan array element of type `T,` the address is computed as:\n\\code T* pElement = (T*)((char*)BaseAddress + Row * pitch) + Column;\n\\endcode For allocations of 2D arrays, it is recommended that programmers consider\nperforming pitch allocations using ::cudaMallocPitch(). Due to pitch\nalignment restrictions in the hardware, this is especially true if the\napplication will be performing 2D memory copies between different regions\nof device memory (whether linear memory or CUDA arrays).\n\n# Arguments\n\n* `devPtr` - - Pointer to allocated pitched device memory\n* `pitch` -  - Pitch for allocation\n* `width` -  - Requested pitched allocation width (in bytes)\n* `height` - - Requested pitched allocation height\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc,`] ::cudaFree, ::cudaMallocArray, ::cudaFreeArray,\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaMalloc3D, ::cudaMalloc3DArray,\n::cudaHostAlloc,\n::cuMemAllocPitch"]
-pub unsafe fn cudaMallocPitch<T>(pitch: *mut usize, width: usize, height: usize) -> Result<::cuda_libs_cudart::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
-    let mut dev_ptr = std::ptr::null_mut();
+pub unsafe fn cudaMallocPitch<T>(pitch: *mut usize, width: usize, height: usize) -> Result<crate::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMallocPitch(&mut dev_ptr as *mut _ as *mut _, pitch, width, height) };
-    if status == crate::sys::cudaError::cudaSuccess { Ok(::cuda_libs_cudart::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
+    if status == crate::sys::cudaError::cudaSuccess { Ok(crate::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
 }
 #[doc = "Allocate an array on the device\nAllocates a CUDA array according to the ::cudaChannelFormatDesc structure\n`desc` and returns a handle to the new CUDA array in `*array.`\nThe ::cudaChannelFormatDesc is defined as:\n\\code struct cudaChannelFormatDesc {\nint x, y, z, w;\nenum cudaChannelFormatKind f;\n};\n\\endcode where ::cudaChannelFormatKind is one of ::cudaChannelFormatKindSigned,\n::cudaChannelFormatKindUnsigned, or ::cudaChannelFormatKindFloat.\nThe `flags` parameter enables different options to be specified that affect\nthe allocation, as follows.\n- ::cudaArrayDefault: This flag's value is defined to be 0 and provides default array allocation\n- ::cudaArraySurfaceLoadStore: Allocates an array that can be read from or written to using a surface reference\n- ::cudaArrayTextureGather: This flag indicates that texture gather operations will be performed on the array.\n- ::cudaArraySparse: Allocates a CUDA array without physical backing memory. The subregions within this sparse array\ncan later be mapped onto a physical memory allocation by calling ::cuMemMapArrayAsync.\nThe physical backing memory must be allocated via ::cuMemCreate.\n- ::cudaArrayDeferredMapping: Allocates a CUDA array without physical backing memory. The entire array can\nlater be mapped onto a physical memory allocation by calling ::cuMemMapArrayAsync.\nThe physical backing memory must be allocated via ::cuMemCreate.\n`width` and `height` must meet certain size requirements. See ::cudaMalloc3DArray() for more details.\n\n# Arguments\n\n* `array` -  - Pointer to allocated array in device memory\n* `desc` -   - Requested channel format\n* `width` -  - Requested array allocation width\n* `height` - - Requested array allocation height\n* `flags` -  - Requested properties of allocated array\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc,`] ::cudaMallocPitch, ::cudaFree, ::cudaFreeArray,\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaMalloc3D, ::cudaMalloc3DArray,\n::cudaHostAlloc,\n::cuArrayCreate"]
 pub unsafe fn cudaMallocArray(desc: *const cudaChannelFormatDesc, width: usize, height: usize, flags: u32) -> Result<cudaArray_t, crate::sys::cudaError> {
-    let mut dev_ptr: cudaArray_t = unsafe { std::mem::zeroed() };
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMallocArray(&mut dev_ptr as *mut _ as *mut _, desc, width, height, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(dev_ptr) } else { Err(status) }
 }
 #[doc = "Frees memory on the device\nFrees the memory space pointed to by `devPtr,` which must have been\nreturned by a previous call to one of the following memory allocation APIs -\n::cudaMalloc(), ::cudaMallocPitch(), ::cudaMallocManaged(), ::cudaMallocAsync(),\n::cudaMallocFromPoolAsync().\nNote - This API will not perform any implicit synchronization when the pointer was\nallocated with ::cudaMallocAsync or ::cudaMallocFromPoolAsync. Callers must ensure\nthat all accesses to these pointer have completed before invoking ::cudaFree. For\nbest performance and memory reuse, users should use ::cudaFreeAsync to free memory\nallocated via the stream ordered memory allocator.\nFor all other pointers, this API may perform implicit synchronization.\nIf ::cudaFree(`devPtr)` has already been called before,\nan error is returned. If `devPtr` is 0, no operation is performed.\n::cudaFree() returns ::cudaErrorValue in case of failure.\nThe device version of ::cudaFree cannot be used with a `*devPtr`\nallocated using the host API, and vice versa.\n\n# Arguments\n\n* `devPtr` - - Device pointer to memory to free\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc,`] ::cudaMallocPitch, ::cudaMallocManaged, ::cudaMallocArray, ::cudaFreeArray, ::cudaMallocAsync, ::cudaMallocFromPoolAsync\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaMalloc3D, ::cudaMalloc3DArray, ::cudaFreeAsync\n::cudaHostAlloc,\n::cuMemFree"]
-pub unsafe fn cudaFree<T>(devPtr: ::cuda_libs_cudart::types::cuDeviceAllocation<T>) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaFree<T>(devPtr: crate::types::cuDeviceAllocation<T>) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaFree(devPtr.0 as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4143,22 +4372,22 @@ pub unsafe fn cudaFreeMipmappedArray(mipmappedArray: cudaMipmappedArray_t) -> Re
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Allocates page-locked memory on the host\nAllocates `size` bytes of host memory that is page-locked and accessible\nto the device. The driver tracks the virtual memory ranges allocated with\nthis function and automatically accelerates calls to functions such as\n::cudaMemcpy(). Since the memory can be accessed directly by the device, it\ncan be read or written with much higher bandwidth than pageable memory\nobtained with functions such as ::malloc(). Allocating excessive amounts of\npinned memory may degrade system performance, since it reduces the amount\nof memory available to the system for paging. As a result, this function is\nbest used sparingly to allocate staging areas for data exchange between host\nand device.\nThe `flags` parameter enables different options to be specified that affect\nthe allocation, as follows.\n- ::cudaHostAllocDefault: This flag's value is defined to be 0 and causes\n::cudaHostAlloc() to emulate ::cudaMallocHost().\n- ::cudaHostAllocPortable: The memory returned by this call will be\nconsidered as pinned memory by all CUDA contexts, not just the one that\nperformed the allocation.\n- ::cudaHostAllocMapped: Maps the allocation into the CUDA address space.\nThe device pointer to the memory may be obtained by calling\n::cudaHostGetDevicePointer().\n- ::cudaHostAllocWriteCombined: Allocates the memory as write-combined (WC).\nWC memory can be transferred across the PCI Express bus more quickly on some\nsystem configurations, but cannot be read efficiently by most CPUs.  WC\nmemory is a good option for buffers that will be written by the CPU and read\nby the device via mapped pinned memory or host->device transfers.\nAll of these flags are orthogonal to one another: a developer may allocate\nmemory that is portable, mapped and/or write-combined with no restrictions.\nIn order for the ::cudaHostAllocMapped flag to have any effect, the CUDA context\nmust support the ::cudaDeviceMapHost flag, which can be checked via\n::cudaGetDeviceFlags(). The ::cudaDeviceMapHost flag is implicitly set for\ncontexts created via the runtime API.\nThe ::cudaHostAllocMapped flag may be specified on CUDA contexts for devices\nthat do not support mapped pinned memory. The failure is deferred to\n::cudaHostGetDevicePointer() because the memory may be mapped into other\nCUDA contexts via the ::cudaHostAllocPortable flag.\nMemory allocated by this function must be freed with ::cudaFreeHost().\n\n# Arguments\n\n* `pHost` - - Device pointer to allocated memory\n* `size` -  - Requested allocation size in bytes\n* `flags` - - Requested properties of allocated memory\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation,\n::cudaErrorExternalDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaSetDeviceFlags,`]\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost,\n::cudaGetDeviceFlags,\n::cuMemHostAlloc"]
-pub unsafe fn cudaHostAlloc<T: types::CudaAsMutPtr>(mut pHost: T, size: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaHostAlloc<T0: types::CudaAsMutPtr>(mut pHost: T0, size: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaHostAlloc(pHost.as_mut_ptr() as *mut _, size, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Registers an existing host memory range for use by CUDA\nPage-locks the memory range specified by `ptr` and `size` and maps it\nfor the device(s) as specified by `flags.` This memory range also is added\nto the same tracking mechanism as ::cudaHostAlloc() to automatically accelerate\ncalls to functions such as ::cudaMemcpy(). Since the memory can be accessed\ndirectly by the device, it can be read or written with much higher bandwidth\nthan pageable memory that has not been registered.  Page-locking excessive\namounts of memory may degrade system performance, since it reduces the amount\nof memory available to the system for paging. As a result, this function is\nbest used sparingly to register staging areas for data exchange between\nhost and device.\nOn systems where ::pageableMemoryAccessUsesHostPageTables is true, ::cudaHostRegister\nwill not page-lock the memory range specified by `ptr` but only populate\nunpopulated pages.\n::cudaHostRegister is supported only on I/O coherent devices that have a non-zero\nvalue for the device attribute ::cudaDevAttrHostRegisterSupported.\nThe `flags` parameter enables different options to be specified that\naffect the allocation, as follows.\n- ::cudaHostRegisterDefault: On a system with unified virtual addressing,\nthe memory will be both mapped and portable.  On a system with no unified\nvirtual addressing, the memory will be neither mapped nor portable.\n- ::cudaHostRegisterPortable: The memory returned by this call will be\nconsidered as pinned memory by all CUDA contexts, not just the one that\nperformed the allocation.\n- ::cudaHostRegisterMapped: Maps the allocation into the CUDA address\nspace. The device pointer to the memory may be obtained by calling\n::cudaHostGetDevicePointer().\n- ::cudaHostRegisterIoMemory: The passed memory pointer is treated as\npointing to some memory-mapped I/O space, e.g. belonging to a\nthird-party PCIe device, and it will marked as non cache-coherent and\ncontiguous.\n- ::cudaHostRegisterReadOnly: The passed memory pointer is treated as\npointing to memory that is considered read-only by the device.  On\nplatforms without ::cudaDevAttrPageableMemoryAccessUsesHostPageTables, this\nflag is required in order to register memory mapped to the CPU as\nread-only.  Support for the use of this flag can be queried from the device\nattribute ::cudaDevAttrHostRegisterReadOnlySupported.  Using this flag with\na current context associated with a device that does not have this attribute\nset will cause ::cudaHostRegister to error with cudaErrorNotSupported.\nAll of these flags are orthogonal to one another: a developer may page-lock\nmemory that is portable or mapped with no restrictions.\nThe CUDA context must have been created with the ::cudaMapHost flag in\norder for the ::cudaHostRegisterMapped flag to have any effect.\nThe ::cudaHostRegisterMapped flag may be specified on CUDA contexts for\ndevices that do not support mapped pinned memory. The failure is deferred\nto ::cudaHostGetDevicePointer() because the memory may be mapped into\nother CUDA contexts via the ::cudaHostRegisterPortable flag.\nFor devices that have a non-zero value for the device attribute\n::cudaDevAttrCanUseHostPointerForRegisteredMem, the memory\ncan also be accessed from the device using the host pointer `ptr.`\nThe device pointer returned by ::cudaHostGetDevicePointer() may or may not\nmatch the original host pointer `ptr` and depends on the devices visible to the\napplication. If all devices visible to the application have a non-zero value for the\ndevice attribute, the device pointer returned by ::cudaHostGetDevicePointer()\nwill match the original pointer `ptr.` If any device visible to the application\nhas a zero value for the device attribute, the device pointer returned by\n::cudaHostGetDevicePointer() will not match the original host pointer `ptr,`\nbut it will be suitable for use on all devices provided Unified Virtual Addressing\nis enabled. In such systems, it is valid to access the memory using either pointer\non devices that have a non-zero value for the device attribute. Note however that\nsuch devices should access the memory using only of the two pointers and not both.\nThe memory page-locked by this function must be unregistered with ::cudaHostUnregister().\n\n# Arguments\n\n* `ptr` -   - Host pointer to memory to page-lock\n* `size` -  - Size in bytes of the address range to page-lock in bytes\n* `flags` - - Flags for allocation request\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation,\n::cudaErrorHostMemoryAlreadyRegistered,\n::cudaErrorNotSupported,\n::cudaErrorExternalDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaHostUnregister,`] ::cudaHostGetFlags, ::cudaHostGetDevicePointer,\n::cuMemHostRegister"]
-pub unsafe fn cudaHostRegister<T: types::CudaAsMutPtr>(mut ptr: T, size: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaHostRegister<T0: types::CudaAsMutPtr>(mut ptr: T0, size: usize, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaHostRegister(ptr.as_mut_ptr() as *mut _, size, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Unregisters a memory range that was registered with cudaHostRegister\nUnmaps the memory range whose base address is specified by `ptr,` and makes\nit pageable again.\nThe base address must be the same one specified to ::cudaHostRegister().\n\n# Arguments\n\n* `ptr` - - Host pointer to memory to unregister\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorHostMemoryNotRegistered\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaHostUnregister,`]\n::cuMemHostUnregister"]
-pub unsafe fn cudaHostUnregister<T: types::CudaAsMutPtr>(mut ptr: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaHostUnregister<T0: types::CudaAsMutPtr>(mut ptr: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaHostUnregister(ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Passes back device pointer of mapped host memory allocated by\ncudaHostAlloc or registered by cudaHostRegister\nPasses back the device pointer corresponding to the mapped, pinned host\nbuffer allocated by ::cudaHostAlloc() or registered by ::cudaHostRegister().\n::cudaHostGetDevicePointer() will fail if the ::cudaDeviceMapHost flag was\nnot specified before deferred context creation occurred, or if called on a\ndevice that does not support mapped, pinned memory.\nFor devices that have a non-zero value for the device attribute\n::cudaDevAttrCanUseHostPointerForRegisteredMem, the memory\ncan also be accessed from the device using the host pointer `pHost.`\nThe device pointer returned by ::cudaHostGetDevicePointer() may or may not\nmatch the original host pointer `pHost` and depends on the devices visible to the\napplication. If all devices visible to the application have a non-zero value for the\ndevice attribute, the device pointer returned by ::cudaHostGetDevicePointer()\nwill match the original pointer `pHost.` If any device visible to the application\nhas a zero value for the device attribute, the device pointer returned by\n::cudaHostGetDevicePointer() will not match the original host pointer `pHost,`\nbut it will be suitable for use on all devices provided Unified Virtual Addressing\nis enabled. In such systems, it is valid to access the memory using either pointer\non devices that have a non-zero value for the device attribute. Note however that\nsuch devices should access the memory using only of the two pointers and not both.\n`flags` provides for future releases.  For now, it must be set to 0.\n\n# Arguments\n\n* `pDevice` - - Returned device pointer for mapped memory\n* `pHost` -   - Requested host pointer mapping\n* `flags` -   - Flags for extensions (must be 0 for now)\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaSetDeviceFlags,`] ::cudaHostAlloc,\n::cuMemHostGetDevicePointer"]
-pub unsafe fn cudaHostGetDevicePointer<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(mut pDevice: T, mut pHost: U, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaHostGetDevicePointer<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(mut pDevice: T0, mut pHost: T1, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaHostGetDevicePointer(pDevice.as_mut_ptr() as *mut _, pHost.as_mut_ptr() as *mut _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4174,44 +4403,44 @@ pub unsafe fn cudaHostGetFlags(pHost: *mut ::std::os::raw::c_void) -> Result<u32
 }
 #[doc = "Allocates logical 1D, 2D, or 3D memory objects on the device\nAllocates at least `width` * `height` * `depth` bytes of linear memory\non the device and returns a ::cudaPitchedPtr in which `ptr` is a pointer\nto the allocated memory. The function may pad the allocation to ensure\nhardware alignment requirements are met. The pitch returned in the `pitch`\nfield of `pitchedDevPtr` is the width in bytes of the allocation.\nThe returned ::cudaPitchedPtr contains additional fields `xsize` and\n`ysize,` the logical width and height of the allocation, which are\nequivalent to the `width` and `height` `extent` parameters provided by\nthe programmer during allocation.\nFor allocations of 2D and 3D objects, it is highly recommended that\nprogrammers perform allocations using ::cudaMalloc3D() or\n::cudaMallocPitch(). Due to alignment restrictions in the hardware, this is\nespecially true if the application will be performing memory copies\ninvolving 2D or 3D objects (whether linear memory or CUDA arrays).\n\n# Arguments\n\n* `pitchedDevPtr` -  - Pointer to allocated pitched device memory\n* `extent` -         - Requested allocation size (`width` field in bytes)\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMallocPitch,`] ::cudaFree, ::cudaMemcpy3D, ::cudaMemset3D,\n::cudaMalloc3DArray, ::cudaMallocArray, ::cudaFreeArray,\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaHostAlloc, ::make_cudaPitchedPtr, ::make_cudaExtent,\n::cuMemAllocPitch"]
 pub unsafe fn cudaMalloc3D(extent: cudaExtent) -> Result<cudaPitchedPtr, crate::sys::cudaError> {
-    let mut dev_ptr: cudaPitchedPtr = unsafe { std::mem::zeroed() };
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMalloc3D(&mut dev_ptr as *mut _ as *mut _, extent) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(dev_ptr) } else { Err(status) }
 }
 #[doc = "Allocate an array on the device\nAllocates a CUDA array according to the ::cudaChannelFormatDesc structure\n`desc` and returns a handle to the new CUDA array in `*array.`\nThe ::cudaChannelFormatDesc is defined as:\n\\code struct cudaChannelFormatDesc {\nint x, y, z, w;\nenum cudaChannelFormatKind f;\n};\n\\endcode where ::cudaChannelFormatKind is one of ::cudaChannelFormatKindSigned,\n::cudaChannelFormatKindUnsigned, or ::cudaChannelFormatKindFloat.\n::cudaMalloc3DArray() can allocate the following:\n- A 1D array is allocated if the height and depth extents are both zero.\n- A 2D array is allocated if only the depth extent is zero.\n- A 3D array is allocated if all three extents are non-zero.\n- A 1D layered CUDA array is allocated if only the height extent is zero and\nthe cudaArrayLayered flag is set. Each layer is a 1D array. The number of layers is\ndetermined by the depth extent.\n- A 2D layered CUDA array is allocated if all three extents are non-zero and\nthe cudaArrayLayered flag is set. Each layer is a 2D array. The number of layers is\ndetermined by the depth extent.\n- A cubemap CUDA array is allocated if all three extents are non-zero and the\ncudaArrayCubemap flag is set. Width must be equal to height, and depth must be six. A cubemap is\na special type of 2D layered CUDA array, where the six layers represent the six faces of a cube.\nThe order of the six layers in memory is the same as that listed in ::cudaGraphicsCubeFace.\n- A cubemap layered CUDA array is allocated if all three extents are non-zero, and both,\ncudaArrayCubemap and cudaArrayLayered flags are set. Width must be equal to height, and depth must be\na multiple of six. A cubemap layered CUDA array is a special type of 2D layered CUDA array that consists\nof a collection of cubemaps. The first six layers represent the first cubemap, the next six layers form\nthe second cubemap, and so on.\nThe `flags` parameter enables different options to be specified that affect\nthe allocation, as follows.\n- ::cudaArrayDefault: This flag's value is defined to be 0 and provides default array allocation\n- ::cudaArrayLayered: Allocates a layered CUDA array, with the depth extent indicating the number of layers\n- ::cudaArrayCubemap: Allocates a cubemap CUDA array. Width must be equal to height, and depth must be six.\nIf the cudaArrayLayered flag is also set, depth must be a multiple of six.\n- ::cudaArraySurfaceLoadStore: Allocates a CUDA array that could be read from or written to using a surface\nreference.\n- ::cudaArrayTextureGather: This flag indicates that texture gather operations will be performed on the CUDA\narray. Texture gather can only be performed on 2D CUDA arrays.\n- ::cudaArraySparse: Allocates a CUDA array without physical backing memory. The subregions within this sparse array\ncan later be mapped onto a physical memory allocation by calling ::cuMemMapArrayAsync. This flag can only be used for\ncreating 2D, 3D or 2D layered sparse CUDA arrays. The physical backing memory must be allocated via ::cuMemCreate.\n- ::cudaArrayDeferredMapping: Allocates a CUDA array without physical backing memory. The entire array can\nlater be mapped onto a physical memory allocation by calling ::cuMemMapArrayAsync. The physical backing memory must be allocated\nvia ::cuMemCreate.\nThe width, height and depth extents must meet certain size requirements as listed in the following table.\nAll values are specified in elements.\nNote that 2D CUDA arrays have different size requirements if the ::cudaArrayTextureGather flag is set. In that\ncase, the valid range for (width, height, depth) is ((1,maxTexture2DGather[0]), (1,maxTexture2DGather[1]), 0).\n\\xmlonly <table outputclass=\"xmlonly\">\n<tgroup cols=\"3\" colsep=\"1\" rowsep=\"1\">\n<colspec colname=\"c1\" colwidth=\"1.0*\"/>\n<colspec colname=\"c2\" colwidth=\"3.0*\"/>\n<colspec colname=\"c3\" colwidth=\"3.0*\"/>\n<thead>\n<row>\n<entry>CUDA array type</entry>\n<entry>Valid extents that must always be met {(width range in elements),\n(height range), (depth range)}</entry>\n<entry>Valid extents with cudaArraySurfaceLoadStore set {(width range in\nelements), (height range), (depth range)}</entry>\n</row>\n</thead>\n<tbody>\n<row>\n<entry>1D</entry>\n<entry>{ (1,maxTexture1D), 0, 0 }</entry>\n<entry>{ (1,maxSurface1D), 0, 0 }</entry>\n</row>\n<row>\n<entry>2D</entry>\n<entry>{ (1,maxTexture2D[0]), (1,maxTexture2D[1]), 0 }</entry>\n<entry>{ (1,maxSurface2D[0]), (1,maxSurface2D[1]), 0 }</entry>\n</row>\n<row>\n<entry>3D</entry>\n<entry>{ (1,maxTexture3D[0]), (1,maxTexture3D[1]), (1,maxTexture3D[2]) }\nOR { (1,maxTexture3DAlt[0]), (1,maxTexture3DAlt[1]),\n(1,maxTexture3DAlt[2]) }</entry>\n<entry>{ (1,maxSurface3D[0]), (1,maxSurface3D[1]), (1,maxSurface3D[2]) }</entry>\n</row>\n<row>\n<entry>1D Layered</entry>\n<entry>{ (1,maxTexture1DLayered[0]), 0, (1,maxTexture1DLayered[1]) }</entry>\n<entry>{ (1,maxSurface1DLayered[0]), 0, (1,maxSurface1DLayered[1]) }</entry>\n</row>\n<row>\n<entry>2D Layered</entry>\n<entry>{ (1,maxTexture2DLayered[0]), (1,maxTexture2DLayered[1]),\n(1,maxTexture2DLayered[2]) }</entry>\n<entry>{ (1,maxSurface2DLayered[0]), (1,maxSurface2DLayered[1]),\n(1,maxSurface2DLayered[2]) }</entry>\n</row>\n<row>\n<entry>Cubemap</entry>\n<entry>{ (1,maxTextureCubemap), (1,maxTextureCubemap), 6 }</entry>\n<entry>{ (1,maxSurfaceCubemap), (1,maxSurfaceCubemap), 6 }</entry>\n</row>\n<row>\n<entry>Cubemap Layered</entry>\n<entry>{ (1,maxTextureCubemapLayered[0]), (1,maxTextureCubemapLayered[0]),\n(1,maxTextureCubemapLayered[1]) }</entry>\n<entry>{ (1,maxSurfaceCubemapLayered[0]), (1,maxSurfaceCubemapLayered[0]),\n(1,maxSurfaceCubemapLayered[1]) }</entry>\n</row>\n</tbody>\n</tgroup>\n</table>\n\\endxmlonly # Arguments\n\n* `array` -  - Pointer to allocated array in device memory\n* `desc` -   - Requested channel format\n* `extent` - - Requested allocation size (`width` field in elements)\n* `flags` -  - Flags for extensions\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc3D,`] ::cudaMalloc, ::cudaMallocPitch, ::cudaFree,\n::cudaFreeArray,\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaHostAlloc,\n::make_cudaExtent,\n::cuArray3DCreate"]
 pub unsafe fn cudaMalloc3DArray(desc: *const cudaChannelFormatDesc, extent: cudaExtent, flags: u32) -> Result<cudaArray_t, crate::sys::cudaError> {
-    let mut dev_ptr: cudaArray_t = unsafe { std::mem::zeroed() };
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMalloc3DArray(&mut dev_ptr as *mut _ as *mut _, desc, extent, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(dev_ptr) } else { Err(status) }
 }
 #[doc = "Allocate a mipmapped array on the device\nAllocates a CUDA mipmapped array according to the ::cudaChannelFormatDesc structure\n`desc` and returns a handle to the new CUDA mipmapped array in `*mipmappedArray.`\n`numLevels` specifies the number of mipmap levels to be allocated. This value is\nclamped to the range [1, 1 + floor(log2(max(width, height, depth)))].\nThe ::cudaChannelFormatDesc is defined as:\n\\code struct cudaChannelFormatDesc {\nint x, y, z, w;\nenum cudaChannelFormatKind f;\n};\n\\endcode where ::cudaChannelFormatKind is one of ::cudaChannelFormatKindSigned,\n::cudaChannelFormatKindUnsigned, or ::cudaChannelFormatKindFloat.\n::cudaMallocMipmappedArray() can allocate the following:\n- A 1D mipmapped array is allocated if the height and depth extents are both zero.\n- A 2D mipmapped array is allocated if only the depth extent is zero.\n- A 3D mipmapped array is allocated if all three extents are non-zero.\n- A 1D layered CUDA mipmapped array is allocated if only the height extent is zero and\nthe cudaArrayLayered flag is set. Each layer is a 1D mipmapped array. The number of layers is\ndetermined by the depth extent.\n- A 2D layered CUDA mipmapped array is allocated if all three extents are non-zero and\nthe cudaArrayLayered flag is set. Each layer is a 2D mipmapped array. The number of layers is\ndetermined by the depth extent.\n- A cubemap CUDA mipmapped array is allocated if all three extents are non-zero and the\ncudaArrayCubemap flag is set. Width must be equal to height, and depth must be six.\nThe order of the six layers in memory is the same as that listed in ::cudaGraphicsCubeFace.\n- A cubemap layered CUDA mipmapped array is allocated if all three extents are non-zero, and both,\ncudaArrayCubemap and cudaArrayLayered flags are set. Width must be equal to height, and depth must be\na multiple of six. A cubemap layered CUDA mipmapped array is a special type of 2D layered CUDA mipmapped\narray that consists of a collection of cubemap mipmapped arrays. The first six layers represent the\nfirst cubemap mipmapped array, the next six layers form the second cubemap mipmapped array, and so on.\nThe `flags` parameter enables different options to be specified that affect\nthe allocation, as follows.\n- ::cudaArrayDefault: This flag's value is defined to be 0 and provides default mipmapped array allocation\n- ::cudaArrayLayered: Allocates a layered CUDA mipmapped array, with the depth extent indicating the number of layers\n- ::cudaArrayCubemap: Allocates a cubemap CUDA mipmapped array. Width must be equal to height, and depth must be six.\nIf the cudaArrayLayered flag is also set, depth must be a multiple of six.\n- ::cudaArraySurfaceLoadStore: This flag indicates that individual mipmap levels of the CUDA mipmapped array\nwill be read from or written to using a surface reference.\n- ::cudaArrayTextureGather: This flag indicates that texture gather operations will be performed on the CUDA\narray. Texture gather can only be performed on 2D CUDA mipmapped arrays, and the gather operations are\nperformed only on the most detailed mipmap level.\n- ::cudaArraySparse: Allocates a CUDA mipmapped array without physical backing memory. The subregions within this sparse array\ncan later be mapped onto a physical memory allocation by calling ::cuMemMapArrayAsync. This flag can only be used for creating\n2D, 3D or 2D layered sparse CUDA mipmapped arrays. The physical backing memory must be allocated via ::cuMemCreate.\n- ::cudaArrayDeferredMapping: Allocates a CUDA mipmapped array without physical backing memory. The entire array can\nlater be mapped onto a physical memory allocation by calling ::cuMemMapArrayAsync. The physical backing memory must be allocated\nvia ::cuMemCreate.\nThe width, height and depth extents must meet certain size requirements as listed in the following table.\nAll values are specified in elements.\n\\xmlonly <table outputclass=\"xmlonly\">\n<tgroup cols=\"3\" colsep=\"1\" rowsep=\"1\">\n<colspec colname=\"c1\" colwidth=\"1.0*\"/>\n<colspec colname=\"c2\" colwidth=\"3.0*\"/>\n<colspec colname=\"c3\" colwidth=\"3.0*\"/>\n<thead>\n<row>\n<entry>CUDA array type</entry>\n<entry>Valid extents that must always be met {(width range in elements),\n(height range), (depth range)}</entry>\n<entry>Valid extents with cudaArraySurfaceLoadStore set {(width range in\nelements), (height range), (depth range)}</entry>\n</row>\n</thead>\n<tbody>\n<row>\n<entry>1D</entry>\n<entry>{ (1,maxTexture1DMipmap), 0, 0 }</entry>\n<entry>{ (1,maxSurface1D), 0, 0 }</entry>\n</row>\n<row>\n<entry>2D</entry>\n<entry>{ (1,maxTexture2DMipmap[0]), (1,maxTexture2DMipmap[1]), 0 }</entry>\n<entry>{ (1,maxSurface2D[0]), (1,maxSurface2D[1]), 0 }</entry>\n</row>\n<row>\n<entry>3D</entry>\n<entry>{ (1,maxTexture3D[0]), (1,maxTexture3D[1]), (1,maxTexture3D[2]) }\nOR { (1,maxTexture3DAlt[0]), (1,maxTexture3DAlt[1]),\n(1,maxTexture3DAlt[2]) }</entry>\n<entry>{ (1,maxSurface3D[0]), (1,maxSurface3D[1]), (1,maxSurface3D[2]) }</entry>\n</row>\n<row>\n<entry>1D Layered</entry>\n<entry>{ (1,maxTexture1DLayered[0]), 0, (1,maxTexture1DLayered[1]) }</entry>\n<entry>{ (1,maxSurface1DLayered[0]), 0, (1,maxSurface1DLayered[1]) }</entry>\n</row>\n<row>\n<entry>2D Layered</entry>\n<entry>{ (1,maxTexture2DLayered[0]), (1,maxTexture2DLayered[1]),\n(1,maxTexture2DLayered[2]) }</entry>\n<entry>{ (1,maxSurface2DLayered[0]), (1,maxSurface2DLayered[1]),\n(1,maxSurface2DLayered[2]) }</entry>\n</row>\n<row>\n<entry>Cubemap</entry>\n<entry>{ (1,maxTextureCubemap), (1,maxTextureCubemap), 6 }</entry>\n<entry>{ (1,maxSurfaceCubemap), (1,maxSurfaceCubemap), 6 }</entry>\n</row>\n<row>\n<entry>Cubemap Layered</entry>\n<entry>{ (1,maxTextureCubemapLayered[0]), (1,maxTextureCubemapLayered[0]),\n(1,maxTextureCubemapLayered[1]) }</entry>\n<entry>{ (1,maxSurfaceCubemapLayered[0]), (1,maxSurfaceCubemapLayered[0]),\n(1,maxSurfaceCubemapLayered[1]) }</entry>\n</row>\n</tbody>\n</tgroup>\n</table>\n\\endxmlonly # Arguments\n\n* `mipmappedArray` -  - Pointer to allocated mipmapped array in device memory\n* `desc` -            - Requested channel format\n* `extent` -          - Requested allocation size (`width` field in elements)\n* `numLevels` -       - Number of mipmap levels to allocate\n* `flags` -           - Flags for extensions\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc3D,`] ::cudaMalloc, ::cudaMallocPitch, ::cudaFree,\n::cudaFreeArray,\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaHostAlloc,\n::make_cudaExtent,\n::cuMipmappedArrayCreate"]
 pub unsafe fn cudaMallocMipmappedArray(desc: *const cudaChannelFormatDesc, extent: cudaExtent, numLevels: u32, flags: u32) -> Result<cudaMipmappedArray_t, crate::sys::cudaError> {
-    let mut dev_ptr: cudaMipmappedArray_t = unsafe { std::mem::zeroed() };
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMallocMipmappedArray(&mut dev_ptr as *mut _ as *mut _, desc, extent, numLevels as _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(dev_ptr) } else { Err(status) }
 }
 #[doc = "Gets a mipmap level of a CUDA mipmapped array\nReturns in `*levelArray` a CUDA array that represents a single mipmap level\nof the CUDA mipmapped array `mipmappedArray.`\nIf `level` is greater than the maximum number of levels in this mipmapped array,\n::cudaErrorInvalidValue is returned.\nIf `mipmappedArray` is NULL,\n::cudaErrorInvalidResourceHandle is returned.\n\n# Arguments\n\n* `levelArray` -     - Returned mipmap level CUDA array\n* `mipmappedArray` - - CUDA mipmapped array\n* `level` -          - Mipmap level\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n::cudaErrorInvalidResourceHandle\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc3D,`] ::cudaMalloc, ::cudaMallocPitch, ::cudaFree,\n::cudaFreeArray,\n[`::cudaMallocHost(void**,`] size_t) \"cudaMallocHost (C API)\",\n::cudaFreeHost, ::cudaHostAlloc,\n::make_cudaExtent,\n::cuMipmappedArrayGetLevel"]
-pub unsafe fn cudaGetMipmappedArrayLevel<T: types::CudaAsMutPtr>(mut levelArray: T, mipmappedArray: cudaMipmappedArray_const_t, level: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGetMipmappedArrayLevel<T0: types::CudaAsMutPtr>(mut levelArray: T0, mipmappedArray: cudaMipmappedArray_const_t, level: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGetMipmappedArrayLevel(levelArray.as_mut_ptr() as *mut _, mipmappedArray, level as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between 3D objects\n\\code struct cudaExtent {\nsize_t width;\nsize_t height;\nsize_t depth;\n};\nstruct cudaExtent make_cudaExtent(size_t w, size_t h, size_t d);\nstruct cudaPos {\nsize_t x;\nsize_t y;\nsize_t z;\n};\nstruct cudaPos make_cudaPos(size_t x, size_t y, size_t z);\nstruct cudaMemcpy3DParms {\ncudaArray_t           srcArray;\nstruct cudaPos        srcPos;\nstruct cudaPitchedPtr srcPtr;\ncudaArray_t           dstArray;\nstruct cudaPos        dstPos;\nstruct cudaPitchedPtr dstPtr;\nstruct cudaExtent     extent;\nenum cudaMemcpyKind   kind;\n};\n\\endcode ::cudaMemcpy3D() copies data betwen two 3D objects. The source and\ndestination objects may be in either host memory, device memory, or a CUDA\narray. The source, destination, extent, and kind of copy performed is\nspecified by the ::cudaMemcpy3DParms struct which should be initialized to\nzero before use:\n\\code cudaMemcpy3DParms myParms = {0};\n\\endcode The struct passed to ::cudaMemcpy3D() must specify one of `srcArray` or\n`srcPtr` and one of `dstArray` or `dstPtr.` Passing more than one\nnon-zero source or destination will cause ::cudaMemcpy3D() to return an\nerror.\nThe `srcPos` and `dstPos` fields are optional offsets into the source and\ndestination objects and are defined in units of each object's elements. The\nelement for a host or device pointer is assumed to be <b>unsigned char</b>.\nThe `extent` field defines the dimensions of the transferred area in\nelements. If a CUDA array is participating in the copy, the extent is\ndefined in terms of that array's elements. If no CUDA array is\nparticipating in the copy then the extents are defined in elements of\n<b>unsigned char</b>.\nThe `kind` field defines the direction of the copy. It must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\nFor ::cudaMemcpyHostToHost or ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost\npassed as kind and cudaArray type passed as source or destination, if the kind\nimplies cudaArray type to be present on the host, ::cudaMemcpy3D() will\ndisregard that implication and silently correct the kind based on the fact that\ncudaArray type can only be present on the device.\nIf the source and destination are both arrays, ::cudaMemcpy3D() will return\nan error if they do not have the same element size.\nThe source and destination object may not overlap. If overlapping source\nand destination objects are specified, undefined behavior will result.\nThe source object must entirely contain the region defined by `srcPos`\nand `extent.` The destination object must entirely contain the region\ndefined by `dstPos` and `extent.`\n::cudaMemcpy3D() returns an error if the pitch of `srcPtr` or `dstPtr`\nexceeds the maximum allowed. The pitch of a ::cudaPitchedPtr allocated\nwith ::cudaMalloc3D() will always be valid.\n\n# Arguments\n\n* `p` - - 3D memory copy parameters\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_sync \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc3D,`] ::cudaMalloc3DArray, ::cudaMemset3D, ::cudaMemcpy3DAsync,\n::cudaMemcpy, ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::make_cudaExtent, ::make_cudaPos,\n::cuMemcpy3D"]
-pub unsafe fn cudaMemcpy3D<T: types::CudaAsPtr>(p: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy3D<T0: types::CudaAsPtr>(p: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy3D(p.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies memory between devices\nPerform a 3D memory copy according to the parameters specified in\n`p.`  See the definition of the ::cudaMemcpy3DPeerParms structure\nfor documentation of its parameters.\nNote that this function is synchronous with respect to the host only if\nthe source or destination of the transfer is host memory.  Note also\nthat this copy is serialized with respect to all pending and future\nasynchronous work in to the current device, the copy's source device,\nand the copy's destination device (use ::cudaMemcpy3DPeerAsync to avoid\nthis synchronization).\n\n# Arguments\n\n* `p` - - Parameters for the memory copy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice,\n::cudaErrorInvalidPitchValue\n\\notefnerr \\note_sync \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpyPeer, ::cudaMemcpyAsync, ::cudaMemcpyPeerAsync,\n::cudaMemcpy3DPeerAsync,\n::cuMemcpy3DPeer"]
-pub unsafe fn cudaMemcpy3DPeer<T: types::CudaAsPtr>(p: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy3DPeer<T0: types::CudaAsPtr>(p: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy3DPeer(p.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between 3D objects\n\\code struct cudaExtent {\nsize_t width;\nsize_t height;\nsize_t depth;\n};\nstruct cudaExtent make_cudaExtent(size_t w, size_t h, size_t d);\nstruct cudaPos {\nsize_t x;\nsize_t y;\nsize_t z;\n};\nstruct cudaPos make_cudaPos(size_t x, size_t y, size_t z);\nstruct cudaMemcpy3DParms {\ncudaArray_t           srcArray;\nstruct cudaPos        srcPos;\nstruct cudaPitchedPtr srcPtr;\ncudaArray_t           dstArray;\nstruct cudaPos        dstPos;\nstruct cudaPitchedPtr dstPtr;\nstruct cudaExtent     extent;\nenum cudaMemcpyKind   kind;\n};\n\\endcode ::cudaMemcpy3DAsync() copies data betwen two 3D objects. The source and\ndestination objects may be in either host memory, device memory, or a CUDA\narray. The source, destination, extent, and kind of copy performed is\nspecified by the ::cudaMemcpy3DParms struct which should be initialized to\nzero before use:\n\\code cudaMemcpy3DParms myParms = {0};\n\\endcode The struct passed to ::cudaMemcpy3DAsync() must specify one of `srcArray`\nor `srcPtr` and one of `dstArray` or `dstPtr.` Passing more than one\nnon-zero source or destination will cause ::cudaMemcpy3DAsync() to return an\nerror.\nThe `srcPos` and `dstPos` fields are optional offsets into the source and\ndestination objects and are defined in units of each object's elements. The\nelement for a host or device pointer is assumed to be <b>unsigned char</b>.\nFor CUDA arrays, positions must be in the range [0, 2048) for any\ndimension.\nThe `extent` field defines the dimensions of the transferred area in\nelements. If a CUDA array is participating in the copy, the extent is\ndefined in terms of that array's elements. If no CUDA array is\nparticipating in the copy then the extents are defined in elements of\n<b>unsigned char</b>.\nThe `kind` field defines the direction of the copy. It must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\nFor ::cudaMemcpyHostToHost or ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost\npassed as kind and cudaArray type passed as source or destination, if the kind\nimplies cudaArray type to be present on the host, ::cudaMemcpy3DAsync() will\ndisregard that implication and silently correct the kind based on the fact that\ncudaArray type can only be present on the device.\nIf the source and destination are both arrays, ::cudaMemcpy3DAsync() will\nreturn an error if they do not have the same element size.\nThe source and destination object may not overlap. If overlapping source\nand destination objects are specified, undefined behavior will result.\nThe source object must lie entirely within the region defined by `srcPos`\nand `extent.` The destination object must lie entirely within the region\ndefined by `dstPos` and `extent.`\n::cudaMemcpy3DAsync() returns an error if the pitch of `srcPtr` or\n`dstPtr` exceeds the maximum allowed. The pitch of a\n::cudaPitchedPtr allocated with ::cudaMalloc3D() will always be valid.\n::cudaMemcpy3DAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally\nbe associated to a stream by passing a non-zero `stream` argument. If\n`kind` is ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost and `stream`\nis non-zero, the copy may overlap with operations in other streams.\nThe device version of this function only handles device to device copies and\ncannot be given local or shared pointers.\n\n# Arguments\n\n* `p` -      - 3D memory copy parameters\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMalloc3D,`] ::cudaMalloc3DArray, ::cudaMemset3D, ::cudaMemcpy3D,\n::cudaMemcpy, ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, :::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::make_cudaExtent, ::make_cudaPos,\n::cuMemcpy3DAsync"]
-pub unsafe fn cudaMemcpy3DAsync<T: types::CudaAsPtr>(p: T, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy3DAsync<T0: types::CudaAsPtr>(p: T0, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy3DAsync(p.as_const_ptr() as *const _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies memory between devices asynchronously.\nPerform a 3D memory copy according to the parameters specified in\n`p.`  See the definition of the ::cudaMemcpy3DPeerParms structure\nfor documentation of its parameters.\n\n# Arguments\n\n* `p` -      - Parameters for the memory copy\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice,\n::cudaErrorInvalidPitchValue\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpyPeer, ::cudaMemcpyAsync, ::cudaMemcpyPeerAsync,\n::cudaMemcpy3DPeerAsync,\n::cuMemcpy3DPeerAsync"]
-pub unsafe fn cudaMemcpy3DPeerAsync<T: types::CudaAsPtr>(p: T, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy3DPeerAsync<T0: types::CudaAsPtr>(p: T0, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy3DPeerAsync(p.as_const_ptr() as *const _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4239,7 +4468,7 @@ pub unsafe fn cudaArrayGetInfo(array: cudaArray_t) -> Result<(cudaChannelFormatD
     }
 }
 #[doc = "Gets a CUDA array plane from a CUDA array\nReturns in `pPlaneArray` a CUDA array that represents a single format plane\nof the CUDA array `hArray.`\nIf `planeIdx` is greater than the maximum number of planes in this array or if the array does\nnot have a multi-planar format e.g: ::cudaChannelFormatKindNV12, then ::cudaErrorInvalidValue is returned.\nNote that if the `hArray` has format ::cudaChannelFormatKindNV12, then passing in 0 for `planeIdx` returns\na CUDA array of the same size as `hArray` but with one 8-bit channel and ::cudaChannelFormatKindUnsigned as its format kind.\nIf 1 is passed for `planeIdx,` then the returned CUDA array has half the height and width\nof `hArray` with two 8-bit channels and ::cudaChannelFormatKindUnsigned as its format kind.\n\n# Arguments\n\n* `pPlaneArray` -   - Returned CUDA array referenced by the `planeIdx`\n* `hArray` -        - CUDA array\n* `planeIdx` -      - Plane index\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n::cudaErrorInvalidResourceHandle\n\\notefnerr # See also\n\n> [`::cuArrayGetPlane`]"]
-pub unsafe fn cudaArrayGetPlane<T: types::CudaAsMutPtr>(mut pPlaneArray: T, hArray: cudaArray_t, planeIdx: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaArrayGetPlane<T0: types::CudaAsMutPtr>(mut pPlaneArray: T0, hArray: cudaArray_t, planeIdx: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaArrayGetPlane(pPlaneArray.as_mut_ptr() as *mut _, hArray, planeIdx as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4282,27 +4511,27 @@ pub unsafe fn cudaMipmappedArrayGetSparseProperties(mipmap: cudaMipmappedArray_t
     }
 }
 #[doc = "Copies data between host and device\nCopies `count` bytes from the memory area pointed to by `src` to the\nmemory area pointed to by `dst,` where `kind` specifies the direction\nof the copy, and must be one of ::cudaMemcpyHostToHost,\n::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing. Calling\n::cudaMemcpy() with dst and src pointers that do not match the direction of\nthe copy results in an undefined behavior.\n\n# Arguments\n\n* `dst` -   - Destination memory address\n* `src` -   - Source memory address\n* `count` - - Size in bytes to copy\n* `kind` -  - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_init_rt \\note_callback \\note_sync \\note_memcpy # See also\n\n> [`::cudaMemcpy2D,`]\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpyDtoH,\n::cuMemcpyHtoD,\n::cuMemcpyDtoD,\n::cuMemcpy"]
-pub unsafe fn cudaMemcpy<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, src: U, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, src: T1, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy(dst.as_mut_ptr() as *mut _, src.as_const_ptr() as *const _, count, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies memory between two devices\nCopies memory from one device to memory on another device.  `dst` is the\nbase device pointer of the destination memory and `dstDevice` is the\ndestination device.  `src` is the base device pointer of the source memory\nand `srcDevice` is the source device.  `count` specifies the number of bytes\nto copy.\nNote that this function is asynchronous with respect to the host, but\nserialized with respect all pending and future asynchronous work in to the\ncurrent device, `srcDevice,` and `dstDevice` (use ::cudaMemcpyPeerAsync\nto avoid this synchronization).\n\n# Arguments\n\n* `dst` -       - Destination device pointer\n* `dstDevice` - - Destination device\n* `src` -       - Source device pointer\n* `srcDevice` - - Source device\n* `count` -     - Size of memory copy in bytes\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice\n\\notefnerr \\note_sync \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpyAsync, ::cudaMemcpyPeerAsync,\n::cudaMemcpy3DPeerAsync,\n::cuMemcpyPeer"]
-pub unsafe fn cudaMemcpyPeer<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, dstDevice: i32, src: U, srcDevice: i32, count: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyPeer<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, dstDevice: i32, src: T1, srcDevice: i32, count: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyPeer(dst.as_mut_ptr() as *mut _, dstDevice as _, src.as_const_ptr() as *const _, srcDevice as _, count) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\nCopies a matrix (`height` rows of `width` bytes each) from the memory\narea pointed to by `src` to the memory area pointed to by `dst,` where\n`kind` specifies the direction of the copy, and must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing. `dpitch` and\n`spitch` are the widths in memory in bytes of the 2D arrays pointed to by\n`dst` and `src,` including any padding added to the end of each row. The\nmemory areas may not overlap. `width` must not exceed either `dpitch` or\n`spitch.` Calling ::cudaMemcpy2D() with `dst` and `src` pointers that do\nnot match the direction of the copy results in an undefined behavior.\n::cudaMemcpy2D() returns an error if `dpitch` or `spitch` exceeds\nthe maximum allowed.\n\n# Arguments\n\n* `dst` -    - Destination memory address\n* `dpitch` - - Pitch of destination memory\n* `src` -    - Source memory address\n* `spitch` - - Pitch of source memory\n* `width` -  - Width of matrix transfer (columns in bytes)\n* `height` - - Height of matrix transfer (rows)\n* `kind` -   - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_init_rt \\note_callback \\note_memcpy # See also\n\n> [`::cudaMemcpy,`]\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy2D,\n::cuMemcpy2DUnaligned"]
-pub unsafe fn cudaMemcpy2D<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, dpitch: usize, src: U, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy2D<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, dpitch: usize, src: T1, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy2D(dst.as_mut_ptr() as *mut _, dpitch, src.as_const_ptr() as *const _, spitch, width, height, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\nCopies a matrix (`height` rows of `width` bytes each) from the memory\narea pointed to by `src` to the CUDA array `dst` starting at\n`hOffset` rows and `wOffset` bytes from the upper left corner,\nwhere `kind` specifies the direction of the copy, and must be one\nof ::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n`spitch` is the width in memory in bytes of the 2D array pointed to by\n`src,` including any padding added to the end of each row. `wOffset` +\n`width` must not exceed the width of the CUDA array `dst.` `width` must\nnot exceed `spitch.` ::cudaMemcpy2DToArray() returns an error if `spitch`\nexceeds the maximum allowed.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `wOffset` - - Destination starting X offset (columns in bytes)\n* `hOffset` - - Destination starting Y offset (rows)\n* `src` -     - Source memory address\n* `spitch` -  - Pitch of source memory\n* `width` -   - Width of matrix transfer (columns in bytes)\n* `height` -  - Height of matrix transfer (rows)\n* `kind` -    - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_sync \\note_init_rt \\note_callback \\note_memcpy # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy2D,\n::cuMemcpy2DUnaligned"]
-pub unsafe fn cudaMemcpy2DToArray<T: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy2DToArray<T0: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T0, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy2DToArray(dst, wOffset, hOffset, src.as_const_ptr() as *const _, spitch, width, height, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\nCopies a matrix (`height` rows of `width` bytes each) from the CUDA\narray `src` starting at `hOffset` rows and `wOffset` bytes from the\nupper left corner to the memory area pointed to by `dst,` where\n`kind` specifies the direction of the copy, and must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing. `dpitch` is the\nwidth in memory in bytes of the 2D array pointed to by `dst,` including any\npadding added to the end of each row. `wOffset` + `width` must not exceed\nthe width of the CUDA array `src.` `width` must not exceed `dpitch.`\n::cudaMemcpy2DFromArray() returns an error if `dpitch` exceeds the maximum\nallowed.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `dpitch` -  - Pitch of destination memory\n* `src` -     - Source memory address\n* `wOffset` - - Source starting X offset (columns in bytes)\n* `hOffset` - - Source starting Y offset (rows)\n* `width` -   - Width of matrix transfer (columns in bytes)\n* `height` -  - Height of matrix transfer (rows)\n* `kind` -    - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_sync \\note_init_rt \\note_callback \\note_memcpy # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy2D,\n::cuMemcpy2DUnaligned"]
-pub unsafe fn cudaMemcpy2DFromArray<T: types::CudaAsMutPtr>(mut dst: T, dpitch: usize, src: cudaArray_const_t, wOffset: usize, hOffset: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy2DFromArray<T0: types::CudaAsMutPtr>(mut dst: T0, dpitch: usize, src: cudaArray_const_t, wOffset: usize, hOffset: usize, width: usize, height: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy2DFromArray(dst.as_mut_ptr() as *mut _, dpitch, src, wOffset, hOffset, width, height, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4312,27 +4541,36 @@ pub unsafe fn cudaMemcpy2DArrayToArray(dst: cudaArray_t, wOffsetDst: usize, hOff
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data to the given symbol on the device\nCopies `count` bytes from the memory area pointed to by `src`\nto the memory area pointed to by `offset` bytes from the start of symbol\n`symbol.` The memory areas may not overlap. `symbol` is a variable that\nresides in global or constant memory space. `kind` can be either\n::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault.\nPassing ::cudaMemcpyDefault is recommended, in which case the type of\ntransfer is inferred from the pointer values. However, ::cudaMemcpyDefault\nis only allowed on systems that support unified virtual addressing.\n\n# Arguments\n\n* `symbol` - - Device symbol address\n* `src` -    - Source memory address\n* `count` -  - Size in bytes to copy\n* `offset` - - Offset from start of symbol in bytes\n* `kind` -   - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidSymbol,\n::cudaErrorInvalidMemcpyDirection,\n::cudaErrorNoKernelImageForDevice\n\\notefnerr \\note_sync \\note_string_api_deprecation \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray,  ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy,\n::cuMemcpyHtoD,\n::cuMemcpyDtoD"]
-pub unsafe fn cudaMemcpyToSymbol<T: types::CudaAsPtr, U: types::CudaAsPtr>(symbol: T, src: U, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyToSymbol<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(symbol: T0, src: T1, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyToSymbol(symbol.as_const_ptr() as *const _, src.as_const_ptr() as *const _, count, offset, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data from the given symbol on the device\nCopies `count` bytes from the memory area pointed to by `offset` bytes\nfrom the start of symbol `symbol` to the memory area pointed to by `dst.`\nThe memory areas may not overlap. `symbol` is a variable that\nresides in global or constant memory space. `kind` can be either\n::cudaMemcpyDeviceToHost, ::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault.\nPassing ::cudaMemcpyDefault is recommended, in which case the type of\ntransfer is inferred from the pointer values. However, ::cudaMemcpyDefault\nis only allowed on systems that support unified virtual addressing.\n\n# Arguments\n\n* `dst` -    - Destination memory address\n* `symbol` - - Device symbol address\n* `count` -  - Size in bytes to copy\n* `offset` - - Offset from start of symbol in bytes\n* `kind` -   - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidSymbol,\n::cudaErrorInvalidMemcpyDirection,\n::cudaErrorNoKernelImageForDevice\n\\notefnerr \\note_sync \\note_string_api_deprecation \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy,\n::cuMemcpyDtoH,\n::cuMemcpyDtoD"]
-pub unsafe fn cudaMemcpyFromSymbol<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, symbol: U, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyFromSymbol<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, symbol: T1, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyFromSymbol(dst.as_mut_ptr() as *mut _, symbol.as_const_ptr() as *const _, count, offset, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\nCopies `count` bytes from the memory area pointed to by `src` to the\nmemory area pointed to by `dst,` where `kind` specifies the\ndirection of the copy, and must be one of ::cudaMemcpyHostToHost,\n::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\nThe memory areas may not overlap. Calling ::cudaMemcpyAsync() with `dst` and\n`src` pointers that do not match the direction of the copy results in an\nundefined behavior.\n::cudaMemcpyAsync() is asynchronous with respect to the host, so the call\nmay return before the copy is complete. The copy can optionally be\nassociated to a stream by passing a non-zero `stream` argument. If `kind`\nis ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost and the `stream` is\nnon-zero, the copy may overlap with operations in other streams.\nThe device version of this function only handles device to device copies and\ncannot be given local or shared pointers.\n\n# Arguments\n\n* `dst` -    - Destination memory address\n* `src` -    - Source memory address\n* `count` -  - Size in bytes to copy\n* `kind` -   - Type of transfer\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback \\note_memcpy # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpyAsync,\n::cuMemcpyDtoHAsync,\n::cuMemcpyHtoDAsync,\n::cuMemcpyDtoDAsync"]
-pub unsafe fn cudaMemcpyAsync<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, src: U, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, src: T1, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyAsync(dst.as_mut_ptr() as *mut _, src.as_const_ptr() as *const _, count, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies memory between two devices asynchronously.\nCopies memory from one device to memory on another device.  `dst` is the\nbase device pointer of the destination memory and `dstDevice` is the\ndestination device.  `src` is the base device pointer of the source memory\nand `srcDevice` is the source device.  `count` specifies the number of bytes\nto copy.\nNote that this function is asynchronous with respect to the host and all work\non other devices.\n\n# Arguments\n\n* `dst` -       - Destination device pointer\n* `dstDevice` - - Destination device\n* `src` -       - Source device pointer\n* `srcDevice` - - Source device\n* `count` -     - Size of memory copy in bytes\n* `stream` -    - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpyPeer, ::cudaMemcpyAsync,\n::cudaMemcpy3DPeerAsync,\n::cuMemcpyPeerAsync"]
-pub unsafe fn cudaMemcpyPeerAsync<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, dstDevice: i32, src: U, srcDevice: i32, count: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyPeerAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, dstDevice: i32, src: T1, srcDevice: i32, count: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyPeerAsync(dst.as_mut_ptr() as *mut _, dstDevice as _, src.as_const_ptr() as *const _, srcDevice as _, count, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Performs a batch of memory copies asynchronously.\nPerforms a batch of memory copies. The batch as a whole executes in stream order but copies within a\nbatch are not guaranteed to execute in any specific order. This API only supports pointer-to-pointer copies.\nFor copies involving CUDA arrays, please see ::cudaMemcpy3DBatchAsync.\nPerforms memory copies from source buffers specified in `srcs` to destination buffers specified in `dsts.`\nThe size of each copy is specified in `sizes.` All three arrays must be of the same length as specified\nby `count.` Since there are no ordering guarantees for copies within a batch, specifying any dependent copies\nwithin a batch will result in undefined behavior.\nEvery copy in the batch has to be associated with a set of attributes specified in the `attrs` array.\nEach entry in this array can apply to more than one copy. This can be done by specifying in the `attrsIdxs` array,\nthe index of the first copy that the corresponding entry in the `attrs` array applies to. Both `attrs` and\n`attrsIdxs` must be of the same length as specified by `numAttrs.` For example, if a batch has 10 copies listed\nin dst/src/sizes, the first 6 of which have one set of attributes and the remaining 4 another, then `numAttrs`\nwill be 2, `attrsIdxs` will be {0, 6} and `attrs` will contains the two sets of attributes. Note that the first entry\nin `attrsIdxs` must always be 0. Also, each entry must be greater than the previous entry and the last entry should be\nless than `count.` Furthermore, `numAttrs` must be lesser than or equal to `count.`\nThe ::cudaMemcpyAttributes::srcAccessOrder indicates the source access ordering to be observed for copies associated\nwith the attribute. If the source access order is set to ::cudaMemcpySrcAccessOrderStream, then the source will\nbe accessed in stream order. If the source access order is set to ::cudaMemcpySrcAccessOrderDuringApiCall then\nit indicates that access to the source pointer can be out of stream order and all accesses must be complete before the\nAPI call returns. This flag is suited for ephemeral sources (ex., stack variables) when it's known that no prior\noperations in the stream can be accessing the memory and also that the lifetime of the memory is limited to the scope\nthat the source variable was declared in. Specifying this flag allows the driver to optimize the copy and removes the\nneed for the user to synchronize the stream after the API call. If the source access order is set to\n::cudaMemcpySrcAccessOrderAny then it indicates that access to the source pointer can be out of stream order and the\naccesses can happen even after the API call returns. This flag is suited for host pointers allocated\noutside CUDA (ex., via malloc) when it's known that no prior operations in the stream can be accessing the memory.\nSpecifying this flag allows the driver to optimize the copy on certain platforms. Each memcpy operation in the batch\nmust have a valid ::cudaMemcpyAttributes corresponding to it including the appropriate srcAccessOrder setting,\notherwise the API will return ::cudaErrorInvalidValue.\nThe ::cudaMemcpyAttributes::srcLocHint and ::cudaMemcpyAttributes::dstLocHint allows applications to specify hint locations\nfor operands of a copy when the operand doesn't have a fixed location. That is, these hints are\nonly applicable for managed memory pointers on devices where ::cudaDevAttrConcurrentManagedAccess is true or\nsystem-allocated pageable memory on devices where ::cudaDevAttrPageableMemoryAccess is true.\nFor other cases, these hints are ignored.\nThe ::cudaMemcpyAttributes::flags field can be used to specify certain flags for copies. Setting the\n::cudaMemcpyFlagPreferOverlapWithCompute flag indicates that the associated copies should preferably overlap with\nany compute work. Note that this flag is a hint and can be ignored depending on the platform and other parameters of the copy.\n\n# Arguments\n\n* `dsts` -          - Array of destination pointers.\n* `srcs` -          - Array of memcpy source pointers.\n* `sizes` -         - Array of sizes for memcpy operations.\n* `count` -         - Size of `dsts,` `srcs` and `sizes` arrays\n* `attrs` -         - Array of memcpy attributes.\n* `attrsIdxs` -     - Array of indices to specify which copies each entry in the `attrs` array applies to.\nThe attributes specified in attrs[k] will be applied to copies starting from attrsIdxs[k]\nthrough attrsIdxs[k+1] - 1. Also attrs[numAttrs-1] will apply to copies starting from\nattrsIdxs[numAttrs-1] through count - 1.\n* `numAttrs` -      - Size of `attrs` and `attrsIdxs` arrays.\n* `hStream` -       - The stream to enqueue the operations in. Must not be legacy NULL stream.\n\n# Returns\n\n::cudaSuccess\n::cudaErrorInvalidValue\n\\notefnerr \\note_async \\note_memcpy "]
-pub unsafe fn cudaMemcpyBatchAsync<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr, X: types::CudaAsMutPtr>(dsts: T, srcs: U, sizes: V, count: usize, mut attrs: W, mut attrsIdxs: X, numAttrs: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyBatchAsync<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr, T4: types::CudaAsMutPtr>(
+    dsts: T0,
+    srcs: T1,
+    sizes: T2,
+    count: usize,
+    mut attrs: T3,
+    mut attrsIdxs: T4,
+    numAttrs: usize,
+    stream: cudaStream_t,
+) -> Result<(), crate::sys::cudaError> {
     let status = unsafe {
         crate::sys::cudaMemcpyBatchAsync(
             dsts.as_const_ptr() as *const _,
@@ -4348,52 +4586,52 @@ pub unsafe fn cudaMemcpyBatchAsync<T: types::CudaAsPtr, U: types::CudaAsPtr, V: 
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Performs a batch of 3D memory copies asynchronously.\nPerforms a batch of memory copies. The batch as a whole executes in stream order but copies within a\nbatch are not guaranteed to execute in any specific order. Note that this means specifying any dependent\ncopies within a batch will result in undefined behavior.\nPerforms memory copies as specified in the `opList` array. The length of this array is specified in `numOps.`\nEach entry in this array describes a copy operation. This includes among other things, the source and destination\noperands for the copy as specified in ::cudaMemcpy3DBatchOp::src and ::cudaMemcpy3DBatchOp::dst respectively.\nThe source and destination operands of a copy can either be a pointer or a CUDA array. The width, height and depth\nof a copy is specified in ::cudaMemcpy3DBatchOp::extent. The width, height and depth of a copy are specified in\nelements and must not be zero. For pointer-to-pointer copies, the element size is considered to be 1. For pointer\nto CUDA array or vice versa copies, the element size is determined by the CUDA array. For CUDA array to CUDA array copies,\nthe element size of the two CUDA arrays must match.\nFor a given operand, if ::cudaMemcpy3DOperand::type is specified as ::cudaMemcpyOperandTypePointer, then\n::cudaMemcpy3DOperand::op::ptr will be used. The ::cudaMemcpy3DOperand::op::ptr::ptr field must contain the pointer where\nthe copy should begin. The ::cudaMemcpy3DOperand::op::ptr::rowLength field specifies the length of each row in elements and\nmust either be zero or be greater than or equal to the width of the copy specified in ::cudaMemcpy3DBatchOp::extent::width.\nThe ::cudaMemcpy3DOperand::op::ptr::layerHeight field specifies the height of each layer and must either be\nzero or be greater than or equal to the height of the copy specified in ::cudaMemcpy3DBatchOp::extent::height.\nWhen either of these values is zero, that aspect of the operand is considered to be tightly packed according to the copy extent.\nFor managed memory pointers on devices where ::cudaDevAttrConcurrentManagedAccess is true or system-allocated pageable memory\non devices where ::cudaDevAttrPageableMemoryAccess is true, the ::cudaMemcpy3DOperand::op::ptr::locHint field can be used to hint\nthe location of the operand.\nIf an operand's type is specified as ::cudaMemcpyOperandTypeArray, then ::cudaMemcpy3DOperand::op::array will be used.\nThe ::cudaMemcpy3DOperand::op::array::array field specifies the CUDA array and ::cudaMemcpy3DOperand::op::array::offset specifies\nthe 3D offset into that array where the copy begins.\nThe ::cudaMemcpyAttributes::srcAccessOrder indicates the source access ordering to be observed for copies associated\nwith the attribute. If the source access order is set to ::cudaMemcpySrcAccessOrderStream, then the source will\nbe accessed in stream order. If the source access order is set to ::cudaMemcpySrcAccessOrderDuringApiCall then\nit indicates that access to the source pointer can be out of stream order and all accesses must be complete before the\nAPI call returns. This flag is suited for ephemeral sources (ex., stack variables) when it's known that no prior\noperations in the stream can be accessing the memory and also that the lifetime of the memory is limited to the scope\nthat the source variable was declared in. Specifying this flag allows the driver to optimize the copy and removes the\nneed for the user to synchronize the stream after the API call. If the source access order is set to\n::cudaMemcpySrcAccessOrderAny then it indicates that access to the source pointer can be out of stream order and the\naccesses can happen even after the API call returns. This flag is suited for host pointers allocated\noutside CUDA (ex., via malloc) when it's known that no prior operations in the stream can be accessing the memory.\nSpecifying this flag allows the driver to optimize the copy on certain platforms. Each memcopy operation in `opList`\nmust have a valid srcAccessOrder setting, otherwise this API will return ::cudaErrorInvalidValue.\nThe ::cudaMemcpyAttributes::flags field can be used to specify certain flags for copies. Setting the\n::cudaMemcpyFlagPreferOverlapWithCompute flag indicates that the associated copies should preferably overlap with\nany compute work. Note that this flag is a hint and can be ignored depending on the platform and other parameters of the copy.\n\n# Arguments\n\n* `numOps` -     - Total number of memcpy operations.\n* `opList` -     - Array of size `numOps` containing the actual memcpy operations.\n* `flags` -      - Flags for future use, must be zero now.\n* `hStream` -    - The stream to enqueue the operations in. Must not be default NULL stream.\n\n# Returns\n\n::cudaSuccess\n::cudaErrorInvalidValue\n\\notefnerr \\note_async \\note_memcpy "]
-pub unsafe fn cudaMemcpy3DBatchAsync<T: types::CudaAsMutPtr>(numOps: usize, mut opList: T, flags: u64, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy3DBatchAsync<T0: types::CudaAsMutPtr>(numOps: usize, mut opList: T0, flags: u64, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy3DBatchAsync(numOps, opList.as_mut_ptr() as *mut _, flags as _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Performs asynchronous memory copy operation with the specified attributes.\nPerforms asynchronous memory copy operation where `dst` and `src` are\nthe destination and source pointers respectively. `size` specifies\nthe number of bytes to copy. `attr` specifies the attributes for the copy and\n`hStream` specifies the stream to enqueue the operation in.\nFor more information regarding the attributes, please refer to ::cudaMemcpyAttributes and it's usage desciption in::cudaMemcpyBatchAsync\n\n# Arguments\n\n* `dst` - - Destination device pointer\n* `src` - - Source device pointer\n* `size` - - Number of bytes to copy\n* `attr` - - Attributes for the copy\n* `hStream` - - Stream to enqueue the operation in\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\notefnerr \\note_async \\note_memcpy # See also\n\n> [`::cudaMemcpyBatchAsync`]"]
-pub unsafe fn cudaMemcpyWithAttributesAsync<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(mut dst: T, src: U, size: usize, mut attr: V, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyWithAttributesAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(mut dst: T0, src: T1, size: usize, mut attr: T2, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyWithAttributesAsync(dst.as_mut_ptr() as *mut _, src.as_const_ptr() as *const _, size, attr.as_mut_ptr() as *mut _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Performs 3D asynchronous memory copy with the specified attributes.\nPerforms the copy operation specified in `op.`\n`flags` specifies the flags for the copy and `hStream` specifies the stream to enqueue the operation in.\nFor more information regarding the operation, please refer to ::cudaMemcpy3DBatchOp and it's usage desciption in::cudaMemcpy3DBatchAsync\n\n# Arguments\n\n* `op` - - Operation to perform\n* `flags` - - Flags for the copy, must be zero now.\n* `hStream` - - Stream to enqueue the operation in\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\notefnerr \\note_async \\note_memcpy # See also\n\n> [`::cudaMemcpy3DBatchAsync`]"]
-pub unsafe fn cudaMemcpy3DWithAttributesAsync<T: types::CudaAsMutPtr>(mut op: T, flags: u64, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy3DWithAttributesAsync<T0: types::CudaAsMutPtr>(mut op: T0, flags: u64, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy3DWithAttributesAsync(op.as_mut_ptr() as *mut _, flags as _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\nCopies a matrix (`height` rows of `width` bytes each) from the memory\narea pointed to by `src` to the memory area pointed to by `dst,` where\n`kind` specifies the direction of the copy, and must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n`dpitch` and `spitch` are the widths in memory in bytes of the 2D arrays\npointed to by `dst` and `src,` including any padding added to the end of\neach row. The memory areas may not overlap. `width` must not exceed either\n`dpitch` or `spitch.`\nCalling ::cudaMemcpy2DAsync() with `dst` and `src` pointers that do not\nmatch the direction of the copy results in an undefined behavior.\n::cudaMemcpy2DAsync() returns an error if `dpitch` or `spitch` is greater\nthan the maximum allowed.\n::cudaMemcpy2DAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally\nbe associated to a stream by passing a non-zero `stream` argument. If\n`kind` is ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost and\n`stream` is non-zero, the copy may overlap with operations in other\nstreams.\nThe device version of this function only handles device to device copies and\ncannot be given local or shared pointers.\n\n# Arguments\n\n* `dst` -    - Destination memory address\n* `dpitch` - - Pitch of destination memory\n* `src` -    - Source memory address\n* `spitch` - - Pitch of source memory\n* `width` -  - Width of matrix transfer (columns in bytes)\n* `height` - - Height of matrix transfer (rows)\n* `kind` -   - Type of transfer\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback \\note_memcpy # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy2DAsync"]
-pub unsafe fn cudaMemcpy2DAsync<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, dpitch: usize, src: U, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy2DAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, dpitch: usize, src: T1, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy2DAsync(dst.as_mut_ptr() as *mut _, dpitch, src.as_const_ptr() as *const _, spitch, width, height, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\nCopies a matrix (`height` rows of `width` bytes each) from the memory\narea pointed to by `src` to the CUDA array `dst` starting at `hOffset`\nrows and `wOffset` bytes from the upper left corner, where `kind` specifies\nthe direction of the copy, and must be one of ::cudaMemcpyHostToHost,\n::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n`spitch` is the width in memory in bytes of the 2D array pointed to by\n`src,` including any padding added to the end of each row. `wOffset` +\n`width` must not exceed the width of the CUDA array `dst.` `width` must\nnot exceed `spitch.` ::cudaMemcpy2DToArrayAsync() returns an error if\n`spitch` exceeds the maximum allowed.\n::cudaMemcpy2DToArrayAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally\nbe associated to a stream by passing a non-zero `stream` argument. If\n`kind` is ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost and\n`stream` is non-zero, the copy may overlap with operations in other\nstreams.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `wOffset` - - Destination starting X offset (columns in bytes)\n* `hOffset` - - Destination starting Y offset (rows)\n* `src` -     - Source memory address\n* `spitch` -  - Pitch of source memory\n* `width` -   - Width of matrix transfer (columns in bytes)\n* `height` -  - Height of matrix transfer (rows)\n* `kind` -    - Type of transfer\n* `stream` -  - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback \\note_memcpy # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy2DAsync"]
-pub unsafe fn cudaMemcpy2DToArrayAsync<T: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy2DToArrayAsync<T0: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T0, spitch: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy2DToArrayAsync(dst, wOffset, hOffset, src.as_const_ptr() as *const _, spitch, width, height, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\nCopies a matrix (`height` rows of `width` bytes each) from the CUDA\narray `src` starting at `hOffset` rows and `wOffset` bytes from the\nupper left corner to the memory area pointed to by `dst,`\nwhere `kind` specifies the direction of the copy, and must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n`dpitch` is the width in memory in bytes of the 2D\narray pointed to by `dst,` including any padding added to the end of each\nrow. `wOffset` + `width` must not exceed the width of the CUDA array\n`src.` `width` must not exceed `dpitch.` ::cudaMemcpy2DFromArrayAsync()\nreturns an error if `dpitch` exceeds the maximum allowed.\n::cudaMemcpy2DFromArrayAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally be\nassociated to a stream by passing a non-zero `stream` argument. If `kind`\nis ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost and `stream` is\nnon-zero, the copy may overlap with operations in other streams.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `dpitch` -  - Pitch of destination memory\n* `src` -     - Source memory address\n* `wOffset` - - Source starting X offset (columns in bytes)\n* `hOffset` - - Source starting Y offset (rows)\n* `width` -   - Width of matrix transfer (columns in bytes)\n* `height` -  - Height of matrix transfer (rows)\n* `kind` -    - Type of transfer\n* `stream` -  - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidPitchValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback \\note_memcpy # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpy2DAsync"]
-pub unsafe fn cudaMemcpy2DFromArrayAsync<T: types::CudaAsMutPtr>(mut dst: T, dpitch: usize, src: cudaArray_const_t, wOffset: usize, hOffset: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpy2DFromArrayAsync<T0: types::CudaAsMutPtr>(mut dst: T0, dpitch: usize, src: cudaArray_const_t, wOffset: usize, hOffset: usize, width: usize, height: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpy2DFromArrayAsync(dst.as_mut_ptr() as *mut _, dpitch, src, wOffset, hOffset, width, height, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data to the given symbol on the device\nCopies `count` bytes from the memory area pointed to by `src`\nto the memory area pointed to by `offset` bytes from the start of symbol\n`symbol.` The memory areas may not overlap. `symbol` is a variable that\nresides in global or constant memory space. `kind` can be either\n::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault.\nPassing ::cudaMemcpyDefault is recommended, in which case the type of transfer\nis inferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n::cudaMemcpyToSymbolAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally\nbe associated to a stream by passing a non-zero `stream` argument. If\n`kind` is ::cudaMemcpyHostToDevice and `stream` is non-zero, the copy\nmay overlap with operations in other streams.\n\n# Arguments\n\n* `symbol` - - Device symbol address\n* `src` -    - Source memory address\n* `count` -  - Size in bytes to copy\n* `offset` - - Offset from start of symbol in bytes\n* `kind` -   - Type of transfer\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidSymbol,\n::cudaErrorInvalidMemcpyDirection,\n::cudaErrorNoKernelImageForDevice\n\\notefnerr \\note_async \\note_null_stream \\note_string_api_deprecation \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyFromSymbolAsync,\n::cuMemcpyAsync,\n::cuMemcpyHtoDAsync,\n::cuMemcpyDtoDAsync"]
-pub unsafe fn cudaMemcpyToSymbolAsync<T: types::CudaAsPtr, U: types::CudaAsPtr>(symbol: T, src: U, count: usize, offset: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyToSymbolAsync<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(symbol: T0, src: T1, count: usize, offset: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyToSymbolAsync(symbol.as_const_ptr() as *const _, src.as_const_ptr() as *const _, count, offset, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data from the given symbol on the device\nCopies `count` bytes from the memory area pointed to by `offset` bytes\nfrom the start of symbol `symbol` to the memory area pointed to by `dst.`\nThe memory areas may not overlap. `symbol` is a variable that resides in\nglobal or constant memory space. `kind` can be either\n::cudaMemcpyDeviceToHost, ::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault.\nPassing ::cudaMemcpyDefault is recommended, in which case the type of transfer\nis inferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n::cudaMemcpyFromSymbolAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally be\nassociated to a stream by passing a non-zero `stream` argument. If `kind`\nis ::cudaMemcpyDeviceToHost and `stream` is non-zero, the copy may overlap\nwith operations in other streams.\n\n# Arguments\n\n* `dst` -    - Destination memory address\n* `symbol` - - Device symbol address\n* `count` -  - Size in bytes to copy\n* `offset` - - Offset from start of symbol in bytes\n* `kind` -   - Type of transfer\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidSymbol,\n::cudaErrorInvalidMemcpyDirection,\n::cudaErrorNoKernelImageForDevice\n\\notefnerr \\note_async \\note_null_stream \\note_string_api_deprecation \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync,\n::cuMemcpyAsync,\n::cuMemcpyDtoHAsync,\n::cuMemcpyDtoDAsync"]
-pub unsafe fn cudaMemcpyFromSymbolAsync<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut dst: T, symbol: U, count: usize, offset: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyFromSymbolAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut dst: T0, symbol: T1, count: usize, offset: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyFromSymbolAsync(dst.as_mut_ptr() as *mut _, symbol.as_const_ptr() as *const _, count, offset, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Initializes or sets device memory to a value\nFills the first `count` bytes of the memory area pointed to by `devPtr`\nwith the constant byte value `value.`\nNote that this function is asynchronous with respect to the host unless\n`devPtr` refers to pinned host memory.\n\n# Arguments\n\n* `devPtr` - - Pointer to device memory\n* `value` -  - Value to set for each byte of specified memory\n* `count` -  - Size in bytes to set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\notefnerr \\note_memset \\note_init_rt \\note_callback # See also\n\n> [`::cuMemsetD8,`]\n::cuMemsetD16,\n::cuMemsetD32"]
-pub unsafe fn cudaMemset<T: types::CudaAsMutPtr>(mut devPtr: T, value: i32, count: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemset<T0: types::CudaAsMutPtr>(mut devPtr: T0, value: i32, count: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemset(devPtr.as_mut_ptr() as *mut _, value as _, count) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Initializes or sets device memory to a value\nSets to the specified value `value` a matrix (`height` rows of `width`\nbytes each) pointed to by `dstPtr.` `pitch` is the width in bytes of the\n2D array pointed to by `dstPtr,` including any padding added to the end\nof each row. This function performs fastest when the pitch is one that has\nbeen passed back by ::cudaMallocPitch().\nNote that this function is asynchronous with respect to the host unless\n`devPtr` refers to pinned host memory.\n\n# Arguments\n\n* `devPtr` - - Pointer to 2D device memory\n* `pitch` -  - Pitch in bytes of 2D device memory(Unused if `height` is 1)\n* `value` -  - Value to set for each byte of specified memory\n* `width` -  - Width of matrix set (columns in bytes)\n* `height` - - Height of matrix set (rows)\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\notefnerr \\note_memset \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemset,`] ::cudaMemset3D, ::cudaMemsetAsync,\n::cudaMemset2DAsync, ::cudaMemset3DAsync,\n::cuMemsetD2D8,\n::cuMemsetD2D16,\n::cuMemsetD2D32"]
-pub unsafe fn cudaMemset2D<T: types::CudaAsMutPtr>(mut devPtr: T, pitch: usize, value: i32, width: usize, height: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemset2D<T0: types::CudaAsMutPtr>(mut devPtr: T0, pitch: usize, value: i32, width: usize, height: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemset2D(devPtr.as_mut_ptr() as *mut _, pitch, value as _, width, height) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4403,12 +4641,12 @@ pub unsafe fn cudaMemset3D(pitchedDevPtr: cudaPitchedPtr, value: i32, extent: cu
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Initializes or sets device memory to a value\nFills the first `count` bytes of the memory area pointed to by `devPtr`\nwith the constant byte value `value.`\n::cudaMemsetAsync() is asynchronous with respect to the host, so\nthe call may return before the memset is complete. The operation can optionally\nbe associated to a stream by passing a non-zero `stream` argument.\nIf `stream` is non-zero, the operation may overlap with operations in other streams.\nThe device version of this function only handles device to device copies and\ncannot be given local or shared pointers.\n\n# Arguments\n\n* `devPtr` - - Pointer to device memory\n* `value` -  - Value to set for each byte of specified memory\n* `count` -  - Size in bytes to set\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\notefnerr \\note_memset \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemset,`] ::cudaMemset2D, ::cudaMemset3D,\n::cudaMemset2DAsync, ::cudaMemset3DAsync,\n::cuMemsetD8Async,\n::cuMemsetD16Async,\n::cuMemsetD32Async"]
-pub unsafe fn cudaMemsetAsync<T: types::CudaAsMutPtr>(mut devPtr: T, value: i32, count: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemsetAsync<T0: types::CudaAsMutPtr>(mut devPtr: T0, value: i32, count: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemsetAsync(devPtr.as_mut_ptr() as *mut _, value as _, count, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Initializes or sets device memory to a value\nSets to the specified value `value` a matrix (`height` rows of `width`\nbytes each) pointed to by `dstPtr.` `pitch` is the width in bytes of the\n2D array pointed to by `dstPtr,` including any padding added to the end\nof each row. This function performs fastest when the pitch is one that has\nbeen passed back by ::cudaMallocPitch().\n::cudaMemset2DAsync() is asynchronous with respect to the host, so\nthe call may return before the memset is complete. The operation can optionally\nbe associated to a stream by passing a non-zero `stream` argument.\nIf `stream` is non-zero, the operation may overlap with operations in other streams.\nThe device version of this function only handles device to device copies and\ncannot be given local or shared pointers.\n\n# Arguments\n\n* `devPtr` - - Pointer to 2D device memory\n* `pitch` -  - Pitch in bytes of 2D device memory(Unused if `height` is 1)\n* `value` -  - Value to set for each byte of specified memory\n* `width` -  - Width of matrix set (columns in bytes)\n* `height` - - Height of matrix set (rows)\n* `stream` - - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\notefnerr \\note_memset \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemset,`] ::cudaMemset2D, ::cudaMemset3D,\n::cudaMemsetAsync, ::cudaMemset3DAsync,\n::cuMemsetD2D8Async,\n::cuMemsetD2D16Async,\n::cuMemsetD2D32Async"]
-pub unsafe fn cudaMemset2DAsync<T: types::CudaAsMutPtr>(mut devPtr: T, pitch: usize, value: i32, width: usize, height: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemset2DAsync<T0: types::CudaAsMutPtr>(mut devPtr: T0, pitch: usize, value: i32, width: usize, height: usize, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemset2DAsync(devPtr.as_mut_ptr() as *mut _, pitch, value as _, width, height, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4418,7 +4656,7 @@ pub unsafe fn cudaMemset3DAsync(pitchedDevPtr: cudaPitchedPtr, value: i32, exten
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Finds the address associated with a CUDA symbol\nReturns in `*devPtr` the address of symbol `symbol` on the device.\n`symbol` is a variable that resides in global or constant memory space.\nIf `symbol` cannot be found, or if `symbol` is not declared in the\nglobal or constant memory space, `*devPtr` is unchanged and the error\n::cudaErrorInvalidSymbol is returned.\n\n# Arguments\n\n* `devPtr` - - Return device pointer associated with symbol\n* `symbol` - - Device symbol address\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidSymbol,\n::cudaErrorNoKernelImageForDevice\n\\notefnerr \\note_string_api_deprecation \\note_init_rt \\note_callback # See also\n\n> [`\\ref`] ::cudaGetSymbolAddress(void**, const T&) \"cudaGetSymbolAddress (C++ API)\",\n[`::cudaGetSymbolSize(size_t*,`] const void*) \"cudaGetSymbolSize (C API)\",\n::cuModuleGetGlobal"]
-pub unsafe fn cudaGetSymbolAddress<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut devPtr: T, symbol: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGetSymbolAddress<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut devPtr: T0, symbol: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGetSymbolAddress(devPtr.as_mut_ptr() as *mut _, symbol.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4433,17 +4671,17 @@ pub unsafe fn cudaGetSymbolSize(symbol: *const ::std::os::raw::c_void) -> Result
     }
 }
 #[doc = "Prefetches memory to the specified destination location\nPrefetches memory to the specified destination location.  `devPtr` is the\nbase device pointer of the memory to be prefetched and `location` specifies the\ndestination location. `count` specifies the number of bytes to copy. `stream`\nis the stream in which the operation is enqueued. The memory range must refer\nto managed memory allocated via ::cudaMallocManaged or declared via __managed__ variables,\nor it may also refer to memory allocated from a managed memory pool,\nor it may also refer to system-allocated memory on systems with non-zero\ncudaDevAttrPageableMemoryAccess.\nSpecifying ::cudaMemLocationTypeDevice for ::cudaMemLocation::type will prefetch memory to GPU\nspecified by device ordinal ::cudaMemLocation::id which must have non-zero value for the device attribute\n::concurrentManagedAccess. Additionally, `stream` must be associated with a device\nthat has a non-zero value for the device attribute ::concurrentManagedAccess.\nSpecifying ::cudaMemLocationTypeHost as ::cudaMemLocation::type will prefetch data to host memory.\nApplications can request prefetching memory to a specific host NUMA node by specifying\n::cudaMemLocationTypeHostNuma for ::cudaMemLocation::type and a valid host NUMA node id in ::cudaMemLocation::id\nUsers can also request prefetching memory to the host NUMA node closest to the current thread's CPU by specifying\n::cudaMemLocationTypeHostNumaCurrent for ::cudaMemLocation::type. Note when ::cudaMemLocation::type is etiher\n::cudaMemLocationTypeHost OR ::cudaMemLocationTypeHostNumaCurrent, ::cudaMemLocation::id will be ignored.\nThe start address and end address of the memory range will be rounded down and rounded up\nrespectively to be aligned to CPU page size before the prefetch operation is enqueued\nin the stream.\nIf no physical memory has been allocated for this region, then this memory region\nwill be populated and mapped on the destination device. If there's insufficient\nmemory to prefetch the desired region, the Unified Memory driver may evict pages from other\n::cudaMallocManaged allocations to host memory in order to make room. Device memory\nallocated using ::cudaMalloc or ::cudaMallocArray will not be evicted.\nBy default, any mappings to the previous location of the migrated pages are removed and\nmappings for the new location are only setup on the destination location. The exact behavior however\nalso depends on the settings applied to this memory range via ::cuMemAdvise as described\nbelow:\nIf ::cudaMemAdviseSetReadMostly was set on any subset of this memory range,\nthen that subset will create a read-only copy of the pages on destination location.\nIf however the destination location is a host NUMA node, then any pages of that subset\nthat are already in another host NUMA node will be transferred to the destination.\nIf ::cudaMemAdviseSetPreferredLocation was called on any subset of this memory\nrange, then the pages will be migrated to `location` even if `location` is not the\npreferred location of any pages in the memory range.\nIf ::cudaMemAdviseSetAccessedBy was called on any subset of this memory range,\nthen mappings to those pages from all the appropriate processors are updated to\nrefer to the new location if establishing such a mapping is possible. Otherwise,\nthose mappings are cleared.\nNote that this API is not required for functionality and only serves to improve performance\nby allowing the application to migrate data to a suitable location before it is accessed.\nMemory accesses to this range are always coherent and are allowed even when the data is\nactively being migrated.\nNote that this function is asynchronous with respect to the host and all work\non other devices.\n\n# Arguments\n\n* `devPtr` -    - Pointer to be prefetched\n* `count` -     - Size in bytes\n* `location` -  - location to prefetch to\n* `flags` -     - flags for future use, must be zero now.\n* `stream` -    - Stream to enqueue prefetch operation\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpyPeer, ::cudaMemcpyAsync,\n::cudaMemcpy3DPeerAsync, ::cudaMemAdvise, ::cuMemPrefetchAsync"]
-pub unsafe fn cudaMemPrefetchAsync<T: types::CudaAsPtr>(devPtr: T, count: usize, location: cudaMemLocation, flags: u32, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPrefetchAsync<T0: types::CudaAsPtr>(devPtr: T0, count: usize, location: cudaMemLocation, flags: u32, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPrefetchAsync(devPtr.as_const_ptr() as *const _, count, location, flags as _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Performs a batch of memory prefetches asynchronously\nPerforms a batch of memory prefetches. The batch as a whole executes in stream order\nbut operations within a batch are not guaranteed to execute in any specific order.\nAll devices in the system must have a non-zero value for the device attribute\n::cudaDevAttrConcurrentManagedAccess otherwise the API will return an error.\nThe semantics of the individual prefetch operations are as described in ::cudaMemPrefetchAsync.\nPerforms memory prefetch on address ranges specified in `dptrs` and `sizes.`\nBoth arrays must be of the same length as specified by `count.` Each memory range specified\nmust refer to managed memory allocated via ::cudaMallocManaged or declared via\n__managed__ variables or it may also refer to system-allocated memory when all devices\nhave a non-zero value for ::cudaDevAttrPageableMemoryAccess. The prefetch location for\nevery operation in the batch is specified in the `prefetchLocs` array. Each entry in\nthis array can apply to more than one operation. This can be done by specifying in the\n`prefetchLocIdxs` array, the index of the first prefetch operation that the corresponding entry\nin the `prefetchLocs` array applies to. Both `prefetchLocs` and `prefetchLocIdxs` must be of\nthe same length as specified by `numPrefetchLocs.` For example, if a batch has 10 prefetches listed\nin dptrs/sizes, the first 4 of which are to be prefetched to one location and the remaining 6 are to be prefetched\nto another, then `numPrefetchLocs` will be 2, `prefetchLocIdxs` will be {0, 4} and `prefetchLocs`\nwill contain the two locations. Note the first entry in `prefetchLocIdxs` must always be 0.\nAlso, each entry must be greater than the previous entry and the last entry should be less than `count.`\nFurthermore, `numPrefetchLocs` must be lesser than or equal to `count.`\n\n# Arguments\n\n* `dptrs` -           - Array of pointers to be prefetched\n* `sizes` -           - Array of sizes for memory prefetch operations.\n* `count` -           - Size of `dptrs` and `sizes` arrays.\n* `prefetchLocs` -    - Array of locations to prefetch to.\n* `prefetchLocIdxs` - - Array of indices to specify which operands each entry in the `prefetchLocs` array applies to.\nThe locations specified in prefetchLocs[k] will be applied to copies starting from  prefetchLocIdxs[k]\nthrough  prefetchLocIdxs[k+1] - 1. Also prefetchLocs[numPrefetchLocs - 1] will apply to prefetches starting from\nprefetchLocIdxs[numPrefetchLocs - 1] through count - 1.\n* `numPrefetchLocs` - - Size of `prefetchLocs` and `prefetchLocIdxs` arrays.\n* `flags` -           - Flags reserved for future use. Must be zero.\n* `hStream` -         - The stream to enqueue the operations in. Must not be legacy NULL stream.\n"]
-pub unsafe fn cudaMemPrefetchBatchAsync<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
-    mut dptrs: T,
-    mut sizes: U,
+pub unsafe fn cudaMemPrefetchBatchAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
+    mut dptrs: T0,
+    mut sizes: T1,
     count: usize,
-    mut prefetchLocs: V,
-    mut prefetchLocIdxs: W,
+    mut prefetchLocs: T2,
+    mut prefetchLocIdxs: T3,
     numPrefetchLocs: usize,
     flags: u64,
     stream: cudaStream_t,
@@ -4452,17 +4690,17 @@ pub unsafe fn cudaMemPrefetchBatchAsync<T: types::CudaAsMutPtr, U: types::CudaAs
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Performs a batch of memory discards asynchronously\nPerforms a batch of memory discards. The batch as a whole executes in stream order\nbut operations within a batch are not guaranteed to execute in any specific order.\nAll devices in the system must have a non-zero value for the device attribute\n::cudaDevAttrConcurrentManagedAccess otherwise the API will return an error.\nDiscarding a memory range informs the driver that the contents of that range are no longer useful.\nDiscarding memory ranges allows the driver to optimize certain data migrations and can also help\nreduce memory pressure. This operation can be undone on any part of the range by either writing to it\nor prefetching it via ::cudaMemPrefetchAsync or ::cudaMemPrefetchBatchAsync. Reading from a discarded range,\nwithout a subsequent write or prefetch to that part of the range, will return an indeterminate value.\nNote that any reads, writes or prefetches to any part of the memory range that occur simultaneously with\nthe discard operation result in undefined behavior.\nPerforms memory discard on address ranges specified in `dptrs` and `sizes.`\nBoth arrays must be of the same length as specified by `count.` Each memory range\nspecified must refer to managed memory allocated via ::cudaMallocManaged or declared\nvia __managed__ variables or it may also refer to system-allocated memory when all devices\nhave a non-zero value for ::cudaDevAttrPageableMemoryAccess.\n\n# Arguments\n\n* `dptrs` -   - Array of pointers to be discarded\n* `sizes` -   - Array of sizes for memory discard operations.\n* `count` -   - Size of `dptrs` and `sizes` arrays.\n* `flags` -   - Flags reserved for future use. Must be zero.\n* `hStream` - - The stream to enqueue the operations in. Must not be legacy NULL stream.\n"]
-pub unsafe fn cudaMemDiscardBatchAsync<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(mut dptrs: T, mut sizes: U, count: usize, flags: u64, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemDiscardBatchAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(mut dptrs: T0, mut sizes: T1, count: usize, flags: u64, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemDiscardBatchAsync(dptrs.as_mut_ptr() as *mut _, sizes.as_mut_ptr() as *mut _, count, flags as _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Performs a batch of memory discards and prefetches asynchronously\nPerforms a batch of memory discards followed by prefetches. The batch as a whole executes\nin stream order but operations within a batch are not guaranteed to execute in any specific order.\nAll devices in the system must have a non-zero value for the device attribute\n::cudaDevAttrConcurrentManagedAccess otherwise the API will return an error.\nCalling ::cudaMemDiscardAndPrefetchBatchAsync is semantically equivalent to calling\n::cudaMemDiscardBatchAsync followed by ::cudaMemPrefetchBatchAsync, but is more optimal.\nFor more details on what discarding and prefetching imply, please refer to ::cudaMemDiscardBatchAsync\nand ::cudaMemPrefetchBatchAsync respectively. Note that any reads, writes or prefetches to any part\nof the memory range that occur simultaneously with this combined discard+prefetch operation\nresult in undefined behavior.\nPerforms memory discard and prefetch on address ranges specified in `dptrs` and `sizes.`\nBoth arrays must be of the same length as specified by `count.` Each memory range specified\nmust refer to managed memory allocated via ::cudaMallocManaged or declared via\n__managed__ variables or it may also refer to system-allocated memory when all devices\nhave a non-zero value for ::cudaDevAttrPageableMemoryAccess. Every operation in the batch\nhas to be associated with a valid location to prefetch the address range to and specified in\nthe `prefetchLocs` array. Each entry in this array can apply to more than one operation.\nThis can be done by specifying in the `prefetchLocIdxs` array, the index of the first\noperation that the corresponding entry in the `prefetchLocs` array applies to.\nBoth `prefetchLocs` and `prefetchLocIdxs` must be of the same length as specified by\n`numPrefetchLocs.` For example, if a batch has 10 operations listed in dptrs/sizes,\nthe first 6 of which are to be prefetched to one location and the remaining 4 are to be\nprefetched to another, then `numPrefetchLocs` will be 2, `prefetchLocIdxs` will be {0, 6}\nand `prefetchLocs` will contain the two set of locations. Note the first entry in\n`prefetchLocIdxs` must always be 0. Also, each entry must be greater than the previous\nentry and the last entry should be less than `count.` Furthermore, `numPrefetchLocs`\nmust be lesser than or equal to `count.`\n\n# Arguments\n\n* `dptrs` -           - Array of pointers to be discarded\n* `sizes` -           - Array of sizes for memory discard operations.\n* `count` -           - Size of `dptrs` and `sizes` arrays.\n* `prefetchLocs` -    - Array of locations to prefetch to.\n* `prefetchLocIdxs` - - Array of indices to specify which operands each entry in the `prefetchLocs` array applies to.\nThe locations specified in prefetchLocs[k] will be applied to operations starting from  prefetchLocIdxs[k]\nthrough prefetchLocIdxs[k+1] - 1. Also prefetchLocs[numPrefetchLocs - 1] will apply to copies starting from\nprefetchLocIdxs[numPrefetchLocs - 1] through count - 1.\n* `numPrefetchLocs` - - Size of `prefetchLocs` and `prefetchLocIdxs` arrays.\n* `flags` -           - Flags reserved for future use. Must be zero.\n* `hStream` -         - The stream to enqueue the operations in. Must not be legacy NULL stream.\n"]
-pub unsafe fn cudaMemDiscardAndPrefetchBatchAsync<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(
-    mut dptrs: T,
-    mut sizes: U,
+pub unsafe fn cudaMemDiscardAndPrefetchBatchAsync<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(
+    mut dptrs: T0,
+    mut sizes: T1,
     count: usize,
-    mut prefetchLocs: V,
-    mut prefetchLocIdxs: W,
+    mut prefetchLocs: T2,
+    mut prefetchLocIdxs: T3,
     numPrefetchLocs: usize,
     flags: u64,
     stream: cudaStream_t,
@@ -4471,12 +4709,12 @@ pub unsafe fn cudaMemDiscardAndPrefetchBatchAsync<T: types::CudaAsMutPtr, U: typ
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Advise about the usage of a given memory range\nAdvise the Unified Memory subsystem about the usage pattern for the memory range\nstarting at `devPtr` with a size of `count` bytes. The start address and end address of the memory\nrange will be rounded down and rounded up respectively to be aligned to CPU page size before the\nadvice is applied. The memory range must refer to managed memory allocated via ::cudaMallocManaged\nor declared via __managed__ variables. The memory range could also refer to system-allocated pageable\nmemory provided it represents a valid, host-accessible region of memory and all additional constraints\nimposed by `advice` as outlined below are also satisfied. Specifying an invalid system-allocated pageable\nmemory range results in an error being returned.\nThe `advice` parameter can take the following values:\n- ::cudaMemAdviseSetReadMostly: This implies that the data is mostly going to be read\nfrom and only occasionally written to. Any read accesses from any processor to this region will create a\nread-only copy of at least the accessed pages in that processor's memory. Additionally, if ::cudaMemPrefetchAsync\nor ::cudaMemPrefetchAsync is called on this region, it will create a read-only copy of the data on the destination processor.\nIf the target location for ::cudaMemPrefetchAsync is a host NUMA node and a read-only copy already exists on\nanother host NUMA node, that copy will be migrated to the targeted host NUMA node.\nIf any processor writes to this region, all copies of the corresponding page will be invalidated\nexcept for the one where the write occurred. If the writing processor is the CPU and the preferred location of\nthe page is a host NUMA node, then the page will also be migrated to that host NUMA node. The `location` argument is ignored for this advice.\nNote that for a page to be read-duplicated, the accessing processor must either be the CPU or a GPU\nthat has a non-zero value for the device attribute ::cudaDevAttrConcurrentManagedAccess.\nAlso, if a context is created on a device that does not have the device attribute\n::cudaDevAttrConcurrentManagedAccess set, then read-duplication will not occur until\nall such contexts are destroyed.\nIf the memory region refers to valid system-allocated pageable memory, then the accessing device must\nhave a non-zero value for the device attribute ::cudaDevAttrPageableMemoryAccess for a read-only\ncopy to be created on that device. Note however that if the accessing device also has a non-zero value for the\ndevice attribute ::cudaDevAttrPageableMemoryAccessUsesHostPageTables, then setting this advice\nwill not create a read-only copy when that device accesses this memory region.\n- ::cudaMemAdviceUnsetReadMostly:  Undoes the effect of ::cudaMemAdviseSetReadMostly and also prevents the\nUnified Memory driver from attempting heuristic read-duplication on the memory range. Any read-duplicated\ncopies of the data will be collapsed into a single copy. The location for the collapsed\ncopy will be the preferred location if the page has a preferred location and one of the read-duplicated\ncopies was resident at that location. Otherwise, the location chosen is arbitrary.\nNote: The `location` argument is ignored for this advice.\n- ::cudaMemAdviseSetPreferredLocation: This advice sets the preferred location for the\ndata to be the memory belonging to `location.` When ::cudaMemLocation::type is ::cudaMemLocationTypeHost,\n::cudaMemLocation::id is ignored and the preferred location is set to be host memory. To set the preferred location\nto a specific host NUMA node, applications must set ::cudaMemLocation::type to ::cudaMemLocationTypeHostNuma and\n::cudaMemLocation::id must specify the NUMA ID of the host NUMA node. If ::cudaMemLocation::type is set to ::cudaMemLocationTypeHostNumaCurrent,\n::cudaMemLocation::id will be ignored and the host NUMA node closest to the calling thread's CPU will be used as the preferred location.\nIf ::cudaMemLocation::type is a ::cudaMemLocationTypeDevice, then ::cudaMemLocation::id must be a valid device ordinal\nand the device must have a non-zero value for the device attribute ::cudaDevAttrConcurrentManagedAccess.\nSetting the preferred location does not cause data to migrate to that location immediately. Instead, it guides the migration policy\nwhen a fault occurs on that memory region. If the data is already in its preferred location and the\nfaulting processor can establish a mapping without requiring the data to be migrated, then\ndata migration will be avoided. On the other hand, if the data is not in its preferred location\nor if a direct mapping cannot be established, then it will be migrated to the processor accessing\nit. It is important to note that setting the preferred location does not prevent data prefetching\ndone using ::cudaMemPrefetchAsync.\nHaving a preferred location can override the page thrash detection and resolution logic in the Unified\nMemory driver. Normally, if a page is detected to be constantly thrashing between for example host and device\nmemory, the page may eventually be pinned to host memory by the Unified Memory driver. But\nif the preferred location is set as device memory, then the page will continue to thrash indefinitely.\nIf ::cudaMemAdviseSetReadMostly is also set on this memory region or any subset of it, then the\npolicies associated with that advice will override the policies of this advice, unless read accesses from\n`location` will not result in a read-only copy being created on that procesor as outlined in description for\nthe advice ::cudaMemAdviseSetReadMostly.\nIf the memory region refers to valid system-allocated pageable memory, and ::cudaMemLocation::type is ::cudaMemLocationTypeDevice\nthen ::cudaMemLocation::id must be a valid device that has a non-zero alue for the device attribute ::cudaDevAttrPageableMemoryAccess.\n- ::cudaMemAdviseUnsetPreferredLocation: Undoes the effect of ::cudaMemAdviseSetPreferredLocation\nand changes the preferred location to none. The `location` argument is ignored for this advice.\n- ::cudaMemAdviseSetAccessedBy: This advice implies that the data will be accessed by processor `location.`\nThe ::cudaMemLocation::type must be either ::cudaMemLocationTypeDevice with ::cudaMemLocation::id representing a valid device\nordinal or ::cudaMemLocationTypeHost and ::cudaMemLocation::id will be ignored. All other location types are invalid.\nIf ::cudaMemLocation::id is a GPU, then the device attribute ::cudaDevAttrConcurrentManagedAccess must be non-zero.\nThis advice does not cause data migration and has no impact on the location of the data per se. Instead,\nit causes the data to always be mapped in the specified processor's page tables, as long as the\nlocation of the data permits a mapping to be established. If the data gets migrated for any reason,\nthe mappings are updated accordingly.\nThis advice is recommended in scenarios where data locality is not important, but avoiding faults is.\nConsider for example a system containing multiple GPUs with peer-to-peer access enabled, where the\ndata located on one GPU is occasionally accessed by peer GPUs. In such scenarios, migrating data\nover to the other GPUs is not as important because the accesses are infrequent and the overhead of\nmigration may be too high. But preventing faults can still help improve performance, and so having\na mapping set up in advance is useful. Note that on CPU access of this data, the data may be migrated\nto host memory because the CPU typically cannot access device memory directly. Any GPU that had the\n::cudaMemAdviseSetAccessedBy flag set for this data will now have its mapping updated to point to the\npage in host memory.\nIf ::cudaMemAdviseSetReadMostly is also set on this memory region or any subset of it, then the\npolicies associated with that advice will override the policies of this advice. Additionally, if the\npreferred location of this memory region or any subset of it is also `location,` then the policies\nassociated with ::CU_MEM_ADVISE_SET_PREFERRED_LOCATION will override the policies of this advice.\nIf the memory region refers to valid system-allocated pageable memory, and ::cudaMemLocation::type is ::cudaMemLocationTypeDevice\nthen device in ::cudaMemLocation::id must have a non-zero value for the device attribute ::cudaDevAttrPageableMemoryAccess.\nAdditionally, if ::cudaMemLocation::id has a non-zero value for the device attribute ::cudaDevAttrPageableMemoryAccessUsesHostPageTables,\nthen this call has no effect.\n- ::CU_MEM_ADVISE_UNSET_ACCESSED_BY: Undoes the effect of ::cudaMemAdviseSetAccessedBy. Any mappings to\nthe data from `location` may be removed at any time causing accesses to result in non-fatal page faults.\nIf the memory region refers to valid system-allocated pageable memory, and ::cudaMemLocation::type is ::cudaMemLocationTypeDevice\nthen device in ::cudaMemLocation::id must have a non-zero value for the device attribute ::cudaDevAttrPageableMemoryAccess.\nAdditionally, if ::cudaMemLocation::id has a non-zero value for the device attribute ::cudaDevAttrPageableMemoryAccessUsesHostPageTables,\nthen this call has no effect.\n\n# Arguments\n\n* `devPtr` -   - Pointer to memory to set the advice for\n* `count` -    - Size in bytes of the memory range\n* `advice` -   - Advice to be applied for the specified memory range\n* `location` - - location to apply the advice for\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpyPeer, ::cudaMemcpyAsync,\n::cudaMemcpy3DPeerAsync, ::cudaMemPrefetchAsync,\n::cuMemAdvise"]
-pub unsafe fn cudaMemAdvise<T: types::CudaAsPtr>(devPtr: T, count: usize, advice: cudaMemoryAdvise, location: cudaMemLocation) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemAdvise<T0: types::CudaAsPtr>(devPtr: T0, count: usize, advice: cudaMemoryAdvise, location: cudaMemLocation) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemAdvise(devPtr.as_const_ptr() as *const _, count, advice, location) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Query an attribute of a given memory range\nQuery an attribute about the memory range starting at `devPtr` with a size of `count` bytes. The\nmemory range must refer to managed memory allocated via ::cudaMallocManaged or declared via\n__managed__ variables.\nThe `attribute` parameter can take the following values:\n- ::cudaMemRangeAttributeReadMostly: If this attribute is specified, `data` will be interpreted\nas a 32-bit integer, and `dataSize` must be 4. The result returned will be 1 if all pages in the given\nmemory range have read-duplication enabled, or 0 otherwise.\n- ::cudaMemRangeAttributePreferredLocation: If this attribute is specified, `data` will be\ninterpreted as a 32-bit integer, and `dataSize` must be 4. The result returned will be a GPU device\nid if all pages in the memory range have that GPU as their preferred location, or it will be cudaCpuDeviceId\nif all pages in the memory range have the CPU as their preferred location, or it will be cudaInvalidDeviceId\nif either all the pages don't have the same preferred location or some of the pages don't have a\npreferred location at all. Note that the actual location of the pages in the memory range at the time of\nthe query may be different from the preferred location.\n- ::cudaMemRangeAttributeAccessedBy: If this attribute is specified, `data` will be interpreted\nas an array of 32-bit integers, and `dataSize` must be a non-zero multiple of 4. The result returned\nwill be a list of device ids that had ::cudaMemAdviceSetAccessedBy set for that entire memory range.\nIf any device does not have that advice set for the entire memory range, that device will not be included.\nIf `data` is larger than the number of devices that have that advice set for that memory range,\ncudaInvalidDeviceId will be returned in all the extra space provided. For ex., if `dataSize` is 12\n(i.e. `data` has 3 elements) and only device 0 has the advice set, then the result returned will be\n{ 0, cudaInvalidDeviceId, cudaInvalidDeviceId }. If `data` is smaller than the number of devices that have\nthat advice set, then only as many devices will be returned as can fit in the array. There is no\nguarantee on which specific devices will be returned, however.\n- ::cudaMemRangeAttributeLastPrefetchLocation: If this attribute is specified, `data` will be\ninterpreted as a 32-bit integer, and `dataSize` must be 4. The result returned will be the last location\nto which all pages in the memory range were prefetched explicitly via ::cudaMemPrefetchAsync. This will either be\na GPU id or cudaCpuDeviceId depending on whether the last location for prefetch was a GPU or the CPU\nrespectively. If any page in the memory range was never explicitly prefetched or if all pages were not\nprefetched to the same location, cudaInvalidDeviceId will be returned. Note that this simply returns the\nlast location that the applicaton requested to prefetch the memory range to. It gives no indication as to\nwhether the prefetch operation to that location has completed or even begun.\n- ::cudaMemRangeAttributePreferredLocationType: If this attribute is specified, `data` will be\ninterpreted as a ::cudaMemLocationType, and `dataSize` must be sizeof(cudaMemLocationType). The ::cudaMemLocationType returned will be\n::cudaMemLocationTypeDevice if all pages in the memory range have the same GPU as their preferred location, or ::cudaMemLocationType\nwill be ::cudaMemLocationTypeHost if all pages in the memory range have the CPU as their preferred location, or or it will be ::cudaMemLocationTypeHostNuma\nif all the pages in the memory range have the same host NUMA node ID as their preferred location or it will be ::cudaMemLocationTypeInvalid\nif either all the pages don't have the same preferred location or some of the pages don't have a preferred location at all.\nNote that the actual location type of the pages in the memory range at the time of the query may be different from the preferred location type.\n- ::cudaMemRangeAttributePreferredLocationId: If this attribute is specified, `data` will be\ninterpreted as a 32-bit integer, and `dataSize` must be 4. If the ::cudaMemRangeAttributePreferredLocationType query for the same address range\nreturns ::cudaMemLocationTypeDevice, it will be a valid device ordinal or if it returns ::cudaMemLocationTypeHostNuma, it will be a valid host NUMA node ID\nor if it returns any other location type, the id should be ignored.\n- ::cudaMemRangeAttributeLastPrefetchLocationType: If this attribute is specified, `data` will be\ninterpreted as a ::cudaMemLocationType, and `dataSize` must be sizeof(cudaMemLocationType). The result returned will be the last location type\nto which all pages in the memory range were prefetched explicitly via ::cuMemPrefetchAsync. The ::cudaMemLocationType returned\nwill be ::cudaMemLocationTypeDevice if the last prefetch location was the GPU or ::cudaMemLocationTypeHost if it was the CPU or ::cudaMemLocationTypeHostNuma if\nthe last prefetch location was a specific host NUMA node. If any page in the memory range was never explicitly prefetched or if all pages were not\nprefetched to the same location, ::CUmemLocationType will be ::cudaMemLocationTypeInvalid.\nNote that this simply returns the last location type that the application requested to prefetch the memory range to. It gives no indication as to\nwhether the prefetch operation to that location has completed or even begun.\n- ::cudaMemRangeAttributeLastPrefetchLocationId: If this attribute is specified, `data` will be\ninterpreted as a 32-bit integer, and `dataSize` must be 4. If the ::cudaMemRangeAttributeLastPrefetchLocationType query for the same address range\nreturns ::cudaMemLocationTypeDevice, it will be a valid device ordinal or if it returns ::cudaMemLocationTypeHostNuma, it will be a valid host NUMA node ID\nor if it returns any other location type, the id should be ignored.\n\n# Arguments\n\n* `data` -      - A pointers to a memory location where the result\nof each attribute query will be written to.\n* `dataSize` -  - Array containing the size of data\n* `attribute` - - The attribute to query\n* `devPtr` -    - Start of the range to query\n* `count` -     - Size of the range to query\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemRangeGetAttributes,`] ::cudaMemPrefetchAsync,\n::cudaMemAdvise,\n::cuMemRangeGetAttribute"]
-pub unsafe fn cudaMemRangeGetAttribute<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut data: T, dataSize: usize, attribute: cudaMemRangeAttribute, devPtr: U, count: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemRangeGetAttribute<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut data: T0, dataSize: usize, attribute: cudaMemRangeAttribute, devPtr: T1, count: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemRangeGetAttribute(data.as_mut_ptr() as *mut _, dataSize, attribute, devPtr.as_const_ptr() as *const _, count) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4492,12 +4730,12 @@ pub unsafe fn cudaMemRangeGetAttributes(data: *mut *mut ::std::os::raw::c_void, 
     }
 }
 #[doc = "Copies data between host and device\n> **Deprecated** Copies `count` bytes from the memory area pointed to by `src` to the\nCUDA array `dst` starting at `hOffset` rows and `wOffset` bytes from\nthe upper left corner, where `kind` specifies the direction\nof the copy, and must be one of ::cudaMemcpyHostToHost,\n::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `wOffset` - - Destination starting X offset (columns in bytes)\n* `hOffset` - - Destination starting Y offset (rows)\n* `src` -     - Source memory address\n* `count` -   - Size in bytes to copy\n* `kind` -    - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_sync \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D,\n::cudaMemcpy2DToArray, ::cudaMemcpyFromArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpyArrayToArray, ::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpyToArrayAsync, ::cudaMemcpy2DToArrayAsync,\n::cudaMemcpyFromArrayAsync, ::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpyHtoA,\n::cuMemcpyDtoA"]
-pub unsafe fn cudaMemcpyToArray<T: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyToArray<T0: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T0, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyToArray(dst, wOffset, hOffset, src.as_const_ptr() as *const _, count, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\n> **Deprecated** Copies `count` bytes from the CUDA array `src` starting at `hOffset` rows\nand `wOffset` bytes from the upper left corner to the memory area pointed to\nby `dst,` where `kind` specifies the direction of the copy, and must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `src` -     - Source memory address\n* `wOffset` - - Source starting X offset (columns in bytes)\n* `hOffset` - - Source starting Y offset (rows)\n* `count` -   - Size in bytes to copy\n* `kind` -    - Type of transfer\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_sync \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D, ::cudaMemcpyToArray,\n::cudaMemcpy2DToArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpyArrayToArray, ::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpyToArrayAsync, ::cudaMemcpy2DToArrayAsync,\n::cudaMemcpyFromArrayAsync, ::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpyAtoH,\n::cuMemcpyAtoD"]
-pub unsafe fn cudaMemcpyFromArray<T: types::CudaAsMutPtr>(mut dst: T, src: cudaArray_const_t, wOffset: usize, hOffset: usize, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyFromArray<T0: types::CudaAsMutPtr>(mut dst: T0, src: cudaArray_const_t, wOffset: usize, hOffset: usize, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyFromArray(dst.as_mut_ptr() as *mut _, src, wOffset, hOffset, count, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4507,23 +4745,23 @@ pub unsafe fn cudaMemcpyArrayToArray(dst: cudaArray_t, wOffsetDst: usize, hOffse
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\n> **Deprecated** Copies `count` bytes from the memory area pointed to by `src` to the\nCUDA array `dst` starting at `hOffset` rows and `wOffset` bytes from\nthe upper left corner, where `kind` specifies the\ndirection of the copy, and must be one of ::cudaMemcpyHostToHost,\n::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n::cudaMemcpyToArrayAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally\nbe associated to a stream by passing a non-zero `stream` argument. If `kind` is ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost and `stream`\nis non-zero, the copy may overlap with operations in other streams.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `wOffset` - - Destination starting X offset (columns in bytes)\n* `hOffset` - - Destination starting Y offset (rows)\n* `src` -     - Source memory address\n* `count` -   - Size in bytes to copy\n* `kind` -    - Type of transfer\n* `stream` -  - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D, ::cudaMemcpyToArray,\n::cudaMemcpy2DToArray, ::cudaMemcpyFromArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpyArrayToArray, ::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpy2DToArrayAsync,\n::cudaMemcpyFromArrayAsync, ::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpyHtoAAsync,\n::cuMemcpy2DAsync"]
-pub unsafe fn cudaMemcpyToArrayAsync<T: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyToArrayAsync<T0: types::CudaAsPtr>(dst: cudaArray_t, wOffset: usize, hOffset: usize, src: T0, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyToArrayAsync(dst, wOffset, hOffset, src.as_const_ptr() as *const _, count, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Copies data between host and device\n> **Deprecated** Copies `count` bytes from the CUDA array `src` starting at `hOffset` rows\nand `wOffset` bytes from the upper left corner to the memory area pointed to\nby `dst,` where `kind` specifies the direction of the copy, and must be one of\n::cudaMemcpyHostToHost, ::cudaMemcpyHostToDevice, ::cudaMemcpyDeviceToHost,\n::cudaMemcpyDeviceToDevice, or ::cudaMemcpyDefault. Passing\n::cudaMemcpyDefault is recommended, in which case the type of transfer is\ninferred from the pointer values. However, ::cudaMemcpyDefault is only\nallowed on systems that support unified virtual addressing.\n::cudaMemcpyFromArrayAsync() is asynchronous with respect to the host, so\nthe call may return before the copy is complete. The copy can optionally\nbe associated to a stream by passing a non-zero `stream` argument. If `kind` is ::cudaMemcpyHostToDevice or ::cudaMemcpyDeviceToHost and `stream`\nis non-zero, the copy may overlap with operations in other streams.\n\n# Arguments\n\n* `dst` -     - Destination memory address\n* `src` -     - Source memory address\n* `wOffset` - - Source starting X offset (columns in bytes)\n* `hOffset` - - Source starting Y offset (rows)\n* `count` -   - Size in bytes to copy\n* `kind` -    - Type of transfer\n* `stream` -  - Stream identifier\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidMemcpyDirection\n\\notefnerr \\note_async \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cudaMemcpy,`] ::cudaMemcpy2D, ::cudaMemcpyToArray,\n::cudaMemcpy2DToArray, ::cudaMemcpyFromArray, ::cudaMemcpy2DFromArray,\n::cudaMemcpyArrayToArray, ::cudaMemcpy2DArrayToArray, ::cudaMemcpyToSymbol,\n::cudaMemcpyFromSymbol, ::cudaMemcpyAsync, ::cudaMemcpy2DAsync,\n::cudaMemcpyToArrayAsync, ::cudaMemcpy2DToArrayAsync,\n::cudaMemcpy2DFromArrayAsync,\n::cudaMemcpyToSymbolAsync, ::cudaMemcpyFromSymbolAsync,\n::cuMemcpyAtoHAsync,\n::cuMemcpy2DAsync"]
-pub unsafe fn cudaMemcpyFromArrayAsync<T: types::CudaAsMutPtr>(mut dst: T, src: cudaArray_const_t, wOffset: usize, hOffset: usize, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemcpyFromArrayAsync<T0: types::CudaAsMutPtr>(mut dst: T0, src: cudaArray_const_t, wOffset: usize, hOffset: usize, count: usize, kind: cudaMemcpyKind, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemcpyFromArrayAsync(dst.as_mut_ptr() as *mut _, src, wOffset, hOffset, count, kind, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Allocates memory with stream ordered semantics\nInserts an allocation operation into `hStream.`\nA pointer to the allocated memory is returned immediately in *dptr.\nThe allocation must not be accessed until the the allocation operation completes.\nThe allocation comes from the memory pool associated with the stream's device.\n> **Note** The default memory pool of a device contains device memory from that device.\n> **Note** Basic stream ordering allows future work submitted into the same stream to use the allocation.\nStream query, stream synchronize, and CUDA events can be used to guarantee that the allocation\noperation completes before work submitted in a separate stream runs.\n> **Note** During stream capture, this function results in the creation of an allocation node.  In this case,\nthe allocation is owned by the graph instead of the memory pool. The memory pool's properties\nare used to set the node's creation parameters.\n\n# Arguments\n\n* `devPtr` [out]  -  - Returned device pointer\n* `size` [in]  -     - Number of bytes to allocate\n* `hStream` [in]  -  - The stream establishing the stream ordering contract and the memory pool to allocate from\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported,\n::cudaErrorOutOfMemory,\n\\notefnerr \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cuMemAllocAsync,`]\n[`::cudaMallocAsync(void**`] ptr, size_t size, cudaMemPool_t memPool, cudaStream_t stream)  \"cudaMallocAsync (C++ API)\",\n::cudaMallocFromPoolAsync, ::cudaFreeAsync, ::cudaDeviceSetMemPool, ::cudaDeviceGetDefaultMemPool, ::cudaDeviceGetMemPool, ::cudaMemPoolSetAccess, ::cudaMemPoolSetAttribute, ::cudaMemPoolGetAttribute"]
-pub unsafe fn cudaMallocAsync<T>(size: usize, hStream: cudaStream_t) -> Result<::cuda_libs_cudart::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
-    let mut dev_ptr = std::ptr::null_mut();
+pub unsafe fn cudaMallocAsync<T>(size: usize, hStream: cudaStream_t) -> Result<crate::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMallocAsync(&mut dev_ptr as *mut _ as *mut _, size, hStream) };
-    if status == crate::sys::cudaError::cudaSuccess { Ok(::cuda_libs_cudart::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
+    if status == crate::sys::cudaError::cudaSuccess { Ok(crate::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
 }
 #[doc = "Frees memory with stream ordered semantics\nInserts a free operation into `hStream.`\nThe allocation must not be accessed after stream execution reaches the free.\nAfter this API returns, accessing the memory from any subsequent work launched on the GPU\nor querying its pointer attributes results in undefined behavior.\n> **Note** During stream capture, this function results in the creation of a free node and\nmust therefore be passed the address of a graph allocation.\n\n# Arguments\n\n* `dptr` - - memory to free\n* `hStream` - - The stream establishing the stream ordering promise\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported\n\\notefnerr \\note_null_stream \\note_init_rt \\note_callback # See also\n\n> [`::cuMemFreeAsync,`] ::cudaMallocAsync"]
-pub unsafe fn cudaFreeAsync<T>(devPtr: ::cuda_libs_cudart::types::cuDeviceAllocation<T>, hStream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaFreeAsync<T>(devPtr: crate::types::cuDeviceAllocation<T>, hStream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaFreeAsync(devPtr.0 as *mut _, hStream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4533,17 +4771,17 @@ pub unsafe fn cudaMemPoolTrimTo(memPool: cudaMemPool_t, minBytesToKeep: usize) -
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Sets attributes of a memory pool\nSupported attributes are:\n- ::cudaMemPoolAttrReleaseThreshold: (value type = cuuint64_t)\nAmount of reserved memory in bytes to hold onto before trying\nto release memory back to the OS. When more than the release\nthreshold bytes of memory are held by the memory pool, the\nallocator will try to release memory back to the OS on the\nnext call to stream, event or context synchronize. (default 0)\n- ::cudaMemPoolReuseFollowEventDependencies: (value type = int)\nAllow ::cudaMallocAsync to use memory asynchronously freed\nin another stream as long as a stream ordering dependency\nof the allocating stream on the free action exists.\nCuda events and null stream interactions can create the required\nstream ordered dependencies. (default enabled)\n- ::cudaMemPoolReuseAllowOpportunistic: (value type = int)\nAllow reuse of already completed frees when there is no dependency\nbetween the free and allocation. (default enabled)\n- ::cudaMemPoolReuseAllowInternalDependencies: (value type = int)\nAllow ::cudaMallocAsync to insert new stream dependencies\nin order to establish the stream ordering required to reuse\na piece of memory released by ::cudaFreeAsync (default enabled).\n- ::cudaMemPoolAttrReservedMemHigh: (value type = cuuint64_t)\nReset the high watermark that tracks the amount of backing memory that was\nallocated for the memory pool. It is illegal to set this attribute to a non-zero value.\n- ::cudaMemPoolAttrUsedMemHigh: (value type = cuuint64_t)\nReset the high watermark that tracks the amount of used memory that was\nallocated for the memory pool. It is illegal to set this attribute to a non-zero value.\n\n# Arguments\n\n* `pool` [in]  -  - The memory pool to modify\n* `attr` [in]  -  - The attribute to modify\n* `value` [in]  - - Pointer to the value to assign\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_callback # See also\n\n> [`::cuMemPoolSetAttribute,`] ::cudaMallocAsync, ::cudaFreeAsync, ::cudaDeviceGetDefaultMemPool, ::cudaDeviceGetMemPool, ::cudaMemPoolCreate\n"]
-pub unsafe fn cudaMemPoolSetAttribute<T: types::CudaAsMutPtr>(memPool: cudaMemPool_t, attr: cudaMemPoolAttr, mut value: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPoolSetAttribute<T0: types::CudaAsMutPtr>(memPool: cudaMemPool_t, attr: cudaMemPoolAttr, mut value: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPoolSetAttribute(memPool, attr, value.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Gets attributes of a memory pool\nSupported attributes are:\n- ::cudaMemPoolAttrReleaseThreshold: (value type = cuuint64_t)\nAmount of reserved memory in bytes to hold onto before trying\nto release memory back to the OS. When more than the release\nthreshold bytes of memory are held by the memory pool, the\nallocator will try to release memory back to the OS on the\nnext call to stream, event or context synchronize. (default 0)\n- ::cudaMemPoolReuseFollowEventDependencies: (value type = int)\nAllow ::cudaMallocAsync to use memory asynchronously freed\nin another stream as long as a stream ordering dependency\nof the allocating stream on the free action exists.\nCuda events and null stream interactions can create the required\nstream ordered dependencies. (default enabled)\n- ::cudaMemPoolReuseAllowOpportunistic: (value type = int)\nAllow reuse of already completed frees when there is no dependency\nbetween the free and allocation. (default enabled)\n- ::cudaMemPoolReuseAllowInternalDependencies: (value type = int)\nAllow ::cudaMallocAsync to insert new stream dependencies\nin order to establish the stream ordering required to reuse\na piece of memory released by ::cudaFreeAsync (default enabled).\n- ::cudaMemPoolAttrReservedMemCurrent: (value type = cuuint64_t)\nAmount of backing memory currently allocated for the mempool.\n- ::cudaMemPoolAttrReservedMemHigh: (value type = cuuint64_t)\nHigh watermark of backing memory allocated for the mempool since\nthe last time it was reset.\n- ::cudaMemPoolAttrUsedMemCurrent: (value type = cuuint64_t)\nAmount of memory from the pool that is currently in use by the application.\n- ::cudaMemPoolAttrUsedMemHigh: (value type = cuuint64_t)\nHigh watermark of the amount of memory from the pool that was in use by the\napplication since the last time it was reset.\nThe following properties can be also be queried on imported and default pools:\n- ::cudaMemPoolAttrAllocationType: (value type = cudaMemAllocationType)\nThe allocation type of the mempool\n- ::cudaMemPoolAttrExportHandleTypes: (value type = cudaMemAllocationHandleType)\nAvailable export handle types for the mempool. For imported pools this\nvalue is always cudaMemHandleTypeNone as an imported pool cannot be\nre-exported\n- ::cudaMemPoolAttrLocationId: (value type = int)\nThe location id for the mempool. If the location type for this pool is\ncudaMemLocationTypeInvisible then ID will be cudaInvalidDeviceId.\n- ::cudaMemPoolAttrLocationType: (value type = cudaMemLocationType)\nThe location type for the mempool. For imported memory pools where the\ndevice is not directly visible to the importing process or pools imported\nvia fabric handles across nodes this will be\ncudaMemlocataionTypeInvisible.\n- ::cudaMemPoolAttrMaxPoolSize: (value type = cuuint64_t)\nMaximum size of the pool in bytes, this value may be higher than what was\ninitially passed to cuMemPoolCreate due to alignment requirements. A\nvalue of 0 indicates no maximum size. For cudaMemAllocationTypeManaged\nand IPC imported pools this value will be system dependent.\n- ::cudaMemPoolAttrHwDecompressEnabled: (value type = int)\nIndicates whether the pool has hardware compresssion enabled\n\n# Arguments\n\n* `pool` [in]  -  - The memory pool to get attributes of\n* `attr` [in]  -  - The attribute to get\n* `value` [in]  - - Retrieved value\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_callback # See also\n\n> [`::cuMemPoolGetAttribute,`] ::cudaMallocAsync, ::cudaFreeAsync, ::cudaDeviceGetDefaultMemPool, ::cudaDeviceGetMemPool, ::cudaMemPoolCreate\n"]
-pub unsafe fn cudaMemPoolGetAttribute<T: types::CudaAsMutPtr>(memPool: cudaMemPool_t, attr: cudaMemPoolAttr, mut value: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPoolGetAttribute<T0: types::CudaAsMutPtr>(memPool: cudaMemPool_t, attr: cudaMemPoolAttr, mut value: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPoolGetAttribute(memPool, attr, value.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Controls visibility of pools between devices\n\n# Arguments\n\n* `pool` [in]  -  - The pool being modified\n* `map` [in]  -   - Array of access descriptors. Each descriptor instructs the access to enable for a single gpu\n* `count` [in]  - - Number of descriptors in the map array.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\n# See also\n\n> [`::cuMemPoolSetAccess,`] ::cudaMemPoolGetAccess, ::cudaMallocAsync, cudaFreeAsync"]
-pub unsafe fn cudaMemPoolSetAccess<T: types::CudaAsPtr>(memPool: cudaMemPool_t, descList: T, count: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPoolSetAccess<T0: types::CudaAsPtr>(memPool: cudaMemPool_t, descList: T0, count: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPoolSetAccess(memPool, descList.as_const_ptr() as *const _, count) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4596,33 +4834,33 @@ pub unsafe fn cudaMemGetMemPool(type_: cudaMemAllocationType) -> Result<(cudaMem
     }
 }
 #[doc = "Sets the current memory pool for a memory location and allocation type\nThe memory location can be of one of ::cudaMemLocationTypeDevice, ::cudaMemLocationTypeHost or\n::cudaMemLocationTypeHostNuma. The allocation type can be one of ::cudaMemAllocationTypePinned or\n::cudaMemAllocationTypeManaged. When the allocation type is ::cudaMemAllocationTypeManaged,\nthe location type can also be ::cudaMemLocationTypeNone to indicate no preferred location\nfor the managed memory pool. In all other cases, the call return ::cudaErrorInvalidValue\nWhen a memory pool is set as the current memory pool, the location parameter should be the same as the location of the pool.\nIf the location type or index don't match, the call returns ::cudaErrorInvalidValue.\nThe type of memory pool should also match the parameter allocType. Else the call returns ::cudaErrorInvalidValue.\nBy default, a memory location's current memory pool is its default memory pool.\nIf the location type is ::cudaMemLocationTypeDevice and the allocation type is ::cudaMemAllocationTypePinned, then\nthis API is the equivalent of calling ::cudaDeviceSetMemPool with the location id as the device.\nFor further details on the implications, please refer to the documentation for ::cudaDeviceSetMemPool.\n> **Note** Use ::cudaMallocFromPoolAsync to specify asynchronous allocations from a device different\nthan the one the stream runs on.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\n# See also\n\n> [`::cuDeviceGetDefaultMemPool,`] ::cuDeviceGetMemPool, ::cuMemGetMemPool, ::cuMemPoolCreate, ::cuMemPoolDestroy, ::cuMemAllocFromPoolAsync"]
-pub unsafe fn cudaMemSetMemPool<T: types::CudaAsMutPtr>(mut location: T, type_: cudaMemAllocationType, memPool: cudaMemPool_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemSetMemPool<T0: types::CudaAsMutPtr>(mut location: T0, type_: cudaMemAllocationType, memPool: cudaMemPool_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemSetMemPool(location.as_mut_ptr() as *mut _, type_, memPool) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Allocates memory from a specified pool with stream ordered semantics.\nInserts an allocation operation into `hStream.`\nA pointer to the allocated memory is returned immediately in *dptr.\nThe allocation must not be accessed until the the allocation operation completes.\nThe allocation comes from the specified memory pool.\n> **Note** -  The specified memory pool may be from a device different than that of the specified `hStream.`\n-  Basic stream ordering allows future work submitted into the same stream to use the allocation.\nStream query, stream synchronize, and CUDA events can be used to guarantee that the allocation\noperation completes before work submitted in a separate stream runs.\n> **Note** During stream capture, this function results in the creation of an allocation node.  In this case,\nthe allocation is owned by the graph instead of the memory pool. The memory pool's properties\nare used to set the node's creation parameters.\n\n# Arguments\n\n* `ptr` [out]  -     - Returned device pointer\n* `bytesize` [in]  - - Number of bytes to allocate\n* `memPool` [in]  -  - The pool to allocate from\n* `stream` [in]  -   - The stream establishing the stream ordering semantic\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotSupported,\n::cudaErrorOutOfMemory\n\n# See also\n\n> [`::cuMemAllocFromPoolAsync,`]\n[`::cudaMallocAsync(void**`] ptr, size_t size, cudaMemPool_t memPool, cudaStream_t stream)  \"cudaMallocAsync (C++ API)\",\n::cudaMallocAsync, ::cudaFreeAsync, ::cudaDeviceGetDefaultMemPool, ::cudaMemPoolCreate, ::cudaMemPoolSetAccess, ::cudaMemPoolSetAttribute"]
-pub unsafe fn cudaMallocFromPoolAsync<T>(size: usize, memPool: cudaMemPool_t, stream: cudaStream_t) -> Result<::cuda_libs_cudart::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
-    let mut dev_ptr = std::ptr::null_mut();
+pub unsafe fn cudaMallocFromPoolAsync<T>(size: usize, memPool: cudaMemPool_t, stream: cudaStream_t) -> Result<crate::types::cuDeviceAllocation<T>, crate::sys::cudaError> {
+    let mut dev_ptr = std::mem::zeroed();
     let status = unsafe { crate::sys::cudaMallocFromPoolAsync(&mut dev_ptr as *mut _ as *mut _, size, memPool, stream) };
-    if status == crate::sys::cudaError::cudaSuccess { Ok(::cuda_libs_cudart::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
+    if status == crate::sys::cudaError::cudaSuccess { Ok(crate::types::cuDeviceAllocation(dev_ptr as *mut T)) } else { Err(status) }
 }
 #[doc = "Exports a memory pool to the requested handle type.\nGiven an IPC capable mempool, create an OS handle to share the pool with another process.\nA recipient process can convert the shareable handle into a mempool with ::cudaMemPoolImportFromShareableHandle.\nIndividual pointers can then be shared with the ::cudaMemPoolExportPointer and ::cudaMemPoolImportPointer APIs.\nThe implementation of what the shareable handle is and how it can be transferred is defined by the requested\nhandle type.\n\\note: To create an IPC capable mempool, create a mempool with a CUmemAllocationHandleType other than cudaMemHandleTypeNone.\n\n# Arguments\n\n* `handle_out` [out]  -  - pointer to the location in which to store the requested handle\n* `pool` [in]  -         - pool to export\n* `handleType` [in]  -   - the type of handle to create\n* `flags` [in]  -        - must be 0\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorOutOfMemory\n\n# See also\n\n> [`::cuMemPoolExportToShareableHandle,`] ::cudaMemPoolImportFromShareableHandle, ::cudaMemPoolExportPointer, ::cudaMemPoolImportPointer"]
-pub unsafe fn cudaMemPoolExportToShareableHandle<T: types::CudaAsMutPtr>(mut shareableHandle: T, memPool: cudaMemPool_t, handleType: cudaMemAllocationHandleType, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPoolExportToShareableHandle<T0: types::CudaAsMutPtr>(mut shareableHandle: T0, memPool: cudaMemPool_t, handleType: cudaMemAllocationHandleType, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPoolExportToShareableHandle(shareableHandle.as_mut_ptr() as *mut _, memPool, handleType, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "imports a memory pool from a shared handle.\nSpecific allocations can be imported from the imported pool with ::cudaMemPoolImportPointer.\n> **Note** Imported memory pools do not support creating new allocations.\nAs such imported memory pools may not be used in ::cudaDeviceSetMemPool\nor ::cudaMallocFromPoolAsync calls.\n\n# Arguments\n\n* `pool_out` [out]  -    - Returned memory pool\n* `handle` [in]  -       - OS handle of the pool to open\n* `handleType` [in]  -   - The type of handle being imported\n* `flags` [in]  -        - must be 0\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorOutOfMemory\n\n# See also\n\n> [`::cuMemPoolImportFromShareableHandle,`] ::cudaMemPoolExportToShareableHandle, ::cudaMemPoolExportPointer, ::cudaMemPoolImportPointer"]
-pub unsafe fn cudaMemPoolImportFromShareableHandle<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(mut memPool: T, mut shareableHandle: U, handleType: cudaMemAllocationHandleType, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPoolImportFromShareableHandle<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(mut memPool: T0, mut shareableHandle: T1, handleType: cudaMemAllocationHandleType, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPoolImportFromShareableHandle(memPool.as_mut_ptr() as *mut _, shareableHandle.as_mut_ptr() as *mut _, handleType, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Export data to share a memory pool allocation between processes.\nConstructs `shareData_out` for sharing a specific allocation from an already shared memory pool.\nThe recipient process can import the allocation with the ::cudaMemPoolImportPointer api.\nThe data is not a handle and may be shared through any IPC mechanism.\n\n# Arguments\n\n* `shareData_out` [out]  - - Returned export data\n* `ptr` [in]  -            - pointer to memory being exported\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorOutOfMemory\n\n# See also\n\n> [`::cuMemPoolExportPointer,`] ::cudaMemPoolExportToShareableHandle, ::cudaMemPoolImportFromShareableHandle, ::cudaMemPoolImportPointer"]
-pub unsafe fn cudaMemPoolExportPointer<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(mut exportData: T, mut ptr: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPoolExportPointer<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(mut exportData: T0, mut ptr: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPoolExportPointer(exportData.as_mut_ptr() as *mut _, ptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Import a memory pool allocation from another process.\nReturns in `ptr_out` a pointer to the imported memory.\nThe imported memory must not be accessed before the allocation operation completes\nin the exporting process. The imported memory must be freed from all importing processes before\nbeing freed in the exporting process. The pointer may be freed with cudaFree\nor cudaFreeAsync.  If ::cudaFreeAsync is used, the free must be completed\non the importing process before the free operation on the exporting process.\n> **Note** The ::cudaFreeAsync api may be used in the exporting process before\nthe ::cudaFreeAsync operation completes in its stream as long as the\n::cudaFreeAsync in the exporting process specifies a stream with\na stream dependency on the importing process's ::cudaFreeAsync.\n\n# Arguments\n\n* `ptr_out` [out]  -  - pointer to imported memory\n* `pool` [in]  -      - pool from which to import\n* `shareData` [in]  - - data specifying the memory to import\n\n# Returns\n\n::CUDA_SUCCESS,\n::CUDA_ERROR_INVALID_VALUE,\n::CUDA_ERROR_NOT_INITIALIZED,\n::CUDA_ERROR_OUT_OF_MEMORY\n\n# See also\n\n> [`::cuMemPoolImportPointer,`] ::cudaMemPoolExportToShareableHandle, ::cudaMemPoolImportFromShareableHandle, ::cudaMemPoolExportPointer"]
-pub unsafe fn cudaMemPoolImportPointer<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(mut ptr: T, memPool: cudaMemPool_t, mut exportData: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaMemPoolImportPointer<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(mut ptr: T0, memPool: cudaMemPool_t, mut exportData: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaMemPoolImportPointer(ptr.as_mut_ptr() as *mut _, memPool, exportData.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4637,7 +4875,7 @@ pub unsafe fn cudaPointerGetAttributes(ptr: *const ::std::os::raw::c_void) -> Re
     }
 }
 #[doc = "Queries if a device may directly access a peer device's memory.\nReturns in `*canAccessPeer` a value of 1 if device `device` is capable of\ndirectly accessing memory from `peerDevice` and 0 otherwise.  If direct\naccess of `peerDevice` from `device` is possible, then access may be\nenabled by calling ::cudaDeviceEnablePeerAccess().\n\n# Arguments\n\n* `canAccessPeer` - - Returned access capability\n* `device` -        - Device from which allocations on `peerDevice` are to\nbe directly accessed.\n* `peerDevice` -    - Device on which the allocations to be directly accessed\nby `device` reside.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidDevice\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaDeviceEnablePeerAccess,`]\n::cudaDeviceDisablePeerAccess,\n::cuDeviceCanAccessPeer"]
-pub unsafe fn cudaDeviceCanAccessPeer<T: types::CudaAsMutPtr>(mut canAccessPeer: T, device: i32, peerDevice: i32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDeviceCanAccessPeer<T0: types::CudaAsMutPtr>(mut canAccessPeer: T0, device: i32, peerDevice: i32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDeviceCanAccessPeer(canAccessPeer.as_mut_ptr() as *mut _, device as _, peerDevice as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4662,12 +4900,12 @@ pub unsafe fn cudaGraphicsResourceSetMapFlags(resource: cudaGraphicsResource_t, 
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Map graphics resources for access by CUDA\nMaps the `count` graphics resources in `resources` for access by CUDA.\nThe resources in `resources` may be accessed by CUDA until they\nare unmapped. The graphics API from which `resources` were registered\nshould not access any resources while they are mapped by CUDA. If an\napplication does so, the results are undefined.\nThis function provides the synchronization guarantee that any graphics calls\nissued before ::cudaGraphicsMapResources() will complete before any subsequent CUDA\nwork issued in `stream` begins.\nIf `resources` contains any duplicate entries then ::cudaErrorInvalidResourceHandle\nis returned. If any of `resources` are presently mapped for access by\nCUDA then ::cudaErrorUnknown is returned.\n\n# Arguments\n\n* `count` -     - Number of resources to map\n* `resources` - - Resources to map for CUDA\n* `stream` -    - Stream for synchronization\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorUnknown\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphicsResourceGetMappedPointer,`]\n::cudaGraphicsSubResourceGetMappedArray,\n::cudaGraphicsUnmapResources,\n::cuGraphicsMapResources"]
-pub unsafe fn cudaGraphicsMapResources<T: types::CudaAsMutPtr>(count: i32, mut resources: T, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphicsMapResources<T0: types::CudaAsMutPtr>(count: i32, mut resources: T0, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphicsMapResources(count as _, resources.as_mut_ptr() as *mut _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Unmap graphics resources.\nUnmaps the `count` graphics resources in `resources.`\nOnce unmapped, the resources in `resources` may not be accessed by CUDA\nuntil they are mapped again.\nThis function provides the synchronization guarantee that any CUDA work issued\nin `stream` before ::cudaGraphicsUnmapResources() will complete before any\nsubsequently issued graphics work begins.\nIf `resources` contains any duplicate entries then ::cudaErrorInvalidResourceHandle\nis returned. If any of `resources` are not presently mapped for access by\nCUDA then ::cudaErrorUnknown is returned.\n\n# Arguments\n\n* `count` -     - Number of resources to unmap\n* `resources` - - Resources to unmap\n* `stream` -    - Stream for synchronization\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorUnknown\n\\note_null_stream \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphicsMapResources,`]\n::cuGraphicsUnmapResources"]
-pub unsafe fn cudaGraphicsUnmapResources<T: types::CudaAsMutPtr>(count: i32, mut resources: T, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphicsUnmapResources<T0: types::CudaAsMutPtr>(count: i32, mut resources: T0, stream: cudaStream_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphicsUnmapResources(count as _, resources.as_mut_ptr() as *mut _, stream) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4692,7 +4930,7 @@ pub unsafe fn cudaGraphicsSubResourceGetMappedArray(resource: cudaGraphicsResour
     }
 }
 #[doc = "Get a mipmapped array through which to access a mapped graphics resource.\nReturns in `*mipmappedArray` a mipmapped array through which the mapped\ngraphics resource `resource` may be accessed. The value set in `mipmappedArray` may\nchange every time that `resource` is mapped.\nIf `resource` is not a texture then it cannot be accessed via an array and\n::cudaErrorUnknown is returned.\nIf `resource` is not mapped then ::cudaErrorUnknown is returned.\n\n# Arguments\n\n* `mipmappedArray` - - Returned mipmapped array through which `resource` may be accessed\n* `resource` -       - Mapped resource to access\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorUnknown\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphicsResourceGetMappedPointer,`]\n::cuGraphicsResourceGetMappedMipmappedArray"]
-pub unsafe fn cudaGraphicsResourceGetMappedMipmappedArray<T: types::CudaAsMutPtr>(mut mipmappedArray: T, resource: cudaGraphicsResource_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphicsResourceGetMappedMipmappedArray<T0: types::CudaAsMutPtr>(mut mipmappedArray: T0, resource: cudaGraphicsResource_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphicsResourceGetMappedMipmappedArray(mipmappedArray.as_mut_ptr() as *mut _, resource) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4801,7 +5039,7 @@ pub unsafe fn cudaRuntimeGetVersion() -> Result<i32, crate::sys::cudaError> {
     }
 }
 #[doc = "Register a callback function to receive error log messages\n\n# Arguments\n\n* `callbackFunc` -  - The function to register as a callback\n* `userData` -      - A generic pointer to user data. This is passed into the callback function.\n* `callback_out` -  - Optional location to store the callback handle after it is registered\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,"]
-pub unsafe fn cudaLogsRegisterCallback<T: types::CudaAsMutPtr>(callbackFunc: cudaLogsCallback_t, mut userData: T, callback_out: *mut cudaLogsCallbackHandle) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLogsRegisterCallback<T0: types::CudaAsMutPtr>(callbackFunc: cudaLogsCallback_t, mut userData: T0, callback_out: *mut cudaLogsCallbackHandle) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLogsRegisterCallback(callbackFunc, userData.as_mut_ptr() as *mut _, callback_out) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4811,17 +5049,17 @@ pub unsafe fn cudaLogsUnregisterCallback(callback: cudaLogsCallbackHandle) -> Re
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Sets log iterator to point to the end of log buffer, where the next message would be written.\n\n# Arguments\n\n* `iterator_out` - - Location to store an iterator to the current tail of the logs\n* `flags` -        - Reserved for future use, must be 0\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,"]
-pub unsafe fn cudaLogsCurrent<T: types::CudaAsMutPtr>(mut iterator_out: T, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLogsCurrent<T0: types::CudaAsMutPtr>(mut iterator_out: T0, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLogsCurrent(iterator_out.as_mut_ptr() as *mut _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Dump accumulated driver logs into a file\nLogs generated by the driver are stored in an internal buffer and can be copied out using this API.\nThis API dumps all driver logs starting from `iterator` into `pathToFile` provided.\n> **Note** `iterator` is auto-advancing. Dumping logs will update the value of\n`iterator` to receive the next generated log.\n> **Note** The driver reserves limited memory for storing logs.\nThe oldest logs may be overwritten and become unrecoverable. An indication will appear in the\ndestination outupt if the logs have been truncated. Call dump after each failed API to mitigate this\nrisk.\n\n# Arguments\n\n* `iterator` -   - Optional auto-advancing iterator specifying the starting log to read. NULL value dumps all logs.\n* `pathToFile` - - Path to output file for dumping logs\n* `flags` -      - Reserved for future use, must be 0\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,"]
-pub unsafe fn cudaLogsDumpToFile<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut iterator: T, pathToFile: U, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLogsDumpToFile<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut iterator: T0, pathToFile: T1, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLogsDumpToFile(iterator.as_mut_ptr() as *mut _, pathToFile.as_const_ptr() as *const _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Dump accumulated driver logs into a buffer\nLogs generated by the driver are stored in an internal buffer and can be copied out using this API.\nThis API dumps driver logs from `iterator` into `buffer` up to the size specified in `*size.`\nThe driver will always null terminate the buffer but there will not be a null character between log\nentries, only a newline \\\\n. The driver will then return the actual number of bytes written in\n`*size,` excluding the null terminator. If there are no messages to dump, `*size` will be set to 0\nand the function will return ::CUDA_SUCCESS.\nIf the provided `buffer` is not large enough to hold any messages, `*size` will be set to 0 and\nthe function will return ::CUDA_ERROR_INVALID_VALUE.\n> **Note** `iterator` is auto-advancing. Dumping logs will update the value of\n`iterator` to receive the next generated log.\n> **Note** The driver reserves limited memory for storing logs. The maximum size of the buffer is 25600 bytes.\nThe oldest logs may be overwritten and become unrecoverable. An indication will appear in the\ndestination outupt if the logs have been truncated. Call dump after each failed API to mitigate this\nrisk.\n> **Note** If the provided value in `*size` is not large enough to hold all buffered messages, a message will\nbe added at the head of the buffer indicating this. The driver then computes the number of messages\nit is able to store in `buffer` and writes it out. The final message in `buffer` will always be\nthe most recent log message as of when the API is called.\n\n# Arguments\n\n* `iterator` -  - Optional auto-advancing iterator specifying the starting log to read. NULL value dumps all logs.\n* `buffer` -    - Pointer to dump logs\n* `size` -      - See description\n* `flags` -     - Reserved for future use, must be 0\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,"]
-pub unsafe fn cudaLogsDumpToMemory<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsMutPtr>(mut iterator: T, mut buffer: U, mut size: V, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLogsDumpToMemory<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsMutPtr>(mut iterator: T0, mut buffer: T1, mut size: T2, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLogsDumpToMemory(iterator.as_mut_ptr() as *mut _, buffer.as_mut_ptr() as *mut _, size.as_mut_ptr() as *mut _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4836,7 +5074,7 @@ pub unsafe fn cudaGraphCreate(flags: u32) -> Result<cudaGraph_t, crate::sys::cud
     }
 }
 #[doc = "Creates a kernel execution node and adds it to a graph\nCreates a new kernel execution node and adds it to `graph` with `numDependencies`\ndependencies specified via `pDependencies` and arguments specified in `pNodeParams.`\nIt is possible for `numDependencies` to be 0, in which case the node will be placed\nat the root of the graph. `pDependencies` may not have any duplicate entries.\nA handle to the new node will be returned in `pGraphNode.`\nThe cudaKernelNodeParams structure is defined as:\n\\code struct cudaKernelNodeParams\n{\nvoid* func;\ndim3 gridDim;\ndim3 blockDim;\nunsigned int sharedMemBytes;\nvoid **kernelParams;\nvoid **extra;\n};\n\\endcode When the graph is launched, the node will invoke kernel `func` on a (`gridDim.x` x\n`gridDim.y` x `gridDim.z)` grid of blocks. Each block contains\n(`blockDim.x` x `blockDim.y` x `blockDim.z)` threads.\n`sharedMem` sets the amount of dynamic shared memory that will be\navailable to each thread block.\nKernel parameters to `func` can be specified in one of two ways:\n1) Kernel parameters can be specified via `kernelParams.` If the kernel has N\nparameters, then `kernelParams` needs to be an array of N pointers. Each pointer,\nfrom `kernelParams`[0] to `kernelParams`[N-1], points to the region of memory from which the actual\nparameter will be copied. The number of kernel parameters and their offsets and sizes do not need\nto be specified as that information is retrieved directly from the kernel's image.\n2) Kernel parameters can also be packaged by the application into a single buffer that is passed in\nvia `extra.` This places the burden on the application of knowing each kernel\nparameter's size and alignment/padding within the buffer. The `extra` parameter exists\nto allow this function to take additional less commonly used arguments. `extra` specifies\na list of names of extra settings and their corresponding values. Each extra setting name is\nimmediately followed by the corresponding value. The list must be terminated with either NULL or\nCU_LAUNCH_PARAM_END.\n- ::CU_LAUNCH_PARAM_END, which indicates the end of the `extra`\narray;\n- ::CU_LAUNCH_PARAM_BUFFER_POINTER, which specifies that the next\nvalue in `extra` will be a pointer to a buffer\ncontaining all the kernel parameters for launching kernel\n`func;`\n- ::CU_LAUNCH_PARAM_BUFFER_SIZE, which specifies that the next\nvalue in `extra` will be a pointer to a size_t\ncontaining the size of the buffer specified with\n::CU_LAUNCH_PARAM_BUFFER_POINTER;\nThe error ::cudaErrorInvalidValue will be returned if kernel parameters are specified with both\n`kernelParams` and `extra` (i.e. both `kernelParams` and\n`extra` are non-NULL).\nThe `kernelParams` or `extra` array, as well as the argument values it points to,\nare copied during this call.\n> **Note** Kernels launched using graphs must not use texture and surface references. Reading or\nwriting through any texture or surface reference is undefined behavior.\nThis restriction does not apply to texture and surface objects.\n\n# Arguments\n\n* `pGraphNode` -     - Returns newly created node\n* `graph` -          - Graph to which to add the node\n* `pDependencies` -    - Dependencies of the node\n* `numDependencies` - - Number of dependencies\n* `pNodeParams` -      - Parameters for the GPU execution node\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDeviceFunction\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaLaunchKernel,\n::cudaGraphKernelNodeGetParams,\n::cudaGraphKernelNodeSetParams,\n::cudaGraphCreate,\n::cudaGraphDestroyNode,\n::cudaGraphAddChildGraphNode,\n::cudaGraphAddEmptyNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemcpyNode,\n::cudaGraphAddMemsetNode"]
-pub unsafe fn cudaGraphAddKernelNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, pNodeParams: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddKernelNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, pNodeParams: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddKernelNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4851,7 +5089,7 @@ pub unsafe fn cudaGraphKernelNodeGetParams(node: cudaGraphNode_t) -> Result<cuda
     }
 }
 #[doc = "Sets a kernel node's parameters\nSets the parameters of kernel node `node` to `pNodeParams.`\n\n# Arguments\n\n* `node` -        - Node to set the parameters for\n* `pNodeParams` - - Parameters to copy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorMemoryAllocation\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaGraphNodeSetParams,`]\n::cudaLaunchKernel,\n::cudaGraphAddKernelNode,\n::cudaGraphKernelNodeGetParams"]
-pub unsafe fn cudaGraphKernelNodeSetParams<T: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphKernelNodeSetParams<T0: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphKernelNodeSetParams(node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4871,22 +5109,22 @@ pub unsafe fn cudaGraphKernelNodeGetAttribute(hNode: cudaGraphNode_t, attr: cuda
     }
 }
 #[doc = "Sets node attribute.\nSets attribute `attr` on node `hNode` from corresponding attribute of\n`value.`\n\n# Arguments\n\n* `hNode` [out]  -\n* `attr` [in]  -\n* `value` [out]  -\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle\n\\notefnerr # See also\n\n> [`::cudaAccessPolicyWindow`]"]
-pub unsafe fn cudaGraphKernelNodeSetAttribute<T: types::CudaAsPtr>(hNode: cudaGraphNode_t, attr: cudaLaunchAttributeID, value: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphKernelNodeSetAttribute<T0: types::CudaAsPtr>(hNode: cudaGraphNode_t, attr: cudaLaunchAttributeID, value: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphKernelNodeSetAttribute(hNode, attr, value.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Creates a memcpy node and adds it to a graph\nCreates a new memcpy node and adds it to `graph` with `numDependencies`\ndependencies specified via `pDependencies.`\nIt is possible for `numDependencies` to be 0, in which case the node will be placed\nat the root of the graph. `pDependencies` may not have any duplicate entries.\nA handle to the new node will be returned in `pGraphNode.`\nWhen the graph is launched, the node will perform the memcpy described by `pCopyParams.`\nSee ::cudaMemcpy3D() for a description of the structure and its restrictions.\nMemcpy nodes have some additional restrictions with regards to managed memory, if the\nsystem contains at least one device which has a zero value for the device attribute\n::cudaDevAttrConcurrentManagedAccess.\n\n# Arguments\n\n* `pGraphNode` -     - Returns newly created node\n* `graph` -          - Graph to which to add the node\n* `pDependencies` -    - Dependencies of the node\n* `numDependencies` - - Number of dependencies\n* `pCopyParams` -      - Parameters for the memory copy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaMemcpy3D,\n::cudaGraphAddMemcpyNodeToSymbol,\n::cudaGraphAddMemcpyNodeFromSymbol,\n::cudaGraphAddMemcpyNode1D,\n::cudaGraphMemcpyNodeGetParams,\n::cudaGraphMemcpyNodeSetParams,\n::cudaGraphCreate,\n::cudaGraphDestroyNode,\n::cudaGraphAddChildGraphNode,\n::cudaGraphAddEmptyNode,\n::cudaGraphAddKernelNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemsetNode"]
-pub unsafe fn cudaGraphAddMemcpyNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, pCopyParams: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddMemcpyNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, pCopyParams: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddMemcpyNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, pCopyParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddMemcpyNodeToSymbol<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsPtr>(
-    mut pGraphNode: T,
+pub unsafe fn cudaGraphAddMemcpyNodeToSymbol<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsPtr>(
+    mut pGraphNode: T0,
     graph: cudaGraph_t,
-    pDependencies: U,
+    pDependencies: T1,
     numDependencies: usize,
-    symbol: V,
-    src: W,
+    symbol: T2,
+    src: T3,
     count: usize,
     offset: usize,
     kind: cudaMemcpyKind,
@@ -4906,13 +5144,13 @@ pub unsafe fn cudaGraphAddMemcpyNodeToSymbol<T: types::CudaAsMutPtr, U: types::C
     };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddMemcpyNodeFromSymbol<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr>(
-    mut pGraphNode: T,
+pub unsafe fn cudaGraphAddMemcpyNodeFromSymbol<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsPtr>(
+    mut pGraphNode: T0,
     graph: cudaGraph_t,
-    pDependencies: U,
+    pDependencies: T1,
     numDependencies: usize,
-    mut dst: V,
-    symbol: W,
+    mut dst: T2,
+    symbol: T3,
     count: usize,
     offset: usize,
     kind: cudaMemcpyKind,
@@ -4932,13 +5170,13 @@ pub unsafe fn cudaGraphAddMemcpyNodeFromSymbol<T: types::CudaAsMutPtr, U: types:
     };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddMemcpyNode1D<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsPtr>(
-    mut pGraphNode: T,
+pub unsafe fn cudaGraphAddMemcpyNode1D<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsPtr>(
+    mut pGraphNode: T0,
     graph: cudaGraph_t,
-    pDependencies: U,
+    pDependencies: T1,
     numDependencies: usize,
-    mut dst: V,
-    src: W,
+    mut dst: T2,
+    src: T3,
     count: usize,
     kind: cudaMemcpyKind,
 ) -> Result<(), crate::sys::cudaError> {
@@ -4956,24 +5194,24 @@ pub unsafe fn cudaGraphMemcpyNodeGetParams(node: cudaGraphNode_t) -> Result<cuda
     }
 }
 #[doc = "Sets a memcpy node's parameters\nSets the parameters of memcpy node `node` to `pNodeParams.`\n\n# Arguments\n\n* `node` -        - Node to set the parameters for\n* `pNodeParams` - - Parameters to copy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphNodeSetParams,`]\n::cudaMemcpy3D,\n::cudaGraphMemcpyNodeSetParamsToSymbol,\n::cudaGraphMemcpyNodeSetParamsFromSymbol,\n::cudaGraphMemcpyNodeSetParams1D,\n::cudaGraphAddMemcpyNode,\n::cudaGraphMemcpyNodeGetParams"]
-pub unsafe fn cudaGraphMemcpyNodeSetParams<T: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphMemcpyNodeSetParams<T0: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphMemcpyNodeSetParams(node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphMemcpyNodeSetParamsToSymbol<T: types::CudaAsPtr, U: types::CudaAsPtr>(node: cudaGraphNode_t, symbol: T, src: U, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphMemcpyNodeSetParamsToSymbol<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(node: cudaGraphNode_t, symbol: T0, src: T1, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphMemcpyNodeSetParamsToSymbol(node, symbol.as_const_ptr() as *const _, src.as_const_ptr() as *const _, count, offset, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphMemcpyNodeSetParamsFromSymbol<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(node: cudaGraphNode_t, mut dst: T, symbol: U, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphMemcpyNodeSetParamsFromSymbol<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(node: cudaGraphNode_t, mut dst: T0, symbol: T1, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphMemcpyNodeSetParamsFromSymbol(node, dst.as_mut_ptr() as *mut _, symbol.as_const_ptr() as *const _, count, offset, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphMemcpyNodeSetParams1D<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(node: cudaGraphNode_t, mut dst: T, src: U, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphMemcpyNodeSetParams1D<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(node: cudaGraphNode_t, mut dst: T0, src: T1, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphMemcpyNodeSetParams1D(node, dst.as_mut_ptr() as *mut _, src.as_const_ptr() as *const _, count, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Creates a memset node and adds it to a graph\nCreates a new memset node and adds it to `graph` with `numDependencies`\ndependencies specified via `pDependencies.`\nIt is possible for `numDependencies` to be 0, in which case the node will be placed\nat the root of the graph. `pDependencies` may not have any duplicate entries.\nA handle to the new node will be returned in `pGraphNode.`\nThe element size must be 1, 2, or 4 bytes.\nWhen the graph is launched, the node will perform the memset described by `pMemsetParams.`\n\n# Arguments\n\n* `pGraphNode` -     - Returns newly created node\n* `graph` -          - Graph to which to add the node\n* `pDependencies` -    - Dependencies of the node\n* `numDependencies` - - Number of dependencies\n* `pMemsetParams` -    - Parameters for the memory set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDevice\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaMemset2D,\n::cudaGraphMemsetNodeGetParams,\n::cudaGraphMemsetNodeSetParams,\n::cudaGraphCreate,\n::cudaGraphDestroyNode,\n::cudaGraphAddChildGraphNode,\n::cudaGraphAddEmptyNode,\n::cudaGraphAddKernelNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemcpyNode"]
-pub unsafe fn cudaGraphAddMemsetNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, pMemsetParams: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddMemsetNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, pMemsetParams: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddMemsetNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, pMemsetParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -4988,12 +5226,12 @@ pub unsafe fn cudaGraphMemsetNodeGetParams(node: cudaGraphNode_t) -> Result<cuda
     }
 }
 #[doc = "Sets a memset node's parameters\nSets the parameters of memset node `node` to `pNodeParams.`\n\n# Arguments\n\n* `node` -        - Node to set the parameters for\n* `pNodeParams` - - Parameters to copy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphNodeSetParams,`]\n::cudaMemset2D,\n::cudaGraphAddMemsetNode,\n::cudaGraphMemsetNodeGetParams"]
-pub unsafe fn cudaGraphMemsetNodeSetParams<T: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphMemsetNodeSetParams<T0: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphMemsetNodeSetParams(node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Creates a host execution node and adds it to a graph\nCreates a new CPU execution node and adds it to `graph` with `numDependencies`\ndependencies specified via `pDependencies` and arguments specified in `pNodeParams.`\nIt is possible for `numDependencies` to be 0, in which case the node will be placed\nat the root of the graph. `pDependencies` may not have any duplicate entries.\nA handle to the new node will be returned in `pGraphNode.`\nWhen the graph is launched, the node will invoke the specified CPU function.\nHost nodes are not supported under MPS with pre-Volta GPUs.\n\n# Arguments\n\n* `pGraphNode` -     - Returns newly created node\n* `graph` -          - Graph to which to add the node\n* `pDependencies` -    - Dependencies of the node\n* `numDependencies` - - Number of dependencies\n* `pNodeParams` -      - Parameters for the host node\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorNotSupported,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaLaunchHostFunc,\n::cudaGraphHostNodeGetParams,\n::cudaGraphHostNodeSetParams,\n::cudaGraphCreate,\n::cudaGraphDestroyNode,\n::cudaGraphAddChildGraphNode,\n::cudaGraphAddEmptyNode,\n::cudaGraphAddKernelNode,\n::cudaGraphAddMemcpyNode,\n::cudaGraphAddMemsetNode"]
-pub unsafe fn cudaGraphAddHostNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, pNodeParams: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddHostNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, pNodeParams: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddHostNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5008,12 +5246,12 @@ pub unsafe fn cudaGraphHostNodeGetParams(node: cudaGraphNode_t) -> Result<cudaHo
     }
 }
 #[doc = "Sets a host node's parameters\nSets the parameters of host node `node` to `nodeParams.`\n\n# Arguments\n\n* `node` -        - Node to set the parameters for\n* `pNodeParams` - - Parameters to copy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphNodeSetParams,`]\n::cudaLaunchHostFunc,\n::cudaGraphAddHostNode,\n::cudaGraphHostNodeGetParams"]
-pub unsafe fn cudaGraphHostNodeSetParams<T: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphHostNodeSetParams<T0: types::CudaAsPtr>(node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphHostNodeSetParams(node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Creates a child graph node and adds it to a graph\nCreates a new node which executes an embedded graph, and adds it to `graph` with\n`numDependencies` dependencies specified via `pDependencies.`\nIt is possible for `numDependencies` to be 0, in which case the node will be placed\nat the root of the graph. `pDependencies` may not have any duplicate entries.\nA handle to the new node will be returned in `pGraphNode.`\nIf `childGraph` contains allocation nodes, free nodes, or conditional nodes, this call will\nreturn an error.\nThe node executes an embedded child graph. The child graph is cloned in this call.\n\n# Arguments\n\n* `pGraphNode` -     - Returns newly created node\n* `graph` -          - Graph to which to add the node\n* `pDependencies` -    - Dependencies of the node\n* `numDependencies` - - Number of dependencies\n* `childGraph` -      - The graph to clone into this node\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaGraphChildGraphNodeGetGraph,\n::cudaGraphCreate,\n::cudaGraphDestroyNode,\n::cudaGraphAddEmptyNode,\n::cudaGraphAddKernelNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemcpyNode,\n::cudaGraphAddMemsetNode,\n::cudaGraphClone"]
-pub unsafe fn cudaGraphAddChildGraphNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, childGraph: cudaGraph_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddChildGraphNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, childGraph: cudaGraph_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddChildGraphNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, childGraph) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5028,11 +5266,11 @@ pub unsafe fn cudaGraphChildGraphNodeGetGraph(node: cudaGraphNode_t) -> Result<c
     }
 }
 #[doc = "Creates an empty node and adds it to a graph\nCreates a new node which performs no operation, and adds it to `graph` with\n`numDependencies` dependencies specified via `pDependencies.`\nIt is possible for `numDependencies` to be 0, in which case the node will be placed\nat the root of the graph. `pDependencies` may not have any duplicate entries.\nA handle to the new node will be returned in `pGraphNode.`\nAn empty node performs no operation during execution, but can be used for\ntransitive ordering. For example, a phased execution graph with 2 groups of n\nnodes with a barrier between them can be represented using an empty node and\n2*n dependency edges, rather than no empty node and n^2 dependency edges.\n\n# Arguments\n\n* `pGraphNode` -     - Returns newly created node\n* `graph` -          - Graph to which to add the node\n* `pDependencies` -    - Dependencies of the node\n* `numDependencies` - - Number of dependencies\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaGraphCreate,\n::cudaGraphDestroyNode,\n::cudaGraphAddChildGraphNode,\n::cudaGraphAddKernelNode,\n::cudaGraphAddHostNode,\n::cudaGraphAddMemcpyNode,\n::cudaGraphAddMemsetNode"]
-pub unsafe fn cudaGraphAddEmptyNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddEmptyNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddEmptyNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddEventRecordNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddEventRecordNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddEventRecordNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, event) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5049,7 +5287,7 @@ pub unsafe fn cudaGraphEventRecordNodeSetEvent(node: cudaGraphNode_t, event: cud
     let status = unsafe { crate::sys::cudaGraphEventRecordNodeSetEvent(node, event) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddEventWaitNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddEventWaitNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, event: cudaEvent_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddEventWaitNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, event) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5066,7 +5304,7 @@ pub unsafe fn cudaGraphEventWaitNodeSetEvent(node: cudaGraphNode_t, event: cudaE
     let status = unsafe { crate::sys::cudaGraphEventWaitNodeSetEvent(node, event) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddExternalSemaphoresSignalNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, nodeParams: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddExternalSemaphoresSignalNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, nodeParams: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddExternalSemaphoresSignalNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, nodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5079,11 +5317,11 @@ pub unsafe fn cudaGraphExternalSemaphoresSignalNodeGetParams(hNode: cudaGraphNod
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudaGraphExternalSemaphoresSignalNodeSetParams<T: types::CudaAsPtr>(hNode: cudaGraphNode_t, nodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExternalSemaphoresSignalNodeSetParams<T0: types::CudaAsPtr>(hNode: cudaGraphNode_t, nodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExternalSemaphoresSignalNodeSetParams(hNode, nodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddExternalSemaphoresWaitNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, nodeParams: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddExternalSemaphoresWaitNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, nodeParams: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddExternalSemaphoresWaitNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, nodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5096,11 +5334,11 @@ pub unsafe fn cudaGraphExternalSemaphoresWaitNodeGetParams(hNode: cudaGraphNode_
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudaGraphExternalSemaphoresWaitNodeSetParams<T: types::CudaAsPtr>(hNode: cudaGraphNode_t, nodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExternalSemaphoresWaitNodeSetParams<T0: types::CudaAsPtr>(hNode: cudaGraphNode_t, nodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExternalSemaphoresWaitNodeSetParams(hNode, nodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphAddMemAllocNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, mut nodeParams: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddMemAllocNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, mut nodeParams: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddMemAllocNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, nodeParams.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5113,11 +5351,11 @@ pub unsafe fn cudaGraphMemAllocNodeGetParams(node: cudaGraphNode_t) -> Result<cu
         Err(unsafe { std::mem::transmute(status) })
     }
 }
-pub unsafe fn cudaGraphAddMemFreeNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, numDependencies: usize, mut dptr: V) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddMemFreeNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, numDependencies: usize, mut dptr: T2) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddMemFreeNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, numDependencies, dptr.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphMemFreeNodeGetParams<T: types::CudaAsMutPtr>(node: cudaGraphNode_t, mut dptr_out: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphMemFreeNodeGetParams<T0: types::CudaAsMutPtr>(node: cudaGraphNode_t, mut dptr_out: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphMemFreeNodeGetParams(node, dptr_out.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5125,21 +5363,21 @@ pub unsafe fn cudaDeviceGraphMemTrim(device: i32) -> Result<(), crate::sys::cuda
     let status = unsafe { crate::sys::cudaDeviceGraphMemTrim(device as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaDeviceGetGraphMemAttribute<T: types::CudaAsMutPtr>(device: i32, attr: cudaGraphMemAttributeType, mut value: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDeviceGetGraphMemAttribute<T0: types::CudaAsMutPtr>(device: i32, attr: cudaGraphMemAttributeType, mut value: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDeviceGetGraphMemAttribute(device as _, attr, value.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaDeviceSetGraphMemAttribute<T: types::CudaAsMutPtr>(device: i32, attr: cudaGraphMemAttributeType, mut value: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDeviceSetGraphMemAttribute<T0: types::CudaAsMutPtr>(device: i32, attr: cudaGraphMemAttributeType, mut value: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDeviceSetGraphMemAttribute(device as _, attr, value.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Clones a graph\nThis function creates a copy of `originalGraph` and returns it in `pGraphClone.`\nAll parameters are copied into the cloned graph. The original graph may be modified\nafter this call without affecting the clone.\nChild graph nodes in the original graph are recursively copied into the clone.\n\\note: Cloning is not supported for graphs which contain memory allocation nodes,\nmemory free nodes, or conditional nodes.\n\n# Arguments\n\n* `pGraphClone` -  - Returns newly created cloned graph\n* `originalGraph` - - Graph to clone\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorMemoryAllocation\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphCreate,`]\n::cudaGraphNodeFindInClone"]
-pub unsafe fn cudaGraphClone<T: types::CudaAsMutPtr>(mut pGraphClone: T, originalGraph: cudaGraph_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphClone<T0: types::CudaAsMutPtr>(mut pGraphClone: T0, originalGraph: cudaGraph_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphClone(pGraphClone.as_mut_ptr() as *mut _, originalGraph) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Finds a cloned version of a node\nThis function returns the node in `clonedGraph` corresponding to `originalNode`\nin the original graph.\n`clonedGraph` must have been cloned from `originalGraph` via ::cudaGraphClone.\n`originalNode` must have been in `originalGraph` at the time of the call to\n::cudaGraphClone, and the corresponding cloned node in `clonedGraph` must not have\nbeen removed. The cloned node is then returned via `pClonedNode.`\n\n# Arguments\n\n* `pNode` -  - Returns handle to the cloned node\n* `originalNode` - - Handle to the original node\n* `clonedGraph` - - Cloned graph to query\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphClone`]"]
-pub unsafe fn cudaGraphNodeFindInClone<T: types::CudaAsMutPtr>(mut pNode: T, originalNode: cudaGraphNode_t, clonedGraph: cudaGraph_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphNodeFindInClone<T0: types::CudaAsMutPtr>(mut pNode: T0, originalNode: cudaGraphNode_t, clonedGraph: cudaGraph_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphNodeFindInClone(pNode.as_mut_ptr() as *mut _, originalNode, clonedGraph) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5263,12 +5501,12 @@ pub unsafe fn cudaGraphNodeGetDependentNodes(node: cudaGraphNode_t) -> Result<(c
     }
 }
 #[doc = "Adds dependency edges to a graph.\nThe number of dependencies to be added is defined by `numDependencies`\nElements in `pFrom` and `pTo` at corresponding indices define a dependency.\nEach node in `pFrom` and `pTo` must belong to `graph.`\nIf `numDependencies` is 0, elements in `pFrom` and `pTo` will be ignored.\nSpecifying an existing dependency will return an error.\n\n# Arguments\n\n* `graph` - - Graph to which dependencies are added\n* `from` - - Array of nodes that provide the dependencies\n* `to` - - Array of dependent nodes\n* `edgeData` - - Optional array of edge data. If NULL, default (zeroed) edge data is assumed.\n* `numDependencies` - - Number of dependencies to be added\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphRemoveDependencies,`]\n::cudaGraphGetEdges,\n::cudaGraphNodeGetDependencies,\n::cudaGraphNodeGetDependentNodes"]
-pub unsafe fn cudaGraphAddDependencies<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(graph: cudaGraph_t, from: T, to: U, edgeData: V, numDependencies: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddDependencies<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(graph: cudaGraph_t, from: T0, to: T1, edgeData: T2, numDependencies: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddDependencies(graph, from.as_const_ptr() as *const _, to.as_const_ptr() as *const _, edgeData.as_const_ptr() as *const _, numDependencies) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Removes dependency edges from a graph.\nThe number of `pDependencies` to be removed is defined by `numDependencies.`\nElements in `pFrom` and `pTo` at corresponding indices define a dependency.\nEach node in `pFrom` and `pTo` must belong to `graph.`\nIf `numDependencies` is 0, elements in `pFrom` and `pTo` will be ignored.\nSpecifying an edge that does not exist in the graph, with data matching\n`edgeData,` results in an error. `edgeData` is nullable, which is equivalent\nto passing default (zeroed) data for each edge.\n\n# Arguments\n\n* `graph` - - Graph from which to remove dependencies\n* `from` - - Array of nodes that provide the dependencies\n* `to` - - Array of dependent nodes\n* `edgeData` - - Optional array of edge data. If NULL, edge data is assumed to\nbe default (zeroed).\n* `numDependencies` - - Number of dependencies to be removed\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddDependencies,`]\n::cudaGraphGetEdges,\n::cudaGraphNodeGetDependencies,\n::cudaGraphNodeGetDependentNodes"]
-pub unsafe fn cudaGraphRemoveDependencies<T: types::CudaAsPtr, U: types::CudaAsPtr, V: types::CudaAsPtr>(graph: cudaGraph_t, from: T, to: U, edgeData: V, numDependencies: usize) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphRemoveDependencies<T0: types::CudaAsPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr>(graph: cudaGraph_t, from: T0, to: T1, edgeData: T2, numDependencies: usize) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphRemoveDependencies(graph, from.as_const_ptr() as *const _, to.as_const_ptr() as *const _, edgeData.as_const_ptr() as *const _, numDependencies) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5278,16 +5516,16 @@ pub unsafe fn cudaGraphDestroyNode(node: cudaGraphNode_t) -> Result<(), crate::s
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Creates an executable graph from a graph\nInstantiates `graph` as an executable graph. The graph is validated for any\nstructural constraints or intra-node constraints which were not previously\nvalidated. If instantiation is successful, a handle to the instantiated graph\nis returned in `pGraphExec.`\nThe `flags` parameter controls the behavior of instantiation and subsequent\ngraph launches.  Valid flags are:\n- ::cudaGraphInstantiateFlagAutoFreeOnLaunch, which configures a\ngraph containing memory allocation nodes to automatically free any\nunfreed memory allocations before the graph is relaunched.\n- ::cudaGraphInstantiateFlagDeviceLaunch, which configures the graph for launch\nfrom the device. If this flag is passed, the executable graph handle returned can be\nused to launch the graph from both the host and device. This flag cannot be used in\nconjunction with ::cudaGraphInstantiateFlagAutoFreeOnLaunch.\n- ::cudaGraphInstantiateFlagUseNodePriority, which causes the graph\nto use the priorities from the per-node attributes rather than the priority\nof the launch stream during execution. Note that priorities are only available\non kernel nodes, and are copied from stream priority during stream capture.\nIf `graph` contains any allocation or free nodes, there can be at most one\nexecutable graph in existence for that graph at a time. An attempt to\ninstantiate a second executable graph before destroying the first with\n::cudaGraphExecDestroy will result in an error.\nThe same also applies if `graph` contains any device-updatable kernel nodes.\nGraphs instantiated for launch on the device have additional restrictions which do not\napply to host graphs:\n- The graph's nodes must reside on a single device.\n- The graph can only contain kernel nodes, memcpy nodes, memset nodes, and child graph nodes.\n- The graph cannot be empty and must contain at least one kernel, memcpy, or memset node.\nOperation-specific restrictions are outlined below.\n- Kernel nodes:\n- Use of CUDA Dynamic Parallelism is not permitted.\n- Cooperative launches are permitted as long as MPS is not in use.\n- Memcpy nodes:\n- Only copies involving device memory and/or pinned device-mapped host memory are permitted.\n- Copies involving CUDA arrays are not permitted.\n- Both operands must be accessible from the current device, and the current device must\nmatch the device of other nodes in the graph.\nIf `graph` is not instantiated for launch on the device but contains kernels which\ncall device-side cudaGraphLaunch() from multiple devices, this will result in an error.\n\n# Arguments\n\n* `pGraphExec` - - Returns instantiated graph\n* `graph` -      - Graph to instantiate\n* `flags` -      - Flags to control instantiation.  See ::CUgraphInstantiate_flags.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphInstantiateWithFlags,`]\n::cudaGraphCreate,\n::cudaGraphUpload,\n::cudaGraphLaunch,\n::cudaGraphExecDestroy"]
-pub unsafe fn cudaGraphInstantiate<T: types::CudaAsMutPtr>(mut pGraphExec: T, graph: cudaGraph_t, flags: u64) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphInstantiate<T0: types::CudaAsMutPtr>(mut pGraphExec: T0, graph: cudaGraph_t, flags: u64) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphInstantiate(pGraphExec.as_mut_ptr() as *mut _, graph, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphInstantiateWithFlags<T: types::CudaAsMutPtr>(mut pGraphExec: T, graph: cudaGraph_t, flags: u64) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphInstantiateWithFlags<T0: types::CudaAsMutPtr>(mut pGraphExec: T0, graph: cudaGraph_t, flags: u64) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphInstantiateWithFlags(pGraphExec.as_mut_ptr() as *mut _, graph, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Creates an executable graph from a graph\nInstantiates `graph` as an executable graph according to the `instantiateParams` structure.\nThe graph is validated for any structural constraints or intra-node constraints\nwhich were not previously validated. If instantiation is successful, a handle to\nthe instantiated graph is returned in `pGraphExec.`\n`instantiateParams` controls the behavior of instantiation and subsequent\ngraph launches, as well as returning more detailed information in the event of an error.\n::cudaGraphInstantiateParams is defined as:\n\\code typedef struct {\nunsigned long long flags;\ncudaStream_t uploadStream;\ncudaGraphNode_t errNode_out;\ncudaGraphInstantiateResult result_out;\n} cudaGraphInstantiateParams;\n\\endcode The `flags` field controls the behavior of instantiation and subsequent\ngraph launches. Valid flags are:\n- ::cudaGraphInstantiateFlagAutoFreeOnLaunch, which configures a\ngraph containing memory allocation nodes to automatically free any\nunfreed memory allocations before the graph is relaunched.\n- ::cudaGraphInstantiateFlagUpload, which will perform an upload of the graph\ninto `uploadStream` once the graph has been instantiated.\n- ::cudaGraphInstantiateFlagDeviceLaunch, which configures the graph for launch\nfrom the device. If this flag is passed, the executable graph handle returned can be\nused to launch the graph from both the host and device. This flag can only be used\non platforms which support unified addressing. This flag cannot be used in\nconjunction with ::cudaGraphInstantiateFlagAutoFreeOnLaunch.\n- ::cudaGraphInstantiateFlagUseNodePriority, which causes the graph\nto use the priorities from the per-node attributes rather than the priority\nof the launch stream during execution. Note that priorities are only available\non kernel nodes, and are copied from stream priority during stream capture.\nIf `graph` contains any allocation or free nodes, there can be at most one\nexecutable graph in existence for that graph at a time. An attempt to instantiate a\nsecond executable graph before destroying the first with ::cudaGraphExecDestroy will\nresult in an error.\nThe same also applies if `graph` contains any device-updatable kernel nodes.\nIf `graph` contains kernels which call device-side cudaGraphLaunch() from multiple\ndevices, this will result in an error.\nGraphs instantiated for launch on the device have additional restrictions which do not\napply to host graphs:\n- The graph's nodes must reside on a single device.\n- The graph can only contain kernel nodes, memcpy nodes, memset nodes, and child graph nodes.\n- The graph cannot be empty and must contain at least one kernel, memcpy, or memset node.\nOperation-specific restrictions are outlined below.\n- Kernel nodes:\n- Use of CUDA Dynamic Parallelism is not permitted.\n- Cooperative launches are permitted as long as MPS is not in use.\n- Memcpy nodes:\n- Only copies involving device memory and/or pinned device-mapped host memory are permitted.\n- Copies involving CUDA arrays are not permitted.\n- Both operands must be accessible from the current device, and the current device must\nmatch the device of other nodes in the graph.\nIn the event of an error, the `result_out` and `errNode_out` fields will contain more\ninformation about the nature of the error. Possible error reporting includes:\n- ::cudaGraphInstantiateError, if passed an invalid value or if an unexpected error occurred\nwhich is described by the return value of the function. `errNode_out` will be set to NULL.\n- ::cudaGraphInstantiateInvalidStructure, if the graph structure is invalid. `errNode_out`\nwill be set to one of the offending nodes.\n- ::cudaGraphInstantiateNodeOperationNotSupported, if the graph is instantiated for device\nlaunch but contains a node of an unsupported node type, or a node which performs unsupported\noperations, such as use of CUDA dynamic parallelism within a kernel node. `errNode_out` will\nbe set to this node.\n- ::cudaGraphInstantiateMultipleDevicesNotSupported, if the graph is instantiated for device\nlaunch but a node’s device differs from that of another node. This error can also be returned\nif a graph is not instantiated for device launch and it contains kernels which call device-side\ncudaGraphLaunch() from multiple devices. `errNode_out` will be set to this node.\nIf instantiation is successful, `result_out` will be set to ::cudaGraphInstantiateSuccess,\nand `hErrNode_out` will be set to NULL.\n\n# Arguments\n\n* `pGraphExec` -       - Returns instantiated graph\n* `graph` -            - Graph to instantiate\n* `instantiateParams` - - Instantiation parameters\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphCreate,`]\n::cudaGraphInstantiate,\n::cudaGraphInstantiateWithFlags,\n::cudaGraphExecDestroy"]
-pub unsafe fn cudaGraphInstantiateWithParams<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(mut pGraphExec: T, graph: cudaGraph_t, mut instantiateParams: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphInstantiateWithParams<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(mut pGraphExec: T0, graph: cudaGraph_t, mut instantiateParams: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphInstantiateWithParams(pGraphExec.as_mut_ptr() as *mut _, graph, instantiateParams.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5302,34 +5540,34 @@ pub unsafe fn cudaGraphExecGetFlags(graphExec: cudaGraphExec_t) -> Result<u64, c
     }
 }
 #[doc = "Sets the parameters for a kernel node in the given graphExec\nSets the parameters of a kernel node in an executable graph `hGraphExec.`\nThe node is identified by the corresponding node `node` in the\nnon-executable graph, from which the executable graph was instantiated.\n`node` must not have been removed from the original graph. All `nodeParams`\nfields may change, but the following restrictions apply to `func` updates:\n- The owning device of the function cannot change.\n- A node whose function originally did not use CUDA dynamic parallelism cannot be updated\nto a function which uses CDP\n- A node whose function originally did not make device-side update calls cannot be updated\nto a function which makes device-side update calls.\n- If `hGraphExec` was not instantiated for device launch, a node whose function originally\ndid not use device-side cudaGraphLaunch() cannot be updated to a function which uses\ndevice-side cudaGraphLaunch() unless the node resides on the same device as nodes which\ncontained such calls at instantiate-time. If no such calls were present at instantiation,\nthese updates cannot be performed at all.\nThe modifications only affect future launches of `hGraphExec.` Already\nenqueued or running launches of `hGraphExec` are not affected by this call.\n`node` is also not modified by this call.\nIf `node` is a device-updatable kernel node, the next upload/launch of `hGraphExec`\nwill overwrite any previous device-side updates. Additionally, applying host updates to a\ndevice-updatable kernel node while it is being updated from the device will result in\nundefined behavior.\n\n# Arguments\n\n* `hGraphExec` -  - The executable graph in which to set the specified node\n* `node` -        - kernel node from the graph from which graphExec was instantiated\n* `pNodeParams` - - Updated Parameters to set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback \\note_cudaKernel_t # See also\n\n> [`::cudaGraphExecNodeSetParams,`]\n::cudaGraphAddKernelNode,\n::cudaGraphKernelNodeSetParams,\n::cudaGraphExecMemcpyNodeSetParams,\n::cudaGraphExecMemsetNodeSetParams,\n::cudaGraphExecHostNodeSetParams,\n::cudaGraphExecChildGraphNodeSetParams,\n::cudaGraphExecEventRecordNodeSetEvent,\n::cudaGraphExecEventWaitNodeSetEvent,\n::cudaGraphExecExternalSemaphoresSignalNodeSetParams,\n::cudaGraphExecExternalSemaphoresWaitNodeSetParams,\n::cudaGraphExecUpdate,\n::cudaGraphInstantiate"]
-pub unsafe fn cudaGraphExecKernelNodeSetParams<T: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecKernelNodeSetParams<T0: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecKernelNodeSetParams(hGraphExec, node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Sets the parameters for a memcpy node in the given graphExec.\nUpdates the work represented by `node` in `hGraphExec` as though `node` had\ncontained `pNodeParams` at instantiation.  `node` must remain in the graph which was\nused to instantiate `hGraphExec.`  Changed edges to and from `node` are ignored.\nThe source and destination memory in `pNodeParams` must be allocated from the same\ncontexts as the original source and destination memory.  Both the instantiation-time\nmemory operands and the memory operands in `pNodeParams` must be 1-dimensional.\nZero-length operations are not supported.\nThe modifications only affect future launches of `hGraphExec.`  Already enqueued\nor running launches of `hGraphExec` are not affected by this call.  `node` is also\nnot modified by this call.\nReturns ::cudaErrorInvalidValue if the memory operands' mappings changed or\neither the original or new memory operands are multidimensional.\n\n# Arguments\n\n* `hGraphExec` -  - The executable graph in which to set the specified node\n* `node` -        - Memcpy node from the graph which was used to instantiate graphExec\n* `pNodeParams` - - Updated Parameters to set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphExecNodeSetParams,`]\n::cudaGraphAddMemcpyNode,\n::cudaGraphMemcpyNodeSetParams,\n::cudaGraphExecMemcpyNodeSetParamsToSymbol,\n::cudaGraphExecMemcpyNodeSetParamsFromSymbol,\n::cudaGraphExecMemcpyNodeSetParams1D,\n::cudaGraphExecKernelNodeSetParams,\n::cudaGraphExecMemsetNodeSetParams,\n::cudaGraphExecHostNodeSetParams,\n::cudaGraphExecChildGraphNodeSetParams,\n::cudaGraphExecEventRecordNodeSetEvent,\n::cudaGraphExecEventWaitNodeSetEvent,\n::cudaGraphExecExternalSemaphoresSignalNodeSetParams,\n::cudaGraphExecExternalSemaphoresWaitNodeSetParams,\n::cudaGraphExecUpdate,\n::cudaGraphInstantiate"]
-pub unsafe fn cudaGraphExecMemcpyNodeSetParams<T: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecMemcpyNodeSetParams<T0: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecMemcpyNodeSetParams(hGraphExec, node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphExecMemcpyNodeSetParamsToSymbol<T: types::CudaAsPtr, U: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, symbol: T, src: U, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecMemcpyNodeSetParamsToSymbol<T0: types::CudaAsPtr, T1: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, symbol: T0, src: T1, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecMemcpyNodeSetParamsToSymbol(hGraphExec, node, symbol.as_const_ptr() as *const _, src.as_const_ptr() as *const _, count, offset, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphExecMemcpyNodeSetParamsFromSymbol<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, mut dst: T, symbol: U, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecMemcpyNodeSetParamsFromSymbol<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, mut dst: T0, symbol: T1, count: usize, offset: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecMemcpyNodeSetParamsFromSymbol(hGraphExec, node, dst.as_mut_ptr() as *mut _, symbol.as_const_ptr() as *const _, count, offset, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphExecMemcpyNodeSetParams1D<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, mut dst: T, src: U, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecMemcpyNodeSetParams1D<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, mut dst: T0, src: T1, count: usize, kind: cudaMemcpyKind) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecMemcpyNodeSetParams1D(hGraphExec, node, dst.as_mut_ptr() as *mut _, src.as_const_ptr() as *const _, count, kind) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Sets the parameters for a memset node in the given graphExec.\nUpdates the work represented by `node` in `hGraphExec` as though `node` had\ncontained `pNodeParams` at instantiation.  `node` must remain in the graph which was\nused to instantiate `hGraphExec.`  Changed edges to and from `node` are ignored.\nZero sized operations are not supported.\nThe new destination pointer in `pNodeParams` must be to the same kind of allocation\nas the original destination pointer and have the same context association and device mapping\nas the original destination pointer.\nBoth the value and pointer address may be updated.\nChanging other aspects of the memset (width, height, element size or pitch) may cause the update to be rejected.\nSpecifically, for 2d memsets, all dimension changes are rejected.\nFor 1d memsets, changes in height are explicitly rejected and other changes are opportunistically allowed\nif the resulting work maps onto the work resources already allocated for the node.\nThe modifications only affect future launches of `hGraphExec.`  Already enqueued\nor running launches of `hGraphExec` are not affected by this call.  `node` is also\nnot modified by this call.\n\n# Arguments\n\n* `hGraphExec` -  - The executable graph in which to set the specified node\n* `node` -        - Memset node from the graph which was used to instantiate graphExec\n* `pNodeParams` - - Updated Parameters to set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphExecNodeSetParams,`]\n::cudaGraphAddMemsetNode,\n::cudaGraphMemsetNodeSetParams,\n::cudaGraphExecKernelNodeSetParams,\n::cudaGraphExecMemcpyNodeSetParams,\n::cudaGraphExecHostNodeSetParams,\n::cudaGraphExecChildGraphNodeSetParams,\n::cudaGraphExecEventRecordNodeSetEvent,\n::cudaGraphExecEventWaitNodeSetEvent,\n::cudaGraphExecExternalSemaphoresSignalNodeSetParams,\n::cudaGraphExecExternalSemaphoresWaitNodeSetParams,\n::cudaGraphExecUpdate,\n::cudaGraphInstantiate"]
-pub unsafe fn cudaGraphExecMemsetNodeSetParams<T: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecMemsetNodeSetParams<T0: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecMemsetNodeSetParams(hGraphExec, node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Sets the parameters for a host node in the given graphExec.\nUpdates the work represented by `node` in `hGraphExec` as though `node` had\ncontained `pNodeParams` at instantiation.  `node` must remain in the graph which was\nused to instantiate `hGraphExec.`  Changed edges to and from `node` are ignored.\nThe modifications only affect future launches of `hGraphExec.`  Already enqueued\nor running launches of `hGraphExec` are not affected by this call.  `node` is also\nnot modified by this call.\n\n# Arguments\n\n* `hGraphExec` -  - The executable graph in which to set the specified node\n* `node` -        - Host node from the graph which was used to instantiate graphExec\n* `pNodeParams` - - Updated Parameters to set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphExecNodeSetParams,`]\n::cudaGraphAddHostNode,\n::cudaGraphHostNodeSetParams,\n::cudaGraphExecKernelNodeSetParams,\n::cudaGraphExecMemcpyNodeSetParams,\n::cudaGraphExecMemsetNodeSetParams,\n::cudaGraphExecChildGraphNodeSetParams,\n::cudaGraphExecEventRecordNodeSetEvent,\n::cudaGraphExecEventWaitNodeSetEvent,\n::cudaGraphExecExternalSemaphoresSignalNodeSetParams,\n::cudaGraphExecExternalSemaphoresWaitNodeSetParams,\n::cudaGraphExecUpdate,\n::cudaGraphInstantiate"]
-pub unsafe fn cudaGraphExecHostNodeSetParams<T: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecHostNodeSetParams<T0: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, node: cudaGraphNode_t, pNodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecHostNodeSetParams(hGraphExec, node, pNodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5345,11 +5583,11 @@ pub unsafe fn cudaGraphExecEventWaitNodeSetEvent(hGraphExec: cudaGraphExec_t, hN
     let status = unsafe { crate::sys::cudaGraphExecEventWaitNodeSetEvent(hGraphExec, hNode, event) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphExecExternalSemaphoresSignalNodeSetParams<T: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, nodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecExternalSemaphoresSignalNodeSetParams<T0: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, nodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecExternalSemaphoresSignalNodeSetParams(hGraphExec, hNode, nodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
-pub unsafe fn cudaGraphExecExternalSemaphoresWaitNodeSetParams<T: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, nodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecExternalSemaphoresWaitNodeSetParams<T0: types::CudaAsPtr>(hGraphExec: cudaGraphExec_t, hNode: cudaGraphNode_t, nodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecExternalSemaphoresWaitNodeSetParams(hGraphExec, hNode, nodeParams.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5367,7 +5605,7 @@ pub unsafe fn cudaGraphNodeGetEnabled(hGraphExec: cudaGraphExec_t, hNode: cudaGr
     }
 }
 #[doc = "Check whether an executable graph can be updated with a graph and perform the update if possible\nUpdates the node parameters in the instantiated graph specified by `hGraphExec` with the\nnode parameters in a topologically identical graph specified by `hGraph.`\nLimitations:\n- Kernel nodes:\n- The owning context of the function cannot change.\n- A node whose function originally did not use CUDA dynamic parallelism cannot be updated\nto a function which uses CDP.\n- A node whose function originally did not make device-side update calls cannot be updated\nto a function which makes device-side update calls.\n- A cooperative node cannot be updated to a non-cooperative node, and vice-versa.\n- If the graph was instantiated with cudaGraphInstantiateFlagUseNodePriority, the\npriority attribute cannot change. Equality is checked on the originally requested\npriority values, before they are clamped to the device's supported range.\n- If `hGraphExec` was not instantiated for device launch, a node whose function originally\ndid not use device-side cudaGraphLaunch() cannot be updated to a function which uses\ndevice-side cudaGraphLaunch() unless the node resides on the same device as nodes which\ncontained such calls at instantiate-time. If no such calls were present at instantiation,\nthese updates cannot be performed at all.\n- Neither `hGraph` nor `hGraphExec` may contain device-updatable kernel nodes.\n- Memset and memcpy nodes:\n- The CUDA device(s) to which the operand(s) was allocated/mapped cannot change.\n- The source/destination memory must be allocated from the same contexts as the original\nsource/destination memory.\n- For 2d memsets, only address and assigned value may be updated.\n- For 1d memsets, updating dimensions is also allowed, but may fail if the resulting operation doesn't\nmap onto the work resources already allocated for the node.\n- Additional memcpy node restrictions:\n- Changing either the source or destination memory type(i.e. CU_MEMORYTYPE_DEVICE,\nCU_MEMORYTYPE_ARRAY, etc.) is not supported.\n- Conditional nodes:\n- Changing node parameters is not supported.\n- Changing parameters of nodes within the conditional body graph is subject to the rules above.\n- Conditional handle flags and default values are updated as part of the graph update.\nNote:  The API may add further restrictions in future releases.  The return code should always be checked.\ncudaGraphExecUpdate sets the result member of `resultInfo` to cudaGraphExecUpdateErrorTopologyChanged\nunder the following conditions:\n- The count of nodes directly in `hGraphExec` and `hGraph` differ, in which case resultInfo->errorNode\nis set to NULL.\n- `hGraph` has more exit nodes than `hGraph,` in which case resultInfo->errorNode is set to one of\nthe exit nodes in hGraph.\n- A node in `hGraph` has a different number of dependencies than the node from `hGraphExec` it is paired with,\nin which case resultInfo->errorNode is set to the node from `hGraph.`\n- A node in `hGraph` has a dependency that does not match with the corresponding dependency of the paired node\nfrom `hGraphExec.` resultInfo->errorNode will be set to the node from `hGraph.` resultInfo->errorFromNode\nwill be set to the mismatched dependency. The dependencies are paired based on edge order and a dependency\ndoes not match when the nodes are already paired based on other edges examined in the graph.\ncudaGraphExecUpdate sets `the` result member of `resultInfo` to:\n- cudaGraphExecUpdateError if passed an invalid value.\n- cudaGraphExecUpdateErrorTopologyChanged if the graph topology changed\n- cudaGraphExecUpdateErrorNodeTypeChanged if the type of a node changed, in which case\n`hErrorNode_out` is set to the node from `hGraph.`\n- cudaGraphExecUpdateErrorFunctionChanged if the function of a kernel node changed (CUDA driver < 11.2)\n- cudaGraphExecUpdateErrorUnsupportedFunctionChange if the func field of a kernel changed in an\nunsupported way(see note above), in which case `hErrorNode_out` is set to the node from `hGraph`\n- cudaGraphExecUpdateErrorParametersChanged if any parameters to a node changed in a way\nthat is not supported, in which case `hErrorNode_out` is set to the node from `hGraph`\n- cudaGraphExecUpdateErrorAttributesChanged if any attributes of a node changed in a way\nthat is not supported, in which case `hErrorNode_out` is set to the node from `hGraph`\n- cudaGraphExecUpdateErrorNotSupported if something about a node is unsupported, like\nthe node's type or configuration, in which case `hErrorNode_out` is set to the node from `hGraph`\nIf the update fails for a reason not listed above, the result member of `resultInfo` will be set\nto cudaGraphExecUpdateError. If the update succeeds, the result member will be set to cudaGraphExecUpdateSuccess.\ncudaGraphExecUpdate returns cudaSuccess when the updated was performed successfully.  It returns\ncudaErrorGraphExecUpdateFailure if the graph update was not performed because it included\nchanges which violated constraints specific to instantiated graph update.\n\n# Arguments\n\n* `hGraphExec` - The instantiated graph to be updated\n* `hGraph` - The graph containing the updated parameters\n* `resultInfo` - the error info structure\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorGraphExecUpdateFailure,\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphInstantiate`]"]
-pub unsafe fn cudaGraphExecUpdate<T: types::CudaAsMutPtr>(hGraphExec: cudaGraphExec_t, hGraph: cudaGraph_t, mut resultInfo: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecUpdate<T0: types::CudaAsMutPtr>(hGraphExec: cudaGraphExec_t, hGraph: cudaGraph_t, mut resultInfo: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecUpdate(hGraphExec, hGraph, resultInfo.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5391,7 +5629,7 @@ pub unsafe fn cudaGraphDestroy(graph: cudaGraph_t) -> Result<(), crate::sys::cud
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Write a DOT file describing graph structure\nUsing the provided `graph,` write to `path` a DOT formatted description of the graph.\nBy default this includes the graph topology, node types, node id, kernel names and memcpy direction.\n`flags` can be specified to write more detailed information about each node type such as\nparameter values, kernel attributes, node and function handles.\n\n# Arguments\n\n* `graph` - - The graph to create a DOT file from\n* `path` -  - The path to write the DOT file to\n* `flags` - - Flags from cudaGraphDebugDotFlags for specifying which additional node information to write\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorOperatingSystem"]
-pub unsafe fn cudaGraphDebugDotPrint<T: types::CudaAsPtr>(graph: cudaGraph_t, path: T, flags: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphDebugDotPrint<T0: types::CudaAsPtr>(graph: cudaGraph_t, path: T0, flags: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphDebugDotPrint(graph, path.as_const_ptr() as *const _, flags as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5426,12 +5664,12 @@ pub unsafe fn cudaGraphReleaseUserObject(graph: cudaGraph_t, object: cudaUserObj
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Adds a node of arbitrary type to a graph\nCreates a new node in `graph` described by `nodeParams` with `numDependencies`\ndependencies specified via `pDependencies.` `numDependencies` may be 0.\n`pDependencies` may be null if `numDependencies` is 0. `pDependencies` may not have\nany duplicate entries.\n`nodeParams` is a tagged union. The node type should be specified in the `type` field,\nand type-specific parameters in the corresponding union member. All unused bytes - that\nis, `reserved0` and all bytes past the utilized union member - must be set to zero.\nIt is recommended to use brace initialization or memset to ensure all bytes are\ninitialized.\nNote that for some node types, `nodeParams` may contain \"out parameters\" which are\nmodified during the call, such as `nodeParams->alloc.dptr.`\nA handle to the new node will be returned in `phGraphNode.`\n\n# Arguments\n\n* `pGraphNode` -      - Returns newly created node\n* `graph` -           - Graph to which to add the node\n* `pDependencies` -   - Dependencies of the node\n* `dependencyData` -  - Optional edge data for the dependencies. If NULL, the data is\nassumed to be default (zeroed) for all dependencies.\n* `numDependencies` - - Number of dependencies\n* `nodeParams` -      - Specification of the node\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorNotSupported\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphCreate,`]\n::cudaGraphNodeSetParams,\n::cudaGraphExecNodeSetParams"]
-pub unsafe fn cudaGraphAddNode<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(mut pGraphNode: T, graph: cudaGraph_t, pDependencies: U, dependencyData: V, numDependencies: usize, mut nodeParams: W) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphAddNode<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(mut pGraphNode: T0, graph: cudaGraph_t, pDependencies: T1, dependencyData: T2, numDependencies: usize, mut nodeParams: T3) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphAddNode(pGraphNode.as_mut_ptr() as *mut _, graph, pDependencies.as_const_ptr() as *const _, dependencyData.as_const_ptr() as *const _, numDependencies, nodeParams.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Update a graph node's parameters\nSets the parameters of graph node `node` to `nodeParams.` The node type specified by\n`nodeParams->type` must match the type of `node.` `nodeParams` must be fully\ninitialized and all unused bytes (reserved, padding) zeroed.\nModifying parameters is not supported for node types cudaGraphNodeTypeMemAlloc and\ncudaGraphNodeTypeMemFree.\n\n# Arguments\n\n* `node` -       - Node to set the parameters for\n* `nodeParams` - - Parameters to copy\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorNotSupported\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphNodeGetParams,`]\n::cudaGraphAddNode,\n::cudaGraphExecNodeSetParams"]
-pub unsafe fn cudaGraphNodeSetParams<T: types::CudaAsMutPtr>(node: cudaGraphNode_t, mut nodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphNodeSetParams<T0: types::CudaAsMutPtr>(node: cudaGraphNode_t, mut nodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphNodeSetParams(node, nodeParams.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5446,7 +5684,7 @@ pub unsafe fn cudaGraphNodeGetParams(node: cudaGraphNode_t) -> Result<cudaGraphN
     }
 }
 #[doc = "Update a graph node's parameters in an instantiated graph\nSets the parameters of a node in an executable graph `graphExec.` The node is identified\nby the corresponding node `node` in the non-executable graph from which the executable\ngraph was instantiated. `node` must not have been removed from the original graph.\nThe modifications only affect future launches of `graphExec.` Already\nenqueued or running launches of `graphExec` are not affected by this call.\n`node` is also not modified by this call.\nAllowed changes to parameters on executable graphs are as follows:\n<table>\n<tr><th>Node type<th>Allowed changes\n<tr><td>kernel<td>See ::cudaGraphExecKernelNodeSetParams\n<tr><td>memcpy<td>Addresses for 1-dimensional copies if allocated in same context; see ::cudaGraphExecMemcpyNodeSetParams\n<tr><td>memset<td>Addresses for 1-dimensional memsets if allocated in same context; see ::cudaGraphExecMemsetNodeSetParams\n<tr><td>host<td>Unrestricted\n<tr><td>child graph<td>Topology must match and restrictions apply recursively; see ::cudaGraphExecUpdate\n<tr><td>event wait<td>Unrestricted\n<tr><td>event record<td>Unrestricted\n<tr><td>external semaphore signal<td>Number of semaphore operations cannot change\n<tr><td>external semaphore wait<td>Number of semaphore operations cannot change\n<tr><td>memory allocation<td>API unsupported\n<tr><td>memory free<td>API unsupported\n</table>\n\n# Arguments\n\n* `graphExec` -  - The executable graph in which to update the specified node\n* `node` -       - Corresponding node from the graph from which graphExec was instantiated\n* `nodeParams` - - Updated Parameters to set\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidDeviceFunction,\n::cudaErrorNotSupported\n\\note_graph_thread_safety \\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaGraphAddNode,`]\n::cudaGraphNodeSetParams\n::cudaGraphExecUpdate,\n::cudaGraphInstantiate"]
-pub unsafe fn cudaGraphExecNodeSetParams<T: types::CudaAsMutPtr>(graphExec: cudaGraphExec_t, node: cudaGraphNode_t, mut nodeParams: T) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGraphExecNodeSetParams<T0: types::CudaAsMutPtr>(graphExec: cudaGraphExec_t, node: cudaGraphNode_t, mut nodeParams: T0) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGraphExecNodeSetParams(graphExec, node, nodeParams.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5560,7 +5798,7 @@ pub unsafe fn cudaLibraryGetManaged(dptr: *mut *mut ::std::os::raw::c_void, libr
     }
 }
 #[doc = "Returns a pointer to a unified function\nReturns in `*fptr` the function pointer to a unified function denoted by `symbol.`\nIf no unified function with name `symbol` exists, the call returns ::cudaErrorSymbolNotFound.\nIf there is no device with attribute ::cudaDeviceProp::unifiedFunctionPointers present in the system,\nthe call may return ::cudaErrorSymbolNotFound.\n\n# Arguments\n\n* `fptr` - - Returned pointer to a unified function\n* `library` - - Library to retrieve function pointer memory from\n* `symbol` - - Name of function pointer to retrieve\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle,\n::cudaErrorSymbolNotFound\n\n# See also\n\n> [`::cudaLibraryLoadData,`]\n::cudaLibraryLoadFromFile,\n::cudaLibraryUnload,\n::cuLibraryGetUnifiedFunction"]
-pub unsafe fn cudaLibraryGetUnifiedFunction<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut fptr: T, library: cudaLibrary_t, symbol: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLibraryGetUnifiedFunction<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut fptr: T0, library: cudaLibrary_t, symbol: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLibraryGetUnifiedFunction(fptr.as_mut_ptr() as *mut _, library, symbol.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5575,7 +5813,7 @@ pub unsafe fn cudaLibraryGetKernelCount(lib: cudaLibrary_t) -> Result<u32, crate
     }
 }
 #[doc = "Retrieve the kernel handles within a library.\nReturns in `kernels` a maximum number of `numKernels` kernel handles within `lib.`\nThe returned kernel handle becomes invalid when the library is unloaded.\n\n# Arguments\n\n* `kernels` - - Buffer where the kernel handles are returned to\n* `numKernels` - - Maximum number of kernel handles may be returned to the buffer\n* `lib` - - Library to query from\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError,\n::cudaErrorInvalidValue,\n::cudaErrorInvalidResourceHandle\n\n# See also\n\n> [`::cudaLibraryGetKernelCount,`]\n::cuLibraryEnumerateKernels"]
-pub unsafe fn cudaLibraryEnumerateKernels<T: types::CudaAsMutPtr>(mut kernels: T, numKernels: u32, lib: cudaLibrary_t) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaLibraryEnumerateKernels<T0: types::CudaAsMutPtr>(mut kernels: T0, numKernels: u32, lib: cudaLibrary_t) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaLibraryEnumerateKernels(kernels.as_mut_ptr() as *mut _, numKernels as _, lib) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5595,17 +5833,17 @@ pub unsafe fn cudaDeviceGetDevResource(device: i32, type_: cudaDevResourceType) 
     }
 }
 #[doc = "Splits `cudaDevResourceTypeSm` resources.\nSplits `cudaDevResourceTypeSm` resources into `nbGroups,` adhering to the\nminimum SM count specified in `minCount` and the usage flags in `flags.`\nIf `result` is NULL, the API simulates a split and provides the amount of groups that\nwould be created in `nbGroups.` Otherwise, `nbGroups` must point to the amount of elements\nin `result` and on return, the API will overwrite `nbGroups` with the amount actually created.\nThe groups are written to the array in `result.`\n`nbGroups` can be less than the total amount if a smaller number of groups is needed.\nThis API is used to spatially partition the input resource. The input resource needs to come\nfrom one of ::cudaDeviceGetDevResource, or ::cudaExecutionCtxGetDevResource.\nA limitation of the API is that the output results cannot be split again without\nfirst creating a descriptor and a green context with that descriptor.\nWhen creating the groups, the API will take into account the performance and functional\ncharacteristics of the input resource, and guarantee a split that will create a disjoint\nset of symmetrical partitions. This may lead to fewer groups created than purely dividing\nthe total SM count by the `minCount` due to cluster requirements or alignment and granularity\nrequirements for the minCount.\nThese requirements can be queried with ::cudaDeviceGetDevResource, or ::cudaExecutionCtxGetDevResource\nfor ::cudaDevResourceTypeSm, using the `minSmPartitionSize` and `smCoscheduledAlignment` fields\nto determine minimum partition size and alignment granularity, respectively.\nThe `remainder` set does not have the same functional or performance guarantees as the groups\nin `result.` Its use should be carefully planned and future partitions of the `remainder` set\nare discouraged.\nThe following flags are supported:\n- `cudaDevSmResourceSplitIgnoreSmCoscheduling` : Lower the minimum SM count and alignment, and\ntreat each SM independent of its hierarchy. This allows more fine grained partitions but at the\ncost of advanced features (such as large clusters on compute capability 9.0+).\n- `cudaDevSmResourceSplitMaxPotentialClusterSize` : Compute Capability 9.0+ only. Attempt to\ncreate groups that may allow for maximally sized thread clusters. This can be queried post\ngreen context creation using ::cudaOccupancyMaxPotentialClusterSize.\nA successful API call must either have:\n- A valid array of `result` pointers of size passed in `nbGroups,` with `input` of type\n`cudaDevResourceTypeSm.` Value of `minCount` must be between 0 and the SM count specified\nin `input.` `remaining` may be NULL.\n- NULL passed in for `result,` with a valid integer pointer in `nbGroups` and `input` of\ntype `cudaDevResourceTypeSm.` Value of `minCount` must be between 0 and the SM count\nspecified in `input.` `remaining` may be NULL. This queries the number of groups that\nwould be created by the API.\nNote: The API is not supported on 32-bit platforms.\n\n# Arguments\n\n* `result` - - Output array of `cudaDevResource` resources. Can be NULL to query the\nnumber of groups.\n* `nbGroups` - - This is a pointer, specifying the number of groups that would be or\nshould be created as described below.\n* `input` - - Input SM resource to be split. Must be a valid `cudaDevSmResource` resource.\n* `remaining` - - If the input resource cannot be cleanly split among `nbGroups,`\nthe remaining is placed in here. Can be ommitted (NULL) if the user does not need the remaining set.\n* `flags` - - Flags specifying how these partitions are used or which constraints to abide by\nwhen splitting the input. Zero is valid for default behavior.\n* `minCount` - - Minimum number of SMs required\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted,\n::cudaErrorInvalidResourceType,\n::cudaErrorInvalidResourceConfiguration,\n::cudaErrorNotSupported,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\note_callback # See also\n\n> [`::cuDevSmResourceSplitByCount,`]\n::cudaDeviceGetDevResource,\n::cudaExecutionCtxGetDevResource,\n::cudaDevResourceGenerateDesc"]
-pub unsafe fn cudaDevSmResourceSplitByCount<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr, V: types::CudaAsPtr, W: types::CudaAsMutPtr>(mut result: T, mut nbGroups: U, input: V, mut remaining: W, flags: u32, minCount: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDevSmResourceSplitByCount<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr, T2: types::CudaAsPtr, T3: types::CudaAsMutPtr>(mut result: T0, mut nbGroups: T1, input: T2, mut remaining: T3, flags: u32, minCount: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDevSmResourceSplitByCount(result.as_mut_ptr() as *mut _, nbGroups.as_mut_ptr() as *mut _, input.as_const_ptr() as *const _, remaining.as_mut_ptr() as *mut _, flags as _, minCount as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Splits a `cudaDevResourceTypeSm` resource into structured groups.\nThis API will split a resource of ::cudaDevResourceTypeSm into `nbGroups` structured device resource groups (the `result` array),\nas well as an optional `remainder,` according to a set of requirements specified in the `groupParams` array. The term “structured”\nis a trait that specifies the `result` has SMs that are co-scheduled together. This co-scheduling can be specified via the `coscheduledSmCount`\nfield of the `groupParams` structure, while the `smCount` will specify how many SMs are required in total for that result.\nThe remainder is always “unstructured”, it does not have any set guarantees with respect to co-scheduling and those properties will need to\neither be queried via the occupancy set of APIs or further split into structured groups by this API.\nThe API has a discovery mode for use cases where it is difficult to know ahead of time what the SM count should be.\nDiscovery happens when the `smCount` field of a given `groupParams` array entry is set to 0 - the smCount will be filled in by the API\nwith the derived SM count according to the provided `groupParams` fields and constraints. Discovery can be used with both a valid result\narray and with a NULL `result` pointer value. The latter is useful in situations where the smCount will end up being zero, which is an invalid\nvalue to create a result entry with, but allowed for discovery purposes when the `result` is NULL.\nThe `groupParams` array is evaluated from index 0 to `nbGroups` - 1. For each index in the `groupParams` array,\nthe API will evaluate which SMs may be a good fit based on constraints and assign those SMs to `result.`\nThis evaluation order is important to consider when using discovery mode, as it helps discover the remaining SMs.\nFor a valid call:\n- `result` should point to a `cudaDevResource` array of size `nbGroups,` or alternatively, may be NULL, if the developer wishes for only the groupParams entries to be updated\n- `input` should be a valid ::cudaDevResourceTypeSm resource that originates from querying the execution context, or device.\n- The `remainder` group may be NULL.\n- There are no API `flags` at this time, so the value passed in should be 0.\n- A ::cudaDevSmResourceGroupParams array of size `nbGroups.` Each entry must be zero-initialized.\n- `smCount:` must be either 0 or in the range of [2,inputSmCount] where inputSmCount is the amount of SMs the `input` resource has.\n`smCount` must be a multiple of 2, as well as a multiple of `coscheduledSmCount.` When assigning SMs to a group (and if results are\nexpected by having the `result` parameter set), `smCount` cannot end up with 0 or a value less than `coscheduledSmCount`\notherwise ::cudaErrorInvalidResourceConfiguration will be returned.\n- `coscheduledSmCount:` allows grouping SMs together in order to be able to launch clusters on Compute Architecture 9.0+.\nThe default value may be queried from the device’s ::cudaDevResourceTypeSm resource (8 on Compute Architecture 9.0+ and 2 otherwise).\nThe maximum is 32 on Compute Architecture 9.0+ and 2 otherwise.\n- `preferredCoscheduledSmCount:` Attempts to merge `coscheduledSmCount` groups into larger groups,\nin order to make use of `preferredClusterDimensions` on Compute Architecture 10.0+. The default value is set to `coscheduledSmCount.`\n- `flags:`\n- `cudaDevSmResourceGroupBackfill:` lets `smCount` be a non-multiple of `coscheduledSmCount,` filling the difference between SM count\nand already assigned co-scheduled groupings with other SMs. This lets any resulting group behave similar to the `remainder` group for example.\n<b>Example params and their effect:</b>\nA groupParams array element is defined in the following order:\n\\code { .smCount, .coscheduledSmCount, .preferredCoscheduledSmCount, .flags, \\/\\* .reserved \\*\\/ }\n\\endcode \\code // Example 1\n// Will discover how many SMs there are, that are co-scheduled in groups of smCoscheduledAlignment.\n// The rest is placed in the optional remainder.\ncudaDevSmResourceGroupParams params { 0, 0, 0, 0 };\n\\endcode \\code // Example 2\n// Assuming the device has 10+ SMs, the result will have 10 SMs that are co-scheduled in groups of 2 SMs.\n// The rest is placed in the optional remainder.\ncudaDevSmResourceGroupParams params { 10, 2, 0, 0};\n// Setting the coscheduledSmCount to 2 guarantees that we can always have a valid result\n// as long as the SM count is less than or equal to the input resource SM count.\n\\endcode \\code // Example 3\n// A single piece is split-off, but instead of assigning the rest to the remainder, a second group contains everything else\n// This assumes the device has 10+ SMs (8 of which are coscheduled in groups of 4),\n// otherwise the second group could end up with 0 SMs, which is not allowed.\ncudaDevSmResourceGroupParams params { {8, 4, 0, 0}, {0, 2, 0, cudaDevSmResourceGroupBackfill } }\n\\endcode The difference between a catch-all param group as the last entry and the remainder is in two aspects:\n- The remainder may be NULL / _TYPE_INVALID (if there are no SMs remaining), while a result group must always be valid.\n- The remainder does not have a structure, while the result group will always need to adhere to a structure\nof coscheduledSmCount (even if its just 2), and therefore must always have enough coscheduled SMs to cover\nthat requirement (even with the `cudaDevSmResourceGroupBackfill` flag enabled).\nSplitting an input into N groups, can be accomplished by repeatedly splitting off 1 group and re-splitting\nthe remainder (a bisect operation). However, it's recommended to accomplish this with a single call wherever possible.\n\n# Arguments\n\n* `result` - - Output array of `cudaDevResource` resources. Can be NULL, alongside an smCount of 0, for discovery purpose.\n* `nbGroups` - - Specifies the number of groups in `result` and `groupParams`\n* `input` - - Input SM resource to be split. Must be a valid `cudaDevResourceTypeSm` resource.\n* `remainder` - - If splitting the input resource leaves any SMs, the remainder is placed in here.\n* `flags` - - Flags specifying how the API should behave. The value should be 0 for now.\n* `groupParams` - - Description of how the SMs should be split and assigned to the corresponding result entry.\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted,\n::cudaErrorInvalidResourceType,\n::cudaErrorInvalidResourceConfiguration,\n::cudaErrorNotSupported,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\note_callback # See also\n\n> [`::cuDevSmResourceSplit,`]\n::cudaDeviceGetDevResource,\n::cudaExecutionCtxGetDevResource,\n::cudaDevResourceGenerateDesc"]
-pub unsafe fn cudaDevSmResourceSplit<T: types::CudaAsMutPtr, U: types::CudaAsPtr, V: types::CudaAsMutPtr, W: types::CudaAsMutPtr>(mut result: T, nbGroups: u32, input: U, mut remainder: V, flags: u32, mut groupParams: W) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDevSmResourceSplit<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr, T2: types::CudaAsMutPtr, T3: types::CudaAsMutPtr>(mut result: T0, nbGroups: u32, input: T1, mut remainder: T2, flags: u32, mut groupParams: T3) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDevSmResourceSplit(result.as_mut_ptr() as *mut _, nbGroups as _, input.as_const_ptr() as *const _, remainder.as_mut_ptr() as *mut _, flags as _, groupParams.as_mut_ptr() as *mut _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
 #[doc = "Generate a resource descriptor\nGenerates a single resource descriptor with the set of resources specified in `resources.`\nThe generated resource descriptor is necessary for the creation of green contexts via the\n::cudaGreenCtxCreate API. Resources of the same type can be passed in, provided they meet\nthe requirements as noted below.\nA successful API call must have:\n- A valid output pointer for the `phDesc` descriptor as well as a valid array of `resources` pointers,\nwith the array size passed in `nbResources.`\nIf multiple resources are provided in `resources,` the device they came from must be the same,\notherwise ::cudaErrorInvalidResourceConfiguration is returned.\nIf multiple resources are provided in `resources` and they are of type ::cudaDevResourceTypeSm,\nthey must be outputs (whether `result` or `remaining)` from the same split API instance and have\nthe same smCoscheduledAlignment values, otherwise ::cudaErrorInvalidResourceConfiguration is returned.\nNote: The API is not supported on 32-bit platforms.\n\n# Arguments\n\n* `phDesc` - - Output descriptor\n* `resources` - - Array of resources to be included in the descriptor\n* `nbResources` - - Number of resources passed in `resources`\n\n# Returns\n\n::cudaSuccess,\n::cudaErrorInvalidValue,\n::cudaErrorNotPermitted,\n::cudaErrorInvalidResourceType,\n::cudaErrorInvalidResourceConfiguration,\n::cudaErrorNotSupported,\n::cudaErrorOutOfMemory,\n::cudaErrorCudartUnloading,\n::cudaErrorInitializationError\n\\note_callback # See also\n\n> [`::cuDevResourceGenerateDesc,`]\n::cudaDeviceGetDevResource,\n::cudaExecutionCtxGetDevResource,\n::cudaDevSmResourceSplit,\n::cudaGreenCtxCreate"]
-pub unsafe fn cudaDevResourceGenerateDesc<T: types::CudaAsMutPtr, U: types::CudaAsMutPtr>(mut phDesc: T, mut resources: U, nbResources: u32) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaDevResourceGenerateDesc<T0: types::CudaAsMutPtr, T1: types::CudaAsMutPtr>(mut phDesc: T0, mut resources: T1, nbResources: u32) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaDevResourceGenerateDesc(phDesc.as_mut_ptr() as *mut _, resources.as_mut_ptr() as *mut _, nbResources as _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }
@@ -5700,7 +5938,7 @@ pub unsafe fn cudaDeviceGetExecutionCtx(device: i32) -> Result<cudaExecutionCont
     }
 }
 #[doc = "\\cond impl_private"]
-pub unsafe fn cudaGetExportTable<T: types::CudaAsMutPtr, U: types::CudaAsPtr>(mut ppExportTable: T, pExportTableId: U) -> Result<(), crate::sys::cudaError> {
+pub unsafe fn cudaGetExportTable<T0: types::CudaAsMutPtr, T1: types::CudaAsPtr>(mut ppExportTable: T0, pExportTableId: T1) -> Result<(), crate::sys::cudaError> {
     let status = unsafe { crate::sys::cudaGetExportTable(ppExportTable.as_mut_ptr() as *mut _, pExportTableId.as_const_ptr() as *const _) };
     if status == crate::sys::cudaError::cudaSuccess { Ok(()) } else { Err(status) }
 }

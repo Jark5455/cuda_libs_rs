@@ -1,3 +1,4 @@
+#![allow(unsafe_op_in_unsafe_fn)]
 use cuda_libs_cudart::sys::*;
 pub const CUFFT_VER_MAJOR: u32 = 12;
 pub const CUFFT_VER_MINOR: u32 = 2;
@@ -277,129 +278,104 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cufftPlan1d: Option<unsafe extern "C" fn(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftPlan2d: Option<unsafe extern "C" fn(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType) -> cufftResult>,
-    pub cufftPlan3d: Option<unsafe extern "C" fn(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType) -> cufftResult>,
+    pub cufftPlan1d: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftPlan2d: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType) -> cufftResult>,
+    pub cufftPlan3d: Option<unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType) -> cufftResult>,
     pub cufftPlanMany: Option<
-        unsafe extern "C" fn(
-            plan: *mut cufftHandle,
-            rank: ::std::os::raw::c_int,
-            n: *mut ::std::os::raw::c_int,
-            inembed: *mut ::std::os::raw::c_int,
-            istride: ::std::os::raw::c_int,
-            idist: ::std::os::raw::c_int,
-            onembed: *mut ::std::os::raw::c_int,
-            ostride: ::std::os::raw::c_int,
-            odist: ::std::os::raw::c_int,
-            type_: cufftType,
-            batch: ::std::os::raw::c_int,
-        ) -> cufftResult,
+        unsafe extern "C" fn(*mut cufftHandle, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int) -> cufftResult,
     >,
-    pub cufftMakePlan1d: Option<unsafe extern "C" fn(plan: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult>,
-    pub cufftMakePlan2d: Option<unsafe extern "C" fn(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>,
-    pub cufftMakePlan3d: Option<unsafe extern "C" fn(plan: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>,
+    pub cufftMakePlan1d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
+    pub cufftMakePlan2d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftMakePlan3d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
     pub cufftMakePlanMany: Option<
         unsafe extern "C" fn(
-            plan: cufftHandle,
-            rank: ::std::os::raw::c_int,
-            n: *mut ::std::os::raw::c_int,
-            inembed: *mut ::std::os::raw::c_int,
-            istride: ::std::os::raw::c_int,
-            idist: ::std::os::raw::c_int,
-            onembed: *mut ::std::os::raw::c_int,
-            ostride: ::std::os::raw::c_int,
-            odist: ::std::os::raw::c_int,
-            type_: cufftType,
-            batch: ::std::os::raw::c_int,
-            workSize: *mut usize,
+            cufftHandle,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cufftType,
+            ::std::os::raw::c_int,
+            *mut usize,
         ) -> cufftResult,
     >,
     pub cufftMakePlanMany64: Option<
         unsafe extern "C" fn(
-            plan: cufftHandle,
-            rank: ::std::os::raw::c_int,
-            n: *mut ::std::os::raw::c_longlong,
-            inembed: *mut ::std::os::raw::c_longlong,
-            istride: ::std::os::raw::c_longlong,
-            idist: ::std::os::raw::c_longlong,
-            onembed: *mut ::std::os::raw::c_longlong,
-            ostride: ::std::os::raw::c_longlong,
-            odist: ::std::os::raw::c_longlong,
-            type_: cufftType,
-            batch: ::std::os::raw::c_longlong,
-            workSize: *mut usize,
+            cufftHandle,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            cufftType,
+            ::std::os::raw::c_longlong,
+            *mut usize,
         ) -> cufftResult,
     >,
     pub cufftGetSizeMany64: Option<
         unsafe extern "C" fn(
-            plan: cufftHandle,
-            rank: ::std::os::raw::c_int,
-            n: *mut ::std::os::raw::c_longlong,
-            inembed: *mut ::std::os::raw::c_longlong,
-            istride: ::std::os::raw::c_longlong,
-            idist: ::std::os::raw::c_longlong,
-            onembed: *mut ::std::os::raw::c_longlong,
-            ostride: ::std::os::raw::c_longlong,
-            odist: ::std::os::raw::c_longlong,
-            type_: cufftType,
-            batch: ::std::os::raw::c_longlong,
-            workSize: *mut usize,
+            cufftHandle,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            ::std::os::raw::c_longlong,
+            cufftType,
+            ::std::os::raw::c_longlong,
+            *mut usize,
         ) -> cufftResult,
     >,
-    pub cufftEstimate1d: Option<unsafe extern "C" fn(nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult>,
-    pub cufftEstimate2d: Option<unsafe extern "C" fn(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>,
-    pub cufftEstimate3d: Option<unsafe extern "C" fn(nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>,
-    pub cufftEstimateMany: Option<
-        unsafe extern "C" fn(
-            rank: ::std::os::raw::c_int,
-            n: *mut ::std::os::raw::c_int,
-            inembed: *mut ::std::os::raw::c_int,
-            istride: ::std::os::raw::c_int,
-            idist: ::std::os::raw::c_int,
-            onembed: *mut ::std::os::raw::c_int,
-            ostride: ::std::os::raw::c_int,
-            odist: ::std::os::raw::c_int,
-            type_: cufftType,
-            batch: ::std::os::raw::c_int,
-            workSize: *mut usize,
-        ) -> cufftResult,
-    >,
-    pub cufftCreate: Option<unsafe extern "C" fn(handle: *mut cufftHandle) -> cufftResult>,
-    pub cufftGetSize1d: Option<unsafe extern "C" fn(handle: cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int, workSize: *mut usize) -> cufftResult>,
-    pub cufftGetSize2d: Option<unsafe extern "C" fn(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>,
-    pub cufftGetSize3d: Option<unsafe extern "C" fn(handle: cufftHandle, nx: ::std::os::raw::c_int, ny: ::std::os::raw::c_int, nz: ::std::os::raw::c_int, type_: cufftType, workSize: *mut usize) -> cufftResult>,
+    pub cufftEstimate1d: Option<unsafe extern "C" fn(::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
+    pub cufftEstimate2d: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftEstimate3d: Option<unsafe extern "C" fn(::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftEstimateMany:
+        Option<unsafe extern "C" fn(::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
+    pub cufftCreate: Option<unsafe extern "C" fn(*mut cufftHandle) -> cufftResult>,
+    pub cufftGetSize1d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, cufftType, ::std::os::raw::c_int, *mut usize) -> cufftResult>,
+    pub cufftGetSize2d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
+    pub cufftGetSize3d: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cufftType, *mut usize) -> cufftResult>,
     pub cufftGetSizeMany: Option<
         unsafe extern "C" fn(
-            handle: cufftHandle,
-            rank: ::std::os::raw::c_int,
-            n: *mut ::std::os::raw::c_int,
-            inembed: *mut ::std::os::raw::c_int,
-            istride: ::std::os::raw::c_int,
-            idist: ::std::os::raw::c_int,
-            onembed: *mut ::std::os::raw::c_int,
-            ostride: ::std::os::raw::c_int,
-            odist: ::std::os::raw::c_int,
-            type_: cufftType,
-            batch: ::std::os::raw::c_int,
-            workArea: *mut usize,
+            cufftHandle,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cufftType,
+            ::std::os::raw::c_int,
+            *mut usize,
         ) -> cufftResult,
     >,
-    pub cufftGetSize: Option<unsafe extern "C" fn(handle: cufftHandle, workSize: *mut usize) -> cufftResult>,
-    pub cufftSetWorkArea: Option<unsafe extern "C" fn(plan: cufftHandle, workArea: *mut ::std::os::raw::c_void) -> cufftResult>,
-    pub cufftSetAutoAllocation: Option<unsafe extern "C" fn(plan: cufftHandle, autoAllocate: ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftExecC2C: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftComplex, direction: ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftExecR2C: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftReal, odata: *mut cufftComplex) -> cufftResult>,
-    pub cufftExecC2R: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftComplex, odata: *mut cufftReal) -> cufftResult>,
-    pub cufftExecZ2Z: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleComplex, direction: ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftExecD2Z: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftDoubleReal, odata: *mut cufftDoubleComplex) -> cufftResult>,
-    pub cufftExecZ2D: Option<unsafe extern "C" fn(plan: cufftHandle, idata: *mut cufftDoubleComplex, odata: *mut cufftDoubleReal) -> cufftResult>,
-    pub cufftSetStream: Option<unsafe extern "C" fn(plan: cufftHandle, stream: cudaStream_t) -> cufftResult>,
-    pub cufftDestroy: Option<unsafe extern "C" fn(plan: cufftHandle) -> cufftResult>,
-    pub cufftGetVersion: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftGetProperty: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cufftResult>,
-    pub cufftSetPlanPropertyInt64: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty, inputValueInt: ::std::os::raw::c_longlong) -> cufftResult>,
-    pub cufftGetPlanPropertyInt64: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty, returnPtrValue: *mut ::std::os::raw::c_longlong) -> cufftResult>,
-    pub cufftResetPlanProperty: Option<unsafe extern "C" fn(plan: cufftHandle, property: cufftProperty) -> cufftResult>,
+    pub cufftGetSize: Option<unsafe extern "C" fn(cufftHandle, *mut usize) -> cufftResult>,
+    pub cufftSetWorkArea: Option<unsafe extern "C" fn(cufftHandle, *mut ::std::os::raw::c_void) -> cufftResult>,
+    pub cufftSetAutoAllocation: Option<unsafe extern "C" fn(cufftHandle, ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftExecC2C: Option<unsafe extern "C" fn(cufftHandle, *mut cufftComplex, *mut cufftComplex, ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftExecR2C: Option<unsafe extern "C" fn(cufftHandle, *mut cufftReal, *mut cufftComplex) -> cufftResult>,
+    pub cufftExecC2R: Option<unsafe extern "C" fn(cufftHandle, *mut cufftComplex, *mut cufftReal) -> cufftResult>,
+    pub cufftExecZ2Z: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleComplex, *mut cufftDoubleComplex, ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftExecD2Z: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleReal, *mut cufftDoubleComplex) -> cufftResult>,
+    pub cufftExecZ2D: Option<unsafe extern "C" fn(cufftHandle, *mut cufftDoubleComplex, *mut cufftDoubleReal) -> cufftResult>,
+    pub cufftSetStream: Option<unsafe extern "C" fn(cufftHandle, cudaStream_t) -> cufftResult>,
+    pub cufftDestroy: Option<unsafe extern "C" fn(cufftHandle) -> cufftResult>,
+    pub cufftGetVersion: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cufftResult>,
+    pub cufftSetPlanPropertyInt64: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, ::std::os::raw::c_longlong) -> cufftResult>,
+    pub cufftGetPlanPropertyInt64: Option<unsafe extern "C" fn(cufftHandle, cufftProperty, *mut ::std::os::raw::c_longlong) -> cufftResult>,
+    pub cufftResetPlanProperty: Option<unsafe extern "C" fn(cufftHandle, cufftProperty) -> cufftResult>,
 }
 #[cfg(feature = "runtime-link")]
 unsafe impl Send for DynamicBindings {}
@@ -771,150 +747,148 @@ pub unsafe extern "C" fn cufftResetPlanProperty(plan: cufftHandle, property: cuf
 }
 #[cfg(feature = "runtime-link")]
 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-    let bindings = unsafe {
-        Box::new(DynamicBindings {
-            cufftPlan1d: {
-                let p = get_proc_addr(lib, b"cufftPlan1d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftPlan2d: {
-                let p = get_proc_addr(lib, b"cufftPlan2d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftPlan3d: {
-                let p = get_proc_addr(lib, b"cufftPlan3d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftPlanMany: {
-                let p = get_proc_addr(lib, b"cufftPlanMany\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftMakePlan1d: {
-                let p = get_proc_addr(lib, b"cufftMakePlan1d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftMakePlan2d: {
-                let p = get_proc_addr(lib, b"cufftMakePlan2d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftMakePlan3d: {
-                let p = get_proc_addr(lib, b"cufftMakePlan3d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftMakePlanMany: {
-                let p = get_proc_addr(lib, b"cufftMakePlanMany\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftMakePlanMany64: {
-                let p = get_proc_addr(lib, b"cufftMakePlanMany64\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetSizeMany64: {
-                let p = get_proc_addr(lib, b"cufftGetSizeMany64\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftEstimate1d: {
-                let p = get_proc_addr(lib, b"cufftEstimate1d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftEstimate2d: {
-                let p = get_proc_addr(lib, b"cufftEstimate2d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftEstimate3d: {
-                let p = get_proc_addr(lib, b"cufftEstimate3d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftEstimateMany: {
-                let p = get_proc_addr(lib, b"cufftEstimateMany\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftCreate: {
-                let p = get_proc_addr(lib, b"cufftCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetSize1d: {
-                let p = get_proc_addr(lib, b"cufftGetSize1d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetSize2d: {
-                let p = get_proc_addr(lib, b"cufftGetSize2d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetSize3d: {
-                let p = get_proc_addr(lib, b"cufftGetSize3d\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetSizeMany: {
-                let p = get_proc_addr(lib, b"cufftGetSizeMany\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetSize: {
-                let p = get_proc_addr(lib, b"cufftGetSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftSetWorkArea: {
-                let p = get_proc_addr(lib, b"cufftSetWorkArea\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftSetAutoAllocation: {
-                let p = get_proc_addr(lib, b"cufftSetAutoAllocation\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftExecC2C: {
-                let p = get_proc_addr(lib, b"cufftExecC2C\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftExecR2C: {
-                let p = get_proc_addr(lib, b"cufftExecR2C\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftExecC2R: {
-                let p = get_proc_addr(lib, b"cufftExecC2R\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftExecZ2Z: {
-                let p = get_proc_addr(lib, b"cufftExecZ2Z\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftExecD2Z: {
-                let p = get_proc_addr(lib, b"cufftExecD2Z\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftExecZ2D: {
-                let p = get_proc_addr(lib, b"cufftExecZ2D\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftSetStream: {
-                let p = get_proc_addr(lib, b"cufftSetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftDestroy: {
-                let p = get_proc_addr(lib, b"cufftDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetVersion: {
-                let p = get_proc_addr(lib, b"cufftGetVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetProperty: {
-                let p = get_proc_addr(lib, b"cufftGetProperty\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftSetPlanPropertyInt64: {
-                let p = get_proc_addr(lib, b"cufftSetPlanPropertyInt64\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftGetPlanPropertyInt64: {
-                let p = get_proc_addr(lib, b"cufftGetPlanPropertyInt64\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cufftResetPlanProperty: {
-                let p = get_proc_addr(lib, b"cufftResetPlanProperty\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-        })
-    };
+    let bindings = Box::new(DynamicBindings {
+        cufftPlan1d: {
+            let p = get_proc_addr(lib, b"cufftPlan1d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftPlan2d: {
+            let p = get_proc_addr(lib, b"cufftPlan2d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftPlan3d: {
+            let p = get_proc_addr(lib, b"cufftPlan3d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftPlanMany: {
+            let p = get_proc_addr(lib, b"cufftPlanMany\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftMakePlan1d: {
+            let p = get_proc_addr(lib, b"cufftMakePlan1d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftMakePlan2d: {
+            let p = get_proc_addr(lib, b"cufftMakePlan2d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftMakePlan3d: {
+            let p = get_proc_addr(lib, b"cufftMakePlan3d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftMakePlanMany: {
+            let p = get_proc_addr(lib, b"cufftMakePlanMany\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftMakePlanMany64: {
+            let p = get_proc_addr(lib, b"cufftMakePlanMany64\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetSizeMany64: {
+            let p = get_proc_addr(lib, b"cufftGetSizeMany64\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftEstimate1d: {
+            let p = get_proc_addr(lib, b"cufftEstimate1d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftEstimate2d: {
+            let p = get_proc_addr(lib, b"cufftEstimate2d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftEstimate3d: {
+            let p = get_proc_addr(lib, b"cufftEstimate3d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftEstimateMany: {
+            let p = get_proc_addr(lib, b"cufftEstimateMany\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftCreate: {
+            let p = get_proc_addr(lib, b"cufftCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetSize1d: {
+            let p = get_proc_addr(lib, b"cufftGetSize1d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetSize2d: {
+            let p = get_proc_addr(lib, b"cufftGetSize2d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetSize3d: {
+            let p = get_proc_addr(lib, b"cufftGetSize3d\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetSizeMany: {
+            let p = get_proc_addr(lib, b"cufftGetSizeMany\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetSize: {
+            let p = get_proc_addr(lib, b"cufftGetSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftSetWorkArea: {
+            let p = get_proc_addr(lib, b"cufftSetWorkArea\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftSetAutoAllocation: {
+            let p = get_proc_addr(lib, b"cufftSetAutoAllocation\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftExecC2C: {
+            let p = get_proc_addr(lib, b"cufftExecC2C\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftExecR2C: {
+            let p = get_proc_addr(lib, b"cufftExecR2C\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftExecC2R: {
+            let p = get_proc_addr(lib, b"cufftExecC2R\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftExecZ2Z: {
+            let p = get_proc_addr(lib, b"cufftExecZ2Z\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftExecD2Z: {
+            let p = get_proc_addr(lib, b"cufftExecD2Z\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftExecZ2D: {
+            let p = get_proc_addr(lib, b"cufftExecZ2D\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftSetStream: {
+            let p = get_proc_addr(lib, b"cufftSetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftDestroy: {
+            let p = get_proc_addr(lib, b"cufftDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetVersion: {
+            let p = get_proc_addr(lib, b"cufftGetVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetProperty: {
+            let p = get_proc_addr(lib, b"cufftGetProperty\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftSetPlanPropertyInt64: {
+            let p = get_proc_addr(lib, b"cufftSetPlanPropertyInt64\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftGetPlanPropertyInt64: {
+            let p = get_proc_addr(lib, b"cufftGetPlanPropertyInt64\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cufftResetPlanProperty: {
+            let p = get_proc_addr(lib, b"cufftResetPlanProperty\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+    });
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
 unsafe impl Send for cufftResult_t {}

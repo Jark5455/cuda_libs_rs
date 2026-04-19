@@ -1,3 +1,4 @@
+#![allow(unsafe_op_in_unsafe_fn)]
 use cuda_libs_cublas::sys::*;
 use cuda_libs_cudart::sys::*;
 use cuda_libs_cusparse::sys::*;
@@ -6019,5004 +6020,2740 @@ unsafe extern "C" {
 }
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
-    pub cusolverGetProperty: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverGetVersion: Option<unsafe extern "C" fn(version: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCreate: Option<unsafe extern "C" fn(handle: *mut cusolverDnHandle_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroy: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t) -> cusolverStatus_t>,
-    pub cusolverDnSetStream: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverDnGetStream: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverDnSetDeterministicMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverDeterministicMode_t) -> cusolverStatus_t>,
-    pub cusolverDnGetDeterministicMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverDeterministicMode_t) -> cusolverStatus_t>,
-    pub cusolverDnSetMathMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: cusolverMathMode_t) -> cusolverStatus_t>,
-    pub cusolverDnGetMathMode: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mode: *mut cusolverMathMode_t) -> cusolverStatus_t>,
-    pub cusolverDnSetEmulationStrategy: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: cudaEmulationStrategy_t) -> cusolverStatus_t>,
-    pub cusolverDnGetEmulationStrategy: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, strategy: *mut cudaEmulationStrategy_t) -> cusolverStatus_t>,
-    pub cusolverDnSetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, control: cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
-    pub cusolverDnGetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, control: *mut cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
-    pub cusolverDnSetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitCount: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnGetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitCount: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitOffset: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnGetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mantissaBitOffset: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mask: cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
-    pub cusolverDnGetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, mask: *mut cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsCreate: Option<unsafe extern "C" fn(params_ptr: *mut cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsDestroy: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetRefinementSolver: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, refinement_solver: cusolverIRSRefinement_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetSolverMainPrecision: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetSolverLowestPrecision: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetSolverPrecisions: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, solver_main_precision: cusolverPrecType_t, solver_lowest_precision: cusolverPrecType_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetTol: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetTolInner: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, val: f64) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetMaxIters: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsSetMaxItersInner: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters_inner: cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsGetMaxIters: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsEnableFallback: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSParamsDisableFallback: Option<unsafe extern "C" fn(params: cusolverDnIRSParams_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosDestroy: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosCreate: Option<unsafe extern "C" fn(infos_ptr: *mut cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetNiters: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, niters: *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetOuterNiters: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, outer_niters: *mut cusolver_int_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosRequestResidual: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetResidualHistory: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, residual_history: *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t>,
-    pub cusolverDnIRSInfosGetMaxIters: Option<unsafe extern "C" fn(infos: cusolverDnIRSInfos_t, maxiters: *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverGetProperty: Option<unsafe extern "C" fn(libraryPropertyType, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverGetVersion: Option<unsafe extern "C" fn(*mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCreate: Option<unsafe extern "C" fn(*mut cusolverDnHandle_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroy: Option<unsafe extern "C" fn(cusolverDnHandle_t) -> cusolverStatus_t>,
+    pub cusolverDnSetStream: Option<unsafe extern "C" fn(cusolverDnHandle_t, cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverDnGetStream: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverDnSetDeterministicMode: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDeterministicMode_t) -> cusolverStatus_t>,
+    pub cusolverDnGetDeterministicMode: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cusolverDeterministicMode_t) -> cusolverStatus_t>,
+    pub cusolverDnSetMathMode: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverMathMode_t) -> cusolverStatus_t>,
+    pub cusolverDnGetMathMode: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cusolverMathMode_t) -> cusolverStatus_t>,
+    pub cusolverDnSetEmulationStrategy: Option<unsafe extern "C" fn(cusolverDnHandle_t, cudaEmulationStrategy_t) -> cusolverStatus_t>,
+    pub cusolverDnGetEmulationStrategy: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cudaEmulationStrategy_t) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(cusolverDnHandle_t, cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMantissaControl: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cudaEmulationMantissaControl_t) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMaxMantissaBitCount: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnGetFixedPointEmulationMantissaBitOffset: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(cusolverDnHandle_t, cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
+    pub cusolverDnGetEmulationSpecialValuesSupport: Option<unsafe extern "C" fn(cusolverDnHandle_t, *mut cudaEmulationSpecialValuesSupport_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsCreate: Option<unsafe extern "C" fn(*mut cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsDestroy: Option<unsafe extern "C" fn(cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetRefinementSolver: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, cusolverIRSRefinement_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetSolverMainPrecision: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, cusolverPrecType_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetSolverLowestPrecision: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, cusolverPrecType_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetSolverPrecisions: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, cusolverPrecType_t, cusolverPrecType_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetTol: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, f64) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetTolInner: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, f64) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetMaxIters: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsSetMaxItersInner: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsGetMaxIters: Option<unsafe extern "C" fn(cusolverDnIRSParams_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsEnableFallback: Option<unsafe extern "C" fn(cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSParamsDisableFallback: Option<unsafe extern "C" fn(cusolverDnIRSParams_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosDestroy: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosCreate: Option<unsafe extern "C" fn(*mut cusolverDnIRSInfos_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetNiters: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetOuterNiters: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosRequestResidual: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetResidualHistory: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut *mut ::std::os::raw::c_void) -> cusolverStatus_t>,
+    pub cusolverDnIRSInfosGetMaxIters: Option<unsafe extern "C" fn(cusolverDnIRSInfos_t, *mut cusolver_int_t) -> cusolverStatus_t>,
     pub cusolverDnZZgesv: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZCgesv: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZKgesv: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZEgesv: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZYgesv: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCCgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnCEgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnCKgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
     pub cusolverDnCYgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t,
     >,
-    pub cusolverDnDDgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDSgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDHgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDBgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDXgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSSgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSHgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSBgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSXgesv: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZZgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZCgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZKgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZEgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZYgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCCgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCKgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCEgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCYgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDDgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDSgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDHgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDBgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDXgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSSgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSHgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSBgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSXgesv_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dipiv: *mut cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnDDgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDSgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDHgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDBgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDXgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSSgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSHgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSBgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSXgesv:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnZZgesv_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZCgesv_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZKgesv_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZEgesv_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZYgesv_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCCgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCKgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCEgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCYgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDDgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDSgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDHgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDBgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDXgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSSgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSHgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSBgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSXgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnZZgels: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZCgels: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZKgels: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZEgels: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZYgels: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut cuDoubleComplex,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnCCgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCKgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCEgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCYgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDDgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDSgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDHgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDBgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDXgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSSgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSHgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSBgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSXgels: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            iter: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZZgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZCgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZKgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZEgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZYgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuDoubleComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuDoubleComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuDoubleComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCCgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCKgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCEgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCYgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut cuComplex,
-            ldda: cusolver_int_t,
-            dB: *mut cuComplex,
-            lddb: cusolver_int_t,
-            dX: *mut cuComplex,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDDgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDSgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDHgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDBgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDXgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f64,
-            ldda: cusolver_int_t,
-            dB: *mut f64,
-            lddb: cusolver_int_t,
-            dX: *mut f64,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSSgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSHgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSBgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSXgels_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut f32,
-            ldda: cusolver_int_t,
-            dB: *mut f32,
-            lddb: cusolver_int_t,
-            dX: *mut f32,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnCCgels:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnCKgels:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnCEgels:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnCYgels:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDDgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDSgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDHgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDBgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnDXgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSSgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSHgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSBgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnSXgels: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, usize, *mut cusolver_int_t, *mut cusolver_int_t) -> cusolverStatus_t>,
+    pub cusolverDnZZgels_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZCgels_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZKgels_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZEgels_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnZYgels_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut cuDoubleComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCCgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCKgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCEgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnCYgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut cuComplex, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDDgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDSgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDHgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDBgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnDXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut f64, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSSgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSHgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSBgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut f32, cusolver_int_t, *mut ::std::os::raw::c_void, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnIRSXgesv: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            gesv_irs_params: cusolverDnIRSParams_t,
-            gesv_irs_infos: cusolverDnIRSInfos_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut ::std::os::raw::c_void,
-            ldda: cusolver_int_t,
-            dB: *mut ::std::os::raw::c_void,
-            lddb: cusolver_int_t,
-            dX: *mut ::std::os::raw::c_void,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            niters: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolverDnIRSParams_t,
+            cusolverDnIRSInfos_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnIRSXgesv_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnIRSXgesv_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnIRSParams_t, cusolver_int_t, cusolver_int_t, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnIRSXgels: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            gels_irs_params: cusolverDnIRSParams_t,
-            gels_irs_infos: cusolverDnIRSInfos_t,
-            m: cusolver_int_t,
-            n: cusolver_int_t,
-            nrhs: cusolver_int_t,
-            dA: *mut ::std::os::raw::c_void,
-            ldda: cusolver_int_t,
-            dB: *mut ::std::os::raw::c_void,
-            lddb: cusolver_int_t,
-            dX: *mut ::std::os::raw::c_void,
-            lddx: cusolver_int_t,
-            dWorkspace: *mut ::std::os::raw::c_void,
-            lwork_bytes: usize,
-            niters: *mut cusolver_int_t,
-            d_info: *mut cusolver_int_t,
+            cusolverDnHandle_t,
+            cusolverDnIRSParams_t,
+            cusolverDnIRSInfos_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            cusolver_int_t,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut cusolver_int_t,
+            *mut cusolver_int_t,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnIRSXgels_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, params: cusolverDnIRSParams_t, m: cusolver_int_t, n: cusolver_int_t, nrhs: cusolver_int_t, lwork_bytes: *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnSpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrf:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotrs:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, B: *mut f32, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrs:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, B: *mut f64, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrs:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, nrhs: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, B: *mut cuComplex, ldb: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f32, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut f64, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotrfBatched: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, Aarray: *mut *mut cuDoubleComplex, lda: ::std::os::raw::c_int, infoArray: *mut ::std::os::raw::c_int, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotrsBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *mut *mut f32,
-            lda: ::std::os::raw::c_int,
-            B: *mut *mut f32,
-            ldb: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDpotrsBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *mut *mut f64,
-            lda: ::std::os::raw::c_int,
-            B: *mut *mut f64,
-            ldb: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCpotrsBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *mut *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut *mut cuComplex,
-            ldb: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZpotrsBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *mut *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSpotri: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDpotri: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCpotri: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZpotri:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXtrtri_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, diag: cublasDiagType_t, n: i64, dataTypeA: cudaDataType, A: *mut ::std::os::raw::c_void, lda: i64, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnXtrtri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            diag: cublasDiagType_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSlauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDlauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnClauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZlauum_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSlauum: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDlauum: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnClauum: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZlauum:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, work: *mut cuDoubleComplex, lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgetrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgetrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, Workspace: *mut f32, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgetrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, Workspace: *mut f64, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgetrf:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgetrf:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, Workspace: *mut cuDoubleComplex, devIpiv: *mut ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSlaswp: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDlaswp: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnClaswp: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZlaswp:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, k1: ::std::os::raw::c_int, k2: ::std::os::raw::c_int, devIpiv: *const ::std::os::raw::c_int, incx: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgetrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            trans: cublasOperation_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            B: *mut f32,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgetrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            trans: cublasOperation_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            B: *mut f64,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgetrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            trans: cublasOperation_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            B: *mut cuComplex,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZgetrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            trans: cublasOperation_t,
-            n: ::std::os::raw::c_int,
-            nrhs: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            devIpiv: *const ::std::os::raw::c_int,
-            B: *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgeqrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgeqrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, TAU: *mut f32, Workspace: *mut f32, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgeqrf: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, TAU: *mut f64, Workspace: *mut f64, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgeqrf:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, TAU: *mut cuComplex, Workspace: *mut cuComplex, Lwork: ::std::os::raw::c_int, devInfo: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgeqrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            TAU: *mut cuDoubleComplex,
-            Workspace: *mut cuDoubleComplex,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSorgqr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgqr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungqr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungqr_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSorgqr: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDorgqr: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCungqr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZungqr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSormqr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            C: *const f32,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDormqr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            C: *const f64,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnIRSXgels_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnIRSParams_t, cusolver_int_t, cusolver_int_t, cusolver_int_t, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnSpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrfBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut f32, ::std::os::raw::c_int, *mut *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotrsBatched: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut f64, ::std::os::raw::c_int, *mut *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotrsBatched:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut cuComplex, ::std::os::raw::c_int, *mut *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotrsBatched:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut *mut cuDoubleComplex, ::std::os::raw::c_int, *mut *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZpotri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXtrtri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, cublasDiagType_t, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXtrtri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, cublasDiagType_t, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlauum_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlauum: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnClaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZlaswp: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgetrs:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgeqrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungqr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungqr: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungqr:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSormqr_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDormqr_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnCunmqr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            C: *const cuComplex,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZunmqr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            C: *const cuDoubleComplex,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSormqr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            C: *mut f32,
-            ldc: ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            *const f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDormqr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            C: *mut f64,
-            ldc: ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            *const f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCunmqr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            C: *mut cuComplex,
-            ldc: ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZunmqr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            C: *mut cuDoubleComplex,
-            ldc: ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZsytrf_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsytrf:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrf:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytrf: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *mut ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZsytrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            ipiv: *mut ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXsytrs_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            nrhs: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            ipiv: *const i64,
-            dataTypeB: cudaDataType,
-            B: *mut ::std::os::raw::c_void,
-            ldb: i64,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsytrs_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, *const i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXsytrs: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            nrhs: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            ipiv: *const i64,
-            dataTypeB: cudaDataType,
-            B: *mut ::std::os::raw::c_void,
-            ldb: i64,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasFillMode_t,
+            i64,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            *const i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZsytri_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuDoubleComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsytri:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytri:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCsytri: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, ipiv: *const ::std::os::raw::c_int, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZsytri: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            ipiv: *const ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgebrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, Lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSgebrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            D: *mut f32,
-            E: *mut f32,
-            TAUQ: *mut f32,
-            TAUP: *mut f32,
-            Work: *mut f32,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDgebrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            D: *mut f64,
-            E: *mut f64,
-            TAUQ: *mut f64,
-            TAUP: *mut f64,
-            Work: *mut f64,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCgebrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            D: *mut f32,
-            E: *mut f32,
-            TAUQ: *mut cuComplex,
-            TAUP: *mut cuComplex,
-            Work: *mut cuComplex,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytri_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZsytri: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgebrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgebrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut f32, *mut cuComplex, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnZgebrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            D: *mut f64,
-            E: *mut f64,
-            TAUQ: *mut cuDoubleComplex,
-            TAUP: *mut cuDoubleComplex,
-            Work: *mut cuDoubleComplex,
-            Lwork: ::std::os::raw::c_int,
-            devInfo: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut f64, *mut cuDoubleComplex, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
-    pub cusolverDnSorgbr_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgbr_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungbr_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungbr_bufferSize: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, side: cublasSideMode_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, k: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSorgbr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDorgbr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCungbr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSorgbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungbr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgbr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgbr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungbr:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnZungbr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            k: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsytrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnChetrd_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, d: *const f32, e: *const f32, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZhetrd_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, d: *const f64, e: *const f64, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsytrd:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, d: *mut f32, e: *mut f32, tau: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsytrd:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, d: *mut f64, e: *mut f64, tau: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnChetrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            d: *mut f32,
-            e: *mut f32,
-            tau: *mut cuComplex,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZhetrd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            d: *mut f64,
-            e: *mut f64,
-            tau: *mut cuDoubleComplex,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSorgtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, tau: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, tau: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungtr_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, tau: *const cuDoubleComplex, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSorgtr: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, tau: *const f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDorgtr: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, tau: *const f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCungtr:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, tau: *const cuComplex, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZungtr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSormtr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            tau: *const f32,
-            C: *const f32,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDormtr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            tau: *const f64,
-            C: *const f64,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsytrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *const f32, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *const f64, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChetrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *const f32, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZhetrd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *const f64, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsytrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsytrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChetrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut f32, *mut cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZhetrd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut f64, *mut cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungtr_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSorgtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *const f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDorgtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *const f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCungtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *const cuComplex, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZungtr: Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSormtr_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *const f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDormtr_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *const f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnCunmtr_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuComplex,
-            C: *const cuComplex,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cublasSideMode_t, cublasFillMode_t, cublasOperation_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, *const cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
     pub cusolverDnZunmtr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *const cuDoubleComplex,
-            C: *const cuDoubleComplex,
-            ldc: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasFillMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSormtr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            tau: *mut f32,
-            C: *mut f32,
-            ldc: ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasFillMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDormtr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            tau: *mut f64,
-            C: *mut f64,
-            ldc: ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasFillMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCunmtr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *mut cuComplex,
-            C: *mut cuComplex,
-            ldc: ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasFillMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZunmtr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            side: cublasSideMode_t,
-            uplo: cublasFillMode_t,
-            trans: cublasOperation_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            tau: *mut cuDoubleComplex,
-            C: *mut cuDoubleComplex,
-            ldc: ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cublasSideMode_t,
+            cublasFillMode_t,
+            cublasOperation_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZgesvd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZgesvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgesvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobu: ::std::os::raw::c_schar,
-            jobvt: ::std::os::raw::c_schar,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            S: *mut f32,
-            U: *mut f32,
-            ldu: ::std::os::raw::c_int,
-            VT: *mut f32,
-            ldvt: ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            rwork: *mut f32,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobu: ::std::os::raw::c_schar,
-            jobvt: ::std::os::raw::c_schar,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            S: *mut f64,
-            U: *mut f64,
-            ldu: ::std::os::raw::c_int,
-            VT: *mut f64,
-            ldvt: ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            rwork: *mut f64,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobu: ::std::os::raw::c_schar,
-            jobvt: ::std::os::raw::c_schar,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            S: *mut f32,
-            U: *mut cuComplex,
-            ldu: ::std::os::raw::c_int,
-            VT: *mut cuComplex,
-            ldvt: ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            rwork: *mut f32,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobu: ::std::os::raw::c_schar,
-            jobvt: ::std::os::raw::c_schar,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            S: *mut f64,
-            U: *mut cuDoubleComplex,
-            ldu: ::std::os::raw::c_int,
-            VT: *mut cuDoubleComplex,
-            ldvt: ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            rwork: *mut f64,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsyevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsyevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCheevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnZheevd_bufferSize: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsyevd:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f32, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut f32, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnDsyevd:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut f64, lda: ::std::os::raw::c_int, W: *mut f64, work: *mut f64, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnCheevd: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *mut cuComplex, lda: ::std::os::raw::c_int, W: *mut f32, work: *mut cuComplex, lwork: ::std::os::raw::c_int, info: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZheevd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsyevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevd: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSsyevdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f32,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDsyevdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f64,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCheevdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f32,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZheevdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f64,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSsyevdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDsyevdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCheevdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f32,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZheevdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSsygvdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            B: *const f32,
-            ldb: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f32,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDsygvdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            B: *const f64,
-            ldb: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f64,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnChegvdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *const cuComplex,
-            ldb: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f32,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZhegvdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *const cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const f64,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSsygvdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            B: *mut f32,
-            ldb: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDsygvdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            B: *mut f64,
-            ldb: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnChegvdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuComplex,
-            ldb: ::std::os::raw::c_int,
-            vl: f32,
-            vu: f32,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            f32,
+            f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f32,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZhegvdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            vl: f64,
-            vu: f64,
-            il: ::std::os::raw::c_int,
-            iu: ::std::os::raw::c_int,
-            meig: *mut ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            f64,
+            f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsygvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            B: *const f32,
-            ldb: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsygvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            B: *const f64,
-            ldb: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnChegvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *const cuComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZhegvd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *const cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsygvd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            B: *mut f32,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsygvd: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            B: *mut f64,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsygvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsygvd_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnChegvd_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZhegvd_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsygvd:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsygvd:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnChegvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZhegvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsygvd_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            d_A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeB: cudaDataType,
-            d_B: *const ::std::os::raw::c_void,
-            ldb: i64,
-            dataTypeW: cudaDataType,
-            d_W: *const ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsygvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            d_A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeB: cudaDataType,
-            d_B: *mut ::std::os::raw::c_void,
-            ldb: i64,
-            dataTypeW: cudaDataType,
-            d_W: *mut ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            d_info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsygvdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            d_A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeB: cudaDataType,
-            d_B: *const ::std::os::raw::c_void,
-            ldb: i64,
-            vl: *mut ::std::os::raw::c_void,
-            vu: *mut ::std::os::raw::c_void,
-            il: i64,
-            iu: i64,
-            meig: *mut i64,
-            dataTypeW: cudaDataType,
-            d_W: *const ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            i64,
+            i64,
+            *mut i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsygvdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            d_A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeB: cudaDataType,
-            d_B: *mut ::std::os::raw::c_void,
-            ldb: i64,
-            vl: *mut ::std::os::raw::c_void,
-            vu: *mut ::std::os::raw::c_void,
-            il: i64,
-            iu: i64,
-            meig: *mut i64,
-            dataTypeW: cudaDataType,
-            d_W: *mut ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            d_info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            i64,
+            i64,
+            *mut i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnCreateSyevjInfo: Option<unsafe extern "C" fn(info: *mut syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroySyevjInfo: Option<unsafe extern "C" fn(info: syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetTolerance: Option<unsafe extern "C" fn(info: syevjInfo_t, tolerance: f64) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetMaxSweeps: Option<unsafe extern "C" fn(info: syevjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjSetSortEig: Option<unsafe extern "C" fn(info: syevjInfo_t, sort_eig: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjGetResidual: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: syevjInfo_t, residual: *mut f64) -> cusolverStatus_t>,
-    pub cusolverDnXsyevjGetSweeps: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: syevjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnSsyevjBatched_bufferSize: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsyevjBatched_bufferSize: Option<
-        unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t, batchSize: ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCheevjBatched_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZheevjBatched_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsyevjBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsyevjBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCheevjBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnCreateSyevjInfo: Option<unsafe extern "C" fn(*mut syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroySyevjInfo: Option<unsafe extern "C" fn(syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetTolerance: Option<unsafe extern "C" fn(syevjInfo_t, f64) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetMaxSweeps: Option<unsafe extern "C" fn(syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjSetSortEig: Option<unsafe extern "C" fn(syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjGetResidual: Option<unsafe extern "C" fn(cusolverDnHandle_t, syevjInfo_t, *mut f64) -> cusolverStatus_t>,
+    pub cusolverDnXsyevjGetSweeps: Option<unsafe extern "C" fn(cusolverDnHandle_t, syevjInfo_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnZheevjBatched_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnSsyevjBatched:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnDsyevjBatched:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCheevjBatched:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnZheevjBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-            batchSize: ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t,
     >,
-    pub cusolverDnSsyevj_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f32, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDsyevj_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const f64, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnCheevj_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuComplex, lda: ::std::os::raw::c_int, W: *const f32, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnZheevj_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, jobz: cusolverEigMode_t, uplo: cublasFillMode_t, n: ::std::os::raw::c_int, A: *const cuDoubleComplex, lda: ::std::os::raw::c_int, W: *const f64, lwork: *mut ::std::os::raw::c_int, params: syevjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnSsyevj: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsyevj: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnCheevj: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnZheevj: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnSsygvj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            B: *const f32,
-            ldb: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnDsygvj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            B: *const f64,
-            ldb: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnChegvj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *const cuComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *const f32,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnSsyevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsyevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnCheevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnZheevj_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnSsyevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsyevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnCheevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuComplex, ::std::os::raw::c_int, *mut f32, *mut cuComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnZheevj: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut f64, *mut cuDoubleComplex, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnSsygvj_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDsygvj_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnChegvj_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const cuComplex, ::std::os::raw::c_int, *const f32, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t>,
     pub cusolverDnZhegvj_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *const cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *const f64,
-            lwork: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const cuDoubleComplex, ::std::os::raw::c_int, *const f64, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t,
     >,
     pub cusolverDnSsygvj: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            B: *mut f32,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, ::std::os::raw::c_int, *mut f32, *mut f32, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t,
     >,
     pub cusolverDnDsygvj: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            B: *mut f64,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverDnHandle_t, cusolverEigType_t, cusolverEigMode_t, cublasFillMode_t, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, ::std::os::raw::c_int, *mut f64, *mut f64, ::std::os::raw::c_int, *mut ::std::os::raw::c_int, syevjInfo_t) -> cusolverStatus_t,
     >,
     pub cusolverDnChegvj: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f32,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            syevjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZhegvj: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            itype: cusolverEigType_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            B: *mut cuDoubleComplex,
-            ldb: ::std::os::raw::c_int,
-            W: *mut f64,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: syevjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigType_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            syevjInfo_t,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnCreateGesvdjInfo: Option<unsafe extern "C" fn(info: *mut gesvdjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroyGesvdjInfo: Option<unsafe extern "C" fn(info: gesvdjInfo_t) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetTolerance: Option<unsafe extern "C" fn(info: gesvdjInfo_t, tolerance: f64) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetMaxSweeps: Option<unsafe extern "C" fn(info: gesvdjInfo_t, max_sweeps: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjSetSortEig: Option<unsafe extern "C" fn(info: gesvdjInfo_t, sort_svd: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjGetResidual: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: gesvdjInfo_t, residual: *mut f64) -> cusolverStatus_t>,
-    pub cusolverDnXgesvdjGetSweeps: Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, info: gesvdjInfo_t, executed_sweeps: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnCreateGesvdjInfo: Option<unsafe extern "C" fn(*mut gesvdjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroyGesvdjInfo: Option<unsafe extern "C" fn(gesvdjInfo_t) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetTolerance: Option<unsafe extern "C" fn(gesvdjInfo_t, f64) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetMaxSweeps: Option<unsafe extern "C" fn(gesvdjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjSetSortEig: Option<unsafe extern "C" fn(gesvdjInfo_t, ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjGetResidual: Option<unsafe extern "C" fn(cusolverDnHandle_t, gesvdjInfo_t, *mut f64) -> cusolverStatus_t>,
+    pub cusolverDnXgesvdjGetSweeps: Option<unsafe extern "C" fn(cusolverDnHandle_t, gesvdjInfo_t, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnSgesvdjBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            S: *const f32,
-            U: *const f32,
-            ldu: ::std::os::raw::c_int,
-            V: *const f32,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const f32,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdjBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            S: *const f64,
-            U: *const f64,
-            ldu: ::std::os::raw::c_int,
-            V: *const f64,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const f64,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdjBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            S: *const f32,
-            U: *const cuComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *const cuComplex,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdjBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            S: *const f64,
-            U: *const cuDoubleComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *const cuDoubleComplex,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdjBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            S: *mut f32,
-            U: *mut f32,
-            ldu: ::std::os::raw::c_int,
-            V: *mut f32,
-            ldv: ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdjBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            S: *mut f64,
-            U: *mut f64,
-            ldu: ::std::os::raw::c_int,
-            V: *mut f64,
-            ldv: ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdjBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            S: *mut f32,
-            U: *mut cuComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *mut cuComplex,
-            ldv: ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdjBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            S: *mut f64,
-            U: *mut cuDoubleComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *mut cuDoubleComplex,
-            ldv: ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdj_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f32,
-            lda: ::std::os::raw::c_int,
-            S: *const f32,
-            U: *const f32,
-            ldu: ::std::os::raw::c_int,
-            V: *const f32,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const f32,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdj_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const f64,
-            lda: ::std::os::raw::c_int,
-            S: *const f64,
-            U: *const f64,
-            ldu: ::std::os::raw::c_int,
-            V: *const f64,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const f64,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdj_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            S: *const f32,
-            U: *const cuComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *const cuComplex,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const f32,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdj_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            S: *const f64,
-            U: *const cuDoubleComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *const cuDoubleComplex,
-            ldv: ::std::os::raw::c_int,
-            lwork: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const f64,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdj: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f32,
-            lda: ::std::os::raw::c_int,
-            S: *mut f32,
-            U: *mut f32,
-            ldu: ::std::os::raw::c_int,
-            V: *mut f32,
-            ldv: ::std::os::raw::c_int,
-            work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdj: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut f64,
-            lda: ::std::os::raw::c_int,
-            S: *mut f64,
-            U: *mut f64,
-            ldu: ::std::os::raw::c_int,
-            V: *mut f64,
-            ldv: ::std::os::raw::c_int,
-            work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdj: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuComplex,
-            lda: ::std::os::raw::c_int,
-            S: *mut f32,
-            U: *mut cuComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *mut cuComplex,
-            ldv: ::std::os::raw::c_int,
-            work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut f32,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdj: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            A: *mut cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            S: *mut f64,
-            U: *mut cuDoubleComplex,
-            ldu: ::std::os::raw::c_int,
-            V: *mut cuDoubleComplex,
-            ldv: ::std::os::raw::c_int,
-            work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            info: *mut ::std::os::raw::c_int,
-            params: gesvdjInfo_t,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut f64,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            gesvdjInfo_t,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdaStridedBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const f32,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *const f32,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *const f32,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *const f32,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            lwork: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const f32,
+            ::std::os::raw::c_longlong,
+            *const f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdaStridedBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const f64,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *const f64,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *const f64,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *const f64,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            lwork: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const f64,
+            ::std::os::raw::c_longlong,
+            *const f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdaStridedBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *const f32,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *const cuComplex,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *const cuComplex,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            lwork: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const f32,
+            ::std::os::raw::c_longlong,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdaStridedBatched_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *const f64,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *const cuDoubleComplex,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *const cuDoubleComplex,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            lwork: *mut ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const f64,
+            ::std::os::raw::c_longlong,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnSgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const f32,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *mut f32,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *mut f32,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *mut f32,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            d_work: *mut f32,
-            lwork: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            h_R_nrmF: *mut f64,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f32,
+            ::std::os::raw::c_longlong,
+            *mut f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f32,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f32,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnDgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const f64,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *mut f64,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *mut f64,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *mut f64,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            d_work: *mut f64,
-            lwork: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            h_R_nrmF: *mut f64,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f64,
+            ::std::os::raw::c_longlong,
+            *mut f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f64,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f64,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnCgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const cuComplex,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *mut f32,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *mut cuComplex,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *mut cuComplex,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            d_work: *mut cuComplex,
-            lwork: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            h_R_nrmF: *mut f64,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f32,
+            ::std::os::raw::c_longlong,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnZgesvdaStridedBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            jobz: cusolverEigMode_t,
-            rank: ::std::os::raw::c_int,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            d_A: *const cuDoubleComplex,
-            lda: ::std::os::raw::c_int,
-            strideA: ::std::os::raw::c_longlong,
-            d_S: *mut f64,
-            strideS: ::std::os::raw::c_longlong,
-            d_U: *mut cuDoubleComplex,
-            ldu: ::std::os::raw::c_int,
-            strideU: ::std::os::raw::c_longlong,
-            d_V: *mut cuDoubleComplex,
-            ldv: ::std::os::raw::c_int,
-            strideV: ::std::os::raw::c_longlong,
-            d_work: *mut cuDoubleComplex,
-            lwork: ::std::os::raw::c_int,
-            d_info: *mut ::std::os::raw::c_int,
-            h_R_nrmF: *mut f64,
-            batchSize: ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut f64,
+            ::std::os::raw::c_longlong,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_longlong,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnCreateParams: Option<unsafe extern "C" fn(params: *mut cusolverDnParams_t) -> cusolverStatus_t>,
-    pub cusolverDnDestroyParams: Option<unsafe extern "C" fn(params: cusolverDnParams_t) -> cusolverStatus_t>,
-    pub cusolverDnSetAdvOptions: Option<unsafe extern "C" fn(params: cusolverDnParams_t, function: cusolverDnFunction_t, algo: cusolverAlgMode_t) -> cusolverStatus_t>,
-    pub cusolverDnXpotrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXpotrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXpotrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            nrhs: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeB: cudaDataType,
-            B: *mut ::std::os::raw::c_void,
-            ldb: i64,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXgeqrf_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeTau: cudaDataType,
-            tau: *const ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnCreateParams: Option<unsafe extern "C" fn(*mut cusolverDnParams_t) -> cusolverStatus_t>,
+    pub cusolverDnDestroyParams: Option<unsafe extern "C" fn(cusolverDnParams_t) -> cusolverStatus_t>,
+    pub cusolverDnSetAdvOptions: Option<unsafe extern "C" fn(cusolverDnParams_t, cusolverDnFunction_t, cusolverAlgMode_t) -> cusolverStatus_t>,
+    pub cusolverDnXpotrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXpotrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, cudaDataType, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXpotrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgeqrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXgeqrf: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeTau: cudaDataType,
-            tau: *mut ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            i64,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnXgetrf_bufferSize:
-        Option<unsafe extern "C" fn(handle: cusolverDnHandle_t, params: cusolverDnParams_t, m: i64, n: i64, dataTypeA: cudaDataType, A: *const ::std::os::raw::c_void, lda: i64, computeType: cudaDataType, workspaceInBytesOnDevice: *mut usize, workspaceInBytesOnHost: *mut usize) -> cusolverStatus_t>,
-    pub cusolverDnXgetrf: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            ipiv: *mut i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXgetrs: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            trans: cublasOperation_t,
-            n: i64,
-            nrhs: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            ipiv: *const i64,
-            dataTypeB: cudaDataType,
-            B: *mut ::std::os::raw::c_void,
-            ldb: i64,
-            info: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverDnXsyevd_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeW: cudaDataType,
-            W: *const ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXgetrf_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverDnXgetrf: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, i64, i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut i64, cudaDataType, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_void, usize, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXgetrs: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasOperation_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, *const i64, cudaDataType, *mut ::std::os::raw::c_void, i64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnXsyevd_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigMode_t, cublasFillMode_t, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXsyevd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeW: cudaDataType,
-            W: *mut ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnXstedc_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            compz: cusolverEigComp_t,
-            n: i64,
-            dataTypeDE: cudaDataType,
-            D: *const ::std::os::raw::c_void,
-            E: *const ::std::os::raw::c_void,
-            dataTypeZ: cudaDataType,
-            Z: *const ::std::os::raw::c_void,
-            ldz: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXstedc_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigComp_t, i64, cudaDataType, *const ::std::os::raw::c_void, *const ::std::os::raw::c_void, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXstedc: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            compz: cusolverEigComp_t,
-            n: i64,
-            dataTypeDE: cudaDataType,
-            D: *mut ::std::os::raw::c_void,
-            E: *mut ::std::os::raw::c_void,
-            dataTypeZ: cudaDataType,
-            Z: *mut ::std::os::raw::c_void,
-            ldz: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigComp_t,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnXsyevBatched_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeW: cudaDataType,
-            W: *const ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-            batchSize: i64,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXsyevBatched_bufferSize:
+        Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cusolverEigMode_t, cublasFillMode_t, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, cudaDataType, *mut usize, *mut usize, i64) -> cusolverStatus_t>,
     pub cusolverDnXsyevBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeW: cudaDataType,
-            W: *mut ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
-            batchSize: i64,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
+            i64,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsyevdx_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            vl: *mut ::std::os::raw::c_void,
-            vu: *mut ::std::os::raw::c_void,
-            il: i64,
-            iu: i64,
-            h_meig: *mut i64,
-            dataTypeW: cudaDataType,
-            W: *const ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            i64,
+            i64,
+            *mut i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXsyevdx: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            range: cusolverEigRange_t,
-            uplo: cublasFillMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            vl: *mut ::std::os::raw::c_void,
-            vu: *mut ::std::os::raw::c_void,
-            il: i64,
-            iu: i64,
-            meig64: *mut i64,
-            dataTypeW: cudaDataType,
-            W: *mut ::std::os::raw::c_void,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            cusolverEigRange_t,
+            cublasFillMode_t,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            *mut ::std::os::raw::c_void,
+            *mut ::std::os::raw::c_void,
+            i64,
+            i64,
+            *mut i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgeev_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobvl: cusolverEigMode_t,
-            jobvr: cusolverEigMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeW: cudaDataType,
-            W: *const ::std::os::raw::c_void,
-            dataTypeVL: cudaDataType,
-            VL: *const ::std::os::raw::c_void,
-            ldvl: i64,
-            dataTypeVR: cudaDataType,
-            VR: *const ::std::os::raw::c_void,
-            ldvr: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            cusolverEigMode_t,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgeev: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobvl: cusolverEigMode_t,
-            jobvr: cusolverEigMode_t,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeW: cudaDataType,
-            W: *mut ::std::os::raw::c_void,
-            dataTypeVL: cudaDataType,
-            VL: *mut ::std::os::raw::c_void,
-            ldvl: i64,
-            dataTypeVR: cudaDataType,
-            VR: *mut ::std::os::raw::c_void,
-            ldvr: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            cusolverEigMode_t,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvd_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobu: ::std::os::raw::c_schar,
-            jobvt: ::std::os::raw::c_schar,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeS: cudaDataType,
-            S: *const ::std::os::raw::c_void,
-            dataTypeU: cudaDataType,
-            U: *const ::std::os::raw::c_void,
-            ldu: i64,
-            dataTypeVT: cudaDataType,
-            VT: *const ::std::os::raw::c_void,
-            ldvt: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            i64,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvd: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobu: ::std::os::raw::c_schar,
-            jobvt: ::std::os::raw::c_schar,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeS: cudaDataType,
-            S: *mut ::std::os::raw::c_void,
-            dataTypeU: cudaDataType,
-            U: *mut ::std::os::raw::c_void,
-            ldu: i64,
-            dataTypeVT: cudaDataType,
-            VT: *mut ::std::os::raw::c_void,
-            ldvt: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            i64,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvdp_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeS: cudaDataType,
-            S: *const ::std::os::raw::c_void,
-            dataTypeU: cudaDataType,
-            U: *const ::std::os::raw::c_void,
-            ldu: i64,
-            dataTypeV: cudaDataType,
-            V: *const ::std::os::raw::c_void,
-            ldv: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            i64,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvdp: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobz: cusolverEigMode_t,
-            econ: ::std::os::raw::c_int,
-            m: i64,
-            n: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeS: cudaDataType,
-            S: *mut ::std::os::raw::c_void,
-            dataTypeU: cudaDataType,
-            U: *mut ::std::os::raw::c_void,
-            ldu: i64,
-            dataTypeV: cudaDataType,
-            V: *mut ::std::os::raw::c_void,
-            ldv: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            d_info: *mut ::std::os::raw::c_int,
-            h_err_sigma: *mut f64,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverEigMode_t,
+            ::std::os::raw::c_int,
+            i64,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvdr_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobu: ::std::os::raw::c_schar,
-            jobv: ::std::os::raw::c_schar,
-            m: i64,
-            n: i64,
-            k: i64,
-            p: i64,
-            niters: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeSrand: cudaDataType,
-            Srand: *const ::std::os::raw::c_void,
-            dataTypeUrand: cudaDataType,
-            Urand: *const ::std::os::raw::c_void,
-            ldUrand: i64,
-            dataTypeVrand: cudaDataType,
-            Vrand: *const ::std::os::raw::c_void,
-            ldVrand: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            i64,
+            i64,
+            i64,
+            i64,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXgesvdr: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            jobu: ::std::os::raw::c_schar,
-            jobv: ::std::os::raw::c_schar,
-            m: i64,
-            n: i64,
-            k: i64,
-            p: i64,
-            niters: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeSrand: cudaDataType,
-            Srand: *mut ::std::os::raw::c_void,
-            dataTypeUrand: cudaDataType,
-            Urand: *mut ::std::os::raw::c_void,
-            ldUrand: i64,
-            dataTypeVrand: cudaDataType,
-            Vrand: *mut ::std::os::raw::c_void,
-            ldVrand: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            d_info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            ::std::os::raw::c_schar,
+            ::std::os::raw::c_schar,
+            i64,
+            i64,
+            i64,
+            i64,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXlarft_bufferSize: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            direct: cusolverDirectMode_t,
-            storev: cusolverStorevMode_t,
-            n: i64,
-            k: i64,
-            dataTypeV: cudaDataType,
-            V: *const ::std::os::raw::c_void,
-            ldv: i64,
-            dataTypeTau: cudaDataType,
-            tau: *const ::std::os::raw::c_void,
-            dataTypeT: cudaDataType,
-            T: *mut ::std::os::raw::c_void,
-            ldt: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverDirectMode_t,
+            cusolverStorevMode_t,
+            i64,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverDnXlarft: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            direct: cusolverDirectMode_t,
-            storev: cusolverStorevMode_t,
-            n: i64,
-            k: i64,
-            dataTypeV: cudaDataType,
-            V: *const ::std::os::raw::c_void,
-            ldv: i64,
-            dataTypeTau: cudaDataType,
-            tau: *const ::std::os::raw::c_void,
-            dataTypeT: cudaDataType,
-            T: *mut ::std::os::raw::c_void,
-            ldt: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cusolverDirectMode_t,
+            cusolverStorevMode_t,
+            i64,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *const ::std::os::raw::c_void,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverDnLoggerSetCallback: Option<unsafe extern "C" fn(callback: cusolverDnLoggerCallback_t) -> cusolverStatus_t>,
-    pub cusolverDnLoggerSetFile: Option<unsafe extern "C" fn(file: *mut FILE) -> cusolverStatus_t>,
-    pub cusolverDnLoggerOpenFile: Option<unsafe extern "C" fn(logFile: *const ::std::os::raw::c_char) -> cusolverStatus_t>,
-    pub cusolverDnLoggerSetLevel: Option<unsafe extern "C" fn(level: ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverDnLoggerSetMask: Option<unsafe extern "C" fn(mask: ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetCallback: Option<unsafe extern "C" fn(cusolverDnLoggerCallback_t) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetFile: Option<unsafe extern "C" fn(*mut FILE) -> cusolverStatus_t>,
+    pub cusolverDnLoggerOpenFile: Option<unsafe extern "C" fn(*const ::std::os::raw::c_char) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetLevel: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverDnLoggerSetMask: Option<unsafe extern "C" fn(::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverDnLoggerForceDisable: Option<unsafe extern "C" fn() -> cusolverStatus_t>,
-    pub cusolverDnXpolar_bufferSize: Option<
-        unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            uplo: cublasFillMode_t,
-            M: i64,
-            N: i64,
-            dataTypeA: cudaDataType,
-            A: *const ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeH: cudaDataType,
-            H: *const ::std::os::raw::c_void,
-            ldh: i64,
-            computeType: cudaDataType,
-            workspaceInBytesOnDevice: *mut usize,
-            workspaceInBytesOnHost: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverDnXpolar_bufferSize: Option<unsafe extern "C" fn(cusolverDnHandle_t, cusolverDnParams_t, cublasFillMode_t, i64, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *const ::std::os::raw::c_void, i64, cudaDataType, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverDnXpolar: Option<
         unsafe extern "C" fn(
-            handle: cusolverDnHandle_t,
-            params: cusolverDnParams_t,
-            uplo: cublasFillMode_t,
-            M: i64,
-            N: i64,
-            dataTypeA: cudaDataType,
-            A: *mut ::std::os::raw::c_void,
-            lda: i64,
-            dataTypeH: cudaDataType,
-            H: *mut ::std::os::raw::c_void,
-            ldh: i64,
-            computeType: cudaDataType,
-            bufferOnDevice: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnDevice: usize,
-            bufferOnHost: *mut ::std::os::raw::c_void,
-            workspaceInBytesOnHost: usize,
-            d_res_nrm: *mut f64,
-            d_A_nrmF: *mut f64,
-            d_rcond: *mut f64,
-            d_info: *mut ::std::os::raw::c_int,
+            cusolverDnHandle_t,
+            cusolverDnParams_t,
+            cublasFillMode_t,
+            i64,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            i64,
+            cudaDataType,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut ::std::os::raw::c_void,
+            usize,
+            *mut f64,
+            *mut f64,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpCreate: Option<unsafe extern "C" fn(handle: *mut cusolverSpHandle_t) -> cusolverStatus_t>,
-    pub cusolverSpDestroy: Option<unsafe extern "C" fn(handle: cusolverSpHandle_t) -> cusolverStatus_t>,
-    pub cusolverSpSetStream: Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverSpGetStream: Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, streamId: *mut cudaStream_t) -> cusolverStatus_t>,
-    pub cusolverSpXcsrissymHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrEndPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            issym: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpScsrlsvluHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f32,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f32,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsrlsvluHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f64,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f64,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpCreate: Option<unsafe extern "C" fn(*mut cusolverSpHandle_t) -> cusolverStatus_t>,
+    pub cusolverSpDestroy: Option<unsafe extern "C" fn(cusolverSpHandle_t) -> cusolverStatus_t>,
+    pub cusolverSpSetStream: Option<unsafe extern "C" fn(cusolverSpHandle_t, cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverSpGetStream: Option<unsafe extern "C" fn(cusolverSpHandle_t, *mut cudaStream_t) -> cusolverStatus_t>,
+    pub cusolverSpXcsrissymHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpScsrlsvluHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvluHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverSpCcsrlsvluHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuComplex,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            f32,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrlsvluHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuDoubleComplex,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuDoubleComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            f64,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsrlsvqr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f32,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const f32,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f32,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsrlsvqr: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f64,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const f64,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f64,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsrlsvqr:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvqr:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverSpCcsrlsvqr: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const cuComplex,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            f32,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrlsvqr: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuDoubleComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const cuDoubleComplex,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuDoubleComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            f64,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsrlsvqrHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f32,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f32,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsrlsvqrHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f64,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f64,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsrlsvqrHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvqrHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverSpCcsrlsvqrHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuComplex,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            f32,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrlsvqrHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuDoubleComplex,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuDoubleComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            f64,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsrlsvcholHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f32,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const f32,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f32,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsrlsvcholHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f64,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const f64,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f64,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsrlsvcholHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvcholHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverSpCcsrlsvcholHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const cuComplex,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            f32,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrlsvcholHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuDoubleComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const cuDoubleComplex,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuDoubleComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            f64,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsrlsvchol: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f32,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const f32,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f32,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsrlsvchol: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f64,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const f64,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut f64,
-            singularity: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsrlsvchol:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f32, f32, ::std::os::raw::c_int, *mut f32, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrlsvchol:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const f64, f64, ::std::os::raw::c_int, *mut f64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
     pub cusolverSpCcsrlsvchol: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const cuComplex,
-            tol: f32,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            f32,
+            ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrlsvchol: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuDoubleComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            b: *const cuDoubleComplex,
-            tol: f64,
-            reorder: ::std::os::raw::c_int,
-            x: *mut cuDoubleComplex,
-            singularity: *mut ::std::os::raw::c_int,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            f64,
+            ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpScsrlsqvqrHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f32,
-            tol: f32,
-            rankA: *mut ::std::os::raw::c_int,
-            x: *mut f32,
-            p: *mut ::std::os::raw::c_int,
-            min_norm: *mut f32,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            f32,
+            *mut ::std::os::raw::c_int,
+            *mut f32,
+            *mut ::std::os::raw::c_int,
+            *mut f32,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpDcsrlsqvqrHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f64,
-            tol: f64,
-            rankA: *mut ::std::os::raw::c_int,
-            x: *mut f64,
-            p: *mut ::std::os::raw::c_int,
-            min_norm: *mut f64,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            f64,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpCcsrlsqvqrHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuComplex,
-            tol: f32,
-            rankA: *mut ::std::os::raw::c_int,
-            x: *mut cuComplex,
-            p: *mut ::std::os::raw::c_int,
-            min_norm: *mut f32,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            f32,
+            *mut ::std::os::raw::c_int,
+            *mut cuComplex,
+            *mut ::std::os::raw::c_int,
+            *mut f32,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrlsqvqrHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuDoubleComplex,
-            tol: f64,
-            rankA: *mut ::std::os::raw::c_int,
-            x: *mut cuDoubleComplex,
-            p: *mut ::std::os::raw::c_int,
-            min_norm: *mut f64,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            f64,
+            *mut ::std::os::raw::c_int,
+            *mut cuDoubleComplex,
+            *mut ::std::os::raw::c_int,
+            *mut f64,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsreigvsiHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: f32,
-            x0: *const f32,
-            maxite: ::std::os::raw::c_int,
-            tol: f32,
-            mu: *mut f32,
-            x: *mut f32,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsreigvsiHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: f64,
-            x0: *const f64,
-            maxite: ::std::os::raw::c_int,
-            tol: f64,
-            mu: *mut f64,
-            x: *mut f64,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsreigvsiHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f32, *const f32, ::std::os::raw::c_int, f32, *mut f32, *mut f32) -> cusolverStatus_t>,
+    pub cusolverSpDcsreigvsiHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f64, *const f64, ::std::os::raw::c_int, f64, *mut f64, *mut f64) -> cusolverStatus_t>,
     pub cusolverSpCcsreigvsiHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: cuComplex,
-            x0: *const cuComplex,
-            maxite: ::std::os::raw::c_int,
-            tol: f32,
-            mu: *mut cuComplex,
-            x: *mut cuComplex,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cuComplex,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            f32,
+            *mut cuComplex,
+            *mut cuComplex,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsreigvsiHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: cuDoubleComplex,
-            x0: *const cuDoubleComplex,
-            maxite: ::std::os::raw::c_int,
-            tol: f64,
-            mu: *mut cuDoubleComplex,
-            x: *mut cuDoubleComplex,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cuDoubleComplex,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            f64,
+            *mut cuDoubleComplex,
+            *mut cuDoubleComplex,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsreigvsi: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: f32,
-            x0: *const f32,
-            maxite: ::std::os::raw::c_int,
-            eps: f32,
-            mu: *mut f32,
-            x: *mut f32,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsreigvsi: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: f64,
-            x0: *const f64,
-            maxite: ::std::os::raw::c_int,
-            eps: f64,
-            mu: *mut f64,
-            x: *mut f64,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsreigvsi:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f32, *const f32, ::std::os::raw::c_int, f32, *mut f32, *mut f32) -> cusolverStatus_t>,
+    pub cusolverSpDcsreigvsi:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, f64, *const f64, ::std::os::raw::c_int, f64, *mut f64, *mut f64) -> cusolverStatus_t>,
     pub cusolverSpCcsreigvsi: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: cuComplex,
-            x0: *const cuComplex,
-            maxite: ::std::os::raw::c_int,
-            eps: f32,
-            mu: *mut cuComplex,
-            x: *mut cuComplex,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cuComplex,
+            *const cuComplex,
+            ::std::os::raw::c_int,
+            f32,
+            *mut cuComplex,
+            *mut cuComplex,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsreigvsi: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            mu0: cuDoubleComplex,
-            x0: *const cuDoubleComplex,
-            maxite: ::std::os::raw::c_int,
-            eps: f64,
-            mu: *mut cuDoubleComplex,
-            x: *mut cuDoubleComplex,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            cuDoubleComplex,
+            *const cuDoubleComplex,
+            ::std::os::raw::c_int,
+            f64,
+            *mut cuDoubleComplex,
+            *mut cuDoubleComplex,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpScsreigsHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            left_bottom_corner: cuComplex,
-            right_upper_corner: cuComplex,
-            num_eigs: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsreigsHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            left_bottom_corner: cuDoubleComplex,
-            right_upper_corner: cuDoubleComplex,
-            num_eigs: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpCcsreigsHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            left_bottom_corner: cuComplex,
-            right_upper_corner: cuComplex,
-            num_eigs: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpZcsreigsHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            left_bottom_corner: cuDoubleComplex,
-            right_upper_corner: cuDoubleComplex,
-            num_eigs: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpXcsrsymrcmHost:
-        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpXcsrsymmdqHost:
-        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpXcsrsymamdHost:
-        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
-    pub cusolverSpXcsrmetisndHost: Option<
-        unsafe extern "C" fn(handle: cusolverSpHandle_t, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, options: *const i64, p: *mut ::std::os::raw::c_int) -> cusolverStatus_t,
-    >,
-    pub cusolverSpScsrzfdHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            P: *mut ::std::os::raw::c_int,
-            numnz: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsrzfdHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            P: *mut ::std::os::raw::c_int,
-            numnz: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpCcsrzfdHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            P: *mut ::std::os::raw::c_int,
-            numnz: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpZcsrzfdHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            P: *mut ::std::os::raw::c_int,
-            numnz: *mut ::std::os::raw::c_int,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpXcsrperm_bufferSizeHost: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            p: *const ::std::os::raw::c_int,
-            q: *const ::std::os::raw::c_int,
-            bufferSizeInBytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpScsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuComplex, cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsreigsHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuDoubleComplex, cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsreigsHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuComplex, cuComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpZcsreigsHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, cuDoubleComplex, cuDoubleComplex, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymrcmHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymmdqHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrsymamdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrmetisndHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const i64, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpScsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpDcsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpCcsrzfdHost: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpZcsrzfdHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuDoubleComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut ::std::os::raw::c_int, *mut ::std::os::raw::c_int) -> cusolverStatus_t>,
+    pub cusolverSpXcsrperm_bufferSizeHost:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, *mut usize) -> cusolverStatus_t>,
     pub cusolverSpXcsrpermHost: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnzA: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrRowPtrA: *mut ::std::os::raw::c_int,
-            csrColIndA: *mut ::std::os::raw::c_int,
-            p: *const ::std::os::raw::c_int,
-            q: *const ::std::os::raw::c_int,
-            map: *mut ::std::os::raw::c_int,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_int,
+            *mut ::std::os::raw::c_void,
         ) -> cusolverStatus_t,
     >,
-    pub cusolverSpCreateCsrqrInfo: Option<unsafe extern "C" fn(info: *mut csrqrInfo_t) -> cusolverStatus_t>,
-    pub cusolverSpDestroyCsrqrInfo: Option<unsafe extern "C" fn(info: csrqrInfo_t) -> cusolverStatus_t>,
-    pub cusolverSpXcsrqrAnalysisBatched:
-        Option<unsafe extern "C" fn(handle: cusolverSpHandle_t, m: ::std::os::raw::c_int, n: ::std::os::raw::c_int, nnzA: ::std::os::raw::c_int, descrA: cusparseMatDescr_t, csrRowPtrA: *const ::std::os::raw::c_int, csrColIndA: *const ::std::os::raw::c_int, info: csrqrInfo_t) -> cusolverStatus_t>,
-    pub cusolverSpScsrqrBufferInfoBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f32,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            internalDataInBytes: *mut usize,
-            workspaceInBytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
-    pub cusolverSpDcsrqrBufferInfoBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const f64,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            internalDataInBytes: *mut usize,
-            workspaceInBytes: *mut usize,
-        ) -> cusolverStatus_t,
-    >,
+    pub cusolverSpCreateCsrqrInfo: Option<unsafe extern "C" fn(*mut csrqrInfo_t) -> cusolverStatus_t>,
+    pub cusolverSpDestroyCsrqrInfo: Option<unsafe extern "C" fn(csrqrInfo_t) -> cusolverStatus_t>,
+    pub cusolverSpXcsrqrAnalysisBatched: Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, csrqrInfo_t) -> cusolverStatus_t>,
+    pub cusolverSpScsrqrBufferInfoBatched:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f32, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
+    pub cusolverSpDcsrqrBufferInfoBatched:
+        Option<unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const f64, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t>,
     pub cusolverSpCcsrqrBufferInfoBatched: Option<
-        unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            internalDataInBytes: *mut usize,
-            workspaceInBytes: *mut usize,
-        ) -> cusolverStatus_t,
+        unsafe extern "C" fn(cusolverSpHandle_t, ::std::os::raw::c_int, ::std::os::raw::c_int, ::std::os::raw::c_int, cusparseMatDescr_t, *const cuComplex, *const ::std::os::raw::c_int, *const ::std::os::raw::c_int, ::std::os::raw::c_int, csrqrInfo_t, *mut usize, *mut usize) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrqrBufferInfoBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrVal: *const cuDoubleComplex,
-            csrRowPtr: *const ::std::os::raw::c_int,
-            csrColInd: *const ::std::os::raw::c_int,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            internalDataInBytes: *mut usize,
-            workspaceInBytes: *mut usize,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            csrqrInfo_t,
+            *mut usize,
+            *mut usize,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpScsrqrsvBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f32,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f32,
-            x: *mut f32,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f32,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f32,
+            *mut f32,
+            ::std::os::raw::c_int,
+            csrqrInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpDcsrqrsvBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const f64,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const f64,
-            x: *mut f64,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const f64,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const f64,
+            *mut f64,
+            ::std::os::raw::c_int,
+            csrqrInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpCcsrqrsvBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuComplex,
-            x: *mut cuComplex,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuComplex,
+            *mut cuComplex,
+            ::std::os::raw::c_int,
+            csrqrInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusolverStatus_t,
     >,
     pub cusolverSpZcsrqrsvBatched: Option<
         unsafe extern "C" fn(
-            handle: cusolverSpHandle_t,
-            m: ::std::os::raw::c_int,
-            n: ::std::os::raw::c_int,
-            nnz: ::std::os::raw::c_int,
-            descrA: cusparseMatDescr_t,
-            csrValA: *const cuDoubleComplex,
-            csrRowPtrA: *const ::std::os::raw::c_int,
-            csrColIndA: *const ::std::os::raw::c_int,
-            b: *const cuDoubleComplex,
-            x: *mut cuDoubleComplex,
-            batchSize: ::std::os::raw::c_int,
-            info: csrqrInfo_t,
-            pBuffer: *mut ::std::os::raw::c_void,
+            cusolverSpHandle_t,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            ::std::os::raw::c_int,
+            cusparseMatDescr_t,
+            *const cuDoubleComplex,
+            *const ::std::os::raw::c_int,
+            *const ::std::os::raw::c_int,
+            *const cuDoubleComplex,
+            *mut cuDoubleComplex,
+            ::std::os::raw::c_int,
+            csrqrInfo_t,
+            *mut ::std::os::raw::c_void,
         ) -> cusolverStatus_t,
     >,
 }
@@ -19753,1838 +17490,1836 @@ pub unsafe extern "C" fn cusolverSpZcsrqrsvBatched(
 }
 #[cfg(feature = "runtime-link")]
 pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: unsafe fn(*mut std::ffi::c_void, *const u8) -> *mut std::ffi::c_void) {
-    let bindings = unsafe {
-        Box::new(DynamicBindings {
-            cusolverGetProperty: {
-                let p = get_proc_addr(lib, b"cusolverGetProperty\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverGetVersion: {
-                let p = get_proc_addr(lib, b"cusolverGetVersion\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCreate: {
-                let p = get_proc_addr(lib, b"cusolverDnCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDestroy: {
-                let p = get_proc_addr(lib, b"cusolverDnDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetStream: {
-                let p = get_proc_addr(lib, b"cusolverDnSetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetStream: {
-                let p = get_proc_addr(lib, b"cusolverDnGetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetDeterministicMode: {
-                let p = get_proc_addr(lib, b"cusolverDnSetDeterministicMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetDeterministicMode: {
-                let p = get_proc_addr(lib, b"cusolverDnGetDeterministicMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetMathMode: {
-                let p = get_proc_addr(lib, b"cusolverDnSetMathMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetMathMode: {
-                let p = get_proc_addr(lib, b"cusolverDnGetMathMode\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetEmulationStrategy: {
-                let p = get_proc_addr(lib, b"cusolverDnSetEmulationStrategy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetEmulationStrategy: {
-                let p = get_proc_addr(lib, b"cusolverDnGetEmulationStrategy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetFixedPointEmulationMantissaControl: {
-                let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaControl\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetFixedPointEmulationMantissaControl: {
-                let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaControl\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetFixedPointEmulationMaxMantissaBitCount: {
-                let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetFixedPointEmulationMaxMantissaBitCount: {
-                let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetFixedPointEmulationMantissaBitOffset: {
-                let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaBitOffset\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetFixedPointEmulationMantissaBitOffset: {
-                let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaBitOffset\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetEmulationSpecialValuesSupport: {
-                let p = get_proc_addr(lib, b"cusolverDnSetEmulationSpecialValuesSupport\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnGetEmulationSpecialValuesSupport: {
-                let p = get_proc_addr(lib, b"cusolverDnGetEmulationSpecialValuesSupport\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsCreate: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsDestroy: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetRefinementSolver: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetRefinementSolver\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetSolverMainPrecision: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverMainPrecision\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetSolverLowestPrecision: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverLowestPrecision\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetSolverPrecisions: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverPrecisions\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetTol: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetTol\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetTolInner: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetTolInner\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetMaxIters: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetMaxIters\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsSetMaxItersInner: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetMaxItersInner\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsGetMaxIters: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsGetMaxIters\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsEnableFallback: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsEnableFallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSParamsDisableFallback: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSParamsDisableFallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSInfosDestroy: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSInfosDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSInfosCreate: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSInfosCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSInfosGetNiters: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetNiters\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSInfosGetOuterNiters: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetOuterNiters\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSInfosRequestResidual: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSInfosRequestResidual\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSInfosGetResidualHistory: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetResidualHistory\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSInfosGetMaxIters: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetMaxIters\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZZgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnZZgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZCgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnZCgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZKgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnZKgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZEgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnZEgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZYgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnZYgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCCgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnCCgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCEgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnCEgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCKgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnCKgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCYgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnCYgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDDgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnDDgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDSgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnDSgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDHgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnDHgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDBgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnDBgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDXgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnDXgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSSgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnSSgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSHgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnSHgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSBgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnSBgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSXgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnSXgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZZgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZZgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZCgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZCgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZKgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZKgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZEgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZEgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZYgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZYgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCCgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCCgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCKgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCKgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCEgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCEgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCYgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCYgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDDgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDDgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDSgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDSgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDHgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDHgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDBgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDBgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDXgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDXgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSSgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSSgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSHgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSHgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSBgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSBgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSXgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSXgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZZgels: {
-                let p = get_proc_addr(lib, b"cusolverDnZZgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZCgels: {
-                let p = get_proc_addr(lib, b"cusolverDnZCgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZKgels: {
-                let p = get_proc_addr(lib, b"cusolverDnZKgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZEgels: {
-                let p = get_proc_addr(lib, b"cusolverDnZEgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZYgels: {
-                let p = get_proc_addr(lib, b"cusolverDnZYgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCCgels: {
-                let p = get_proc_addr(lib, b"cusolverDnCCgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCKgels: {
-                let p = get_proc_addr(lib, b"cusolverDnCKgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCEgels: {
-                let p = get_proc_addr(lib, b"cusolverDnCEgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCYgels: {
-                let p = get_proc_addr(lib, b"cusolverDnCYgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDDgels: {
-                let p = get_proc_addr(lib, b"cusolverDnDDgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDSgels: {
-                let p = get_proc_addr(lib, b"cusolverDnDSgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDHgels: {
-                let p = get_proc_addr(lib, b"cusolverDnDHgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDBgels: {
-                let p = get_proc_addr(lib, b"cusolverDnDBgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDXgels: {
-                let p = get_proc_addr(lib, b"cusolverDnDXgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSSgels: {
-                let p = get_proc_addr(lib, b"cusolverDnSSgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSHgels: {
-                let p = get_proc_addr(lib, b"cusolverDnSHgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSBgels: {
-                let p = get_proc_addr(lib, b"cusolverDnSBgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSXgels: {
-                let p = get_proc_addr(lib, b"cusolverDnSXgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZZgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZZgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZCgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZCgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZKgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZKgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZEgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZEgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZYgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZYgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCCgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCCgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCKgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCKgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCEgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCEgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCYgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCYgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDDgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDDgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDSgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDSgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDHgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDHgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDBgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDBgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDXgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDXgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSSgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSSgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSHgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSHgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSBgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSBgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSXgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSXgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSXgesv: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSXgesv\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSXgesv_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSXgesv_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSXgels: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSXgels\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnIRSXgels_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnIRSXgels_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSpotrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSpotrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDpotrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDpotrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCpotrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCpotrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZpotrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZpotrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSpotrf: {
-                let p = get_proc_addr(lib, b"cusolverDnSpotrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDpotrf: {
-                let p = get_proc_addr(lib, b"cusolverDnDpotrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCpotrf: {
-                let p = get_proc_addr(lib, b"cusolverDnCpotrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZpotrf: {
-                let p = get_proc_addr(lib, b"cusolverDnZpotrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSpotrs: {
-                let p = get_proc_addr(lib, b"cusolverDnSpotrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDpotrs: {
-                let p = get_proc_addr(lib, b"cusolverDnDpotrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCpotrs: {
-                let p = get_proc_addr(lib, b"cusolverDnCpotrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZpotrs: {
-                let p = get_proc_addr(lib, b"cusolverDnZpotrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSpotrfBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnSpotrfBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDpotrfBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnDpotrfBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCpotrfBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnCpotrfBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZpotrfBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnZpotrfBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSpotrsBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnSpotrsBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDpotrsBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnDpotrsBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCpotrsBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnCpotrsBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZpotrsBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnZpotrsBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSpotri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSpotri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDpotri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDpotri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCpotri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCpotri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZpotri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZpotri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSpotri: {
-                let p = get_proc_addr(lib, b"cusolverDnSpotri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDpotri: {
-                let p = get_proc_addr(lib, b"cusolverDnDpotri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCpotri: {
-                let p = get_proc_addr(lib, b"cusolverDnCpotri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZpotri: {
-                let p = get_proc_addr(lib, b"cusolverDnZpotri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXtrtri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXtrtri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXtrtri: {
-                let p = get_proc_addr(lib, b"cusolverDnXtrtri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSlauum_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSlauum_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDlauum_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDlauum_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnClauum_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnClauum_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZlauum_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZlauum_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSlauum: {
-                let p = get_proc_addr(lib, b"cusolverDnSlauum\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDlauum: {
-                let p = get_proc_addr(lib, b"cusolverDnDlauum\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnClauum: {
-                let p = get_proc_addr(lib, b"cusolverDnClauum\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZlauum: {
-                let p = get_proc_addr(lib, b"cusolverDnZlauum\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgetrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSgetrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgetrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDgetrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgetrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCgetrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgetrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZgetrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgetrf: {
-                let p = get_proc_addr(lib, b"cusolverDnSgetrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgetrf: {
-                let p = get_proc_addr(lib, b"cusolverDnDgetrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgetrf: {
-                let p = get_proc_addr(lib, b"cusolverDnCgetrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgetrf: {
-                let p = get_proc_addr(lib, b"cusolverDnZgetrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSlaswp: {
-                let p = get_proc_addr(lib, b"cusolverDnSlaswp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDlaswp: {
-                let p = get_proc_addr(lib, b"cusolverDnDlaswp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnClaswp: {
-                let p = get_proc_addr(lib, b"cusolverDnClaswp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZlaswp: {
-                let p = get_proc_addr(lib, b"cusolverDnZlaswp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgetrs: {
-                let p = get_proc_addr(lib, b"cusolverDnSgetrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgetrs: {
-                let p = get_proc_addr(lib, b"cusolverDnDgetrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgetrs: {
-                let p = get_proc_addr(lib, b"cusolverDnCgetrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgetrs: {
-                let p = get_proc_addr(lib, b"cusolverDnZgetrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgeqrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgeqrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgeqrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgeqrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgeqrf: {
-                let p = get_proc_addr(lib, b"cusolverDnSgeqrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgeqrf: {
-                let p = get_proc_addr(lib, b"cusolverDnDgeqrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgeqrf: {
-                let p = get_proc_addr(lib, b"cusolverDnCgeqrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgeqrf: {
-                let p = get_proc_addr(lib, b"cusolverDnZgeqrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSorgqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSorgqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDorgqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDorgqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCungqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCungqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZungqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZungqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSorgqr: {
-                let p = get_proc_addr(lib, b"cusolverDnSorgqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDorgqr: {
-                let p = get_proc_addr(lib, b"cusolverDnDorgqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCungqr: {
-                let p = get_proc_addr(lib, b"cusolverDnCungqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZungqr: {
-                let p = get_proc_addr(lib, b"cusolverDnZungqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSormqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSormqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDormqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDormqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCunmqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCunmqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZunmqr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZunmqr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSormqr: {
-                let p = get_proc_addr(lib, b"cusolverDnSormqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDormqr: {
-                let p = get_proc_addr(lib, b"cusolverDnDormqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCunmqr: {
-                let p = get_proc_addr(lib, b"cusolverDnCunmqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZunmqr: {
-                let p = get_proc_addr(lib, b"cusolverDnZunmqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsytrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsytrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsytrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsytrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCsytrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCsytrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZsytrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZsytrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsytrf: {
-                let p = get_proc_addr(lib, b"cusolverDnSsytrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsytrf: {
-                let p = get_proc_addr(lib, b"cusolverDnDsytrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCsytrf: {
-                let p = get_proc_addr(lib, b"cusolverDnCsytrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZsytrf: {
-                let p = get_proc_addr(lib, b"cusolverDnZsytrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsytrs_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXsytrs_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsytrs: {
-                let p = get_proc_addr(lib, b"cusolverDnXsytrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsytri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsytri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsytri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsytri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCsytri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCsytri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZsytri_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZsytri_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsytri: {
-                let p = get_proc_addr(lib, b"cusolverDnSsytri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsytri: {
-                let p = get_proc_addr(lib, b"cusolverDnDsytri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCsytri: {
-                let p = get_proc_addr(lib, b"cusolverDnCsytri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZsytri: {
-                let p = get_proc_addr(lib, b"cusolverDnZsytri\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgebrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSgebrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgebrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDgebrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgebrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCgebrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgebrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZgebrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgebrd: {
-                let p = get_proc_addr(lib, b"cusolverDnSgebrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgebrd: {
-                let p = get_proc_addr(lib, b"cusolverDnDgebrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgebrd: {
-                let p = get_proc_addr(lib, b"cusolverDnCgebrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgebrd: {
-                let p = get_proc_addr(lib, b"cusolverDnZgebrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSorgbr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSorgbr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDorgbr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDorgbr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCungbr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCungbr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZungbr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZungbr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSorgbr: {
-                let p = get_proc_addr(lib, b"cusolverDnSorgbr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDorgbr: {
-                let p = get_proc_addr(lib, b"cusolverDnDorgbr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCungbr: {
-                let p = get_proc_addr(lib, b"cusolverDnCungbr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZungbr: {
-                let p = get_proc_addr(lib, b"cusolverDnZungbr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsytrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsytrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsytrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsytrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChetrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnChetrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhetrd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZhetrd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsytrd: {
-                let p = get_proc_addr(lib, b"cusolverDnSsytrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsytrd: {
-                let p = get_proc_addr(lib, b"cusolverDnDsytrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChetrd: {
-                let p = get_proc_addr(lib, b"cusolverDnChetrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhetrd: {
-                let p = get_proc_addr(lib, b"cusolverDnZhetrd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSorgtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSorgtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDorgtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDorgtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCungtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCungtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZungtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZungtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSorgtr: {
-                let p = get_proc_addr(lib, b"cusolverDnSorgtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDorgtr: {
-                let p = get_proc_addr(lib, b"cusolverDnDorgtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCungtr: {
-                let p = get_proc_addr(lib, b"cusolverDnCungtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZungtr: {
-                let p = get_proc_addr(lib, b"cusolverDnZungtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSormtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSormtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDormtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDormtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCunmtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCunmtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZunmtr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZunmtr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSormtr: {
-                let p = get_proc_addr(lib, b"cusolverDnSormtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDormtr: {
-                let p = get_proc_addr(lib, b"cusolverDnDormtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCunmtr: {
-                let p = get_proc_addr(lib, b"cusolverDnCunmtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZunmtr: {
-                let p = get_proc_addr(lib, b"cusolverDnZunmtr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvd: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvd: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvd: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvd: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevd: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevd: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevd: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevd: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevdx: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevdx: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevdx: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevdx: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsygvdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsygvdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsygvdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsygvdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChegvdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnChegvdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhegvdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZhegvdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsygvdx: {
-                let p = get_proc_addr(lib, b"cusolverDnSsygvdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsygvdx: {
-                let p = get_proc_addr(lib, b"cusolverDnDsygvdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChegvdx: {
-                let p = get_proc_addr(lib, b"cusolverDnChegvdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhegvdx: {
-                let p = get_proc_addr(lib, b"cusolverDnZhegvdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsygvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsygvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsygvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsygvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChegvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnChegvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhegvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZhegvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsygvd: {
-                let p = get_proc_addr(lib, b"cusolverDnSsygvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsygvd: {
-                let p = get_proc_addr(lib, b"cusolverDnDsygvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChegvd: {
-                let p = get_proc_addr(lib, b"cusolverDnChegvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhegvd: {
-                let p = get_proc_addr(lib, b"cusolverDnZhegvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsygvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXsygvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsygvd: {
-                let p = get_proc_addr(lib, b"cusolverDnXsygvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsygvdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXsygvdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsygvdx: {
-                let p = get_proc_addr(lib, b"cusolverDnXsygvdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCreateSyevjInfo: {
-                let p = get_proc_addr(lib, b"cusolverDnCreateSyevjInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDestroySyevjInfo: {
-                let p = get_proc_addr(lib, b"cusolverDnDestroySyevjInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevjSetTolerance: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevjSetTolerance\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevjSetMaxSweeps: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevjSetMaxSweeps\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevjSetSortEig: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevjSetSortEig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevjGetResidual: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevjGetResidual\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevjGetSweeps: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevjGetSweeps\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsyevj: {
-                let p = get_proc_addr(lib, b"cusolverDnSsyevj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsyevj: {
-                let p = get_proc_addr(lib, b"cusolverDnDsyevj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCheevj: {
-                let p = get_proc_addr(lib, b"cusolverDnCheevj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZheevj: {
-                let p = get_proc_addr(lib, b"cusolverDnZheevj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsygvj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSsygvj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsygvj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDsygvj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChegvj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnChegvj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhegvj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZhegvj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSsygvj: {
-                let p = get_proc_addr(lib, b"cusolverDnSsygvj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDsygvj: {
-                let p = get_proc_addr(lib, b"cusolverDnDsygvj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnChegvj: {
-                let p = get_proc_addr(lib, b"cusolverDnChegvj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZhegvj: {
-                let p = get_proc_addr(lib, b"cusolverDnZhegvj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCreateGesvdjInfo: {
-                let p = get_proc_addr(lib, b"cusolverDnCreateGesvdjInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDestroyGesvdjInfo: {
-                let p = get_proc_addr(lib, b"cusolverDnDestroyGesvdjInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdjSetTolerance: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetTolerance\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdjSetMaxSweeps: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetMaxSweeps\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdjSetSortEig: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetSortEig\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdjGetResidual: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdjGetResidual\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdjGetSweeps: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdjGetSweeps\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvdjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvdjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvdjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvdjBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvdjBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvdjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvdjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvdjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvdjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvdjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvdjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvdjBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvdjBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvdj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvdj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvdj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvdj_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvdj_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvdj: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvdj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvdj: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvdj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvdj: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvdj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvdj: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvdj\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvdaStridedBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvdaStridedBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSgesvdaStridedBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnSgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDgesvdaStridedBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnDgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCgesvdaStridedBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnCgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnZgesvdaStridedBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnZgesvdaStridedBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnCreateParams: {
-                let p = get_proc_addr(lib, b"cusolverDnCreateParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnDestroyParams: {
-                let p = get_proc_addr(lib, b"cusolverDnDestroyParams\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnSetAdvOptions: {
-                let p = get_proc_addr(lib, b"cusolverDnSetAdvOptions\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXpotrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXpotrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXpotrf: {
-                let p = get_proc_addr(lib, b"cusolverDnXpotrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXpotrs: {
-                let p = get_proc_addr(lib, b"cusolverDnXpotrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgeqrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXgeqrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgeqrf: {
-                let p = get_proc_addr(lib, b"cusolverDnXgeqrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgetrf_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXgetrf_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgetrf: {
-                let p = get_proc_addr(lib, b"cusolverDnXgetrf\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgetrs: {
-                let p = get_proc_addr(lib, b"cusolverDnXgetrs\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevd: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXstedc_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXstedc_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXstedc: {
-                let p = get_proc_addr(lib, b"cusolverDnXstedc\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevBatched_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevBatched_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevBatched: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevdx_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevdx_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXsyevdx: {
-                let p = get_proc_addr(lib, b"cusolverDnXsyevdx\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgeev_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXgeev_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgeev: {
-                let p = get_proc_addr(lib, b"cusolverDnXgeev\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvd_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvd_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvd: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvd\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdp_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdp_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdp: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdp\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdr_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdr_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXgesvdr: {
-                let p = get_proc_addr(lib, b"cusolverDnXgesvdr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXlarft_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXlarft_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXlarft: {
-                let p = get_proc_addr(lib, b"cusolverDnXlarft\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnLoggerSetCallback: {
-                let p = get_proc_addr(lib, b"cusolverDnLoggerSetCallback\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnLoggerSetFile: {
-                let p = get_proc_addr(lib, b"cusolverDnLoggerSetFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnLoggerOpenFile: {
-                let p = get_proc_addr(lib, b"cusolverDnLoggerOpenFile\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnLoggerSetLevel: {
-                let p = get_proc_addr(lib, b"cusolverDnLoggerSetLevel\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnLoggerSetMask: {
-                let p = get_proc_addr(lib, b"cusolverDnLoggerSetMask\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnLoggerForceDisable: {
-                let p = get_proc_addr(lib, b"cusolverDnLoggerForceDisable\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXpolar_bufferSize: {
-                let p = get_proc_addr(lib, b"cusolverDnXpolar_bufferSize\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverDnXpolar: {
-                let p = get_proc_addr(lib, b"cusolverDnXpolar\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCreate: {
-                let p = get_proc_addr(lib, b"cusolverSpCreate\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDestroy: {
-                let p = get_proc_addr(lib, b"cusolverSpDestroy\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpSetStream: {
-                let p = get_proc_addr(lib, b"cusolverSpSetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpGetStream: {
-                let p = get_proc_addr(lib, b"cusolverSpGetStream\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrissymHost: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrissymHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrlsvluHost: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrlsvluHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrlsvluHost: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrlsvluHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrlsvluHost: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrlsvluHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrlsvluHost: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrlsvluHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrlsvqr: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrlsvqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrlsvqr: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrlsvqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrlsvqr: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrlsvqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrlsvqr: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrlsvqr\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrlsvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrlsvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrlsvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrlsvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrlsvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrlsvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrlsvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrlsvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrlsvcholHost: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrlsvcholHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrlsvcholHost: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrlsvcholHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrlsvcholHost: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrlsvcholHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrlsvcholHost: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrlsvcholHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrlsvchol: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrlsvchol\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrlsvchol: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrlsvchol\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrlsvchol: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrlsvchol\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrlsvchol: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrlsvchol\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrlsqvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrlsqvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrlsqvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrlsqvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrlsqvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrlsqvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrlsqvqrHost: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrlsqvqrHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsreigvsiHost: {
-                let p = get_proc_addr(lib, b"cusolverSpScsreigvsiHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsreigvsiHost: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsreigvsiHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsreigvsiHost: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsreigvsiHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsreigvsiHost: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsreigvsiHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsreigvsi: {
-                let p = get_proc_addr(lib, b"cusolverSpScsreigvsi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsreigvsi: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsreigvsi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsreigvsi: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsreigvsi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsreigvsi: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsreigvsi\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsreigsHost: {
-                let p = get_proc_addr(lib, b"cusolverSpScsreigsHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsreigsHost: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsreigsHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsreigsHost: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsreigsHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsreigsHost: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsreigsHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrsymrcmHost: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrsymrcmHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrsymmdqHost: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrsymmdqHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrsymamdHost: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrsymamdHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrmetisndHost: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrmetisndHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrzfdHost: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrzfdHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrzfdHost: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrzfdHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrzfdHost: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrzfdHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrzfdHost: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrzfdHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrperm_bufferSizeHost: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrperm_bufferSizeHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrpermHost: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrpermHost\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCreateCsrqrInfo: {
-                let p = get_proc_addr(lib, b"cusolverSpCreateCsrqrInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDestroyCsrqrInfo: {
-                let p = get_proc_addr(lib, b"cusolverSpDestroyCsrqrInfo\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpXcsrqrAnalysisBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpXcsrqrAnalysisBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrqrBufferInfoBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrqrBufferInfoBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrqrBufferInfoBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrqrBufferInfoBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrqrBufferInfoBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpScsrqrsvBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpScsrqrsvBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpDcsrqrsvBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpDcsrqrsvBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpCcsrqrsvBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpCcsrqrsvBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-            cusolverSpZcsrqrsvBatched: {
-                let p = get_proc_addr(lib, b"cusolverSpZcsrqrsvBatched\0".as_ptr());
-                if p.is_null() { None } else { Some(std::mem::transmute(p)) }
-            },
-        })
-    };
+    let bindings = Box::new(DynamicBindings {
+        cusolverGetProperty: {
+            let p = get_proc_addr(lib, b"cusolverGetProperty\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverGetVersion: {
+            let p = get_proc_addr(lib, b"cusolverGetVersion\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCreate: {
+            let p = get_proc_addr(lib, b"cusolverDnCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDestroy: {
+            let p = get_proc_addr(lib, b"cusolverDnDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetStream: {
+            let p = get_proc_addr(lib, b"cusolverDnSetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetStream: {
+            let p = get_proc_addr(lib, b"cusolverDnGetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetDeterministicMode: {
+            let p = get_proc_addr(lib, b"cusolverDnSetDeterministicMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetDeterministicMode: {
+            let p = get_proc_addr(lib, b"cusolverDnGetDeterministicMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetMathMode: {
+            let p = get_proc_addr(lib, b"cusolverDnSetMathMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetMathMode: {
+            let p = get_proc_addr(lib, b"cusolverDnGetMathMode\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetEmulationStrategy: {
+            let p = get_proc_addr(lib, b"cusolverDnSetEmulationStrategy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetEmulationStrategy: {
+            let p = get_proc_addr(lib, b"cusolverDnGetEmulationStrategy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetFixedPointEmulationMantissaControl: {
+            let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaControl\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetFixedPointEmulationMantissaControl: {
+            let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaControl\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetFixedPointEmulationMaxMantissaBitCount: {
+            let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetFixedPointEmulationMaxMantissaBitCount: {
+            let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMaxMantissaBitCount\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetFixedPointEmulationMantissaBitOffset: {
+            let p = get_proc_addr(lib, b"cusolverDnSetFixedPointEmulationMantissaBitOffset\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetFixedPointEmulationMantissaBitOffset: {
+            let p = get_proc_addr(lib, b"cusolverDnGetFixedPointEmulationMantissaBitOffset\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetEmulationSpecialValuesSupport: {
+            let p = get_proc_addr(lib, b"cusolverDnSetEmulationSpecialValuesSupport\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnGetEmulationSpecialValuesSupport: {
+            let p = get_proc_addr(lib, b"cusolverDnGetEmulationSpecialValuesSupport\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsCreate: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsDestroy: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetRefinementSolver: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetRefinementSolver\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetSolverMainPrecision: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverMainPrecision\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetSolverLowestPrecision: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverLowestPrecision\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetSolverPrecisions: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetSolverPrecisions\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetTol: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetTol\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetTolInner: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetTolInner\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetMaxIters: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetMaxIters\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsSetMaxItersInner: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsSetMaxItersInner\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsGetMaxIters: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsGetMaxIters\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsEnableFallback: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsEnableFallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSParamsDisableFallback: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSParamsDisableFallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSInfosDestroy: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSInfosDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSInfosCreate: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSInfosCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSInfosGetNiters: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetNiters\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSInfosGetOuterNiters: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetOuterNiters\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSInfosRequestResidual: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSInfosRequestResidual\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSInfosGetResidualHistory: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetResidualHistory\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSInfosGetMaxIters: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSInfosGetMaxIters\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZZgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnZZgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZCgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnZCgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZKgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnZKgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZEgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnZEgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZYgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnZYgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCCgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnCCgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCEgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnCEgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCKgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnCKgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCYgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnCYgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDDgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnDDgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDSgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnDSgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDHgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnDHgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDBgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnDBgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDXgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnDXgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSSgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnSSgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSHgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnSHgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSBgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnSBgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSXgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnSXgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZZgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZZgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZCgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZCgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZKgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZKgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZEgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZEgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZYgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZYgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCCgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCCgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCKgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCKgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCEgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCEgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCYgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCYgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDDgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDDgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDSgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDSgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDHgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDHgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDBgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDBgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDXgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDXgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSSgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSSgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSHgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSHgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSBgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSBgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSXgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSXgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZZgels: {
+            let p = get_proc_addr(lib, b"cusolverDnZZgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZCgels: {
+            let p = get_proc_addr(lib, b"cusolverDnZCgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZKgels: {
+            let p = get_proc_addr(lib, b"cusolverDnZKgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZEgels: {
+            let p = get_proc_addr(lib, b"cusolverDnZEgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZYgels: {
+            let p = get_proc_addr(lib, b"cusolverDnZYgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCCgels: {
+            let p = get_proc_addr(lib, b"cusolverDnCCgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCKgels: {
+            let p = get_proc_addr(lib, b"cusolverDnCKgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCEgels: {
+            let p = get_proc_addr(lib, b"cusolverDnCEgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCYgels: {
+            let p = get_proc_addr(lib, b"cusolverDnCYgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDDgels: {
+            let p = get_proc_addr(lib, b"cusolverDnDDgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDSgels: {
+            let p = get_proc_addr(lib, b"cusolverDnDSgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDHgels: {
+            let p = get_proc_addr(lib, b"cusolverDnDHgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDBgels: {
+            let p = get_proc_addr(lib, b"cusolverDnDBgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDXgels: {
+            let p = get_proc_addr(lib, b"cusolverDnDXgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSSgels: {
+            let p = get_proc_addr(lib, b"cusolverDnSSgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSHgels: {
+            let p = get_proc_addr(lib, b"cusolverDnSHgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSBgels: {
+            let p = get_proc_addr(lib, b"cusolverDnSBgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSXgels: {
+            let p = get_proc_addr(lib, b"cusolverDnSXgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZZgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZZgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZCgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZCgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZKgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZKgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZEgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZEgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZYgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZYgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCCgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCCgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCKgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCKgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCEgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCEgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCYgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCYgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDDgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDDgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDSgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDSgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDHgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDHgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDBgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDBgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDXgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDXgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSSgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSSgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSHgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSHgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSBgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSBgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSXgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSXgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSXgesv: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSXgesv\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSXgesv_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSXgesv_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSXgels: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSXgels\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnIRSXgels_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnIRSXgels_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSpotrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSpotrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDpotrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDpotrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCpotrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCpotrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZpotrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZpotrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSpotrf: {
+            let p = get_proc_addr(lib, b"cusolverDnSpotrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDpotrf: {
+            let p = get_proc_addr(lib, b"cusolverDnDpotrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCpotrf: {
+            let p = get_proc_addr(lib, b"cusolverDnCpotrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZpotrf: {
+            let p = get_proc_addr(lib, b"cusolverDnZpotrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSpotrs: {
+            let p = get_proc_addr(lib, b"cusolverDnSpotrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDpotrs: {
+            let p = get_proc_addr(lib, b"cusolverDnDpotrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCpotrs: {
+            let p = get_proc_addr(lib, b"cusolverDnCpotrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZpotrs: {
+            let p = get_proc_addr(lib, b"cusolverDnZpotrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSpotrfBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnSpotrfBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDpotrfBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnDpotrfBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCpotrfBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnCpotrfBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZpotrfBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnZpotrfBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSpotrsBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnSpotrsBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDpotrsBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnDpotrsBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCpotrsBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnCpotrsBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZpotrsBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnZpotrsBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSpotri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSpotri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDpotri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDpotri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCpotri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCpotri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZpotri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZpotri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSpotri: {
+            let p = get_proc_addr(lib, b"cusolverDnSpotri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDpotri: {
+            let p = get_proc_addr(lib, b"cusolverDnDpotri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCpotri: {
+            let p = get_proc_addr(lib, b"cusolverDnCpotri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZpotri: {
+            let p = get_proc_addr(lib, b"cusolverDnZpotri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXtrtri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXtrtri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXtrtri: {
+            let p = get_proc_addr(lib, b"cusolverDnXtrtri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSlauum_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSlauum_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDlauum_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDlauum_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnClauum_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnClauum_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZlauum_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZlauum_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSlauum: {
+            let p = get_proc_addr(lib, b"cusolverDnSlauum\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDlauum: {
+            let p = get_proc_addr(lib, b"cusolverDnDlauum\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnClauum: {
+            let p = get_proc_addr(lib, b"cusolverDnClauum\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZlauum: {
+            let p = get_proc_addr(lib, b"cusolverDnZlauum\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgetrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSgetrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgetrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDgetrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgetrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCgetrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgetrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZgetrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgetrf: {
+            let p = get_proc_addr(lib, b"cusolverDnSgetrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgetrf: {
+            let p = get_proc_addr(lib, b"cusolverDnDgetrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgetrf: {
+            let p = get_proc_addr(lib, b"cusolverDnCgetrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgetrf: {
+            let p = get_proc_addr(lib, b"cusolverDnZgetrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSlaswp: {
+            let p = get_proc_addr(lib, b"cusolverDnSlaswp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDlaswp: {
+            let p = get_proc_addr(lib, b"cusolverDnDlaswp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnClaswp: {
+            let p = get_proc_addr(lib, b"cusolverDnClaswp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZlaswp: {
+            let p = get_proc_addr(lib, b"cusolverDnZlaswp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgetrs: {
+            let p = get_proc_addr(lib, b"cusolverDnSgetrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgetrs: {
+            let p = get_proc_addr(lib, b"cusolverDnDgetrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgetrs: {
+            let p = get_proc_addr(lib, b"cusolverDnCgetrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgetrs: {
+            let p = get_proc_addr(lib, b"cusolverDnZgetrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgeqrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSgeqrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgeqrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDgeqrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgeqrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCgeqrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgeqrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZgeqrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgeqrf: {
+            let p = get_proc_addr(lib, b"cusolverDnSgeqrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgeqrf: {
+            let p = get_proc_addr(lib, b"cusolverDnDgeqrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgeqrf: {
+            let p = get_proc_addr(lib, b"cusolverDnCgeqrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgeqrf: {
+            let p = get_proc_addr(lib, b"cusolverDnZgeqrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSorgqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSorgqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDorgqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDorgqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCungqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCungqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZungqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZungqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSorgqr: {
+            let p = get_proc_addr(lib, b"cusolverDnSorgqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDorgqr: {
+            let p = get_proc_addr(lib, b"cusolverDnDorgqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCungqr: {
+            let p = get_proc_addr(lib, b"cusolverDnCungqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZungqr: {
+            let p = get_proc_addr(lib, b"cusolverDnZungqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSormqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSormqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDormqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDormqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCunmqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCunmqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZunmqr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZunmqr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSormqr: {
+            let p = get_proc_addr(lib, b"cusolverDnSormqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDormqr: {
+            let p = get_proc_addr(lib, b"cusolverDnDormqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCunmqr: {
+            let p = get_proc_addr(lib, b"cusolverDnCunmqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZunmqr: {
+            let p = get_proc_addr(lib, b"cusolverDnZunmqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsytrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsytrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsytrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsytrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCsytrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCsytrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZsytrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZsytrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsytrf: {
+            let p = get_proc_addr(lib, b"cusolverDnSsytrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsytrf: {
+            let p = get_proc_addr(lib, b"cusolverDnDsytrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCsytrf: {
+            let p = get_proc_addr(lib, b"cusolverDnCsytrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZsytrf: {
+            let p = get_proc_addr(lib, b"cusolverDnZsytrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsytrs_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXsytrs_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsytrs: {
+            let p = get_proc_addr(lib, b"cusolverDnXsytrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsytri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsytri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsytri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsytri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCsytri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCsytri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZsytri_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZsytri_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsytri: {
+            let p = get_proc_addr(lib, b"cusolverDnSsytri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsytri: {
+            let p = get_proc_addr(lib, b"cusolverDnDsytri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCsytri: {
+            let p = get_proc_addr(lib, b"cusolverDnCsytri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZsytri: {
+            let p = get_proc_addr(lib, b"cusolverDnZsytri\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgebrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSgebrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgebrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDgebrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgebrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCgebrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgebrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZgebrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgebrd: {
+            let p = get_proc_addr(lib, b"cusolverDnSgebrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgebrd: {
+            let p = get_proc_addr(lib, b"cusolverDnDgebrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgebrd: {
+            let p = get_proc_addr(lib, b"cusolverDnCgebrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgebrd: {
+            let p = get_proc_addr(lib, b"cusolverDnZgebrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSorgbr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSorgbr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDorgbr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDorgbr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCungbr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCungbr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZungbr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZungbr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSorgbr: {
+            let p = get_proc_addr(lib, b"cusolverDnSorgbr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDorgbr: {
+            let p = get_proc_addr(lib, b"cusolverDnDorgbr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCungbr: {
+            let p = get_proc_addr(lib, b"cusolverDnCungbr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZungbr: {
+            let p = get_proc_addr(lib, b"cusolverDnZungbr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsytrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsytrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsytrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsytrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChetrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnChetrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhetrd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZhetrd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsytrd: {
+            let p = get_proc_addr(lib, b"cusolverDnSsytrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsytrd: {
+            let p = get_proc_addr(lib, b"cusolverDnDsytrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChetrd: {
+            let p = get_proc_addr(lib, b"cusolverDnChetrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhetrd: {
+            let p = get_proc_addr(lib, b"cusolverDnZhetrd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSorgtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSorgtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDorgtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDorgtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCungtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCungtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZungtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZungtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSorgtr: {
+            let p = get_proc_addr(lib, b"cusolverDnSorgtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDorgtr: {
+            let p = get_proc_addr(lib, b"cusolverDnDorgtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCungtr: {
+            let p = get_proc_addr(lib, b"cusolverDnCungtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZungtr: {
+            let p = get_proc_addr(lib, b"cusolverDnZungtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSormtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSormtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDormtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDormtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCunmtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCunmtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZunmtr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZunmtr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSormtr: {
+            let p = get_proc_addr(lib, b"cusolverDnSormtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDormtr: {
+            let p = get_proc_addr(lib, b"cusolverDnDormtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCunmtr: {
+            let p = get_proc_addr(lib, b"cusolverDnCunmtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZunmtr: {
+            let p = get_proc_addr(lib, b"cusolverDnZunmtr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvd: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvd: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvd: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvd: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevd: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevd: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevd: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevd: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevdx: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevdx: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevdx: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevdx: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsygvdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsygvdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsygvdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsygvdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChegvdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnChegvdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhegvdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZhegvdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsygvdx: {
+            let p = get_proc_addr(lib, b"cusolverDnSsygvdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsygvdx: {
+            let p = get_proc_addr(lib, b"cusolverDnDsygvdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChegvdx: {
+            let p = get_proc_addr(lib, b"cusolverDnChegvdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhegvdx: {
+            let p = get_proc_addr(lib, b"cusolverDnZhegvdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsygvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsygvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsygvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsygvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChegvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnChegvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhegvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZhegvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsygvd: {
+            let p = get_proc_addr(lib, b"cusolverDnSsygvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsygvd: {
+            let p = get_proc_addr(lib, b"cusolverDnDsygvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChegvd: {
+            let p = get_proc_addr(lib, b"cusolverDnChegvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhegvd: {
+            let p = get_proc_addr(lib, b"cusolverDnZhegvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsygvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXsygvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsygvd: {
+            let p = get_proc_addr(lib, b"cusolverDnXsygvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsygvdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXsygvdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsygvdx: {
+            let p = get_proc_addr(lib, b"cusolverDnXsygvdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCreateSyevjInfo: {
+            let p = get_proc_addr(lib, b"cusolverDnCreateSyevjInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDestroySyevjInfo: {
+            let p = get_proc_addr(lib, b"cusolverDnDestroySyevjInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevjSetTolerance: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevjSetTolerance\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevjSetMaxSweeps: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevjSetMaxSweeps\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevjSetSortEig: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevjSetSortEig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevjGetResidual: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevjGetResidual\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevjGetSweeps: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevjGetSweeps\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsyevj: {
+            let p = get_proc_addr(lib, b"cusolverDnSsyevj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsyevj: {
+            let p = get_proc_addr(lib, b"cusolverDnDsyevj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCheevj: {
+            let p = get_proc_addr(lib, b"cusolverDnCheevj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZheevj: {
+            let p = get_proc_addr(lib, b"cusolverDnZheevj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsygvj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSsygvj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsygvj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDsygvj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChegvj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnChegvj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhegvj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZhegvj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSsygvj: {
+            let p = get_proc_addr(lib, b"cusolverDnSsygvj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDsygvj: {
+            let p = get_proc_addr(lib, b"cusolverDnDsygvj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnChegvj: {
+            let p = get_proc_addr(lib, b"cusolverDnChegvj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZhegvj: {
+            let p = get_proc_addr(lib, b"cusolverDnZhegvj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCreateGesvdjInfo: {
+            let p = get_proc_addr(lib, b"cusolverDnCreateGesvdjInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDestroyGesvdjInfo: {
+            let p = get_proc_addr(lib, b"cusolverDnDestroyGesvdjInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdjSetTolerance: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetTolerance\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdjSetMaxSweeps: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetMaxSweeps\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdjSetSortEig: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdjSetSortEig\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdjGetResidual: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdjGetResidual\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdjGetSweeps: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdjGetSweeps\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvdjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvdjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvdjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvdjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvdjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvdjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvdjBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvdjBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvdjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvdjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvdjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvdjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvdjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvdjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvdjBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvdjBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvdj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvdj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvdj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvdj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvdj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvdj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvdj_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvdj_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvdj: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvdj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvdj: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvdj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvdj: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvdj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvdj: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvdj\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvdaStridedBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvdaStridedBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvdaStridedBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvdaStridedBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvdaStridedBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvdaStridedBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvdaStridedBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvdaStridedBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSgesvdaStridedBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnSgesvdaStridedBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDgesvdaStridedBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnDgesvdaStridedBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCgesvdaStridedBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnCgesvdaStridedBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnZgesvdaStridedBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnZgesvdaStridedBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnCreateParams: {
+            let p = get_proc_addr(lib, b"cusolverDnCreateParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnDestroyParams: {
+            let p = get_proc_addr(lib, b"cusolverDnDestroyParams\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnSetAdvOptions: {
+            let p = get_proc_addr(lib, b"cusolverDnSetAdvOptions\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXpotrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXpotrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXpotrf: {
+            let p = get_proc_addr(lib, b"cusolverDnXpotrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXpotrs: {
+            let p = get_proc_addr(lib, b"cusolverDnXpotrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgeqrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXgeqrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgeqrf: {
+            let p = get_proc_addr(lib, b"cusolverDnXgeqrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgetrf_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXgetrf_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgetrf: {
+            let p = get_proc_addr(lib, b"cusolverDnXgetrf\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgetrs: {
+            let p = get_proc_addr(lib, b"cusolverDnXgetrs\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevd: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXstedc_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXstedc_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXstedc: {
+            let p = get_proc_addr(lib, b"cusolverDnXstedc\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevBatched_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevBatched_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevBatched: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevdx_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevdx_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXsyevdx: {
+            let p = get_proc_addr(lib, b"cusolverDnXsyevdx\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgeev_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXgeev_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgeev: {
+            let p = get_proc_addr(lib, b"cusolverDnXgeev\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvd_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvd_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvd: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvd\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdp_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdp_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdp: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdp\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdr_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdr_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXgesvdr: {
+            let p = get_proc_addr(lib, b"cusolverDnXgesvdr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXlarft_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXlarft_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXlarft: {
+            let p = get_proc_addr(lib, b"cusolverDnXlarft\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnLoggerSetCallback: {
+            let p = get_proc_addr(lib, b"cusolverDnLoggerSetCallback\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnLoggerSetFile: {
+            let p = get_proc_addr(lib, b"cusolverDnLoggerSetFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnLoggerOpenFile: {
+            let p = get_proc_addr(lib, b"cusolverDnLoggerOpenFile\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnLoggerSetLevel: {
+            let p = get_proc_addr(lib, b"cusolverDnLoggerSetLevel\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnLoggerSetMask: {
+            let p = get_proc_addr(lib, b"cusolverDnLoggerSetMask\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnLoggerForceDisable: {
+            let p = get_proc_addr(lib, b"cusolverDnLoggerForceDisable\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXpolar_bufferSize: {
+            let p = get_proc_addr(lib, b"cusolverDnXpolar_bufferSize\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverDnXpolar: {
+            let p = get_proc_addr(lib, b"cusolverDnXpolar\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCreate: {
+            let p = get_proc_addr(lib, b"cusolverSpCreate\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDestroy: {
+            let p = get_proc_addr(lib, b"cusolverSpDestroy\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpSetStream: {
+            let p = get_proc_addr(lib, b"cusolverSpSetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpGetStream: {
+            let p = get_proc_addr(lib, b"cusolverSpGetStream\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrissymHost: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrissymHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrlsvluHost: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrlsvluHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrlsvluHost: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrlsvluHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrlsvluHost: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrlsvluHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrlsvluHost: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrlsvluHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrlsvqr: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrlsvqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrlsvqr: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrlsvqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrlsvqr: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrlsvqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrlsvqr: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrlsvqr\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrlsvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrlsvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrlsvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrlsvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrlsvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrlsvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrlsvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrlsvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrlsvcholHost: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrlsvcholHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrlsvcholHost: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrlsvcholHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrlsvcholHost: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrlsvcholHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrlsvcholHost: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrlsvcholHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrlsvchol: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrlsvchol\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrlsvchol: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrlsvchol\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrlsvchol: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrlsvchol\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrlsvchol: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrlsvchol\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrlsqvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrlsqvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrlsqvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrlsqvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrlsqvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrlsqvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrlsqvqrHost: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrlsqvqrHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsreigvsiHost: {
+            let p = get_proc_addr(lib, b"cusolverSpScsreigvsiHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsreigvsiHost: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsreigvsiHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsreigvsiHost: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsreigvsiHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsreigvsiHost: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsreigvsiHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsreigvsi: {
+            let p = get_proc_addr(lib, b"cusolverSpScsreigvsi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsreigvsi: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsreigvsi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsreigvsi: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsreigvsi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsreigvsi: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsreigvsi\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsreigsHost: {
+            let p = get_proc_addr(lib, b"cusolverSpScsreigsHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsreigsHost: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsreigsHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsreigsHost: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsreigsHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsreigsHost: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsreigsHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrsymrcmHost: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrsymrcmHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrsymmdqHost: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrsymmdqHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrsymamdHost: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrsymamdHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrmetisndHost: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrmetisndHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrzfdHost: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrzfdHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrzfdHost: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrzfdHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrzfdHost: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrzfdHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrzfdHost: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrzfdHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrperm_bufferSizeHost: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrperm_bufferSizeHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrpermHost: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrpermHost\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCreateCsrqrInfo: {
+            let p = get_proc_addr(lib, b"cusolverSpCreateCsrqrInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDestroyCsrqrInfo: {
+            let p = get_proc_addr(lib, b"cusolverSpDestroyCsrqrInfo\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpXcsrqrAnalysisBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpXcsrqrAnalysisBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrqrBufferInfoBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrqrBufferInfoBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrqrBufferInfoBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrqrBufferInfoBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrqrBufferInfoBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrqrBufferInfoBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrqrBufferInfoBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrqrBufferInfoBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpScsrqrsvBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpScsrqrsvBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpDcsrqrsvBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpDcsrqrsvBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpCcsrqrsvBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpCcsrqrsvBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+        cusolverSpZcsrqrsvBatched: {
+            let p = get_proc_addr(lib, b"cusolverSpZcsrqrsvBatched\0".as_ptr());
+            if p.is_null() { None } else { Some(std::mem::transmute(p)) }
+        },
+    });
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
 unsafe impl Send for cusolverDnContext {}
