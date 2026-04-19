@@ -33,7 +33,7 @@ cuda_libs_macros = { path = "cuda_libs_macros", optional = true }
 libc = { version = "0.2.153", optional = true }
 
 [features]
-driver = ["dep:cuda_libs_driver"]
+driver = ["dep:cuda_libs_driver", "dep:cuda_libs_macros"]
 cudart = ["dep:cuda_libs_cudart"]
 cublas = ["dep:cuda_libs_cublas"]
 cublas_lt = ["dep:cuda_libs_cublas_lt"]

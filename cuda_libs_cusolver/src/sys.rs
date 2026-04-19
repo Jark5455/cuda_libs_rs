@@ -1,112 +1,6 @@
+use cuda_libs_cublas::sys::*;
 use cuda_libs_cudart::sys::*;
-#[repr(C)]
-#[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct __BindgenBitfieldUnit<Storage> {
-    storage: Storage,
-}
-impl<Storage> __BindgenBitfieldUnit<Storage> {
-    #[inline]
-    pub const fn new(storage: Storage) -> Self {
-        Self { storage }
-    }
-}
-impl<Storage> __BindgenBitfieldUnit<Storage>
-where
-    Storage: AsRef<[u8]> + AsMut<[u8]>,
-{
-    #[inline]
-    fn extract_bit(byte: u8, index: usize) -> bool {
-        let bit_index = if cfg!(target_endian = "big") { 7 - (index % 8) } else { index % 8 };
-        let mask = 1 << bit_index;
-        byte & mask == mask
-    }
-    #[inline]
-    pub fn get_bit(&self, index: usize) -> bool {
-        debug_assert!(index / 8 < self.storage.as_ref().len());
-        let byte_index = index / 8;
-        let byte = self.storage.as_ref()[byte_index];
-        Self::extract_bit(byte, index)
-    }
-    #[inline]
-    pub unsafe fn raw_get_bit(this: *const Self, index: usize) -> bool {
-        debug_assert!(index / 8 < core::mem::size_of::<Storage>());
-        let byte_index = index / 8;
-        let byte = unsafe { *(core::ptr::addr_of!((*this).storage) as *const u8).offset(byte_index as isize) };
-        Self::extract_bit(byte, index)
-    }
-    #[inline]
-    fn change_bit(byte: u8, index: usize, val: bool) -> u8 {
-        let bit_index = if cfg!(target_endian = "big") { 7 - (index % 8) } else { index % 8 };
-        let mask = 1 << bit_index;
-        if val { byte | mask } else { byte & !mask }
-    }
-    #[inline]
-    pub fn set_bit(&mut self, index: usize, val: bool) {
-        debug_assert!(index / 8 < self.storage.as_ref().len());
-        let byte_index = index / 8;
-        let byte = &mut self.storage.as_mut()[byte_index];
-        *byte = Self::change_bit(*byte, index, val);
-    }
-    #[inline]
-    pub unsafe fn raw_set_bit(this: *mut Self, index: usize, val: bool) {
-        debug_assert!(index / 8 < core::mem::size_of::<Storage>());
-        let byte_index = index / 8;
-        let byte = unsafe { (core::ptr::addr_of_mut!((*this).storage) as *mut u8).offset(byte_index as isize) };
-        unsafe { *byte = Self::change_bit(*byte, index, val) };
-    }
-    #[inline]
-    pub fn get(&self, bit_offset: usize, bit_width: u8) -> u64 {
-        debug_assert!(bit_width <= 64);
-        debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
-        debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
-        let mut val = 0;
-        for i in 0..(bit_width as usize) {
-            if self.get_bit(i + bit_offset) {
-                let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
-                val |= 1 << index;
-            }
-        }
-        val
-    }
-    #[inline]
-    pub unsafe fn raw_get(this: *const Self, bit_offset: usize, bit_width: u8) -> u64 {
-        debug_assert!(bit_width <= 64);
-        debug_assert!(bit_offset / 8 < core::mem::size_of::<Storage>());
-        debug_assert!((bit_offset + (bit_width as usize)) / 8 <= core::mem::size_of::<Storage>());
-        let mut val = 0;
-        for i in 0..(bit_width as usize) {
-            if unsafe { Self::raw_get_bit(this, i + bit_offset) } {
-                let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
-                val |= 1 << index;
-            }
-        }
-        val
-    }
-    #[inline]
-    pub fn set(&mut self, bit_offset: usize, bit_width: u8, val: u64) {
-        debug_assert!(bit_width <= 64);
-        debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
-        debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
-        for i in 0..(bit_width as usize) {
-            let mask = 1 << i;
-            let val_bit_is_set = val & mask == mask;
-            let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
-            self.set_bit(index + bit_offset, val_bit_is_set);
-        }
-    }
-    #[inline]
-    pub unsafe fn raw_set(this: *mut Self, bit_offset: usize, bit_width: u8, val: u64) {
-        debug_assert!(bit_width <= 64);
-        debug_assert!(bit_offset / 8 < core::mem::size_of::<Storage>());
-        debug_assert!((bit_offset + (bit_width as usize)) / 8 <= core::mem::size_of::<Storage>());
-        for i in 0..(bit_width as usize) {
-            let mask = 1 << i;
-            let val_bit_is_set = val & mask == mask;
-            let index = if cfg!(target_endian = "big") { bit_width as usize - 1 - i } else { i };
-            unsafe { Self::raw_set_bit(this, index + bit_offset, val_bit_is_set) };
-        }
-    }
-}
+use cuda_libs_cusparse::sys::*;
 pub const CUSOLVER_VER_MAJOR: u32 = 12;
 pub const CUSOLVER_VER_MINOR: u32 = 2;
 pub const CUSOLVER_VER_PATCH: u32 = 0;
@@ -159,157 +53,6 @@ pub enum cusolverDnFunction_t {
 pub type __uint64_t = ::std::os::raw::c_ulong;
 pub type __off_t = ::std::os::raw::c_long;
 pub type __off64_t = ::std::os::raw::c_long;
-pub type FILE = _IO_FILE;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _IO_marker {
-    _unused: [u8; 0],
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _IO_codecvt {
-    _unused: [u8; 0],
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _IO_wide_data {
-    _unused: [u8; 0],
-}
-pub type _IO_lock_t = ::std::os::raw::c_void;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _IO_FILE {
-    pub _flags: ::std::os::raw::c_int,
-    pub _IO_read_ptr: *mut ::std::os::raw::c_char,
-    pub _IO_read_end: *mut ::std::os::raw::c_char,
-    pub _IO_read_base: *mut ::std::os::raw::c_char,
-    pub _IO_write_base: *mut ::std::os::raw::c_char,
-    pub _IO_write_ptr: *mut ::std::os::raw::c_char,
-    pub _IO_write_end: *mut ::std::os::raw::c_char,
-    pub _IO_buf_base: *mut ::std::os::raw::c_char,
-    pub _IO_buf_end: *mut ::std::os::raw::c_char,
-    pub _IO_save_base: *mut ::std::os::raw::c_char,
-    pub _IO_backup_base: *mut ::std::os::raw::c_char,
-    pub _IO_save_end: *mut ::std::os::raw::c_char,
-    pub _markers: *mut _IO_marker,
-    pub _chain: *mut _IO_FILE,
-    pub _fileno: ::std::os::raw::c_int,
-    pub _bitfield_align_1: [u32; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
-    pub _short_backupbuf: [::std::os::raw::c_char; 1usize],
-    pub _old_offset: __off_t,
-    pub _cur_column: ::std::os::raw::c_ushort,
-    pub _vtable_offset: ::std::os::raw::c_schar,
-    pub _shortbuf: [::std::os::raw::c_char; 1usize],
-    pub _lock: *mut _IO_lock_t,
-    pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut ::std::os::raw::c_void,
-    pub _prevchain: *mut *mut _IO_FILE,
-    pub _mode: ::std::os::raw::c_int,
-    pub _unused3: ::std::os::raw::c_int,
-    pub _total_written: __uint64_t,
-    pub _unused2: [::std::os::raw::c_char; 8usize],
-}
-impl Default for _IO_FILE {
-    fn default() -> Self {
-        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-impl _IO_FILE {
-    #[inline]
-    pub fn _flags2(&self) -> ::std::os::raw::c_int {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 24u8) as u32) }
-    }
-    #[inline]
-    pub fn set__flags2(&mut self, val: ::std::os::raw::c_int) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 24u8, val as u64)
-        }
-    }
-    #[inline]
-    pub unsafe fn _flags2_raw(this: *const Self) -> ::std::os::raw::c_int {
-        unsafe { ::std::mem::transmute(<__BindgenBitfieldUnit<[u8; 3usize]>>::raw_get(::std::ptr::addr_of!((*this)._bitfield_1), 0usize, 24u8) as u32) }
-    }
-    #[inline]
-    pub unsafe fn set__flags2_raw(this: *mut Self, val: ::std::os::raw::c_int) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            <__BindgenBitfieldUnit<[u8; 3usize]>>::raw_set(::std::ptr::addr_of_mut!((*this)._bitfield_1), 0usize, 24u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(_flags2: ::std::os::raw::c_int) -> __BindgenBitfieldUnit<[u8; 3usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 3usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 24u8, {
-            let _flags2: u32 = unsafe { ::std::mem::transmute(_flags2) };
-            _flags2 as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-#[repr(C)]
-#[repr(align(8))]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct float2 {
-    pub x: f32,
-    pub y: f32,
-}
-#[repr(C)]
-#[repr(align(16))]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct double2 {
-    pub x: f64,
-    pub y: f64,
-}
-pub type cuFloatComplex = float2;
-pub type cuDoubleComplex = double2;
-pub type cuComplex = cuFloatComplex;
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum libraryPropertyType_t {
-    MAJOR_VERSION = 0,
-    MINOR_VERSION = 1,
-    PATCH_LEVEL = 2,
-}
-pub use self::libraryPropertyType_t as libraryPropertyType;
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum cublasFillMode_t {
-    CUBLAS_FILL_MODE_LOWER = 0,
-    CUBLAS_FILL_MODE_UPPER = 1,
-    CUBLAS_FILL_MODE_FULL = 2,
-}
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum cublasDiagType_t {
-    CUBLAS_DIAG_NON_UNIT = 0,
-    CUBLAS_DIAG_UNIT = 1,
-}
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum cublasSideMode_t {
-    CUBLAS_SIDE_LEFT = 0,
-    CUBLAS_SIDE_RIGHT = 1,
-}
-impl cublasOperation_t {
-    pub const CUBLAS_OP_HERMITAN: cublasOperation_t = cublasOperation_t::CUBLAS_OP_C;
-}
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum cublasOperation_t {
-    CUBLAS_OP_N = 0,
-    CUBLAS_OP_T = 1,
-    CUBLAS_OP_C = 2,
-    CUBLAS_OP_CONJG = 3,
-}
 pub type cusolver_int_t = ::std::os::raw::c_int;
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -5340,12 +5083,6 @@ unsafe extern "C" {
         d_info: *mut ::std::os::raw::c_int,
     ) -> cusolverStatus_t;
 }
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cusparseMatDescr {
-    _unused: [u8; 0],
-}
-pub type cusparseMatDescr_t = *mut cusparseMatDescr;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct cusolverSpContext {
@@ -21850,8 +21587,6 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
-unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}
-unsafe impl<Storage: Send + Sync> Sync for __BindgenBitfieldUnit<Storage> {}
 unsafe impl Send for cusolverDnContext {}
 unsafe impl Sync for cusolverDnContext {}
 unsafe impl Send for syevjInfo {}
@@ -21866,28 +21601,6 @@ unsafe impl Send for cusolverDnParams {}
 unsafe impl Sync for cusolverDnParams {}
 unsafe impl Send for cusolverDnFunction_t {}
 unsafe impl Sync for cusolverDnFunction_t {}
-unsafe impl Send for _IO_marker {}
-unsafe impl Sync for _IO_marker {}
-unsafe impl Send for _IO_codecvt {}
-unsafe impl Sync for _IO_codecvt {}
-unsafe impl Send for _IO_wide_data {}
-unsafe impl Sync for _IO_wide_data {}
-unsafe impl Send for _IO_FILE {}
-unsafe impl Sync for _IO_FILE {}
-unsafe impl Send for float2 {}
-unsafe impl Sync for float2 {}
-unsafe impl Send for double2 {}
-unsafe impl Sync for double2 {}
-unsafe impl Send for libraryPropertyType_t {}
-unsafe impl Sync for libraryPropertyType_t {}
-unsafe impl Send for cublasFillMode_t {}
-unsafe impl Sync for cublasFillMode_t {}
-unsafe impl Send for cublasDiagType_t {}
-unsafe impl Sync for cublasDiagType_t {}
-unsafe impl Send for cublasSideMode_t {}
-unsafe impl Sync for cublasSideMode_t {}
-unsafe impl Send for cublasOperation_t {}
-unsafe impl Sync for cublasOperation_t {}
 unsafe impl Send for cusolverStatus_t {}
 unsafe impl Sync for cusolverStatus_t {}
 unsafe impl Send for cusolverEigType_t {}
@@ -21914,8 +21627,6 @@ unsafe impl Send for cusolverDeterministicMode_t {}
 unsafe impl Sync for cusolverDeterministicMode_t {}
 unsafe impl Send for cusolverMathMode_t {}
 unsafe impl Sync for cusolverMathMode_t {}
-unsafe impl Send for cusparseMatDescr {}
-unsafe impl Sync for cusparseMatDescr {}
 unsafe impl Send for cusolverSpContext {}
 unsafe impl Sync for cusolverSpContext {}
 unsafe impl Send for csrqrInfo {}

@@ -1,37 +1,12 @@
 pub use crate::sys::cufftResult as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
-pub use crate::sys::{
-    CUFFT_FORWARD, CUFFT_INVERSE, CUFFT_PLAN_NULL, CUFFT_VER_BUILD, CUFFT_VER_MAJOR, CUFFT_VER_MINOR, CUFFT_VER_PATCH, CUFFT_VERSION, CUstream_st, cuComplex, cuDoubleComplex, cuFloatComplex, cufftCompatibility_t, cufftComplex, cufftDoubleComplex, cufftDoubleReal, cufftHandle, cufftProperty_t,
-    cufftReal, cufftResult_t, cufftType_t, double2, float2, libraryPropertyType_t,
-};
+pub use crate::sys::{CUFFT_FORWARD, CUFFT_INVERSE, CUFFT_PLAN_NULL, CUFFT_VER_BUILD, CUFFT_VER_MAJOR, CUFFT_VER_MINOR, CUFFT_VER_PATCH, CUFFT_VERSION, cufftCompatibility_t, cufftComplex, cufftDoubleComplex, cufftDoubleReal, cufftHandle, cufftProperty_t, cufftReal, cufftResult_t, cufftType_t};
 use cuda_libs_cudart;
 #[allow(unused_imports)]
 use cuda_libs_cudart::sys::*;
 #[allow(unused_imports)]
 use cuda_libs_cudart::types;
-#[cfg(feature = "runtime-link")]
-impl crate::sys::float2 {
-    pub fn x(mut self, val: f32) -> Self {
-        self.x = val;
-        self
-    }
-    pub fn y(mut self, val: f32) -> Self {
-        self.y = val;
-        self
-    }
-}
-#[cfg(feature = "runtime-link")]
-impl crate::sys::double2 {
-    pub fn x(mut self, val: f64) -> Self {
-        self.x = val;
-        self
-    }
-    pub fn y(mut self, val: f64) -> Self {
-        self.y = val;
-        self
-    }
-}
 #[cfg(feature = "runtime-link")]
 impl crate::sys::DynamicBindings {
     pub fn cufftPlan1d(mut self, val: Option<unsafe extern "C" fn(plan: *mut cufftHandle, nx: ::std::os::raw::c_int, type_: cufftType, batch: ::std::os::raw::c_int) -> cufftResult>) -> Self {

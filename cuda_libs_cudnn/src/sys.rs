@@ -34,22 +34,9 @@ pub const CUDNN_CNN_MINOR: u32 = 20;
 pub const CUDNN_CNN_PATCH: u32 = 0;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct CUstream_st {
-    _unused: [u8; 0],
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
 pub struct CUgraph_st {
     _unused: [u8; 0],
 }
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum libraryPropertyType_t {
-    MAJOR_VERSION = 0,
-    MINOR_VERSION = 1,
-    PATCH_LEVEL = 2,
-}
-pub use self::libraryPropertyType_t as libraryPropertyType;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct cudnnContext {
@@ -9297,12 +9284,8 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
-unsafe impl Send for CUstream_st {}
-unsafe impl Sync for CUstream_st {}
 unsafe impl Send for CUgraph_st {}
 unsafe impl Sync for CUgraph_st {}
-unsafe impl Send for libraryPropertyType_t {}
-unsafe impl Sync for libraryPropertyType_t {}
 unsafe impl Send for cudnnContext {}
 unsafe impl Sync for cudnnContext {}
 unsafe impl Send for cudnnStatus_t {}

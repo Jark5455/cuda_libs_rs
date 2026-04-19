@@ -2,173 +2,21 @@ pub use crate::sys::cusolverStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
 pub use crate::sys::{
-    __BindgenBitfieldUnit, __off_t, __off64_t, __uint64_t, _IO_FILE, _IO_codecvt, _IO_lock_t, _IO_marker, _IO_wide_data, CUSOLVER_VER_BUILD, CUSOLVER_VER_MAJOR, CUSOLVER_VER_MINOR, CUSOLVER_VER_PATCH, CUSOLVER_VERSION, FILE, csrqrInfo, csrqrInfo_t, cuComplex, cuDoubleComplex, cuFloatComplex,
-    cublasDiagType_t, cublasFillMode_t, cublasOperation_t, cublasSideMode_t, cusolver_int_t, cusolverAlgMode_t, cusolverDeterministicMode_t, cusolverDirectMode_t, cusolverDnContext, cusolverDnFunction_t, cusolverDnHandle_t, cusolverDnIRSInfos, cusolverDnIRSInfos_t, cusolverDnIRSParams,
-    cusolverDnIRSParams_t, cusolverDnLoggerCallback_t, cusolverDnParams, cusolverDnParams_t, cusolverEigComp_t, cusolverEigMode_t, cusolverEigRange_t, cusolverEigType_t, cusolverIRSRefinement_t, cusolverMathMode_t, cusolverNorm_t, cusolverPrecType_t, cusolverSpContext, cusolverSpHandle_t,
-    cusolverStatus_t, cusolverStorevMode_t, cusparseMatDescr, cusparseMatDescr_t, double2, float2, gesvdjInfo, gesvdjInfo_t, libraryPropertyType_t, syevjInfo, syevjInfo_t,
+    __off_t, __off64_t, __uint64_t, CUSOLVER_VER_BUILD, CUSOLVER_VER_MAJOR, CUSOLVER_VER_MINOR, CUSOLVER_VER_PATCH, CUSOLVER_VERSION, csrqrInfo, csrqrInfo_t, cusolver_int_t, cusolverAlgMode_t, cusolverDeterministicMode_t, cusolverDirectMode_t, cusolverDnContext, cusolverDnFunction_t,
+    cusolverDnHandle_t, cusolverDnIRSInfos, cusolverDnIRSInfos_t, cusolverDnIRSParams, cusolverDnIRSParams_t, cusolverDnLoggerCallback_t, cusolverDnParams, cusolverDnParams_t, cusolverEigComp_t, cusolverEigMode_t, cusolverEigRange_t, cusolverEigType_t, cusolverIRSRefinement_t, cusolverMathMode_t,
+    cusolverNorm_t, cusolverPrecType_t, cusolverSpContext, cusolverSpHandle_t, cusolverStatus_t, cusolverStorevMode_t, gesvdjInfo, gesvdjInfo_t, syevjInfo, syevjInfo_t,
 };
+use cuda_libs_cublas;
+#[allow(unused_imports)]
+use cuda_libs_cublas::sys::*;
 use cuda_libs_cudart;
 #[allow(unused_imports)]
 use cuda_libs_cudart::sys::*;
 #[allow(unused_imports)]
 use cuda_libs_cudart::types;
-#[cfg(feature = "runtime-link")]
-impl crate::sys::_IO_FILE {
-    pub fn _flags(mut self, val: i32) -> Self {
-        self._flags = val as _;
-        self
-    }
-    pub fn _IO_read_ptr(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_read_ptr = val;
-        self
-    }
-    pub fn _IO_read_end(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_read_end = val;
-        self
-    }
-    pub fn _IO_read_base(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_read_base = val;
-        self
-    }
-    pub fn _IO_write_base(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_write_base = val;
-        self
-    }
-    pub fn _IO_write_ptr(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_write_ptr = val;
-        self
-    }
-    pub fn _IO_write_end(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_write_end = val;
-        self
-    }
-    pub fn _IO_buf_base(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_buf_base = val;
-        self
-    }
-    pub fn _IO_buf_end(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_buf_end = val;
-        self
-    }
-    pub fn _IO_save_base(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_save_base = val;
-        self
-    }
-    pub fn _IO_backup_base(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_backup_base = val;
-        self
-    }
-    pub fn _IO_save_end(mut self, val: *mut ::std::os::raw::c_char) -> Self {
-        self._IO_save_end = val;
-        self
-    }
-    pub fn _markers(mut self, val: *mut _IO_marker) -> Self {
-        self._markers = val;
-        self
-    }
-    pub fn _chain(mut self, val: *mut _IO_FILE) -> Self {
-        self._chain = val;
-        self
-    }
-    pub fn _fileno(mut self, val: i32) -> Self {
-        self._fileno = val as _;
-        self
-    }
-    pub fn _bitfield_align_1(mut self, val: [u32; 0]) -> Self {
-        self._bitfield_align_1 = val;
-        self
-    }
-    pub fn _bitfield_1(mut self, val: __BindgenBitfieldUnit<[u8; 3usize]>) -> Self {
-        self._bitfield_1 = val;
-        self
-    }
-    pub fn _short_backupbuf(mut self, val: [::std::os::raw::c_char; 1usize]) -> Self {
-        self._short_backupbuf = val;
-        self
-    }
-    pub fn _old_offset(mut self, val: __off_t) -> Self {
-        self._old_offset = val;
-        self
-    }
-    pub fn _cur_column(mut self, val: u16) -> Self {
-        self._cur_column = val as _;
-        self
-    }
-    pub fn _vtable_offset(mut self, val: ::std::os::raw::c_schar) -> Self {
-        self._vtable_offset = val;
-        self
-    }
-    pub fn _shortbuf(mut self, val: [::std::os::raw::c_char; 1usize]) -> Self {
-        self._shortbuf = val;
-        self
-    }
-    pub fn _lock(mut self, val: *mut _IO_lock_t) -> Self {
-        self._lock = val;
-        self
-    }
-    pub fn _offset(mut self, val: __off64_t) -> Self {
-        self._offset = val;
-        self
-    }
-    pub fn _codecvt(mut self, val: *mut _IO_codecvt) -> Self {
-        self._codecvt = val;
-        self
-    }
-    pub fn _wide_data(mut self, val: *mut _IO_wide_data) -> Self {
-        self._wide_data = val;
-        self
-    }
-    pub fn _freeres_list(mut self, val: *mut _IO_FILE) -> Self {
-        self._freeres_list = val;
-        self
-    }
-    pub fn _freeres_buf(mut self, val: *mut ::std::os::raw::c_void) -> Self {
-        self._freeres_buf = val;
-        self
-    }
-    pub fn _prevchain(mut self, val: *mut *mut _IO_FILE) -> Self {
-        self._prevchain = val;
-        self
-    }
-    pub fn _mode(mut self, val: i32) -> Self {
-        self._mode = val as _;
-        self
-    }
-    pub fn _unused3(mut self, val: i32) -> Self {
-        self._unused3 = val as _;
-        self
-    }
-    pub fn _total_written(mut self, val: __uint64_t) -> Self {
-        self._total_written = val;
-        self
-    }
-    pub fn _unused2(mut self, val: [::std::os::raw::c_char; 8usize]) -> Self {
-        self._unused2 = val;
-        self
-    }
-}
-#[cfg(feature = "runtime-link")]
-impl crate::sys::float2 {
-    pub fn x(mut self, val: f32) -> Self {
-        self.x = val;
-        self
-    }
-    pub fn y(mut self, val: f32) -> Self {
-        self.y = val;
-        self
-    }
-}
-#[cfg(feature = "runtime-link")]
-impl crate::sys::double2 {
-    pub fn x(mut self, val: f64) -> Self {
-        self.x = val;
-        self
-    }
-    pub fn y(mut self, val: f64) -> Self {
-        self.y = val;
-        self
-    }
-}
+use cuda_libs_cusparse;
+#[allow(unused_imports)]
+use cuda_libs_cusparse::sys::*;
 #[cfg(feature = "runtime-link")]
 impl crate::sys::DynamicBindings {
     pub fn cusolverGetProperty(mut self, val: Option<unsafe extern "C" fn(type_: libraryPropertyType, value: *mut ::std::os::raw::c_int) -> cusolverStatus_t>) -> Self {

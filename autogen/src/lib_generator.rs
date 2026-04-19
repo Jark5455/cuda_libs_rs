@@ -395,11 +395,14 @@ impl<'a> Generator<'a> {
             items: new_sys_items,
         };
         let mut code = quote!(#new_ast).to_string();
+        let prefixes = vec!["cuda", "cublas", "cusolver", "cusparse", "curand", "cufft", "cudnn"];
         for import in &self.config.extra_imports {
-            if import.contains("cudart") {
-                let re = regex::Regex::new(r"pub use self :: (cuda[a-zA-Z0-9_]*)").unwrap();
-                let replacement = format!("pub use {} :: sys :: $1", import);
-                code = re.replace_all(&code, replacement.as_str()).to_string();
+            for prefix in prefixes.iter() {
+                if import.contains(prefix) {
+                    let re = regex::Regex::new(&format!(r"pub use self :: ({}[a-zA-Z0-9_]*)", prefix)).unwrap();
+                    let replacement = format!("pub use {} :: sys :: $1", import);
+                    code = re.replace_all(&code, replacement.as_str()).to_string();
+                }
             }
         }
 

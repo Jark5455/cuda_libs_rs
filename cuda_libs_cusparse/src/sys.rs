@@ -112,36 +112,6 @@ pub const CUSPARSE_VER_MINOR: u32 = 7;
 pub const CUSPARSE_VER_PATCH: u32 = 10;
 pub const CUSPARSE_VER_BUILD: u32 = 1;
 pub const CUSPARSE_VERSION: u32 = 12710;
-#[repr(C)]
-#[repr(align(8))]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct float2 {
-    pub x: f32,
-    pub y: f32,
-}
-#[repr(C)]
-#[repr(align(16))]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct double2 {
-    pub x: f64,
-    pub y: f64,
-}
-pub type cuFloatComplex = float2;
-pub type cuDoubleComplex = double2;
-pub type cuComplex = cuFloatComplex;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct CUstream_st {
-    _unused: [u8; 0],
-}
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum libraryPropertyType_t {
-    MAJOR_VERSION = 0,
-    MINOR_VERSION = 1,
-    PATCH_LEVEL = 2,
-}
-pub use self::libraryPropertyType_t as libraryPropertyType;
 pub type __uint64_t = ::std::os::raw::c_ulong;
 pub type __off_t = ::std::os::raw::c_long;
 pub type __off64_t = ::std::os::raw::c_long;
@@ -21300,14 +21270,6 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
 }
 unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}
 unsafe impl<Storage: Send + Sync> Sync for __BindgenBitfieldUnit<Storage> {}
-unsafe impl Send for float2 {}
-unsafe impl Sync for float2 {}
-unsafe impl Send for double2 {}
-unsafe impl Sync for double2 {}
-unsafe impl Send for CUstream_st {}
-unsafe impl Sync for CUstream_st {}
-unsafe impl Send for libraryPropertyType_t {}
-unsafe impl Sync for libraryPropertyType_t {}
 unsafe impl Send for _IO_marker {}
 unsafe impl Sync for _IO_marker {}
 unsafe impl Send for _IO_codecvt {}

@@ -78,6 +78,20 @@ pub enum cudaRoundMode {
     cudaRoundPosInf = 2,
     cudaRoundMinInf = 3,
 }
+#[repr(C)]
+#[repr(align(8))]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct float2 {
+    pub x: f32,
+    pub y: f32,
+}
+#[repr(C)]
+#[repr(align(16))]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct double2 {
+    pub x: f64,
+    pub y: f64,
+}
 #[doc = "*\n*\n*"]
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
@@ -4115,6 +4129,14 @@ pub enum cudaEmulationSpecialValuesSupport_t {
 }
 #[doc = "Enum to configure how special floating-point values will be handled by\nemulation algorithms"]
 pub use self::cudaEmulationSpecialValuesSupport_t as cudaEmulationSpecialValuesSupport;
+#[repr(u32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum libraryPropertyType_t {
+    MAJOR_VERSION = 0,
+    MINOR_VERSION = 1,
+    PATCH_LEVEL = 2,
+}
+pub use self::libraryPropertyType_t as libraryPropertyType;
 #[cfg(not(feature = "runtime-link"))]
 unsafe extern "C" {
     #[doc = "Destroy all allocations and reset all state on the current device\nin the current process.\nExplicitly destroys and cleans up all resources associated with the current\ndevice in the current process. It is the caller's responsibility to ensure\nthat the resources are not accessed or passed in subsequent API calls and\ndoing so will result in undefined behavior. These resources include CUDA types\n::cudaStream_t, ::cudaEvent_t, ::cudaArray_t, ::cudaMipmappedArray_t, ::cudaPitchedPtr,\n::cudaTextureObject_t, ::cudaSurfaceObject_t, ::textureReference, ::surfaceReference,\n::cudaExternalMemory_t, ::cudaExternalSemaphore_t and ::cudaGraphicsResource_t.\nThese resources also include memory allocations by ::cudaMalloc, ::cudaMallocHost,\n::cudaMallocManaged and ::cudaMallocPitch.\nAny subsequent API call to this device will reinitialize the device.\nNote that this function will reset the device immediately.  It is the caller's\nresponsibility to ensure that the device is not being accessed by any\nother host threads from the process when this function is called.\n> **Note** ::cudaDeviceReset() will not destroy memory allocations by ::cudaMallocAsync() and\n::cudaMallocFromPoolAsync(). These memory allocations need to be destroyed explicitly.\n> **Note** If a non-primary ::CUcontext is current to the thread, ::cudaDeviceReset()\nwill destroy only the internal CUDA RT state for that ::CUcontext.\n\n# Returns\n\n::cudaSuccess\n\\notefnerr \\note_init_rt \\note_callback # See also\n\n> [`::cudaDeviceSynchronize`]"]
@@ -5781,6 +5803,9 @@ unsafe extern "C" {
     #[doc = "Get pointer to device kernel that matches entry function `entryFuncAddr`\nReturns in `kernelPtr` the device kernel corresponding to the entry function `entryFuncAddr.`\nNote that it is possible that there are multiple symbols belonging to different\ntranslation units with the same `entryFuncAddr` registered with this CUDA Runtime\nand so the order which the translation units are loaded and registered with the\nCUDA Runtime can lead to differing return pointers in `kernelPtr` .\nSuggested methods of ensuring uniqueness are to limit visibility of __global__\ndevice functions by using static or hidden visibility attribute in the\nrespective translation units.\n\n# Arguments\n\n* `kernelPtr` -          - Returns the device kernel\n* `entryFuncAddr` -      - Address of device entry function to search kernel for\n\n# Returns\n\n::cudaSuccess\n\n# See also\n\n> [`\\ref`] ::cudaGetKernel(cudaKernel_t *kernelPtr, const T *entryFuncAddr) \"cudaGetKernel (C++ API)\""]
     pub fn cudaGetKernel(kernelPtr: *mut cudaKernel_t, entryFuncAddr: *const ::std::os::raw::c_void) -> cudaError_t;
 }
+pub type cuFloatComplex = float2;
+pub type cuDoubleComplex = double2;
+pub type cuComplex = cuFloatComplex;
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
     pub cudaDeviceReset: Option<unsafe extern "C" fn() -> cudaError_t>,
@@ -10640,6 +10665,10 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
 }
 unsafe impl Send for cudaRoundMode {}
 unsafe impl Sync for cudaRoundMode {}
+unsafe impl Send for float2 {}
+unsafe impl Sync for float2 {}
+unsafe impl Send for double2 {}
+unsafe impl Sync for double2 {}
 unsafe impl Send for dim3 {}
 unsafe impl Sync for dim3 {}
 unsafe impl Send for cudaError {}
@@ -11026,6 +11055,8 @@ unsafe impl Send for cudaEmulationMantissaControl_t {}
 unsafe impl Sync for cudaEmulationMantissaControl_t {}
 unsafe impl Send for cudaEmulationSpecialValuesSupport_t {}
 unsafe impl Sync for cudaEmulationSpecialValuesSupport_t {}
+unsafe impl Send for libraryPropertyType_t {}
+unsafe impl Sync for libraryPropertyType_t {}
 impl std::fmt::Display for cudaError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self)

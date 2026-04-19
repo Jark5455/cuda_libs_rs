@@ -131,19 +131,6 @@ pub const CUBLASLT_NUMERICAL_IMPL_FLAGS_GAUSSIAN: u64 = 4294967296;
 pub type __uint64_t = ::std::os::raw::c_ulong;
 pub type __off_t = ::std::os::raw::c_long;
 pub type __off64_t = ::std::os::raw::c_long;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct CUstream_st {
-    _unused: [u8; 0],
-}
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum libraryPropertyType_t {
-    MAJOR_VERSION = 0,
-    MINOR_VERSION = 1,
-    PATCH_LEVEL = 2,
-}
-pub use self::libraryPropertyType_t as libraryPropertyType;
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cublasStatus_t {
@@ -2833,10 +2820,6 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
 }
 unsafe impl<Storage: Send + Sync> Send for __BindgenBitfieldUnit<Storage> {}
 unsafe impl<Storage: Send + Sync> Sync for __BindgenBitfieldUnit<Storage> {}
-unsafe impl Send for CUstream_st {}
-unsafe impl Sync for CUstream_st {}
-unsafe impl Send for libraryPropertyType_t {}
-unsafe impl Sync for libraryPropertyType_t {}
 unsafe impl Send for cublasStatus_t {}
 unsafe impl Sync for cublasStatus_t {}
 unsafe impl Send for cublasComputeType_t {}

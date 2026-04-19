@@ -4,19 +4,6 @@ pub const CURAND_VER_MINOR: u32 = 4;
 pub const CURAND_VER_PATCH: u32 = 2;
 pub const CURAND_VER_BUILD: u32 = 55;
 pub const CURAND_VERSION: u32 = 10402;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct CUstream_st {
-    _unused: [u8; 0],
-}
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum libraryPropertyType_t {
-    MAJOR_VERSION = 0,
-    MINOR_VERSION = 1,
-    PATCH_LEVEL = 2,
-}
-pub use self::libraryPropertyType_t as libraryPropertyType;
 #[repr(u32)]
 #[doc = "CURAND function call status types"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
@@ -760,10 +747,6 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
-unsafe impl Send for CUstream_st {}
-unsafe impl Sync for CUstream_st {}
-unsafe impl Send for libraryPropertyType_t {}
-unsafe impl Sync for libraryPropertyType_t {}
 unsafe impl Send for curandStatus {}
 unsafe impl Sync for curandStatus {}
 unsafe impl Send for curandRngType {}

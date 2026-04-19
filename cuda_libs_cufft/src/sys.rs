@@ -7,36 +7,6 @@ pub const CUFFT_VERSION: u32 = 12200;
 pub const CUFFT_FORWARD: i32 = -1;
 pub const CUFFT_INVERSE: u32 = 1;
 pub const CUFFT_PLAN_NULL: i32 = -1;
-#[repr(C)]
-#[repr(align(8))]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct float2 {
-    pub x: f32,
-    pub y: f32,
-}
-#[repr(C)]
-#[repr(align(16))]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct double2 {
-    pub x: f64,
-    pub y: f64,
-}
-pub type cuFloatComplex = float2;
-pub type cuDoubleComplex = double2;
-pub type cuComplex = cuFloatComplex;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct CUstream_st {
-    _unused: [u8; 0],
-}
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum libraryPropertyType_t {
-    MAJOR_VERSION = 0,
-    MINOR_VERSION = 1,
-    PATCH_LEVEL = 2,
-}
-pub use self::libraryPropertyType_t as libraryPropertyType;
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub enum cufftResult_t {
@@ -947,14 +917,6 @@ pub unsafe fn load_dynamic_bindings(lib: *mut std::ffi::c_void, get_proc_addr: u
     };
     DYNAMIC_BINDINGS.set(bindings).ok();
 }
-unsafe impl Send for float2 {}
-unsafe impl Sync for float2 {}
-unsafe impl Send for double2 {}
-unsafe impl Sync for double2 {}
-unsafe impl Send for CUstream_st {}
-unsafe impl Sync for CUstream_st {}
-unsafe impl Send for libraryPropertyType_t {}
-unsafe impl Sync for libraryPropertyType_t {}
 unsafe impl Send for cufftResult_t {}
 unsafe impl Sync for cufftResult_t {}
 unsafe impl Send for cufftType_t {}

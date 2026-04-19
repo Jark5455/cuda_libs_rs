@@ -1,12 +1,6 @@
-use cuda_libs::cublas::sys::cublasOperation_t;
-use cuda_libs::cudart::sys::cudaMemcpyKind::{cudaMemcpyDeviceToHost, cudaMemcpyHostToDevice};
-use cuda_libs::cudart::sys::cudaStreamNonBlocking;
-use cuda_libs::cufft::sys::cufftType::CUFFT_C2C;
-use cuda_libs::cufft::sys::{CUFFT_FORWARD, CUFFT_INVERSE};
 use cuda_libs::prelude::*;
-use cuda_libs::types::CudaAsPtr;
 
-#[cuda_libs::cuda_load]
+#[cuda_load]
 fn main() {
     let device_count = unsafe { cudaGetDeviceCount().expect("Failed to get device count") };
     println!("Cuda device count: {}", device_count);
@@ -61,12 +55,12 @@ fn cublas_dgemm_example() {
         let mut d_b = cudaMalloc::<f64>(size_of::<f64>() * b.len()).unwrap();
         let mut d_c = cudaMalloc::<f64>(size_of::<f64>() * c.len()).unwrap();
 
-        cudaMemcpyAsync(&mut d_a, a.as_ptr(), size_of::<f64>() * a.len(), cudaMemcpyHostToDevice, stream).unwrap();
-        cudaMemcpyAsync(&mut d_b, b.as_ptr(), size_of::<f64>() * b.len(), cudaMemcpyHostToDevice, stream).unwrap();
+        cudaMemcpyAsync(&mut d_a, a.as_ptr(), size_of::<f64>() * a.len(), cudaMemcpyKind::cudaMemcpyHostToDevice, stream).unwrap();
+        cudaMemcpyAsync(&mut d_b, b.as_ptr(), size_of::<f64>() * b.len(), cudaMemcpyKind::cudaMemcpyHostToDevice, stream).unwrap();
 
         cublasDgemm_v2(cublas_h, transa, transb, M, N, K, &ALPHA as *const f64, &d_a, LDA, &d_b, LDB, &BETA as *const f64, &mut d_c, LDC).unwrap();
 
-        cudaMemcpyAsync(c.as_mut_ptr(), &d_c, size_of::<f64>() * c.len(), cudaMemcpyDeviceToHost, stream).unwrap();
+        cudaMemcpyAsync(c.as_mut_ptr(), &d_c, size_of::<f64>() * c.len(), cudaMemcpyKind::cudaMemcpyDeviceToHost, stream).unwrap();
 
         cudaStreamSynchronize(stream).unwrap();
 
@@ -104,12 +98,12 @@ fn cufft_1dc2c_example() {
         }
         print!("=====\n");
 
-        let plan = cufftPlan1d(fft_size, CUFFT_C2C, batch_size).unwrap();
+        let plan = cufftPlan1d(fft_size, cufftType_t::CUFFT_C2C, batch_size).unwrap();
         let stream = cudaStreamCreateWithFlags(cudaStreamNonBlocking).unwrap();
         cufftSetStream(plan, stream).unwrap();
 
         let mut d_data = cudaMalloc::<Complex32>(size_of::<Complex32>() * data.len()).unwrap();
-        cudaMemcpyAsync(&mut d_data, data.as_ptr(), size_of::<Complex32>() * data.len(), cudaMemcpyHostToDevice, stream).unwrap();
+        cudaMemcpyAsync(&mut d_data, data.as_ptr(), size_of::<Complex32>() * data.len(), cudaMemcpyKind::cudaMemcpyHostToDevice, stream).unwrap();
 
         // Use raw pointers for in-place FFT to satisfy borrowing rules for device memory
         cufftExecC2C(plan, d_data.0, d_data.0, CUFFT_FORWARD).unwrap();
@@ -124,7 +118,7 @@ fn cufft_1dc2c_example() {
 
         cufftExecC2C(plan, d_data.0, d_data.0, CUFFT_INVERSE as i32).unwrap();
 
-        cudaMemcpyAsync(data.as_mut_ptr(), &d_data, size_of::<Complex32>() * data.len(), cudaMemcpyDeviceToHost, stream).unwrap();
+        cudaMemcpyAsync(data.as_mut_ptr(), &d_data, size_of::<Complex32>() * data.len(), cudaMemcpyKind::cudaMemcpyDeviceToHost, stream).unwrap();
         cudaStreamSynchronize(stream).unwrap();
 
         print!("Output array after Forward FFT, Normalization, and Inverse FFT :\n");
@@ -142,7 +136,7 @@ fn cuda_reduce_add_example() {
     // Reduction #6 from "Optimizing Parallel Reduction in CUDA" by Mark Harris.
 
     #[rustfmt::skip]
-    #[cuda_libs::global]
+    #[global]
     pub unsafe fn reduce_add(input: &[f32], output: &mut [f32]) {
         use core::arch::nvptx::*;
 
@@ -192,7 +186,7 @@ fn cuda_reduce_add_example() {
         let mut d_in = d_in_alloc.as_cuda_slice(n);
         let d_tmp = d_tmp_alloc.as_cuda_slice(n);
 
-        cudaMemcpy(d_in.as_mut_ptr(), input.as_ptr(), size_of::<f32>() * n, cudaMemcpyHostToDevice).unwrap();
+        cudaMemcpy(d_in.as_mut_ptr(), input.as_ptr(), size_of::<f32>() * n, cudaMemcpyKind::cudaMemcpyHostToDevice).unwrap();
 
         let mut cur_in = d_in;
         let mut cur_out = d_tmp;
@@ -217,7 +211,7 @@ fn cuda_reduce_add_example() {
         }
 
         let mut final_partials = vec![0.0f32; cur_n];
-        cudaMemcpy(final_partials.as_mut_ptr(), cur_in, size_of::<f32>() * cur_n, cudaMemcpyDeviceToHost).unwrap();
+        cudaMemcpy(final_partials.as_mut_ptr(), cur_in, size_of::<f32>() * cur_n, cudaMemcpyKind::cudaMemcpyDeviceToHost).unwrap();
 
         let result: f32 = final_partials.iter().sum();
         println!("Reduce-add result: {} (expected {})", result, n as f32);
@@ -229,7 +223,7 @@ fn cuda_reduce_add_example() {
 
 fn cuda_matrix_transpose_2d_example() {
     #[rustfmt::skip]
-    #[cuda_libs::global]
+    #[global]
     pub unsafe fn transpose_2d(input: &[f32], output: &mut [f32], rows: u32, cols: u32) {
         use core::arch::nvptx::*;
     

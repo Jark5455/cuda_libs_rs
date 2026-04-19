@@ -3,15 +3,15 @@ pub use crate::sys::cudaError as CudaTargetStatus;
 use crate::sys::*;
 pub use crate::sys::{
     CUDA_IPC_HANDLE_SIZE, CUDART_VERSION, CUDAlogLevel_enum, CUdevResourceDesc_st, CUevent_st, CUexternalMemory_st, CUexternalSemaphore_st, CUfunc_st, CUgraph_st, CUgraphDeviceUpdatableNode_st, CUgraphExec_st, CUgraphNode_st, CUkern_st, CUlib_st, CUlogsCallbackEntry_st, CUmemPoolHandle_st,
-    CUstream_st, CUuserObject_st, CUuuid_st, cudaAccessPolicyWindow, cudaAccessProperty, cudaArray, cudaArray_const_t, cudaArray_t, cudaArrayColorAttachment, cudaArrayCubemap, cudaArrayDefault, cudaArrayDeferredMapping, cudaArrayLayered, cudaArrayMemoryRequirements, cudaArraySparse,
-    cudaArraySparseProperties, cudaArraySparseProperties__bindgen_ty_1, cudaArraySparsePropertiesSingleMipTail, cudaArraySurfaceLoadStore, cudaArrayTextureGather, cudaAsyncCallback, cudaAsyncCallbackEntry, cudaAsyncCallbackHandle_t, cudaAsyncNotificationInfo,
-    cudaAsyncNotificationInfo__bindgen_ty_1__bindgen_ty_1, cudaAsyncNotificationInfo_t, cudaAsyncNotificationType_enum, cudaAtomicOperation, cudaAtomicOperationCapability, cudaCGScope, cudaChannelFormatDesc, cudaChannelFormatKind, cudaChildGraphNodeParams, cudaClusterSchedulingPolicy,
-    cudaComputeMode, cudaConditionalNodeParams, cudaDataType_t, cudaDevResource, cudaDevResource_st, cudaDevResourceDesc_t, cudaDevResourceType, cudaDevSmResource, cudaDevSmResourceGroup_flags, cudaDevSmResourceGroupParams, cudaDevSmResourceGroupParams_st, cudaDevSmResourceSplitByCount_flags,
-    cudaDevWorkqueueConfigResource, cudaDevWorkqueueConfigScope, cudaDevWorkqueueResource, cudaDeviceAttr, cudaDeviceBlockingSync, cudaDeviceLmemResizeToMax, cudaDeviceMapHost, cudaDeviceMask, cudaDeviceNumaConfig, cudaDeviceP2PAttr, cudaDeviceProp, cudaDeviceScheduleAuto,
-    cudaDeviceScheduleBlockingSync, cudaDeviceScheduleMask, cudaDeviceScheduleSpin, cudaDeviceScheduleYield, cudaDeviceSyncMemops, cudaDriverEntryPointQueryResult, cudaEmulationMantissaControl_t, cudaEmulationSpecialValuesSupport_t, cudaEmulationStrategy_t, cudaError, cudaEvent_t,
-    cudaEventBlockingSync, cudaEventDefault, cudaEventDisableTiming, cudaEventInterprocess, cudaEventRecordDefault, cudaEventRecordExternal, cudaEventRecordNodeParams, cudaEventWaitDefault, cudaEventWaitExternal, cudaEventWaitNodeParams, cudaExecutionContext_st, cudaExecutionContext_t, cudaExtent,
-    cudaExternalMemory_t, cudaExternalMemoryBufferDesc, cudaExternalMemoryDedicated, cudaExternalMemoryHandleDesc, cudaExternalMemoryHandleDesc__bindgen_ty_1__bindgen_ty_1, cudaExternalMemoryHandleType, cudaExternalMemoryMipmappedArrayDesc, cudaExternalSemaphore_t, cudaExternalSemaphoreHandleDesc,
-    cudaExternalSemaphoreHandleDesc__bindgen_ty_1__bindgen_ty_1, cudaExternalSemaphoreHandleType, cudaExternalSemaphoreSignalNodeParams, cudaExternalSemaphoreSignalNodeParamsV2, cudaExternalSemaphoreSignalParams, cudaExternalSemaphoreSignalParams__bindgen_ty_1,
+    CUstream_st, CUuserObject_st, CUuuid_st, cuComplex, cuDoubleComplex, cuFloatComplex, cudaAccessPolicyWindow, cudaAccessProperty, cudaArray, cudaArray_const_t, cudaArray_t, cudaArrayColorAttachment, cudaArrayCubemap, cudaArrayDefault, cudaArrayDeferredMapping, cudaArrayLayered,
+    cudaArrayMemoryRequirements, cudaArraySparse, cudaArraySparseProperties, cudaArraySparseProperties__bindgen_ty_1, cudaArraySparsePropertiesSingleMipTail, cudaArraySurfaceLoadStore, cudaArrayTextureGather, cudaAsyncCallback, cudaAsyncCallbackEntry, cudaAsyncCallbackHandle_t,
+    cudaAsyncNotificationInfo, cudaAsyncNotificationInfo__bindgen_ty_1__bindgen_ty_1, cudaAsyncNotificationInfo_t, cudaAsyncNotificationType_enum, cudaAtomicOperation, cudaAtomicOperationCapability, cudaCGScope, cudaChannelFormatDesc, cudaChannelFormatKind, cudaChildGraphNodeParams,
+    cudaClusterSchedulingPolicy, cudaComputeMode, cudaConditionalNodeParams, cudaDataType_t, cudaDevResource, cudaDevResource_st, cudaDevResourceDesc_t, cudaDevResourceType, cudaDevSmResource, cudaDevSmResourceGroup_flags, cudaDevSmResourceGroupParams, cudaDevSmResourceGroupParams_st,
+    cudaDevSmResourceSplitByCount_flags, cudaDevWorkqueueConfigResource, cudaDevWorkqueueConfigScope, cudaDevWorkqueueResource, cudaDeviceAttr, cudaDeviceBlockingSync, cudaDeviceLmemResizeToMax, cudaDeviceMapHost, cudaDeviceMask, cudaDeviceNumaConfig, cudaDeviceP2PAttr, cudaDeviceProp,
+    cudaDeviceScheduleAuto, cudaDeviceScheduleBlockingSync, cudaDeviceScheduleMask, cudaDeviceScheduleSpin, cudaDeviceScheduleYield, cudaDeviceSyncMemops, cudaDriverEntryPointQueryResult, cudaEmulationMantissaControl_t, cudaEmulationSpecialValuesSupport_t, cudaEmulationStrategy_t, cudaError,
+    cudaEvent_t, cudaEventBlockingSync, cudaEventDefault, cudaEventDisableTiming, cudaEventInterprocess, cudaEventRecordDefault, cudaEventRecordExternal, cudaEventRecordNodeParams, cudaEventWaitDefault, cudaEventWaitExternal, cudaEventWaitNodeParams, cudaExecutionContext_st, cudaExecutionContext_t,
+    cudaExtent, cudaExternalMemory_t, cudaExternalMemoryBufferDesc, cudaExternalMemoryDedicated, cudaExternalMemoryHandleDesc, cudaExternalMemoryHandleDesc__bindgen_ty_1__bindgen_ty_1, cudaExternalMemoryHandleType, cudaExternalMemoryMipmappedArrayDesc, cudaExternalSemaphore_t,
+    cudaExternalSemaphoreHandleDesc, cudaExternalSemaphoreHandleDesc__bindgen_ty_1__bindgen_ty_1, cudaExternalSemaphoreHandleType, cudaExternalSemaphoreSignalNodeParams, cudaExternalSemaphoreSignalNodeParamsV2, cudaExternalSemaphoreSignalParams, cudaExternalSemaphoreSignalParams__bindgen_ty_1,
     cudaExternalSemaphoreSignalParams__bindgen_ty_1__bindgen_ty_1, cudaExternalSemaphoreSignalParams__bindgen_ty_1__bindgen_ty_3, cudaExternalSemaphoreSignalSkipNvSciBufMemSync, cudaExternalSemaphoreWaitNodeParams, cudaExternalSemaphoreWaitNodeParamsV2, cudaExternalSemaphoreWaitParams,
     cudaExternalSemaphoreWaitParams__bindgen_ty_1, cudaExternalSemaphoreWaitParams__bindgen_ty_1__bindgen_ty_1, cudaExternalSemaphoreWaitParams__bindgen_ty_1__bindgen_ty_3, cudaExternalSemaphoreWaitSkipNvSciBufMemSync, cudaFlushGPUDirectRDMAWritesOptions, cudaFlushGPUDirectRDMAWritesScope,
     cudaFlushGPUDirectRDMAWritesTarget, cudaFuncAttribute, cudaFuncAttributes, cudaFuncCache, cudaFunction_t, cudaGPUDirectRDMAWritesOrdering, cudaGetDriverEntryPointFlags, cudaGraph_t, cudaGraphChildGraphNodeOwnership, cudaGraphConditionalHandle, cudaGraphConditionalHandleFlags,
@@ -30,10 +30,32 @@ pub use crate::sys::{
     cudaSharedMemConfig, cudaSharedMemoryMode, cudaStream_t, cudaStreamCallback_t, cudaStreamCaptureMode, cudaStreamCaptureStatus, cudaStreamDefault, cudaStreamNonBlocking, cudaStreamUpdateCaptureDependenciesFlags, cudaSurfaceBoundaryMode, cudaSurfaceFormatMode, cudaSurfaceObject_t,
     cudaSurfaceType1D, cudaSurfaceType1DLayered, cudaSurfaceType2D, cudaSurfaceType2DLayered, cudaSurfaceType3D, cudaSurfaceTypeCubemap, cudaSurfaceTypeCubemapLayered, cudaSynchronizationPolicy, cudaTextureAddressMode, cudaTextureDesc, cudaTextureFilterMode, cudaTextureObject_t,
     cudaTextureReadMode, cudaTextureType1D, cudaTextureType1DLayered, cudaTextureType2D, cudaTextureType2DLayered, cudaTextureType3D, cudaTextureTypeCubemap, cudaTextureTypeCubemapLayered, cudaUUID_t, cudaUserObject_t, cudaUserObjectFlags, cudaUserObjectRetainFlags,
-    cudalibraryHostUniversalFunctionAndDataTable, dim3,
+    cudalibraryHostUniversalFunctionAndDataTable, dim3, double2, float2, libraryPropertyType_t,
 };
 #[allow(unused_imports)]
 use crate::types;
+#[cfg(feature = "runtime-link")]
+impl crate::sys::float2 {
+    pub fn x(mut self, val: f32) -> Self {
+        self.x = val;
+        self
+    }
+    pub fn y(mut self, val: f32) -> Self {
+        self.y = val;
+        self
+    }
+}
+#[cfg(feature = "runtime-link")]
+impl crate::sys::double2 {
+    pub fn x(mut self, val: f64) -> Self {
+        self.x = val;
+        self
+    }
+    pub fn y(mut self, val: f64) -> Self {
+        self.y = val;
+        self
+    }
+}
 #[cfg(feature = "runtime-link")]
 impl crate::sys::dim3 {
     pub fn x(mut self, val: u32) -> Self {
