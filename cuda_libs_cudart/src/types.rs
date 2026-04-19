@@ -46,9 +46,7 @@ impl<T> CudaAsPtr for &cuDeviceAllocation<T> {
     fn as_const_ptr(&self) -> *const std::ffi::c_void {
         self.0 as *const _
     }
-    fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void {
-        panic!("Cannot mutate via shared ref to dev alloc.")
-    }
+    fn as_mut_ptr(&mut self) -> *mut std::ffi::c_void { self.0 as *mut _ }
 }
 
 #[repr(transparent)]
