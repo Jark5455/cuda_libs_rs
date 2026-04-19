@@ -108,6 +108,32 @@ impl VisitMut for SharedStaticExtractor {
     }
 }
 
+fn detect_cuda_arch() -> String {
+    if let Ok(arch) = env::var("CUDA_ARCH") {
+        return arch;
+    }
+
+    // Try nvidia-smi
+    let output = Command::new("nvidia-smi")
+        .args(&["--query-gpu=compute_cap", "--format=csv,noheader,nounits"])
+        .output();
+
+    if let Ok(output) = output {
+        if output.status.success() {
+            let stdout = String::from_utf8_lossy(&output.stdout);
+            if let Some(cap) = stdout.lines().next() {
+                let cap = cap.trim();
+                if !cap.is_empty() {
+                    return format!("sm_{}", cap.replace(".", ""));
+                }
+            }
+        }
+    }
+
+    // Fallback to sm_80
+    "sm_80".to_string()
+}
+
 #[proc_macro_attribute]
 pub fn cuda_load(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let input_fn = parse_macro_input!(item as ItemFn);
@@ -210,6 +236,8 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
         fs::write(&rs_file_path, compile_source).expect("Failed to write kernel source");
     }
 
+    let cuda_arch = detect_cuda_arch();
+
     let output = Command::new("cargo")
         .current_dir(&cache_dir)
         .arg("+nightly")
@@ -219,7 +247,7 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
         .arg("-Z")
         .arg("build-std=core")
         .arg("--release")
-        .env("RUSTFLAGS", "-C target-cpu=sm_80")
+        .env("RUSTFLAGS", format!("-C target-cpu={}", cuda_arch))
         .output()
         .expect("Failed to execute cargo sub-process.");
 

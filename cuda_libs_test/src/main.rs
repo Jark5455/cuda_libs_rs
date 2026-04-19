@@ -5,6 +5,10 @@ fn main() {
     let device_count = unsafe { cudaGetDeviceCount().expect("Failed to get device count") };
     println!("Cuda device count: {}", device_count);
 
+    print!("=====\n");
+    cuda_print_example();
+    print!("=====\n");
+    /*
     cublas_dgemm_example();
     print!("=====\n");
     cufft_1dc2c_example();
@@ -12,6 +16,38 @@ fn main() {
     cuda_reduce_add_example();
     print!("=====\n");
     cuda_matrix_transpose_2d_example();
+     */
+}
+
+pub fn cuda_print_example() {
+
+    #[global]
+    fn print_arr(arr: &[f32]) {
+        unsafe {
+            extern "C" {
+                fn vprintf(format: *const core::ffi::c_char, valist: *const core::ffi::c_void) -> i32;
+            }
+
+            for val in arr {
+                let v = *val as f64;
+                vprintf("%f \0".as_ptr() as *const core::ffi::c_char, &v as *const f64 as *const core::ffi::c_void);
+            }
+
+            vprintf("\n\0".as_ptr() as *const core::ffi::c_char, core::ptr::null() as *const core::ffi::c_void);
+        }
+    }
+
+    let data = vec![1.0f32, 2.0f32, 3.0f32, 4.0f32];
+    unsafe {
+        let mut d_data = cudaMalloc::<f32>(size_of::<f32>() * data.len()).unwrap();
+        cudaMemcpy(&mut d_data, data.as_ptr(), size_of::<f32>() * data.len(), cudaMemcpyKind::cudaMemcpyHostToDevice).unwrap();
+
+        let d_data_slice = d_data.as_cuda_slice(data.len());
+        print_arr! { <<<1, 1>>>(d_data_slice) }
+        cudaDeviceSynchronize().unwrap();
+
+        cudaFree(d_data).unwrap();
+    }
 }
 
 fn cublas_dgemm_example() {
