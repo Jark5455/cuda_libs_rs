@@ -48,8 +48,8 @@ pub use crate::sys::{
     CUstreamBatchMemOpParams_union_CUstreamMemOpFlushRemoteWritesParams_st, CUstreamBatchMemOpParams_union_CUstreamMemOpMemoryBarrierParams_st, CUstreamBatchMemOpParams_union_CUstreamMemOpWaitValueParams_st, CUstreamBatchMemOpParams_union_CUstreamMemOpWriteValueParams_st,
     CUstreamBatchMemOpParams_v1, CUstreamBatchMemOpType_enum, CUstreamCallback, CUstreamCaptureMode_enum, CUstreamCaptureStatus_enum, CUstreamCigCaptureParams, CUstreamCigCaptureParams_st, CUstreamCigDataType_enum, CUstreamCigParam, CUstreamCigParam_st, CUstreamMemoryBarrier_flags_enum,
     CUstreamUpdateCaptureDependencies_flags_enum, CUstreamWaitValue_flags_enum, CUstreamWriteValue_flags_enum, CUsurfObject, CUsurfObject_v1, CUsurfref, CUsurfref_st, CUsynchronizationPolicy_enum, CUtensorMap, CUtensorMap_st, CUtensorMapDataType_enum, CUtensorMapFloatOOBfill_enum,
-    CUtensorMapIm2ColWideMode_enum, CUtensorMapInterleave_enum, CUtensorMapL2promotion_enum, CUtensorMapSwizzle_enum, CUtexObject, CUtexObject_v1, CUtexref, CUtexref_st, CUuserObject, CUuserObject_flags_enum, CUuserObject_st, CUuserObjectRetain_flags_enum, CUuuid, CUuuid_st, DynamicBindings,
-    cudaError_enum, cuuint32_t, cuuint64_t,
+    CUtensorMapIm2ColWideMode_enum, CUtensorMapInterleave_enum, CUtensorMapL2promotion_enum, CUtensorMapSwizzle_enum, CUtexObject, CUtexObject_v1, CUtexref, CUtexref_st, CUuserObject, CUuserObject_flags_enum, CUuserObject_st, CUuserObjectRetain_flags_enum, CUuuid, CUuuid_st, cudaError_enum,
+    cuuint32_t, cuuint64_t,
 };
 #[cfg(feature = "runtime-link")]
 impl crate::sys::CUuuid_st {

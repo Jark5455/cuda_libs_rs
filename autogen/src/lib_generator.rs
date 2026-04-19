@@ -98,16 +98,24 @@ impl<'a> Generator<'a> {
                     if let Some(builder_impl) = self.generate_builder_impl(s) {
                         builder_impls.push(builder_impl);
                     }
-                    reexport_types.push(s.ident.clone());
+                    if !s.attrs.iter().any(|attr| attr.path().is_ident("cfg")) {
+                        reexport_types.push(s.ident.clone());
+                    }
                 }
                 Item::Enum(e) => {
-                    reexport_types.push(e.ident.clone());
+                    if !e.attrs.iter().any(|attr| attr.path().is_ident("cfg")) {
+                        reexport_types.push(e.ident.clone());
+                    }
                 }
                 Item::Type(t) => {
-                    reexport_types.push(t.ident.clone());
+                    if !t.attrs.iter().any(|attr| attr.path().is_ident("cfg")) {
+                        reexport_types.push(t.ident.clone());
+                    }
                 }
                 Item::Const(c) => {
-                    reexport_types.push(c.ident.clone());
+                    if !c.attrs.iter().any(|attr| attr.path().is_ident("cfg")) {
+                        reexport_types.push(c.ident.clone());
+                    }
                 }
                 _ => {}
             }

@@ -2,9 +2,9 @@ pub use crate::sys::curandStatus_t as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
 pub use crate::sys::{
-    CURAND_VER_BUILD, CURAND_VER_MAJOR, CURAND_VER_MINOR, CURAND_VER_PATCH, CURAND_VERSION, CUstream_st, DynamicBindings, curandDirectionVectorSet, curandDirectionVectors32_t, curandDirectionVectors64_t, curandDiscreteDistribution_st, curandDiscreteDistribution_t, curandDistribution_st,
-    curandDistribution_t, curandDistributionM2Shift_st, curandDistributionM2Shift_t, curandDistributionShift_st, curandDistributionShift_t, curandGenerator_st, curandGenerator_t, curandHistogramM2_st, curandHistogramM2_t, curandHistogramM2K_st, curandHistogramM2K_t, curandHistogramM2V_st,
-    curandHistogramM2V_t, curandMethod, curandOrdering, curandRngType, curandStatus, libraryPropertyType_t,
+    CURAND_VER_BUILD, CURAND_VER_MAJOR, CURAND_VER_MINOR, CURAND_VER_PATCH, CURAND_VERSION, CUstream_st, curandDirectionVectorSet, curandDirectionVectors32_t, curandDirectionVectors64_t, curandDiscreteDistribution_st, curandDiscreteDistribution_t, curandDistribution_st, curandDistribution_t,
+    curandDistributionM2Shift_st, curandDistributionM2Shift_t, curandDistributionShift_st, curandDistributionShift_t, curandGenerator_st, curandGenerator_t, curandHistogramM2_st, curandHistogramM2_t, curandHistogramM2K_st, curandHistogramM2K_t, curandHistogramM2V_st, curandHistogramM2V_t,
+    curandMethod, curandOrdering, curandRngType, curandStatus, libraryPropertyType_t,
 };
 use cuda_libs_cudart;
 #[allow(unused_imports)]
