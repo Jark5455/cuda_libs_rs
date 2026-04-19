@@ -1,6 +1,10 @@
 pub use crate::sys::cufftResult as CudaTargetStatus;
 #[allow(unused_imports)]
 use crate::sys::*;
+pub use crate::sys::{
+    CUFFT_FORWARD, CUFFT_INVERSE, CUFFT_PLAN_NULL, CUFFT_VER_BUILD, CUFFT_VER_MAJOR, CUFFT_VER_MINOR, CUFFT_VER_PATCH, CUFFT_VERSION, CUstream_st, DynamicBindings, cuComplex, cuDoubleComplex, cuFloatComplex, cufftCompatibility_t, cufftComplex, cufftDoubleComplex, cufftDoubleReal, cufftHandle,
+    cufftProperty_t, cufftReal, cufftResult_t, cufftType_t, double2, float2, libraryPropertyType_t,
+};
 use cuda_libs_cudart;
 #[allow(unused_imports)]
 use cuda_libs_cudart::sys::*;

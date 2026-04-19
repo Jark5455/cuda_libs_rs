@@ -71,6 +71,7 @@ impl<'a> Generator<'a> {
             handle_methods.insert(h.wrapper_name.to_string(), Vec::new());
         }
         let mut builder_impls = Vec::new();
+        let mut reexport_types = Vec::new();
 
         for item in &ast.items {
             match item {
@@ -97,12 +98,22 @@ impl<'a> Generator<'a> {
                     if let Some(builder_impl) = self.generate_builder_impl(s) {
                         builder_impls.push(builder_impl);
                     }
+                    reexport_types.push(s.ident.clone());
+                }
+                Item::Enum(e) => {
+                    reexport_types.push(e.ident.clone());
+                }
+                Item::Type(t) => {
+                    reexport_types.push(t.ident.clone());
+                }
+                Item::Const(c) => {
+                    reexport_types.push(c.ident.clone());
                 }
                 _ => {}
             }
         }
 
-        self.write_safe_rs(&out_dir, standalone_funcs, builder_impls);
+        self.write_safe_rs(&out_dir, standalone_funcs, builder_impls, reexport_types);
     }
 
     fn generate_sys_bindings(&self, out_dir: &std::path::Path) -> String {
@@ -812,7 +823,7 @@ impl<'a> Generator<'a> {
         None
     }
 
-    fn write_safe_rs(&self, out_dir: &std::path::Path, standalone_funcs: Vec<proc_macro2::TokenStream>, builder_impls: Vec<proc_macro2::TokenStream>) {
+    fn write_safe_rs(&self, out_dir: &std::path::Path, standalone_funcs: Vec<proc_macro2::TokenStream>, builder_impls: Vec<proc_macro2::TokenStream>, reexport_types: Vec<syn::Ident>) {
         let mut extra_safes = Vec::new();
         let depends_on_cudart = self.config.lib_name == "cuda_libs_cudart" || self.config.extra_imports.iter().any(|i| i.contains("cudart"));
         if self.config.lib_name == "cuda_libs_cudart" {
@@ -843,8 +854,11 @@ impl<'a> Generator<'a> {
             quote! {}
         };
 
+        let reexport_idents: Vec<syn::Ident> = reexport_types.into_iter().filter(|id| id != &status_type_ident).collect();
+
         let safe_module = quote! {
             pub use crate::sys::#status_type_ident as CudaTargetStatus;
+            pub use crate::sys::{#(#reexport_idents),*};
             #[allow(unused_imports)]
             use crate::sys::*;
             #(#extra_safes)*
