@@ -176,14 +176,37 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let hidden_name = format_ident!("__{}", original_name);
     host_fn.sig.ident = hidden_name.clone();
 
+    const MATH_INTRINSICS: &str = r#"
+        extern "C" {
+            // f32 SFU Approximations
+            #[link_name = "llvm.nvvm.sqrt.f"] pub fn sqrtf(x: f32) -> f32;
+            #[link_name = "llvm.nvvm.sin.approx.f"] pub fn sinf(x: f32) -> f32;
+            #[link_name = "llvm.nvvm.cos.approx.f"] pub fn cosf(x: f32) -> f32;
+            #[link_name = "llvm.nvvm.ex2.approx.f"] pub fn exp2f(x: f32) -> f32;
+            #[link_name = "llvm.nvvm.lg2.approx.f"] pub fn log2f(x: f32) -> f32;
+            #[link_name = "llvm.nvvm.rsqrt.approx.f"] pub fn rsqrtf(x: f32) -> f32;
+            #[link_name = "llvm.nvvm.rcp.approx.f"] pub fn rcpf(x: f32) -> f32;
+
+            // Fused Multiply-Add (High Performance)
+            #[link_name = "llvm.nvvm.fma.rn.f"] pub fn fmaf(a: f32, b: f32, c: f32) -> f32;
+            #[link_name = "llvm.nvvm.fma.rn.d"] pub fn fma(a: f64, b: f64, c: f64) -> f64;
+
+            // Common Manipulation
+            #[link_name = "llvm.nvvm.fabs.f"] pub fn fabsf(x: f32) -> f32;
+            #[link_name = "llvm.nvvm.fabs.d"] pub fn fabs(x: f64) -> f64;
+        }
+    "#;
+
     let compile_source = format!(
         "#![no_std]\n\
+         #![feature(link_llvm_intrinsics)]\n\
          #![feature(asm_experimental_arch)]\n\
          #![feature(abi_ptx, stdarch_nvptx)]\n\
          #![crate_type = \"cdylib\"]\n\n\
          #[panic_handler]\n\
          fn panic(_info: &core::panic::PanicInfo) -> ! {{ unsafe {{ ::core::hint::unreachable_unchecked() }} }}\n\n\
          ::core::arch::global_asm!(\".extern .shared .align 16 .b8 __dynamic_smem[];\");\n\n\
+         {}\n\n\
          {}\n\n\
          macro_rules! shared {{\n\
              ($t:ty) => {{\n\
@@ -201,6 +224,7 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
              }};\n\
          }}\n\n\
          {}",
+        MATH_INTRINSICS,
         gasm_decls.iter().map(|d| format!("::core::arch::global_asm!(\"{}\");", d)).collect::<Vec<_>>().join("\n"),
         fn_source
     );

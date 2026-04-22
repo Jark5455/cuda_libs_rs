@@ -8,7 +8,6 @@ fn main() {
     print!("=====\n");
     cuda_print_example();
     print!("=====\n");
-    /*
     cublas_dgemm_example();
     print!("=====\n");
     cufft_1dc2c_example();
@@ -16,7 +15,6 @@ fn main() {
     cuda_reduce_add_example();
     print!("=====\n");
     cuda_matrix_transpose_2d_example();
-     */
 }
 
 pub fn cuda_print_example() {
@@ -29,7 +27,7 @@ pub fn cuda_print_example() {
             }
 
             for val in arr {
-                let v = *val as f64;
+                let v = sqrtf(*val) as f64;
                 vprintf("%f \0".as_ptr() as *const core::ffi::c_char, &v as *const f64 as *const core::ffi::c_void);
             }
 
