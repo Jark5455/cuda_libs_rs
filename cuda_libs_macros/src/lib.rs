@@ -186,6 +186,8 @@ pub fn global(_attr: TokenStream, item: TokenStream) -> TokenStream {
             #[link_name = "llvm.nvvm.lg2.approx.f"] pub fn log2f(x: f32) -> f32;
             #[link_name = "llvm.nvvm.rsqrt.approx.f"] pub fn rsqrtf(x: f32) -> f32;
             #[link_name = "llvm.nvvm.rcp.approx.f"] pub fn rcpf(x: f32) -> f32;
+            #[link_name = "llvm.exp.f32"] pub fn expf(x: f32) -> f32;
+            #[link_name = "llvm.log.f32"] pub fn logf(x: f32) -> f32;
 
             // Fused Multiply-Add (High Performance)
             #[link_name = "llvm.nvvm.fma.rn.f"] pub fn fmaf(a: f32, b: f32, c: f32) -> f32;
