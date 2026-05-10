@@ -1,12 +1,15 @@
 pub mod lib_generator;
 
 use lib_generator::{HandleConfig, LibraryConfig, generate_library};
+use std::fmt::format;
 
 fn main() {
+    let cuda_home = env!("CUDA_HOME");
+
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_driver",
         out_dir: "./cuda_libs_driver/src",
-        headers: vec!["/opt/cuda/include/cuda.h"],
+        headers: vec![&format!("{}/include/cuda.h", cuda_home)],
         allowlist_functions: "cu.*|CU.*",
         // cudaError_enum is the underlying C enum that CUresult aliases; allow it explicitly
         allowlist_types: "cu.*|CU.*|cudaError_enum",
@@ -27,7 +30,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cudart",
         out_dir: "./cuda_libs_cudart/src",
-        headers: vec!["/opt/cuda/include/cuda_runtime.h", "/opt/cuda/include/cuComplex.h"],
+        headers: vec![&format!("{}/include/cuda_runtime.h", cuda_home)],
         allowlist_functions: "cuda.*",
         allowlist_types: "cuda.*|cu.*|libraryPropertyType.*|libraryPropertyType_t|float2|double2|__BindgenBitfieldUnit",
         allowlist_vars: "cuda.*|CUDA.*|cu.*|CU.*|LIBRARY_.*",
@@ -52,7 +55,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cublas_lt",
         out_dir: "./cuda_libs_cublas_lt/src",
-        headers: vec!["/opt/cuda/include/cublasLt.h"],
+        headers: vec![&format!("{}/include/cublasLt.h", cuda_home)],
         allowlist_functions: "cublasLt.*",
         allowlist_types: "cublasLt.*",
         allowlist_vars: "CUBLASLT.*",
@@ -74,7 +77,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cublas",
         out_dir: "./cuda_libs_cublas/src",
-        headers: vec!["/opt/cuda/include/cublas_api.h"],
+        headers: vec![&format!("{}/include/cublas_api.h", cuda_home)],
         allowlist_functions: "cublas.*",
         allowlist_types: "cublas.*",
         allowlist_vars: "CUBLAS.*",
@@ -96,7 +99,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cusolver",
         out_dir: "./cuda_libs_cusolver/src",
-        headers: vec!["/opt/cuda/include/cusolverDn.h", "/opt/cuda/include/cusolverSp.h"],
+        headers: vec![&format!("{}/include/cusolverDn.h", cuda_home), &format!("{}/include/cusolverSp.h", cuda_home)],
         allowlist_functions: "cusolver.*",
         allowlist_types: "cusolver.*",
         allowlist_vars: "CUSOLVER.*",
@@ -143,7 +146,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cufft",
         out_dir: "./cuda_libs_cufft/src",
-        headers: vec!["/opt/cuda/include/cufft.h"],
+        headers: vec![&format!("{}/include/cufft.h", cuda_home)],
         allowlist_functions: "cufft.*",
         allowlist_types: "cufft.*",
         allowlist_vars: "CUFFT.*",
@@ -165,7 +168,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_curand",
         out_dir: "./cuda_libs_curand/src",
-        headers: vec!["/opt/cuda/include/curand.h"],
+        headers: vec![&format!("{}/include/curand.h", cuda_home)],
         allowlist_functions: "curand.*",
         allowlist_types: "curand.*",
         allowlist_vars: "CURAND.*",
@@ -187,7 +190,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cusparse",
         out_dir: "./cuda_libs_cusparse/src",
-        headers: vec!["/opt/cuda/include/cusparse.h"],
+        headers: vec![&format!("{}/include/cusparse.h", cuda_home)],
         allowlist_functions: "cusparse.*",
         allowlist_types: "cusparse.*",
         allowlist_vars: "CUSPARSE.*",

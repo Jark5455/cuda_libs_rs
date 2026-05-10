@@ -5,27 +5,27 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use syn::{ForeignItem, Item, ReturnType, Type};
 
-pub struct HandleConfig {
-    pub wrapper_name: &'static str,
-    pub handle_type: &'static str,
+pub struct HandleConfig<'a> {
+    pub wrapper_name: &'a str,
+    pub handle_type: &'a str,
 }
 
-pub struct LibraryConfig {
-    pub lib_name: &'static str,
-    pub out_dir: &'static str,
-    pub headers: Vec<&'static str>,
-    pub allowlist_functions: &'static str,
-    pub allowlist_types: &'static str,
-    pub allowlist_vars: &'static str,
-    pub blocklist_types: Vec<&'static str>,
-    pub blocklist_functions: Vec<&'static str>,
-    pub status_type: &'static str,
-    pub success_variant: &'static str,
-    pub handles: Vec<HandleConfig>,
-    pub handle_types_regex: Vec<&'static str>,
-    pub extra_imports: Vec<&'static str>,
-    pub extra_safe_code: &'static str,
-    pub const_overrides: std::collections::HashMap<&'static str, Vec<usize>>,
+pub struct LibraryConfig<'a> {
+    pub lib_name: &'a str,
+    pub out_dir: &'a str,
+    pub headers: Vec<&'a str>,
+    pub allowlist_functions: &'a str,
+    pub allowlist_types: &'a str,
+    pub allowlist_vars: &'a str,
+    pub blocklist_types: Vec<&'a str>,
+    pub blocklist_functions: Vec<&'a str>,
+    pub status_type: &'a str,
+    pub success_variant: &'a str,
+    pub handles: Vec<HandleConfig<'a>>,
+    pub handle_types_regex: Vec<&'a str>,
+    pub extra_imports: Vec<&'a str>,
+    pub extra_safe_code: &'a str,
+    pub const_overrides: HashMap<&'a str, Vec<usize>>,
     pub use_cuda_as_ptr: bool,
 }
 
@@ -47,7 +47,7 @@ pub fn generate_library(config: &LibraryConfig) {
 }
 
 struct Generator<'a> {
-    config: &'a LibraryConfig,
+    config: &'a LibraryConfig<'a>,
     blocklist_funcs: Vec<Regex>,
 }
 
@@ -124,8 +124,10 @@ impl<'a> Generator<'a> {
     }
 
     fn generate_sys_bindings(&self, out_dir: &std::path::Path) -> String {
+        let cuda_home = env!("CUDA_HOME");
+
         let mut builder = bindgen::Builder::default()
-            .clang_arg("-I/opt/cuda/include")
+            .clang_arg(&format!("-I{}/include", cuda_home))
             .clang_arg("-I/usr/include")
             .default_enum_style(bindgen::EnumVariation::Rust { non_exhaustive: false })
             .layout_tests(false)

@@ -5802,9 +5802,6 @@ unsafe extern "C" {
     #[doc = "Get pointer to device kernel that matches entry function `entryFuncAddr`\nReturns in `kernelPtr` the device kernel corresponding to the entry function `entryFuncAddr.`\nNote that it is possible that there are multiple symbols belonging to different\ntranslation units with the same `entryFuncAddr` registered with this CUDA Runtime\nand so the order which the translation units are loaded and registered with the\nCUDA Runtime can lead to differing return pointers in `kernelPtr` .\nSuggested methods of ensuring uniqueness are to limit visibility of __global__\ndevice functions by using static or hidden visibility attribute in the\nrespective translation units.\n\n# Arguments\n\n* `kernelPtr` -          - Returns the device kernel\n* `entryFuncAddr` -      - Address of device entry function to search kernel for\n\n# Returns\n\n::cudaSuccess\n\n# See also\n\n> [`\\ref`] ::cudaGetKernel(cudaKernel_t *kernelPtr, const T *entryFuncAddr) \"cudaGetKernel (C++ API)\""]
     pub fn cudaGetKernel(kernelPtr: *mut cudaKernel_t, entryFuncAddr: *const ::core::ffi::c_void) -> cudaError_t;
 }
-pub type cuFloatComplex = float2;
-pub type cuDoubleComplex = double2;
-pub type cuComplex = cuFloatComplex;
 #[cfg(feature = "runtime-link")]
 pub struct DynamicBindings {
     pub cudaDeviceReset: Option<unsafe extern "C" fn() -> cudaError_t>,
