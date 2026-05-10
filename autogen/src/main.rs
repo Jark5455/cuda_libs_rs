@@ -212,7 +212,7 @@ fn main() {
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cudnn",
         out_dir: "./cuda_libs_cudnn/src",
-        headers: vec!["/usr/include/cudnn.h"],
+        headers: vec![&format!("{}/include/cudnn.h", cuda_home)],
         allowlist_functions: "cudnn.*",
         allowlist_types: "cudnn.*",
         allowlist_vars: "CUDNN.*",
