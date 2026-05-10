@@ -209,10 +209,12 @@ fn main() {
         const_overrides: std::collections::HashMap::new(),
     });
 
+    let cudnn_path = env!("CUDNN_PATH");
+
     generate_library(&LibraryConfig {
         lib_name: "cuda_libs_cudnn",
         out_dir: "./cuda_libs_cudnn/src",
-        headers: vec![&format!("{}/include/cudnn.h", cuda_home)],
+        headers: vec![cudnn_path],
         allowlist_functions: "cudnn.*",
         allowlist_types: "cudnn.*",
         allowlist_vars: "CUDNN.*",

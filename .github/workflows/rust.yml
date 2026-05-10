@@ -16,6 +16,7 @@ jobs:
 
     env:
       CUDA_HOME: /usr/local/cuda
+      CUDNN_PATH: /usr/include/x86_64-linux-gnu/cudnn.h
 
     steps:
     - name: Install cuda keyring
